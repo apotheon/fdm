@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.1 2006-08-11 14:28:07 nicm Exp $ */
+/* $Id: fdm.h,v 1.2 2006-08-11 16:02:42 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -135,6 +135,7 @@ struct conf {
 	int			 syslog;
 
 	char			*home;
+	char			*user;
 
 	char			*conf_file;
 

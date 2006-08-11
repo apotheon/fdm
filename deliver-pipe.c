@@ -1,4 +1,4 @@
-/* $Id: deliver-pipe.c,v 1.2 2006-08-11 15:23:12 nicm Exp $ */
+/* $Id: deliver-pipe.c,v 1.3 2006-08-11 16:02:42 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -41,6 +41,7 @@ pipe_deliver(struct account *a, struct action *t, struct mail *m)
 	map[REPL_IDX('a')] = a->name;
 	map[REPL_IDX('h')] = conf.home;
 	map[REPL_IDX('t')] = t->name;
+	map[REPL_IDX('u')] = conf.user;
 	cmd = replace(t->data, map);
         if (cmd == NULL || *cmd == '\0') {
 		log_warnx("%s: empty command", a->name);

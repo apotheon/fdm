@@ -1,4 +1,4 @@
-/* $Id: deliver-maildir.c,v 1.2 2006-08-11 15:23:11 nicm Exp $ */
+/* $Id: deliver-maildir.c,v 1.3 2006-08-11 16:02:42 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -51,6 +51,7 @@ maildir_deliver(unused struct account *a, unused struct action *t,
 	map[REPL_IDX('a')] = a->name;
 	map[REPL_IDX('h')] = conf.home;
 	map[REPL_IDX('t')] = t->name;
+	map[REPL_IDX('u')] = conf.user;
 	path = replace(t->data, map);
 	if (path == NULL || *path == '\0') {
 		log_warnx("%s: empty path", a->name);
