@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.2 2006-08-11 16:02:42 nicm Exp $ */
+/* $Id: fdm.h,v 1.3 2006-08-11 17:46:49 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -250,6 +250,9 @@ extern struct deliver 	 deliver_maildir;
 
 /* connect.c */
 int			 connectto(struct addrinfo *, char **);
+
+/* mail.c */
+void			 trim_from(struct mail *);
 
 /* replace.c */
 #define REPL_LEN 52

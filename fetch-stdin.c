@@ -1,4 +1,4 @@
-/* $Id: fetch-stdin.c,v 1.1 2006-08-11 14:28:09 nicm Exp $ */
+/* $Id: fetch-stdin.c,v 1.2 2006-08-11 17:46:49 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -90,7 +90,9 @@ stdin_fetch(struct account *a, struct mail *m)
 	for (;;) {
 		if ((error = io_poll(data->io)) != 1) {
 			/* normal close (error == 0) is fine */
-			return (error == -1);
+			if (error == 0)
+				goto out;
+			return (1);
 		}
 
 		for (;;) {
@@ -114,5 +116,7 @@ stdin_fetch(struct account *a, struct mail *m)
 			break;
 	}
 
+out:
+	trim_from(m);
 	return (0);
 }
