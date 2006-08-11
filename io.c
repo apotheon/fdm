@@ -1,4 +1,4 @@
-/* $Id: io.c,v 1.1 2006-08-11 14:28:07 nicm Exp $ */
+/* $Id: io.c,v 1.2 2006-08-11 14:54:32 nicm Exp $ */
 
 /*
  * Copyright (c) 2005 Nicholas Marriott <nicm__@ntlworld.com>
@@ -262,7 +262,7 @@ io_push(struct io *io)
 		io->need_wr = 0;
 	}
 
-	log_debug2("io_fill: out");
+	log_debug2("io_push: out");
 
 	return (1);
 }
