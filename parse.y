@@ -1,4 +1,4 @@
-/* $Id: parse.y,v 1.3 2006-08-12 12:00:05 nicm Exp $ */
+/* $Id: parse.y,v 1.4 2006-08-12 17:09:32 nicm Exp $ */
 
 /*
  * Copyright (c) 2004 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -215,6 +215,11 @@ action: ACTPIPE command
       | ACTMAILDIR STRING
 	{
 		$$.deliver = &deliver_maildir;
+		$$.data = $2;
+	}
+      | ACTMBOX STRING
+	{
+		$$.deliver = &deliver_mbox;
 		$$.data = $2;
 	}
       | ACTSMTP server

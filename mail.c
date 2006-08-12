@@ -1,4 +1,4 @@
-/* $Id: mail.c,v 1.4 2006-08-12 12:00:05 nicm Exp $ */
+/* $Id: mail.c,v 1.5 2006-08-12 17:09:32 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -116,9 +116,9 @@ insert_from(struct mail *m)
 
 	/* fake it up using local user */ /* XXX */
 	t = time(NULL);
-	len = xasprintf(&from, "From %s %s\n", conf.user, ctime(&t));
+	len = xasprintf(&from, "From %s %s", conf.user, ctime(&t));
 
-	ENSURE_SIZE(m->data, m->size, m->size + len);
+	ENSURE_SIZE(m->data, m->space, m->size + len);
 	memmove(m->data + len, m->data, m->size);
 	memcpy(m->data, from, len);
 	m->size += len;

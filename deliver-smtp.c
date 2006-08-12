@@ -1,4 +1,4 @@
-/* $Id: deliver-smtp.c,v 1.1 2006-08-11 14:28:09 nicm Exp $ */
+/* $Id: deliver-smtp.c,v 1.2 2006-08-12 17:09:32 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -31,8 +31,7 @@ int	smtp_deliver(struct account *, struct action *, struct mail *);
 struct deliver deliver_smtp = { "smtp", smtp_deliver };
 
 int
-smtp_deliver(unused struct account *a, unused struct action *t, 
-    unused struct mail *m) 
+smtp_deliver(struct account *a, struct action *t, struct mail *m) 
 {
 	fatal("smtp_deliver: not yet implemented");
 	return (0);
