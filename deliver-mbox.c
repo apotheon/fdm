@@ -1,4 +1,4 @@
-/* $Id: deliver-mbox.c,v 1.1 2006-08-12 17:09:32 nicm Exp $ */
+/* $Id: deliver-mbox.c,v 1.2 2006-08-12 17:52:57 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -52,7 +52,6 @@ mbox_deliver(struct account *a, struct action *t, struct mail *m)
 	}
 
 	/* ensure the mail has a leading "From " */
-	trim_from(m);
 	insert_from(m);
 
 	/* XXX dest file sanity checks: ownership? */
