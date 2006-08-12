@@ -1,4 +1,4 @@
-/* $Id: parse.y,v 1.1 2006-08-11 14:28:08 nicm Exp $ */
+/* $Id: parse.y,v 1.2 2006-08-12 10:34:04 nicm Exp $ */
 
 /*
  * Copyright (c) 2004 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -79,13 +79,15 @@ check_account(char *name)
 %token TOKALL TOKACCOUNT TOKSERVER TOKPORT TOKUSER TOKPASS TOKACTION TOKCOMMAND
 %token TOKSET TOKACCOUNTS TOKMATCH TOKIN TOKCONTINUE TOKSTDIN TOKPOP3 TOKPOP3S
 %token ACTPIPE ACTSMTP ACTDROP ACTMAILDIR
-%token OPTMAXSIZE OPTDELOVERSIZED
+%token OPTMAXSIZE OPTDELOVERSIZED OPTLOCKTYPES
+%token LCKFLOCK LCKFCNTL LCKDOTLOCK
 
 %union
 {
         int 	 	 	 number;
         char 			*string;
 	int 		 	 flag;
+	u_int			 locks;
 	struct {
 		struct fetch	*fetch;
 		void		*data;
@@ -119,6 +121,8 @@ check_account(char *name)
 %type  <number> size
 %type  <fetch> poptype
 %type  <fetch> fetchtype
+%type  <locks> lock
+%type  <locks> locklist
 
 %%
 
@@ -136,16 +140,42 @@ size: NUMBER
 	      $$ = $1;
       }
 
+lock: LCKFCNTL
+      {
+	      $$ |= LOCK_FCNTL;
+      }
+    | LCKFLOCK
+      {
+	      $$ |= LOCK_FLOCK;
+      }
+    | LCKDOTLOCK
+      {
+	      $$ |= LOCK_DOTLOCK;
+      }	
+
+locklist: locklist lock
+	  {
+		  $$ |= $2;
+	  }
+	| lock
+	  {
+		  $$ = $1;
+	  }
+
 set: TOKSET OPTMAXSIZE size
-   {
-	   if ($3 > MAXMAILSIZE)
-		   yyerror("maxsize is too large");
-	   conf.max_size = $3;
-   }
+     {
+	     if ($3 > MAXMAILSIZE)
+		     yyerror("maxsize is too large");
+	     conf.max_size = $3;
+     }
    | TOKSET OPTDELOVERSIZED
-   {
-	   conf.del_oversized = 1;
-   }
+     {
+	     conf.del_oversized = 1;
+     }
+   | TOKSET OPTLOCKTYPES locklist
+     {
+	     conf.lock_types = $3;
+     }
 
 port: TOKPORT STRING
       {

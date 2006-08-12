@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.3 2006-08-11 17:46:49 nicm Exp $ */
+/* $Id: fdm.h,v 1.4 2006-08-12 10:34:04 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -129,6 +129,11 @@ struct deliver {
 	int	(*deliver)(struct account *, struct action *, struct mail *);
 };
 
+/* Lock types */
+#define LOCK_FCNTL 0x1
+#define LOCK_FLOCK 0x2
+#define LOCK_DOTLOCK 0x4
+
 /* Configuration settings */
 struct conf {
 	int 			 debug;
@@ -142,6 +147,7 @@ struct conf {
 	size_t			 max_size;
 	int		         del_oversized;
 	int			 check_only;
+	u_int			 lock_types;
 
 	TAILQ_HEAD(, account)	 accounts;
  	TAILQ_HEAD(, action)	 actions;
@@ -252,6 +258,9 @@ extern struct deliver 	 deliver_maildir;
 int			 connectto(struct addrinfo *, char **);
 
 /* mail.c */
+int			 openlock(char *, u_int, int, mode_t);
+void			 closelock(int, char *, u_int);
+int			 has_from(struct mail *);
 void			 trim_from(struct mail *);
 
 /* replace.c */
