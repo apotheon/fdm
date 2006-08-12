@@ -1,6 +1,6 @@
 /* -*-C-*- */
 
-/* $Id: lex.l,v 1.2 2006-08-12 10:34:04 nicm Exp $ */
+/* $Id: lex.l,v 1.3 2006-08-12 12:00:05 nicm Exp $ */
 
 /*
  * Copyright (c) 2004 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -149,6 +149,7 @@ maxsize return (OPTMAXSIZE);
 deloversized return (OPTDELOVERSIZED);
 locktypes return (OPTLOCKTYPES);
 all return (TOKALL);
+none return (TOKNONE);
 accounts return (TOKACCOUNTS);
 match return (TOKMATCH);
 in return (TOKIN);
@@ -166,6 +167,7 @@ pipe return (ACTPIPE);
 drop return (ACTDROP);
 smtp return (ACTSMTP);
 maildir return (ACTMAILDIR);
+mbox return (ACTMBOX);
 fcntl return (LCKFCNTL);
 flock return (LCKFLOCK);
 dotlock return (LCKDOTLOCK);

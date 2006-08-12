@@ -1,4 +1,4 @@
-/* $Id: mail.c,v 1.3 2006-08-12 10:34:04 nicm Exp $ */
+/* $Id: mail.c,v 1.4 2006-08-12 12:00:05 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -20,6 +20,7 @@
 
 #include <fcntl.h>
 #include <string.h>
+#include <time.h>
 #include <unistd.h>
 
 #include "fdm.h"
@@ -101,4 +102,26 @@ trim_from(struct mail *m)
 
 	m->size -= ptr - m->data;		
 	memmove(m->data, ptr, m->size);
+}
+
+void
+insert_from(struct mail *m)
+{
+	char 	*from;
+	size_t	 len;
+	time_t	 t;
+
+	if (has_from(m))
+		return;
+
+	/* fake it up using local user */ /* XXX */
+	t = time(NULL);
+	len = xasprintf(&from, "From %s %s\n", conf.user, ctime(&t));
+
+	ENSURE_SIZE(m->data, m->size, m->size + len);
+	memmove(m->data + len, m->data, m->size);
+	memcpy(m->data, from, len);
+	m->size += len;
+
+	xfree(from);
 }
