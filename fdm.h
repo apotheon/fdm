@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.6 2006-08-12 17:09:32 nicm Exp $ */
+/* $Id: fdm.h,v 1.7 2006-08-13 17:37:46 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -267,6 +267,7 @@ void			 closelock(int, char *, u_int);
 int			 has_from(struct mail *);
 void			 trim_from(struct mail *);
 void			 insert_from(struct mail *);
+void			 unwrap_headers(struct mail *);
 
 /* replace.c */
 #define REPL_LEN 52
