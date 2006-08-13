@@ -1,4 +1,4 @@
-/* $Id: fetch-pop3.c,v 1.1 2006-08-11 14:28:07 nicm Exp $ */
+/* $Id: fetch-pop3.c,v 1.2 2006-08-13 17:50:42 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -96,7 +96,7 @@ do_pop3(struct account *a, u_int *n, struct mail *m, int is_poll)
 	if (m != NULL)
 		m->data = NULL;
 
-	/* We want to be paranoid and not delete the message until it has been
+	/* we want to be paranoid and not delete the message until it has been
 	   dealt with by the caller and the next one asked for but equally we
 	   don't want to complicate the state machine by having one event which
 	   isn't triggered by a line being ready, so this is special-cased
