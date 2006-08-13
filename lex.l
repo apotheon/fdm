@@ -1,6 +1,6 @@
 /* -*-C-*- */
 
-/* $Id: lex.l,v 1.3 2006-08-12 12:00:05 nicm Exp $ */
+/* $Id: lex.l,v 1.4 2006-08-13 18:11:23 nicm Exp $ */
 
 /*
  * Copyright (c) 2004 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -157,6 +157,7 @@ action return (TOKACTION);
 account return (TOKACCOUNT);
 server return (TOKSERVER);
 port return (TOKPORT);
+case return (TOKCASE);
 command return (TOKCOMMAND);
 continue return (TOKCONTINUE);
 (username|user) return (TOKUSER);
