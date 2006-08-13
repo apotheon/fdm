@@ -1,4 +1,4 @@
-/* $Id: deliver-mbox.c,v 1.2 2006-08-12 17:52:57 nicm Exp $ */
+/* $Id: deliver-mbox.c,v 1.3 2006-08-13 22:34:30 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -51,8 +51,9 @@ mbox_deliver(struct account *a, struct action *t, struct mail *m)
 		goto out;
 	}
 
-	/* ensure the mail has a leading "From " */
-	insert_from(m);
+	/* ensure an existing from line is available */
+	if (m->from == NULL)
+		make_from(m);
 
 	/* XXX dest file sanity checks: ownership? */
 	do {
@@ -71,6 +72,14 @@ mbox_deliver(struct account *a, struct action *t, struct mail *m)
 		}
 	} while (fd == -1);
 
+	/* write the from line */
+	if (write(fd, m->from, strlen(m->from)) == -1) {
+		log_warn("%s: %s: write", a->name, path);
+		error = 1;
+		goto out;
+	}
+
+	/* write the mail */
 	line = m->data;
 	do {
 		ptr = memchr(line, '\n', m->size);

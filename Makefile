@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.3 2006-08-12 17:09:32 nicm Exp $
+# $Id: Makefile,v 1.4 2006-08-13 22:34:30 nicm Exp $
 
 .SUFFIXES: .c .o .y .l .h
 .PHONY: clean
@@ -20,7 +20,7 @@ LEX= lex
 YACC= yacc -d
 
 CC= cc
-CFLAGS+= -g -ggdb -std=c99
+CFLAGS+= -g -ggdb -std=c99 -pg
 CFLAGS+= -DDEBUG
 CFLAGS+= -pedantic -Wno-long-long
 CFLAGS+= -Wall -W -Wnested-externs -Wformat-security
@@ -35,7 +35,7 @@ INSTALLBIN= install -g bin -o root -m 555
 INSTALLMAN= install -g bin -o root -m 444
 
 INCDIRS= -I- -I. -I/usr/local/include
-LDFLAGS+= -L/usr/local/lib
+LDFLAGS+= -L/usr/local/lib -pg
 LIBS= -lm -lcrypto -lssl
 
 TARFLAGS= 
