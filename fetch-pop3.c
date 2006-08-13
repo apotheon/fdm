@@ -1,4 +1,4 @@
-/* $Id: fetch-pop3.c,v 1.3 2006-08-13 17:58:06 nicm Exp $ */
+/* $Id: fetch-pop3.c,v 1.4 2006-08-13 22:38:06 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -184,7 +184,7 @@ do_pop3(struct account *a, u_int *n, struct mail *m, int is_poll)
 				}
 				
 				off = 0;
-				m->data = xmalloc(m->size);
+				m->base = m->data = xmalloc(m->size);
 				m->space = m->size;
 				m->body = -1;
 				
