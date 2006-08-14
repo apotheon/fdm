@@ -1,4 +1,4 @@
-/* $Id: mail.c,v 1.16 2006-08-14 19:12:40 nicm Exp $ */
+/* $Id: mail.c,v 1.17 2006-08-14 19:15:57 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -200,16 +200,16 @@ make_from(struct mail *m)
 		datelen = strlen(date);
 	}
 
-	xasprintf(&ptr, "From %%.%ds %%.%ds\n", fromlen, datelen);
+	xasprintf(&ptr, "From %%.%zus %%.%zus\n", fromlen, datelen);
 	xasprintf(&m->from, ptr, from, date);
 	free(ptr);
 }
 
 /* 
  * Sometimes mail has wrapped header lines, this undoubtedly looks neat but
- * makes them a pain to match using regexps. We build a list of all the wrapped
- * headers in m->wrapped, and can then quickly unwrap them for regexp matching
- * and wrap them again for delivery.
+ * makes them a pain to match using regexps. We build a list of the newlines
+ * in all the wrapped headers in m->wrapped, and can then quickly unwrap them 
+ * for regexp matching and wrap them again for delivery.
  */
 u_int
 fill_wrapped(struct mail *m)
