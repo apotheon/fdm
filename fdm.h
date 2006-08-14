@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.12 2006-08-14 14:12:48 nicm Exp $ */
+/* $Id: fdm.h,v 1.13 2006-08-14 15:13:43 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -29,7 +29,7 @@
 #include <openssl/ssl.h>
 #include <openssl/err.h>
 
-#define CONFFILE	".fdm"
+#define CONFFILE	".fdm.conf"
 #define MAXMAILSIZE	SSIZE_MAX	
 #define LOCKSLEEPTIME	2
 
