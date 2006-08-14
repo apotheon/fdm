@@ -1,6 +1,6 @@
 /* -*-C-*- */
 
-/* $Id: lex.l,v 1.4 2006-08-13 18:11:23 nicm Exp $ */
+/* $Id: lex.l,v 1.5 2006-08-14 13:59:58 nicm Exp $ */
 
 /*
  * Copyright (c) 2004 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -153,6 +153,8 @@ none return (TOKNONE);
 accounts return (TOKACCOUNTS);
 match return (TOKMATCH);
 in return (TOKIN);
+and return (TOKAND);
+or return (TOKOR);
 action return (TOKACTION);
 account return (TOKACCOUNT);
 server return (TOKSERVER);

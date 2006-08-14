@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.10 2006-08-13 22:38:06 nicm Exp $ */
+/* $Id: fdm.h,v 1.11 2006-08-14 13:59:58 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -99,15 +99,36 @@ struct accounts {
 
 /* Match areas. */
 enum area {
-	AREA_NONE,	/* don't try to match the regexp at all */
 	AREA_BODY,
 	AREA_HEADERS,
 	AREA_ANY
 };
 
+/* Match operators. */
+enum op {
+	OP_NONE,
+	OP_AND,
+	OP_OR
+};
+
+/* Match regexps. */
+struct match {
+	char			*s;	
+
+	regex_t			 re;
+	enum op			 op;
+	enum area	 	 area;
+
+	TAILQ_ENTRY(match)	 entry;
+};
+
+/* Match struct. */
+TAILQ_HEAD(matches, match);
+
 /* Rule entry. */
 struct rule {
 	regex_t			 re;
+	struct matches		*matches;
 	enum area		 area;
 
 	int			 stop;	/* stop matching at this rule */
