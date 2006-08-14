@@ -1,4 +1,4 @@
-/* $Id: mail.c,v 1.13 2006-08-14 17:09:20 nicm Exp $ */
+/* $Id: mail.c,v 1.14 2006-08-14 17:17:16 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -165,6 +165,7 @@ make_from(struct mail *m)
 			else
 				from = NULL;
 		} else {
+			/* can't find a <...>, so just use the first word */
 			ptr = from;
 			while (*ptr != '\n' && !isblank((int) *ptr))
 				ptr++;
