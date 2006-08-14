@@ -1,4 +1,4 @@
-/* $Id: mail.c,v 1.9 2006-08-13 22:38:07 nicm Exp $ */
+/* $Id: mail.c,v 1.10 2006-08-14 16:24:26 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -18,6 +18,7 @@
 
 #include <sys/types.h>
 
+#include <ctype.h>
 #include <fcntl.h>
 #include <string.h>
 #include <time.h>
@@ -44,19 +45,25 @@ openlock(char *path, u_int locks, int flags, mode_t mode)
 	if (locks & LOCK_DOTLOCK) {
 		xasprintf(&lock, "%s.lock", path);
 		if ((fd = open(lock, O_WRONLY|O_CREAT|O_EXCL)) != 0) {
-			if (errno == EEXIST) {
+			if (errno == EEXIST)
 				errno = EAGAIN;
-				return (-1);
-			}
 			return (-1);
 		}
 		close(fd);
 	}
-	if (locks & LOCK_FLOCK)
-		flags |= O_EXLOCK;
 
 	fd = open(path, flags, mode);
 	
+	if (fd != -1 && locks & LOCK_FLOCK) {
+		if (flock(fd, LOCK_EX|LOCK_NB) != 0)
+			close(fd);
+			if (locks & LOCK_DOTLOCK)
+				unlink(lock);
+			if (errno == EWOULDBLOCK)
+				errno = EAGAIN;
+			return (-1);		
+	}
+
 	if (fd != -1 && locks & LOCK_FCNTL) {
 		memset(&fl, 0, sizeof fl);
 		fl.l_start = 0;
@@ -64,6 +71,7 @@ openlock(char *path, u_int locks, int flags, mode_t mode)
 		fl.l_type = F_WRLCK;
 		fl.l_whence = SEEK_SET;
 		if (fcntl(fd, F_SETLK, fl) == -1) {
+			close(fd);
 			if (locks & LOCK_DOTLOCK)
 				unlink(lock);
 			/* fcntl returns EAGAIN if locked */

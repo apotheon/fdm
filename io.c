@@ -1,4 +1,4 @@
-/* $Id: io.c,v 1.2 2006-08-11 14:54:32 nicm Exp $ */
+/* $Id: io.c,v 1.3 2006-08-14 16:24:26 nicm Exp $ */
 
 /*
  * Copyright (c) 2005 Nicholas Marriott <nicm__@ntlworld.com>
@@ -21,6 +21,7 @@
 
 #include <errno.h>
 #include <fcntl.h>
+#include <poll.h>
 #include <stdarg.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -29,6 +30,10 @@
 
 #include <openssl/ssl.h>
 #include <openssl/err.h>
+
+#ifndef INFTIM	/* stupid Linux */
+#define INFTIM -1
+#endif
 
 #include "fdm.h"
 

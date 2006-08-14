@@ -1,4 +1,4 @@
-/* $Id: xmalloc.c,v 1.1 2006-08-11 14:28:07 nicm Exp $ */
+/* $Id: xmalloc.c,v 1.2 2006-08-14 16:24:26 nicm Exp $ */
 
 /*
  * Copyright (c) 2004 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -22,6 +22,7 @@
 #include <limits.h>
 #include <stdarg.h>
 #include <stdio.h>
+#include <stdint.h>
 #include <stdlib.h>
 #include <string.h>
 
