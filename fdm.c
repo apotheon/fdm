@@ -1,4 +1,4 @@
-/* $Id: fdm.c,v 1.9 2006-08-14 14:12:48 nicm Exp $ */
+/* $Id: fdm.c,v 1.10 2006-08-14 14:23:26 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -320,7 +320,7 @@ fetch_account(struct account *a)
 			}
 
 			set_wrapped(&m, '\n');
-			if (t->deliver->deliver(a,r->action, &m) != 0) {
+			if (t->deliver->deliver(a, r->action, &m) != 0) {
 				/* delivery error, abort fetching */
 				cancel = 1;
 				break;
