@@ -1,4 +1,4 @@
-/* $Id: parse.y,v 1.6 2006-08-14 13:59:58 nicm Exp $ */
+/* $Id: parse.y,v 1.7 2006-08-14 17:06:26 nicm Exp $ */
 
 /*
  * Copyright (c) 2004 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -147,6 +147,8 @@ set: TOKSET OPTMAXSIZE size
      }
    | TOKSET OPTLOCKTYPES locklist
      {
+	     if ($3 & LOCK_FCNTL && $3 & LOCK_FLOCK)
+		     yyerror("fcntl and flock locking cannot be used together");
 	     conf.lock_types = $3;
      }
    | TOKSET OPTDELOVERSIZED
