@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.6 2006-08-14 13:59:58 nicm Exp $
+# $Id: Makefile,v 1.7 2006-08-14 14:17:48 nicm Exp $
 
 .SUFFIXES: .c .o .y .l .h
 .PHONY: clean
@@ -17,7 +17,7 @@ SRCS= fdm.c log.c xmalloc.c parse.y lex.l io.c replace.c connect.c mail.c \
 OBJS= ${SRCS:S/.c/.o/:S/.y/.o/:S/.l/.o/}
 
 LEX= lex
-YACC= yacc -dv
+YACC= yacc -d
 
 CC= cc
 CFLAGS+= -g -ggdb -std=c99
