@@ -1,4 +1,4 @@
-/* $Id: io.c,v 1.4 2006-08-14 19:19:36 nicm Exp $ */
+/* $Id: io.c,v 1.5 2006-08-14 20:23:05 nicm Exp $ */
 
 /*
  * Copyright (c) 2005 Nicholas Marriott <nicm__@ntlworld.com>
@@ -117,14 +117,14 @@ io_poll(struct io *io)
 	if (pfd.revents & POLLERR || pfd.revents & POLLNVAL)
 		goto error;
 	if (pfd.revents & POLLIN) {
-		if ((error == io_fill(io)) != 1) {
+		if ((error = io_fill(io)) != 1) {
 			if (error == -1)
 				return (-1);
 			goto error;
 		}
 	}
 	if (pfd.revents & POLLOUT) {
-		if ((error == io_push(io)) != 1) {
+		if ((error = io_push(io)) != 1) {
 			if (error == -1)
 				return (-1);
 			goto error;
@@ -179,7 +179,7 @@ io_fill(struct io *io)
 		    IO_BLKSIZE);
 		if (n == 0)
 			return (0);
-		if (n == -1) {
+		if (n < 0) {
 			switch (SSL_get_error(io->ssl, n)) {
 			case SSL_ERROR_WANT_READ:
 				break;
@@ -236,7 +236,7 @@ io_push(struct io *io)
 		n = SSL_write(io->ssl, io->wbase, io->wsize);
 		if (n == 0)
 			return (0);
-		if (n == -1) {
+		if (n < 0) {
 			switch (SSL_get_error(io->ssl, n)) {
 			case SSL_ERROR_WANT_READ:
 				break;

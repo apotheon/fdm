@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.14 2006-08-14 16:24:26 nicm Exp $ */
+/* $Id: fdm.h,v 1.15 2006-08-14 20:23:05 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -330,7 +330,8 @@ void			 free_wrapped(struct mail *);
 
 /* replace.c */
 #define REPL_LEN 52
-#define REPL_IDX(ch) ((ch >= 'a' || ch <= 'z') ? ch - 'a' : 		\
+#define REPL_IDX(ch) /* LINTED */ 				\
+	((ch >= 'a' || ch <= 'z') ? ch - 'a' :			\
 	((ch >= 'A' || ch <= 'z') ? 26 + ch - 'A' : -1))
 char 			*replace(char *, char *[52]);
 
