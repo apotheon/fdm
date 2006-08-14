@@ -1,4 +1,4 @@
-/* $Id: fdm.c,v 1.7 2006-08-14 13:59:58 nicm Exp $ */
+/* $Id: fdm.c,v 1.8 2006-08-14 14:00:58 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -369,9 +369,11 @@ perform_match(struct mail *m, struct rule *r)
 		case AREA_BODY:
 			pmatch.rm_so = m->body;
 			pmatch.rm_eo = m->size;
+			break;
 		case AREA_ANY:
 			pmatch.rm_so = 0;
 			pmatch.rm_eo = m->size;
+			break;
 		}
 		
 		result = regexec(&r->re, m->data, 0, &pmatch, REG_STARTEND);
