@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.11 2006-08-14 13:59:58 nicm Exp $ */
+/* $Id: fdm.h,v 1.12 2006-08-14 14:12:48 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -127,9 +127,7 @@ TAILQ_HEAD(matches, match);
 
 /* Rule entry. */
 struct rule {
-	regex_t			 re;
 	struct matches		*matches;
-	enum area		 area;
 
 	int			 stop;	/* stop matching at this rule */
 

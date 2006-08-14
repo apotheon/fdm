@@ -1,4 +1,4 @@
-/* $Id: fetch-pop3.c,v 1.5 2006-08-13 22:44:10 nicm Exp $ */
+/* $Id: fetch-pop3.c,v 1.6 2006-08-14 14:12:48 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -216,7 +216,7 @@ do_pop3(struct account *a, u_int *n, struct mail *m, int is_poll)
 				}
 				len = strlen(ptr);
 				if (len == 0 && m->body == -1)
-					m->body = off + 2;
+					m->body = off + 1;
 
 				ENSURE_SIZE(m->data, m->space, off + len + 1);
 				m->base = m->data;
