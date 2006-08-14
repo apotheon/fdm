@@ -1,4 +1,4 @@
-/* $Id: mail.c,v 1.15 2006-08-14 19:10:40 nicm Exp $ */
+/* $Id: mail.c,v 1.16 2006-08-14 19:12:40 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -101,6 +101,7 @@ closelock(int fd, char *path, u_int locks)
 	if (locks & LOCK_DOTLOCK) {
 		xasprintf(&lock, "%s.lock", path);
 		unlink(lock);
+		xfree(lock);
 	}
 
 	close(fd);
