@@ -1,4 +1,4 @@
-/* $Id: mail.c,v 1.12 2006-08-14 17:06:26 nicm Exp $ */
+/* $Id: mail.c,v 1.13 2006-08-14 17:09:20 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -140,7 +140,7 @@ make_from(struct mail *m)
 	/* find the from and date headers */
 	end = m->body == -1 ? m->size : (size_t) m->body;	
 	ptr = m->data;
-	for (;;) {
+	while (from == NULL || date == NULL) {
 		ptr = memchr(ptr, '\n', m->size);
 		if (ptr == NULL)
 			break;
