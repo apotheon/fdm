@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.7 2006-08-14 14:17:48 nicm Exp $
+# $Id: Makefile,v 1.8 2006-08-14 15:31:57 nicm Exp $
 
 .SUFFIXES: .c .o .y .l .h
 .PHONY: clean
@@ -39,7 +39,7 @@ LDFLAGS+= -L/usr/local/lib
 LIBS= -lm -lcrypto -lssl
 
 TARFLAGS= 
-DISTFILES= *.[chyl] Makefile ${PROG}.conf.sample # XXX *.[1-9] README
+DISTFILES= *.[chyl] Makefile ${PROG}.conf *.[1-9] # XXX README
 
 CLEANFILES= ${PROG} *.o y.tab.c lex.yy.c y.tab.h .depend ${PROG}-*.tar.gz \
 	*.[1-9].gz *~ *.ln ${PROG}.core
@@ -71,9 +71,11 @@ depend:
 
 install:	all
 		${INSTALLBIN} ${PROG} ${PREFIX}/bin/${PROG}
+		${INSTALLMAN} ${PROG}.1 ${PREFIX}/man/man1/
 
 uninstall:
 		rm -f ${PREFIX}/sbin/${PROG}
+		rm -f ${PREFIX}/man/man1/${PROG}.1
 
 clean:
 		rm -f ${CLEANFILES}
