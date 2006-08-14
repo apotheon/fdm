@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.8 2006-08-14 15:31:57 nicm Exp $
+# $Id: Makefile,v 1.9 2006-08-14 20:31:35 nicm Exp $
 
 .SUFFIXES: .c .o .y .l .h
 .PHONY: clean
@@ -36,7 +36,7 @@ INSTALLMAN= install -g bin -o root -m 444
 
 INCDIRS= -I- -I. -I/usr/local/include
 LDFLAGS+= -L/usr/local/lib
-LIBS= -lm -lcrypto -lssl
+LIBS= -lcrypto -lssl
 
 TARFLAGS= 
 DISTFILES= *.[chyl] Makefile ${PROG}.conf *.[1-9] # XXX README

@@ -1,4 +1,4 @@
-/* $Id: fdm.c,v 1.12 2006-08-14 20:12:42 nicm Exp $ */
+/* $Id: fdm.c,v 1.13 2006-08-14 20:31:35 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -130,7 +130,7 @@ main(int argc, char **argv)
 	log_init(!conf.syslog);
 	log_debug("version is: %s " BUILD, __progname);
 
-	/* save the home dir and misc user */
+	/* save the home dir and misc user info */
 	conf.home = getenv("HOME");
 	if (conf.home != NULL && *conf.home == '\0')
 		conf.home = NULL;

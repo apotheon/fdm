@@ -1,4 +1,4 @@
-# $Id: GNUmakefile,v 1.1 2006-08-14 16:24:26 nicm Exp $
+# $Id: GNUmakefile,v 1.2 2006-08-14 20:31:35 nicm Exp $
 
 .PHONY: clean
 
@@ -52,7 +52,7 @@ CFLAGS = -std=c99 -pedantic -Wno-long-long -Wall -W -Wnested-externs \
 	 -Wmissing-declarations -Wshadow -Wpointer-arith -Wcast-qual \
 	 -Wsign-compare 
 
-LIBS = -lm -lssl
+LIBS = -lssl
 
 CLEANFILES = $(PROG) y.tab.c lex.yy.c y.tab.h $(OBJS) .depend
 
