@@ -1,6 +1,6 @@
 /* -*-C-*- */
 
-/* $Id: lex.l,v 1.6 2006-08-16 18:58:21 nicm Exp $ */
+/* $Id: lex.l,v 1.7 2006-08-16 19:33:47 nicm Exp $ */
 
 /*
  * Copyright (c) 2004 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -78,13 +78,13 @@ extern __dead void yyerror(const char *, ...);
 	case 'M':
 		if (yylval.number > INT_MAX / (1024 * 1024))
 			yyerror("size too large");
-                yylval.number *= 1048576;
+                yylval.number *= 1024 * 1024;
                 break;
         case 'g':
 	case 'G':
 		if (yylval.number > INT_MAX / (1024 * 1024 * 1024))
 			yyerror("size too large");
-                yylval.number *= 1048576;
+                yylval.number *= 1024 * 1024 * 1024;
                 break;
         }
 
