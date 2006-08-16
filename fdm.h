@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.15 2006-08-14 20:23:05 nicm Exp $ */
+/* $Id: fdm.h,v 1.16 2006-08-16 18:58:21 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -304,6 +304,13 @@ extern struct deliver 	 deliver_maildir;
 
 /* deliver-mbox.c */
 extern struct deliver 	 deliver_mbox;
+
+/* deliver-write.c */
+extern struct deliver 	 deliver_write;
+int	 do_write(struct account *, struct action *, struct mail *, int);
+
+/* deliver-append.c */
+extern struct deliver 	 deliver_append;
 
 #ifdef NO_STRLCPY
 /* strlcpy.c */
