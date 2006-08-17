@@ -1,6 +1,6 @@
 /* -*-C-*- */
 
-/* $Id: lex.l,v 1.8 2006-08-17 17:26:10 nicm Exp $ */
+/* $Id: lex.l,v 1.9 2006-08-17 18:56:15 nicm Exp $ */
 
 /*
  * Copyright (c) 2004 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -148,6 +148,7 @@ any {
 account return (TOKACCOUNT);
 accounts return (TOKACCOUNTS);
 action return (TOKACTION);
+actions return (TOKACTIONS);
 all return (TOKALL);
 and return (TOKAND);
 append return (ACTAPPEND);
