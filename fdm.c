@@ -1,4 +1,4 @@
-/* $Id: fdm.c,v 1.15 2006-08-17 18:56:15 nicm Exp $ */
+/* $Id: fdm.c,v 1.16 2006-08-17 19:02:53 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -324,7 +324,7 @@ fetch_account(struct account *a)
 				t = ARRAY_ITEM(r->actions, i);
 				if (t->deliver->deliver == NULL)
 					continue;
-				log_debug("%s: action %s", a->name, t->name);
+				log_debug2("%s: action %s", a->name, t->name);
 
 				set_wrapped(&m, '\n');
 				error = t->deliver->deliver(a, t, &m);
