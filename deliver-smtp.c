@@ -1,4 +1,4 @@
-/* $Id: deliver-smtp.c,v 1.3 2006-08-17 08:03:36 nicm Exp $ */
+/* $Id: deliver-smtp.c,v 1.4 2006-08-17 15:12:06 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -40,7 +40,7 @@ smtp_deliver(struct account *a, struct action *t, struct mail *m)
 	char			*cause, *to;
 	char			 host[MAXHOSTNAMELEN];
 
-	fatal("smtp_deliver: not yet implemented");
+	fatalx("smtp_deliver: not yet implemented");
 
 	data = t->data;
 

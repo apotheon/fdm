@@ -1,4 +1,4 @@
-/* $Id: deliver-mbox.c,v 1.4 2006-08-17 07:48:28 nicm Exp $ */
+/* $Id: deliver-mbox.c,v 1.5 2006-08-17 15:12:06 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -83,7 +83,7 @@ mbox_deliver(struct account *a, struct action *t, struct mail *m)
 	/* write the mail */
 	line = m->data;
 	do {
-		ptr = memchr(line, '\n', m->size);
+		ptr = memchr(line, '\n', m->size - (line - m->data));
 		if (ptr == NULL)
 			ptr = m->data + m->size;
 		
