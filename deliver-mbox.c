@@ -1,4 +1,4 @@
-/* $Id: deliver-mbox.c,v 1.3 2006-08-13 22:34:30 nicm Exp $ */
+/* $Id: deliver-mbox.c,v 1.4 2006-08-17 07:48:28 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -50,6 +50,7 @@ mbox_deliver(struct account *a, struct action *t, struct mail *m)
 		log_warnx("%s: empty path", a->name);
 		goto out;
 	}
+	log_debug("%s: saving to mbox %s", a->name, path); 
 
 	/* ensure an existing from line is available */
 	if (m->from == NULL)

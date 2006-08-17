@@ -1,4 +1,4 @@
-/* $Id: parse.y,v 1.8 2006-08-16 18:58:21 nicm Exp $ */
+/* $Id: parse.y,v 1.9 2006-08-17 07:48:28 nicm Exp $ */
 
 /*
  * Copyright (c) 2004 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -285,7 +285,7 @@ define: TOKACTION STRING action
 		t->name = $2;
 		TAILQ_INSERT_TAIL(&conf.actions, t, entry);
 
-		log_debug("added action: name=%s deliver=%s", t->name,
+		log_debug2("added action: name=%s deliver=%s", t->name,
 		    t->deliver->name);
 	}
 
@@ -471,7 +471,7 @@ rule: matches accounts TOKACTION STRING continue
 		      }
 	      }
 	      
-	      log_debug("added rule: action=%s matches=%s", $4, tmp);
+	      log_debug2("added rule: action=%s matches=%s", $4, tmp);
       }
 
 poptype: TOKPOP3
@@ -524,7 +524,7 @@ account: TOKACCOUNT STRING fetchtype
 		 a->data = $3.data;
 		 TAILQ_INSERT_TAIL(&conf.accounts, a, entry);
 
-		 log_debug("added account: name=%s fetch=%s", a->name,
+		 log_debug2("added account: name=%s fetch=%s", a->name,
 		     a->fetch->name);
 	 }
 

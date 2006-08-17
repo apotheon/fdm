@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.16 2006-08-16 18:58:21 nicm Exp $ */
+/* $Id: fdm.h,v 1.17 2006-08-17 07:48:28 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -362,6 +362,7 @@ void			 log_warnx(const char *, ...);
 void			 log_info(const char *, ...);
 void			 log_debug(const char *, ...);
 void			 log_debug2(const char *, ...);
+void			 log_debug3(const char *, ...);
 __dead void		 fatal(const char *);
 __dead void		 fatalx(const char *);
 

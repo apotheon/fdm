@@ -1,4 +1,4 @@
-/* $Id: log.c,v 1.1 2006-08-11 14:28:07 nicm Exp $ */
+/* $Id: log.c,v 1.2 2006-08-17 07:48:28 nicm Exp $ */
 /*      $OpenBSD: log.c,v 1.6 2004/07/12 09:22:38 dtucker Exp $ */
 
 /*
@@ -140,6 +140,18 @@ log_debug2(const char *emsg, ...)
 	va_list	ap;
 
 	if (conf.debug > 1) {
+		va_start(ap, emsg);
+		vlog(LOG_DEBUG, emsg, ap);
+		va_end(ap);
+	}
+}
+
+void
+log_debug3(const char *emsg, ...)
+{
+	va_list	ap;
+
+	if (conf.debug > 2) {
 		va_start(ap, emsg);
 		vlog(LOG_DEBUG, emsg, ap);
 		va_end(ap);
