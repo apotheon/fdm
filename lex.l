@@ -1,6 +1,6 @@
 /* -*-C-*- */
 
-/* $Id: lex.l,v 1.7 2006-08-16 19:33:47 nicm Exp $ */
+/* $Id: lex.l,v 1.8 2006-08-17 17:26:10 nicm Exp $ */
 
 /*
  * Copyright (c) 2004 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -43,7 +43,7 @@ extern __dead void yyerror(const char *, ...);
 	long long	num;
 
 	errno = 0;
-        num = strtol(yytext, NULL, 10);
+        num = strtoll(yytext, NULL, 10);
 	if (num == 0 && (errno == EINVAL || errno == ERANGE))
 		yyerror("illegal number");
 	if (num > INT_MAX)
@@ -175,6 +175,7 @@ server return (TOKSERVER);
 set return (TOKSET);
 smtp return (ACTSMTP);
 stdin return (TOKSTDIN);
+to return (TOKTO);
 write return (ACTWRITE);
 \{ return (SYMOPEN);
 \} return (SYMCLOSE);

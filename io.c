@@ -1,4 +1,4 @@
-/* $Id: io.c,v 1.6 2006-08-17 07:48:28 nicm Exp $ */
+/* $Id: io.c,v 1.7 2006-08-17 17:26:10 nicm Exp $ */
 
 /*
  * Copyright (c) 2005 Nicholas Marriott <nicm__@ntlworld.com>
@@ -84,6 +84,16 @@ io_free(struct io *io)
 	xfree(io->rbase);
 	xfree(io->wbase);
 	xfree(io);
+}
+
+/* Poll if there is lots of data to write. */
+int
+io_update(struct io *io)
+{
+	if (io->wsize > IO_BLKSIZE * 2)
+		return (1);
+
+	return (io_poll(io));
 }
 
 /* Poll the io. */
@@ -294,10 +304,12 @@ io_read(struct io *io, size_t len)
 void
 io_write(struct io *io, const void *buf, size_t len)
 {
-	ENSURE_SIZE(io->wbase, io->wspace, io->wsize + len);
-
-	memcpy(io->wbase + io->wsize, buf, len);
-	io->wsize += len;
+	if (len != 0) {
+		ENSURE_SIZE(io->wbase, io->wspace, io->wsize + len);
+		
+		memcpy(io->wbase + io->wsize, buf, len);
+		io->wsize += len;
+	}
 
 	log_debug3("io_write: %zu bytes. wsize=%zu wspace=%zu", io->wsize,
 	    io->wspace);

@@ -1,4 +1,4 @@
-/* $Id: parse.y,v 1.10 2006-08-17 08:03:36 nicm Exp $ */
+/* $Id: parse.y,v 1.11 2006-08-17 17:26:11 nicm Exp $ */
 
 /*
  * Copyright (c) 2004 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -78,7 +78,7 @@ check_account(char *name)
 %token SYMOPEN SYMCLOSE SYMSTAR
 %token TOKALL TOKACCOUNT TOKSERVER TOKPORT TOKUSER TOKPASS TOKACTION TOKCOMMAND
 %token TOKSET TOKACCOUNTS TOKMATCH TOKIN TOKCONTINUE TOKSTDIN TOKPOP3 TOKPOP3S
-%token TOKNONE TOKCASE TOKAND TOKOR
+%token TOKNONE TOKCASE TOKAND TOKOR TOKTO
 %token ACTPIPE ACTSMTP ACTDROP ACTMAILDIR ACTMBOX ACTWRITE ACTAPPEND
 %token OPTMAXSIZE OPTDELOVERSIZED OPTLOCKTYPES
 %token LCKFLOCK LCKFCNTL LCKDOTLOCK
@@ -226,9 +226,9 @@ to: /* empty */
     {
 	    $$ = NULL;
     } 
-  | STRING
+  | TOKTO STRING
     {
-	    $$ = $1;
+	    $$ = $2;
     }
 
 action: ACTPIPE command
