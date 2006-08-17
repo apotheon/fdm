@@ -1,4 +1,4 @@
-/* $Id: deliver-smtp.c,v 1.5 2006-08-17 17:26:10 nicm Exp $ */
+/* $Id: deliver-smtp.c,v 1.6 2006-08-17 18:16:50 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -140,6 +140,8 @@ smtp_deliver(struct account *a, struct action *t, struct mail *m)
 			break;
 	}
 
+	xfree(from);
+
 	io_free(io);
 	close(fd);
 
@@ -151,6 +153,8 @@ error:
 error2:
 	io_writeline(io, "QUIT");
 	io_flush(io);
+
+	xfree(from);
 
 	io_free(io);
 	close(fd);
