@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.17 2006-08-17 07:48:28 nicm Exp $ */
+/* $Id: fdm.h,v 1.18 2006-08-17 08:03:36 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -278,6 +278,12 @@ struct pop3_data {
 /* Fetch pop3 macros. */
 #define pop3_isOK(s) (strncmp(s, "+OK", 3) == 0)
 #define pop3_isERR(s) (strncmp(s, "+ERR", 4) == 0)
+
+/* Deliver smtp data. */
+struct smtp_data {
+	struct addrinfo		*ai;
+	char			*to;
+};
 
 /* fetch-stdin.c */
 extern struct fetch 	 fetch_stdin;
