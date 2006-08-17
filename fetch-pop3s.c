@@ -1,4 +1,4 @@
-/* $Id: fetch-pop3s.c,v 1.2 2006-08-17 07:48:28 nicm Exp $ */
+/* $Id: fetch-pop3s.c,v 1.3 2006-08-17 23:47:36 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -55,11 +55,11 @@ pop3s_connect(struct account *a)
 
 	ssl = SSL_new(data->ctx);
 	if (ssl == NULL) {
-		log_warnx("%s: SSL_new: %s", a->name, ssl_err());
+		log_warnx("%s: SSL_new: %s", a->name, SSL_err());
 		return (1);
 	}
 	if (SSL_set_fd(ssl, data->fd) != 1) {
-		log_warnx("%s: SSL_set_fd: %s", a->name, ssl_err());
+		log_warnx("%s: SSL_set_fd: %s", a->name, SSL_err());
 		return (1);
 	}
 	SSL_set_connect_state(ssl);
