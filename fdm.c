@@ -1,4 +1,4 @@
-/* $Id: fdm.c,v 1.21 2006-08-18 17:46:41 nicm Exp $ */
+/* $Id: fdm.c,v 1.22 2006-08-18 17:48:55 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -380,7 +380,7 @@ perform_actions(struct account *a, struct mail *m, struct rule *r)
 		}
 		if (pid != 0) {
 			/* parent process. wait for child */
-			log_debug2("forked. child pid is %d", pid);
+			log_debug2("%s: forked. child pid is %d", a->name, pid);
 			if (waitpid(pid, &status, 0) == -1)
 				fatal("waitpid");
 			if (!WIFEXITED(status)) {
