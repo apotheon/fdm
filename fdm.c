@@ -1,4 +1,4 @@
-/* $Id: fdm.c,v 1.17 2006-08-18 17:11:38 nicm Exp $ */
+/* $Id: fdm.c,v 1.18 2006-08-18 17:21:34 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -350,8 +350,6 @@ dropto(struct account *a, uid_t uid, gid_t gid)
 {
 	pid_t	pid;
 
-	if (uid == 0 && gid == 0)
-		return (0);
 	log_debug("%s: changing to uid %u, gid %u", a->name, uid, gid);
 
 	pid = fork();
@@ -409,6 +407,13 @@ perform_actions(struct account *a, struct mail *m, struct rule *r)
 		/* figure out the user to use */
 		uid = t->uid != 0 ? t->uid : r->uid;
 		gid = t->gid != 0 ? t->gid : r->gid;
+
+		if (uid == 0 && gid == 0) {
+			/* do the delivery without forking */
+			if (t->deliver->deliver(a, t, m) != 0)
+				return (1);
+			continue;
+		}
 
 		pid = dropto(a, uid, gid);
 		switch (pid) {
