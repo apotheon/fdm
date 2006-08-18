@@ -1,4 +1,4 @@
-/* $Id: deliver-maildir.c,v 1.5 2006-08-17 07:48:28 nicm Exp $ */
+/* $Id: deliver-maildir.c,v 1.6 2006-08-18 17:55:14 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -124,9 +124,8 @@ maildir_deliver(struct account *a, struct action *t, struct mail *m)
 restart:
 	/* find a suitable name in tmp */
 	do {
-		if (xsnprintf(name, sizeof name, "%llu.%llu_%u.%s", 
-		    (unsigned long long) time(NULL), 
-		    (unsigned long long) getpid(), 
+		if (xsnprintf(name, sizeof name, "%ld.%ld_%u.%s", 
+		    (long) time(NULL), (long) getpid(), 
 		    maildir_deliveries, host) < 0) {
 			log_warn("%s: %s: xsnprintf", a->name, path);
 			goto error;
