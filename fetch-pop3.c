@@ -1,4 +1,4 @@
-/* $Id: fetch-pop3.c,v 1.8 2006-08-18 14:54:21 nicm Exp $ */
+/* $Id: fetch-pop3.c,v 1.9 2006-08-18 15:14:54 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -208,7 +208,7 @@ do_pop3(struct account *a, u_int *n, struct mail *m, int is_poll)
 						log_warnx("%s: server lied "
 						    "about message size: "
 						    "expected %zu, got %zu "
-						    " (%u lines)", 
+						    "(%u lines)", 
 						    a->name, m->size, 
 						    off + lines, lines);
 					}
