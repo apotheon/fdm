@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.22 2006-08-17 23:47:36 nicm Exp $ */
+/* $Id: fdm.h,v 1.23 2006-08-18 17:11:38 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -97,6 +97,9 @@ struct account {
 struct action {
 	char			*name;
 
+	uid_t			 uid;
+	gid_t			 gid;
+
 	struct deliver		*deliver;
 	void			*data;
 
@@ -159,6 +162,9 @@ TAILQ_HEAD(matches, match);
 /* Rule entry. */
 struct rule {
 	struct matches		*matches;
+
+	uid_t			 uid;
+	gid_t			 gid;
 
 	int			 stop;	/* stop matching at this rule */
 

@@ -1,6 +1,6 @@
 /* -*-C-*- */
 
-/* $Id: lex.l,v 1.10 2006-08-18 16:06:06 nicm Exp $ */
+/* $Id: lex.l,v 1.11 2006-08-18 17:11:38 nicm Exp $ */
 
 /*
  * Copyright (c) 2004 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -158,6 +158,7 @@ dotlock return (LCKDOTLOCK);
 drop return (ACTDROP);
 fcntl return (LCKFCNTL);
 flock return (LCKFLOCK);
+group return (TOKGROUP);
 in return (TOKIN);
 locktypes return (OPTLOCKTYPES);
 maildir return (ACTMAILDIR);
