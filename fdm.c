@@ -1,4 +1,4 @@
-/* $Id: fdm.c,v 1.18 2006-08-18 17:21:34 nicm Exp $ */
+/* $Id: fdm.c,v 1.19 2006-08-18 17:28:55 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -350,11 +350,14 @@ dropto(struct account *a, uid_t uid, gid_t gid)
 {
 	pid_t	pid;
 
-	log_debug("%s: changing to uid %u, gid %u", a->name, uid, gid);
-
 	pid = fork();
-	if (pid != 0)
+	if (pid != 0) {
+		if (pid == -1)
+			log_warn("%s: fork", a->name);
 		return (pid);
+	}
+
+	log_debug("%s: changing to uid %u, gid %u", a->name, uid, gid);
 
 	if (gid != 0) {
 		if (geteuid() != 0) {
@@ -425,6 +428,7 @@ perform_actions(struct account *a, struct mail *m, struct rule *r)
 		case -1:
 			return (1);
 		default:
+			log_debug2("forked. child pid is %d", pid);
 			if (waitpid(pid, &status, 0) == -1)
 				fatal("waitpid");
 			if (!WIFEXITED(status)) {
