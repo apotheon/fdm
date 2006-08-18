@@ -1,6 +1,6 @@
 /* -*-C-*- */
 
-/* $Id: lex.l,v 1.9 2006-08-17 18:56:15 nicm Exp $ */
+/* $Id: lex.l,v 1.10 2006-08-18 16:06:06 nicm Exp $ */
 
 /*
  * Copyright (c) 2004 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -143,9 +143,7 @@ any {
 	yylval.area = AREA_ANY;
 	return (AREA);
 }
-(password|pass) return (TOKPASS);
-(username|user) return (TOKUSER);
-account return (TOKACCOUNT);
+account	return (TOKACCOUNT);
 accounts return (TOKACCOUNTS);
 action return (TOKACTION);
 actions return (TOKACTIONS);
@@ -168,6 +166,7 @@ maxsize return (OPTMAXSIZE);
 mbox return (ACTMBOX);
 none return (TOKNONE);
 or return (TOKOR);
+pass return (TOKPASS);
 pipe return (ACTPIPE);
 pop3 return (TOKPOP3);
 pop3s return (TOKPOP3S);
@@ -177,6 +176,7 @@ set return (TOKSET);
 smtp return (ACTSMTP);
 stdin return (TOKSTDIN);
 to return (TOKTO);
+user return (TOKUSER);
 write return (ACTWRITE);
 \{ return (SYMOPEN);
 \} return (SYMCLOSE);
