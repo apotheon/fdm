@@ -1,4 +1,4 @@
-# $Id: GNUmakefile,v 1.3 2006-08-16 18:58:20 nicm Exp $
+# $Id: GNUmakefile,v 1.4 2006-08-21 07:57:17 nicm Exp $
 
 .PHONY: clean
 
@@ -74,6 +74,7 @@ lex.yy.c: lex.l
 install:
 	$(INSTALLBIN) $(PROG) $(PREFIX)/sbin/$(PROG)
 	$(INSTALLMAN) $(PROG).1 $(PREFIX)/man/man1/$(PROG).1
+	$(INSTALLMAN) $(PROG).conf.5 $(PREFIX)/man/man5/$(PROG).conf.5
 
 clean:
 	rm -f $(CLEANFILES)

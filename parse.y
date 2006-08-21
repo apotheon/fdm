@@ -1,7 +1,7 @@
-/* $Id: parse.y,v 1.14 2006-08-18 17:55:14 nicm Exp $ */
+/* $Id: parse.y,v 1.15 2006-08-21 07:57:17 nicm Exp $ */
 
 /*
- * Copyright (c) 2004 Nicholas Marriott <nicm@users.sourceforge.net>
+ * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
  *
  * Permission to use, copy, modify, and distribute this software for any
  * purpose with or without fee is hereby granted, provided that the above

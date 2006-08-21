@@ -1,9 +1,9 @@
 /* -*-C-*- */
 
-/* $Id: lex.l,v 1.11 2006-08-18 17:11:38 nicm Exp $ */
+/* $Id: lex.l,v 1.12 2006-08-21 07:57:17 nicm Exp $ */
 
 /*
- * Copyright (c) 2004 Nicholas Marriott <nicm@users.sourceforge.net>
+ * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
  *
  * Permission to use, copy, modify, and distribute this software for any
  * purpose with or without fee is hereby granted, provided that the above

@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.10 2006-08-16 18:58:20 nicm Exp $
+# $Id: Makefile,v 1.11 2006-08-21 07:57:17 nicm Exp $
 
 .SUFFIXES: .c .o .y .l .h
 .PHONY: clean
@@ -73,10 +73,12 @@ depend:
 install:	all
 		${INSTALLBIN} ${PROG} ${PREFIX}/bin/${PROG}
 		${INSTALLMAN} ${PROG}.1 ${PREFIX}/man/man1/
+		${INSTALLMAN} ${PROG}.conf.5 ${PREFIX}/man/man5/
 
 uninstall:
 		rm -f ${PREFIX}/sbin/${PROG}
 		rm -f ${PREFIX}/man/man1/${PROG}.1
+		rm -f ${PREFIX}/man/man5/${PROG}.conf.5
 
 clean:
 		rm -f ${CLEANFILES}
