@@ -1,4 +1,4 @@
-/* $Id: fdm.c,v 1.25 2006-08-21 16:20:48 nicm Exp $ */
+/* $Id: fdm.c,v 1.26 2006-08-22 16:57:31 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -357,7 +357,13 @@ fetch_account(struct account *a)
 	
 	gettimeofday(&tv, NULL);
 	tim = (tv.tv_sec + tv.tv_usec / 1000000.0) - tim;
-	log_info("%s: %u messages processed in %.3f seconds", a->name, n, tim);
+	if (n > 0) {
+		log_info("%s: %u messages processed in %.3f seconds "
+		    "(average %.3f)", a->name, n, tim, tim / n);
+	} else {
+	        log_info("%s: %u messages processed in %.3f seconds",
+		    a->name, n, tim);
+	}
 }
 
 int
