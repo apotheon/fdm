@@ -1,4 +1,4 @@
-/* $Id: mail.c,v 1.19 2006-08-17 17:26:10 nicm Exp $ */
+/* $Id: mail.c,v 1.20 2006-08-23 10:33:28 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -32,9 +32,14 @@ void
 free_mail(struct mail *m)
 {
 	free_wrapped(m);
-	if (m->from != NULL)
+	if (m->from != NULL) {
 		xfree(m->from);
-	xfree(m->base);
+		m->from = NULL;
+	}
+	if (m->base != NULL) {
+		xfree(m->base);
+		m->base = NULL;
+	}
 }
 
 int
@@ -308,4 +313,5 @@ free_wrapped(struct mail *m)
 {
 	if (m->wrapped != NULL)	
 		xfree(m->wrapped);
+	m->wrapped = NULL;
 }
