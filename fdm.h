@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.26 2006-08-23 12:30:13 nicm Exp $ */
+/* $Id: fdm.h,v 1.27 2006-08-23 13:19:09 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -67,9 +67,9 @@ extern char	*__progname;
 
 /* Ensure buffer size. */
 #define ENSURE_SIZE(buf, len, req) do {					\
-	while (len <= (req)) {						\
-		buf = xrealloc(buf, 2, len);				\
-		len *= 2;						\
+	while ((len) <= (req)) {					\
+		(buf) = xrealloc((buf), 2, (len));			\
+		(len) *= 2;						\
 	}								\
 } while (0)
 
@@ -238,6 +238,9 @@ extern struct conf		 conf;
 /* Amount to attempt to append to the buffer each time. */
 #define IO_BLOCKSIZE 16384
 
+/* Initial line buffer length. */
+#define IO_LINESIZE 256
+
 /* Amount to poll after in io_accept. */
 #define IO_FLUSHSIZE (8 * IO_BLOCKSIZE)
 
@@ -392,6 +395,7 @@ int			 io_update(struct io *);
 int			 io_poll(struct io *);
 void 			*io_read(struct io *, size_t);
 void			 io_write(struct io *, const void *, size_t);
+char 			*io_readline2(struct io *, char **, size_t *);
 char 			*io_readline(struct io *);
 void printflike2	 io_writeline(struct io *, const char *, ...);
 void			 io_vwriteline(struct io *, const char *, va_list);
