@@ -1,4 +1,4 @@
-/* $Id: xmalloc.c,v 1.5 2006-08-23 12:38:00 nicm Exp $ */
+/* $Id: xmalloc.c,v 1.6 2006-08-23 13:29:14 nicm Exp $ */
 
 /*
  * Copyright (c) 2004 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -65,6 +65,9 @@ xmalloc_dump(void)
 
 	log_debug("xmalloc: allocated=%zu, freed=%zu", xmalloc_allocated,
 	    xmalloc_freed);
+
+	if (xmalloc_allocated == xmalloc_freed)
+		return;
 
 	len = 1024;
 	off = xsnprintf(tmp, len, "xmalloc: ");
