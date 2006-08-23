@@ -1,4 +1,4 @@
-/* $Id: deliver-smtp.c,v 1.6 2006-08-17 18:16:50 nicm Exp $ */
+/* $Id: deliver-smtp.c,v 1.7 2006-08-23 13:22:47 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -110,7 +110,8 @@ smtp_deliver(struct account *a, struct action *t, struct mail *m)
 				line_init(m, &ptr, &len);
 				while (ptr != NULL) { 
 					/* write without \n */
-					io_writeline(io, "%.*s", len - 1, ptr);
+					io_writeline(io, "%.*s", (int) len - 1,
+					    ptr); /* XXX cast */
 
 					/* update if necessary */
 					if (io_update(io) != 1)
