@@ -1,6 +1,6 @@
 /* -*-C-*- */
 
-/* $Id: lex.l,v 1.12 2006-08-21 07:57:17 nicm Exp $ */
+/* $Id: lex.l,v 1.13 2006-08-23 15:20:16 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -153,7 +153,7 @@ append return (ACTAPPEND);
 case return (TOKCASE);
 command return (TOKCOMMAND);
 continue return (TOKCONTINUE);
-deloversized return (OPTDELOVERSIZED);
+deltoobig return (OPTDELTOOBIG);
 dotlock return (LCKDOTLOCK);
 drop return (ACTDROP);
 fcntl return (LCKFCNTL);

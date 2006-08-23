@@ -1,4 +1,4 @@
-/* $Id: fetch-pop3s.c,v 1.3 2006-08-17 23:47:36 nicm Exp $ */
+/* $Id: fetch-pop3s.c,v 1.4 2006-08-23 15:20:16 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -31,8 +31,10 @@ int	pop3s_disconnect(struct account *);
 
 struct fetch	fetch_pop3s = { "pop3s", "pop3s",
 				pop3s_connect, 
-				pop3_poll, /* from fetch-pop3.c */
-				pop3_fetch, /* from fetch-pop3.c */
+				pop3_poll,	/* from fetch-pop3.c */
+				pop3_fetch, 	/* from fetch-pop3.c */
+				pop3_delete, 	/* from fetch-pop3.c */
+				pop3_error, 	/* from fetch-pop3.c */
 				pop3s_disconnect };
 
 int
