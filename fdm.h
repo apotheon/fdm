@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.24 2006-08-23 11:43:47 nicm Exp $ */
+/* $Id: fdm.h,v 1.25 2006-08-23 11:59:20 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -361,6 +361,7 @@ int			 connectto(struct addrinfo *, char **);
 
 /* mail.c */
 void			 free_mail(struct mail *);
+void			 resize_mail(struct mail *, size_t);
 int			 openlock(char *, u_int, int, mode_t);
 void			 closelock(int, char *, u_int);
 void			 line_init(struct mail *, char **, size_t *);

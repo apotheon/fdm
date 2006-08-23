@@ -1,4 +1,4 @@
-/* $Id: mail.c,v 1.20 2006-08-23 10:33:28 nicm Exp $ */
+/* $Id: mail.c,v 1.21 2006-08-23 11:59:20 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -40,6 +40,15 @@ free_mail(struct mail *m)
 		xfree(m->base);
 		m->base = NULL;
 	}
+}
+
+void
+resize_mail(struct mail *m, size_t size)
+{
+	size_t	off = m->data - m->base;
+
+	ENSURE_SIZE(m->base, m->space, off + size);
+	m->data = m->base + off;
 }
 
 int

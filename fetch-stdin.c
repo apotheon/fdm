@@ -1,4 +1,4 @@
-/* $Id: fetch-stdin.c,v 1.10 2006-08-23 10:33:28 nicm Exp $ */
+/* $Id: fetch-stdin.c,v 1.11 2006-08-23 11:59:20 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -112,8 +112,7 @@ stdin_fetch(struct account *a, struct mail *m)
 			if (len == 0 && m->body == -1)
 				m->body = m->size + 1;
 			
-			ENSURE_SIZE(m->data, m->space, m->size + len + 1);
-			m->base = m->data;
+			resize_mail(m, m->size + len + 1);
 
 			if (len > 0)
 				memcpy(m->data + m->size, line, len);

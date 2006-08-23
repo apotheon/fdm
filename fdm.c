@@ -1,4 +1,4 @@
-/* $Id: fdm.c,v 1.29 2006-08-23 11:43:47 nicm Exp $ */
+/* $Id: fdm.c,v 1.30 2006-08-23 11:59:20 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -322,7 +322,7 @@ fetch_account(struct account *a)
 			break;
 		}
 		
-		log_debug("%s: got message: size=%zu, body=%zu", a->name,
+		log_debug("%s: got message: size=%zu, body=%zd", a->name,
 		    m.size, m.body);
 
 		i = fill_wrapped(&m);
