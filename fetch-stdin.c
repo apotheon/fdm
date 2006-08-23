@@ -1,4 +1,4 @@
-/* $Id: fetch-stdin.c,v 1.12 2006-08-23 12:03:20 nicm Exp $ */
+/* $Id: fetch-stdin.c,v 1.13 2006-08-23 12:06:08 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -119,6 +119,8 @@ stdin_fetch(struct account *a, struct mail *m)
 			/* append an LF */
 			m->data[m->size + len] = '\n';
 			m->size += len + 1;
+
+			xfree(line);
 
 			if (m->size > conf.max_size) {
 				log_warnx("%s: message too big: %zu", m->size);
