@@ -1,4 +1,4 @@
-/* $Id: fdm.c,v 1.28 2006-08-23 10:39:14 nicm Exp $ */
+/* $Id: fdm.c,v 1.29 2006-08-23 11:43:47 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -211,6 +211,11 @@ main(int argc, char **argv)
         SSL_library_init();
         SSL_load_error_strings();
 
+#ifdef DEBUG
+	xmalloc_clear();
+	xmalloc_dump();
+#endif
+
         log_debug("processing accounts");
 	TAILQ_FOREACH(a, &conf.accounts, entry) {
 		if (!ARRAY_EMPTY(&incl)) {
@@ -258,6 +263,10 @@ main(int argc, char **argv)
 	}
 
         log_debug("finished processing. exiting");
+
+#ifdef DEBUG
+	xmalloc_dump();
+#endif
 
 	return (0);
 }
