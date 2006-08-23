@@ -1,4 +1,4 @@
-/* $Id: fetch-stdin.c,v 1.11 2006-08-23 11:59:20 nicm Exp $ */
+/* $Id: fetch-stdin.c,v 1.12 2006-08-23 12:03:20 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -88,8 +88,8 @@ stdin_fetch(struct account *a, struct mail *m)
 	data = a->data;
 
 	if (m->data == NULL) {
-		m->space = 4096;
-		m->base = m->data = malloc(m->space);
+		m->space = IO_BLOCKSIZE;
+		m->base = m->data = xmalloc(m->space);
 		m->size = 0;
 		m->body = -1;
 	}
