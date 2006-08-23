@@ -1,4 +1,4 @@
-/* $Id: xmalloc.c,v 1.3 2006-08-23 11:43:47 nicm Exp $ */
+/* $Id: xmalloc.c,v 1.4 2006-08-23 12:30:14 nicm Exp $ */
 
 /*
  * Copyright (c) 2004 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -90,7 +90,7 @@ xmalloc_new(void *ptr, size_t size)
 {
 	struct xmalloc_block	*block;
 
-	log_debug3("xmalloc_new: %p %u", ptr, size);
+	log_debug3("xmalloc_new: %p %zu", ptr, size);
 
 	if ((block = xmalloc_find(NULL)) == NULL) {
 		log_warnx("xmalloc_new: no space");
@@ -109,7 +109,7 @@ xmalloc_change(void *oldptr, void *newptr, size_t newsize)
 	struct xmalloc_block	*block;
 	ssize_t			 change;
 
-	log_debug3("xmalloc_change: %p -> %p %u", oldptr, newptr, newsize);
+	log_debug3("xmalloc_change: %p -> %p %zu", oldptr, newptr, newsize);
 
 	if ((block = xmalloc_find(oldptr)) == NULL) {
 		log_warnx("xmalloc_change: not found");
@@ -228,7 +228,7 @@ xfree(void *ptr)
 #endif
 }
 
-int
+int printflike3
 xsnprintf(char *str, size_t size, const char *fmt, ...)
 {
 	int	i;
@@ -247,7 +247,7 @@ xsnprintf(char *str, size_t size, const char *fmt, ...)
 	return (i);
 }
 
-int
+int printflike2
 xasprintf(char **ret, const char *fmt, ...)
 {
         va_list ap;

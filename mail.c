@@ -1,4 +1,4 @@
-/* $Id: mail.c,v 1.21 2006-08-23 11:59:20 nicm Exp $ */
+/* $Id: mail.c,v 1.22 2006-08-23 12:30:14 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -18,6 +18,7 @@
 
 #include <sys/types.h>
 #include <sys/file.h>
+#include <sys/limits.h>
 #include <sys/stat.h>
 
 #include <ctype.h>
@@ -220,6 +221,8 @@ make_from(struct mail *m)
 		return;
 
 	from = find_header(m, "From: ", &fromlen);    
+ 	if (fromlen > INT_MAX)
+		from = NULL;
 	if (from != NULL && fromlen > 0) {
 		ptr = memchr(from, '<', fromlen);
 		if (ptr != NULL) {
@@ -244,6 +247,8 @@ make_from(struct mail *m)
 	}
 
 	date = find_header(m, "Date: ", &datelen);
+ 	if (datelen > INT_MAX)
+		date = NULL;
 	if (date != NULL && datelen > 0) {
 		while (isblank((int) *date)) {
 			date++;
@@ -255,7 +260,8 @@ make_from(struct mail *m)
 		datelen = strlen(date);
 	}
 
-	xasprintf(&m->from, "From %.*s %.*s", fromlen, from, datelen, date);
+	xasprintf(&m->from, "From %.*s %.*s", (int) fromlen, from,
+	    (int) datelen, date);
 }
 
 /* 

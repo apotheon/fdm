@@ -1,4 +1,4 @@
-/* $Id: io.c,v 1.9 2006-08-23 11:43:47 nicm Exp $ */
+/* $Id: io.c,v 1.10 2006-08-23 12:30:14 nicm Exp $ */
 
 /*
  * Copyright (c) 2005 Nicholas Marriott <nicm__@ntlworld.com>
@@ -314,7 +314,7 @@ io_write(struct io *io, const void *buf, size_t len)
 		io->wsize += len;
 	}
 
-	log_debug3("io_write: %zu bytes. wsize=%zu wspace=%zu", io->wsize,
+	log_debug3("io_write: %zu bytes. wsize=%zu wspace=%zu", len, io->wsize,
 	    io->wspace);
 }
 
@@ -388,7 +388,7 @@ io_readline(struct io *io)
 }
 
 /* Write a line to the io write buffer. */
-void
+void printflike2
 io_writeline(struct io *io, const char *fmt, ...)
 {
 	va_list	 ap;
