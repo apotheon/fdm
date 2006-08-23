@@ -1,4 +1,4 @@
-/* $Id: fetch-pop3.c,v 1.13 2006-08-23 15:20:16 nicm Exp $ */
+/* $Id: fetch-pop3.c,v 1.14 2006-08-23 15:36:12 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -117,7 +117,7 @@ do_pop3(struct account *a, u_int *n, struct mail *m, int is_poll)
 	flushing = 0;
 	do {
 		if (io_poll(data->io) != 1) {
-			line = "polling error";
+			line = "io_poll failed";
 			goto error;
 		}
 
@@ -186,9 +186,9 @@ do_pop3(struct account *a, u_int *n, struct mail *m, int is_poll)
 				}
 
 				if (m->size > conf.max_size) {
-					//res = FETCH_OVERSIZE;
-					//data->state = POP3_DONE;
-					//break;
+					res = FETCH_OVERSIZE;
+					data->state = POP3_DONE;
+					break;
 				}
 
 				off = lines = 0;
