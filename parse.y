@@ -1,4 +1,4 @@
-/* $Id: parse.y,v 1.24 2006-08-24 18:59:36 nicm Exp $ */
+/* $Id: parse.y,v 1.25 2006-08-24 19:02:33 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -332,6 +332,11 @@ users: /* empty */
 	       $$.find_uid = 0;
        }
      | TOKUSER TOKFROMHEADERS
+       {
+	       $$.users = NULL;
+	       $$.find_uid = 1;
+       }
+     | TOKUSERS TOKFROMHEADERS
        {
 	       $$.users = NULL;
 	       $$.find_uid = 1;
