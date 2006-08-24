@@ -40,7 +40,7 @@ user from the mail headers. A config file for multiuser may look something like:
 	action "default" user from-headers maildir "%h/mail/inbox"
 	match all action "default"
 
-Alternatively, it could be more limited, perhap something like this:
+Alternatively, it could be more limited, perhaps something like this:
 
 	set defuser "bob" # this is required but not used in this file
 	account ......
@@ -79,4 +79,4 @@ nicm123@gmail.com
 Nicholas Marriott
 nicm@users.sourceforge.net
 
-# $Id: README,v 1.16 2006-08-24 19:29:36 nicm Exp $
+# $Id: README,v 1.17 2006-08-24 19:31:14 nicm Exp $
