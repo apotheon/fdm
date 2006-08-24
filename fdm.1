@@ -1,4 +1,4 @@
-.\" $Id: fdm.1,v 1.6 2006-08-21 18:10:15 nicm Exp $
+.\" $Id: fdm.1,v 1.7 2006-08-24 13:19:53 nicm Exp $
 .\"
 .\" Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
 .\"
@@ -57,6 +57,11 @@ rather than to
 .Pp
 .It Fl n
 Do not process any accounts, just verify the configuration file syntax and exit.
+.Pp
+.It Fl u Ar user
+Specify the default user for delivery. This overrides the
+.Ic defuser
+option in the configuration file.
 .Pp
 .It Fl v
 Request verbose logging. This option may be specified multiple times.

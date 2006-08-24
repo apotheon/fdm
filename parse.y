@@ -1,4 +1,4 @@
-/* $Id: parse.y,v 1.17 2006-08-24 12:38:02 nicm Exp $ */
+/* $Id: parse.y,v 1.18 2006-08-24 13:19:53 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -178,7 +178,8 @@ set: TOKSET OPTMAXSIZE size
      }
    | TOKSET OPTDEFUSER userval
      {
-	     conf.def_user = $3;
+	     if (conf.def_user == 0)
+		     conf.def_user = $3;
      }
 
 lock: LCKFCNTL
