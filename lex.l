@@ -1,6 +1,6 @@
 /* -*-C-*- */
 
-/* $Id: lex.l,v 1.20 2006-08-24 19:29:36 nicm Exp $ */
+/* $Id: lex.l,v 1.21 2006-08-24 22:19:49 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -33,8 +33,8 @@
 #include "fdm.h"
 #include "y.tab.h"
 
-extern int yylex(void);
-extern __dead void yyerror(const char *, ...);
+extern int 			yylex(void);
+extern __dead printflike1 void	yyerror(const char *, ...);
 %}
 
 %%

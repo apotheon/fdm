@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.39 2006-08-24 20:39:16 nicm Exp $ */
+/* $Id: fdm.h,v 1.40 2006-08-24 22:19:49 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -38,7 +38,7 @@
 extern char	*__progname;
 
 #ifndef __dead
-#define __dead
+#define __dead __attribute__ ((noreturn))
 #endif
 
 #ifndef TAILQ_FIRST
@@ -452,12 +452,12 @@ extern struct deliver 	 deliver_append;
 
 #ifdef NO_STRLCPY
 /* strlcpy.c */
-size_t	 strlcpy(char *, const char *, size_t);
+size_t	 		 strlcpy(char *, const char *, size_t);
 #endif
 
 #ifdef NO_STRLCAT
 /* strlcat.c */
-size_t	 strlcat(char *, const char *, size_t);
+size_t	 		 strlcat(char *, const char *, size_t);
 #endif
 
 /* fdm.c */

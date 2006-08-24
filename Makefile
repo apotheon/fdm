@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.17 2006-08-24 22:04:25 nicm Exp $
+# $Id: Makefile,v 1.18 2006-08-24 22:19:49 nicm Exp $
 
 .SUFFIXES: .c .o .y .l .h
 .PHONY: clean index.html
@@ -27,7 +27,7 @@ CFLAGS+= -pg
 .endif
 CFLAGS+= -DDEBUG
 CFLAGS+= -pedantic -Wno-long-long
-CFLAGS+= -Wall -W -Wnested-externs -Wformat-security
+CFLAGS+= -Wall -W -Wnested-externs -Wformat=2
 CFLAGS+= -Wmissing-prototypes -Wstrict-prototypes
 CFLAGS+= -Wmissing-declarations
 CFLAGS+= -Wshadow -Wpointer-arith -Wcast-qual
