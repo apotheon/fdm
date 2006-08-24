@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.16 2006-08-24 12:38:01 nicm Exp $
+# $Id: Makefile,v 1.17 2006-08-24 22:04:25 nicm Exp $
 
 .SUFFIXES: .c .o .y .l .h
 .PHONY: clean index.html
@@ -45,7 +45,6 @@ LDFLAGS+= -pg
 .endif
 LIBS= -lcrypto -lssl
 
-TARFLAGS= 
 DISTFILES= *.[chyl] Makefile GNUmakefile ${PROG}.conf *.[1-9] README
 
 CLEANFILES= ${PROG} *.o y.tab.c lex.yy.c y.tab.h .depend ${PROG}-*.tar.gz \
