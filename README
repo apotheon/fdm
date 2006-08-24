@@ -1,7 +1,7 @@
 fdm is a small program designed to fetch mail from POP3 servers, or receive
 local mail from stdin, and deliver it in various ways.
 
-There are two main ways of using fdm, single-user and multi-user:
+There are two main ways of using fdm, single-user and multiuser:
 
 --------------------------------------------------------------------------------
 SINGLE-USER
@@ -20,7 +20,7 @@ diffs and/or instructions I can format into the man page would be appreciated.
 The included fdm.conf is an example of a single-user configuration.
 
 --------------------------------------------------------------------------------
-MULTI-USER
+MULTIUSER
 --------------------------------------------------------------------------------
 When fdm is run as a root user, it will drop to user _fdm and chroot to that
 user's home directory in order to fetch mail. Mail will be delivered either
@@ -61,4 +61,4 @@ nicm123@gmail.com
 Nicholas Marriott
 nicm@users.sourceforge.net
 
-# $Id: README,v 1.7 2006-08-24 12:48:13 nicm Exp $
+# $Id: README,v 1.8 2006-08-24 12:49:40 nicm Exp $
