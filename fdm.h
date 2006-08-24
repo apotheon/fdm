@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.37 2006-08-24 18:59:36 nicm Exp $ */
+/* $Id: fdm.h,v 1.38 2006-08-24 19:29:36 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -203,11 +203,18 @@ struct match {
 /* Match struct. */
 TAILQ_HEAD(matches, match);
 
+/* Rule types. */
+#define RULE_MATCHES 0
+#define RULE_ALL 1
+#define RULE_MATCHED 2
+#define RULE_UNMATCHED 3
+
 /* Rule entry. */
 struct rule {
 	u_int			 index;
 
 	struct matches		*matches;
+	int			 type;
 
 	struct users		*users;
 	int			 find_uid;	/* find uids from headers */
