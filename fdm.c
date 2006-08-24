@@ -1,4 +1,4 @@
-/* $Id: fdm.c,v 1.39 2006-08-24 13:19:53 nicm Exp $ */
+/* $Id: fdm.c,v 1.40 2006-08-24 14:23:06 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -126,8 +126,8 @@ dropto(uid_t uid, char *path)
 __dead void
 usage(void)
 {
-	printf("usage: %s [-lnv] [-f conffile] [-a account] [-x account] "
-	    "[fetch|poll]\n", __progname);
+	printf("usage: %s [-lnv] [-f conffile] [-u user] "
+	    "[-a account] [-x account] [fetch|poll]\n", __progname);
         exit(1);
 }
 
