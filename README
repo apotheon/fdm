@@ -13,6 +13,8 @@ To run fdm from cron every half hour, I use:
 
 */30    *       *       *       *       /usr/local/bin/fdm -l -x stdin fetch
 
+(My stdin account is called, well, "stdin".)
+
 Check out the fdm.conf(5) man page and the included fdm.conf file for config
 file syntax.
 
@@ -33,4 +35,4 @@ nicm123@gmail.com
 Nicholas Marriott
 nicm@users.sourceforge.net
 
-# $Id: README,v 1.3 2006-08-21 18:18:59 nicm Exp $
+# $Id: README,v 1.4 2006-08-24 08:30:50 nicm Exp $
