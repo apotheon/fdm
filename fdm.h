@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.32 2006-08-24 14:10:59 nicm Exp $ */
+/* $Id: fdm.h,v 1.33 2006-08-24 14:13:37 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -99,14 +99,16 @@ struct mail {
 };
 
 /* Privsep message types. */
-#define MSG_DELIVER 0
-#define MSG_EXIT 1
-#define MSG_DONE 2
+enum type {
+	MSG_DELIVER,
+	MSG_EXIT,
+	MSG_DONE
+};
 
 /* Privsep message. */
 struct msg {
-	int	 type;
-	int	 error;
+	enum type	 type;
+	int	 	 error;
 
 	struct mail	 mail;
 
