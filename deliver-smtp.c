@@ -1,4 +1,4 @@
-/* $Id: deliver-smtp.c,v 1.7 2006-08-23 13:22:47 nicm Exp $ */
+/* $Id: deliver-smtp.c,v 1.8 2006-08-24 12:38:01 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -56,7 +56,7 @@ smtp_deliver(struct account *a, struct action *t, struct mail *m)
 
 	if (gethostname(host, sizeof host) != 0)
 		fatal("gethostname");
-	xasprintf(&from, "%s@%s", conf.user, host);
+	xasprintf(&from, "%s@%s", conf.info.user, host);
 	if (data->to == NULL)
 		to = from;
 	else

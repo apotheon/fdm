@@ -1,4 +1,4 @@
-/* $Id: io.c,v 1.11 2006-08-23 13:19:09 nicm Exp $ */
+/* $Id: io.c,v 1.12 2006-08-24 12:38:01 nicm Exp $ */
 
 /*
  * Copyright (c) 2005 Nicholas Marriott <nicm__@ntlworld.com>
@@ -301,6 +301,21 @@ io_read(struct io *io, size_t len)
 	io->roff += len;
 
 	return (buf);
+}
+
+/* Return a specific number of bytes from the read buffer, if available. */
+int
+io_read2(struct io *io, void *buf, size_t len)
+{
+	if (io->rsize < len)
+		return (1);
+
+	memcpy(buf, io->rbase + io->roff, len);
+
+	io->rsize -= len;
+	io->roff += len;
+
+	return (0);
 }
 
 /* Write a block to the io write buffer. */

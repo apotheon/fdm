@@ -1,4 +1,4 @@
-/* $Id: deliver-write.c,v 1.2 2006-08-24 08:10:20 nicm Exp $ */
+/* $Id: deliver-write.c,v 1.3 2006-08-24 12:38:01 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -42,7 +42,7 @@ do_write(struct account *a, struct action *t, struct mail *m, int append)
         char	*cmd;
         FILE    *f;
 
-	cmd = stdreplace(t->data, a, t);
+	cmd = replaceinfo(t->data, a, t);
         if (cmd == NULL || *cmd == '\0') {
 		if (cmd != NULL)
 			xfree(cmd);

@@ -1,4 +1,4 @@
-/* $Id: mail.c,v 1.22 2006-08-23 12:30:14 nicm Exp $ */
+/* $Id: mail.c,v 1.23 2006-08-24 12:38:01 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -242,7 +242,7 @@ make_from(struct mail *m)
 		}
 	}
 	if (from == NULL) {
-		from = conf.user;
+		from = conf.info.user;
 		fromlen = strlen(from);
 	}
 
