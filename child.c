@@ -1,4 +1,4 @@
-/* $Id: child.c,v 1.1 2006-08-24 12:38:01 nicm Exp $ */
+/* $Id: child.c,v 1.2 2006-08-24 12:47:36 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -78,7 +78,7 @@ child(int fd, enum cmd cmd)
 	log_debug("child: started, pid %ld", (long) getpid());
 
 	if (geteuid() != 0)
-		log_warnx("child: not root user. not dropping privileges");
+		log_debug("child: not root user. not dropping privileges");
 	else {
 		log_debug("child: changing to user %lu, path %s",
 		    (u_long) conf.child_uid, conf.child_path);
