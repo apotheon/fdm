@@ -1,6 +1,6 @@
 /* -*-C-*- */
 
-/* $Id: lex.l,v 1.15 2006-08-24 14:39:49 nicm Exp $ */
+/* $Id: lex.l,v 1.16 2006-08-24 15:02:19 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -151,6 +151,8 @@ command return (TOKCOMMAND);
 continue return (TOKCONTINUE);
 defuser return (OPTDEFUSER);
 deltoobig return (OPTDELTOOBIG);
+domain return (OPTDOMAIN);
+domains return (OPTDOMAINS);
 dotlock return (LCKDOTLOCK);
 drop return (ACTDROP);
 fcntl return (LCKFCNTL);
@@ -177,7 +179,6 @@ user return (TOKUSER);
 write return (ACTWRITE);
 \{ return (SYMOPEN);
 \} return (SYMCLOSE);
-\* return (SYMSTAR);
 \#.*\n /* ignore comments */;
 \n /* ignore end of line */;
 [ \t]+ /* ignore whitespace */;
