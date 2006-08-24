@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.34 2006-08-24 15:02:19 nicm Exp $ */
+/* $Id: fdm.h,v 1.35 2006-08-24 15:36:04 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -143,6 +143,11 @@ struct action {
 	(a)->num = 0;							\
 	(a)->list = NULL;						\
 } while (0)
+#define ARRAY_FREE(a) do {						\
+	u_int	i;							\
+	for (i = 0; i < (a)->num; i++) 					\
+		xfree((a)->list[i]);					\
+} while (0)
 #define ARRAY_ADD(a, s, l) do {						\
 	(a)->list = xrealloc((a)->list, (a)->num + 1, l);		\
 	(a)->list[(a)->num] = s;					\
@@ -249,6 +254,12 @@ struct domains {
 	u_int	  num;
 };
 
+/* Headers array. */
+struct headers {
+	char	**list;
+	u_int	  num;
+};
+
 /* Configuration settings. */
 struct conf {
 	int 			 debug;
@@ -261,18 +272,20 @@ struct conf {
 	struct accounts		 excl;
 
 	struct domains		*domains;
+	struct headers		*headers;
 
 	struct {
 		char		*home;
 		char		*user;
 		char		*uid;
+		char		*host;
 	} info;
 
 	char			*conf_file;
+	int			 check_only;
 
 	size_t			 max_size;
 	int		         del_big;
-	int			 check_only;
 	u_int			 lock_types;
 	uid_t			 def_user;
 
