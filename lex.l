@@ -1,6 +1,6 @@
 /* -*-C-*- */
 
-/* $Id: lex.l,v 1.14 2006-08-24 12:38:01 nicm Exp $ */
+/* $Id: lex.l,v 1.15 2006-08-24 14:39:49 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -46,8 +46,6 @@ extern __dead void yyerror(const char *, ...);
         num = strtoll(yytext, NULL, 10);
 	if (num == 0 && (errno == EINVAL || errno == ERANGE))
 		yyerror("illegal number");
-	if (num > INT_MAX)
-		yyerror("number too large");
 	yylval.number = num;
 
         return (NUMBER);
@@ -63,26 +61,24 @@ extern __dead void yyerror(const char *, ...);
 	num = strtoll(yytext, NULL, 10);
 	if (num == 0 && (errno == EINVAL || errno == ERANGE))
 		yyerror("illegal size");
-	if (num > INT_MAX)
-		yyerror("size too large");
 	yylval.number = num;
 
         switch (ch) {
         case 'k':
 	case 'K':
-		if (yylval.number > INT_MAX / 1024)
+		if (yylval.number > LLONG_MAX / 1024)
 			yyerror("size too large");
                 yylval.number *= 1024;
                 break;
         case 'm':
 	case 'M':
-		if (yylval.number > INT_MAX / (1024 * 1024))
+		if (yylval.number > LLONG_MAX / (1024 * 1024))
 			yyerror("size too large");
                 yylval.number *= 1024 * 1024;
                 break;
         case 'g':
 	case 'G':
-		if (yylval.number > INT_MAX / (1024 * 1024 * 1024))
+		if (yylval.number > LLONG_MAX / (1024 * 1024 * 1024))
 			yyerror("size too large");
                 yylval.number *= 1024 * 1024 * 1024;
                 break;
