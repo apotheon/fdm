@@ -1,4 +1,4 @@
-/* $Id: replace.c,v 1.1 2006-08-11 14:28:09 nicm Exp $ */
+/* $Id: replace.c,v 1.2 2006-08-24 08:10:20 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -26,6 +26,23 @@
 #include <unistd.h>
 
 #include "fdm.h"
+
+char *
+stdreplace(char *src, struct account *a, struct action *t)
+{
+	char	*map[REPL_LEN];
+
+	bzero(map, sizeof map);
+	map[REPL_IDX('a')] = a->name;
+	map[REPL_IDX('g')] = conf.group;
+	map[REPL_IDX('h')] = conf.home;
+	map[REPL_IDX('m')] = conf.gid;
+	map[REPL_IDX('n')] = conf.uid;
+	map[REPL_IDX('t')] = t->name;
+	map[REPL_IDX('u')] = conf.user;
+
+	return (replace(src, map));
+}
     
 char *
 replace(char *src, char *map[REPL_LEN])
