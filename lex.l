@@ -1,6 +1,6 @@
 /* -*-C-*- */
 
-/* $Id: lex.l,v 1.17 2006-08-24 15:36:04 nicm Exp $ */
+/* $Id: lex.l,v 1.18 2006-08-24 18:12:16 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -146,6 +146,7 @@ dotlock return (LCKDOTLOCK);
 drop return (ACTDROP);
 fcntl return (LCKFCNTL);
 flock return (LCKFLOCK);
+from-headers return (TOKFROMHEADERS);
 header return (TOKHEADER);
 headers return (TOKHEADERS);
 in return (TOKIN);
