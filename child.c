@@ -1,4 +1,4 @@
-/* $Id: child.c,v 1.2 2006-08-24 12:47:36 nicm Exp $ */
+/* $Id: child.c,v 1.3 2006-08-24 18:59:36 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -39,7 +39,7 @@ check_incl(char *name)
 		return (0);
 
 	for (i = 0; i < ARRAY_LENGTH(&conf.incl); i++) {
-		if (strcmp(ARRAY_ITEM(&conf.incl, i), name) == 0)
+		if (strcmp(ARRAY_ITEM(&conf.incl, i, char *), name) == 0)
 			return (0);
 	}
 
@@ -55,7 +55,7 @@ check_excl(char *name)
 		return (0);
 
 	for (i = 0; i < ARRAY_LENGTH(&conf.excl); i++) {
-		if (strcmp(ARRAY_ITEM(&conf.excl, i), name) == 0)
+		if (strcmp(ARRAY_ITEM(&conf.excl, i, char *), name) == 0)
 			return (1);
 	}
 
@@ -220,7 +220,7 @@ fetch_account(struct io *io, struct account *a)
 			list = r->accounts;
 			if (!ARRAY_EMPTY(list)) {
 				for (i = 0; i < ARRAY_LENGTH(list); i++) {
-					name = ARRAY_ITEM(list, i);
+					name = ARRAY_ITEM(list, i, char *);
 					if (strcmp(name, a->name) == 0)
 						break;
 				}

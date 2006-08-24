@@ -1,6 +1,6 @@
 /* -*-C-*- */
 
-/* $Id: lex.l,v 1.18 2006-08-24 18:12:16 nicm Exp $ */
+/* $Id: lex.l,v 1.19 2006-08-24 18:59:36 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -168,6 +168,7 @@ smtp return (ACTSMTP);
 stdin return (TOKSTDIN);
 to return (TOKTO);
 user return (TOKUSER);
+users return (TOKUSERS);
 write return (ACTWRITE);
 \{ return (SYMOPEN);
 \} return (SYMCLOSE);
