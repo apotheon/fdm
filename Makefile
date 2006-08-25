@@ -1,10 +1,10 @@
-# $Id: Makefile,v 1.20 2006-08-25 10:16:57 nicm Exp $
+# $Id: Makefile,v 1.21 2006-08-25 12:02:41 nicm Exp $
 
 .SUFFIXES: .c .o .y .l .h
 .PHONY: clean index.html upload-index.html
 
 PROG= fdm
-VERSION= 0.1
+VERSION= 0.2
 
 OS!= uname
 REL!= uname -r
@@ -25,7 +25,7 @@ CFLAGS+= -std=c99
 .ifdef PROFILE
 CFLAGS+= -pg
 .endif
-#CFLAGS+= -g -ggdb -DDEBUG
+CFLAGS+= -g -ggdb -DDEBUG
 CFLAGS+= -pedantic -Wno-long-long
 CFLAGS+= -Wall -W -Wnested-externs -Wformat=2
 CFLAGS+= -Wmissing-prototypes -Wstrict-prototypes
@@ -73,6 +73,13 @@ dist:		clean
 
 depend:
 		mkdep ${CFLAGS} ${SRCS}
+
+port:
+		tar -zxc \
+			-s '/ports\/OpenBSD\/\(.*\)/${PROG}\/\1/' \
+			-f ${PROG}-${VERSION}-openbsd-${REL}-port.tar.gz \
+			ports/OpenBSD/Makefile ports/OpenBSD/distinfo \
+			ports/OpenBSD/pkg/PLIST ports/OpenBSD/pkg/DESCR
 
 upload-index.html:
 		scp index.html nicm@shell.sf.net:index.html
