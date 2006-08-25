@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.18 2006-08-24 22:19:49 nicm Exp $
+# $Id: Makefile,v 1.19 2006-08-25 09:53:47 nicm Exp $
 
 .SUFFIXES: .c .o .y .l .h
 .PHONY: clean index.html
@@ -21,11 +21,11 @@ LEX= lex
 YACC= yacc -d
 
 CC= cc
-CFLAGS+= -g -ggdb -std=c99
+CFLAGS+= -std=c99
 .ifdef PROFILE
 CFLAGS+= -pg
 .endif
-CFLAGS+= -DDEBUG
+#CFLAGS+= -g -ggdb -DDEBUG
 CFLAGS+= -pedantic -Wno-long-long
 CFLAGS+= -Wall -W -Wnested-externs -Wformat=2
 CFLAGS+= -Wmissing-prototypes -Wstrict-prototypes
