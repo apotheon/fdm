@@ -1,4 +1,4 @@
-/* $Id: child.c,v 1.4 2006-08-24 19:29:36 nicm Exp $ */
+/* $Id: child.c,v 1.5 2006-08-25 09:17:49 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -85,7 +85,9 @@ child(int fd, enum cmd cmd)
 		if (dropto(conf.child_uid, conf.child_path) != 0)
 			fatal("dropto");
         }
+#ifndef NO_SETPROCTITLE
 	setproctitle("child");
+#endif
 
         log_debug("child: processing accounts");
 
