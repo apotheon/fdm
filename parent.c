@@ -1,4 +1,4 @@
-/* $Id: parent.c,v 1.4 2006-08-25 09:17:49 nicm Exp $ */
+/* $Id: parent.c,v 1.5 2006-08-25 12:07:36 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -45,7 +45,7 @@ parent(int fd, pid_t pid)
 			fatalx("parent: io_wait error");
 		if (io_read2(io, &msg, sizeof msg) != 0)
 			fatalx("parent: io_read2 error");
-		log_debug("parent: got message type %d from child", msg.type);
+		log_debug2("parent: got message type %d from child", msg.type);
 
 		switch (msg.type) {
 		case MSG_DELIVER:
