@@ -1,4 +1,4 @@
-/* $Id: child.c,v 1.5 2006-08-25 09:17:49 nicm Exp $ */
+/* $Id: child.c,v 1.6 2006-08-25 10:28:00 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -17,9 +17,11 @@
  */
 
 #include <sys/types.h>
+#include <sys/time.h>
 #include <sys/wait.h>
 
 #include <string.h>
+#include <time.h>
 #include <unistd.h>
 
 #include "fdm.h"
