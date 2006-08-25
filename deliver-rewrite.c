@@ -1,4 +1,4 @@
-/* $Id: deliver-rewrite.c,v 1.3 2006-08-25 16:20:47 nicm Exp $ */
+/* $Id: deliver-rewrite.c,v 1.4 2006-08-25 17:48:54 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -20,6 +20,7 @@
 #include <sys/wait.h>
  
 #include <errno.h>
+#include <paths.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -83,7 +84,7 @@ rewrite_deliver(struct account *a, struct action *t, struct mail *m)
 			_exit(1);
 		}
 		
-		execl("/bin/sh", "sh", "-c", cmd, (char *) NULL);
+		execl(_PATH_BSHELL, "sh", "-c", cmd, (char *) NULL);
 		_exit(1);
 	}
 

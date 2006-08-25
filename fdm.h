@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.43 2006-08-25 15:22:09 nicm Exp $ */
+/* $Id: fdm.h,v 1.44 2006-08-25 17:48:54 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -263,7 +263,8 @@ struct fetch {
 struct deliver {
 	char	*name;
 
-	int	(*deliver)(struct account *, struct action *, struct mail *);
+	int	(*deliver)(struct account *, struct action *, struct mail *,
+		    int);
 };
 
 /* Lock types. */
