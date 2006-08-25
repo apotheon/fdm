@@ -1,4 +1,4 @@
-.\" $Id: fdm.1,v 1.8 2006-08-24 14:23:06 nicm Exp $
+.\" $Id: fdm.1,v 1.9 2006-08-25 10:15:00 nicm Exp $
 .\"
 .\" Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
 .\"
@@ -50,7 +50,9 @@ Process only the specified account. This option may appear multiple times.
 .Pp
 .It Fl f Ar conffile
 Specify the configuration file location. Default is
-.Pa ~/fdm.conf .
+.Pa ~/fdm.conf
+or 
+.Pa /etc/fdm.conf .
 .Pp
 .It Fl l
 Log using
@@ -116,6 +118,8 @@ will pass it through any filtering rules as normal.
 default
 .Nm
 configuration file
+.It Pa /etc/fdm.conf
+default system-wide configuration file
 .El
 .Sh AUTHORS
 .An Nicholas Marriott Aq nicm@users.sourceforge.net
