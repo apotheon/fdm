@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.41 2006-08-25 09:17:49 nicm Exp $ */
+/* $Id: fdm.h,v 1.42 2006-08-25 10:08:17 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -30,6 +30,7 @@
 
 #define CHILDUSER	"_fdm"
 #define CONFFILE	".fdm.conf"
+#define SYSCONFFILE	"/etc/fdm.conf"
 #define MAXMAILSIZE	INT_MAX
 #define DEFMAILSIZE	(1 * 1024 * 1024 * 1024)	/* 1 GB */
 #define LOCKSLEEPTIME	2
