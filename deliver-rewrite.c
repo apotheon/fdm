@@ -1,4 +1,4 @@
-/* $Id: deliver-rewrite.c,v 1.2 2006-08-25 15:29:24 nicm Exp $ */
+/* $Id: deliver-rewrite.c,v 1.3 2006-08-25 16:20:47 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -49,11 +49,6 @@ rewrite_deliver(struct account *a, struct action *t, struct mail *m)
                 return (1);
         }
 
-	if (geteuid() == 0) { /* XXX */
-		log_warnx("%s: cannot rewrite when running as root", a->name);
-		return (1);
-	}
-		
 	log_debug("%s: rewriting using %s", a->name, cmd); 
 
 	memset(&m2, 0, sizeof m2);
