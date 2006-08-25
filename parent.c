@@ -1,4 +1,4 @@
-/* $Id: parent.c,v 1.5 2006-08-25 12:07:36 nicm Exp $ */
+/* $Id: parent.c,v 1.6 2006-08-25 15:22:09 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -110,7 +110,8 @@ perform_actions(struct account *a, struct mail *m, struct rule *r)
 			continue;
 		}
 	
-		/* figure out the users to use */
+		/* figure out the users to use. it would be nice to call
+		   find_users as non-root :-( */
 		users = NULL;
 		if (r->find_uid) {		/* rule comes first */
 			find = 1;

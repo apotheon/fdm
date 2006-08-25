@@ -1,6 +1,6 @@
 /* -*-C-*- */
 
-/* $Id: lex.l,v 1.21 2006-08-24 22:19:49 nicm Exp $ */
+/* $Id: lex.l,v 1.22 2006-08-25 15:22:09 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -162,6 +162,7 @@ pipe return (ACTPIPE);
 pop3 return (TOKPOP3);
 pop3s return (TOKPOP3S);
 port return (TOKPORT);
+rewrite return (ACTREWRITE);
 server return (TOKSERVER);
 set return (TOKSET);
 smtp return (ACTSMTP);

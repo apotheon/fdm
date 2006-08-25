@@ -1,4 +1,4 @@
-/* $Id: parse.y,v 1.27 2006-08-24 22:38:56 nicm Exp $ */
+/* $Id: parse.y,v 1.28 2006-08-25 15:22:09 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -98,7 +98,7 @@ find_action(char *name)
 %token TOKNONE TOKCASE TOKAND TOKOR TOKTO TOKACTIONS TOKHEADERS TOKBODY
 %token TOKMAXSIZE TOKDELTOOBIG TOKLOCKTYPES TOKDEFUSER TOKDOMAIN TOKDOMAINS
 %token TOKHEADER TOKFROMHEADERS TOKUSERS TOKMATCHED TOKUNMATCHED
-%token ACTPIPE ACTSMTP ACTDROP ACTMAILDIR ACTMBOX ACTWRITE ACTAPPEND
+%token ACTPIPE ACTSMTP ACTDROP ACTMAILDIR ACTMBOX ACTWRITE ACTAPPEND ACTREWRITE
 %token LCKFLOCK LCKFCNTL LCKDOTLOCK
 
 %union
@@ -417,6 +417,11 @@ to: /* empty */
 action: ACTPIPE command
 	{
 		$$.deliver = &deliver_pipe;
+		$$.data = $2;
+	}
+      | ACTREWRITE command
+	{
+		$$.deliver = &deliver_rewrite;
 		$$.data = $2;
 	}
       | ACTWRITE command
