@@ -1,4 +1,4 @@
-/* $Id: parse.y,v 1.28 2006-08-25 15:22:09 nicm Exp $ */
+/* $Id: parse.y,v 1.29 2006-08-27 11:04:28 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -23,7 +23,7 @@
 #include <sys/socket.h>
 
 #include <ctype.h>
-#include <grp.h>
+#include <fnmatch.h>
 #include <netdb.h>
 #include <pwd.h>
 #include <stdio.h>
@@ -73,7 +73,7 @@ find_account(char *name)
 	struct account	*a;
 
 	TAILQ_FOREACH(a, &conf.accounts, entry) {
-		if (strcmp(a->name, name) == 0)
+		if (name_match(name, a->name))
 			return (a);
 	}
 	return (NULL);
@@ -507,7 +507,7 @@ accounts: /* empty */
 		  $$ = xmalloc(sizeof (struct accounts));
 		  ARRAY_INIT($$);
 		  if (find_account($2) == NULL)
-			  yyerror("unknown account: %s", $2);
+			  yyerror("no matching accounts: %s", $2);
 		  ARRAY_ADD($$, $2, char *);
 	  }
 	| TOKACCOUNTS SYMOPEN accountslist SYMCLOSE
@@ -519,7 +519,7 @@ accountslist: accountslist STRING
  	      {
 		      $$ = $1;
 		      if (find_account($2) == NULL)
-			      yyerror("unknown account: %s", $2);
+			      yyerror("no matching accounts: %s", $2);
 		      ARRAY_ADD($$, $2, char *);
 	      }	
 	    | STRING
@@ -527,7 +527,7 @@ accountslist: accountslist STRING
 		      $$ = xmalloc(sizeof (struct accounts));
 		      ARRAY_INIT($$);
 		      if (find_account($1) == NULL)
-			      yyerror("unknown account: %s", $1);
+			      yyerror("no matching accounts: %s", $1);
 		      ARRAY_ADD($$, $1, char *);
 	      }
 

@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.45 2006-08-25 17:51:31 nicm Exp $ */
+/* $Id: fdm.h,v 1.46 2006-08-27 11:04:28 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -105,6 +105,9 @@ extern char	*__progname;
 	(c) == '-' || (c) == '.' || (c) == '=' || (c) == '/' ||		\
 	(c) == '^' || (c) == '{' || (c) == '}' || (c) == '~' || 	\
 	(c) == '_' || (c) == '@' || (c) == '\'')
+
+/* Account name match. */
+#define name_match(p, n) (fnmatch(p, n, 0) == 0)
 
 /* Command-line commands. */
 enum cmd {
