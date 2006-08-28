@@ -1,4 +1,4 @@
-/* $Id: fdm.c,v 1.46 2006-08-28 09:57:55 nicm Exp $ */
+/* $Id: fdm.c,v 1.47 2006-08-28 14:40:53 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -19,6 +19,7 @@
 #include <sys/types.h>
 #include <sys/param.h>
 #include <sys/socket.h>
+#include <sys/stat.h>
 
 #include <errno.h>
 #include <grp.h>
@@ -154,6 +155,7 @@ main(int argc, char **argv)
 	long		 n;
 	pid_t		 pid;
 	struct passwd	*pw;
+	struct stat	 sb;
 
 	memset(&conf, 0, sizeof conf);
 	TAILQ_INIT(&conf.accounts);
@@ -252,6 +254,12 @@ main(int argc, char **argv)
 		}
 	}
 	log_debug("loading configuration from %s", conf.conf_file);
+	if (stat(conf.conf_file, &sb) == -1) {
+                log_warn("%s", conf.conf_file);
+		exit(1);
+	}
+	if (geteuid() != 0 && (sb.st_mode & (S_IROTH|S_IWOTH)) != 0)
+		log_warnx("%s: world readable or writable", conf.conf_file);
         if (load_conf() != 0) {
                 log_warn("%s", conf.conf_file);
 		exit(1);
