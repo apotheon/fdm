@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.46 2006-08-27 11:04:28 nicm Exp $ */
+/* $Id: fdm.h,v 1.47 2006-08-28 09:37:41 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -204,6 +204,7 @@ struct match {
 	char			*s;	
 
 	regex_t			 re;
+	int			 inverted;
 	enum op			 op;
 	enum area	 	 area;
 

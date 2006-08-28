@@ -1,4 +1,4 @@
-/* $Id: child.c,v 1.7 2006-08-27 11:04:28 nicm Exp $ */
+/* $Id: child.c,v 1.8 2006-08-28 09:37:41 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -349,7 +349,10 @@ perform_match(struct account *a, struct mail *m, struct rule *r)
 		}
 		
 		result = !regexec(&c->re, m->data, 0, &pmatch, REG_STARTEND);
-		log_debug2("%s: tried \"%s\": got %d", a->name, c->s, result);
+		if (c->inverted)
+			result = !result;
+		log_debug2("%s: tried %s\"%s\": got %d", a->name, 
+		    c->inverted ? "!" : "", c->s, result);
 		switch (c->op) {
 		case OP_NONE:
 		case OP_OR:

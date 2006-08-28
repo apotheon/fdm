@@ -1,6 +1,6 @@
 /* -*-C-*- */
 
-/* $Id: lex.l,v 1.22 2006-08-25 15:22:09 nicm Exp $ */
+/* $Id: lex.l,v 1.23 2006-08-28 09:37:41 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -156,6 +156,7 @@ match return (TOKMATCH);
 maxsize return (TOKMAXSIZE);
 mbox return (ACTMBOX);
 none return (TOKNONE);
+not return (TOKNOT);
 or return (TOKOR);
 pass return (TOKPASS);
 pipe return (ACTPIPE);
