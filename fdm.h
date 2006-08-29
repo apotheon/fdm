@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.52 2006-08-29 17:35:38 nicm Exp $ */
+/* $Id: fdm.h,v 1.53 2006-08-29 18:54:05 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -363,6 +363,7 @@ struct io {
 	SSL		*ssl;
 
 	int		 closed;
+	int		 error;
 	int		 need_wr;
 
 	char		*rbase;		/* buffer start */
