@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.51 2006-08-29 16:40:16 nicm Exp $ */
+/* $Id: fdm.h,v 1.52 2006-08-29 17:35:38 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -436,6 +436,7 @@ enum imap_state {
 struct imap_data {
 	char			*user;
 	char			*pass;
+	char			*folder;
 
 	struct server		 server;
 	int			 fd;
