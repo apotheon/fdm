@@ -1,4 +1,4 @@
-/* $Id: fetch-imaps.c,v 1.1 2006-08-29 14:10:03 nicm Exp $ */
+/* $Id: fetch-imaps.c,v 1.2 2006-08-29 16:03:28 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -77,6 +77,7 @@ imaps_connect(struct account *a)
 		data->io->dup_fd = STDOUT_FILENO;
 
 	data->state = IMAP_CONNECTING;
+	data->tag = 0;
 
 	return (0);
 }
