@@ -1,6 +1,7 @@
-@comment $Id: PLIST,v 1.1 2006-08-25 12:32:52 nicm Exp $
+@comment $Id: PLIST,v 1.2 2006-08-29 13:13:06 nicm Exp $
 bin/fdm
 share/doc/fdm/
 share/doc/fdm/README
+share/doc/fdm/fdm.conf.sample
 @man man/man1/fdm.1
 @man man/man5/fdm.conf.5
