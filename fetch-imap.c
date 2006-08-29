@@ -1,4 +1,4 @@
-/* $Id: fetch-imap.c,v 1.2 2006-08-29 16:03:28 nicm Exp $ */
+/* $Id: fetch-imap.c,v 1.3 2006-08-29 16:11:32 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -312,6 +312,7 @@ do_imap(struct account *a, u_int *n, struct mail *m, int is_poll)
 					line = "too much data from server";
 					goto error;
 				}
+				m->size = off;
 
 				if (flushing)
 					res = FETCH_OVERSIZE;
