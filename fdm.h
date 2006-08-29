@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.47 2006-08-28 09:37:41 nicm Exp $ */
+/* $Id: fdm.h,v 1.48 2006-08-29 01:45:35 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -108,6 +108,13 @@ extern char	*__progname;
 
 /* Account name match. */
 #define name_match(p, n) (fnmatch(p, n, 0) == 0)
+
+/* Server description. */
+struct server {
+	char		*host;
+	char		*port;
+	struct addrinfo	*ai;
+};
 
 /* Command-line commands. */
 enum cmd {
@@ -394,7 +401,7 @@ struct pop3_data {
 	char			*user;
 	char			*pass;
 
-	struct addrinfo		*ai;
+	struct server		 server;
 	int			 fd;
 
 	enum pop3_state	 	 state;
@@ -422,7 +429,7 @@ enum smtp_state {
 
 /* Deliver smtp data. */
 struct smtp_data {
-	struct addrinfo		*ai;
+	struct server		 server;
 	char			*to;
 };
 
@@ -485,7 +492,8 @@ int			 child(int, enum cmd);
 int			 parent(int, pid_t);
 
 /* connect.c */
-int			 connectto(struct addrinfo *, char **);
+int			 filladdrinfo(struct server *, char **);
+int			 connectto(struct server *, char **);
 
 /* mail.c */
 void			 free_mail(struct mail *);

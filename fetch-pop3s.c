@@ -1,4 +1,4 @@
-/* $Id: fetch-pop3s.c,v 1.4 2006-08-23 15:20:16 nicm Exp $ */
+/* $Id: fetch-pop3s.c,v 1.5 2006-08-29 01:45:35 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -47,8 +47,9 @@ pop3s_connect(struct account *a)
 
 	data = a->data;
 
-	if ((data->fd = connectto(data->ai, &cause)) < 0) {
-		log_warn("%s: %s", a->name, cause);
+	if ((data->fd = connectto(&data->server, &cause)) < 0) {
+		log_warnx("%s: %s", a->name, cause);
+		xfree(cause);
 		return (1);
 	}
 

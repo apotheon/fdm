@@ -1,4 +1,4 @@
-/* $Id: deliver-smtp.c,v 1.9 2006-08-24 15:36:04 nicm Exp $ */
+/* $Id: deliver-smtp.c,v 1.10 2006-08-29 01:45:35 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -45,8 +45,9 @@ smtp_deliver(struct account *a, struct action *t, struct mail *m)
 
 	data = t->data;
 
-	if ((fd = connectto(data->ai, &cause)) < 0) {
-		log_warn("%s: %s", a->name, cause);
+	if ((fd = connectto(&data->server, &cause)) < 0) {
+		log_warnx("%s: %s", a->name, cause);
+		xfree(cause);
 		return (1);
 	}
 	io = io_create(fd, NULL, IO_CRLF);
