@@ -1,4 +1,4 @@
-/* $Id: parse.y,v 1.33 2006-08-29 14:10:03 nicm Exp $ */
+/* $Id: parse.y,v 1.34 2006-08-29 16:40:16 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -99,7 +99,7 @@ find_action(char *name)
 %token TOKNONE TOKCASE TOKAND TOKOR TOKTO TOKACTIONS TOKHEADERS TOKBODY
 %token TOKMAXSIZE TOKDELTOOBIG TOKLOCKTYPES TOKDEFUSER TOKDOMAIN TOKDOMAINS
 %token TOKHEADER TOKFROMHEADERS TOKUSERS TOKMATCHED TOKUNMATCHED TOKNOT
-%token TOKIMAP TOKIMAPS
+%token TOKIMAP TOKIMAPS TOKDISABLED
 %token ACTPIPE ACTSMTP ACTDROP ACTMAILDIR ACTMBOX ACTWRITE ACTAPPEND ACTREWRITE
 %token LCKFLOCK LCKFCNTL LCKDOTLOCK
 
@@ -146,7 +146,7 @@ find_action(char *name)
 %type  <area> area
 %type  <domains> domains domainslist
 %type  <fetch> poptype imaptype fetchtype
-%type  <flag> cont icase not
+%type  <flag> cont icase not disabled
 %type  <headers> headers headerslist
 %type  <locks> lock locklist
 %type  <match> match
@@ -387,6 +387,14 @@ not: TOKNOT
 	      $$ = 0;
       }
 
+disabled: TOKDISABLED
+          {
+		  $$ = 1;
+          }
+        | /* empty */
+	  {
+		  $$ = 0;
+	  }
 
 port: TOKPORT STRING
       {
@@ -789,7 +797,7 @@ fetchtype: poptype server TOKUSER STRING TOKPASS STRING
 		   $$.data = xmalloc(sizeof (struct stdin_data));
 	   }
 
-account: TOKACCOUNT STRING fetchtype
+account: TOKACCOUNT STRING disabled fetchtype
          {
 		 struct account		*a;
 
@@ -802,8 +810,9 @@ account: TOKACCOUNT STRING fetchtype
 		 
 		 a = xcalloc(1, sizeof *a);
 		 strlcpy(a->name, $2, sizeof a->name);
-		 a->fetch = $3.fetch;
-		 a->data = $3.data;
+		 a->disabled = $3;
+		 a->fetch = $4.fetch;
+		 a->data = $4.data;
 		 TAILQ_INSERT_TAIL(&conf.accounts, a, entry);
 
 		 log_debug2("added account: name=%s fetch=%s", a->name,

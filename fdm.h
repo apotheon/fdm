@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.50 2006-08-29 16:03:28 nicm Exp $ */
+/* $Id: fdm.h,v 1.51 2006-08-29 16:40:16 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -161,6 +161,7 @@ struct msg {
 struct account {
 	char			 name[MAXNAMESIZE];
 
+	int			 disabled;
 	struct fetch		*fetch;
 	void			*data;
 
