@@ -1,4 +1,4 @@
-/* $Id: io.c,v 1.13 2006-08-29 16:03:28 nicm Exp $ */
+/* $Id: io.c,v 1.14 2006-08-29 18:37:59 nicm Exp $ */
 
 /*
  * Copyright (c) 2005 Nicholas Marriott <nicm__@ntlworld.com>
@@ -426,8 +426,7 @@ io_readline2(struct io *io, char **buf, size_t *len)
 	return (*buf);
 }
 
-/* Return a line from the read buffer. EOL is stripped and the string
-   returned is zero-terminated. */
+/* Return a line from the read buffer in a new buffer. */
 char *
 io_readline(struct io *io)
 {
