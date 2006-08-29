@@ -1,4 +1,4 @@
-/* $Id: fetch-imap.c,v 1.5 2006-08-29 17:35:38 nicm Exp $ */
+/* $Id: fetch-imap.c,v 1.6 2006-08-29 18:44:24 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -247,7 +247,7 @@ do_imap(struct account *a, u_int *n, struct mail *m, int is_poll)
 					goto error;
 
 				if (m->size == 0) {
-					line = "zero-length size";
+					line = "zero-length message";
 					goto error;
 				}
 

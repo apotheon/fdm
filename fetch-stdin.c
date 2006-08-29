@@ -1,4 +1,4 @@
-/* $Id: fetch-stdin.c,v 1.20 2006-08-24 12:38:01 nicm Exp $ */
+/* $Id: fetch-stdin.c,v 1.21 2006-08-29 18:44:24 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -163,6 +163,12 @@ stdin_fetch(struct account *a, struct mail *m)
 				return (FETCH_OVERSIZE);
 			}
 		}
+	}
+
+	if (m->size == 0) {
+		log_warnx("%s: zero-length message", a->name);
+		xfree(lbuf);
+		return (FETCH_ERROR);
 	}
 
  	data->complete = 1;

@@ -1,4 +1,4 @@
-/* $Id: fetch-pop3.c,v 1.15 2006-08-29 01:45:35 nicm Exp $ */
+/* $Id: fetch-pop3.c,v 1.16 2006-08-29 18:44:24 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -182,7 +182,7 @@ do_pop3(struct account *a, u_int *n, struct mail *m, int is_poll)
 					goto error;
 
 				if (m->size == 0) {
-					line = "zero-length size";
+					line = "zero-length message";
 					goto error;
 				}
 
