@@ -1,4 +1,4 @@
-/* $Id: deliver-maildir.c,v 1.9 2006-08-24 14:09:17 nicm Exp $ */
+/* $Id: deliver-maildir.c,v 1.10 2006-08-29 10:08:26 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -131,7 +131,7 @@ restart:
 	
 		fd = open(src, O_WRONLY|O_CREAT|O_EXCL, S_IRUSR|S_IWUSR);
 		if (fd == -1 && errno != EEXIST) {
-			log_warn("%s: open(\"%s\")", a->name, src);
+			log_warn("%s: %s: open", a->name, src);
 			goto error;
 		}
 
@@ -163,14 +163,14 @@ restart:
 			log_debug2("%s: link failed", a->name);
 			goto restart;
 		}
-		log_warn("%s: link(\"%s, %s\")", a->name, src, dst);
+		log_warn("%s: %s: link(\"%s\")", a->name, src, dst);
 		goto error;
 	}
 
 	/* unlink the original tmp file */
 	log_debug2("%s: unlinking .../%s", a->name, src + strlen(path) + 1);
 	if (unlink(src) != 0) {
-		log_warn("%s: unlink(\"%s\")", a->name, src);
+		log_warn("%s: %s: unlink", a->name, src);
 		goto error;
 	}
 
