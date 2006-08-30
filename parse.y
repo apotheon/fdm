@@ -1,4 +1,4 @@
-/* $Id: parse.y,v 1.39 2006-08-30 14:47:44 nicm Exp $ */
+/* $Id: parse.y,v 1.40 2006-08-30 18:46:14 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -177,7 +177,7 @@ size: NUMBER
 set: TOKSET TOKMAXSIZE size
      {
 	     if ($3 > MAXMAILSIZE)
-		     yyerror("maxsize too large: %lld", $3);
+		     yyerror("maximum size too large: %lld", $3);
 	     conf.max_size = $3;
      }
    | TOKSET TOKLOCKTYPES locklist
