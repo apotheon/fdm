@@ -1,4 +1,4 @@
-/* $Id: connect.c,v 1.11 2006-08-30 18:09:22 nicm Exp $ */
+/* $Id: connect.c,v 1.12 2006-08-30 18:16:24 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -52,6 +52,16 @@ getproxy(char *url)
 		pr->type = PROXY_HTTP;
 		pr->server.ssl = 1;
 		pr->server.port = xstrdup("https");
+		url += 8;
+	} else if (strncmp(url, "socks://", 8) == 0) {
+		pr->type = PROXY_SOCKS5;
+		pr->server.ssl = 0;
+		pr->server.port = xstrdup("socks");
+		url += 8;
+	} else if (strncmp(url, "socks5://", 9) == 0) {
+		pr->type = PROXY_SOCKS5;
+		pr->server.ssl = 0;
+		pr->server.port = xstrdup("socks");
 		url += 9;
 	} else
 		return (NULL);

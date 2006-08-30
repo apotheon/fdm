@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.62 2006-08-30 18:09:22 nicm Exp $ */
+/* $Id: fdm.h,v 1.63 2006-08-30 18:16:24 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -120,7 +120,8 @@ struct server {
 /* Proxy type. */
 enum proxytype {
 	PROXY_HTTP,
-	PROXY_HTTPS
+	PROXY_HTTPS,
+	PROXY_SOCKS5
 };
 
 /* Proxy definition. */
