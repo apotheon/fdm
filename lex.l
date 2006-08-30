@@ -1,6 +1,6 @@
 /* -*-C-*- */
 
-/* $Id: lex.l,v 1.27 2006-08-30 11:25:49 nicm Exp $ */
+/* $Id: lex.l,v 1.28 2006-08-30 11:27:29 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -146,8 +146,8 @@ dotlock return (LCKDOTLOCK);
 drop return (ACTDROP);
 fcntl return (LCKFCNTL);
 flock return (LCKFLOCK);
-from-headers return (TOKFROMHEADERS);
 folder return (TOKFOLDER);
+from-headers return (TOKFROMHEADERS);
 header return (TOKHEADER);
 headers return (TOKHEADERS);
 imap return (TOKIMAP);
@@ -156,6 +156,7 @@ in return (TOKIN);
 locktypes return (TOKLOCKTYPES);
 maildir return (ACTMAILDIR);
 match return (TOKMATCH);
+matched return (TOKMATCHED);
 maxsize return (TOKMAXSIZE);
 mbox return (ACTMBOX);
 none return (TOKNONE);
@@ -173,7 +174,6 @@ smtp return (ACTSMTP);
 stdin return (TOKSTDIN);
 to return (TOKTO);
 unmatched return (TOKUNMATCHED);
-matched return (TOKMATCHED);
 user return (TOKUSER);
 users return (TOKUSERS);
 write return (ACTWRITE);
