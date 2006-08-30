@@ -1,4 +1,4 @@
-/* $Id: io.c,v 1.17 2006-08-30 14:47:44 nicm Exp $ */
+/* $Id: io.c,v 1.18 2006-08-30 15:48:27 nicm Exp $ */
 
 /*
  * Copyright (c) 2005 Nicholas Marriott <nicm__@ntlworld.com>
@@ -508,13 +508,13 @@ io_vwriteline(struct io *io, const char *fmt, va_list ap)
 	if (io->error != NULL)
 		return;
 
-	if ((len = vasprintf(&buf, fmt, ap)) == -1)
-		fatal("vasprintf");
-
-	io_write(io, buf, len);
+	if (fmt != NULL) {
+		if ((len = vasprintf(&buf, fmt, ap)) == -1)
+			fatal("vasprintf");
+		io_write(io, buf, len);
+		free(buf);
+	}
 	io_write(io, io->eol, strlen(io->eol));
-
-	free(buf);
 }
 
 /* Poll until all data in the write buffer has been written to the socket. */

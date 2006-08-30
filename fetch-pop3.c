@@ -1,4 +1,4 @@
-/* $Id: fetch-pop3.c,v 1.19 2006-08-30 14:47:44 nicm Exp $ */
+/* $Id: fetch-pop3.c,v 1.20 2006-08-30 15:48:27 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -50,7 +50,8 @@ pop3_connect(struct account *a)
 
 	data = a->data;
 
-	if ((data->io = connectio(&data->server, IO_CRLF, &cause)) == NULL) {
+	data->io = connectproxy(&data->server, conf.proxy, IO_CRLF, &cause);
+	if (data->io == NULL) {
 		log_warnx("%s: %s", a->name, cause);
 		xfree(cause);
 		return (1);

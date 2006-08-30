@@ -1,4 +1,4 @@
-/* $Id: deliver-smtp.c,v 1.12 2006-08-30 14:47:44 nicm Exp $ */
+/* $Id: deliver-smtp.c,v 1.13 2006-08-30 15:48:27 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -45,7 +45,8 @@ smtp_deliver(struct account *a, struct action *t, struct mail *m)
 
 	data = t->data;
 
-	if ((io = connectio(&data->server, IO_CRLF, &cause)) == NULL) {
+	io = connectproxy(&data->server, conf.proxy, IO_CRLF, &cause);
+	if (io == NULL) {
 		log_warnx("%s: %s", a->name, cause);
 		xfree(cause);
 		return (1);
