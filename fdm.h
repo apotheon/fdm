@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.61 2006-08-30 16:09:53 nicm Exp $ */
+/* $Id: fdm.h,v 1.62 2006-08-30 18:09:22 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -125,8 +125,10 @@ enum proxytype {
 
 /* Proxy definition. */
 struct proxy {
-	enum proxytype	type;
-	struct server	server;
+	enum proxytype	 type;
+	char		*user;
+	char		*pass;
+	struct server	 server;
 };
 
 /* Command-line commands. */

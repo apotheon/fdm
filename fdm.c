@@ -1,4 +1,4 @@
-/* $Id: fdm.c,v 1.50 2006-08-30 16:09:53 nicm Exp $ */
+/* $Id: fdm.c,v 1.51 2006-08-30 18:09:22 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -240,7 +240,6 @@ main(int argc, char **argv)
 	if (conf.proxy == NULL) {
 		proxy = getenv("http_proxy");
 		if (proxy != NULL && *proxy != '\0') {
-			log_debug("proxy found: %s", proxy);
 			/* getenv's return buffer is read-only */
 			proxy = xstrdup(proxy);
 			if ((conf.proxy = getproxy(proxy)) == NULL) {
@@ -248,6 +247,7 @@ main(int argc, char **argv)
 				exit(1);
 			}
 			xfree(proxy);
+			log_debug("using proxy: %s", proxy);
 		}
 	}
 

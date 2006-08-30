@@ -1,4 +1,4 @@
-/* $Id: connect.c,v 1.10 2006-08-30 17:32:11 nicm Exp $ */
+/* $Id: connect.c,v 1.11 2006-08-30 18:09:22 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -38,7 +38,7 @@ struct proxy *
 getproxy(char *url)
 {
 	struct proxy	*pr;
-	char		*ptr;
+	char		*ptr, *end;
 
 	pr = xmalloc(sizeof *pr);
 	pr->server.ai = NULL;
@@ -65,7 +65,17 @@ getproxy(char *url)
 		return (NULL); 
 	}
 
-	/* XXX user & pass: http://user:pass@host:port/ */
+	pr->user = pr->pass = NULL;
+	if ((end = strchr(url, '@')) != NULL) {
+		ptr = strchr(url, ':');
+		if (ptr != NULL && ptr < end) {
+			*ptr++ = '\0';
+			pr->user = strdup(url);
+		}
+		*end++ = '\0';
+		pr->pass = strdup(ptr);
+		url = end;
+	}
 	
 	if ((ptr = strchr(url, ':')) != NULL) {
 		xfree(pr->server.port);
