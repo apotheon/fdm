@@ -1,4 +1,4 @@
-/* $Id: strtonum.c,v 1.1 2006-08-30 16:09:53 nicm Exp $ */
+/* $Id: strtonum.c,v 1.2 2006-08-30 17:35:03 nicm Exp $ */
 /*	$OpenBSD: strtonum.c,v 1.6 2004/08/03 19:38:01 millert Exp $	*/
 
 /*
@@ -21,6 +21,8 @@
 #include <errno.h>
 #include <limits.h>
 #include <stdlib.h>
+
+#include "fdm.h"
 
 #define INVALID 	1
 #define TOOSMALL 	2
