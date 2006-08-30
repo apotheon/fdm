@@ -1,4 +1,4 @@
-/* $Id: parse.y,v 1.37 2006-08-30 11:25:49 nicm Exp $ */
+/* $Id: parse.y,v 1.38 2006-08-30 11:31:42 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -154,7 +154,7 @@ find_action(char *name)
 %type  <number> size
 %type  <op> op
 %type  <server> server
-%type  <string> port command to folder
+%type  <string> port to folder
 %type  <uid> uid
 %type  <users> users userslist
 
