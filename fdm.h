@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.56 2006-08-30 11:00:06 nicm Exp $ */
+/* $Id: fdm.h,v 1.57 2006-08-30 12:26:49 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -445,7 +445,7 @@ struct imap_data {
 	int			 fd;
 
 	enum imap_state	 	 state;
-	int			 tag; /* XXX overflow */
+	int			 tag;
 	u_int		 	 cur;
 	u_int		 	 num;
 
