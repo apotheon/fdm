@@ -1,4 +1,4 @@
-/* $Id: fdm.c,v 1.48 2006-08-30 14:47:44 nicm Exp $ */
+/* $Id: fdm.c,v 1.49 2006-08-30 14:55:02 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -59,7 +59,7 @@ load_conf(void)
 }
 
 void
-fill_info(char *home)
+fill_info(const char *home)
 {
 	struct passwd	*pw;
 	uid_t		 uid;
@@ -242,10 +242,13 @@ main(int argc, char **argv)
 		proxy = getenv("http_proxy");
 		log_debug("proxy found: %s", proxy);
 		if (proxy != NULL && *proxy != '\0') {
+			/* getenv's return buffer is read-only */
+			proxy = xstrdup(proxy);
 			if ((conf.proxy = getproxy(proxy)) == NULL) {
 				log_warnx("invalid proxy: %s", proxy);
 				exit(1);
 			}
+			xfree(proxy);
 		}
 	}
 
