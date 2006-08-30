@@ -1,4 +1,4 @@
-/* $Id: fetch-imap.c,v 1.8 2006-08-30 09:41:22 nicm Exp $ */
+/* $Id: fetch-imap.c,v 1.9 2006-08-30 10:49:24 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -166,7 +166,8 @@ do_imap(struct account *a, u_int *n, struct mail *m, int is_poll)
 					goto error;
 
 				data->state = IMAP_LOGIN;
-				io_writeline(data->io, "%u LOGIN %s %s", 
+				io_writeline(data->io, 
+				    "%u LOGIN \"%s\" \"%s\"", 
 				    ++data->tag, data->user, data->pass);
 				break;
 			case IMAP_LOGIN:
