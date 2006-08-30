@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.55 2006-08-30 09:41:22 nicm Exp $ */
+/* $Id: fdm.h,v 1.56 2006-08-30 11:00:06 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -421,6 +421,8 @@ struct pop3_data {
 /* Fetch imap states. */
 enum imap_state {
 	IMAP_CONNECTING,
+	IMAP_USER,
+	IMAP_PASS,
 	IMAP_LOGIN,
 	IMAP_SELECT,
 	IMAP_SELECTWAIT,
