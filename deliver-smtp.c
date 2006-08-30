@@ -1,4 +1,4 @@
-/* $Id: deliver-smtp.c,v 1.11 2006-08-30 09:41:22 nicm Exp $ */
+/* $Id: deliver-smtp.c,v 1.12 2006-08-30 14:47:44 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -36,7 +36,7 @@ int
 smtp_deliver(struct account *a, struct action *t, struct mail *m) 
 {
 	struct smtp_data	*data;
-	int		 	 fd, done;
+	int		 	 done;
 	long			 code;
 	struct io		*io;
 	char			*cause, *to, *from, *line, *ptr;
@@ -45,12 +45,11 @@ smtp_deliver(struct account *a, struct action *t, struct mail *m)
 
 	data = t->data;
 
-	if ((fd = connectto(&data->server, &cause)) < 0) {
+	if ((io = connectio(&data->server, IO_CRLF, &cause)) == NULL) {
 		log_warnx("%s: %s", a->name, cause);
 		xfree(cause);
 		return (1);
 	}
-	io = io_create(fd, NULL, IO_CRLF);
 	if (conf.debug > 3)
 		io->dup_fd = STDOUT_FILENO;
 
@@ -142,8 +141,8 @@ smtp_deliver(struct account *a, struct action *t, struct mail *m)
 
 	xfree(from);
 
+	io_close(io);
 	io_free(io);
-	close(fd);
 
 	return (0);
 
@@ -159,8 +158,8 @@ error:
 
 	xfree(from);
 
+	io_close(io);
 	io_free(io);
-	close(fd);
 
 	return (1);
 }

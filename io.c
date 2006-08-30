@@ -1,4 +1,4 @@
-/* $Id: io.c,v 1.16 2006-08-30 09:41:22 nicm Exp $ */
+/* $Id: io.c,v 1.17 2006-08-30 14:47:44 nicm Exp $ */
 
 /*
  * Copyright (c) 2005 Nicholas Marriott <nicm__@ntlworld.com>
@@ -89,6 +89,17 @@ io_free(struct io *io)
 	xfree(io->rbase);
 	xfree(io->wbase);
 	xfree(io);
+}
+
+/* Close io sockets. */
+void
+io_close(struct io *io)
+{
+	if (io->ssl != NULL) {
+		SSL_CTX_free(SSL_get_SSL_CTX(io->ssl));
+		SSL_free(io->ssl);
+	}
+	close(io->fd);
 }
 
 /* Poll if there is lots of data to write. */

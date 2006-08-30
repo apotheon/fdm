@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.24 2006-08-29 14:10:03 nicm Exp $
+# $Id: Makefile,v 1.25 2006-08-30 14:47:44 nicm Exp $
 
 .SUFFIXES: .c .o .y .l .h
 .PHONY: clean index.html upload-index.html
@@ -11,10 +11,9 @@ REL!= uname -r
 DATE!= date +%Y%m%d-%H%M
 
 SRCS= fdm.c log.c xmalloc.c parse.y lex.l io.c replace.c connect.c mail.c \
-      fetch-pop3.c fetch-pop3s.c fetch-stdin.c deliver-smtp.c deliver-pipe.c \
+      fetch-pop3.c fetch-imap.c fetch-stdin.c deliver-smtp.c deliver-pipe.c \
       deliver-drop.c deliver-maildir.c deliver-mbox.c deliver-write.c \
-      deliver-append.c deliver-rewrite.c child.c parent.c fetch-imap.c \
-      fetch-imaps.c
+      deliver-append.c deliver-rewrite.c child.c parent.c
 
 OBJS= ${SRCS:S/.c/.o/:S/.y/.o/:S/.l/.o/}
 

@@ -1,4 +1,4 @@
-/* $Id: fdm.c,v 1.47 2006-08-28 14:40:53 nicm Exp $ */
+/* $Id: fdm.c,v 1.48 2006-08-30 14:47:44 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -151,7 +151,8 @@ main(int argc, char **argv)
         int		 opt, fds[2];
 	u_int		 i;
 	enum cmd         cmd = CMD_NONE;
-	char		 tmp[512], *user = NULL, *ptr;
+	char		 tmp[512], *ptr;
+	char		*proxy = NULL, *user = NULL;
 	long		 n;
 	pid_t		 pid;
 	struct passwd	*pw;
@@ -234,6 +235,18 @@ main(int argc, char **argv)
 		}
 		conf.def_user = pw->pw_uid;
 		endpwent();
+	}
+
+	/* fill proxy */
+	if (conf.proxy == NULL) {
+		proxy = getenv("http_proxy");
+		log_debug("proxy found: %s", proxy);
+		if (proxy != NULL && *proxy != '\0') {
+			if ((conf.proxy = getproxy(proxy)) == NULL) {
+				log_warnx("invalid proxy: %s", proxy);
+				exit(1);
+			}
+		}
 	}
 
 	/* start logging to syslog if necessary */
