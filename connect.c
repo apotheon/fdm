@@ -1,4 +1,4 @@
-/* $Id: connect.c,v 1.4 2006-08-30 08:58:05 nicm Exp $ */
+/* $Id: connect.c,v 1.5 2006-08-30 08:58:46 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -54,16 +54,19 @@ makessl(int fd, SSL_CTX *ctx, char **cause)
 		xasprintf(cause, "SSL_new: %s", SSL_err());
 		return (NULL);
 	}
+
 	if (SSL_set_fd(ssl, fd) != 1) {
 		xasprintf(cause, "SSL_set_fd: %s", SSL_err());
 		return (NULL);
 	}
+
 	SSL_set_connect_state(ssl);
 	if ((n = SSL_connect(ssl)) < 1) {
 		n = SSL_get_error(ssl, n);
 		xasprintf(cause, "SSL_connect: %d: %s", n, SSL_err());
 		return (NULL);
 	}	
+
 	return (ssl);
 }
 
