@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.53 2006-08-29 18:54:05 nicm Exp $ */
+/* $Id: fdm.h,v 1.54 2006-08-30 08:58:05 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -537,6 +537,8 @@ int			 child(int, enum cmd);
 int			 parent(int, pid_t);
 
 /* connect.c */
+SSL_CTX			*makectx(void);
+SSL			*makessl(int, SSL_CTX *, char **);
 int			 filladdrinfo(struct server *, char **);
 int			 connectto(struct server *, char **);
 
