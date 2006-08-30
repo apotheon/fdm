@@ -1,4 +1,4 @@
-/* $Id: fetch-imap.c,v 1.14 2006-08-30 15:48:27 nicm Exp $ */
+/* $Id: fetch-imap.c,v 1.15 2006-08-30 16:09:53 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -19,6 +19,7 @@
 #include <sys/types.h>
  
 #include <errno.h>
+#include <limits.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -110,20 +111,17 @@ imap_fetch(struct account *a, struct mail *m)
 int
 imap_tag(char *line) 
 {
-	long	 tag;
-	char	*ptr;
+	long	 	 tag;
+	const char	*errstr;
 
 	if (line[0] == '*' && line[1] == ' ')
 		return (IMAP_TAG_NONE);
 	if (line[0] == '+')
 		return (IMAP_TAG_CONTINUE);
-	
-	errno = 0;
-	tag = strtol(line, &ptr, 10);
-	if (tag == 0 && (errno == EINVAL || errno == ERANGE))
+
+	tag = strtonum(line, 0, INT_MAX, &errstr);
+	if (errstr != NULL)
 		return (IMAP_TAG_ERROR);
-	if (*ptr != ' ')
-		return (IMAP_TAG_ERROR);	
 
 	return (tag);
 }

@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.60 2006-08-30 15:48:27 nicm Exp $ */
+/* $Id: fdm.h,v 1.61 2006-08-30 16:09:53 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -520,6 +520,12 @@ extern struct deliver 	 deliver_append;
 
 /* deliver-rewrite.c */
 extern struct deliver 	 deliver_rewrite;
+
+#ifdef NO_STRTONUM
+/* strtonum.c */
+long long		 strtonum(const char *, long long, long long,
+			     const char **);
+#endif
 
 #ifdef NO_STRLCPY
 /* strlcpy.c */

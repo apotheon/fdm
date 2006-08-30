@@ -1,4 +1,4 @@
-/* $Id: connect.c,v 1.8 2006-08-30 15:48:27 nicm Exp $ */
+/* $Id: connect.c,v 1.9 2006-08-30 16:09:53 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -114,16 +114,13 @@ httpproxy(struct server *srv, struct io *io, char **cause)
 {
 	struct servent	*sv;
 	long		 port;
-	char	      	*ptr, *line;
+	char	      	*errstr, *line;
 	int		 header;
 
 	sv = getservbyname(srv->port, NULL);
 	if (sv == NULL) {
-		errno = 0;
-		port = strtol(srv->port, &ptr, 10);
-		if (port < 0 || port > INT_MAX)
-			errno = ERANGE;
-		if (errno != 0 || ptr == NULL || *ptr != '\0') {
+		port = strtonum(srv->port, 0, INT_MAX, &errstr);
+		if (errstr != NULL) {
 			endservent();
 			xasprintf(cause, "bad port: %s", srv->port);
 			return (NULL);
