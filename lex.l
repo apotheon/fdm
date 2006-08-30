@@ -1,6 +1,6 @@
 /* -*-C-*- */
 
-/* $Id: lex.l,v 1.30 2006-08-30 16:09:53 nicm Exp $ */
+/* $Id: lex.l,v 1.31 2006-08-30 17:11:18 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -50,10 +50,11 @@ extern __dead printflike1 void	yyerror(const char *, ...);
 }
 [0-9]+[BbKkMmGg] {
 	const char	*errstr;
-        char		ch;
+        char		ch, *cp;
 
-        ch = *(yytext + strlen(yytext) - 1);
-        *(yytext + strlen(yytext) - 1) = '\0';
+	cp = yytext + strlen(yytext) - 1;
+	ch = *cp;
+	*cp = '\0';
 
         yylval.number = strtonum(yytext, 0, LLONG_MAX, &errstr);
 	if (errstr != NULL)
