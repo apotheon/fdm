@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.63 2006-08-30 18:16:24 nicm Exp $ */
+/* $Id: fdm.h,v 1.64 2006-08-31 13:27:55 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -263,6 +263,11 @@ struct rule {
 
 	TAILQ_ENTRY(rule)	 entry;
 };
+
+/* Deliver return codes. */
+#define DELIVER_SUCCESS 0
+#define DELIVER_FAILURE 1
+#define DELIVER_RELOAD 2
 
 /* Poll return codes. */
 #define POLL_SUCCESS FETCH_SUCCESS

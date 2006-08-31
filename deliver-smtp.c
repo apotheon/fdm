@@ -1,4 +1,4 @@
-/* $Id: deliver-smtp.c,v 1.14 2006-08-30 16:09:53 nicm Exp $ */
+/* $Id: deliver-smtp.c,v 1.15 2006-08-31 13:27:55 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -50,7 +50,7 @@ smtp_deliver(struct account *a, struct action *t, struct mail *m)
 	if (io == NULL) {
 		log_warnx("%s: %s", a->name, cause);
 		xfree(cause);
-		return (1);
+		return (DELIVER_FAILURE);
 	}
 	if (conf.debug > 3)
 		io->dup_fd = STDOUT_FILENO;
@@ -146,7 +146,7 @@ smtp_deliver(struct account *a, struct action *t, struct mail *m)
 	io_close(io);
 	io_free(io);
 
-	return (0);
+	return (DELIVER_SUCCESS);
 
 error:
 	if (cause != NULL) {
@@ -163,5 +163,5 @@ error:
 	io_close(io);
 	io_free(io);
 
-	return (1);
+	return (DELIVER_FAILURE);
 }

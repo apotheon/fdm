@@ -1,4 +1,4 @@
-/* $Id: deliver-write.c,v 1.3 2006-08-24 12:38:01 nicm Exp $ */
+/* $Id: deliver-write.c,v 1.4 2006-08-31 13:27:55 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -47,7 +47,7 @@ do_write(struct account *a, struct action *t, struct mail *m, int append)
 		if (cmd != NULL)
 			xfree(cmd);
 		log_warnx("%s: empty command", a->name);
-                return (1);
+                return (DELIVER_FAILURE);
         }
 
 	if (append)
@@ -58,15 +58,15 @@ do_write(struct account *a, struct action *t, struct mail *m, int append)
         if (f == NULL) {
 		log_warn("%s: %s: fopen", a->name, cmd);
 		xfree(cmd);
-		return (1);
+		return (DELIVER_FAILURE);
 	}
 	if (fwrite(m->data, m->size, 1, f) != 1) {
 		log_warn("%s: %s: fwrite", a->name, cmd);
 		xfree(cmd);
-		return (1);
+		return (DELIVER_FAILURE);
 	}
 	fclose(f);
 
 	xfree(cmd);	
-	return (0);
+	return (DELIVER_SUCCESS);
 }
