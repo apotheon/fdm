@@ -1,4 +1,4 @@
-/* $Id: connect.c,v 1.14 2006-08-31 10:42:14 nicm Exp $ */
+/* $Id: connect.c,v 1.15 2006-08-31 10:43:30 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -275,7 +275,10 @@ httpproxy(struct server *srv, struct proxy *pr, struct io *io, char **cause)
 	char		*line;
 	int		 port, header;
 
-	pr = NULL; /* XXX */
+	if (pr->user != NULL || pr->pass != NULL) {
+		cause = xstrdup("HTTP proxy authentication is not supported");
+		return (1);
+	}
 
 	if ((port = getport(srv->port)) < 0) {
 		xasprintf(cause, "bad port: %s", srv->port);
