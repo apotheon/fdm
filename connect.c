@@ -1,4 +1,4 @@
-/* $Id: connect.c,v 1.18 2006-08-31 16:03:39 nicm Exp $ */
+/* $Id: connect.c,v 1.19 2006-08-31 16:04:52 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -42,7 +42,7 @@ getproxy(char *url)
 {
 	struct proxy		*pr;
 	char			*ptr, *end;
-	static const struct {
+	struct {
 		char		*proto;
 		enum proxytype	 type;
 		int		 ssl;
