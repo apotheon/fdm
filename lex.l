@@ -1,6 +1,6 @@
 /* -*-C-*- */
 
-/* $Id: lex.l,v 1.32 2006-08-30 18:46:14 nicm Exp $ */
+/* $Id: lex.l,v 1.33 2006-08-31 09:36:01 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -134,8 +134,8 @@ append return (ACTAPPEND);
 body return (TOKBODY);
 case return (TOKCASE);
 continue return (TOKCONTINUE);
-(defuser|default-user) return (TOKDEFUSER);
-(deltoobig|delete-oversized) return (TOKDELTOOBIG);
+(default-user|defuser) return (TOKDEFUSER);
+(delete-oversized|deltoobig) return (TOKDELTOOBIG);
 disabled return (TOKDISABLED);
 domain return (TOKDOMAIN);
 domains return (TOKDOMAINS);
