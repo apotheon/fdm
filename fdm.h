@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.65 2006-08-31 13:41:13 nicm Exp $ */
+/* $Id: fdm.h,v 1.66 2006-09-11 16:17:55 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -357,6 +357,7 @@ struct conf {
  	TAILQ_HEAD(, rule)	 rules;
 };
 extern struct conf		 conf;
+
 /* Shorthand for the ridiculous call to get the SSL error. */
 #define SSL_err() (ERR_error_string(ERR_get_error(), NULL))
 
@@ -375,7 +376,7 @@ extern struct conf		 conf;
 /* Initial line buffer length. */
 #define IO_LINESIZE 256
 
-/* Amount to poll after in io_accept. */
+/* Amount to poll after in io_update. */
 #define IO_FLUSHSIZE (8 * IO_BLOCKSIZE)
 
 /* IO structure. */
