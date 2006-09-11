@@ -1,4 +1,4 @@
-/* $Id: connect.c,v 1.20 2006-08-31 16:05:55 nicm Exp $ */
+/* $Id: connect.c,v 1.21 2006-09-11 07:25:10 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -48,11 +48,11 @@ getproxy(char *url)
 		int		 ssl;
 		char		*port;
 	} *proxyent, proxylist[] = {
-		{ "http://",   PROXY_HTTP,   0, "http" },
-		{ "https://",  PROXY_HTTPS,  1, "https" },
-		{ "socks://",  PROXY_SOCKS5, 0, "socks" },
-		{ "socks://",  PROXY_SOCKS5, 0, "socks" },
-		{ NULL,	       0,	     0, NULL }
+		{ "http://",    PROXY_HTTP,   0, "http" },
+		{ "https://",   PROXY_HTTPS,  1, "https" },
+		{ "socks://",   PROXY_SOCKS5, 0, "socks" },
+		{ "socks5://",  PROXY_SOCKS5, 0, "socks" },
+		{ NULL,	        0,	     0, NULL }
 	};
 
 	/* find proxy */
