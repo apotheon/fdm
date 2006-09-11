@@ -1,8 +1,8 @@
-# $Id: Makefile,v 1.3 2006-08-29 13:13:06 nicm Exp $
+# $Id: Makefile,v 1.4 2006-09-11 09:38:12 nicm Exp $
 
 COMMENT=	"fetches and delivers mail"
 
-DISTNAME=	fdm-0.2
+DISTNAME=	fdm-0.3
 CATEGORIES=	mail
 
 MAINTAINER=     Nicholas Marriott <nicm@users.sourceforge.net>
