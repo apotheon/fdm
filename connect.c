@@ -1,4 +1,4 @@
-/* $Id: connect.c,v 1.22 2006-09-11 07:32:02 nicm Exp $ */
+/* $Id: connect.c,v 1.23 2006-09-11 07:56:24 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -305,8 +305,8 @@ socks5proxy(struct server *srv, struct proxy *pr, struct io *io, char **cause)
 int
 httpproxy(struct server *srv, struct proxy *pr, struct io *io, char **cause)
 {
-	char		*line;
-	int		 port, header;
+	char	*line;
+	int	 port, header;
 
 	if (pr->user != NULL || pr->pass != NULL) {
 		xasprintf(cause, "HTTP proxy authentication is not supported");
