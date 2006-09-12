@@ -1,4 +1,4 @@
-/* $Id: replace.c,v 1.3 2006-08-24 12:38:02 nicm Exp $ */
+/* $Id: replace.c,v 1.4 2006-09-12 21:55:12 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -61,9 +61,10 @@ replace(char *src, char *map[REPL_LEN])
 			ch = *++ptr;
 			if (ch == '\0')
 				break;
+			rp = NULL;
 			if (REPL_IDX(ch) != -1)
 				rp = map[REPL_IDX(ch)];
-			if (REPL_IDX(ch) == -1 || rp == NULL) {
+			if (rp == NULL) {
 				ENSURE_SIZE(dst, len, off + 2);
 				dst[off++] = '%';
 				dst[off++] = ch;
