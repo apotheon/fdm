@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.26 2006-09-11 10:47:43 nicm Exp $
+# $Id: Makefile,v 1.27 2006-09-18 12:36:32 nicm Exp $
 
 .SUFFIXES: .c .o .y .l .h
 .PHONY: clean index.html upload-index.html
@@ -106,7 +106,7 @@ install:	all
 		${INSTALLMAN} ${PROG}.conf.5 ${PREFIX}/man/man5/
 
 uninstall:
-		rm -f ${PREFIX}/sbin/${PROG}
+		rm -f ${PREFIX}/bin/${PROG}
 		rm -f ${PREFIX}/man/man1/${PROG}.1
 		rm -f ${PREFIX}/man/man5/${PROG}.conf.5
 
