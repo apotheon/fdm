@@ -1,4 +1,4 @@
-/* $Id: connect.c,v 1.23 2006-09-11 07:56:24 nicm Exp $ */
+/* $Id: connect.c,v 1.24 2006-09-23 15:51:53 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -112,7 +112,7 @@ getproxy(char *url)
 }
 
 struct io *
-connectproxy(struct server *srv, struct proxy *pr, const char eol[2], 
+connectproxy(struct server *srv, struct proxy *pr, const char *eol, 
     char **cause)
 {
 	struct io	*io;
@@ -352,7 +352,7 @@ httpproxy(struct server *srv, struct proxy *pr, struct io *io, char **cause)
 }
 
 struct io *
-connectio(struct server *srv, const char eol[2], char **cause)
+connectio(struct server *srv, const char *eol, char **cause)
 {
 	int		 fd = -1, error = 0, n;
 	struct addrinfo	 hints;
