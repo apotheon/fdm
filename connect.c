@@ -1,4 +1,4 @@
-/* $Id: connect.c,v 1.26 2006-09-23 16:12:46 nicm Exp $ */
+/* $Id: connect.c,v 1.27 2006-09-23 16:19:00 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -73,6 +73,7 @@ getproxy(char *url)
 	pr->server.ssl = proxyent->ssl;
 	pr->server.port = xstrdup(proxyent->port);
 	pr->server.ai = NULL;
+	pr->user = pr->pass = NULL;
 	url += strlen(proxyent->proto);
 
 	/* strip trailing /s */
@@ -91,11 +92,12 @@ getproxy(char *url)
 		ptr = strchr(url, ':');
 		if (ptr != NULL && ptr < end) {
 			*ptr++ = '\0';
-			pr->user = strdup(url);
+			pr->user = xstrdup(url);
 			*end++ = '\0';
-			pr->pass = strdup(ptr);
+			pr->pass = xstrdup(ptr);
 			url = end;
 		} else {
+			xfree(pr->server.port);
 			xfree(pr);
 			xfree(saved);
 			return (NULL); 			
