@@ -1,4 +1,4 @@
-/* $Id: replace.c,v 1.5 2006-09-19 15:54:46 nicm Exp $ */
+/* $Id: replace.c,v 1.6 2006-09-23 16:34:27 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -18,12 +18,7 @@
 
 #include <sys/types.h>
  
-#include <errno.h>
-#include <limits.h>
-#include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
-#include <unistd.h>
 
 #include "fdm.h"
 
