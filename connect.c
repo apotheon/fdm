@@ -1,4 +1,4 @@
-/* $Id: connect.c,v 1.28 2006-09-23 16:24:30 nicm Exp $ */
+/* $Id: connect.c,v 1.29 2006-09-23 16:29:15 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -76,7 +76,7 @@ getproxy(char *url)
 	pr->user = pr->pass = NULL;
 	url += strlen(proxyent->proto);
 
-	/* strip trailing /s */
+	/* strip trailing '/' characters */
 	ptr = url + strlen(url) - 1;
 	while (ptr > url && *ptr == '/')
 		*ptr-- = '\0';
