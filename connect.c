@@ -1,4 +1,4 @@
-/* $Id: connect.c,v 1.27 2006-09-23 16:19:00 nicm Exp $ */
+/* $Id: connect.c,v 1.28 2006-09-23 16:24:30 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -224,10 +224,18 @@ socks5proxy(struct server *srv, struct proxy *pr, struct io *io, char **cause)
 		ptr = buf;
 		*ptr++ = 5;
 		len = strlen(pr->user);
+		if (len > 255) {
+			xasprintf(cause, "user too long");
+			return (1);
+		}
 		*ptr++ = len;
 		memcpy(ptr, pr->user, len);
 		ptr += len;
 		len = strlen(pr->pass);
+		if (len > 255) {
+			xasprintf(cause, "pass too long");
+			return (1);
+		}
 		*ptr++ = len;
 		memcpy(ptr, pr->pass, len);
 		ptr += len;
