@@ -1,4 +1,4 @@
-/* $Id: mail.c,v 1.26 2006-08-25 09:17:49 nicm Exp $ */
+/* $Id: mail.c,v 1.27 2006-09-23 17:22:23 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -22,6 +22,7 @@
 
 #include <ctype.h>
 #include <fcntl.h>
+#include <fnmatch.h>
 #include <limits.h>
 #include <pwd.h>
 #include <string.h>
@@ -47,8 +48,9 @@ free_mail(struct mail *m)
 void
 resize_mail(struct mail *m, size_t size)
 {
-	size_t	off = m->data - m->base;
+	size_t	off;
 
+	off = m->data - m->base;
 	ENSURE_SIZE(m->base, m->space, off + size);
 	m->data = m->base + off;
 }
@@ -189,7 +191,7 @@ find_users(struct mail *m)
 	struct passwd	*pw;
 	struct users	*users;
 	u_int	 	 i, j;
-	char		*hdr, *ptr, *ptr2, *dom;
+	char		*hdr, *ptr, *dptr, *dom;
 	size_t	 	 len, alen, dlen;
 
 	users = xmalloc(sizeof *users);
@@ -213,30 +215,24 @@ find_users(struct mail *m)
 		if (*hdr == '\0')
 			continue;
 
-		ptr = hdr;
-		while (len > 0 && ptr != NULL) {
+		while (len > 0) {
 			ptr = find_address(hdr, len, &alen);
 			if (ptr == NULL)
-				continue;
+				break;
 
-			ptr2 = (char *) memchr(ptr, '@', alen) + 1;
+			dptr = ((char *) memchr(ptr, '@', alen)) + 1;
+			dlen = alen - (dptr - ptr);
 			for (j = 0; j < ARRAY_LENGTH(conf.domains); j++) {
 				dom = ARRAY_ITEM(conf.domains, j, char *);
-				dlen = strlen(dom);
-				if (dlen > alen - (ptr2 - ptr))
-					dlen = alen - (ptr2 - ptr);
-
-				if (strncasecmp(dom, ptr2, dlen) == 0) {
-					*--ptr2 = '\0';
-					pw = getpwnam(ptr);
-					if (pw != NULL) {
-						ARRAY_ADD(users, pw->pw_uid, 
-						    uid_t);
-					}
-					endpwent();
-					*ptr2 = '@';
-					break;
-				}
+				if (fnmatch(dom, dptr, FNM_CASEFOLD) != 0)
+					continue;
+				*--dptr = '\0';
+				pw = getpwnam(ptr);
+				if (pw != NULL)
+					ARRAY_ADD(users, pw->pw_uid, uid_t);
+				endpwent();
+				*dptr++ = '@';				   
+				break;
 			}
 
 			len -= (ptr - hdr) + alen;
