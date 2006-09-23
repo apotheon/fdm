@@ -1,4 +1,4 @@
-/* $Id: fdm.c,v 1.52 2006-08-31 10:42:14 nicm Exp $ */
+/* $Id: fdm.c,v 1.53 2006-09-23 16:12:46 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -279,12 +279,10 @@ main(int argc, char **argv)
 		}
 
 		/* getenv's return buffer is read-only */
-		proxy = xstrdup(proxy);
 		if ((conf.proxy = getproxy(proxy)) == NULL) {
 			log_warnx("invalid proxy: %s", proxy);
 			exit(1);
 		}
-		xfree(proxy);
 	}
 
 	/* print proxy info */
