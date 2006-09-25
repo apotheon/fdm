@@ -1,4 +1,4 @@
-/* $Id: parent.c,v 1.10 2006-09-25 08:11:52 nicm Exp $ */
+/* $Id: parent.c,v 1.11 2006-09-25 12:54:15 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -71,7 +71,6 @@ parent(int fd, pid_t pid)
 		case MSG_EXIT:
 			break;
 		}
-
 	} while (msg.type != MSG_EXIT);
 
 	io_free(io);
