@@ -1,4 +1,4 @@
-/* $Id: parent.c,v 1.9 2006-08-31 13:27:55 nicm Exp $ */
+/* $Id: parent.c,v 1.10 2006-09-25 08:11:52 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -137,14 +137,18 @@ perform_actions(struct account *a, struct mail *m, struct rule *r)
 			/* fork and deliver */
 			uid = ARRAY_ITEM(users, j, uid_t);
 			if (deliverfork(uid, a, m, t) != DELIVER_SUCCESS) {
-				if (find)
+				if (find) {
+					ARRAY_FREE(users);
 					xfree(users);
+				}
 				return (1);
 			}
 		}
 
-		if (find)
+		if (find) {
+			ARRAY_FREE(users);
 			xfree(users);
+		}
 	}
 
 	return (0);
