@@ -1,4 +1,4 @@
-#/* $Id: fdm.h,v 1.68 2006-09-23 15:55:00 nicm Exp $ */
+#/* $Id: fdm.h,v 1.69 2006-09-25 08:10:20 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -79,6 +79,12 @@ extern char	*__progname;
 #define ARRAY_EMPTY(a) ((a) == NULL || (a)->num == 0)
 #define ARRAY_LENGTH(a) ((a)->num)
 #define ARRAY_ITEM(a, n, c) (((c *) (a)->list)[n])
+#define ARRAY_FREE(a) do {						\
+	if (a->list != NULL) {						\
+		xfree(a->list);						\
+		ARRAY_INIT(a);						\
+	}								\
+} while (0)
 
 /* Definition to shut gcc up about unused arguments in a few cases. */
 #define unused __attribute__ ((unused))
