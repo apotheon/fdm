@@ -1,4 +1,4 @@
-/* $Id: fetch-imap.c,v 1.15 2006-08-30 16:09:53 nicm Exp $ */
+/* $Id: fetch-imap.c,v 1.16 2006-10-03 08:03:40 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -160,8 +160,13 @@ do_imap(struct account *a, u_int *n, struct mail *m, int is_poll)
 	flushing = 0;
 	line = cause = NULL;
 	do {
-		if (io_poll(data->io, &cause) != 1)
+		switch (io_poll(data->io, &cause)) {
+		case -1:
 			goto error;
+		case 0:
+			cause = xstrdup("connection unexpectedly closed");
+			goto error;
+		}
 
 		res = -1;
 		do {
