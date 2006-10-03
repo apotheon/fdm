@@ -1,4 +1,4 @@
-/* $Id: io.c,v 1.18 2006-08-30 15:48:27 nicm Exp $ */
+/* $Id: io.c,v 1.19 2006-10-03 17:13:14 nicm Exp $ */
 
 /*
  * Copyright (c) 2005 Nicholas Marriott <nicm__@ntlworld.com>
@@ -143,6 +143,8 @@ io_poll(struct io *io, char **cause)
 
 	error = poll(&pfd, 1, INFTIM);
 	if (error == 0 || error == -1) {
+		if (errno == EINTR)
+			return (1);
 		if (cause != NULL)
 			xasprintf(cause, "io: poll: %s", strerror(errno));
 		return (-1);
