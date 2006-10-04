@@ -1,4 +1,4 @@
-#/* $Id: fdm.h,v 1.70 2006-10-03 17:13:14 nicm Exp $ */
+#/* $Id: fdm.h,v 1.71 2006-10-04 10:16:14 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -565,7 +565,7 @@ int			 child(int, enum cmd);
 int			 parent(int, pid_t);
 
 /* connect.c */
-struct proxy 		*getproxy(char *);
+struct proxy 		*getproxy(const char *);
 struct io 		*connectproxy(struct server *, struct proxy *,
 			     const char *, char **);
 struct io		*connectio(struct server *, const char *, char **);

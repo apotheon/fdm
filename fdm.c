@@ -1,4 +1,4 @@
-/* $Id: fdm.c,v 1.54 2006-10-03 17:13:14 nicm Exp $ */
+/* $Id: fdm.c,v 1.55 2006-10-04 10:16:14 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -154,7 +154,8 @@ main(int argc, char **argv)
 	enum cmd         cmd = CMD_NONE;
 	const char	*errstr;
 	char		 tmp[512];
-	char		*proxy = NULL, *user = NULL, *lock = NULL;
+	const char	*proxy = NULL;
+	char		*user = NULL, *lock = NULL;
 	long		 n;
 	pid_t		 pid;
 	struct passwd	*pw;
