@@ -1,4 +1,4 @@
-/* $Id: io.c,v 1.20 2006-10-04 10:26:33 nicm Exp $ */
+/* $Id: io.c,v 1.21 2006-10-04 10:51:20 nicm Exp $ */
 
 /*
  * Copyright (c) 2005 Nicholas Marriott <nicm__@ntlworld.com>
@@ -52,8 +52,6 @@ io_create(int fd, SSL *ssl, const char *eol)
 	io = xcalloc(1, sizeof *io);
 	io->fd = fd;
 	io->ssl = ssl;
-	if (io->ssl != NULL)
-		io->need_wr = 1; /* initial write in case SSL needs it */
 	io->dup_fd = -1;
 
 	/* set non-blocking */
@@ -62,7 +60,8 @@ io_create(int fd, SSL *ssl, const char *eol)
 	if (fcntl(fd, F_SETFL, mode | O_NONBLOCK) == -1)
 		fatal("fcntl");
 
-	io->need_wr = 0;
+	io->need_wr = 0; /* i don't think this flag is actually needed,
+			    it doesn't really change anything */
 	io->closed = 0;
 	io->error = NULL;
 
