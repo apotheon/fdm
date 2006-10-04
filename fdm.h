@@ -1,4 +1,4 @@
-#/* $Id: fdm.h,v 1.72 2006-10-04 10:26:33 nicm Exp $ */
+#/* $Id: fdm.h,v 1.73 2006-10-04 11:56:59 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -396,7 +396,7 @@ struct io {
 
 	int		 closed;
 	char		*error;
-	int		 need_wr;
+	int		 need;
 
 	char		*rbase;		/* buffer start */
 	size_t		 rspace;	/* total size of buffer */
