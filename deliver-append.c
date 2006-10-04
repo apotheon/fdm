@@ -1,4 +1,4 @@
-/* $Id: deliver-append.c,v 1.1 2006-08-16 18:58:20 nicm Exp $ */
+/* $Id: deliver-append.c,v 1.2 2006-10-04 10:26:33 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -17,7 +17,7 @@
  */
 
 #include <sys/types.h>
- 
+
 #include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>

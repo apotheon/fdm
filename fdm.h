@@ -1,4 +1,4 @@
-#/* $Id: fdm.h,v 1.71 2006-10-04 10:16:14 nicm Exp $ */
+#/* $Id: fdm.h,v 1.72 2006-10-04 10:26:33 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -150,7 +150,7 @@ enum cmd {
 /* A single mail. */
 struct mail {
 	char	*base;
-	
+
 	char	*data;
 	size_t	 size;		/* size of mail */
 	size_t	 space;		/* size of malloc'd area */
@@ -233,7 +233,7 @@ enum op {
 
 /* Match regexps. */
 struct match {
-	char			*s;	
+	char			*s;
 
 	regex_t			 re;
 	int			 inverted;
@@ -296,7 +296,7 @@ struct fetch {
 	int 	 (*fetch)(struct account *, struct mail *);
 	int	 (*delete)(struct account *);
 	void	 (*error)(struct account *);
-	int	 (*disconnect)(struct account *);	
+	int	 (*disconnect)(struct account *);
 };
 
 /* Deliver functions. */

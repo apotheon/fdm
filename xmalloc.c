@@ -1,4 +1,4 @@
-/* $Id: xmalloc.c,v 1.9 2006-09-23 16:29:15 nicm Exp $ */
+/* $Id: xmalloc.c,v 1.10 2006-10-04 10:26:33 nicm Exp $ */
 
 /*
  * Copyright (c) 2004 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -151,7 +151,7 @@ xmalloc_free(void *ptr)
 		log_warnx("xmalloc_free: not found");
 		return;
 	}
-	
+
 	xmalloc_freed += block->size;
 
 	block->ptr = NULL;
@@ -249,7 +249,7 @@ xsnprintf(char *str, size_t size, const char *fmt, ...)
 	int	i;
 
 	va_list	ap;
-	
+
 	va_start(ap, fmt);
 	i = vsnprintf(str, size, fmt, ap);
 	va_end(ap);
@@ -258,7 +258,7 @@ xsnprintf(char *str, size_t size, const char *fmt, ...)
 		i = -1;
 		errno = EINVAL;
 	}
-	
+
 	return (i);
 }
 

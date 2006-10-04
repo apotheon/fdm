@@ -1,4 +1,4 @@
-/* $Id: log.c,v 1.3 2006-08-23 12:30:14 nicm Exp $ */
+/* $Id: log.c,v 1.4 2006-10-04 10:26:33 nicm Exp $ */
 /*      $OpenBSD: log.c,v 1.6 2004/07/12 09:22:38 dtucker Exp $ */
 
 /*
@@ -49,7 +49,7 @@ log_init(int n_debug)
 }
 
 void printflike2
-logit(int pri, const char *fmt, ...) 
+logit(int pri, const char *fmt, ...)
 {
 	va_list	ap;
 
