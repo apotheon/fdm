@@ -1,9 +1,9 @@
-# $Id: GNUmakefile,v 1.11 2006-09-11 10:47:43 nicm Exp $
+# $Id: GNUmakefile,v 1.12 2006-10-05 12:10:20 nicm Exp $
 
 .PHONY: clean
 
 PROG = fdm
-VERSION = 0.4
+VERSION = 0.5
 DATE=$(shell date +%Y%m%d-%H%M)
 
 ## Installation parameters
