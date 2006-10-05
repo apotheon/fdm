@@ -1,4 +1,4 @@
-#/* $Id: fdm.h,v 1.73 2006-10-04 11:56:59 nicm Exp $ */
+#/* $Id: fdm.h,v 1.74 2006-10-05 11:36:14 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -82,8 +82,8 @@ extern char	*__progname;
 #define ARRAY_LENGTH(a) ((a)->num)
 #define ARRAY_ITEM(a, n, c) (((c *) (a)->list)[n])
 #define ARRAY_FREE(a) do {						\
-	if (a->list != NULL) {						\
-		xfree(a->list);						\
+	if ((a)->list != NULL) {					\
+		xfree((a)->list);					\
 		ARRAY_INIT(a);						\
 	}								\
 } while (0)
