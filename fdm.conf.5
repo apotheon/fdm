@@ -1,4 +1,4 @@
-.\" $Id: fdm.conf.5,v 1.25 2006-10-03 17:13:14 nicm Exp $
+.\" $Id: fdm.conf.5,v 1.26 2006-10-05 11:42:45 nicm Exp $
 .\"
 .\" Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
 .\"
@@ -131,6 +131,15 @@ This option may be overridden by an
 .Em http_proxy
 variable in the environment.
 .El
+.Sh INCLUDING FILES
+Further configuration files may be including using the
+.Ic include
+command:
+.Bl -tag -width Ds
+.It Ic include Ar path
+.El
+.Pp
+The file to include is searched for first as an absolute path and then relative to the directory containing the main configuration file.
 .Sh ACCOUNTS
 The
 .Ic account
