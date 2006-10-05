@@ -1,4 +1,4 @@
-/* $Id: connect.c,v 1.31 2006-10-04 10:26:33 nicm Exp $ */
+/* $Id: connect.c,v 1.32 2006-10-05 17:53:45 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -192,7 +192,7 @@ int
 socks5proxy(struct server *srv, struct proxy *pr, struct io *io, char **cause)
 {
 	int	port, auth;
-	char	buf[512], *ptr;
+	char	buf[1024], *ptr;
 	size_t	len;
 
 	if ((port = getport(srv->port)) < 0) {
