@@ -1,4 +1,4 @@
-#/* $Id: fdm.h,v 1.74 2006-10-05 11:36:14 nicm Exp $ */
+#/* $Id: fdm.h,v 1.75 2006-10-05 15:59:35 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -353,6 +353,7 @@ struct conf {
 	} info;
 
 	char			*conf_file;
+	char			*lock_file;
 	int			 check_only;
 	int			 allow_many;
 

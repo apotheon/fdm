@@ -1,4 +1,4 @@
-<!-- $Id: index.html,v 1.16 2006-10-05 12:10:20 nicm Exp $ -->
+<!-- $Id: index.html,v 1.17 2006-10-05 15:59:35 nicm Exp $ -->
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
@@ -125,6 +125,10 @@ FDM.CONF(5)               OpenBSD Programmer's Manual              FDM.CONF(5)
      <B>allow-multiple</B>
              If this option is specified, fdm(1) does not attempt to create a
              lock file and allows multiple instances to run simultaneously.
+
+     <B>lock-file </B><I>path</I>
+             This sets an alternative lock file. The default is <I>~/.fdm.lock</I>
+             for non-root users and <I>/var/db/fdm.lock </I>for root.
 
      <B>default-user </B><I>user</I>
              This sets the default user to change to before delivering mail,
