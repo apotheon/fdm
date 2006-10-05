@@ -1,4 +1,4 @@
-/* $Id: fdm.c,v 1.57 2006-10-05 15:59:35 nicm Exp $ */
+/* $Id: fdm.c,v 1.58 2006-10-05 16:01:53 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -405,7 +405,7 @@ main(int argc, char **argv)
 	default:
 		close(fds[1]);
 		rc = parent(fds[0], pid);
-		if (conf.allow_many)
+		if (!conf.allow_many)
 			unlink(lock);
 		exit(rc);
 	}
