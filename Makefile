@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.29 2006-10-05 12:10:20 nicm Exp $
+# $Id: Makefile,v 1.30 2006-10-05 16:07:24 nicm Exp $
 
 .SUFFIXES: .c .o .y .l .h
 .PHONY: clean update-index.html upload-index.html
@@ -67,6 +67,7 @@ ${PROG}:	${OBJS}
 		${CC} ${LDFLAGS} -o ${PROG} ${LIBS} ${OBJS}
 
 dist:		clean
+		grep '^#CFLAGS.*-DDEBUG' Makefile
 		tar -zxc \
 			-s '/.*/${PROG}-${VERSION}\/\0/' \
 			-f ${PROG}-${VERSION}.tar.gz ${DISTFILES}
