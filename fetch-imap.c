@@ -1,4 +1,4 @@
-/* $Id: fetch-imap.c,v 1.17 2006-10-04 10:26:33 nicm Exp $ */
+/* $Id: fetch-imap.c,v 1.18 2006-10-05 17:29:58 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -249,7 +249,7 @@ do_imap(struct account *a, u_int *n, struct mail *m, int is_poll)
 					break;
 				}
 
-				line = strchr(line, ' ' );
+				line = strchr(line, ' ');
 				if (line == NULL)
 					goto error;
 				line++;
