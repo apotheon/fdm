@@ -1,4 +1,4 @@
-/* $Id: parse.y,v 1.46 2006-10-05 15:59:35 nicm Exp $ */
+/* $Id: parse.y,v 1.47 2006-10-06 15:53:49 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -208,6 +208,9 @@ include: TOKINCLUDE STRING
 		 char		*path;
 		 struct saved	*old;
 
+		 if (*$2 == '\0')
+			 yyerror("invalid include file");
+		 
 		 old = xmalloc(sizeof *old);
 		 old->yyin = yyin;
 		 old->yylineno = yylineno;
