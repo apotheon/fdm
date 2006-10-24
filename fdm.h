@@ -1,4 +1,4 @@
-#/* $Id: fdm.h,v 1.76 2006-10-24 22:18:56 nicm Exp $ */
+#/* $Id: fdm.h,v 1.77 2006-10-24 22:33:14 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -84,7 +84,7 @@ extern char	*__progname;
 	(a)->num++;							\
 } while (0)
 #define ARRAY_REMOVE(a, i, c) do {					\
-	if ((i) < 0 || (i) >= (a)->num) {				\
+	if ((i) >= (a)->num) {						\
 		log_warnx("ARRAY_REMOVE: bad index: %u, at %s:%d",	\
 		    i, __FILE__, __LINE__);				\
 		exit(1);						\
