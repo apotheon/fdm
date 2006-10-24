@@ -1,4 +1,4 @@
-/* $Id: parse.y,v 1.47 2006-10-06 15:53:49 nicm Exp $ */
+/* $Id: parse.y,v 1.48 2006-10-24 22:18:56 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -97,7 +97,7 @@ yywrap(void)
 	xfree(curfile);
 	curfile = old->curfile;
 	xfree(old);
-	stack.num--; /* XXX */
+	ARRAY_REMOVE(&stack, ARRAY_LENGTH(&stack) - 1, struct saved *);
 
         return (0);
 }
