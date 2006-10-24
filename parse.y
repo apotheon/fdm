@@ -1,4 +1,4 @@
-/* $Id: parse.y,v 1.48 2006-10-24 22:18:56 nicm Exp $ */
+/* $Id: parse.y,v 1.49 2006-10-24 22:30:29 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -42,10 +42,7 @@ struct saved {
 	int		 yylineno;
 	char		*curfile;
 };
-struct {
-	struct saved   **list;
-	u_int		 num;
-} stack;
+ARRAY_DECLARE(, struct saved *) stack;
 char			*curfile;
 
 extern FILE		*yyin;
