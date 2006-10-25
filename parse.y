@@ -1,4 +1,4 @@
-/* $Id: parse.y,v 1.50 2006-10-25 12:40:15 nicm Exp $ */
+/* $Id: parse.y,v 1.51 2006-10-25 12:54:12 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -222,13 +222,11 @@ include: TOKINCLUDE STRING
 			 yyin = fopen(path, "r");
 			 if (yyin == NULL)
 				 yyerror("%s: %s", path, strerror(errno));
-			 log_debug2("including file %s", path);
 			 curfile = path;
 			 xfree($2);
-		 } else {
-			 log_debug2("including file %s", $2);
+		 } else
 			 curfile = $2;
-		 }
+		 log_debug2("including file %s", curfile);
 		 yyrestart(yyin);
 		 yylineno = 0;
 	 }
