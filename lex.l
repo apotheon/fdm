@@ -1,6 +1,6 @@
 /* -*-C-*- */
 
-/* $Id: lex.l,v 1.40 2006-10-28 10:56:40 nicm Exp $ */
+/* $Id: lex.l,v 1.41 2006-10-28 10:57:40 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -183,19 +183,19 @@ extern struct macro		*find_macro(char *);
 
         return (STRING);
 }
-\$[A-Za-z][A-Za-z0-9_]+ {
+\$[A-Za-z][A-Za-z0-9_]* {
         yylval.string = xstrdup(yytext);
 	return (STRMACRO);
 }
-\$\{[A-Za-z][A-Za-z0-9_]+\} {
+\$\{[A-Za-z][A-Za-z0-9_]*\} {
         yylval.string = xstrdup(yytext);
 	return (STRMACROB);
 }
-\%[A-Za-z][A-Za-z0-9_]+ {
+\%[A-Za-z][A-Za-z0-9_]* {
         yylval.string = xstrdup(yytext);
 	return (NUMMACRO);
 }
-\%\{[A-Za-z][A-Za-z0-9_]+\} {
+\%\{[A-Za-z][A-Za-z0-9_]*\} {
         yylval.string = xstrdup(yytext);
 	return (NUMMACROB);
 }
