@@ -1,4 +1,4 @@
-#/* $Id: fdm.h,v 1.78 2006-10-24 22:40:07 nicm Exp $ */
+#/* $Id: fdm.h,v 1.79 2006-10-28 10:52:50 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -139,6 +139,32 @@ extern char	*__progname;
 
 /* Account name match. */
 #define name_match(p, n) (fnmatch(p, n, 0) == 0)
+
+/* Macros in configuration file. */
+struct macro {
+	char			 name[MAXNAMESIZE];
+	union {
+		long long	 number;
+		char		*string;
+	} value;
+	enum {
+		MACRO_NUMBER,
+		MACRO_STRING
+	} type;
+
+	TAILQ_ENTRY(macro)	entry;
+};
+TAILQ_HEAD(macros, macro);
+
+/* Valid macro name chars. */
+#define ismacrofirst(c) (						\
+	((c) >= 'a' && (c) <= 'z') || 					\
+	((c) >= 'A' && (c) <= 'Z'))
+#define ismacro(c) (							\
+	((c) >= 'a' && (c) <= 'z') || 					\
+	((c) >= 'A' && (c) <= 'Z') ||					\
+	((c) >= '0' && (c) <= '9') ||					\
+	(c) == '_' || (c) == '-')
 
 /* Server description. */
 struct server {
