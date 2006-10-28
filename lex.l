@@ -1,6 +1,6 @@
 /* -*-C-*- */
 
-/* $Id: lex.l,v 1.39 2006-10-28 10:52:50 nicm Exp $ */
+/* $Id: lex.l,v 1.40 2006-10-28 10:56:40 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -162,14 +162,9 @@ extern struct macro		*find_macro(char *);
 				s = macro->value.string;
 			slen = strlen(s);
 
-			log_debug("STRING WAS '%.*s' + MACRO %s", (int) pos,
-			    yylval.string, macro->name);
-			
 			ENSURE_SIZE(yylval.string, len, pos + slen + 1);
 			memcpy(yylval.string + pos, s, slen);
 			pos += slen;
-
-			log_debug("STRING NOW '%.*s'", (int) pos, yylval.string);
 
 			if (macro->type == MACRO_NUMBER)
 				xfree(s);

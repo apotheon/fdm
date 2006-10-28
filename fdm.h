@@ -1,4 +1,4 @@
-#/* $Id: fdm.h,v 1.79 2006-10-28 10:52:50 nicm Exp $ */
+#/* $Id: fdm.h,v 1.80 2006-10-28 10:56:40 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -49,6 +49,10 @@ extern char	*__progname;
 #define __dead __attribute__ ((noreturn))
 #endif
 
+#ifndef TAILQ_HEAD_INITIALIZER
+#define TAILQ_HEAD_INITIALIZER(head)					\
+	{ NULL, &(head).tqh_first }
+#endif
 #ifndef TAILQ_FIRST
 #define TAILQ_FIRST(head) (head)->tqh_first
 #endif
