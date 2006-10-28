@@ -1,4 +1,4 @@
-/* $Id: deliver-smtp.c,v 1.18 2006-10-25 12:46:36 nicm Exp $ */
+/* $Id: deliver-smtp.c,v 1.19 2006-10-28 14:47:11 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -16,7 +16,6 @@
  * OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-#include <sys/types.h>
 #include <sys/param.h>
 
 #include <ctype.h>

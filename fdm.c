@@ -1,4 +1,4 @@
-/* $Id: fdm.c,v 1.58 2006-10-05 16:01:53 nicm Exp $ */
+/* $Id: fdm.c,v 1.59 2006-10-28 14:47:11 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -16,7 +16,6 @@
  * OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-#include <sys/types.h>
 #include <sys/param.h>
 #include <sys/socket.h>
 #include <sys/stat.h>

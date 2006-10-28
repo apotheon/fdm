@@ -1,4 +1,4 @@
-/* $Id: parse.y,v 1.52 2006-10-28 10:52:50 nicm Exp $ */
+/* $Id: parse.y,v 1.53 2006-10-28 14:47:11 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -250,8 +250,8 @@ str: STRING
 	     struct macro	*macro;
 	     char 		 name[MAXNAMESIZE];
 
-	     if (strlen($1) > MAXNAMESIZE)
- 		     yyerror("macro name too long: %s", $1);
+	     if (strlen($1) > MAXNAMESIZE + 2)
+		     yyerror("macro name too long: %s", $1);
 
 	     name[0] = $1[0];
 	     name[1] = '\0';
@@ -293,7 +293,7 @@ num: NUMBER
 	     struct macro	*macro;
 	     char 		 name[MAXNAMESIZE];
 
-	     if (strlen($1) > MAXNAMESIZE)
+	     if (strlen($1) > MAXNAMESIZE + 2)
 		     yyerror("macro name too long: %s", $1);
 
 	     name[0] = $1[0];
