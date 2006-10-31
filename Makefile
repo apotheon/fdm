@@ -1,10 +1,10 @@
-# $Id: Makefile,v 1.30 2006-10-05 16:07:24 nicm Exp $
+# $Id: Makefile,v 1.31 2006-10-31 17:57:58 nicm Exp $
 
 .SUFFIXES: .c .o .y .l .h
 .PHONY: clean update-index.html upload-index.html
 
 PROG= fdm
-VERSION= 0.5
+VERSION= 0.6
 
 OS!= uname
 REL!= uname -r
