@@ -1,4 +1,4 @@
-/* $Id: history.c,v 1.1 2006-11-03 12:10:06 nicm Exp $ */
+/* $Id: history.c,v 1.2 2006-11-03 19:42:13 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -121,4 +121,6 @@ dump_hist(void)
 		printf("%-24s%-26.26s%8u%8u%12llu\n",
 		    a->name, since, a->hist.runs, a->hist.mails, a->hist.bytes);
 	}
+
+	fflush(stdout);
 }
