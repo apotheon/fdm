@@ -1,4 +1,4 @@
-/* $Id: mail.c,v 1.31 2006-10-25 08:00:19 nicm Exp $ */
+/* $Id: mail.c,v 1.32 2006-11-03 12:10:32 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -328,8 +328,8 @@ void
 make_from(struct mail *m)
 {
 	time_t	 t;
-	char	*from = NULL, *date = NULL;
-	size_t	 fromlen = 0, datelen = 0;
+	char	*from = NULL;
+	size_t	 fromlen = 0;
 
 	if (m->from != NULL)
 		return;
@@ -344,14 +344,8 @@ make_from(struct mail *m)
 		fromlen = strlen(from);
 	}
 
-	/* the date header is RFC822 but mbox headers use ctime(3). just fake
-	   it up for now. XXX parse date header? */
 	t = time(NULL);
-	date = ctime(&t);
-	datelen = strlen(date);
-
-	xasprintf(&m->from, "From %.*s %.*s", (int) fromlen, from,
-	    (int) datelen, date);
+	xasprintf(&m->from, "From %.*s %.24s", (int) fromlen, from, ctime(&t));
 }
 
 /*
