@@ -1,4 +1,4 @@
-# $Id: GNUmakefile,v 1.13 2006-10-31 17:57:58 nicm Exp $
+# $Id: GNUmakefile,v 1.14 2006-11-03 12:06:08 nicm Exp $
 
 .PHONY: clean
 
@@ -36,7 +36,7 @@ INSTALLMAN = install -D -g $(BIN_OWNER) -o $(BIN_GROUP) -m 444
 SRCS= fdm.c log.c xmalloc.c io.c replace.c connect.c mail.c \
       fetch-pop3.c fetch-imap.c fetch-stdin.c deliver-smtp.c deliver-pipe.c \
       deliver-drop.c deliver-maildir.c deliver-mbox.c deliver-write.c \
-      deliver-append.c deliver-rewrite.c child.c parent.c \
+      deliver-append.c deliver-rewrite.c child.c parent.c history.c \
       y.tab.c lex.yy.c
 
 DEFS = $(shell getconf LFS_CFLAGS) -DBUILD="\"$(VERSION) ($(DATE))\""

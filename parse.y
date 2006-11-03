@@ -1,4 +1,4 @@
-/* $Id: parse.y,v 1.53 2006-10-28 14:47:11 nicm Exp $ */
+/* $Id: parse.y,v 1.54 2006-11-03 12:06:08 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -155,7 +155,7 @@ find_macro(char *name)
 %token TOKMAXSIZE TOKDELTOOBIG TOKLOCKTYPES TOKDEFUSER TOKDOMAIN TOKDOMAINS
 %token TOKHEADER TOKFROMHEADERS TOKUSERS TOKMATCHED TOKUNMATCHED TOKNOT
 %token TOKIMAP TOKIMAPS TOKDISABLED TOKFOLDER TOKPROXY TOKALLOWMANY TOKINCLUDE
-%token TOKLOCKFILE
+%token TOKLOCKFILE TOKHISTFILE
 %token ACTPIPE ACTSMTP ACTDROP ACTMAILDIR ACTMBOX ACTWRITE ACTAPPEND ACTREWRITE
 %token LCKFLOCK LCKFCNTL LCKDOTLOCK
 
@@ -362,12 +362,15 @@ set: TOKSET TOKMAXSIZE size
      }
    | TOKSET TOKLOCKFILE str
      {
-	     if (*$3 == '\0')
-		     yyerror("invalid lock file");
-
 	     if (conf.lock_file != NULL)
 		     xfree(conf.lock_file);
 	     conf.lock_file = $3;
+     }
+   | TOKSET TOKHISTFILE str
+     {
+	     if (conf.hist_file != NULL)
+		     xfree(conf.hist_file);
+	     conf.hist_file = $3;
      }
    | TOKSET TOKDELTOOBIG
      {

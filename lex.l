@@ -1,6 +1,6 @@
 /* -*-C-*- */
 
-/* $Id: lex.l,v 1.42 2006-10-28 11:07:50 nicm Exp $ */
+/* $Id: lex.l,v 1.43 2006-11-03 12:06:08 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -224,6 +224,7 @@ folder return (TOKFOLDER);
 from-headers return (TOKFROMHEADERS);
 header return (TOKHEADER);
 headers return (TOKHEADERS);
+history-file return (TOKHISTFILE);
 imap return (TOKIMAP);
 imaps return (TOKIMAPS);
 in return (TOKIN);
