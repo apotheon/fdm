@@ -1,7 +1,7 @@
-# $Id: Makefile,v 1.32 2006-11-03 12:06:08 nicm Exp $
+# $Id: Makefile,v 1.33 2006-11-06 17:53:16 nicm Exp $
 
 .SUFFIXES: .c .o .y .l .h
-.PHONY: clean update-index.html upload-index.html
+.PHONY: clean update-index.html upload-index.html lint
 
 PROG= fdm
 VERSION= 0.6
@@ -71,6 +71,9 @@ dist:		clean
 		tar -zxc \
 			-s '/.*/${PROG}-${VERSION}\/\0/' \
 			-f ${PROG}-${VERSION}.tar.gz ${DISTFILES}
+
+lint:		
+		lint -hx ${CFLAGS:M-D*} ${SRCS:M*.c}
 
 depend:
 		mkdep ${CFLAGS} ${SRCS}

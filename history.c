@@ -1,4 +1,4 @@
-/* $Id: history.c,v 1.2 2006-11-03 19:42:13 nicm Exp $ */
+/* $Id: history.c,v 1.3 2006-11-06 17:53:16 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -29,7 +29,8 @@ int
 load_hist(FILE *f)
 {
 	struct account	*a;
-	char		 name[MAXNAMESIZE], fmt[32], ch;
+	char		 name[MAXNAMESIZE], fmt[32];
+	int 		 ch;
 	size_t		 len;
 
 	if (fseeko(f, 0, SEEK_SET) != 0)

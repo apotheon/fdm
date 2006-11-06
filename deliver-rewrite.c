@@ -1,4 +1,4 @@
-/* $Id: deliver-rewrite.c,v 1.9 2006-10-04 10:26:33 nicm Exp $ */
+/* $Id: deliver-rewrite.c,v 1.10 2006-11-06 17:53:16 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -149,7 +149,7 @@ rewrite_deliver(struct account *a, struct action *t, struct mail *m)
 		goto out;
 	}
 
-	if (m2.size <= 0) {
+	if (m2.size == 0) {
 		log_warnx("%s: %s: empty mail returned", a->name, cmd);
 		free_mail(&m2);
 		goto out;

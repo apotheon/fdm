@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.81 2006-11-03 12:06:08 nicm Exp $ */
+/* $Id: fdm.h,v 1.82 2006-11-06 17:53:16 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -164,13 +164,10 @@ TAILQ_HEAD(macros, macro);
 
 /* Valid macro name chars. */
 #define ismacrofirst(c) (						\
-	((c) >= 'a' && (c) <= 'z') || 					\
-	((c) >= 'A' && (c) <= 'Z'))
+	((c) >= 'a' && (c) <= 'z') || ((c) >= 'A' && (c) <= 'Z'))
 #define ismacro(c) (							\
-	((c) >= 'a' && (c) <= 'z') || 					\
-	((c) >= 'A' && (c) <= 'Z') ||					\
-	((c) >= '0' && (c) <= '9') ||					\
-	(c) == '_' || (c) == '-')
+	((c) >= 'a' && (c) <= 'z') || ((c) >= 'A' && (c) <= 'Z') ||	\
+	((c) >= '0' && (c) <= '9') || (c) == '_' || (c) == '-')
 
 /* Command-line commands. */
 enum cmd {
@@ -187,7 +184,6 @@ struct hist {
 	u_int		 	 mails;
 	unsigned long long	 bytes;
 };
-
 
 /* Server description. */
 struct server {
