@@ -1,4 +1,4 @@
-/* $Id: child.c,v 1.12 2006-11-03 12:06:08 nicm Exp $ */
+/* $Id: child.c,v 1.13 2006-11-06 13:52:44 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -151,8 +151,10 @@ poll_account(unused struct io *io, struct account *a)
 	}
 	log_debug("%s: polling", a->name);
 
-	if (a->fetch->poll(a, &n) == POLL_ERROR)
+	if (a->fetch->poll(a, &n) == POLL_ERROR) {
+		log_warnx("%s: polling error. aborted", a->name);
 		return (1);
+	}
 
 	log_info("%s: %u messages found", a->name, n);
 
