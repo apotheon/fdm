@@ -1,4 +1,4 @@
-/* $Id: history.c,v 1.4 2006-11-06 18:06:06 nicm Exp $ */
+/* $Id: history.c,v 1.5 2006-11-06 19:02:59 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -23,6 +23,42 @@
 #include <unistd.h>
 
 #include "fdm.h"
+
+/* Perform commands on history. */
+int
+do_hist(enum histcmd cmd, FILE *f) 
+{
+	if (f == NULL) {
+		if (*conf.hist_file == '\0')
+			log_warnx("history is disabled");
+		return (1);
+	}
+
+	switch (cmd) {
+	case HISTCMD_NONE:
+		break;
+	case HISTCMD_SHOW:
+		if (load_hist(f) != 0) {
+			log_warnx("error loading history");
+			return (1);
+		}
+		fclose(f);
+
+		dump_hist();
+		break;
+	case HISTCMD_CLEAR:
+		if (save_hist(f) != 0) {
+			log_warnx("error saving history");
+			return (1);
+		}
+		fclose(f);
+		
+		log_info("history cleared");
+		break;
+	}
+
+	return (0);
+}
 
 /* Reload history. */
 int
@@ -99,7 +135,7 @@ dump_hist(void)
 	struct account	*a;
 	char		*since, *ptr;
 
-	printf("%-24s%-26s%8s%8s%12s\n",
+	log_info("%-24s%-26s%8s%8s%12s",
 	    "Account", "Since", "Times", "Mails", "Bytes");
 
 	TAILQ_FOREACH(a, &conf.accounts, entry) {
@@ -120,7 +156,7 @@ dump_hist(void)
 				*ptr = '\0';
 		}
 
-		printf("%-24s%-26.26s%8u%8u%12llu\n",
+		log_info("%-24s%-26.26s%8u%8u%12llu",
 		    a->name, since, a->hist.runs, a->hist.mails, a->hist.bytes);
 	}
 

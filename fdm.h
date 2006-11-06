@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.82 2006-11-06 17:53:16 nicm Exp $ */
+/* $Id: fdm.h,v 1.83 2006-11-06 19:02:59 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -174,6 +174,13 @@ enum cmd {
 	CMD_NONE = 0,
 	CMD_POLL,
 	CMD_FETCH
+};
+
+/* History commands. */
+enum histcmd {
+	HISTCMD_NONE = 0,
+	HISTCMD_CLEAR,
+	HISTCMD_SHOW
 };
 
 /* History data. */
@@ -404,8 +411,6 @@ struct conf {
 	char			*hist_file;
 	char			*lock_file;
 	int			 check_only;
-	int			 show_hist;
-	int			 clear_hist;
 	int			 allow_many;
 
 	size_t			 max_size;
@@ -649,6 +654,7 @@ char			*replaceinfo(char *, struct account *, struct action *);
 char 			*replace(char *, char *[52]);
 
 /* history.c */
+int			 do_hist(enum histcmd, FILE *); 
 int		 	 save_hist(FILE *);
 int		 	 load_hist(FILE *);
 void			 dump_hist(void);
