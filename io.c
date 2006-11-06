@@ -1,4 +1,4 @@
-/* $Id: io.c,v 1.23 2006-11-06 13:52:29 nicm Exp $ */
+/* $Id: io.c,v 1.24 2006-11-06 14:22:42 nicm Exp $ */
 
 /*
  * Copyright (c) 2005 Nicholas Marriott <nicm__@ntlworld.com>
@@ -324,7 +324,7 @@ io_push(struct io *io)
 				break;
 			default:
 				if (io->error != NULL)
-					xfree(io->error)
+					xfree(io->error);
 				xasprintf(&io->error, "io: SSL_write: %s",
 				    SSL_err());
 				return (-1);
