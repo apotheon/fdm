@@ -1,4 +1,4 @@
-/* $Id: deliver-mbox.c,v 1.15 2006-11-03 12:06:08 nicm Exp $ */
+/* $Id: deliver-mbox.c,v 1.16 2006-11-06 18:06:06 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -131,16 +131,10 @@ mbox_deliver(struct account *a, struct action *t, struct mail *m)
 
 		line_next(m, &ptr, &len);
 	}
-	if (m->data[m->size - 1] == '\n') {
-		if (write(fd, "\n", 1) == -1) {
-			log_warn("%s: %s: write", a->name, path);
-			goto out;
-		}
-	} else {
-		if (write(fd, "\n\n", 2) == -1) {
-			log_warn("%s: %s: write", a->name, path);
-			goto out;
-		}
+	len = m->data[m->size - 1] == '\n' ? 1 : 2;
+	if (write(fd, "\n\n", len) == -1) {
+		log_warn("%s: %s: write", a->name, path);
+		goto out;
 	}
 
 	res = DELIVER_SUCCESS;

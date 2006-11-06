@@ -1,4 +1,4 @@
-/* $Id: child.c,v 1.13 2006-11-06 13:52:44 nicm Exp $ */
+/* $Id: child.c,v 1.14 2006-11-06 18:06:06 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -44,9 +44,11 @@ child(int fd, enum cmd cmd, FILE *histf)
 #endif
 
 	/* load history */
-	log_debug2("child: loading history");
-	if (histf != NULL && load_hist(histf) != 0)
-		log_warnx("child: error loading history");
+	if (histf != NULL) {
+		log_debug2("child: loading history");
+		if (load_hist(histf) != 0)
+			log_warnx("child: error loading history");
+	}
 
         SSL_library_init();
         SSL_load_error_strings();
@@ -118,8 +120,8 @@ child(int fd, enum cmd cmd, FILE *histf)
 	}
 
 	/* save history */
-	log_debug2("child: saving history");
 	if (histf != NULL) {
+		log_debug2("child: saving history");
 		if (save_hist(histf) != 0)
 			log_warnx("child: error saving history");
 		fclose(histf);

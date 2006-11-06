@@ -1,4 +1,4 @@
-/* $Id: history.c,v 1.3 2006-11-06 17:53:16 nicm Exp $ */
+/* $Id: history.c,v 1.4 2006-11-06 18:06:06 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -53,6 +53,7 @@ load_hist(FILE *f)
 				break;
 		}
 		if (a == TAILQ_END(&conf.accounts)) {
+			/* skip the rest */
 			do {
 				ch = fgetc(f);
 			} while (ch != EOF && ch != '\n');
