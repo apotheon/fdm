@@ -1,4 +1,4 @@
-/* $Id: history.c,v 1.6 2006-11-09 18:44:11 nicm Exp $ */
+/* $Id: history.c,v 1.7 2006-11-09 18:45:02 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -53,7 +53,7 @@ do_hist(enum histcmd cmd, FILE *f)
 		}
 		fclose(f);
 		
-		log_info("history cleared");
+		printf("history cleared\n");
 		break;
 	}
 
