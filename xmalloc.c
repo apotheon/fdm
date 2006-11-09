@@ -1,4 +1,4 @@
-/* $Id: xmalloc.c,v 1.12 2006-11-09 22:19:36 nicm Exp $ */
+/* $Id: xmalloc.c,v 1.13 2006-11-09 22:33:21 nicm Exp $ */
 
 /*
  * Copyright (c) 2004 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -127,6 +127,11 @@ xmalloc_change(void *oldptr, void *newptr, size_t newsize)
 #if 0
 	log_debug3("xmalloc_change: %p -> %p %zu", oldptr, newptr, newsize);
 #endif
+
+        if (oldptr == NULL) {
+                xmalloc_new(newptr, newsize);
+                return;
+        }
 
 	if ((block = xmalloc_find(oldptr)) == NULL) {
 		log_warnx("xmalloc_change: not found");
