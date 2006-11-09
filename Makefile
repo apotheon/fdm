@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.33 2006-11-06 17:53:16 nicm Exp $
+# $Id: Makefile,v 1.34 2006-11-09 22:19:36 nicm Exp $
 
 .SUFFIXES: .c .o .y .l .h
 .PHONY: clean update-index.html upload-index.html lint
@@ -29,7 +29,7 @@ CFLAGS+= -g -ggdb -DDEBUG
 CFLAGS+= -pedantic -Wno-long-long
 CFLAGS+= -Wall -W -Wnested-externs -Wformat=2
 CFLAGS+= -Wmissing-prototypes -Wstrict-prototypes
-CFLAGS+= -Wmissing-declarations
+CFLAGS+= -Wmissing-declarations -Wwrite-strings
 CFLAGS+= -Wshadow -Wpointer-arith -Wcast-qual
 CFLAGS+= -Wsign-compare -Wredundant-decls
 CFLAGS+= -DBUILD="\"$(VERSION) ($(DATE))\""

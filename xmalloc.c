@@ -1,4 +1,4 @@
-/* $Id: xmalloc.c,v 1.11 2006-11-06 17:53:16 nicm Exp $ */
+/* $Id: xmalloc.c,v 1.12 2006-11-09 22:19:36 nicm Exp $ */
 
 /*
  * Copyright (c) 2004 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -172,10 +172,6 @@ xstrdup(const char *s)
 
 	len = strlen(s) + 1;
 	ptr = xmalloc(len);
-
-#ifdef DEBUG
-	xmalloc_new(ptr, len);
-#endif
 
         return (strncpy(ptr, s, len));
 }
