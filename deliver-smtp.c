@@ -1,4 +1,4 @@
-/* $Id: deliver-smtp.c,v 1.19 2006-10-28 14:47:11 nicm Exp $ */
+/* $Id: deliver-smtp.c,v 1.20 2006-11-09 18:44:11 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -51,7 +51,7 @@ smtp_deliver(struct account *a, struct action *t, struct mail *m)
 		xfree(cause);
 		return (DELIVER_FAILURE);
 	}
-	if (conf.debug > 3)
+	if (conf.debug > 3 && !conf.syslog)
 		io->dup_fd = STDOUT_FILENO;
 
 	xasprintf(&from, "%s@%s", conf.info.user, conf.info.host);

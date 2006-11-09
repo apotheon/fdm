@@ -1,4 +1,4 @@
-/* $Id: fetch-stdin.c,v 1.23 2006-10-04 10:26:33 nicm Exp $ */
+/* $Id: fetch-stdin.c,v 1.24 2006-11-09 18:44:11 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -60,7 +60,7 @@ stdin_connect(struct account *a)
 	}
 
 	data->io = io_create(STDIN_FILENO, NULL, IO_LF);
-	if (conf.debug > 3)
+	if (conf.debug > 3 && !conf.syslog)
 		data->io->dup_fd = STDOUT_FILENO;
 
 	data->complete = 0;

@@ -1,4 +1,4 @@
-/* $Id: fetch-pop3.c,v 1.22 2006-10-04 10:26:33 nicm Exp $ */
+/* $Id: fetch-pop3.c,v 1.23 2006-11-09 18:44:11 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -56,7 +56,7 @@ pop3_connect(struct account *a)
 		xfree(cause);
 		return (1);
 	}
-	if (conf.debug > 3)
+	if (conf.debug > 3 && !conf.syslog)
 		data->io->dup_fd = STDOUT_FILENO;
 
 	data->state = POP3_CONNECTING;

@@ -1,4 +1,4 @@
-/* $Id: history.c,v 1.5 2006-11-06 19:02:59 nicm Exp $ */
+/* $Id: history.c,v 1.6 2006-11-09 18:44:11 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -135,7 +135,7 @@ dump_hist(void)
 	struct account	*a;
 	char		*since, *ptr;
 
-	log_info("%-24s%-26s%8s%8s%12s",
+	printf("%-24s%-26s%8s%8s%12s\n",
 	    "Account", "Since", "Times", "Mails", "Bytes");
 
 	TAILQ_FOREACH(a, &conf.accounts, entry) {
@@ -156,7 +156,7 @@ dump_hist(void)
 				*ptr = '\0';
 		}
 
-		log_info("%-24s%-26.26s%8u%8u%12llu",
+		printf("%-24s%-26.26s%8u%8u%12llu\n",
 		    a->name, since, a->hist.runs, a->hist.mails, a->hist.bytes);
 	}
 
