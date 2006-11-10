@@ -1,4 +1,4 @@
-/* $Id: fetch-imap.c,v 1.19 2006-11-09 18:44:11 nicm Exp $ */
+/* $Id: fetch-imap.c,v 1.20 2006-11-10 19:08:45 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -154,8 +154,6 @@ do_imap(struct account *a, u_int *n, struct mail *m, int is_poll)
 	lbuf = xmalloc(llen);
 
 	folder = data->folder;
-	if (folder == NULL)
-		folder = "INBOX";
 
 	flushing = 0;
 	line = cause = NULL;

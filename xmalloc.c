@@ -1,4 +1,4 @@
-/* $Id: xmalloc.c,v 1.14 2006-11-10 18:59:03 nicm Exp $ */
+/* $Id: xmalloc.c,v 1.15 2006-11-10 19:08:45 nicm Exp $ */
 
 /*
  * Copyright (c) 2004 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -61,7 +61,7 @@ xmalloc_clear(void)
 }
 
 void
-xmalloc_dump(char *hdr)
+xmalloc_dump(const char *hdr)
 {
  	u_int	 		 i, j, n = 0;
 	int	 		 off, off2;

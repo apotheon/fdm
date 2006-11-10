@@ -1,4 +1,4 @@
-/* $Id: child.c,v 1.14 2006-11-06 18:06:06 nicm Exp $ */
+/* $Id: child.c,v 1.15 2006-11-10 19:08:45 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -173,7 +173,8 @@ fetch_account(struct io *io, struct account *a)
 	double		 tim;
 	u_int	 	 n, i;
 	int		 error, matched;
-	char		*name, *cause = NULL;
+	char		*name;
+	const char	*cause = NULL;
 	struct accounts	*list;
 
 	if (a->fetch->fetch == NULL) {

@@ -1,4 +1,4 @@
-/* $Id: mail.c,v 1.32 2006-11-03 12:10:32 nicm Exp $ */
+/* $Id: mail.c,v 1.33 2006-11-10 19:08:45 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -158,9 +158,9 @@ line_next(struct mail *m, char **line, size_t *len)
 }
 
 char *
-find_header(struct mail *m, char *hdr, size_t *len)
+find_header(struct mail *m, const char *hdr, size_t *len)
 {
-	char	*ptr, *end;
+	char	*ptr, *end, *out;
 
 	*len = strlen(hdr);
 
@@ -175,14 +175,14 @@ find_header(struct mail *m, char *hdr, size_t *len)
 			return (NULL);
 	} while (strncasecmp(ptr, hdr, *len) != 0);
 
-	hdr = ptr + *len;
-	ptr = memchr(hdr, '\n', end - hdr);
+	out = ptr + *len;
+	ptr = memchr(out, '\n', end - out);
 	if (ptr == NULL)
 		*len = end - hdr;
 	else
 		*len = (ptr - hdr) + 1;
 
-	return (hdr);
+	return (out);
 }
 
 struct users *

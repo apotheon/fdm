@@ -1,4 +1,4 @@
-/* $Id: history.c,v 1.7 2006-11-09 18:45:02 nicm Exp $ */
+/* $Id: history.c,v 1.8 2006-11-10 19:08:45 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -149,7 +149,7 @@ dump_hist(void)
 		}
 
 		if (a->hist.since == 0)
-			since = "never";
+			since = NULL;
 		else {
 			since = ctime(&a->hist.since);
 			if ((ptr = strchr(since, '\n')) != NULL)
@@ -157,7 +157,8 @@ dump_hist(void)
 		}
 
 		printf("%-24s%-26.26s%8u%8u%12llu\n",
-		    a->name, since, a->hist.runs, a->hist.mails, a->hist.bytes);
+		    a->name, since == NULL ? "never" : since,
+		    a->hist.runs, a->hist.mails, a->hist.bytes);
 	}
 
 	fflush(stdout);
