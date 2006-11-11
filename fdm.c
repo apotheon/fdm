@@ -1,4 +1,4 @@
-/* $Id: fdm.c,v 1.64 2006-11-09 18:44:11 nicm Exp $ */
+/* $Id: fdm.c,v 1.65 2006-11-11 15:07:44 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -109,7 +109,7 @@ fill_info(const char *home)
 }
 
 int
-dropto(uid_t uid, char *path)
+dropto(uid_t uid)
 {
 	struct passwd	*pw;
 	gid_t		 gid;
@@ -125,11 +125,6 @@ dropto(uid_t uid, char *path)
 	}
 	gid = pw->pw_gid;
 	endpwent();
-
-	if (path != NULL) {
-		if (chroot(conf.child_path) != 0)
-			return (1);
-	}
 
 	if (setgroups(1, &gid) != 0 ||
 	    setresgid(gid, gid, gid) != 0 || setresuid(uid, uid, uid) != 0)
@@ -418,12 +413,7 @@ main(int argc, char **argv)
 			log_warnx("can't find user: %s", CHILDUSER);
 			exit(1);
 		}
-		conf.child_uid = pw->pw_uid;
-		if (pw->pw_dir == NULL || *pw->pw_dir == '\0') {
-			log_warnx("cannot find home for user: %s", CHILDUSER);
-			exit(1);
-		}
-		conf.child_path = xstrdup(pw->pw_dir);
+		conf.uid = pw->pw_uid;
 		endpwent();
 
 		if (conf.def_user == 0) {

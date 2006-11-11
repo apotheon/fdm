@@ -1,4 +1,4 @@
-/* $Id: parent.c,v 1.12 2006-10-04 10:26:33 nicm Exp $ */
+/* $Id: parent.c,v 1.13 2006-11-11 15:07:44 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -178,7 +178,7 @@ deliverfork(uid_t uid, struct account *a, struct mail *m, struct action *t)
 
 	/* child process. change user and group */
 	log_debug("%s: delivering using user %lu", a->name, (u_long) uid);
-	if (dropto(uid, NULL) != 0) {
+	if (dropto(uid) != 0) {
 		log_warnx("%s: can't drop privileges", a->name);
 		_exit(DELIVER_FAILURE);
 	}
