@@ -1,4 +1,4 @@
-/* $Id: connect.c,v 1.33 2006-11-10 19:08:45 nicm Exp $ */
+/* $Id: connect.c,v 1.34 2006-11-11 15:42:39 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -33,6 +33,7 @@
 
 #include "fdm.h"
 
+#ifndef	NO_PROXY
 int	httpproxy(struct server *, struct proxy *, struct io *, char **);
 int	socks5proxy(struct server *, struct proxy *, struct io *, char **);
 int	getport(char *);
@@ -382,6 +383,7 @@ httpproxy(struct server *srv, struct proxy *pr, struct io *io, char **cause)
 		}
 	}
 }
+#endif /* NO_PROXY */
 
 struct io *
 connectio(struct server *srv, const char *eol, char **cause)
