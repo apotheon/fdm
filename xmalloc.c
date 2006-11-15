@@ -1,4 +1,4 @@
-/* $Id: xmalloc.c,v 1.15 2006-11-10 19:08:45 nicm Exp $ */
+/* $Id: xmalloc.c,v 1.16 2006-11-15 18:16:30 nicm Exp $ */
 
 /*
  * Copyright (c) 2004 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -202,6 +202,50 @@ xmalloc_free(void *ptr)
 }
 
 #endif /* DEBUG */
+
+void *
+ensure_for(void *buf, size_t *len, size_t nmemb, size_t size)
+{
+	size_t	need;
+
+	if (nmemb == 0 || size == 0)
+		fatalx("ensure_size: zero size");
+	if (SIZE_MAX / nmemb < size)
+		fatalx("ensure_size: nmemb * size > SIZE_MAX");
+
+	if (SIZE_MAX - *len < nmemb * size)
+		fatalx("ensure_for: SIZE_MAX - *len < nmemb * size");
+
+	if (*len == 0)
+		fatalx("ensure_for: *len == 0");
+
+	need = *len + nmemb * size;	
+	while (*len <= need) {
+		buf = xrealloc(buf, 2, *len);
+		*len *= 2;
+	}
+
+	return (buf);
+}
+
+void *
+ensure_size(void *buf, size_t *len, size_t nmemb, size_t size)
+{
+	if (nmemb == 0 || size == 0)
+		fatalx("ensure_size: zero size");
+	if (SIZE_MAX / nmemb < size)
+		fatalx("ensure_size: nmemb * size > SIZE_MAX");
+
+	if (*len == 0)
+		fatalx("ensure_size: *len == 0");
+
+	while (*len <= nmemb * size) {
+		buf = xrealloc(buf, 2, *len);
+		*len *= 2;
+	}
+
+	return (buf);
+}
 
 char *
 xstrdup(const char *s)
