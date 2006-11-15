@@ -1,4 +1,4 @@
-/* $Id: mail.c,v 1.34 2006-11-15 18:16:30 nicm Exp $ */
+/* $Id: mail.c,v 1.35 2006-11-15 18:30:34 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -51,7 +51,7 @@ resize_mail(struct mail *m, size_t size)
 	size_t	off;
 
 	off = m->data - m->base;
-	ENSURE_SIZE(m->base, m->space, off + size);
+	ENSURE_FOR(m->base, m->space, off, size);
 	m->data = m->base + off;
 }
 
@@ -381,7 +381,7 @@ fill_wrapped(struct mail *m)
 			continue;
 
 		/* save the position */
-		ENSURE_SIZE2(m->wrapped, size, p + 2, sizeof (size_t));
+		ENSURE_FOR2(m->wrapped, size, p, 2, sizeof (size_t));
 		m->wrapped[p] = off - 1;
 		p++;
 		m->wrapped[p] = 0;

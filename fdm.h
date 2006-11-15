@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.87 2006-11-15 18:16:30 nicm Exp $ */
+/* $Id: fdm.h,v 1.88 2006-11-15 18:30:34 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -141,11 +141,11 @@ extern char	*__progname;
 #define ENSURE_SIZE2(buf, len, nmemb, size) do {			\
 	(buf) = ensure_size(buf, &(len), nmemb, size);			\
 } while (0)
-#define ENSURE_FOR(buf, len, size) do {					\
-	(buf) = ensure_for(buf, &(len), 1, size);			\
+#define ENSURE_FOR(buf, len, now, size) do {				\
+	(buf) = ensure_for(buf, &(len), now, 1, size);			\
 } while (0)
-#define ENSURE_FOR2(buf, len, nmemb, size) do {				\
-	(buf) = ensure_for(buf, &(len), nmemb, size);			\
+#define ENSURE_FOR2(buf, len, now, nmemb, size) do {			\
+	(buf) = ensure_for(buf, &(len), now, nmemb, size);		\
 } while (0)
 
 /* Valid email address chars. */
@@ -708,7 +708,7 @@ void			 xmalloc_clear(void);
 void			 xmalloc_dump(const char *);
 #endif
 void			*ensure_size(void *, size_t *, size_t, size_t);
-void			*ensure_for(void *, size_t *, size_t, size_t);
+void			*ensure_for(void *, size_t *, size_t, size_t, size_t);
 char			*xstrdup(const char *);
 void			*xcalloc(size_t, size_t);
 void			*xmalloc(size_t);
