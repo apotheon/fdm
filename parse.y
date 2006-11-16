@@ -1,4 +1,4 @@
-/* $Id: parse.y,v 1.57 2006-11-16 22:28:13 nicm Exp $ */
+/* $Id: parse.y,v 1.58 2006-11-16 22:39:26 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -1027,24 +1027,25 @@ rule: match accounts users actions cont
 	      case RULE_EXPRESSION:
 		      *tmp = '\0';
 		      TAILQ_FOREACH(ei, r->expr, entry) {
+			      s = ei->match->desc(ei);
 			      switch (ei->op) {
 			      case OP_AND:
-				      strlcat(tmp, "and ", sizeof tmp);
+				      snprintf(tmp2, sizeof tmp2, "and %s:%s ", 
+					  ei->match->name, s);
 				      break;
 			      case OP_OR:
-				      strlcat(tmp, "or ", sizeof tmp);
+				      snprintf(tmp2, sizeof tmp2, "or %s:%s ",
+					  ei->match->name, s);
 				      break;
 			      case OP_NONE:
+				      snprintf(tmp2, sizeof tmp2, "%s:%s ", 
+					  ei->match->name, s);
 				      break;
 			      }
+			      xfree(s);
 			      if (ei->inverted)
 				      strlcat(tmp, "not ", sizeof tmp);
-			      strlcat(tmp, ei->match->name, sizeof tmp);
-			      strlcat(tmp, ":", sizeof tmp);
-			      s = ei->match->desc(ei);
-			      strlcat(tmp, s, sizeof tmp);
-			      xfree(s);
-			      strlcat(tmp, " ", sizeof tmp);
+			      strlcat(tmp, tmp2, sizeof tmp);
 		      }
 		      break;
 	      }
