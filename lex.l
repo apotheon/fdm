@@ -1,6 +1,6 @@
 /* -*-C-*- */
 
-/* $Id: lex.l,v 1.45 2006-11-16 21:09:46 nicm Exp $ */
+/* $Id: lex.l,v 1.46 2006-11-16 23:34:25 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -258,5 +258,4 @@ write return (ACTWRITE);
 \#.*\n /* ignore comments */;
 \n /* ignore end of line */;
 [ \t]+ /* ignore whitespace */;
-
 %%
