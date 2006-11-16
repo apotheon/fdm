@@ -1,4 +1,4 @@
-/* $Id: parent.c,v 1.15 2006-11-16 23:34:25 nicm Exp $ */
+/* $Id: parent.c,v 1.16 2006-11-16 23:41:22 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -198,5 +198,5 @@ deliverfork(uid_t uid, struct account *a, struct mail *m, struct action *t)
 
 	/* do the delivery */
 	_exit(t->deliver->deliver(a, t, m));
-	return (DELIVER_FAILURE); /* yuk */
+	return (DELIVER_FAILURE);
 }

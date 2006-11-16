@@ -1,4 +1,4 @@
-/* $Id: child.c,v 1.19 2006-11-16 23:34:25 nicm Exp $ */
+/* $Id: child.c,v 1.20 2006-11-16 23:41:22 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -321,7 +321,7 @@ do_expr(struct account *a, struct mail *m, struct rule *r)
 		}
 
 		s = ei->match->desc(ei);
-		log_debug("%s: tried %s%s:%s, got %d", a->name, 
+		log_debug2("%s: tried %s%s:%s, got %d", a->name, 
 		    ei->inverted ? "not " : "", ei->match->name, s, cres);
 		xfree(s);
 	}
