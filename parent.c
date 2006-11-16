@@ -1,4 +1,4 @@
-/* $Id: parent.c,v 1.13 2006-11-11 15:07:44 nicm Exp $ */
+/* $Id: parent.c,v 1.14 2006-11-16 21:09:46 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -32,6 +32,10 @@ parent(int fd, pid_t pid)
 	struct io	*io;
 	struct msg	 msg;
 	int		 status, error;
+
+#ifdef DEBUG
+	xmalloc_clear();
+#endif
 
 	io = io_create(fd, NULL, IO_LF);
 	log_debug("parent: started, pid %ld", (long) getpid());
