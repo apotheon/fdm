@@ -1,4 +1,4 @@
-/* $Id: match-command.c,v 1.1 2006-11-17 17:50:58 nicm Exp $ */
+/* $Id: match-command.c,v 1.2 2006-11-17 17:58:10 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -33,6 +33,7 @@ command_match(struct account *a, struct mail *m, struct expritem *ei)
 	data = ei->data;
 
 	/** **/
+	/** cmd user??? -- rule user? specified? current? **/
 	
 	return (0);
 }
