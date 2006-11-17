@@ -1,4 +1,4 @@
-/* $Id: match-regexp.c,v 1.1 2006-11-16 22:28:13 nicm Exp $ */
+/* $Id: match-regexp.c,v 1.2 2006-11-17 17:50:58 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -59,7 +59,7 @@ regexp_match(struct account *a, struct mail *m, struct expritem *ei)
 	
 	res = regexec(&data->re, m->data, 0, &pmatch, REG_STARTEND);
 	if (res != 0 && res != REG_NOMATCH) {
-		log_warnx("%s: %s: regexec failed", a->name, data->s);
+		log_warnx("%s: %s: regexec failed", a->name, data->re_s);
 		return (-1);
 	}
 
@@ -87,6 +87,6 @@ regexp_desc(struct expritem *ei)
 		break;
 	}
 
-	xasprintf(&s, "\"%s\" in %s", data->s, area);
+	xasprintf(&s, "\"%s\" in %s", data->re_s, area);
 	return (s);
 }
