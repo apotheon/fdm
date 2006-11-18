@@ -1,4 +1,4 @@
-/* $Id: mail.c,v 1.36 2006-11-18 16:21:32 nicm Exp $ */
+/* $Id: mail.c,v 1.37 2006-11-18 17:03:35 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -34,6 +34,8 @@
 void
 free_mail(struct mail *m)
 {
+	if (!ARRAY_EMPTY(&m->tags))
+		ARRAY_FREE(&m->tags);
 	free_wrapped(m);
 	if (m->from != NULL) {
 		xfree(m->from);

@@ -1,4 +1,4 @@
-/* $Id: child.c,v 1.21 2006-11-18 06:47:29 nicm Exp $ */
+/* $Id: child.c,v 1.22 2006-11-18 17:03:35 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -174,6 +174,7 @@ fetch_account(struct io *io, struct account *a)
         for (;;) {
 		memset(&m, 0, sizeof m);
 		m.body = -1;
+		ARRAY_INIT(&m.tags);
 
 		error = a->fetch->fetch(a, &m);
 		switch (error) {
@@ -239,10 +240,16 @@ fetch_account(struct io *io, struct account *a)
 
 			set_wrapped(&m, '\n');
 
+			/* tag mail if needed */
+			if (r->tag != NULL)
+				ARRAY_ADD(&m.tags, r->tag, char *);
+			
 			/* handle delivery */
-			if (do_deliver(io, a, &m, r) != 0) {
-				cause = "delivery";
-				goto out;
+			if (r->actions != NULL) {
+				if (do_deliver(io, a, &m, r) != 0) {
+					cause = "delivery";
+					goto out;
+				}
 			}
 				
 

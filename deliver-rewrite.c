@@ -1,4 +1,4 @@
-/* $Id: deliver-rewrite.c,v 1.11 2006-11-18 06:47:29 nicm Exp $ */
+/* $Id: deliver-rewrite.c,v 1.12 2006-11-18 17:03:35 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -41,6 +41,8 @@ rewrite_deliver(struct account *a, struct action *t, struct mail *m)
 	int	 	 in[2], out[2], error, status, res = DELIVER_FAILURE;
 	struct io	*io;
 	pid_t	 	 pid;
+
+	fatalx("rewrite is currently broken");
 
 	cmd = replaceinfo(t->data, a, t);
         if (cmd == NULL || *cmd == '\0') {
