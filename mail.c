@@ -1,4 +1,4 @@
-/* $Id: mail.c,v 1.39 2006-11-18 18:32:13 nicm Exp $ */
+/* $Id: mail.c,v 1.40 2006-11-18 18:51:04 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -201,7 +201,7 @@ find_users(struct mail *m)
 
 		xasprintf(&ptr, "%s: ", ARRAY_ITEM(conf.headers, i, char *));
 		hdr = find_header(m, ptr, &len);
-		free(ptr);
+		xfree(ptr);
 
 		if (hdr == NULL || len < 1)
 			continue;
