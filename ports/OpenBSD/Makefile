@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.6 2006-10-31 17:57:47 nicm Exp $
+# $Id: Makefile,v 1.7 2006-11-18 05:12:10 nicm Exp $
 
 COMMENT=	"fetches and delivers mail"
 
@@ -19,6 +19,6 @@ MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=fdm/}
 post-install:
 	${INSTALL_DATA_DIR} ${PREFIX}/share/doc/fdm
 	${INSTALL_DATA} ${WRKSRC}/README ${PREFIX}/share/doc/fdm/README
-	${INSTALL_DATA} ${WRKSRC}/fdm.conf ${PREFIX}/share/doc/fdm/fdm.conf.sample
+	${INSTALL_DATA} ${WRKSRC}/fdm.conf ${PREFIX}/share/examples/fdm/fdm.conf.sample
 
 .include <bsd.port.mk>
