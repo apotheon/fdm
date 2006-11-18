@@ -1,4 +1,4 @@
-/* $Id: deliver-maildir.c,v 1.13 2006-10-28 14:47:11 nicm Exp $ */
+/* $Id: deliver-maildir.c,v 1.14 2006-11-18 06:47:29 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -31,7 +31,7 @@
 
 int	maildir_deliver(struct account *, struct action *, struct mail *);
 
-struct deliver deliver_maildir = { "maildir", maildir_deliver };
+struct deliver deliver_maildir = { "maildir", 1, maildir_deliver };
 
 int
 maildir_deliver(struct account *a, struct action *t, struct mail *m)

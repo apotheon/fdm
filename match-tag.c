@@ -1,4 +1,4 @@
-/* $Id: match-command.c,v 1.3 2006-11-18 06:47:30 nicm Exp $ */
+/* $Id: match-tag.c,v 1.1 2006-11-18 06:47:30 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -18,44 +18,34 @@
 
 #include <sys/types.h>
 
+#include <string.h>
+
 #include "fdm.h"
 
-int	command_match(struct account *, struct mail *, struct expritem *);
-char   *command_desc(struct expritem *);
+int	tag_match(struct account *, struct mail *, struct expritem *);
+char   *tag_desc(struct expritem *);
 
-struct match match_command = { "command", command_match, command_desc };
+struct match match_tag = { "tag", tag_match, tag_desc };
 
 int
-command_match(struct account *a, struct mail *m, struct expritem *ei)
+tag_match(unused struct account *a, struct mail *m, struct expritem *ei)
 {
-	struct command_data	*data;
+	struct tag_data	*data;
 
 	data = ei->data;
 
-	/* We are called as the child so execs need to break the fourth 
-	   wall */
-	/** cmd user??? -- rule user? specified? current? **/
-	
-	return (0);
+	if (data->tag == NULL)
+		return (0);
+
+	return (strcmp(data->tag, m->tag) == 0);
 }
 
 char *
-command_desc(struct expritem *ei)
+tag_desc(struct expritem *ei)
 {
-	struct command_data	*data;
-	char			*s, ret[11];
+	struct tag_data	*data;
 
 	data = ei->data;
 
-	*ret = '\0';
-	if (data->ret != -1)
-		snprintf(ret, sizeof ret, "%d", data->ret);
-
-	if (data->re_s == NULL)
-		xasprintf(&s, "`%s` returns (%s, )", data->cmd, ret);
-	else {
-		xasprintf(&s, "`%s` returns (%s, \"%s\")", data->cmd, ret,
-		    data->re_s);
-	}
-	return (s);
+	return (xstrdup(data->tag));
 }

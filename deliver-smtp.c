@@ -1,4 +1,4 @@
-/* $Id: deliver-smtp.c,v 1.20 2006-11-09 18:44:11 nicm Exp $ */
+/* $Id: deliver-smtp.c,v 1.21 2006-11-18 06:47:29 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -29,7 +29,7 @@
 
 int	smtp_deliver(struct account *, struct action *, struct mail *);
 
-struct deliver deliver_smtp = { "smtp", smtp_deliver };
+struct deliver deliver_smtp = { "smtp", 1, smtp_deliver };
 
 int
 smtp_deliver(struct account *a, struct action *t, struct mail *m)

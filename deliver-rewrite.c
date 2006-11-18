@@ -1,4 +1,4 @@
-/* $Id: deliver-rewrite.c,v 1.10 2006-11-06 17:53:16 nicm Exp $ */
+/* $Id: deliver-rewrite.c,v 1.11 2006-11-18 06:47:29 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -30,7 +30,7 @@
 
 int	rewrite_deliver(struct account *, struct action *, struct mail *);
 
-struct deliver deliver_rewrite = { "rewrite", rewrite_deliver };
+struct deliver deliver_rewrite = { "rewrite", 1, rewrite_deliver };
 
 int
 rewrite_deliver(struct account *a, struct action *t, struct mail *m)

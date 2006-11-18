@@ -1,6 +1,6 @@
 /* -*-C-*- */
 
-/* $Id: lex.l,v 1.47 2006-11-17 17:50:58 nicm Exp $ */
+/* $Id: lex.l,v 1.48 2006-11-18 06:47:29 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -127,7 +127,7 @@ actions return (TOKACTIONS);
 all return (TOKALL);
 allow-multiple return (TOKALLOWMANY);
 and return (TOKAND);
-append return (ACTAPPEND);
+append return (TOKAPPEND);
 body return (TOKBODY);
 case return (TOKCASE);
 continue return (TOKCONTINUE);
@@ -135,7 +135,7 @@ disabled return (TOKDISABLED);
 domain return (TOKDOMAIN);
 domains return (TOKDOMAINS);
 dotlock return (LCKDOTLOCK);
-drop return (ACTDROP);
+drop return (TOKDROP);
 fcntl return (LCKFCNTL);
 flock return (LCKFLOCK);
 folder return (TOKFOLDER);
@@ -147,30 +147,31 @@ imaps return (TOKIMAPS);
 in return (TOKIN);
 include return (TOKINCLUDE);
 lock-file return (TOKLOCKFILE);
-maildir return (ACTMAILDIR);
+maildir return (TOKMAILDIR);
 match return (TOKMATCH);
 matched return (TOKMATCHED);
-mbox return (ACTMBOX);
+mbox return (TOKMBOX);
 none return (TOKNONE);
 not return (TOKNOT);
 or return (TOKOR);
 pass return (TOKPASS);
-pipe return (ACTPIPE);
+pipe return (TOKPIPE);
 pop3 return (TOKPOP3);
 pop3s return (TOKPOP3S);
 port return (TOKPORT);
 proxy return (TOKPROXY);
 returns return (TOKRETURNS);
-rewrite return (ACTREWRITE);
+rewrite return (TOKREWRITE);
 server return (TOKSERVER);
 set return (TOKSET);
-smtp return (ACTSMTP);
+smtp return (TOKSMTP);
 stdin return (TOKSTDIN);
+tag return (TOKTAG);
 to return (TOKTO);
 unmatched return (TOKUNMATCHED);
 user return (TOKUSER);
 users return (TOKUSERS);
-write return (ACTWRITE);
+write return (TOKWRITE);
 \{ return ('{');
 \} return ('}');
 \( return ('(');
