@@ -1,4 +1,4 @@
-/* $Id: mail.c,v 1.35 2006-11-15 18:30:34 nicm Exp $ */
+/* $Id: mail.c,v 1.36 2006-11-18 16:21:32 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -178,9 +178,9 @@ find_header(struct mail *m, const char *hdr, size_t *len)
 	out = ptr + *len;
 	ptr = memchr(out, '\n', end - out);
 	if (ptr == NULL)
-		*len = end - hdr;
+		*len = end - out;
 	else
-		*len = (ptr - hdr) + 1;
+		*len = (ptr - out) + 1;
 
 	return (out);
 }
