@@ -1,4 +1,4 @@
-/* $Id: fdm.c,v 1.66 2006-11-16 21:09:46 nicm Exp $ */
+/* $Id: fdm.c,v 1.67 2006-11-18 19:23:30 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -239,9 +239,9 @@ main(int argc, char **argv)
 	} else {
 		if (argc != 1)
 			usage();
-		if (strcmp(argv[0], "poll") == 0)
+		if (strncmp(argv[0], "poll", strlen(argv[0])) == 0)
 			cmd = CMD_POLL;
-		else if (strcmp(argv[0], "fetch") == 0)
+		else if (strncmp(argv[0], "fetch", strlen(argv[0])) == 0)
 			cmd = CMD_FETCH;
 		else
 			usage();
