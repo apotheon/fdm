@@ -1,4 +1,4 @@
-# $Id: GNUmakefile,v 1.20 2006-11-18 17:03:35 nicm Exp $
+# $Id: GNUmakefile,v 1.21 2006-11-18 17:06:34 nicm Exp $
 
 .PHONY: clean
 
@@ -43,7 +43,7 @@ SRCS= fdm.c log.c xmalloc.c parse.y lex.l io.c replace.c connect.c mail.c \
 DEFS = -DBUILD="\"$(VERSION) ($(DATE))\""
 
 ifeq ($(shell uname),Linux)
-SRCS += compat/strlcpy.c compat/strlcat.c compat/strtonum.c
+SRCS += strlcpy.c strlcat.c strtonum.c
 DEFS += $(shell getconf LFS_CFLAGS) \
 	-D_GNU_SOURCE -DNO_STRLCPY -DNO_STRLCAT -DNO_SETPROCTITLE -DNO_STRTONUM
 endif

@@ -1,5 +1,5 @@
 
-# $Id: Makefile,v 1.40 2006-11-18 17:03:35 nicm Exp $
+# $Id: Makefile,v 1.41 2006-11-18 17:06:34 nicm Exp $
 
 .SUFFIXES: .c .o .y .l .h
 .PHONY: clean update-index.html upload-index.html lint
@@ -20,7 +20,7 @@ SRCS= fdm.c log.c xmalloc.c parse.y lex.l io.c replace.c connect.c mail.c \
 OBJS= ${SRCS:S/.c/.o/:S/.y/.o/:S/.l/.o/}
 
 LEX= lex
-YACC= yacc -dv
+YACC= yacc -d
 
 CC= cc
 CFLAGS+= -std=c99
