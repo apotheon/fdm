@@ -1,4 +1,4 @@
-/* $Id: deliver-mbox.c,v 1.17 2006-11-18 06:47:29 nicm Exp $ */
+/* $Id: deliver-mbox.c,v 1.18 2006-11-18 17:58:36 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -31,7 +31,7 @@
 
 int	mbox_deliver(struct account *, struct action *, struct mail *);
 
-struct deliver deliver_mbox = { "mbox", 1, mbox_deliver };
+struct deliver deliver_mbox = { "mbox", DELIVER_ASUSER, mbox_deliver };
 
 int
 mbox_deliver(struct account *a, struct action *t, struct mail *m)
@@ -98,6 +98,10 @@ mbox_deliver(struct account *a, struct action *t, struct mail *m)
 
 	/* write the from line */
 	if (write(fd, m->from, strlen(m->from)) == -1) {
+		log_warn("%s: %s: write", a->name, path);
+		goto out;
+	}
+	if (write(fd, "\n", 1) == -1) {
 		log_warn("%s: %s: write", a->name, path);
 		goto out;
 	}
