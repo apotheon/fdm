@@ -1,4 +1,4 @@
-/* $Id: parent.c,v 1.19 2006-11-18 18:32:13 nicm Exp $ */
+/* $Id: parent.c,v 1.20 2006-11-18 19:16:43 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -202,14 +202,14 @@ do_action(struct account *a, struct action *t, struct mail *m, uid_t uid)
 	io = io_create(fds[1], NULL, IO_LF);
 
 	/* child process. change user and group */
-	log_debug("%s: delivering using user %lu", a->name, (u_long) uid);
-	if (uid != geteuid()) {
+	log_debug("%s: trying to deliver using uid %lu", a->name, (u_long) uid);
+	if (geteuid() == 0) {
 		if (dropto(uid) != 0) {
 			log_warnx("%s: can't drop privileges", a->name);
 			_exit(DELIVER_FAILURE);
 		}
 	} else
-		log_debug("%s: user already %lu", a->name, (u_long) uid);
+		log_debug("%s: not root. using current user", a->name);
 #ifndef NO_SETPROCTITLE
 	setproctitle("deliver[%lu]", (u_long) uid);
 #endif
