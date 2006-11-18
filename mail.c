@@ -1,4 +1,4 @@
-/* $Id: mail.c,v 1.37 2006-11-18 17:03:35 nicm Exp $ */
+/* $Id: mail.c,v 1.38 2006-11-18 17:59:46 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -312,8 +312,6 @@ trim_from(struct mail *m)
 	ptr = memchr(m->data, '\n', m->size);
 	if (ptr == NULL)
 		ptr = m->data + m->size;
-	else
-		ptr++;
 	len = ptr - m->data;
 
 	m->from = xmalloc(len + 1);
