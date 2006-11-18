@@ -1,4 +1,4 @@
-/* $Id: xmalloc.c,v 1.17 2006-11-15 18:30:34 nicm Exp $ */
+/* $Id: xmalloc.c,v 1.18 2006-11-18 18:32:13 nicm Exp $ */
 
 /*
  * Copyright (c) 2004 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -91,7 +91,7 @@ xmalloc_dump(const char *hdr)
 			off2 = xsnprintf(tmp + off, len - off, "[%p %zu:",
 			    p->ptr, p->size);
 			if (off2 < 0)
-				fatal("xsnprintf");
+				break;
 			off += off2;
 
 			for (j = 0; j < (p->size > 8 ? 8 : p->size); j++) {
@@ -103,13 +103,13 @@ xmalloc_dump(const char *hdr)
 					    "\\%03o", ((char *) p->ptr)[j]);
 				}
 				if (off2 < 0)
-					fatal("xsnprintf");
+					break;
 				off += off2;
 			}
 
 			off2 = xsnprintf(tmp + off, len - off, "] ");
 			if (off2 < 0)
-				fatal("xsnprintf");
+				break;
 			off += off2;
 		}
 	}

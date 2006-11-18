@@ -1,4 +1,4 @@
-/* $Id: deliver-mbox.c,v 1.18 2006-11-18 17:58:36 nicm Exp $ */
+/* $Id: deliver-mbox.c,v 1.19 2006-11-18 18:32:13 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -36,7 +36,7 @@ struct deliver deliver_mbox = { "mbox", DELIVER_ASUSER, mbox_deliver };
 int
 mbox_deliver(struct account *a, struct action *t, struct mail *m)
 {
-	char		*path, *ptr, *ptr2;
+	char		*path, *ptr, *ptr2, *from = NULL;
 	size_t	 	 len, len2;
 	int	 	 fd = -1, res = DELIVER_FAILURE;
 	struct stat	 sb;
@@ -77,9 +77,8 @@ mbox_deliver(struct account *a, struct action *t, struct mail *m)
 		}
 	}
 
-	/* ensure an existing from line is available */
-	if (m->from == NULL)
-		make_from(m);
+	/* create a from line for the mail */
+	from = make_from(m);
 
 	do {
 		fd = openlock(path, conf.lock_types,
@@ -97,7 +96,7 @@ mbox_deliver(struct account *a, struct action *t, struct mail *m)
 	} while (fd == -1);
 
 	/* write the from line */
-	if (write(fd, m->from, strlen(m->from)) == -1) {
+	if (write(fd, from, strlen(from)) == -1) {
 		log_warn("%s: %s: write", a->name, path);
 		goto out;
 	}
@@ -145,6 +144,8 @@ mbox_deliver(struct account *a, struct action *t, struct mail *m)
 out:
 	if (fd != -1)
 		closelock(fd, path, conf.lock_types);
+	if (from != NULL)
+		xfree(from);
 	if (path != NULL)
 		xfree(path);
 	return (res);

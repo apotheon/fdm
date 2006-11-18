@@ -1,4 +1,4 @@
-/* $Id: deliver-write.c,v 1.7 2006-11-18 06:47:29 nicm Exp $ */
+/* $Id: deliver-write.c,v 1.8 2006-11-18 18:32:13 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -28,7 +28,7 @@
 
 int	write_deliver(struct account *, struct action *, struct mail *);
 
-struct deliver deliver_write = { "write", 1, write_deliver };
+struct deliver deliver_write = { "write", DELIVER_ASUSER, write_deliver };
 
 int
 write_deliver(struct account *a, struct action *t, struct mail *m)

@@ -1,4 +1,4 @@
-/* $Id: deliver-drop.c,v 1.7 2006-11-18 06:47:29 nicm Exp $ */
+/* $Id: deliver-drop.c,v 1.8 2006-11-18 18:32:13 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -22,7 +22,7 @@
 
 int	drop_deliver(struct account *, struct action *, struct mail *);
 
-struct deliver deliver_drop = { "drop", 0, drop_deliver };
+struct deliver deliver_drop = { "drop", DELIVER_INCHILD, drop_deliver };
 
 int
 drop_deliver(unused struct account *a, unused struct action *t,
