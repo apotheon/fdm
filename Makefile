@@ -1,5 +1,5 @@
 
-# $Id: Makefile,v 1.41 2006-11-18 17:06:34 nicm Exp $
+# $Id: Makefile,v 1.42 2006-11-19 00:59:33 nicm Exp $
 
 .SUFFIXES: .c .o .y .l .h
 .PHONY: clean update-index.html upload-index.html lint
@@ -50,7 +50,7 @@ LIBS= -lcrypto -lssl
 DISTFILES= *.[chyl] Makefile GNUmakefile ${PROG}.conf *.[1-9] README
 
 CLEANFILES= ${PROG} *.o y.tab.c lex.yy.c y.tab.h .depend ${PROG}-*.tar.gz \
-	*.[1-9].gz *~ *.ln ${PROG}.core
+	*~ *.ln ${PROG}.core
 
 .c.o:
 		${CC} ${CFLAGS} ${INCDIRS} -c ${.IMPSRC} -o ${.TARGET}
