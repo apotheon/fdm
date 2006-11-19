@@ -1,4 +1,4 @@
-/* $Id: fdm.c,v 1.67 2006-11-18 19:23:30 nicm Exp $ */
+/* $Id: fdm.c,v 1.68 2006-11-19 13:52:00 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -178,7 +178,7 @@ main(int argc, char **argv)
 {
         int		 opt, fds[2], lockfd, rc;
 	u_int		 i;
-	enum cmd         cmd = CMD_NONE;
+	enum fdmop       op = FDMOP_NONE;
 	const char	*errstr;
 	char		 tmp[512];
 	const char	*proxy = NULL;
@@ -240,9 +240,9 @@ main(int argc, char **argv)
 		if (argc != 1)
 			usage();
 		if (strncmp(argv[0], "poll", strlen(argv[0])) == 0)
-			cmd = CMD_POLL;
+			op = FDMOP_POLL;
 		else if (strncmp(argv[0], "fetch", strlen(argv[0])) == 0)
-			cmd = CMD_FETCH;
+			op = FDMOP_FETCH;
 		else
 			usage();
 	}
@@ -370,7 +370,7 @@ main(int argc, char **argv)
                 log_warnx("no accounts specified");
 		exit(1);
 	}
-        if (cmd == CMD_FETCH && TAILQ_EMPTY(&conf.rules)) {
+        if (op == FDMOP_FETCH && TAILQ_EMPTY(&conf.rules)) {
                 log_warnx("no rules specified");
 		exit(1);
 	}
@@ -418,7 +418,7 @@ main(int argc, char **argv)
 		fatal("fork");
 	case 0:
 		close(fds[0]);
-		_exit(child(fds[1], cmd));
+		_exit(child(fds[1], op));
 	default:
 		close(fds[1]);
 		rc = parent(fds[0], pid);
