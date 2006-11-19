@@ -1,4 +1,4 @@
-/* $Id: parse.y,v 1.66 2006-11-19 13:52:00 nicm Exp $ */
+/* $Id: parse.y,v 1.67 2006-11-19 18:17:13 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -1110,7 +1110,7 @@ perform: TOKTAG strv
 		 $$->tag = $2;
 		 $$->stop = 0;
 		 $$->users = NULL;
-		 $$->find_uid = NULL;
+		 $$->find_uid = 0;
 	 }
        | users actions cont
 	 {
