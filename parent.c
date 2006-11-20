@@ -1,4 +1,4 @@
-/* $Id: parent.c,v 1.23 2006-11-19 19:09:59 nicm Exp $ */
+/* $Id: parent.c,v 1.24 2006-11-20 19:51:54 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -22,6 +22,7 @@
 #include <sys/wait.h>
 
 #include <fcntl.h>
+#include <paths.h>
 #include <string.h>
 #include <unistd.h>
 
@@ -49,7 +50,7 @@ parent(int fd, pid_t pid)
 #ifdef DEBUG
 	xmalloc_clear();
 
-	fd2 = open("/dev/null", O_RDONLY, 0);
+	fd2 = open(_PATH_DEVNULL, O_RDONLY, 0);
 	close(fd2);
 	log_debug2("parent: last fd on entry %d", fd);
 #endif
@@ -131,7 +132,7 @@ parent(int fd, pid_t pid)
 #ifdef DEBUG
 	xmalloc_dump("parent");
 
-	fd = open("/dev/null", O_RDONLY, 0);
+	fd = open(_PATH_DEVNULL, O_RDONLY, 0);
 	close(fd);
 	log_debug2("parent: last fd on exit %d", fd);
 #endif
