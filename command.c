@@ -1,4 +1,4 @@
-/* $Id: command.c,v 1.4 2006-11-19 19:03:54 nicm Exp $ */
+/* $Id: command.c,v 1.5 2006-11-20 19:40:29 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -117,7 +117,7 @@ cmd_start(const char *s, int in, int out, char *buf, size_t len, char **cause)
 		fd_in[1] = -1;
 	}
 
-	/* create ios  */
+	/* create ios */
 	if (fd_out[0] != -1)
 		cmd->io_out = io_create(fd_out[0], NULL, IO_LF);
 	else
