@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.97 2006-11-19 19:03:54 nicm Exp $ */
+/* $Id: fdm.h,v 1.98 2006-11-20 11:01:02 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -672,6 +672,14 @@ extern struct deliver 	 deliver_append;
 
 /* deliver-rewrite.c */
 extern struct deliver 	 deliver_rewrite;
+
+#ifdef NO_SETRESUID
+#define setresuid(r, e, s) setreuid(r, e)
+#endif
+
+#ifdef NO_SETRESGID
+#define setresgid(r, e, s) setregid(r, e)
+#endif
 
 #ifdef NO_STRTONUM
 /* strtonum.c */
