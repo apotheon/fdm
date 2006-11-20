@@ -1,6 +1,6 @@
 /* -*-C-*- */
 
-/* $Id: lex.l,v 1.49 2006-11-18 17:03:35 nicm Exp $ */
+/* $Id: lex.l,v 1.50 2006-11-20 14:57:35 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -164,6 +164,7 @@ returns return (TOKRETURNS);
 rewrite return (TOKREWRITE);
 server return (TOKSERVER);
 set return (TOKSET);
+size return (TOKSIZE);
 smtp return (TOKSMTP);
 stdin return (TOKSTDIN);
 tag return (TOKTAG);
@@ -178,6 +179,10 @@ write return (TOKWRITE);
 \( return ('(');
 \) return (')');
 \, return (',');
+\< return ('<');
+\> return ('>');
+== return (TOKEQ);
+!= return (TOKNE);
 = return ('=');
 \#.*\n /* ignore comments */;
 \n /* ignore end of line */;

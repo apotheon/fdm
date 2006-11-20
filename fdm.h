@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.98 2006-11-20 11:01:02 nicm Exp $ */
+/* $Id: fdm.h,v 1.99 2006-11-20 14:57:35 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -512,6 +512,20 @@ struct match {
 	char 			*(*desc)(struct expritem *);
 };
 
+/* Comparison operators. */
+enum cmp {
+	CMP_LT,
+	CMP_GT,
+	CMP_EQ,
+	CMP_NE
+};
+
+/* Match size data. */
+struct size_data {
+	size_t			 size;
+	enum cmp		 cmp;
+};
+
 /* Match tagged data. */
 struct tagged_data {
 	char			*tag;
@@ -623,6 +637,9 @@ struct smtp_data {
 	struct server	 server;
 	char		*to;
 };
+
+/* match-size.c */
+extern struct match	 match_size;
 
 /* match-tagged.c */
 extern struct match	 match_tagged;
