@@ -1,4 +1,4 @@
-/* $Id: parse.y,v 1.69 2006-11-20 19:40:30 nicm Exp $ */
+/* $Id: parse.y,v 1.70 2006-11-20 19:49:56 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -111,7 +111,7 @@ yywrap(void)
 	xfree(curfile);
 	curfile = top->curfile;
 	xfree(top);
-	ARRAY_TRUNC(&filestack, 1, struct saved *);
+	ARRAY_TRUNC(&filestack, 1, struct filestackent *);
 
         return (0);
 }
