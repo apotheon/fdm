@@ -1,5 +1,5 @@
 
-# $Id: Makefile,v 1.48 2006-11-21 19:47:17 nicm Exp $
+# $Id: Makefile,v 1.49 2006-11-21 20:37:02 nicm Exp $
 
 .SUFFIXES: .c .o .y .l .h
 .PHONY: clean update-index.html upload-index.html lint
@@ -15,7 +15,7 @@ SRCS= fdm.c log.c xmalloc.c parse.y lex.l io.c replace.c connect.c mail.c \
       fetch-pop3.c fetch-imap.c fetch-stdin.c deliver-smtp.c deliver-pipe.c \
       deliver-drop.c deliver-maildir.c deliver-mbox.c deliver-write.c \
       deliver-append.c deliver-rewrite.c match-regexp.c match-command.c \
-      match-tagged.c match-size.c match-index.c child.c parent.c privsep.c \
+      match-tagged.c match-size.c match-string.c child.c parent.c privsep.c \
       command.c
 
 LEX= lex
