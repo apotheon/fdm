@@ -1,4 +1,4 @@
-/* $Id: child.c,v 1.27 2006-11-20 19:54:41 nicm Exp $ */
+/* $Id: child.c,v 1.28 2006-11-21 07:34:41 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -295,7 +295,6 @@ do_rules(struct io *io, struct account *a, struct mail *m, struct rules *rules,
 			break;
 		}
 		log_debug("%s: matched message", a->name);
-		*matched = 1;
 			
 		set_wrapped(m, '\n');
 		
@@ -305,6 +304,7 @@ do_rules(struct io *io, struct account *a, struct mail *m, struct rules *rules,
 		
 		/* handle delivery */
 		if (r->actions != NULL) {
+			*matched = 1;
 			if (do_deliver(io, a, m, r) != 0) {
 				*cause = "delivery";
 				return (1);
