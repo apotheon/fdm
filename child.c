@@ -1,4 +1,4 @@
-/* $Id: child.c,v 1.32 2006-11-21 21:00:28 nicm Exp $ */
+/* $Id: child.c,v 1.33 2006-11-21 23:37:37 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -291,14 +291,6 @@ do_rules(struct match_ctx *mctx, struct rules *rules, const char **cause)
 				continue;
 			break;
 		case RULE_ALL:
-			break;
-		case RULE_MATCHED:
-			if (!*mctx->matched)
-				continue;
-			break;
-		case RULE_UNMATCHED:
-			if (*mctx->matched)
-				continue;
 			break;
 		}
 		log_debug("%s: matched message", a->name);

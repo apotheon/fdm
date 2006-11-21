@@ -1,4 +1,4 @@
-/* $Id: parse.y,v 1.73 2006-11-21 20:37:02 nicm Exp $ */
+/* $Id: parse.y,v 1.74 2006-11-21 23:37:37 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -1125,6 +1125,20 @@ expritem: not icase strv area
 			  yyerror("%s: %s", $5, buf);
 		  }
 	  }
+        | not TOKMATCHED
+	  {
+		  $$ = xcalloc(1, sizeof *$$);
+
+		  $$->match = &match_matched;
+		  $$->inverted = $1;
+          }
+        | not TOKUNMATCHED
+	  {
+		  $$ = xcalloc(1, sizeof *$$);
+
+		  $$->match = &match_unmatched;
+		  $$->inverted = $1;
+          }
 
 exprlist: exprlist exprop expritem
 	  {
@@ -1165,16 +1179,6 @@ match: TOKMATCH expr
        {
 	       $$.expr = NULL;
 	       $$.type = RULE_ALL;
-       }
-     | TOKMATCH TOKMATCHED
-       {
-	       $$.expr = NULL;
-	       $$.type = RULE_MATCHED;
-       }
-     | TOKMATCH TOKUNMATCHED
-       {
-	       $$.expr = NULL;
-	       $$.type = RULE_UNMATCHED;
        }
 
 perform: TOKTAG strv
@@ -1251,12 +1255,6 @@ rule: match accounts perform
 	      switch ($3->type) {
  	      case RULE_ALL:
 		      xsnprintf(tmp, sizeof tmp, "all");
-		      break;
- 	      case RULE_MATCHED:
-		      xsnprintf(tmp, sizeof tmp, "matched");
-		      break;
- 	      case RULE_UNMATCHED:
-		      xsnprintf(tmp, sizeof tmp, "unmatched");
 		      break;
 	      case RULE_EXPRESSION:
 		      *tmp = '\0';

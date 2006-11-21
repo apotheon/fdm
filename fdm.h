@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.102 2006-11-21 20:37:02 nicm Exp $ */
+/* $Id: fdm.h,v 1.103 2006-11-21 23:37:37 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -339,9 +339,7 @@ TAILQ_HEAD(rules, rule);
 /* Rule types. */
 enum ruletype {
 	RULE_EXPRESSION,
-	RULE_ALL,
-	RULE_MATCHED,
-	RULE_UNMATCHED
+	RULE_ALL
 };
 
 /* Rule entry. */
@@ -673,6 +671,12 @@ struct smtp_data {
 	struct server	 server;
 	char		*to;
 };
+
+/* match-matched.c */
+extern struct match	 match_matched;
+
+/* match-unmatched.c */
+extern struct match	 match_unmatched;
 
 /* match-size.c */
 extern struct match	 match_size;
