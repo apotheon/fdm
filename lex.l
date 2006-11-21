@@ -1,6 +1,6 @@
 /* -*-C-*- */
 
-/* $Id: lex.l,v 1.51 2006-11-20 21:47:53 nicm Exp $ */
+/* $Id: lex.l,v 1.52 2006-11-21 19:47:17 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -48,6 +48,10 @@ char 				*read_str(char);
 
 %%
 
+\\[0-9] {
+        yylval.number = yytext[1] - '0';
+        return (INDEX);
+}
 [0-9]+ {
 	const char	*errstr;
 
