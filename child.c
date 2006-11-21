@@ -1,4 +1,4 @@
-/* $Id: child.c,v 1.31 2006-11-21 20:37:02 nicm Exp $ */
+/* $Id: child.c,v 1.32 2006-11-21 21:00:28 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -402,15 +402,19 @@ do_deliver(struct rule *r, struct match_ctx *mctx)
 		if (mctx->pmatch_valid && strchr(name, '%') != NULL) {
 			s = replacepmatch(name, m, mctx->pmatch);
 			t = find_action(s);
-			name = s;
 		} else {
  			s = NULL;
 			t = find_action(name);
 		}
 		if (t == NULL) {
-			log_warnx("unknown action: %s", name);
-			if (s != NULL)
+			if (s != NULL) {
+				log_warnx("%s: can't find action: %s (was %s)",
+				    a->name, s, name);
 				xfree(s);
+			} else {
+				log_warnx("%s: can't find action: %s", a->name,
+				    name);
+			}
 			return (1);
 		}
 		if (s != NULL)
