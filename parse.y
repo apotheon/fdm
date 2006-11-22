@@ -1,4 +1,4 @@
-/* $Id: parse.y,v 1.78 2006-11-22 18:44:14 nicm Exp $ */
+/* $Id: parse.y,v 1.79 2006-11-22 23:41:36 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -1313,16 +1313,16 @@ rule: match accounts perform
 			      s = ei->match->desc(ei);
 			      switch (ei->op) {
 			      case OP_AND:
-				      snprintf(tmp2, sizeof tmp2, "and %s:%s ", 
-					  ei->match->name, s);
+				      xsnprintf(tmp2, sizeof tmp2, 
+					  "and %s:%s ", ei->match->name, s);
 				      break;
 			      case OP_OR:
-				      snprintf(tmp2, sizeof tmp2, "or %s:%s ",
-					  ei->match->name, s);
+				      xsnprintf(tmp2, sizeof tmp2, 
+					  "or %s:%s ", ei->match->name, s);
 				      break;
 			      case OP_NONE:
-				      snprintf(tmp2, sizeof tmp2, "%s:%s ", 
-					  ei->match->name, s);
+				      xsnprintf(tmp2, sizeof tmp2, 
+					  "%s:%s ", ei->match->name, s);
 				      break;
 			      }
 			      xfree(s);

@@ -1,4 +1,4 @@
-/* $Id: shm.c,v 1.2 2006-11-22 23:38:11 nicm Exp $ */
+/* $Id: shm.c,v 1.3 2006-11-22 23:41:36 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -53,7 +53,8 @@ shm_malloc(struct shm *shm, size_t size)
 	char	c[1];
 
 	/* XXX TMPDIR XXX check free space */
-	strlcpy(shm->name, _PATH_TMP "fdm.XXXXXXXXXXXX", sizeof shm->name);
+	xsnprintf(shm->name, sizeof shm->name, _PATH_TMP "%s.XXXXXXXXXXXX", 
+	    __progname);
 	if ((shm->fd = mkstemp(shm->name)) < 0)
 		fatal("mkstemp");
 

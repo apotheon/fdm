@@ -1,4 +1,4 @@
-/* $Id: match-command.c,v 1.7 2006-11-22 23:03:05 nicm Exp $ */
+/* $Id: match-command.c,v 1.8 2006-11-22 23:41:36 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -67,7 +67,7 @@ command_desc(struct expritem *ei)
 
 	*ret = '\0';
 	if (data->ret != -1)
-		snprintf(ret, sizeof ret, "%d", data->ret);
+		xsnprintf(ret, sizeof ret, "%d", data->ret);
 	t = data->pipe ? "pipe" : "exec";
 
 	if (data->re_s == NULL) {
