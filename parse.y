@@ -1,4 +1,4 @@
-/* $Id: parse.y,v 1.77 2006-11-22 13:20:39 nicm Exp $ */
+/* $Id: parse.y,v 1.78 2006-11-22 18:44:14 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -217,7 +217,7 @@ find_macro(char *name)
 }
 
 %token <number> NUMBER SIZE
-%token <string> COMMAND STRING STRMACRO STRMACROB NUMMACRO NUMMACROB
+%token <string> STRING STRMACRO STRMACROB NUMMACRO NUMMACROB
 
 %type  <accounts> accounts accountslist
 %type  <action> action

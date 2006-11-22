@@ -1,6 +1,6 @@
 /* -*-C-*- */
 
-/* $Id: lex.l,v 1.54 2006-11-22 09:40:26 nicm Exp $ */
+/* $Id: lex.l,v 1.55 2006-11-22 18:44:14 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -92,10 +92,6 @@ char 				*read_str(char);
 \" {
 	yylval.string = read_str('"');
         return (STRING);
-}
-\` {
-	yylval.string = read_str('`');
-        return (COMMAND);
 }
 \$[A-Za-z][A-Za-z0-9_]* {
         yylval.string = xstrdup(yytext);
