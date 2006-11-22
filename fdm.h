@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.108 2006-11-22 23:03:05 nicm Exp $ */
+/* $Id: fdm.h,v 1.109 2006-11-22 23:38:11 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -233,8 +233,6 @@ struct shm {
 	
 	void	*data;
 	size_t	 size;
-
-	u_int	 count;
 };
 
 /* Tags array. */
