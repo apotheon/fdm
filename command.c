@@ -1,4 +1,4 @@
-/* $Id: command.c,v 1.6 2006-11-22 16:51:59 nicm Exp $ */
+/* $Id: command.c,v 1.7 2006-11-22 17:18:20 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -169,6 +169,10 @@ restart:
 		case -1:
 			return (1);
 		case 0:
+			/* the pipe has closed. if there is data left in the 
+			   buffer, go on to try to handle it. io_readline will
+			   return everyone left once the socket closes, so next
+			   time one of these will be true */
 			if (io == cmd->io_err && IO_RDSIZE(cmd->io_err) == 0) {
 				io_close(cmd->io_err);
 				io_free(cmd->io_err);

@@ -1,4 +1,4 @@
-/* $Id: parent.c,v 1.26 2006-11-22 14:01:44 nicm Exp $ */
+/* $Id: parent.c,v 1.27 2006-11-22 17:18:20 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -202,8 +202,8 @@ parent_action(struct account *a, struct action *t, struct mail *m, uid_t uid)
 			m->base = buf;
 			m->data = m->base;
 
-			log_debug2("%s: got new mail from delivery, size %zu", 
-			    a->name, m->size);
+			log_debug2("%s: got new mail from delivery: size %zu, "
+			    "body=%zd", a->name, m->size, m->body);
 		}
 
 		/* free the io */
