@@ -1,4 +1,4 @@
-/* $Id: child.c,v 1.37 2006-11-22 14:00:09 nicm Exp $ */
+/* $Id: child.c,v 1.38 2006-11-22 14:12:02 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -523,6 +523,7 @@ do_action(struct rule *r, struct match_ctx *mctx, struct action *t)
 
 		/* copy the new mail in */
 		m->base = buf;
+		m->size = len
 		m->data = m->base;
 		m->body = md->body;
 		
