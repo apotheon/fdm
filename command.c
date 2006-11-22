@@ -1,4 +1,4 @@
-/* $Id: command.c,v 1.5 2006-11-20 19:40:29 nicm Exp $ */
+/* $Id: command.c,v 1.6 2006-11-22 16:51:59 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -169,13 +169,16 @@ restart:
 		case -1:
 			return (1);
 		case 0:
-			if (io == cmd->io_err)
+			if (io == cmd->io_err && IO_RDSIZE(cmd->io_err) == 0) {
+				io_close(cmd->io_err);
+				io_free(cmd->io_err);
 				cmd->io_err = NULL;
-			else if (io == cmd->io_out)
+			}
+			if (io == cmd->io_out && IO_RDSIZE(cmd->io_out) == 0) {
+				io_close(cmd->io_out);
+				io_free(cmd->io_out);
 				cmd->io_out = NULL;
-			io_close(io);
-			io_free(io);
-			return (0);
+			}
 		}
 	}
 

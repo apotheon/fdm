@@ -1,4 +1,4 @@
-/* $Id: io.c,v 1.27 2006-11-19 13:52:00 nicm Exp $ */
+/* $Id: io.c,v 1.28 2006-11-22 16:51:59 nicm Exp $ */
 
 /*
  * Copyright (c) 2005 Nicholas Marriott <nicm__@ntlworld.com>
@@ -476,7 +476,7 @@ io_readline2(struct io *io, char **buf, size_t *len)
 	if (io->error != NULL)
 		return (NULL);
 
-	if (io->rsize <= 1)
+	if (io->rsize < strlen(io->eol))
 		return (NULL);
 
 #ifdef IO_DEBUG
