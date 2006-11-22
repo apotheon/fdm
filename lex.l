@@ -1,6 +1,6 @@
 /* -*-C-*- */
 
-/* $Id: lex.l,v 1.53 2006-11-21 20:37:02 nicm Exp $ */
+/* $Id: lex.l,v 1.54 2006-11-22 09:40:26 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -144,6 +144,8 @@ imap return (TOKIMAP);
 imaps return (TOKIMAPS);
 in return (TOKIN);
 include return (TOKINCLUDE);
+unmatched-mail return (TOKIMPLACT);
+keep return (TOKKEEP);
 lock-file return (TOKLOCKFILE);
 maildir return (TOKMAILDIR);
 match return (TOKMATCH);

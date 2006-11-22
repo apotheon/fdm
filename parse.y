@@ -1,4 +1,4 @@
-/* $Id: parse.y,v 1.74 2006-11-21 23:37:37 nicm Exp $ */
+/* $Id: parse.y,v 1.75 2006-11-22 09:40:26 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -160,7 +160,7 @@ find_macro(char *name)
 %token TOKIMAP TOKIMAPS TOKDISABLED TOKFOLDER TOKPROXY TOKALLOWMANY TOKINCLUDE
 %token TOKLOCKFILE TOKRETURNS TOKPIPE TOKSMTP TOKDROP TOKMAILDIR TOKMBOX
 %token TOKWRITE TOKAPPEND TOKREWRITE TOKTAG TOKTAGGED TOKEQ TOKNE TOKSIZE
-%token TOKEXEC TOKSTRING
+%token TOKEXEC TOKSTRING TOKKEEP TOKIMPLACT
 %token LCKFLOCK LCKFCNTL LCKDOTLOCK
 
 %union
@@ -428,6 +428,14 @@ set: TOKSET TOKMAXSIZE size
 	     if ((conf.proxy = getproxy($3)) == NULL)
 		     yyerror("invalid proxy");
 	     xfree($3);
+     }
+   | TOKSET TOKIMPLACT TOKKEEP
+     {
+	     conf.impl_act = IMPLICIT_KEEP;
+     }
+   | TOKSET TOKIMPLACT TOKDROP
+     {
+	     conf.impl_act = IMPLICIT_DROP;
      }
 
 defmacro: STRMACRO '=' STRING
