@@ -1,4 +1,4 @@
-/* $Id: match-string.c,v 1.3 2006-11-22 12:33:26 nicm Exp $ */
+/* $Id: match-string.c,v 1.4 2006-11-22 18:13:32 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -41,10 +41,9 @@ string_match(struct match_ctx *mctx, struct expritem *ei)
 	data = ei->data;
 
 	if (!mctx->pmatch_valid) {
-		log_warnx("%s: string match but no regexp match data available."
-		    " either no regexp has been executed yet, or the mail has"
-		    " been modified since the last", a->name);
-		return (MATCH_ERROR);
+		log_warnx("%s: string match but no regexp match data available",
+		    a->name);
+		return (MATCH_FALSE);
 	}
 
 	s = replacepmatch(data->s, m, pmatch);
