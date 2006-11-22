@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.104 2006-11-22 09:40:26 nicm Exp $ */
+/* $Id: fdm.h,v 1.105 2006-11-22 12:16:03 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -302,8 +302,9 @@ struct action {
 /* Accounts array. */
 ARRAY_DECLARE(accounts, char *);
 
-/* Actions array. */
-ARRAY_DECLARE(actions, char *);
+/* Actions arrays. */
+ARRAY_DECLARE(actionnames, char *);
+ARRAY_DECLARE(actionptrs, struct action *);
 
 /* Match areas. */
 enum area {
@@ -357,7 +358,7 @@ struct rule {
 	char			*tag;
 
 	struct rules		 rules;
-	struct actions		*actions;
+	struct actionnames	*actions;
 
 	TAILQ_ENTRY(rule)	 entry;
 };
@@ -767,6 +768,7 @@ size_t	 		 strlcat(char *, const char *, size_t);
 extern struct macros	 macros;
 extern struct macro	*find_macro(char *);
 struct action  		*find_action(char *);
+struct actionptrs	*find_actions(char *);
 
 /* fdm.c */
 int			 dropto(uid_t);
