@@ -1,4 +1,4 @@
-/* $Id: parent.c,v 1.27 2006-11-22 17:18:20 nicm Exp $ */
+/* $Id: parent.c,v 1.28 2006-11-22 19:56:53 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -240,8 +240,10 @@ parent_action(struct account *a, struct action *t, struct mail *m, uid_t uid)
 			log_warnx("%s: can't drop privileges", a->name);
 			_exit(DELIVER_FAILURE);
 		}
-	} else
+	} else {
 		log_debug("%s: not root. using current user", a->name);
+		uid = geteuid();
+	}
 #ifndef NO_SETPROCTITLE
 	setproctitle("deliver[%lu]", (u_long) uid);
 #endif
