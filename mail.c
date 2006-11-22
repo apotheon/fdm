@@ -1,4 +1,4 @@
-/* $Id: mail.c,v 1.40 2006-11-18 18:51:04 nicm Exp $ */
+/* $Id: mail.c,v 1.41 2006-11-22 20:06:49 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -358,7 +358,7 @@ fill_wrapped(struct mail *m)
 	end = m->body == -1 ? m->size : (size_t) m->body;
 	ptr = m->data;
 	for (;;) {
-		ptr = memchr(ptr, '\n', m->size);
+		ptr = memchr(ptr, '\n', m->size - (ptr - m->data));
 		if (ptr == NULL)
 			break;
 		ptr++;
