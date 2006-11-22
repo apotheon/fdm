@@ -1,4 +1,4 @@
-/* $Id: fdm.c,v 1.69 2006-11-22 09:40:25 nicm Exp $ */
+/* $Id: fdm.c,v 1.70 2006-11-22 14:00:09 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -311,7 +311,7 @@ main(int argc, char **argv)
 				xfree(conf.proxy->pass);
 		}
 
-		/* getenv's return buffer is read-only */
+		/* note: getenv's return buffer is read-only */
 		if ((conf.proxy = getproxy(proxy)) == NULL) {
 			log_warnx("invalid proxy: %s", proxy);
 			exit(1);

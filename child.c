@@ -1,4 +1,4 @@
-/* $Id: child.c,v 1.36 2006-11-22 12:31:05 nicm Exp $ */
+/* $Id: child.c,v 1.37 2006-11-22 14:00:09 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -528,7 +528,11 @@ do_action(struct rule *r, struct match_ctx *mctx, struct action *t)
 		
 		log_debug("%s: received modified mail, size %zu bytes",
 		    a->name, m->size);
-		
+
+		/* trim from line */
+		trim_from(m);
+
+		/* and recreate the wrapped array */		
 		l = fill_wrapped(m);
 		log_debug2("%s: found %u wrapped lines", a->name, l);
 
