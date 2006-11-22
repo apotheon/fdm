@@ -1,4 +1,4 @@
-/* $Id: mail.c,v 1.43 2006-11-22 23:47:35 nicm Exp $ */
+/* $Id: mail.c,v 1.44 2006-11-22 23:58:08 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -36,8 +36,8 @@ init_mail(struct mail *m, size_t size)
 {
 	memset(m, 0, sizeof m);
 
-	m->space = m->size;
 	m->size = size;
+	m->space = m->size;
 	m->body = -1;
 
 	m->base = shm_malloc(&m->shm, m->size);
@@ -67,7 +67,6 @@ free_mail(struct mail *m, int final)
 			shm_free(&m->shm);
 	}
 }
-
 void
 resize_mail(struct mail *m, size_t size)
 {
