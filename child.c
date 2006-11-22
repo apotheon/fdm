@@ -1,4 +1,4 @@
-/* $Id: child.c,v 1.35 2006-11-22 12:16:03 nicm Exp $ */
+/* $Id: child.c,v 1.36 2006-11-22 12:31:05 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -531,6 +531,9 @@ do_action(struct rule *r, struct match_ctx *mctx, struct action *t)
 		
 		l = fill_wrapped(m);
 		log_debug2("%s: found %u wrapped lines", a->name, l);
+
+		/* invalidate the pmatch data since stuff may have moved */
+		mctx->pmatch_valid = 0;
 	}
 	
 	if (find)
