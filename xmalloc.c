@@ -1,4 +1,4 @@
-/* $Id: xmalloc.c,v 1.19 2006-11-18 18:55:56 nicm Exp $ */
+/* $Id: xmalloc.c,v 1.20 2006-11-22 20:34:11 nicm Exp $ */
 
 /*
  * Copyright (c) 2004 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -69,17 +69,17 @@ xmalloc_dump(const char *hdr)
 	char	 		 tmp[4096];
 	struct xmalloc_block	*p;
 	
-	log_debug("%s: allocated=%zu, freed=%zu, difference=%zd, peak=%zd", hdr,
-	    xmalloc_allocated, xmalloc_freed,
+	log_debug("xmalloc_dump: %s: allocated=%zu, freed=%zu, difference=%zd, "
+	    "peak=%zd", hdr, xmalloc_allocated, xmalloc_freed,
 	    xmalloc_allocated - xmalloc_freed, xmalloc_peak);
-	log_debug("%s: mallocs=%u, reallocs=%u, frees=%u", hdr,
+	log_debug("xmalloc_dump: %s: mallocs=%u, reallocs=%u, frees=%u", hdr,
 	    xmalloc_mallocs, xmalloc_reallocs, xmalloc_frees);
 
 	if (xmalloc_allocated == xmalloc_freed)
 		return;
 
 	len = sizeof tmp;
-	if ((off = xsnprintf(tmp, len, "%s: ", hdr)) < 0)
+	if ((off = xsnprintf(tmp, len, "xmalloc_dump: %s: ", hdr)) < 0)
 		fatal("xsnprintf");
 	for (i = 0; i < XMALLOC_SLOTS; i++) {
 		n++;

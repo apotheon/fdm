@@ -1,4 +1,4 @@
-/* $Id: io.c,v 1.30 2006-11-22 20:06:49 nicm Exp $ */
+/* $Id: io.c,v 1.31 2006-11-22 20:34:11 nicm Exp $ */
 
 /*
  * Copyright (c) 2005 Nicholas Marriott <nicm__@ntlworld.com>
@@ -568,7 +568,7 @@ char *
 io_readline(struct io *io)
 {
 	size_t	 llen;
-	char	*lbuf;
+	char	*lbuf, *rbuf;
 
 	if (io->error != NULL)
 		return (NULL);
@@ -576,7 +576,10 @@ io_readline(struct io *io)
 	llen = IO_LINESIZE;
 	lbuf = xmalloc(llen);
 
-	return (io_readline2(io, &lbuf, &llen));
+	if ((rbuf = io_readline2(io, &lbuf, &llen)) == NULL)
+		xfree(lbuf);
+
+	return (rbuf);
 }
 
 /* Write a line to the io write buffer. */

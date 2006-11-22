@@ -1,4 +1,4 @@
-/* $Id: command.c,v 1.8 2006-11-22 20:06:49 nicm Exp $ */
+/* $Id: command.c,v 1.9 2006-11-22 20:34:11 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -165,7 +165,6 @@ restart:
 	}
 
 	if (cmd->io_err != NULL || cmd->io_out != NULL) {
-		log_debug("polling");
 		ios[0] = cmd->io_in;
 		ios[1] = cmd->io_err;
 		ios[2] = cmd->io_out;
