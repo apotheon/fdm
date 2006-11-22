@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.109 2006-11-22 23:38:11 nicm Exp $ */
+/* $Id: fdm.h,v 1.110 2006-11-22 23:47:35 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -247,6 +247,8 @@ struct mail {
 	char		*base;
 
 	char		*data;
+	size_t		 off;
+
 	size_t	 	 size;		/* size of mail */
 	size_t	 	 space;		/* size of malloc'd area */
 

@@ -1,4 +1,4 @@
-/* $Id: child.c,v 1.43 2006-11-22 23:03:05 nicm Exp $ */
+/* $Id: child.c,v 1.44 2006-11-22 23:47:35 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -533,7 +533,7 @@ do_action(struct rule *r, struct match_ctx *mctx, struct action *t)
 		/* copy the new mail in and reopen it */
 		memcpy(m, md, sizeof *m);
 		m->base = shm_reopen(&m->shm);
-		m->data = m->base;
+		m->data = m->base + m->off;
 
 		/* restore the tags */
 		memcpy(&m->tags, &tags, sizeof tags);
