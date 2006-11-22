@@ -1,4 +1,4 @@
-/* $Id: deliver-rewrite.c,v 1.17 2006-11-22 20:34:11 nicm Exp $ */
+/* $Id: deliver-rewrite.c,v 1.18 2006-11-22 20:35:20 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -61,7 +61,6 @@ rewrite_deliver(struct account *a, struct action *t, struct mail *m)
 
 	log_debug2("%s: %s: starting", a->name, s);
 	cmd = cmd_start(s, 1, 1, m->data, m->size, &cause);
-	xfree(s);
 	if (cmd == NULL) {
 		log_warnx("%s: %s: %s", a->name, s, cause);
 		goto error;
@@ -116,12 +115,14 @@ rewrite_deliver(struct account *a, struct action *t, struct mail *m)
 	memcpy(m, &m2, sizeof *m);
 
 	cmd_free(cmd);
+	xfree(s);
 	return (DELIVER_SUCCESS);
 
 error:
 	free_mail(&m2);
 
 	cmd_free(cmd);
+	xfree(s);
 	return (DELIVER_FAILURE);
 }
 
