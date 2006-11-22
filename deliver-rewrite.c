@@ -1,4 +1,4 @@
-/* $Id: deliver-rewrite.c,v 1.14 2006-11-19 18:55:58 nicm Exp $ */
+/* $Id: deliver-rewrite.c,v 1.15 2006-11-22 13:20:38 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -28,9 +28,11 @@
 
 #include "fdm.h"
 
-int	rewrite_deliver(struct account *, struct action *, struct mail *);
+int	 rewrite_deliver(struct account *, struct action *, struct mail *);
+char	*rewrite_desc(struct action *);
 
-struct deliver deliver_rewrite = { "rewrite", DELIVER_WRBACK, rewrite_deliver };
+struct deliver deliver_rewrite = { "rewrite", DELIVER_WRBACK, rewrite_deliver,
+				   rewrite_desc };
 
 int
 rewrite_deliver(struct account *a, struct action *t, struct mail *m)
@@ -118,4 +120,13 @@ error:
 
 	cmd_free(cmd);
 	return (DELIVER_FAILURE);
+}
+
+char *
+rewrite_desc(struct action *t)
+{
+	char	*s;
+
+	xasprintf(&s, "rewrite \"%s\"", (char *) t->data);
+	return (s);
 }

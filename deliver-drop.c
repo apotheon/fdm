@@ -1,4 +1,4 @@
-/* $Id: deliver-drop.c,v 1.8 2006-11-18 18:32:13 nicm Exp $ */
+/* $Id: deliver-drop.c,v 1.9 2006-11-22 13:20:38 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -20,13 +20,21 @@
 
 #include "fdm.h"
 
-int	drop_deliver(struct account *, struct action *, struct mail *);
+int	 drop_deliver(struct account *, struct action *, struct mail *);
+char	*drop_desc(struct action *);
 
-struct deliver deliver_drop = { "drop", DELIVER_INCHILD, drop_deliver };
+struct deliver deliver_drop = { "drop", DELIVER_INCHILD, drop_deliver,
+				drop_desc };
 
 int
 drop_deliver(unused struct account *a, unused struct action *t,
     unused struct mail *m)
 {
 	return (DELIVER_SUCCESS);
+}
+
+char *
+drop_desc(unused struct action *t)
+{
+	return (xstrdup("drop"));
 }

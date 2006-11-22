@@ -1,4 +1,4 @@
-/* $Id: fetch-stdin.c,v 1.25 2006-11-22 09:40:26 nicm Exp $ */
+/* $Id: fetch-stdin.c,v 1.26 2006-11-22 13:20:38 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -27,10 +27,11 @@
 
 #include "fdm.h"
 
-int	stdin_connect(struct account *);
-int	stdin_disconnect(struct account *);
-int	stdin_fetch(struct account *, struct mail *);
-int	stdin_delete(struct account *);
+int	 stdin_connect(struct account *);
+int	 stdin_disconnect(struct account *);
+int	 stdin_fetch(struct account *, struct mail *);
+int	 stdin_delete(struct account *);
+char	*stdin_desc(struct account *);
 
 struct fetch	fetch_stdin = { "stdin", "stdin",
 				stdin_connect,
@@ -39,7 +40,9 @@ struct fetch	fetch_stdin = { "stdin", "stdin",
 				stdin_delete,
 				NULL,
 				NULL,
-				stdin_disconnect };
+				stdin_disconnect,
+				stdin_desc
+};
 
 int
 stdin_connect(struct account *a)
@@ -177,4 +180,10 @@ stdin_fetch(struct account *a, struct mail *m)
  	data->complete = 1;
 	xfree(lbuf);
 	return (FETCH_SUCCESS);
+}
+
+char *
+stdin_desc(unused struct account *a)
+{
+	return (xstrdup("stdin"));
 }

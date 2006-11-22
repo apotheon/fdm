@@ -1,4 +1,4 @@
-/* $Id: deliver-mbox.c,v 1.19 2006-11-18 18:32:13 nicm Exp $ */
+/* $Id: deliver-mbox.c,v 1.20 2006-11-22 13:20:38 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -29,9 +29,11 @@
 
 #include "fdm.h"
 
-int	mbox_deliver(struct account *, struct action *, struct mail *);
+int	 mbox_deliver(struct account *, struct action *, struct mail *);
+char	*mbox_desc(struct action *);
 
-struct deliver deliver_mbox = { "mbox", DELIVER_ASUSER, mbox_deliver };
+struct deliver deliver_mbox = { "mbox", DELIVER_ASUSER, mbox_deliver,
+				mbox_desc };
 
 int
 mbox_deliver(struct account *a, struct action *t, struct mail *m)
@@ -149,4 +151,13 @@ out:
 	if (path != NULL)
 		xfree(path);
 	return (res);
+}
+
+char *
+mbox_desc(struct action *t)
+{
+	char	*s;
+
+	xasprintf(&s, "mbox \"%s\"", (char *) t->data);
+	return (s);
 }
