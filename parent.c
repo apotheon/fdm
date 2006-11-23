@@ -1,4 +1,4 @@
-/* $Id: parent.c,v 1.33 2006-11-23 09:56:04 nicm Exp $ */
+/* $Id: parent.c,v 1.34 2006-11-23 14:06:37 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -17,7 +17,6 @@
  */
 
 #include <sys/types.h>
-
 #include <sys/socket.h>
 #include <sys/wait.h>
 

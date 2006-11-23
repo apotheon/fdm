@@ -1,4 +1,4 @@
-/* $Id: shm.c,v 1.4 2006-11-23 13:40:30 nicm Exp $ */
+/* $Id: shm.c,v 1.5 2006-11-23 14:06:37 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -17,12 +17,10 @@
  */
 
 #include <sys/types.h>
-
 #include <sys/mman.h>
 
 #include <fcntl.h>
 #include <limits.h>
-#include <paths.h>
 #include <string.h>
 #include <unistd.h>
 
@@ -56,9 +54,9 @@ shm_malloc(struct shm *shm, size_t size)
         if (size == 0)
                 fatalx("shm_malloc: zero size");
 
-	/* XXX TMPDIR XXX check free space */
-	xsnprintf(shm->name, sizeof shm->name, _PATH_TMP "%s.XXXXXXXXXXXX", 
-	    __progname);
+	if (xsnprintf(shm->name, sizeof shm->name, "%s/%s.XXXXXXXXXXXX", 
+	    conf.tmp_dir, __progname) < 0)
+		fatal("xsnprintf");
 	if ((shm->fd = mkstemp(shm->name)) < 0)
 		fatal("mkstemp");
 

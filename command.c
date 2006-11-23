@@ -1,4 +1,4 @@
-/* $Id: command.c,v 1.9 2006-11-22 20:34:11 nicm Exp $ */
+/* $Id: command.c,v 1.10 2006-11-23 14:06:37 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -17,7 +17,6 @@
  */
 
 #include <sys/types.h>
-
 #include <sys/wait.h>
 
 #include <fcntl.h>

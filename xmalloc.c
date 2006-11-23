@@ -1,4 +1,4 @@
-/* $Id: xmalloc.c,v 1.20 2006-11-22 20:34:11 nicm Exp $ */
+/* $Id: xmalloc.c,v 1.21 2006-11-23 14:06:37 nicm Exp $ */
 
 /*
  * Copyright (c) 2004 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -122,7 +122,7 @@ xmalloc_find(void *ptr)
 {
 	u_int	i;
 
-	/* XXX */
+	/* update peak here since this is called often */
 	if (xmalloc_allocated - xmalloc_freed > xmalloc_peak)
 		xmalloc_peak = xmalloc_allocated - xmalloc_freed;
 
