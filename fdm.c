@@ -1,4 +1,4 @@
-/* $Id: fdm.c,v 1.70 2006-11-22 14:00:09 nicm Exp $ */
+/* $Id: fdm.c,v 1.71 2006-11-23 07:39:59 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -66,6 +66,11 @@ fill_info(const char *home)
 	uid_t		 uid;
 	char		 host[MAXHOSTNAMELEN];
 
+	uid = getuid();
+	if (conf.info.uid_n == uid)
+		return;
+	conf.info.uid_n = uid;
+
 	if (conf.info.uid != NULL) {
 		xfree(conf.info.uid);
 		conf.info.uid = NULL;
@@ -88,7 +93,6 @@ fill_info(const char *home)
 	if (home != NULL && *home != '\0')
 		conf.info.home = xstrdup(home);
 
-	uid = getuid();
 	xasprintf(&conf.info.uid, "%lu", (u_long) uid);
 	pw = getpwuid(uid);
 	if (pw != NULL) {

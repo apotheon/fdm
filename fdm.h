@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.110 2006-11-22 23:47:35 nicm Exp $ */
+/* $Id: fdm.h,v 1.111 2006-11-23 07:40:01 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -406,6 +406,8 @@ struct conf {
 	struct headers		*headers; /* headers to search for users */
 
 	struct {
+		uid_t		 uid_n;
+
 		char		*home;
 		char		*user;
 		char		*uid;
