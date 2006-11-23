@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.115 2006-11-23 17:14:50 nicm Exp $ */
+/* $Id: fdm.h,v 1.116 2006-11-23 17:18:58 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -459,7 +459,7 @@ extern struct conf		 conf;
 #define IO_FLUSHSIZE (8 * IO_BLOCKSIZE)
 
 /* IO buffer size macros. */
-#define IO_ROUND(n) ((n / IO_BLOCKSIZE) * IO_BLOCKSIZE)
+#define IO_ROUND(n) (((n / IO_BLOCKSIZE) + 1) * IO_BLOCKSIZE)
 #define IO_RDSIZE(io) (io->rsize)
 #define IO_WRSIZE(io) (io->wsize)
 
