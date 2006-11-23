@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.112 2006-11-23 09:54:01 nicm Exp $ */
+/* $Id: fdm.h,v 1.113 2006-11-23 13:40:29 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -794,7 +794,7 @@ size_t	 		 strlcat(char *, const char *, size_t);
 /* shm.c */
 void 			*shm_reopen(struct shm *);
 void			*shm_malloc(struct shm *, size_t);
-void			*shm_realloc(struct shm *, size_t);
+void			*shm_realloc(struct shm *, size_t, size_t);
 void			 shm_free(struct shm *);
 void			 shm_destroy(struct shm *);
 
