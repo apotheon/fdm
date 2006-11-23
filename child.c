@@ -1,4 +1,4 @@
-/* $Id: child.c,v 1.45 2006-11-23 09:53:58 nicm Exp $ */
+/* $Id: child.c,v 1.46 2006-11-23 13:12:52 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -89,8 +89,10 @@ child(int fd, enum fdmop op)
 
 		/* connect */
 		if (a->fetch->connect != NULL) {
-			if (a->fetch->connect(a) != 0)
+			if (a->fetch->connect(a) != 0) {
+				rc = 1;
 				continue;
+			}
 		}
 
 		/* process */
