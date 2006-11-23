@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.117 2006-11-23 17:45:32 nicm Exp $ */
+/* $Id: fdm.h,v 1.118 2006-11-23 22:43:34 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -48,6 +48,17 @@ extern char	*__progname;
 #ifndef __dead
 #define __dead __attribute__ ((noreturn))
 #endif
+
+#define NFDS 64
+#define COUNTFDS(s) do {						\
+	u_int	fd_i, fd_n;						\
+	fd_n = 0;							\
+	for (fd_i = 0; fd_i < NFDS; fd_i++) {				\
+		if (fcntl(fd_n, F_GETFL) != -1)				\
+			fd_n++;						\
+	}								\
+	log_debug2("%s: %u file descriptors in use", s, fd_n);		\
+} while (0)
 
 #ifndef TAILQ_HEAD_INITIALIZER
 #define TAILQ_HEAD_INITIALIZER(head)					\
