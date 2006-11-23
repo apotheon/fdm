@@ -1,5 +1,5 @@
 
-# $Id: Makefile,v 1.52 2006-11-22 23:03:05 nicm Exp $
+# $Id: Makefile,v 1.53 2006-11-23 20:29:56 nicm Exp $
 
 .SUFFIXES: .c .o .y .l .h
 .PHONY: clean update-index.html upload-index.html lint
@@ -38,6 +38,15 @@ SRCS+= compat/strtonum.c
 CFLAGS+= -DNO_STRTONUM -DNO_SETRESUID -DNO_SETRESGID
 .endif
 
+# FreeBSD
+.if ${OS} == "FreeBSD"
+# FreeBSD 5
+.if ${REL:R} == 5
+SRCS+= compat/strtonum.c
+CFLAGS+= -DNO_STRTONUM
+.endif
+.endif
+
 PREFIX?= /usr/local
 INSTALLBIN= install -g bin -o root -m 555
 INSTALLMAN= install -g bin -o root -m 444
@@ -52,7 +61,7 @@ LIBS= -lcrypto -lssl
 OBJS= ${SRCS:S/.c/.o/:S/.y/.o/:S/.l/.o/}
 
 DISTFILES= *.[chyl] compat/*.[chyl] Makefile GNUmakefile ${PROG}.conf *.[1-9] \
-	   README examples/*
+	   README examples/[a-z]*
 
 CLEANFILES= ${PROG} *.o compat/*.o y.tab.c lex.yy.c y.tab.h .depend \
 	    ${PROG}-*.tar.gz *~ *.ln ${PROG}.core 

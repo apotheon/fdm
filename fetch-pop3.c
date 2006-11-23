@@ -1,4 +1,4 @@
-/* $Id: fetch-pop3.c,v 1.28 2006-11-23 17:45:32 nicm Exp $ */
+/* $Id: fetch-pop3.c,v 1.29 2006-11-23 20:29:56 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -105,7 +105,7 @@ do_pop3(struct account *a, u_int *n, struct mail *m, int is_poll)
 	struct pop3_data	*data = a->data;
 	int		 	 res, flushing;
 	char			*line, *cause, *ptr, *lbuf;
-	size_t			 off = 0, len, llen;
+	size_t			 off = 0, size, len, llen;
 	u_int			 lines = 0;
 
 	if (m != NULL) 
@@ -181,22 +181,22 @@ do_pop3(struct account *a, u_int *n, struct mail *m, int is_poll)
 				if (!pop3_isOK(line))
 					goto error;
 
-				if (sscanf(line, "+OK %*u %zu", &m->size) != 1)
+				if (sscanf(line, "+OK %*u %zu", &size) != 1)
 					goto error;
 
-				if (m->size == 0) {
+				if (size == 0) {
 					cause = xstrdup("zero-length message");
 					goto error;
 				}
 
-				if (m->size > conf.max_size) {
+				if (size > conf.max_size) {
 					res = FETCH_OVERSIZE;
 					data->state = POP3_DONE;
 					break;
 				}
 
 				off = lines = 0;
-				init_mail(m, IO_ROUND(m->size));
+				init_mail(m, IO_ROUND(size));
 
 				data->state = POP3_RETR;
 				io_writeline(data->io, "RETR %u", data->cur);
@@ -212,13 +212,12 @@ do_pop3(struct account *a, u_int *n, struct mail *m, int is_poll)
 				if (ptr[0] == '.' && ptr[1] != '\0')
 					ptr++;
 				else if (ptr[0] == '.') {
-					if (off + lines != m->size) {
+					if (off + lines != size) {
 						log_warnx("%s: server lied "
 						    "about message size: "
 						    "expected %zu, got %zu "
-						    "(%u lines)",
-						    a->name, m->size,
-						    off + lines, lines);
+						    "(%u lines)", a->name,
+						    size, off + lines, lines);
 					}
 					m->size = off;
 

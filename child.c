@@ -1,4 +1,4 @@
-/* $Id: child.c,v 1.46 2006-11-23 13:12:52 nicm Exp $ */
+/* $Id: child.c,v 1.47 2006-11-23 20:29:56 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -341,8 +341,10 @@ do_rules(struct match_ctx *mctx, struct rules *rules, const char **cause)
 		set_wrapped(m, '\n');
 		
 		/* tag mail if needed */
-		if (r->tag != NULL)
+		if (r->tag != NULL) {
+			log_debug("%s: tagging message: %s", a->name, r->tag);
 			ARRAY_ADD(&m->tags, r->tag, char *);
+		}
 		
 		/* handle delivery */
 		if (r->actions != NULL) {
