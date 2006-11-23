@@ -1,4 +1,4 @@
-/* $Id: io.c,v 1.32 2006-11-23 07:58:40 nicm Exp $ */
+/* $Id: io.c,v 1.33 2006-11-23 21:56:39 nicm Exp $ */
 
 /*
  * Copyright (c) 2005 Nicholas Marriott <nicm__@ntlworld.com>
@@ -455,6 +455,7 @@ io_read2(struct io *io, void *buf, size_t len)
 void
 io_writefixed(struct io *io, void *buf, size_t len)
 {
+	xfree(io->wbase);
 	io->wbase = buf;
 	io->wspace = IO_FIXED;
 	io->wsize = len;
