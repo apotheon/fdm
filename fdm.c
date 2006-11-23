@@ -1,4 +1,4 @@
-/* $Id: fdm.c,v 1.72 2006-11-23 09:54:01 nicm Exp $ */
+/* $Id: fdm.c,v 1.73 2006-11-23 09:56:04 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -108,7 +108,7 @@ fill_info(const char *home)
 	endpwent();
 	if (conf.info.user == NULL) {
 		conf.info.user = xstrdup(conf.info.uid);
-		log_warn("can't find name for user %lu", (u_long) uid);
+		log_warnx("can't find name for user %lu", (u_long) uid);
 	}
 }
 
