@@ -1,4 +1,4 @@
-/* $Id: match-string.c,v 1.4 2006-11-22 18:13:32 nicm Exp $ */
+/* $Id: match-string.c,v 1.5 2006-11-23 17:45:32 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -31,14 +31,12 @@ struct match match_string = { "string", string_match, string_desc };
 int
 string_match(struct match_ctx *mctx, struct expritem *ei)
 {
-	struct string_data	*data;
-	int			 res;
-	char			*s;
+	struct string_data	*data = ei->data;
 	struct account		*a = mctx->account;
 	struct mail		*m = mctx->mail;
         regmatch_t		*pmatch = mctx->pmatch;
-
-	data = ei->data;
+	int			 res;
+	char			*s;
 
 	if (!mctx->pmatch_valid) {
 		log_warnx("%s: string match but no regexp match data available",
@@ -63,10 +61,8 @@ string_match(struct match_ctx *mctx, struct expritem *ei)
 char *
 string_desc(struct expritem *ei)
 {
-	struct string_data	*data;
+	struct string_data	*data = ei->data;
 	char			*s;
-
-	data = ei->data;
 
 	xasprintf(&s, "\"%s\" to \"%s\"", data->s, data->re_s);
 	return (s);

@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.116 2006-11-23 17:18:58 nicm Exp $ */
+/* $Id: fdm.h,v 1.117 2006-11-23 17:45:32 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -508,7 +508,6 @@ struct cmd {
 
 /* Fetch functions. */
 struct fetch {
-	const char	*name;
 	const char	*ports[2];	/* normal port, ssl port */
 
 	int	 	 (*connect)(struct account *);
@@ -542,7 +541,6 @@ enum delivertype {
 
 /* Deliver functions. */
 struct deliver {
-	const char	*name;
 	enum delivertype type;
 
 	int	 	 (*deliver)(struct deliver_ctx *, struct action *);

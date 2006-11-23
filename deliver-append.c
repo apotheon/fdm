@@ -1,4 +1,4 @@
-/* $Id: deliver-append.c,v 1.6 2006-11-23 09:53:59 nicm Exp $ */
+/* $Id: deliver-append.c,v 1.7 2006-11-23 17:45:32 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -29,8 +29,7 @@
 int	 append_deliver(struct deliver_ctx *, struct action *);
 char	*append_desc(struct action *);
 
-struct deliver deliver_append = { "append", DELIVER_ASUSER, append_deliver,
-				  append_desc };
+struct deliver deliver_append = { DELIVER_ASUSER, append_deliver, append_desc };
 
 int
 append_deliver(struct deliver_ctx *dctx, struct action *t)

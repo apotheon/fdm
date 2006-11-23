@@ -1,4 +1,4 @@
-/* $Id: deliver-pipe.c,v 1.12 2006-11-23 09:54:01 nicm Exp $ */
+/* $Id: deliver-pipe.c,v 1.13 2006-11-23 17:45:32 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -29,8 +29,7 @@
 int	 pipe_deliver(struct deliver_ctx *, struct action *);
 char	*pipe_desc(struct action *);
 
-struct deliver deliver_pipe = { "pipe", DELIVER_ASUSER, pipe_deliver,
-				pipe_desc };
+struct deliver deliver_pipe = { DELIVER_ASUSER, pipe_deliver, pipe_desc };
 
 int
 pipe_deliver(struct deliver_ctx *dctx, struct action *t)

@@ -1,4 +1,4 @@
-/* $Id: deliver-mbox.c,v 1.21 2006-11-23 09:54:01 nicm Exp $ */
+/* $Id: deliver-mbox.c,v 1.22 2006-11-23 17:45:32 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -32,8 +32,7 @@
 int	 mbox_deliver(struct deliver_ctx *, struct action *);
 char	*mbox_desc(struct action *);
 
-struct deliver deliver_mbox = { "mbox", DELIVER_ASUSER, mbox_deliver,
-				mbox_desc };
+struct deliver deliver_mbox = { DELIVER_ASUSER, mbox_deliver, mbox_desc };
 
 int
 mbox_deliver(struct deliver_ctx *dctx, struct action *t)

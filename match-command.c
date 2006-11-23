@@ -1,4 +1,4 @@
-/* $Id: match-command.c,v 1.8 2006-11-22 23:41:36 nicm Exp $ */
+/* $Id: match-command.c,v 1.9 2006-11-23 17:45:32 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -30,13 +30,11 @@ struct match match_command = { "command", command_match, command_desc };
 int
 command_match(struct match_ctx *mctx, struct expritem *ei)
 {
-	struct command_data	*data;
-	struct msg		 msg;
+	struct command_data	*data = ei->data;
 	struct account		*a = mctx->account;
 	struct mail		*m = mctx->mail;
 	struct io		*io = mctx->io;
-
-	data = ei->data;
+	struct msg		 msg;
 
 	/* we are called as the child so to change uid this needs to be dond
 	   largely in the parent */
@@ -59,11 +57,9 @@ command_match(struct match_ctx *mctx, struct expritem *ei)
 char *
 command_desc(struct expritem *ei)
 {
-	struct command_data	*data;
+	struct command_data	*data = ei->data;
 	char			*s, ret[11];
 	const char		*t;
-
-	data = ei->data;
 
 	*ret = '\0';
 	if (data->ret != -1)

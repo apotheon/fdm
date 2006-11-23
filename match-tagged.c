@@ -1,4 +1,4 @@
-/* $Id: match-tagged.c,v 1.3 2006-11-21 19:47:17 nicm Exp $ */
+/* $Id: match-tagged.c,v 1.4 2006-11-23 17:45:32 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -31,11 +31,9 @@ struct match match_tagged = { "tagged", tagged_match, tagged_desc };
 int
 tagged_match(struct match_ctx *mctx, struct expritem *ei)
 {
-	struct tagged_data	*data;
-	u_int			 i;
+	struct tagged_data	*data = ei->data;
 	struct mail		*m = mctx->mail;
-
-	data = ei->data;
+	u_int			 i;
 	
 	for (i = 0; i < ARRAY_LENGTH(&m->tags); i++) {
 		if (tag_match(data->tag, ARRAY_ITEM(&m->tags, i, char *)))
@@ -48,9 +46,7 @@ tagged_match(struct match_ctx *mctx, struct expritem *ei)
 char *
 tagged_desc(struct expritem *ei)
 {
-	struct tagged_data	*data;
-
-	data = ei->data;
+	struct tagged_data	*data = ei->data;
 
 	return (xstrdup(data->tag));
 }
