@@ -1,4 +1,4 @@
-/* $Id: deliver-append.c,v 1.5 2006-11-22 13:20:38 nicm Exp $ */
+/* $Id: deliver-append.c,v 1.6 2006-11-23 09:53:59 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -26,16 +26,16 @@
 
 #include "fdm.h"
 
-int	 append_deliver(struct account *, struct action *, struct mail *);
+int	 append_deliver(struct deliver_ctx *, struct action *);
 char	*append_desc(struct action *);
 
 struct deliver deliver_append = { "append", DELIVER_ASUSER, append_deliver,
 				  append_desc };
 
 int
-append_deliver(struct account *a, struct action *t, struct mail *m)
+append_deliver(struct deliver_ctx *dctx, struct action *t)
 {
-	return (do_write(a, t, m, 1));
+	return (do_write(dctx, t, 1));
 }
 
 char *

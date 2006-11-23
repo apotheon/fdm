@@ -1,4 +1,4 @@
-/* $Id: deliver-pipe.c,v 1.11 2006-11-22 13:20:38 nicm Exp $ */
+/* $Id: deliver-pipe.c,v 1.12 2006-11-23 09:54:01 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -26,18 +26,20 @@
 
 #include "fdm.h"
 
-int	 pipe_deliver(struct account *, struct action *, struct mail *);
+int	 pipe_deliver(struct deliver_ctx *, struct action *);
 char	*pipe_desc(struct action *);
 
 struct deliver deliver_pipe = { "pipe", DELIVER_ASUSER, pipe_deliver,
 				pipe_desc };
 
 int
-pipe_deliver(struct account *a, struct action *t, struct mail *m)
+pipe_deliver(struct deliver_ctx *dctx, struct action *t)
 {
-        char	*cmd;
-        FILE    *f;
-	int	 error;
+	struct account	*a = dctx->account;
+	struct mail	*m = dctx->mail;
+        char		*cmd;
+        FILE    	*f;
+	int	 	error;
 
 	cmd = replaceinfo(t->data, a, t);
         if (cmd == NULL || *cmd == '\0') {

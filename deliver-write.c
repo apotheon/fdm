@@ -1,4 +1,4 @@
-/* $Id: deliver-write.c,v 1.9 2006-11-22 13:20:38 nicm Exp $ */
+/* $Id: deliver-write.c,v 1.10 2006-11-23 09:54:01 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -26,16 +26,16 @@
 
 #include "fdm.h"
 
-int	 write_deliver(struct account *, struct action *, struct mail *);
+int	 write_deliver(struct deliver_ctx *, struct action *);
 char	*write_desc(struct action *);
 
 struct deliver deliver_write = { "write", DELIVER_ASUSER, write_deliver,
 				 write_desc };
 
 int
-write_deliver(struct account *a, struct action *t, struct mail *m)
+write_deliver(struct deliver_ctx *dctx, struct action *t)
 {
-	return (do_write(a, t, m, 0));
+	return (do_write(dctx, t, 0));
 }
 
 char *
@@ -48,10 +48,12 @@ write_desc(struct action *t)
 }
 
 int
-do_write(struct account *a, struct action *t, struct mail *m, int append)
+do_write(struct deliver_ctx *dctx, struct action *t, int append)
 {
-        char	*path;
-        FILE    *f;
+	struct account	*a = dctx->account;
+	struct mail	*m = dctx->mail;
+        char		*path;
+        FILE    	*f;
 
 	path = replaceinfo(t->data, a, t);
         if (path == NULL || *path == '\0') {

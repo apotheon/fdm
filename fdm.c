@@ -1,4 +1,4 @@
-/* $Id: fdm.c,v 1.71 2006-11-23 07:39:59 nicm Exp $ */
+/* $Id: fdm.c,v 1.72 2006-11-23 09:54:01 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -386,7 +386,8 @@ main(int argc, char **argv)
 			log_warnx("can't find user: %s", CHILDUSER);
 			exit(1);
 		}
-		conf.uid = pw->pw_uid;
+		conf.child_uid = pw->pw_uid;
+		conf.child_gid = pw->pw_gid;
 		endpwent();
 
 		if (conf.def_user == 0) {

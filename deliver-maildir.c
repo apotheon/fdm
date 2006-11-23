@@ -1,4 +1,4 @@
-/* $Id: deliver-maildir.c,v 1.16 2006-11-22 13:20:38 nicm Exp $ */
+/* $Id: deliver-maildir.c,v 1.17 2006-11-23 09:54:01 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -29,15 +29,17 @@
 
 #include "fdm.h"
 
-int	 maildir_deliver(struct account *, struct action *, struct mail *);
+int	 maildir_deliver(struct deliver_ctx *, struct action *);
 char	*maildir_desc(struct action *);
 
 struct deliver deliver_maildir = { "maildir", DELIVER_ASUSER, maildir_deliver,
 				   maildir_desc };
 
 int
-maildir_deliver(struct account *a, struct action *t, struct mail *m)
+maildir_deliver(struct deliver_ctx *dctx, struct action *t)
 {
+	struct account	*a = dctx->account;
+	struct mail	*m = dctx->mail;
 	static u_int	 delivered = 0;
 	char		*path, ch;
 	char	 	 host1[MAXHOSTNAMELEN], host2[MAXHOSTNAMELEN], *host;
