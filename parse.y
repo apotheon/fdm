@@ -1,4 +1,4 @@
-/* $Id: parse.y,v 1.84 2006-11-24 18:19:41 nicm Exp $ */
+/* $Id: parse.y,v 1.85 2006-11-24 19:30:30 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -492,11 +492,11 @@ set: TOKSET TOKMAXSIZE size
      }
    | TOKSET TOKIMPLACT TOKKEEP
      {
-	     conf.impl_act = IMPLICIT_KEEP;
+	     conf.impl_act = DECISION_KEEP;
      }
    | TOKSET TOKIMPLACT TOKDROP
      {
-	     conf.impl_act = IMPLICIT_DROP;
+	     conf.impl_act = DECISION_DROP;
      }
 
 defmacro: STRMACRO '=' STRING
@@ -900,6 +900,10 @@ action: TOKPIPE strv
       | TOKDROP
         {
 		$$.deliver = &deliver_drop;
+	}
+      | TOKKEEP
+        {
+		$$.deliver = &deliver_keep;
 	}
 
 defaction: TOKACTION strv users action

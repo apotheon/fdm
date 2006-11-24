@@ -1,4 +1,4 @@
-/* $Id: fdm.c,v 1.76 2006-11-24 09:01:31 nicm Exp $ */
+/* $Id: fdm.c,v 1.77 2006-11-24 19:30:30 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -199,7 +199,7 @@ main(int argc, char **argv)
 	TAILQ_INIT(&conf.actions);
 	conf.max_size = DEFMAILSIZE;
 	conf.lock_types = LOCK_FLOCK;
-	conf.impl_act = IMPLICIT_NONE;
+	conf.impl_act = DECISION_NONE;
 
 	log_init(1);
 
