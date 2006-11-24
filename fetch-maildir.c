@@ -1,4 +1,4 @@
-/* $Id: fetch-maildir.c,v 1.3 2006-11-24 20:13:35 nicm Exp $ */
+/* $Id: fetch-maildir.c,v 1.4 2006-11-24 20:27:59 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -208,10 +208,12 @@ restart:
 
 	log_debug2("%s: reading %zu bytes", a->name, m->size);
 	if (read(fd, m->data, sb.st_size) != sb.st_size) {
+		close(fd);
 		log_warn("%s: %s: read", a->name, data->entry); 
 		return (FETCH_ERROR);
 	}
-	
+	close(fd);
+
 	/* find the body */
 	m->body = -1;
 	ptr = m->data;
@@ -234,8 +236,10 @@ maildir_delete(struct account *a)
 {
 	struct maildir_data	*data = a->data;
 
-	if (unlink(data->entry) != 0)
+	if (unlink(data->entry) != 0) {
+		log_warn("%s: %s: unlink", a->name, data->entry);
 		return (1);
+	}
 
 	return (0);
 }
