@@ -1,4 +1,4 @@
-/* $Id: child.c,v 1.55 2006-11-24 19:30:30 nicm Exp $ */
+/* $Id: child.c,v 1.56 2006-11-24 20:13:35 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -265,8 +265,8 @@ fetch_account(struct io *io, struct account *a)
 		/* finished with the message */
 		switch (m.decision) {
 		case DECISION_DROP:
+			log_debug("%s: deleting message", a->name);
 			if (a->fetch->delete != NULL) {
-				log_debug("%s: deleting message", a->name);
 				if (a->fetch->delete(a) != 0) {
 					cause = "deleting";
 					goto out;
@@ -274,8 +274,8 @@ fetch_account(struct io *io, struct account *a)
 			}
 			break;
 		case DECISION_KEEP:
+			log_debug("%s: keeping message", a->name);
 			if (a->fetch->keep != NULL) {
-				log_debug("%s: keeping message", a->name);
 				if (a->fetch->keep(a) != 0) {
 					cause = "keeping";
 					goto out;

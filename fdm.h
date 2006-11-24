@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.124 2006-11-24 19:30:30 nicm Exp $ */
+/* $Id: fdm.h,v 1.125 2006-11-24 20:13:35 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -661,6 +661,7 @@ struct maildir_data {
 	u_int			 index;
 
 	DIR			*dirp;
+	const char	       **ep;
 	char			*path;
 	char			*entry;
 };
