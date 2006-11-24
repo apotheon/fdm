@@ -1,4 +1,4 @@
-/* $Id: xmalloc.c,v 1.23 2006-11-23 23:59:57 nicm Exp $ */
+/* $Id: xmalloc.c,v 1.24 2006-11-24 00:12:25 nicm Exp $ */
 
 /*
  * Copyright (c) 2004 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -68,8 +68,8 @@ xmalloc_dump(const char *hdr)
 	size_t	 		 len;
 	char	 		 tmp[4096];
 	struct xmalloc_block	*p;
-	
-	log_debug2("%s: allocated=%zu, freed=%zu, difference=%zd, peak=%zd", 
+
+	log_debug2("%s: allocated=%zu, freed=%zu, difference=%zd, peak=%zd",
 	    hdr, xmalloc_allocated, xmalloc_freed,
 	    xmalloc_allocated - xmalloc_freed, xmalloc_peak);
 	log_debug2("%s: mallocs=%u, reallocs=%u, frees=%u", hdr,
@@ -167,7 +167,7 @@ xmalloc_change(void *oldptr, void *newptr, size_t newsize)
 		xmalloc_new(newptr, newsize);
 		return;
 	}
-		
+
 	if ((block = xmalloc_find(oldptr)) == NULL) {
 		log_debug2("xmalloc_change: not found");
 		return;

@@ -1,4 +1,4 @@
-/* $Id: fdm.c,v 1.74 2006-11-23 14:06:37 nicm Exp $ */
+/* $Id: fdm.c,v 1.75 2006-11-24 00:12:25 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -435,7 +435,7 @@ main(int argc, char **argv)
 		close(lockfd);
 	}
 	conf.lock_file = lock;
-	    
+
 	if (socketpair(AF_UNIX, SOCK_STREAM, PF_UNSPEC, fds) != 0)
 		fatal("socketpair");
 	switch (pid = fork()) {

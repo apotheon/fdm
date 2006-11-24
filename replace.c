@@ -1,4 +1,4 @@
-/* $Id: replace.c,v 1.12 2006-11-22 17:49:28 nicm Exp $ */
+/* $Id: replace.c,v 1.13 2006-11-24 00:12:25 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -23,7 +23,7 @@
 #include "fdm.h"
 
 char *
-replacepmatch(char *src, struct mail *m, regmatch_t pmatch[NPMATCH]) 
+replacepmatch(char *src, struct mail *m, regmatch_t pmatch[NPMATCH])
 {
 	char	*map[REPL_LEN];
 	char	*dst, *s;

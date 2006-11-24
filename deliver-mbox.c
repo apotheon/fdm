@@ -1,4 +1,4 @@
-/* $Id: deliver-mbox.c,v 1.22 2006-11-23 17:45:32 nicm Exp $ */
+/* $Id: deliver-mbox.c,v 1.23 2006-11-24 00:12:25 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -113,7 +113,7 @@ mbox_deliver(struct deliver_ctx *dctx, struct action *t)
 	while (ptr != NULL) {
 		if (ptr != m->data) {
 			/* skip >s */
-			ptr2 = ptr; 
+			ptr2 = ptr;
 			len2 = len;
 			while (*ptr2 == '>' && len2 > 0) {
 				ptr2++;

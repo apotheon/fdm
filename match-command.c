@@ -1,4 +1,4 @@
-/* $Id: match-command.c,v 1.9 2006-11-23 17:45:32 nicm Exp $ */
+/* $Id: match-command.c,v 1.10 2006-11-24 00:12:25 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -50,7 +50,7 @@ command_match(struct match_ctx *mctx, struct expritem *ei)
 		fatalx("child: privsep_recv error");
 	if (msg.type != MSG_DONE)
 		fatalx("child: unexpected message");
-	
+
 	return (msg.data.error);
 }
 

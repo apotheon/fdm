@@ -1,4 +1,4 @@
-/* $Id: io.c,v 1.33 2006-11-23 21:56:39 nicm Exp $ */
+/* $Id: io.c,v 1.34 2006-11-24 00:12:25 nicm Exp $ */
 
 /*
  * Copyright (c) 2005 Nicholas Marriott <nicm__@ntlworld.com>
@@ -135,7 +135,7 @@ io_polln(struct io **ios, u_int n, struct io **rio, char **cause)
 			return (-1);
 		}
 		if (io->closed)
-			return (0);		
+			return (0);
 	}
 
 	/* create the poll structure */
@@ -180,7 +180,7 @@ io_polln(struct io **ios, u_int n, struct io **rio, char **cause)
 			io->closed = 1;
 			continue;
 		}
-	
+
 		if (io->need != 0) {
 			/* if a repeated read/write is necessary, the socket
 			   must be ready for both reading and writing */
@@ -201,7 +201,7 @@ io_polln(struct io **ios, u_int n, struct io **rio, char **cause)
 			}
 			continue;
 		}
-		
+
 		/* otherwise try to read and write */
 		if (pfd->revents & POLLOUT) {
 			switch (io_push(io)) {

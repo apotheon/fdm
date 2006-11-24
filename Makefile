@@ -1,5 +1,5 @@
 
-# $Id: Makefile,v 1.53 2006-11-23 20:29:56 nicm Exp $
+# $Id: Makefile,v 1.54 2006-11-24 00:12:25 nicm Exp $
 
 .SUFFIXES: .c .o .y .l .h
 .PHONY: clean update-index.html upload-index.html lint
@@ -64,7 +64,7 @@ DISTFILES= *.[chyl] compat/*.[chyl] Makefile GNUmakefile ${PROG}.conf *.[1-9] \
 	   README examples/[a-z]*
 
 CLEANFILES= ${PROG} *.o compat/*.o y.tab.c lex.yy.c y.tab.h .depend \
-	    ${PROG}-*.tar.gz *~ *.ln ${PROG}.core 
+	    ${PROG}-*.tar.gz *~ *.ln ${PROG}.core
 
 .c.o:
 		${CC} ${CFLAGS} ${INCDIRS} -c ${.IMPSRC} -o ${.TARGET}
@@ -88,7 +88,7 @@ dist:		clean
 			-s '/.*/${PROG}-${VERSION}\/\0/' \
 			-f ${PROG}-${VERSION}.tar.gz ${DISTFILES}
 
-lint:		
+lint:
 		lint -hx ${CFLAGS:M-D*} ${SRCS:M*.c}
 
 depend:

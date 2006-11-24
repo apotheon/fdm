@@ -1,4 +1,4 @@
-/* $Id: fetch-imap.c,v 1.27 2006-11-23 20:29:56 nicm Exp $ */
+/* $Id: fetch-imap.c,v 1.28 2006-11-24 00:12:25 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -119,7 +119,7 @@ imap_tag(char *line)
 	if (line[0] == '+')
 		return (IMAP_TAG_CONTINUE);
 
-	if ((ptr = strchr(line, ' ')) == NULL) 
+	if ((ptr = strchr(line, ' ')) == NULL)
 		return (IMAP_TAG_ERROR);
 	*ptr = '\0';
 

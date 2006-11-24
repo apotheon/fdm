@@ -1,6 +1,6 @@
 /* -*-C-*- */
 
-/* $Id: lex.l,v 1.55 2006-11-22 18:44:14 nicm Exp $ */
+/* $Id: lex.l,v 1.56 2006-11-24 00:12:25 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -233,7 +233,7 @@ read_str(char endc)
 				ch = name[0];
 				break;
 			}
-			
+
 			/* remaining characters */
 			valid = 1;
 			do {
@@ -254,7 +254,7 @@ read_str(char endc)
 
 			if ((macro = find_macro(name)) == NULL)
 				yyerror("undefined macro: %s", name);
-			
+
 			if (macro->type == MACRO_NUMBER)
  				xasprintf(&s, "%lld", macro->value.number);
 			else

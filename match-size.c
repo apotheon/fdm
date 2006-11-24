@@ -1,4 +1,4 @@
-/* $Id: match-size.c,v 1.3 2006-11-23 17:45:32 nicm Exp $ */
+/* $Id: match-size.c,v 1.4 2006-11-24 00:12:25 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -32,7 +32,7 @@ size_match(struct match_ctx *mctx, struct expritem *ei)
 {
 	struct size_data	*data = ei->data;
 	struct mail		*m = mctx->mail;
-	
+
 	switch (data->cmp) {
 	case CMP_LT:
 		if (m->size < data->size)
