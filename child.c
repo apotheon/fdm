@@ -1,4 +1,4 @@
-/* $Id: child.c,v 1.52 2006-11-24 14:02:48 nicm Exp $ */
+/* $Id: child.c,v 1.53 2006-11-24 14:15:54 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -340,8 +340,6 @@ do_rules(struct match_ctx *mctx, struct rules *rules, const char **cause)
 		case RULE_ALL:
 			break;
 		}
-		log_debug("%s: matched message", a->name);
-
 		set_wrapped(m, '\n');
 
 		/* tag mail if needed */
@@ -352,6 +350,7 @@ do_rules(struct match_ctx *mctx, struct rules *rules, const char **cause)
 
 		/* handle delivery */
 		if (r->actions != NULL) {
+			log_debug("%s: matched message", a->name);
 			*mctx->matched = 1;
 			if (do_deliver(r, mctx) != 0) {
 				*cause = "delivery";
