@@ -1,6 +1,6 @@
 /* -*-C-*- */
 
-/* $Id: lex.l,v 1.57 2006-11-24 13:59:16 nicm Exp $ */
+/* $Id: lex.l,v 1.58 2006-11-24 18:19:41 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -147,6 +147,7 @@ invalid return (TOKINVALID);
 keep return (TOKKEEP);
 lock-file return (TOKLOCKFILE);
 maildir return (TOKMAILDIR);
+maildirs return (TOKMAILDIRS);
 match return (TOKMATCH);
 matched return (TOKMATCHED);
 mbox return (TOKMBOX);
