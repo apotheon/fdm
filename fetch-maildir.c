@@ -1,4 +1,4 @@
-/* $Id: fetch-maildir.c,v 1.5 2006-11-24 20:34:03 nicm Exp $ */
+/* $Id: fetch-maildir.c,v 1.6 2006-11-24 20:35:33 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -140,7 +140,7 @@ maildir_fetch(struct account *a, struct mail *m)
 
 restart:	
 	if (data->dirp == NULL) {
-		if (*data->ep == NULL) {
+		if (data->ep == NULL || *data->ep == NULL) {
 			s = ARRAY_ITEM(data->paths, data->index, char *);
 			data->path = replaceinfo(s, a, NULL, NULL);
 			if (data->path == NULL || *data->path == '\0') {
