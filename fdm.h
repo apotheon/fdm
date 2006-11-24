@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.122 2006-11-24 18:19:41 nicm Exp $ */
+/* $Id: fdm.h,v 1.123 2006-11-24 18:56:22 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -261,6 +261,7 @@ ARRAY_DECL(tags, char *);
 /* A single mail. */
 struct mail {
 	struct tags	 tags;
+	char		*s;		/* fetch-specific string */
 
 	struct shm	 shm;
 
@@ -901,7 +902,8 @@ void			 free_wrapped(struct mail *);
 	(((ch) >= '0' && (ch) <= '9') ? 52 + (ch) - '0' : -1)))
 char 			*replacepmatch(char *, struct mail *,
 			     regmatch_t [NPMATCH]) ;
-char			*replaceinfo(char *, struct account *, struct action *);
+char			*replaceinfo(char *, struct account *, struct action *,
+    			     char *);
 char 			*replace(char *, char *[REPL_LEN]);
 
 /* io.c */

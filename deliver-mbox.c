@@ -1,4 +1,4 @@
-/* $Id: deliver-mbox.c,v 1.23 2006-11-24 00:12:25 nicm Exp $ */
+/* $Id: deliver-mbox.c,v 1.24 2006-11-24 18:56:22 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -44,7 +44,7 @@ mbox_deliver(struct deliver_ctx *dctx, struct action *t)
 	int	 	 fd = -1, res = DELIVER_FAILURE;
 	struct stat	 sb;
 
-	path = replaceinfo(t->data, a, t);
+	path = replaceinfo(t->data, a, t, m->s);
 	if (path == NULL || *path == '\0') {
 		log_warnx("%s: empty path", a->name);
 		goto out;

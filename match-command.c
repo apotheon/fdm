@@ -1,4 +1,4 @@
-/* $Id: match-command.c,v 1.10 2006-11-24 00:12:25 nicm Exp $ */
+/* $Id: match-command.c,v 1.11 2006-11-24 18:56:22 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -35,6 +35,7 @@ command_match(struct match_ctx *mctx, struct expritem *ei)
 	struct mail		*m = mctx->mail;
 	struct io		*io = mctx->io;
 	struct msg		 msg;
+	size_t			 slen;
 
 	/* we are called as the child so to change uid this needs to be dond
 	   largely in the parent */
@@ -43,7 +44,8 @@ command_match(struct match_ctx *mctx, struct expritem *ei)
 	msg.data.cmddata = data;
 	msg.data.uid = data->uid;
 	copy_mail(m, &msg.data.mail);
-	if (privsep_send(io, &msg, NULL, 0) != 0)
+	slen = m->s != NULL ? strlen(m->s) : 0;
+	if (privsep_send(io, &msg, m->s, slen) != 0)
 		fatalx("child: privsep_send error");
 
 	if (privsep_recv(io, &msg, NULL, 0) != 0)
