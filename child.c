@@ -1,4 +1,4 @@
-/* $Id: child.c,v 1.50 2006-11-24 09:01:31 nicm Exp $ */
+/* $Id: child.c,v 1.51 2006-11-24 13:59:16 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -223,14 +223,11 @@ fetch_account(struct io *io, struct account *a)
 		log_debug("%s: got message: size=%zu, body=%zd", a->name,
 		    m.size, m.body);
 
-		hdr = find_header(&m, "message-id: ", &len);
+		hdr = find_header(&m, "message-id:", &len);
 		if (hdr == NULL || len == 0 || len > INT_MAX)
 			log_debug("%s: no message-id", a->name);
-		else {
-			/* len - 1 to strip \n */
-			log_debug("%s: message-id is: %.*s", a->name,
-			    (int) len - 1, hdr);
-		}
+		else
+			log_debug("%s: message-id is: %.*s", a->name, len, hdr);
 
 		l = fill_wrapped(&m);
 		log_debug2("%s: found %u wrapped lines", a->name, l);
