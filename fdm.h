@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.119 2006-11-24 00:12:25 nicm Exp $ */
+/* $Id: fdm.h,v 1.120 2006-11-24 09:01:31 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -304,6 +304,7 @@ struct account {
 	char			 name[MAXNAMESIZE];
 
 	int			 disabled;
+	int			 keep;
 	struct fetch		*fetch;
 	void			*data;
 
@@ -431,6 +432,7 @@ struct conf {
 	char			*lock_file;
 	int			 check_only;
 	int			 allow_many;
+	int			 keep_all;
 	enum {
 		IMPLICIT_NONE,
 		IMPLICIT_DROP,

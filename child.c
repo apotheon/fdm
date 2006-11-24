@@ -1,4 +1,4 @@
-/* $Id: child.c,v 1.49 2006-11-24 00:12:25 nicm Exp $ */
+/* $Id: child.c,v 1.50 2006-11-24 09:01:31 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -182,6 +182,8 @@ fetch_account(struct io *io, struct account *a)
 	n = 0;
         for (;;) {
 		delete = 1;
+		if (conf.keep_all || a->keep)
+			delete = 0;
 
 		memset(&m, 0, sizeof m);
 		m.body = -1;
