@@ -1,4 +1,4 @@
-/* $Id: match-age.c,v 1.4 2006-11-24 16:36:22 nicm Exp $ */
+/* $Id: match-age.c,v 1.5 2006-11-24 20:10:26 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -51,7 +51,7 @@ age_match(struct match_ctx *mctx, struct expritem *ei)
 	xasprintf(&s, "%*s", (int) len, hdr);
 	ptr = s;
 
-	log_debug2("%s: found date header: %s", a->name, ptr);
+	log_debug2("%s: found date header: %.*s", a->name, (int) len, ptr);
 	endptr = strptime(ptr, "%a, %d %b %Y %H:%M:%S", &tm);
 	if (endptr == NULL)
 		endptr = strptime(ptr, "%d %b %Y %H:%M:%S", &tm);
