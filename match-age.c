@@ -1,4 +1,4 @@
-/* $Id: match-age.c,v 1.3 2006-11-24 14:13:09 nicm Exp $ */
+/* $Id: match-age.c,v 1.4 2006-11-24 16:36:22 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -87,7 +87,10 @@ age_match(struct match_ctx *mctx, struct expritem *ei)
 	diff = difftime(now, then);
 	if (diff < 0)
 		goto invalid;
-	if (diff == 0)
+
+	/* mails reaching this point is not invalid, so return false if
+	   validity is what is being tested for */
+	if (data->time == -1)
 		return (MATCH_FALSE);
 
 	t = diff;
