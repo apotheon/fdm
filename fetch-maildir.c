@@ -1,4 +1,4 @@
-/* $Id: fetch-maildir.c,v 1.7 2006-11-25 00:34:14 nicm Exp $ */
+/* $Id: fetch-maildir.c,v 1.8 2006-11-25 18:57:07 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -264,35 +264,6 @@ char *
 maildir_desc2(struct account *a)
 {
 	struct maildir_data	*data = a->data;
-	char			*buf, *s;
-	size_t			 slen, len, off;
-	u_int			 i;
 
-	if (ARRAY_LENGTH(data->paths) == 1) {
-		s = ARRAY_ITEM(data->paths, 0, char *);
-		xasprintf(&buf, "maildir \"%s\"", s);
-		return (buf);
-	}
-
-	len = 256;
-        buf = xmalloc(len + 1);
-	off = strlcpy(buf, "maildirs {", len);
-
-	for (i = 0; i < ARRAY_LENGTH(data->paths); i++) {
-		s = ARRAY_ITEM(data->paths, i, char *);
-		slen = strlen(s);
-
-		ENSURE_SIZE(buf, len, off + slen + 3);
-		buf[off++] = ' ';
-		buf[off++] = '"';		
-		memcpy(buf + off, s, slen);
-		off += slen;
-		buf[off++] = '"';
-	}
-	ENSURE_SIZE(buf, len, off + 3);
-	buf[off++] = ' ';
-	buf[off++] = '}';
-	buf[off] = '\0';
-
-	return (buf);
+	return (fmt_strings("maildirs", (struct strings *) data->paths));
 }

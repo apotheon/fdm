@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.126 2006-11-25 11:55:07 nicm Exp $ */
+/* $Id: fdm.h,v 1.127 2006-11-25 18:57:07 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -254,6 +254,9 @@ struct shm {
 	void	*data;
 	size_t	 size;
 };
+
+/* Generic array of strings. */
+ARRAY_DECL(strings, char *);
 
 /* Tags array. */
 ARRAY_DECL(tags, char *);
@@ -847,7 +850,8 @@ void			 shm_destroy(struct shm *);
 
 /* parse.y */
 extern struct macros	 macros;
-extern struct macro	*find_macro(char *);
+char 			*fmt_strings(const char *, struct strings *);
+struct macro		*find_macro(char *);
 struct action  		*find_action(char *);
 struct actionptrs	*find_actions(char *);
 

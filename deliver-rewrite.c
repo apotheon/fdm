@@ -1,4 +1,4 @@
-/* $Id: deliver-rewrite.c,v 1.23 2006-11-24 18:56:22 nicm Exp $ */
+/* $Id: deliver-rewrite.c,v 1.24 2006-11-25 18:57:07 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -67,6 +67,8 @@ rewrite_deliver(struct deliver_ctx *dctx, struct action *t)
 
 	do {
 		status = cmd_poll(cmd, &out, &err, &cause);
+		log_debug("%s: %s: cmd_poll out %d, md->size=%zu", a->name, s,
+		    status, md->size);
 		if (status > 0) {
 			log_warnx("%s: %s: %s", a->name, s, cause);
 			goto error;
@@ -96,6 +98,8 @@ rewrite_deliver(struct deliver_ctx *dctx, struct action *t)
 			}
 		}
 	} while (status >= 0);
+
+	log_debug("%s: %s: out with %d, md->size=%zu", a->name, s, status, md->size);
 
 	status = -1 - status;
 	if (status != 0) {
