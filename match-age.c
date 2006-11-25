@@ -1,4 +1,4 @@
-/* $Id: match-age.c,v 1.8 2006-11-25 11:55:07 nicm Exp $ */
+/* $Id: match-age.c,v 1.9 2006-11-25 11:56:02 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -130,7 +130,7 @@ age_desc(struct expritem *ei)
 	const char		*cmp = "";
 
 	if (data->time < 0)
-		return (xstrdup("invalid"));
+		return (xstrdup("age invalid"));
 
 	if (data->cmp == CMP_LT)
 		cmp = "<";
