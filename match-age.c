@@ -1,4 +1,4 @@
-/* $Id: match-age.c,v 1.9 2006-11-25 11:56:02 nicm Exp $ */
+/* $Id: match-age.c,v 1.10 2006-11-25 14:51:50 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -62,10 +62,12 @@ age_match(struct match_ctx *mctx, struct expritem *ei)
 	now = time(NULL);
 	then = mktime(&tm);
 
+	/* skip spaces */
+	while (*endptr != '\0' && isspace((int) *endptr))
+		endptr++;
+
 	/* terminate the timezone */
 	ptr = endptr;
-	while (*ptr != '\0' && isspace((int) *ptr))
-		ptr++;
 	while (*ptr != '\0' && !isspace((int) *ptr))
 		ptr++;
 	*ptr = '\0';
