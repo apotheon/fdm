@@ -1,4 +1,4 @@
-/* $Id: match-command.c,v 1.11 2006-11-24 18:56:22 nicm Exp $ */
+/* $Id: match-command.c,v 1.12 2006-11-25 11:55:07 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -25,7 +25,7 @@
 int	command_match(struct match_ctx *, struct expritem *);
 char   *command_desc(struct expritem *);
 
-struct match match_command = { "command", command_match, command_desc };
+struct match match_command = { command_match, command_desc };
 
 int
 command_match(struct match_ctx *mctx, struct expritem *ei)
@@ -73,7 +73,7 @@ command_desc(struct expritem *ei)
 		return (s);
 	}
 
-	xasprintf(&s, "%s \"%s\" returns (%s, \"%s\")", t, data->cmd, ret,
-	    data->re_s);
+	xasprintf(&s, "command %s \"%s\" returns (%s, \"%s\")", t, data->cmd,
+	    ret, data->re_s);
 	return (s);
 }

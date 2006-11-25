@@ -1,4 +1,4 @@
-/* $Id: child.c,v 1.56 2006-11-24 20:13:35 nicm Exp $ */
+/* $Id: child.c,v 1.57 2006-11-25 11:55:07 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -417,8 +417,8 @@ do_expr(struct rule *r, struct match_ctx *mctx)
 		}
 
 		s = ei->match->desc(ei);
-		log_debug2("%s: tried %s%s:%s, got %d", mctx->account->name,
-		    ei->inverted ? "not " : "", ei->match->name, s, cres);
+		log_debug2("%s: tried %s%s, got %d", mctx->account->name,
+		    ei->inverted ? "not " : "", s, cres);
 		xfree(s);
 	}
 

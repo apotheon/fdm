@@ -1,4 +1,4 @@
-/* $Id: match-matched.c,v 1.2 2006-11-22 09:07:33 nicm Exp $ */
+/* $Id: match-matched.c,v 1.3 2006-11-25 11:55:07 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -25,7 +25,7 @@
 int	matched_match(struct match_ctx *, struct expritem *);
 char   *matched_desc(struct expritem *);
 
-struct match match_matched = { "matched", matched_match, matched_desc };
+struct match match_matched = { matched_match, matched_desc };
 
 int
 matched_match(struct match_ctx *mctx, unused struct expritem *ei)

@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.125 2006-11-24 20:13:35 nicm Exp $ */
+/* $Id: fdm.h,v 1.126 2006-11-25 11:55:07 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -597,8 +597,6 @@ struct match_ctx {
 
 /* Match functions. */
 struct match {
-	const char	*name;
-
 	int		 (*match)(struct match_ctx *, struct expritem *);
 	char 		*(*desc)(struct expritem *);
 };
@@ -606,9 +604,7 @@ struct match {
 /* Comparison operators. */
 enum cmp {
 	CMP_LT,
-	CMP_GT,
-	CMP_EQ,
-	CMP_NE
+	CMP_GT
 };
 
 /* Match age data. */

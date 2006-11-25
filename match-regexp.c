@@ -1,4 +1,4 @@
-/* $Id: match-regexp.c,v 1.7 2006-11-24 00:12:25 nicm Exp $ */
+/* $Id: match-regexp.c,v 1.8 2006-11-25 11:55:07 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -25,7 +25,7 @@
 int	regexp_match(struct match_ctx *, struct expritem *);
 char   *regexp_desc(struct expritem *);
 
-struct match match_regexp = { "regexp", regexp_match, regexp_desc };
+struct match match_regexp = { regexp_match, regexp_desc };
 
 int
 regexp_match(struct match_ctx *mctx, struct expritem *ei)
@@ -86,6 +86,6 @@ regexp_desc(struct expritem *ei)
 		break;
 	}
 
-	xasprintf(&s, "\"%s\" in %s", data->re_s, area);
+	xasprintf(&s, "regexp \"%s\" in %s", data->re_s, area);
 	return (s);
 }
