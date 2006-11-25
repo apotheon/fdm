@@ -1,4 +1,4 @@
-/* $Id: fetch-maildir.c,v 1.8 2006-11-25 18:57:07 nicm Exp $ */
+/* $Id: fetch-maildir.c,v 1.9 2006-11-25 19:12:30 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -265,5 +265,5 @@ maildir_desc2(struct account *a)
 {
 	struct maildir_data	*data = a->data;
 
-	return (fmt_strings("maildirs", (struct strings *) data->paths));
+	return (fmt_strings("maildirs", data->paths));
 }
