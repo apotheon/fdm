@@ -1,4 +1,4 @@
-/* $Id: fetch-imap.c,v 1.28 2006-11-24 00:12:25 nicm Exp $ */
+/* $Id: fetch-imap.c,v 1.29 2006-11-25 12:00:44 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -150,8 +150,10 @@ do_imap(struct account *a, u_int *n, struct mail *m, int is_poll)
 	size_t			 off = 0, len, llen, size;
 	u_int			 u, lines = 0;
 
-	if (m != NULL)
+	if (m != NULL) {
 		m->data = NULL;
+		m->s = xstrdup(data->server.host);
+	}
 
 	llen = IO_LINESIZE;
 	lbuf = xmalloc(llen);
