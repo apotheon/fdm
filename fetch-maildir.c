@@ -1,4 +1,4 @@
-/* $Id: fetch-maildir.c,v 1.6 2006-11-24 20:35:33 nicm Exp $ */
+/* $Id: fetch-maildir.c,v 1.7 2006-11-25 00:34:14 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -279,7 +279,7 @@ maildir_desc2(struct account *a)
 	off = strlcpy(buf, "maildirs {", len);
 
 	for (i = 0; i < ARRAY_LENGTH(data->paths); i++) {
-		s = ARRAY_ITEM(data->paths, 0, char *);
+		s = ARRAY_ITEM(data->paths, i, char *);
 		slen = strlen(s);
 
 		ENSURE_SIZE(buf, len, off + slen + 3);
