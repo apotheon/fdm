@@ -1,4 +1,4 @@
-# $Id: GNUmakefile,v 1.28 2006-11-24 13:59:15 nicm Exp $
+# $Id: GNUmakefile,v 1.29 2006-11-27 14:11:26 nicm Exp $
 
 .PHONY: clean
 
@@ -45,10 +45,12 @@ endif
 
 OBJS = $(patsubst %.c,%.o,$(SRCS))
 CPPFLAGS = $(DEFS) -I.
-CFLAGS+= -std=c99 -pedantic -Wno-long-long -Wall -W -Wnested-externs \
-	-Wformat=2 -Wmissing-prototypes -Wstrict-prototypes \
-	-Wmissing-declarations -Wwrite-strings -Wshadow -Wpointer-arith \
-	-Wcast-qual -Wsign-compare -Wredundant-decls
+CFLAGS+= -std=c99
+CFLAGS+= -pedantic -Wno-long-long -Wall -W -Wnested-externs -Wformat=2
+CFLAGS+= -Wmissing-prototypes -Wstrict-prototypes -Wmissing-declarations
+CFLAGS+= -Wwrite-strings -Wshadow -Wpointer-arith -Wcast-qual -Wsign-compare
+CFLAGS+= -Wredundant-decls -Wundef -Wshadow -Wbad-function-cast -Winline
+CFLAGS+= -Wdisabled-optimization -Wcast-align -Wendif-labels
 
 LIBS = -lssl
 

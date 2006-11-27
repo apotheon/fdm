@@ -1,4 +1,4 @@
-/* $Id: parse.y,v 1.89 2006-11-25 19:27:58 nicm Exp $ */
+/* $Id: parse.y,v 1.90 2006-11-27 14:11:26 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -29,6 +29,7 @@
 #include <netdb.h>
 #include <pwd.h>
 #include <stdio.h>
+#include <stdint.h>
 #include <stdlib.h>
 #include <string.h>
 #include <syslog.h>

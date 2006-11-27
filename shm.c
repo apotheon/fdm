@@ -1,4 +1,4 @@
-/* $Id: shm.c,v 1.9 2006-11-25 17:24:32 nicm Exp $ */
+/* $Id: shm.c,v 1.10 2006-11-27 14:11:26 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -21,6 +21,7 @@
 
 #include <fcntl.h>
 #include <limits.h>
+#include <stdint.h>
 #include <string.h>
 #include <unistd.h>
 
