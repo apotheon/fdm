@@ -1,4 +1,4 @@
-/* $Id: command.c,v 1.15 2006-11-27 23:05:01 nicm Exp $ */
+/* $Id: command.c,v 1.16 2006-11-27 23:05:38 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -194,7 +194,7 @@ cmd_poll(struct cmd *cmd, char **out, char **err, char **cause)
 
 
 	/* check if the child is still alive */
-	if (cmd->pid != 0) {
+	if (cmd->pid != -1) {
 		switch (waitpid(cmd->pid, &cmd->status, WNOHANG)) {
 		case -1:
 			if (errno == ECHILD)
