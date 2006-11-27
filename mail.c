@@ -1,4 +1,4 @@
-/* $Id: mail.c,v 1.48 2006-11-25 19:12:30 nicm Exp $ */
+/* $Id: mail.c,v 1.49 2006-11-27 14:08:45 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -25,6 +25,7 @@
 #include <fnmatch.h>
 #include <limits.h>
 #include <pwd.h>
+#include <stdint.h>
 #include <string.h>
 #include <time.h>
 #include <unistd.h>

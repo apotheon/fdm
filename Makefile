@@ -1,5 +1,5 @@
 
-# $Id: Makefile,v 1.57 2006-11-24 19:30:29 nicm Exp $
+# $Id: Makefile,v 1.58 2006-11-27 14:08:45 nicm Exp $
 
 .SUFFIXES: .c .o .y .l .h
 .PHONY: clean update-index.html upload-index.html lint
@@ -31,7 +31,8 @@ CFLAGS+= -g -ggdb -DDEBUG
 CFLAGS+= -pedantic -Wno-long-long -Wall -W -Wnested-externs -Wformat=2
 CFLAGS+= -Wmissing-prototypes -Wstrict-prototypes -Wmissing-declarations
 CFLAGS+= -Wwrite-strings -Wshadow -Wpointer-arith -Wcast-qual -Wsign-compare
-CFLAGS+= -Wredundant-decls
+CFLAGS+= -Wredundant-decls -Wundef -Wshadow -Wbad-function-cast -Winline
+CFLAGS+= -Wdisabled-optimization -Wcast-align -Wendif-labels
 
 # NetBSD
 .if ${OS} == "NetBSD"
