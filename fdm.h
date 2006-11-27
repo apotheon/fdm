@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.130 2006-11-27 21:54:43 nicm Exp $ */
+/* $Id: fdm.h,v 1.131 2006-11-27 23:05:01 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -492,6 +492,7 @@ struct io {
 /* Command data. */
 struct cmd {
 	pid_t	 	 pid;
+	int		 status;
 
 	struct io	*io_in;
 	struct io	*io_out;
