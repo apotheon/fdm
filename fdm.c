@@ -1,4 +1,4 @@
-/* $Id: fdm.c,v 1.78 2006-11-25 19:12:30 nicm Exp $ */
+/* $Id: fdm.c,v 1.79 2006-11-28 12:56:50 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -191,6 +191,7 @@ main(int argc, char **argv)
 	pid_t		 pid;
 	struct passwd	*pw;
 	struct stat	 sb;
+	time_t		 t;
 
 	memset(&conf, 0, sizeof conf);
 	TAILQ_INIT(&conf.accounts);
@@ -279,6 +280,10 @@ main(int argc, char **argv)
 	/* start logging to syslog if necessary */
 	log_init(!conf.syslog);
 	log_debug("version is: %s " BUILD, __progname);
+
+	/* log the start time */
+	t = time(NULL);
+	log_debug("starting at: %.25s", ctime(&t));
 
 	/* save the home dir and misc user info */
 	fill_info(getenv("HOME"));
