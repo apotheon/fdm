@@ -1,4 +1,4 @@
-/* $Id: fetch-maildir.c,v 1.11 2006-11-28 17:52:30 nicm Exp $ */
+/* $Id: fetch-maildir.c,v 1.12 2006-11-28 18:26:55 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -77,6 +77,8 @@ maildir_makepaths(struct account *a)
 
 		xasprintf(&path, "%s/new", s);
 		ARRAY_ADD(data->paths, path, char *);
+
+		xfree(s);
 	}
 }
 
