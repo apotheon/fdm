@@ -1,4 +1,4 @@
-/* $Id: command.c,v 1.16 2006-11-27 23:05:38 nicm Exp $ */
+/* $Id: command.c,v 1.17 2006-11-28 16:40:50 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -205,7 +205,8 @@ cmd_poll(struct cmd *cmd, char **out, char **err, char **cause)
 			break;
 		default:
 			cmd->pid = -1;
-			break;
+			/* do at least one poll before finishing */
+			return (0);
 		}
 	}
 
