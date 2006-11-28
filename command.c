@@ -1,4 +1,4 @@
-/* $Id: command.c,v 1.17 2006-11-28 16:40:50 nicm Exp $ */
+/* $Id: command.c,v 1.18 2006-11-28 16:48:33 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -161,6 +161,14 @@ cmd_poll(struct cmd *cmd, char **out, char **err, char **cause)
 	if (*out != NULL || *err != NULL)
 		return (0);
 
+	/* close stdin if it is done */
+	if (cmd->io_in != NULL &&
+	    (IO_WRSIZE(cmd->io_in) == 0 || cmd->pid == -1)) {
+		    io_close(cmd->io_in);
+		    io_free(cmd->io_in);
+		    cmd->io_in = NULL;
+	}
+
 	/* if anything is open, try and poll it */
 	if (cmd->io_in != NULL || cmd->io_out != NULL || cmd->io_err != NULL) {
 		ios[0] = cmd->io_in;
@@ -184,14 +192,6 @@ cmd_poll(struct cmd *cmd, char **out, char **err, char **cause)
 			break;
 		}
 	}
-
-	/* close stdin if it is done */
-	if (cmd->io_in != NULL && IO_WRSIZE(cmd->io_in) == 0) {
-		io_close(cmd->io_in);
-		io_free(cmd->io_in);
-		cmd->io_in = NULL;
-	}
-
 
 	/* check if the child is still alive */
 	if (cmd->pid != -1) {
