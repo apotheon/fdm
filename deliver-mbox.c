@@ -1,4 +1,4 @@
-/* $Id: deliver-mbox.c,v 1.25 2006-11-28 12:16:17 nicm Exp $ */
+/* $Id: deliver-mbox.c,v 1.26 2006-11-28 17:52:30 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -83,7 +83,7 @@ mbox_deliver(struct deliver_ctx *dctx, struct action *t)
 			goto out;
 		}
 	}
-	
+
 	do {
 		fd = openlock(path, conf.lock_types,
 		    O_CREAT|O_WRONLY|O_APPEND, S_IRUSR|S_IWUSR);

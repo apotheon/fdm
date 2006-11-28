@@ -1,4 +1,4 @@
-/* $Id: mail.c,v 1.50 2006-11-28 12:16:17 nicm Exp $ */
+/* $Id: mail.c,v 1.51 2006-11-28 17:52:30 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -214,7 +214,7 @@ find_header(struct mail *m, const char *hdr, size_t *len)
 	/* header must be followed by space */
 	if (!isspace((int) *out))
 		return (NULL);
-		
+
 	/* strip any following space */
 	while (isspace((int) *out)) {
 		out++;

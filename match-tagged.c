@@ -1,4 +1,4 @@
-/* $Id: match-tagged.c,v 1.6 2006-11-25 11:55:07 nicm Exp $ */
+/* $Id: match-tagged.c,v 1.7 2006-11-28 17:52:30 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -48,7 +48,7 @@ tagged_desc(struct expritem *ei)
 {
 	struct tagged_data	*data = ei->data;
 	char			*s;
-	
+
 	xasprintf(&s, "tagged %s", data->tag);
 	return (s);
 }

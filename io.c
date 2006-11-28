@@ -1,4 +1,4 @@
-/* $Id: io.c,v 1.35 2006-11-27 21:54:43 nicm Exp $ */
+/* $Id: io.c,v 1.36 2006-11-28 17:52:30 nicm Exp $ */
 
 /*
  * Copyright (c) 2005 Nicholas Marriott <nicm__@ntlworld.com>
@@ -148,7 +148,7 @@ io_polln(struct io **ios, u_int n, struct io **rio, char **cause)
 			pfd->fd = io->fd;
 		if (io->flags & IO_RD)
 			pfd->events = POLLIN;
-		if (io->flags & IO_WR && (io->wsize > 0 || 
+		if (io->flags & IO_WR && (io->wsize > 0 ||
 		    (io->flags & (IO_NEEDFILL|IO_NEEDPUSH)) != 0))
 			pfd->events |= POLLOUT;
 	}

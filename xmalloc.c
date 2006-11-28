@@ -1,4 +1,4 @@
-/* $Id: xmalloc.c,v 1.25 2006-11-25 18:57:07 nicm Exp $ */
+/* $Id: xmalloc.c,v 1.26 2006-11-28 17:52:30 nicm Exp $ */
 
 /*
  * Copyright (c) 2004 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -90,7 +90,7 @@ xmalloc_dump(const char *hdr)
 
 		p = &xmalloc_array[i];
 		if (p->ptr != NULL) {
-			if ((m = xsnprintf(tmp + off, len - off, "[%p %zu:", 
+			if ((m = xsnprintf(tmp + off, len - off, "[%p %zu:",
 			    p->ptr, p->size)) < 0)
 				break;
 			off += m;

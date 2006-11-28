@@ -1,4 +1,4 @@
-/* $Id: deliver-rewrite.c,v 1.25 2006-11-26 20:22:27 nicm Exp $ */
+/* $Id: deliver-rewrite.c,v 1.26 2006-11-28 17:52:30 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -96,7 +96,7 @@ rewrite_deliver(struct deliver_ctx *dctx, struct action *t)
 			}
 		}
 	} while (status >= 0);
-	
+
 	status = -1 - status;
 	if (status != 0) {
 		log_warnx("%s: %s: command returned %d", a->name, s, status);
