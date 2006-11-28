@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.132 2006-11-28 17:49:12 nicm Exp $ */
+/* $Id: fdm.h,v 1.133 2006-11-28 18:14:33 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -560,8 +560,8 @@ struct match_ctx {
 	struct account	*account;
 	struct mail     *mail;
 
-	int		*matched;
-	int		*stopped;
+	int		 matched;
+	int		 stopped;
 
 	int		 pmatch_valid;
 	regmatch_t	 pmatch[NPMATCH];

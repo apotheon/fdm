@@ -1,4 +1,4 @@
-/* $Id: match-unmatched.c,v 1.3 2006-11-25 11:55:07 nicm Exp $ */
+/* $Id: match-unmatched.c,v 1.4 2006-11-28 18:14:33 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -30,7 +30,7 @@ struct match match_unmatched = { unmatched_match, unmatched_desc };
 int
 unmatched_match(struct match_ctx *mctx, unused struct expritem *ei)
 {
-	if (*mctx->matched)
+	if (mctx->matched)
 		return (MATCH_FALSE);
 	return (MATCH_TRUE);
 }
