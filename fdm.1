@@ -1,4 +1,4 @@
-.\" $Id: fdm.1,v 1.18 2006-10-24 22:18:56 nicm Exp $
+.\" $Id: fdm.1,v 1.19 2006-11-28 13:32:41 nicm Exp $
 .\"
 .\" Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
 .\"
@@ -22,7 +22,7 @@
 .Nd "fetch and deliver mail"
 .Sh SYNOPSIS
 .Nm fdm
-.Op Fl lmnv
+.Op Fl klmnv
 .Bk -words
 .Op Fl f Ar conffile
 .Ek
@@ -55,6 +55,12 @@ or
 .Pa /etc/fdm.conf
 if it doesn't exist.
 .Pp
+.It Fl k
+Keep all mail after delivery, regardless of whether it matches a
+.Ic drop
+action. Note that mails kept in this way will be refetched by
+.Nm
+if it is run again on the same account.
 .It Fl l
 Log using
 .Xr syslog 3

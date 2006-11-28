@@ -1,4 +1,4 @@
-/* $Id: parse.y,v 1.90 2006-11-27 14:11:26 nicm Exp $ */
+/* $Id: parse.y,v 1.91 2006-11-28 13:32:41 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -420,7 +420,11 @@ size: numv
 	      $$ = $1;
       }
 
-time: numv TOKHOURS
+time: numv
+      {
+	      $$ = $1;
+      }
+    | numv TOKHOURS
       {
 	      if ($1 > LLONG_MAX / TIME_HOUR)
 		      yyerror("time is too long");
