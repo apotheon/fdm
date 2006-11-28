@@ -1,4 +1,4 @@
-/* $Id: fdm.c,v 1.79 2006-11-28 12:56:50 nicm Exp $ */
+/* $Id: fdm.c,v 1.80 2006-11-28 16:51:34 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -283,7 +283,7 @@ main(int argc, char **argv)
 
 	/* log the start time */
 	t = time(NULL);
-	log_debug("starting at: %.25s", ctime(&t));
+	log_debug("starting at: %.24s", ctime(&t));
 
 	/* save the home dir and misc user info */
 	fill_info(getenv("HOME"));
