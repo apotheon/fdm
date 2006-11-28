@@ -1,4 +1,4 @@
-/* $Id: parse.y,v 1.91 2006-11-28 13:32:41 nicm Exp $ */
+/* $Id: parse.y,v 1.92 2006-11-28 17:49:12 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -251,7 +251,6 @@ find_macro(char *name)
 	struct action	 	 action;
 	struct expr		*expr;
 	struct expritem		*expritem;
-	struct paths		*paths;
 	struct strings		*strings;
 	uid_t			 uid;
 	struct {
@@ -1594,7 +1593,7 @@ fetchtype: poptype server TOKUSER strv TOKPASS strv
 		   $$.fetch = &fetch_maildir;
 		   data = xcalloc(1, sizeof *data);
 		   $$.data = data;
-		   data->paths = $1;
+		   data->maildirs = $1;
 	   }
 
 account: TOKACCOUNT strv disabled fetchtype keep
