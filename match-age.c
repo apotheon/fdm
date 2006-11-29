@@ -1,4 +1,4 @@
-/* $Id: match-age.c,v 1.12 2006-11-28 17:52:30 nicm Exp $ */
+/* $Id: match-age.c,v 1.13 2006-11-29 07:40:04 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -97,6 +97,7 @@ age_match(struct match_ctx *mctx, struct expritem *ei)
 	xfree(s);
 
 	diff = difftime(now, then);
+	log_debug2("%s: time difference is %lld", a->name, diff);
 	if (diff < 0)
 		goto invalid;
 
