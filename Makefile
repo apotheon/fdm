@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.59 2006-11-27 14:21:22 nicm Exp $
+# $Id: Makefile,v 1.60 2006-11-30 19:47:36 nicm Exp $
 
 .SUFFIXES: .c .o .y .l .h
 .PHONY: clean update-index.html upload-index.html lint
@@ -95,6 +95,9 @@ lint:
 
 depend:
 		mkdep ${CFLAGS} ${SRCS}
+
+regress:	clean ${OBJS} ${PROG}
+		cd regress && ${MAKE}
 
 port:
 		tar -zxc \
