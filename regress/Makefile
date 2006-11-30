@@ -1,8 +1,8 @@
-# $Id: Makefile,v 1.3 2006-11-30 21:44:10 nicm Exp $
+# $Id: Makefile,v 1.4 2006-11-30 22:52:37 nicm Exp $
 
 DEBUG= 0
 
-TESTS= account.test macros.test
+TESTS= account.test macros.test options.test
 
 all:		regress
 
