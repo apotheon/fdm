@@ -1,9 +1,9 @@
-# $Id: account.test,v 1.1 2006-11-30 19:47:36 nicm Exp $
+# $Id: account.test,v 1.2 2006-11-30 22:18:21 nicm Exp $
 
 account ""
 @1 ^/dev/stdin: syntax error at line 2$
 
-# ------------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
 # STDIN
 
 account "" stdin
@@ -12,7 +12,7 @@ account "" stdin
 account "name" stdin
 @0 ^added account: name=name fetch=stdin$
 
-# ------------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
 # POP3
 
 account "name" pop3
@@ -63,7 +63,7 @@ account "name" pop3 server "server" user "" pass "pass"
 account "name" pop3 server "server" user "user" pass ""
 @1 ^/dev/stdin: invalid pass at line 1$
 
-# ------------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
 # IMAP
 
 account "name" imap
