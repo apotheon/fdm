@@ -1,8 +1,10 @@
-# $Id: Makefile,v 1.2 2006-11-30 21:43:03 nicm Exp $
+# $Id: Makefile,v 1.3 2006-11-30 21:44:10 nicm Exp $
 
 DEBUG= 0
 
 TESTS= account.test macros.test
+
+all:		regress
 
 TARGETS= 
 .for n in ${TESTS}
@@ -14,7 +16,5 @@ ${n}::
 .endfor
 
 .PHONY: regress ${TARGETS}
-
-all:		regress
 
 regress:	${TARGETS}
