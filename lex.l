@@ -1,6 +1,6 @@
 /* -*-C-*- */
 
-/* $Id: lex.l,v 1.59 2006-11-25 11:55:07 nicm Exp $ */
+/* $Id: lex.l,v 1.60 2006-11-30 18:01:57 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -37,6 +37,9 @@ extern int 			 yylex(void);
 extern __dead printflike1 void	 yyerror(const char *, ...);
 
 char 				*read_str(char);
+
+/* Redefine ECHO to cause an error. */
+#define ECHO yyerror("syntax error");
 
 /* Use a one-byte buffer so flushing it on include doesn't do any harm. */
 #define YY_READ_BUF_SIZE 1

@@ -1,4 +1,4 @@
-/* $Id: match-age.c,v 1.19 2006-11-30 14:53:04 nicm Exp $ */
+/* $Id: match-age.c,v 1.20 2006-11-30 18:01:57 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -63,7 +63,7 @@ age_tzlookup(const char *tz)
 	if (strcmp(tz, tm->tm_zone) == 0)
 		off = tm->tm_gmtoff;
 
-	/* restore the old the timezone */
+	/* restore the old timezone */
 	if (saved_tz != NULL) {
 		if (setenv("TZ", saved_tz, 1) != 0)
 			return (INT_MAX);
