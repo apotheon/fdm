@@ -1,4 +1,4 @@
-# $Id: test.awk,v 1.1 2006-11-30 21:43:03 nicm Exp $
+# $Id: test.awk,v 1.2 2006-11-30 21:56:25 nicm Exp $
 #
 # Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
 #
@@ -17,16 +17,21 @@
 
 function failed(line) {
 	failures++;
-	print "FAILED: " line;
+	print FILENAME ":" n ": FAILED: " line;
 }
 function passed(line) {
-	print "PASSED: " line;
+	print FILENAME ":" n ": PASSED: " line;
 }
 
 BEGIN {
 	failures = 0;
 	line = "";
+	n = 0;
 	prefix = "(echo \'";
+}
+
+/.*/ {
+	n++;
 }
 
 /^!.+/ {
