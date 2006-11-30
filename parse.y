@@ -1,4 +1,4 @@
-/* $Id: parse.y,v 1.95 2006-11-29 07:40:04 nicm Exp $ */
+/* $Id: parse.y,v 1.96 2006-11-30 14:03:13 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -1024,8 +1024,6 @@ actions: TOKACTION TOKNONE
 	 }
        | TOKACTION strv
 	 {
-		 struct actions	*ta;
-
 		 if (*$2 == '\0')
 			 yyerror("invalid action name");
 
@@ -1040,8 +1038,6 @@ actions: TOKACTION TOKNONE
 
 actionslist: actionslist strv
 	     {
-		     struct actions	*ta;
-
 		     if (*$2 == '\0')
 			     yyerror("invalid action name");
 
@@ -1050,8 +1046,6 @@ actionslist: actionslist strv
 	     }
 	   | strv
 	     {
-		     struct actions	*ta;
-
 		     if (*$1 == '\0')
 			     yyerror("invalid action name");
 
