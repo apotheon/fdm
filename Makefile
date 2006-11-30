@@ -1,7 +1,7 @@
-# $Id: Makefile,v 1.61 2006-11-30 22:24:46 nicm Exp $
+# $Id: Makefile,v 1.62 2006-11-30 22:53:04 nicm Exp $
 
 .SUFFIXES: .c .o .y .l .h
-.PHONY: clean update-index.html upload-index.html lint
+.PHONY: clean update-index.html upload-index.html lint regress
 
 PROG= fdm
 VERSION= 0.6
