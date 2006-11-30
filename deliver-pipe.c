@@ -1,4 +1,4 @@
-/* $Id: deliver-pipe.c,v 1.14 2006-11-24 18:56:22 nicm Exp $ */
+/* $Id: deliver-pipe.c,v 1.15 2006-11-30 14:58:54 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -38,7 +38,7 @@ pipe_deliver(struct deliver_ctx *dctx, struct action *t)
 	struct mail	*m = dctx->mail;
         char		*cmd;
         FILE    	*f;
-	int	 	error;
+	int	 	 error;
 
 	cmd = replaceinfo(t->data, a, t, m->s);
         if (cmd == NULL || *cmd == '\0') {
