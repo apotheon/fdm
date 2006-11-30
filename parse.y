@@ -1,4 +1,4 @@
-/* $Id: parse.y,v 1.96 2006-11-30 14:03:13 nicm Exp $ */
+/* $Id: parse.y,v 1.97 2006-11-30 19:45:41 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -841,6 +841,9 @@ port: TOKPORT strv
       }
     | TOKPORT numv
       {
+	      if ($2 == 0 || $2 > 65535)
+		      yyerror("invalid port");
+
 	      xasprintf(&$$, "%lld", $2);
       }
 
