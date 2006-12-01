@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.63 2006-12-01 12:42:15 nicm Exp $
+# $Id: Makefile,v 1.64 2006-12-01 13:53:15 nicm Exp $
 
 .SUFFIXES: .c .o .y .l .h
 .PHONY: clean update-index.html upload-index.html lint regress yannotate
@@ -109,6 +109,7 @@ port:
 yannotate:
 		awk -f yannotate.awk parse.y > parse.y.new
 		mv parse.y.new parse.y
+		trim parse.y
 
 upload-index.html:
 		scp index.html nicm@shell.sf.net:index.html
