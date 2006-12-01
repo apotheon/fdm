@@ -1,4 +1,4 @@
-# $Id: yannotate.awk,v 1.4 2006-12-01 13:35:03 nicm Exp $
+# $Id: yannotate.awk,v 1.5 2006-12-01 13:38:34 nicm Exp $
 #
 # Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
 #
@@ -104,6 +104,8 @@ BEGIN {
 		print ("/** " toupper(substr($1, 1, length($1) - 1)) " */");
 	}
 
+	print ($0);
+
 	elements = convert();
 	if (elements > 0) {
 		s = ""
@@ -113,18 +115,18 @@ BEGIN {
 		print ("/**" pretty(s ": ", "     " s, elements) " */");
 	}
 
-	print ($0);
 	next;
 }
 
 /^[ \t]*\| / {
+	print ($0);
+
 	elements = convert();
 	if (elements > 0) {
 		s = wspace($0, 4);
 		print ("/**" pretty(s "| ", "     " s, elements) " */");
 	}
 
-	print ($0);
 	next;	
 }
 
