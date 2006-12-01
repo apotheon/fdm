@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.7 2006-12-01 11:15:48 nicm Exp $
+# $Id: Makefile,v 1.8 2006-12-01 14:12:30 nicm Exp $
 
 DEBUG= 0
 
@@ -11,7 +11,7 @@ TARGETS=
 TARGETS+= ${n}
 ${n}:
 		@echo ${n}:
-		@awk -v CMD="../fdm -vvnf /dev/stdin" -v DEBUG=${DEBUG} \
+		@awk -v CMD="../fdm -vvvnf /dev/stdin" -v DEBUG=${DEBUG} \
 			-f test.awk ${n}
 .endfor
 
