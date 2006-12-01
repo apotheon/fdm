@@ -1,7 +1,7 @@
-# $Id: Makefile,v 1.62 2006-11-30 22:53:04 nicm Exp $
+# $Id: Makefile,v 1.63 2006-12-01 12:42:15 nicm Exp $
 
 .SUFFIXES: .c .o .y .l .h
-.PHONY: clean update-index.html upload-index.html lint regress
+.PHONY: clean update-index.html upload-index.html lint regress yannotate
 
 PROG= fdm
 VERSION= 0.6
@@ -105,6 +105,10 @@ port:
 			-f ${PROG}-${VERSION}-openbsd-${REL}-port.tar.gz \
 			ports/OpenBSD/Makefile ports/OpenBSD/distinfo \
 			ports/OpenBSD/pkg/PLIST ports/OpenBSD/pkg/DESCR
+
+yannotate:
+		awk -f yannotate.awk parse.y > parse.y.new
+		mv parse.y.new parse.y
 
 upload-index.html:
 		scp index.html nicm@shell.sf.net:index.html
