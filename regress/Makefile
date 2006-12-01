@@ -1,20 +1,27 @@
-# $Id: Makefile,v 1.4 2006-11-30 22:52:37 nicm Exp $
+# $Id: Makefile,v 1.5 2006-12-01 09:16:17 nicm Exp $
 
 DEBUG= 0
 
-TESTS= account.test macros.test options.test
+CLEANFILES= *~
 
-all:		regress
+TESTFILES= account.test macros.test options.test
 
 TARGETS= 
-.for n in ${TESTS}
+.for n in ${TESTFILES}
 TARGETS+= ${n}
-${n}::
+${n}:
 		@echo ${n}:
 		@awk -v CMD="../fdm -vvnf /dev/stdin" -v DEBUG=${DEBUG} \
 			-f test.awk ${n}
 .endfor
 
-.PHONY: regress ${TARGETS}
+.MAIN:		all
+.PHONY: 	regress clean ${TARGETS}
+.PRECIOUS: 	${TARGETS}
+
+all:		regress
 
 regress:	${TARGETS}
+
+clean:
+		rm -f ${CLEANFILES}
