@@ -96,7 +96,8 @@ Feedback, bug reports, suggestions, etc, are welcome.
 I'm keen to add more example configs, so if yours is more than a few lines
 and you don't mind it being included in the fdm distribution, strip out any
 usernames/passwords and send it to me. I'd particularly like to have any that
-use features not used in the current examples.
+use features not used in the current examples, but simpler configs are also
+welcome.
 
 I usually prefer to use the address below but if for some reason it doesn't
 work, I can also be reached at: nicm123@gmail.com
@@ -104,4 +105,4 @@ work, I can also be reached at: nicm123@gmail.com
 Nicholas Marriott
 nicm@users.sourceforge.net
 
-# $Id: README,v 1.30 2006-12-01 15:14:12 nicm Exp $
+# $Id: README,v 1.31 2006-12-01 15:47:23 nicm Exp $
