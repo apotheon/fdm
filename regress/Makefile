@@ -1,10 +1,10 @@
-# $Id: Makefile,v 1.5 2006-12-01 09:16:17 nicm Exp $
+# $Id: Makefile,v 1.6 2006-12-01 10:22:28 nicm Exp $
 
 DEBUG= 0
 
 CLEANFILES= *~
 
-TESTFILES= account.test macros.test options.test
+TESTFILES= account.test macros.test options.test proxy.test
 
 TARGETS= 
 .for n in ${TESTFILES}
