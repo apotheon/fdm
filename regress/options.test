@@ -1,4 +1,4 @@
-# $Id: options.test,v 1.1 2006-11-30 22:52:37 nicm Exp $
+# $Id: options.test,v 1.2 2006-12-01 07:43:43 nicm Exp $
 
 set maximum-size 0
 @0
@@ -129,7 +129,7 @@ set headers { }
 @1 ^/dev/stdin: syntax error at line 1$
 
 set unmatched-mail drop
-$0
+@0
 set unmatched-mail keep
 @0
 set unmatched-mail test

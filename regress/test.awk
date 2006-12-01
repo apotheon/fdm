@@ -1,4 +1,4 @@
-# $Id: test.awk,v 1.2 2006-11-30 21:56:25 nicm Exp $
+# $Id: test.awk,v 1.3 2006-12-01 07:43:43 nicm Exp $
 #
 # Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
 #
@@ -25,7 +25,7 @@ function passed(line) {
 
 BEGIN {
 	failures = 0;
-	line = "";
+	lines = "";
 	n = 0;
 	prefix = "(echo \'";
 }
@@ -39,18 +39,20 @@ BEGIN {
 }
 
 /^[^@!\#].+/ {
-    line = $0;
-    next;
+	if (lines != "") {
+		lines = lines "'; echo '" $0;
+	} else {
+		lines = $0;
+	}
+	next;
 }
 
 /^@[0-9]( .*)?/ {
 	rc = int(substr($0, 2, 1));
 	re = substr($0, 4);
 
-	cmd = prefix line "')|" CMD " 2>&1";
-	if (DEBUG) {
-		print ("-- " cmd);
-	}
+	cmd = prefix lines "')|" CMD " 2>&1";
+	lines = "";
 
 	found = 0;
 	do {
@@ -69,14 +71,14 @@ BEGIN {
 	close(cmd);
 
 	if (!found || error == -1) {
-		failed(line);
+		failed(cmd);
 		next;
 	}
 	if (system(cmd " 2>/dev/null") != rc) {
-		failed(line);
+		failed(cmd);
 		next;
 	}
-	passed(line);
+	passed(cmd);
 }
 
 END {
