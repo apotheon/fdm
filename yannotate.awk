@@ -1,4 +1,4 @@
-# $Id: yannotate.awk,v 1.6 2006-12-01 13:46:39 nicm Exp $
+# $Id: yannotate.awk,v 1.7 2006-12-01 14:03:33 nicm Exp $
 #
 # Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
 #
@@ -112,7 +112,7 @@ BEGIN {
 		for (i = 0; i < length($1) - 4; i++) {
 			s = " " s;
 		}
-		print (pretty("/**" s ": ", " */", elements));
+		print (pretty("/**" s "  ", " */", elements));
 	}
 
 	next;
@@ -124,7 +124,7 @@ BEGIN {
 	elements = convert();
 	if (elements > 0) {
 		s = wspace($0, 4);
-		print (pretty("/**" s "| ", " */" s, elements));
+		print (pretty("/**" s "  ", " */" s, elements));
 	}
 
 	next;	
@@ -152,6 +152,7 @@ BEGIN {
 		#for (i = 1; i <= NF; i++) {
 		#	type = type $i " ";
 		#}
+		next;
 	}
 
 	if (union == 1) {
