@@ -1,6 +1,4 @@
-# $Id: Makefile,v 1.8 2006-12-01 14:12:30 nicm Exp $
-
-DEBUG= 0
+# $Id: Makefile,v 1.9 2006-12-01 15:14:13 nicm Exp $
 
 CLEANFILES= *~
 
