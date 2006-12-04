@@ -1,4 +1,4 @@
-/* $Id: match-command.c,v 1.12 2006-11-25 11:55:07 nicm Exp $ */
+/* $Id: match-command.c,v 1.13 2006-12-04 16:00:48 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -37,7 +37,7 @@ command_match(struct match_ctx *mctx, struct expritem *ei)
 	struct msg		 msg;
 	size_t			 slen;
 
-	/* we are called as the child so to change uid this needs to be dond
+	/* we are called as the child so to change uid this needs to be done
 	   largely in the parent */
 	msg.type = MSG_COMMAND;
 	msg.data.account = a;
@@ -69,11 +69,12 @@ command_desc(struct expritem *ei)
 	t = data->pipe ? "pipe" : "exec";
 
 	if (data->re_s == NULL) {
-		xasprintf(&s, "%s \"%s\" returns (%s, )", t, data->cmd, ret);
+		xasprintf(&s, "%s \"%s\" user %lu returns (%s, )", t, 
+		    data->cmd, (u_long) data->uid, ret);
 		return (s);
 	}
 
-	xasprintf(&s, "command %s \"%s\" returns (%s, \"%s\")", t, data->cmd,
-	    ret, data->re_s);
+	xasprintf(&s, "command %s \"%s\" user %lu returns (%s, \"%s\")", t,
+	    data->cmd, (u_long) data->uid, ret, data->re_s);
 	return (s);
 }
