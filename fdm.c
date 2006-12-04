@@ -1,4 +1,4 @@
-/* $Id: fdm.c,v 1.81 2006-12-01 10:22:28 nicm Exp $ */
+/* $Id: fdm.c,v 1.82 2006-12-04 14:29:37 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -35,7 +35,7 @@
 #include "fdm.h"
 
 #ifdef DEBUG
-const char		*malloc_options = "AFGJX";
+const char		*malloc_options = "AFGJPX";
 #endif
 
 extern FILE		*yyin;
