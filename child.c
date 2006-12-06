@@ -1,4 +1,4 @@
-/* $Id: child.c,v 1.61 2006-11-28 18:41:29 nicm Exp $ */
+/* $Id: child.c,v 1.62 2006-12-06 18:55:26 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -363,6 +363,7 @@ do_rules(struct match_ctx *mctx, struct rules *rules, const char **cause)
 				return (1);
 			}
 		}
+
 		/* deal with nested rules */
 		if (!TAILQ_EMPTY(&r->rules)) {
 			log_debug2("%s: entering nested rules", a->name);
