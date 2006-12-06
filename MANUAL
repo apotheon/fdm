@@ -160,8 +160,8 @@ Example lines that may appear in a configuration file are:
 
 	account "stdin" disabled stdin
 
-	action "strip-full-disclosure" rewrite
-		"sed 's/Subject:\\(.*\\)\\[Full-disclosure\\]/Subject:\\1/'"
+	action "strip-full-disclosure"
+		rewrite "sed 's/^\\(Subject:.*\\)\\[Full-disclosure\\] /\\1/'"
 
 	match "^X-Mailing-List:.*linux-kernel@vger.kernel.org" in headers
 		or "^(To:|Cc:):.*@vger.kernel.org" in headers
@@ -895,5 +895,5 @@ match "^List-Id:.*<full-disclosure\\.lists\\.grok\\.org\\.uk>" in headers
 	actions { "strip-full-disclosure" "full-disclosure" }
 
 ================================================================================
-$Id: MANUAL,v 1.7 2006-12-06 19:32:50 nicm Exp $
+$Id: MANUAL,v 1.8 2006-12-06 20:06:14 nicm Exp $
 
