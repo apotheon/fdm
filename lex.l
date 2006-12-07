@@ -1,6 +1,6 @@
 /* -*-C-*- */
 
-/* $Id: lex.l,v 1.60 2006-11-30 18:01:57 nicm Exp $ */
+/* $Id: lex.l,v 1.61 2006-12-07 16:50:28 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -36,7 +36,7 @@
 extern int 			 yylex(void);
 extern __dead printflike1 void	 yyerror(const char *, ...);
 
-char 				*read_str(char);
+char 				*read_str(char, int);
 
 /* Redefine ECHO to cause an error. */
 #define ECHO yyerror("syntax error");
@@ -59,7 +59,7 @@ char 				*read_str(char);
 }
 [0-9]+[BbKkMmGg] {
 	const char	*errstr;
-        char		ch, *cp;
+        char		 ch, *cp;
 
 	cp = yytext + strlen(yytext) - 1;
 	ch = *cp;
@@ -92,8 +92,12 @@ char 				*read_str(char);
 
         return (SIZE);
 }
+\' {
+	yylval.string = read_str('\'', 0);
+        return (STRING);
+}
 \" {
-	yylval.string = read_str('"');
+	yylval.string = read_str('"', 1);
         return (STRING);
 }
 \$[A-Za-z][A-Za-z0-9_]* {
@@ -199,7 +203,7 @@ write return (TOKWRITE);
 %%
 
 char *
-read_str(char endc)
+read_str(char endc, int esc)
 {
 	int		 done = 0, ch, valid;
 	size_t		 pos = 0, len, off, slen;
@@ -215,6 +219,8 @@ read_str(char endc)
 		case EOF:
 			yyerror("unterminated string");
                 case '\\':
+			if (!esc)
+				continue;
                         switch (ch = input()) {
 			case 0:
 			case EOF:
