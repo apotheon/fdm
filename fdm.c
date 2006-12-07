@@ -1,4 +1,4 @@
-/* $Id: fdm.c,v 1.82 2006-12-04 14:29:37 nicm Exp $ */
+/* $Id: fdm.c,v 1.83 2006-12-07 16:36:33 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -310,25 +310,6 @@ main(int argc, char **argv)
 		exit(1);
 	}
 	log_debug("configuration loaded");
-
-	/* fill proxy */
-	proxy = getenv("http_proxy");
-	if (proxy != NULL && *proxy != '\0') {
-		if (conf.proxy != NULL) {
-			xfree(conf.proxy->server.host);
-			xfree(conf.proxy->server.port);
-			if (conf.proxy->user != NULL)
-				xfree(conf.proxy->user);
-			if (conf.proxy->pass != NULL)
-				xfree(conf.proxy->pass);
-		}
-
-		/* note: getenv's return buffer is read-only */
-		if ((conf.proxy = getproxy(proxy)) == NULL) {
-			log_warnx("invalid proxy: %s", proxy);
-			exit(1);
-		}
-	}
 
 	/* print proxy info */
 	if (conf.proxy != NULL) {
