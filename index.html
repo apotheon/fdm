@@ -1,4 +1,4 @@
-<!-- $Id: index.html,v 1.23 2006-12-07 17:38:27 nicm Exp $ -->
+<!-- $Id: index.html,v 1.24 2006-12-07 17:40:53 nicm Exp $ -->
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
@@ -254,7 +254,8 @@ Flag	Meaning
 	fnmatch(3) wildcards may be used, and the -x option may be specified
 	multiple times.
 
-<h2>If n is not specified, the flags must be followed by one of the keywords</h2>
+If -n is not specified, the flags must be followed by one of the keywords
+'fetch' or 'poll'. The 'fetch' keyword will fetch and deliver mail, the 'poll'
 keyword print an indication of how many mails are present in each account.
 'fetch' or 'poll' may be abbreviated.
 
@@ -902,7 +903,7 @@ match "^List-Id:.*<lt;full-disclosure\\.lists\\.grok\\.org\\.uk>gt;" in headers
 	actions { "strip-full-disclosure" "full-disclosure" }
 
 ================================================================================
-$Id: index.html,v 1.23 2006-12-07 17:38:27 nicm Exp $
+$Id: index.html,v 1.24 2006-12-07 17:40:53 nicm Exp $
 
 </pre>
 <hr>
