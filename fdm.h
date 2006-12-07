@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.133 2006-11-28 18:14:33 nicm Exp $ */
+/* $Id: fdm.h,v 1.134 2006-12-07 22:49:20 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -809,6 +809,12 @@ size_t	 		 strlcpy(char *, const char *, size_t);
 #ifdef NO_STRLCAT
 /* strlcat.c */
 size_t	 		 strlcat(char *, const char *, size_t);
+#endif
+
+#ifdef NO_ASPRINTF
+/* asprintf.c */
+int			 asprintf(char **, const char *, ...);
+int			 vasprintf(char **, const char *, va_list);
 #endif
 
 /* shm.c */
