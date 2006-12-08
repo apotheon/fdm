@@ -1,4 +1,4 @@
-/* $Id: parse.y,v 1.106 2006-12-01 14:12:30 nicm Exp $ */
+/* $Id: parse.y,v 1.107 2006-12-08 11:07:22 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -225,7 +225,8 @@ find_macro(char *name)
 %token TOKLOCKFILE TOKRETURNS TOKPIPE TOKSMTP TOKDROP TOKMAILDIR TOKMBOX
 %token TOKWRITE TOKAPPEND TOKREWRITE TOKTAG TOKTAGGED TOKSIZE TOKMAILDIRS
 %token TOKEXEC TOKSTRING TOKKEEP TOKIMPLACT TOKHOURS TOKMINUTES TOKSECONDS
-%token TOKDAYS TOKWEEKS TOKMONTHS TOKYEARS TOKAGE TOKINVALID
+%token TOKDAYS TOKWEEKS TOKMONTHS TOKYEARS TOKAGE TOKINVALID TOKKILOBYTES
+%token TOKMEGABYTES TOKGIGABYTES TOKBYTES
 %token LCKFLOCK LCKFCNTL LCKDOTLOCK
 
 %union
@@ -420,10 +421,32 @@ include: TOKINCLUDE strv
 
 /** SIZE: <number> (long long) */
 size: numv
-/**   [$1: numv (long long)] */
+    | numv TOKBYTES
     | SIZE
+/**   [$1: numv (long long)] */
       {
 	      $$ = $1;
+      }
+    | numv TOKKILOBYTES
+/**   [$1: numv (long long)] */
+      {
+	      if ($1 > LLONG_MAX / 1024)
+		      yyerror("size is too big");
+	      $$ = $1 * 1024;
+      }
+    | numv TOKMEGABYTES
+/**   [$1: numv (long long)] */
+      {
+	      if ($1 > LLONG_MAX / (1024 * 1024))
+		      yyerror("size is too big");
+	      $$ = $1 * (1024 * 1024);
+      }
+    | numv TOKGIGABYTES
+/**   [$1: numv (long long)] */
+      {
+	      if ($1 > LLONG_MAX / (1024 * 1024 * 1024))
+		      yyerror("size is too big");
+	      $$ = $1 * (1024 * 1024 * 1024);
       }
 
 /** TIME: <number> (long long) */
@@ -744,15 +767,15 @@ maildirs: TOKMAILDIR strv
 /** LOCK: <locks> (u_int) */
 lock: LCKFCNTL
       {
-	      $$ |= LOCK_FCNTL;
+	      $$ = LOCK_FCNTL;
       }
     | LCKFLOCK
       {
-	      $$ |= LOCK_FLOCK;
+	      $$ = LOCK_FLOCK;
       }
     | LCKDOTLOCK
       {
-	      $$ |= LOCK_DOTLOCK;
+	      $$ = LOCK_DOTLOCK;
       }
 
 /** LOCKLIST: <locks> (u_int) */
