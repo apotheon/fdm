@@ -1,6 +1,6 @@
 /* -*-C-*- */
 
-/* $Id: lex.l,v 1.62 2006-12-08 11:07:22 nicm Exp $ */
+/* $Id: lex.l,v 1.63 2006-12-08 11:10:05 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -56,41 +56,6 @@ char 				*read_str(char, int);
 		yyerror("number is %s", errstr);
 
         return (NUMBER);
-}
-[0-9]+[BbKkMmGg] {
-	const char	*errstr;
-        char		 ch, *cp;
-
-	cp = yytext + strlen(yytext) - 1;
-	ch = *cp;
-	*cp = '\0';
-
-        yylval.number = strtonum(yytext, 0, LLONG_MAX, &errstr);
-	if (errstr != NULL)
-		yyerror("size is %s", errstr);
-
-        switch (ch) {
-        case 'k':
-	case 'K':
-		if (yylval.number > LLONG_MAX / 1024)
-			yyerror("size is too large");
-                yylval.number *= 1024;
-                break;
-        case 'm':
-	case 'M':
-		if (yylval.number > LLONG_MAX / (1024 * 1024))
-			yyerror("size is too large");
-                yylval.number *= 1024 * 1024;
-                break;
-        case 'g':
-	case 'G':
-		if (yylval.number > LLONG_MAX / (1024 * 1024 * 1024))
-			yyerror("size is too large");
-                yylval.number *= 1024 * 1024 * 1024;
-                break;
-        }
-
-        return (SIZE);
 }
 \' {
 	yylval.string = read_str('\'', 0);
