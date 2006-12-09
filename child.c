@@ -1,4 +1,4 @@
-/* $Id: child.c,v 1.63 2006-12-09 18:37:17 nicm Exp $ */
+/* $Id: child.c,v 1.64 2006-12-09 18:41:09 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -233,11 +233,11 @@ fetch_account(struct io *io, struct account *a)
 
 		/* XXX */
 		at = attach_build(&m);
-		if (at != NULL)
+		if (at != NULL) {
 			attach_log(at, "%s: attachment", a->name);
-		else
+			attach_free(at);
+		} else
 			log_debug("%s: no attachments found", a->name);
-		attach_free(at);
 		
 		/* handle rule evaluation and actions */
 		mctx.matched = mctx.stopped = 0;
