@@ -1,4 +1,4 @@
-/* $Id: connect.c,v 1.35 2006-12-01 10:22:28 nicm Exp $ */
+/* $Id: connect.c,v 1.36 2006-12-09 20:43:56 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -121,12 +121,12 @@ error:
 			xfree(pr->user);
 		if (pr->pass != NULL)
 			xfree(pr->pass);
-		
+
 		if (pr->server.port != NULL)
 			xfree(pr->server.port);
 		if (pr->server.host != NULL)
 			xfree(pr->server.host);
-		
+
 		xfree(pr);
 	}
 

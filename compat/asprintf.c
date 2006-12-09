@@ -1,4 +1,4 @@
-/* $Id: asprintf.c,v 1.1 2006-12-07 22:49:20 nicm Exp $ */
+/* $Id: asprintf.c,v 1.2 2006-12-09 20:43:57 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -47,7 +47,7 @@ vasprintf(char **ret, const char *format, va_list ap)
 		xfree(*ret);
 		goto error;
 	}
-	
+
 	return (n);
 
 error:
