@@ -1,6 +1,6 @@
 /* -*-C-*- */
 
-/* $Id: lex.l,v 1.64 2006-12-10 12:26:03 nicm Exp $ */
+/* $Id: lex.l,v 1.65 2006-12-10 14:40:40 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -163,14 +163,16 @@ unmatched-mail return (TOKIMPLACT);
 user return (TOKUSER);
 users return (TOKUSERS);
 write return (TOKWRITE);
-\{ return ('{');
-\} return ('}');
+= return ('=');
+== return (TOKEQ);
+!= return (TOKNE);
 \( return ('(');
 \) return (')');
 \, return (',');
 \< return ('<');
 \> return ('>');
-= return ('=');
+\{ return ('{');
+\} return ('}');
 \#.*\n /* ignore comments */;
 \n /* ignore end of line */;
 [ \t]+ /* ignore whitespace */;

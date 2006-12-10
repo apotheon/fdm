@@ -1,4 +1,4 @@
-/* $Id: match-attachment.c,v 1.2 2006-12-10 13:24:31 nicm Exp $ */
+/* $Id: match-attachment.c,v 1.3 2006-12-10 14:40:40 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -45,6 +45,10 @@ attachment_desc(struct expritem *ei)
 		cmp = "<";
 	else if (data->cmp == CMP_GT)
 		cmp = ">";
+	else if (data->cmp == CMP_EQ)
+		cmp = "==";
+	else if (data->cmp == CMP_NE)
+		cmp = "!=";
 
 	switch (data->op) {
 	case ATTACHOP_COUNT:

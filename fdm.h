@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.138 2006-12-10 12:26:03 nicm Exp $ */
+/* $Id: fdm.h,v 1.139 2006-12-10 14:40:40 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -601,6 +601,8 @@ struct match {
 
 /* Comparison operators. */
 enum cmp {
+	CMP_EQ,
+	CMP_NE,
 	CMP_LT,
 	CMP_GT
 };
@@ -616,7 +618,6 @@ struct attachment_data {
 		ATTACHOP_ALL,
 		ATTACHOP_EXPRESSION /* XXX */
 	} op;
-
 
 	enum cmp	 	 cmp;
 	union {
