@@ -1,6 +1,6 @@
 /* -*-C-*- */
 
-/* $Id: lex.l,v 1.63 2006-12-08 11:10:05 nicm Exp $ */
+/* $Id: lex.l,v 1.64 2006-12-10 12:26:03 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -103,10 +103,15 @@ age return (TOKAGE);
 all return (TOKALL);
 allow-multiple return (TOKALLOWMANY);
 and return (TOKAND);
+any-name return (TOKANYNAME);
+any-size return (TOKANYSIZE);
+any-type return (TOKANYTYPE);
 append return (TOKAPPEND);
+attachment return (TOKATTACHMENT);
 body return (TOKBODY);
 case return (TOKCASE);
 continue return (TOKCONTINUE);
+count return (TOKCOUNT);
 disabled return (TOKDISABLED);
 domain return (TOKDOMAIN);
 domains return (TOKDOMAINS);
@@ -152,6 +157,7 @@ string return (TOKSTRING);
 tag return (TOKTAG);
 tagged return (TOKTAGGED);
 to return (TOKTO);
+total-size return (TOKTOTALSIZE);
 unmatched return (TOKUNMATCHED);
 unmatched-mail return (TOKIMPLACT);
 user return (TOKUSER);
