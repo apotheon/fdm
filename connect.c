@@ -1,4 +1,4 @@
-/* $Id: connect.c,v 1.36 2006-12-09 20:43:56 nicm Exp $ */
+/* $Id: connect.c,v 1.37 2006-12-10 01:38:55 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -244,9 +244,9 @@ socks5proxy(struct server *srv, struct proxy *pr, struct io *io, char **cause)
 		ptr += len;
 		io_write(io, buf, ptr - buf);
 
-		io_read2(io, buf, 2);
 		if (io_wait(io, 2, cause) != 0)
 			return (1);
+		io_read2(io, buf, 2);
 		if (buf[0] != 5) {
 			xasprintf(cause, "bad protocol version: %d", buf[0]);
 			return (1);
