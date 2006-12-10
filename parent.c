@@ -1,4 +1,4 @@
-/* $Id: parent.c,v 1.39 2006-11-30 19:46:50 nicm Exp $ */
+/* $Id: parent.c,v 1.40 2006-12-10 11:58:04 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -352,8 +352,8 @@ parent_command(struct account *a, struct command_data *data, struct mail *m,
         }
 
 	log_debug2("%s: %s: started (ret=%d re=%s)", a->name, s, data->ret,
-	    data->re_s == NULL ? "none" : data->re_s);
-	cmd = cmd_start(s, data->pipe, data->re_s != NULL, m->data, m->size,
+	    data->re.s == NULL ? "none" : data->re.s);
+	cmd = cmd_start(s, data->pipe, data->re.s != NULL, m->data, m->size,
 	    &cause);
 	if (cmd == NULL) {
 		log_warnx("%s: %s: %s", a->name, s, cause);
@@ -381,15 +381,9 @@ parent_command(struct account *a, struct command_data *data, struct mail *m,
 			if (out != NULL) {
 				log_debug3("%s: %s: out: %s", a->name, s, out);
 
-				switch (regexec(&data->re, out, 0, NULL, 0)) {
-				case 0:
-					found = 1;
-					break;
-				case REG_NOMATCH:
-					break;
-				default:
-					log_warnx("%s: %s: %s: regexec failed",
-					    a->name, s, data->re_s);
+				found = re_simple(&data->re, out, &cause);
+				if (found == -1) {
+					log_warnx("%s: %s", a->name, cause);
 					cmd_free(cmd);
 					xfree(s);
 					_exit(MATCH_ERROR);
@@ -406,11 +400,11 @@ parent_command(struct account *a, struct command_data *data, struct mail *m,
 	xfree(s);
 
 	status = data->ret == status;
-	if (data->ret != -1 && data->re_s != NULL)
+	if (data->ret != -1 && data->re.s != NULL)
 		_exit((found && status) ? MATCH_TRUE : MATCH_FALSE);
-	else if (data->ret != -1 && data->re_s == NULL)
+	else if (data->ret != -1 && data->re.s == NULL)
 		_exit(status ? MATCH_TRUE : MATCH_FALSE);
-	else if (data->ret == -1 && data->re_s != NULL)
+	else if (data->ret == -1 && data->re.s != NULL)
 		_exit(found ? MATCH_TRUE : MATCH_FALSE);
 	return (MATCH_ERROR);
 }
