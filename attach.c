@@ -1,4 +1,4 @@
-/* $Id: attach.c,v 1.2 2006-12-09 20:43:56 nicm Exp $ */
+/* $Id: attach.c,v 1.3 2006-12-10 01:50:13 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -268,7 +268,12 @@ attach_get(struct mail *m, char **ptr, size_t *len, const char *b, int *last)
 	ARRAY_INIT(&atr->list);
 
 	atr->data = *ptr - m->data;
-	line_next(m, ptr, len);
+
+	while (*ptr != NULL) {
+		if (*len >= 13 && strncasecmp(*ptr, "content-type:", 13) == 0)
+			break;
+		line_next(m, ptr, len);
+	}
 	if (*ptr == NULL)
 		goto error;
 
