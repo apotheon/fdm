@@ -1,4 +1,4 @@
-/* $Id: parse.y,v 1.111 2006-12-10 12:26:03 nicm Exp $ */
+/* $Id: parse.y,v 1.112 2006-12-10 12:44:47 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -1436,6 +1436,7 @@ expritem: not icase strv area
 		  data->time = -1;
 	  }
         | not TOKATTACHMENT TOKCOUNT cmp numv
+/**       [$1: not (int)] [$4: cmp (enum cmp)] [$5: numv (long long)] */
 	  {
 		  struct attachment_data	*data;
 
@@ -1452,6 +1453,7 @@ expritem: not icase strv area
 		  data->value.number = $5;
 	  }
         | not TOKATTACHMENT TOKTOTALSIZE cmp size
+/**       [$1: not (int)] [$4: cmp (enum cmp)] [$5: size (long long)] */
 	  {
 		  struct attachment_data	*data;
 
@@ -1468,6 +1470,7 @@ expritem: not icase strv area
 		  data->value.number = $5;
 	  }
         | not TOKATTACHMENT TOKANYSIZE cmp size
+/**       [$1: not (int)] [$4: cmp (enum cmp)] [$5: size (long long)] */
 	  {
 		  struct attachment_data	*data;
 
@@ -1484,8 +1487,12 @@ expritem: not icase strv area
 		  data->value.number = $5;
 	  }
         | not TOKATTACHMENT TOKANYTYPE strv
+/**       [$1: not (int)] [$4: strv (char *)] */
 	  {
 		  struct attachment_data	*data;
+
+		  if (*$4 == '\0')
+			  yyerror("invalid string");
 
 		  $$ = xcalloc(1, sizeof *$$);
 
@@ -1499,8 +1506,12 @@ expritem: not icase strv area
 		  data->value.string = $4;
 	  }
         | not TOKATTACHMENT TOKANYNAME strv
+/**       [$1: not (int)] [$4: strv (char *)] */
 	  {
 		  struct attachment_data	*data;
+
+		  if (*$4 == '\0')
+			  yyerror("invalid string");
 
 		  $$ = xcalloc(1, sizeof *$$);
 
