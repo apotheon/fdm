@@ -1,4 +1,4 @@
-/* $Id: mail.c,v 1.55 2006-12-11 15:21:15 nicm Exp $ */
+/* $Id: mail.c,v 1.56 2006-12-11 16:34:16 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -286,7 +286,7 @@ find_users(struct mail *m)
 		xfree(users);
 		return (NULL);
 	}
-	return (users);
+	return (weed_strings(users));
 }
 
 char *
