@@ -1,4 +1,4 @@
-/* $Id: mail.c,v 1.53 2006-12-09 20:43:56 nicm Exp $ */
+/* $Id: mail.c,v 1.54 2006-12-11 13:02:24 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -437,7 +437,7 @@ set_wrapped(struct mail *m, char ch)
 	u_int	i;
 
 	if (m->wrapped == NULL)
-		fatalx("set_wrapped: unwrapped mail");
+		return;
 
 	for (i = 0; m->wrapped[i] > 0; i++)
 		m->data[m->wrapped[i]] = ch;
