@@ -28,10 +28,11 @@ fdm ============================================================================
 8.2	The all condition
 8.3	Matched and unmatched
 8.4	Matching a regexp
-8.5	Matching by age or size
-8.6	Using a shell command
-8.7	Attachments
-8.8	Tagging
+8.5	Matching bracket expressions
+8.6	Matching by age or size
+8.7	Using a shell command
+8.8	Attachments
+8.9	Tagging
 9	Setting options
 10	Archiving and searching mail
 11	Using fdm behind a proxy
@@ -653,6 +654,25 @@ Examples include:
 	
 	match ".*YAHOO.*BOOTER.*" in body action "junk"
 
+Matching bracket expressions ---------------------------------------------------
+
+The results of any bracket expressions within the last regexp are remembered,
+and may be made use of using the 'string' condition, or used to construct an
+action name. The bracket expressions may be substituted using the %1 to %9
+tokens. For example,
+
+	match regexp "^From:.*([a-z]*)@domain" in headers action "all" continue
+	match string "%1" to "bob" action "bobmail"
+
+Or:
+
+	match regexp "^From:.*([a-z]*)@domain" in headers action "all" continue
+	match all action "%1mail"
+
+This is particularly useful in combination with nested rules (see later):
+bracket expressions in regexp on the outer rule may be compared on inner
+rules.
+
 Matching by age or size --------------------------------------------------------
 
 Mail may be matched based on its age, or its size. An age condition is
@@ -970,5 +990,5 @@ match "^List-Id:.*<full-disclosure\\.lists\\.grok\\.org\\.uk>" in headers
 	actions { "strip-full-disclosure" "full-disclosure" }
 
 ================================================================================
-$Id: MANUAL,v 1.17 2006-12-11 12:00:55 nicm Exp $
+$Id: MANUAL,v 1.18 2006-12-11 17:09:12 nicm Exp $
 
