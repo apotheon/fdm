@@ -1,4 +1,4 @@
-/* $Id: mail.c,v 1.54 2006-12-11 13:02:24 nicm Exp $ */
+/* $Id: mail.c,v 1.55 2006-12-11 15:21:15 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -58,6 +58,8 @@ copy_mail(struct mail *src, struct mail *dst)
 void
 free_mail(struct mail *m, int final)
 {
+	if (m->attach != NULL)
+		attach_free(m->attach);
 	if (m->s != NULL)
 		xfree(m->s);
 	if (!ARRAY_EMPTY(&m->tags))

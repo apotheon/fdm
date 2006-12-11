@@ -1,4 +1,4 @@
-/* $Id: child.c,v 1.69 2006-12-11 13:07:08 nicm Exp $ */
+/* $Id: child.c,v 1.70 2006-12-11 15:21:15 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -189,7 +189,6 @@ fetch_account(struct io *io, struct account *a)
 		mctx.io = io;
 		mctx.account = a;
 		mctx.mail = &m;
-		ARRAY_INIT(&mctx.attach_matches);
 		/* drop mail by default unless something else comes along */
 		mctx.decision = DECISION_DROP;
 
@@ -232,9 +231,9 @@ fetch_account(struct io *io, struct account *a)
 		log_debug2("%s: found %u wrapped lines", a->name, l);
 
 		/* fill attachments */
-		mctx.attach = attach_build(&m);
-		if (mctx.attach != NULL)
-			attach_log(mctx.attach, "%s: attachment", a->name);
+		m.attach = attach_build(&m);
+		if (m.attach != NULL)
+			attach_log(m.attach, "%s: attachment", a->name);
 		else
 			log_debug("%s: no attachments", a->name);
 
@@ -293,14 +292,10 @@ fetch_account(struct io *io, struct account *a)
 			fatalx("invalid decision");
 		}
 
-		if (mctx.attach != NULL)
-			attach_free(mctx.attach);
  		free_mail(&m, 1);
 	}
 
 out:
-	if (mctx.attach != NULL)
-		attach_free(mctx.attach);
 	free_mail(&m, 1);
 	if (cause != NULL)
 		log_warnx("%s: %s error. aborted", a->name, cause);
@@ -343,9 +338,6 @@ do_rules(struct match_ctx *mctx, struct rules *rules, const char **cause)
 			if (i == ARRAY_LENGTH(aa))
 				continue;
 		}
-
-		/* clear the matched attachments list */
-		ARRAY_FREE(&mctx->attach_matches);
 
 		/* match all the regexps */
 		switch (r->type) {
@@ -563,13 +555,15 @@ do_action(struct rule *r, struct match_ctx *mctx, struct action *t)
 			continue;
 		}
 
-		/* copy the tags and string to the new mail and clear them
-		   from old to stop them being freed */
+		/* copy the tags, string and attachmentss to the new mail and
+		   clear them from old to stop them being freed */
 		memcpy(&msg.data.mail.tags, &m->tags,
 		    sizeof msg.data.mail.tags);
 		ARRAY_INIT(&m->tags);
 		msg.data.mail.s = m->s;
 		m->s = NULL;
+		msg.data.mail.attach = m->attach;
+		m->attach = NULL;
 
 		/* free the old mail */
 		free_mail(m, 1);

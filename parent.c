@@ -1,4 +1,4 @@
-/* $Id: parent.c,v 1.41 2006-12-11 13:07:08 nicm Exp $ */
+/* $Id: parent.c,v 1.42 2006-12-11 15:21:15 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -76,6 +76,7 @@ parent(int fd, pid_t pid)
 
 			ARRAY_INIT(&m->tags);
 			m->wrapped = NULL;
+			m->attach = NULL;
 
 			uid = data->uid;
 			error = parent_action(data->account, data->action, m,
@@ -100,6 +101,7 @@ parent(int fd, pid_t pid)
 
 			ARRAY_INIT(&m->tags);
 			m->wrapped = NULL;
+			m->attach = NULL;
 
 			uid = data->uid;
 			error = parent_command(data->account, data->cmddata, m,

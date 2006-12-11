@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.143 2006-12-11 13:07:08 nicm Exp $ */
+/* $Id: fdm.h,v 1.144 2006-12-11 15:21:15 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -253,6 +253,8 @@ struct mail {
 	char		*s;		/* fetch-specific string */
 
 	struct shm	 shm;
+
+	struct attach	*attach;
 
 	char		*base;
 
@@ -591,9 +593,6 @@ struct match_ctx {
 
 	int		 pmatch_valid;
 	regmatch_t	 pmatch[NPMATCH];
-
-	struct attach	*attach;
-	ARRAY_DECL(, struct attach *)	attach_matches;
 };
 
 /* Match functions. */
