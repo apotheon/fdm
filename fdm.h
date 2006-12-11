@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.142 2006-12-11 11:44:57 nicm Exp $ */
+/* $Id: fdm.h,v 1.143 2006-12-11 13:07:08 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -251,8 +251,6 @@ enum decision {
 struct mail {
 	struct strings	 tags;
 	char		*s;		/* fetch-specific string */
-
-	enum decision	 decision;
 
 	struct shm	 shm;
 
@@ -550,7 +548,10 @@ struct fetch {
 struct deliver_ctx {
 	struct account	*account;
 	struct mail	*mail;
+
 	struct mail	 wr_mail;
+
+	enum decision	*decision;
 };
 
 /* Deliver return codes. */
@@ -582,6 +583,8 @@ struct match_ctx {
 	struct io	*io;
 	struct account	*account;
 	struct mail     *mail;
+
+	enum decision	 decision;
 
 	int		 matched;
 	int		 stopped;

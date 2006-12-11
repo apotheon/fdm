@@ -1,4 +1,4 @@
-/* $Id: deliver-keep.c,v 1.1 2006-11-24 19:30:30 nicm Exp $ */
+/* $Id: deliver-keep.c,v 1.2 2006-12-11 13:07:08 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -28,7 +28,7 @@ struct deliver deliver_keep = { DELIVER_INCHILD, keep_deliver, keep_desc };
 int
 keep_deliver(struct deliver_ctx *dctx, unused struct action *t)
 {
-	dctx->mail->decision = DECISION_KEEP;
+	*dctx->decision = DECISION_KEEP;
 
 	return (DELIVER_SUCCESS);
 }

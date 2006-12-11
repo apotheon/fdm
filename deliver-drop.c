@@ -1,4 +1,4 @@
-/* $Id: deliver-drop.c,v 1.12 2006-11-24 19:30:30 nicm Exp $ */
+/* $Id: deliver-drop.c,v 1.13 2006-12-11 13:07:08 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -28,7 +28,7 @@ struct deliver deliver_drop = { DELIVER_INCHILD, drop_deliver, drop_desc };
 int
 drop_deliver(struct deliver_ctx *dctx, unused struct action *t)
 {
-	dctx->mail->decision = DECISION_DROP;
+	*dctx->decision = DECISION_DROP;
 
 	return (DELIVER_SUCCESS);
 }

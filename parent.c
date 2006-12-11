@@ -1,4 +1,4 @@
-/* $Id: parent.c,v 1.40 2006-12-10 11:58:04 nicm Exp $ */
+/* $Id: parent.c,v 1.41 2006-12-11 13:07:08 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -151,6 +151,7 @@ parent_action(struct account *a, struct action *t, struct mail *m, uid_t uid)
 	memset(&dctx, 0, sizeof dctx);
 	dctx.account = a;
 	dctx.mail = m;
+	dctx.decision = NULL;	/* cannot be altered outside child */
 
 	/* if writing back, open a new mail now and set its ownership so it
 	   can be accessed by the child */
