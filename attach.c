@@ -1,4 +1,4 @@
-/* $Id: attach.c,v 1.6 2006-12-11 10:59:28 nicm Exp $ */
+/* $Id: attach.c,v 1.7 2006-12-11 11:23:53 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -343,6 +343,8 @@ attach_get(struct mail *m, char **ptr, size_t *len, const char *b, int *last)
 		/* XXX avoid doing this twice */
 		xfree(atr->type);
 		atr->type = attach_type(m, *ptr, "boundary", &b2);
+		if (b2 == NULL)
+			goto error;
 
 		bl2 = strlen(b2);
 
