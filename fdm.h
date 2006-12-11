@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.141 2006-12-11 10:58:06 nicm Exp $ */
+/* $Id: fdm.h,v 1.142 2006-12-11 11:44:57 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -615,7 +615,6 @@ struct attachment_data {
 		ATTACHOP_ANYSIZE,
 		ATTACHOP_ANYTYPE,
 		ATTACHOP_ANYNAME,
-		ATTACHOP_ALL,
 		ATTACHOP_EXPRESSION /* XXX */
 	} op;
 
