@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.144 2006-12-11 15:21:15 nicm Exp $ */
+/* $Id: fdm.h,v 1.145 2006-12-11 16:33:13 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -89,8 +89,8 @@ extern char	*__progname;
 	}								\
 	if (i < (a)->num - 1) {						\
 		size_t	 size = sizeof (c);				\
-		c 	*ptr = (a)->list + (i) * size;			\
-		memmove(ptr, ptr + size, size * ((a)->num - (i) - 1)); 	\
+		c 	*ptr = (a)->list + i;				\
+		memmove(ptr, ptr + 1, size * ((a)->num - (i) - 1)); 	\
 	}								\
 	(a)->num--;							\
         if ((a)->num == 0) {						\
@@ -875,6 +875,7 @@ void			 shm_destroy(struct shm *);
 
 /* parse.y */
 extern struct macros	 macros;
+struct strings 		*weed_strings(struct strings *);
 char 			*fmt_strings(const char *, struct strings *);
 struct macro		*find_macro(char *);
 struct action  		*find_action(char *);
