@@ -30,7 +30,8 @@ fdm ============================================================================
 8.4	Matching a regexp
 8.5	Matching by age or size
 8.6	Using a shell command
-8.7	Tagging
+8.7	Attachments
+8.8	Tagging
 9	Setting options
 10	Archiving and searching mail
 11	Using fdm behind a proxy
@@ -707,6 +708,41 @@ Examples:
 
 	match exec "blah" (12, "^Out") action "meep"
 
+Attachments---------------------------------------------------------------------
+
+There are five conditions available to filter based on the size, quantity, type
+and name of attachments. Thay all specified prefixed with the 'attachment'
+keyword. Two compare the overall number of attachments:
+
+The 'attachment count' conditions matches if the number of attachments is
+equal to, not equal to, less than or greater than the specified number:
+
+	match attachment count == 0 action "action"
+
+	match attachment count != 10 action "action"
+
+	match attachment count < 2 action "action"
+
+	match attachment count > 7 action "action"
+
+The 'attachment total-size' condition is similar, but compares the total
+size of all the attachments in a mail:
+
+	match attachment total-size < 4096 kilobytes action "action"
+
+	match attachment total-size > 1M action "action"
+
+There are also three conditions which matches if any individual attachment
+fulfils the condition: 'any-size' to match if any attachment is less than or
+greater than the given size, and 'any-type' and 'any-name' which compare the
+attachment MIME type and name attribute (if any) using fnmatch(3):
+
+	match attachment any-size < 2K action "action"
+
+	match attachment any-type "*/pdf" action "action"
+	
+	match attachment any-name "*.doc" action "action"
+
 Tagging ------------------------------------------------------------------------
 
 Mails may be assigned one of more tags using a special form of filtering
@@ -934,5 +970,5 @@ match "^List-Id:.*<full-disclosure\\.lists\\.grok\\.org\\.uk>" in headers
 	actions { "strip-full-disclosure" "full-disclosure" }
 
 ================================================================================
-$Id: MANUAL,v 1.16 2006-12-08 11:26:15 nicm Exp $
+$Id: MANUAL,v 1.17 2006-12-11 12:00:55 nicm Exp $
 
