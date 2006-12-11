@@ -1,4 +1,4 @@
-# $Id: yannotate.awk,v 1.8 2006-12-09 20:43:56 nicm Exp $
+# $Id: yannotate.awk,v 1.9 2006-12-11 12:50:24 nicm Exp $
 #
 # Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
 #
@@ -96,7 +96,7 @@ BEGIN {
 	next;
 }
 
-/^[a-z]+: / {
+/^[a-z0-9]+: / {
 	type = rules[substr($1, 1, length($1) - 1)];
 	if (type != 0) {
 		print ("/** " toupper($1) " " type " (" types[type] ") */");

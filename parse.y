@@ -1,4 +1,4 @@
-/* $Id: parse.y,v 1.113 2006-12-10 14:40:40 nicm Exp $ */
+/* $Id: parse.y,v 1.114 2006-12-11 12:50:23 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -1247,8 +1247,9 @@ cmp: '<'
 	     $$ = CMP_GT;
      }
 
-/** CMP: <cmp> (enum cmp) */
+/** CMP2: <cmp> (enum cmp) */
 cmp2: cmp
+/**   [$1: cmp (enum cmp)] */
       {
 	     $$ = $1;
       }
@@ -1450,7 +1451,7 @@ expritem: not icase strv area
 		  data->time = -1;
 	  }
         | not TOKATTACHMENT TOKCOUNT cmp2 numv
-/**       [$1: not (int)] [$4: cmp (enum cmp)] [$5: numv (long long)] */
+/**       [$1: not (int)] [$4: cmp2 (enum cmp)] [$5: numv (long long)] */
 	  {
 		  struct attachment_data	*data;
 
