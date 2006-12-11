@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.140 2006-12-11 10:32:24 nicm Exp $ */
+/* $Id: fdm.h,v 1.141 2006-12-11 10:58:06 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -892,6 +892,7 @@ int			 re_execute(struct re *, char *, int, regmatch_t *,
 int			 re_simple(struct re *, char *, char **);
 
 /* attach.c */
+struct attach 		*attach_visit(struct attach *, u_int *);
 void printflike2	 attach_log(struct attach *, const char *, ...);
 struct attach 		*attach_build(struct mail *);
 void			 attach_free(struct attach *);
