@@ -1,4 +1,4 @@
-/* $Id: child.c,v 1.70 2006-12-11 15:21:15 nicm Exp $ */
+/* $Id: child.c,v 1.71 2006-12-12 12:16:55 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -130,7 +130,7 @@ child(int fd, enum fdmop op)
 
 #ifdef DEBUG
 	COUNTFDS("child");
-	xmalloc_dump("child");
+	xmalloc_report("child");
 #endif
 
 	return (rc);

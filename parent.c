@@ -1,4 +1,4 @@
-/* $Id: parent.c,v 1.42 2006-12-11 15:21:15 nicm Exp $ */
+/* $Id: parent.c,v 1.43 2006-12-12 12:16:55 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -129,7 +129,7 @@ parent(int fd, pid_t pid)
 
 #ifdef DEBUG
 	COUNTFDS("parent");
-	xmalloc_dump("parent");
+	xmalloc_report("parent");
 #endif
 
 	if (waitpid(pid, &status, 0) == -1)
@@ -283,7 +283,7 @@ parent_action(struct account *a, struct action *t, struct mail *m, uid_t uid)
 
 #ifdef DEBUG
 	COUNTFDS("deliver");
-	xmalloc_dump("deliver");
+	xmalloc_report("deliver");
 #endif
 
 	_exit(0);
