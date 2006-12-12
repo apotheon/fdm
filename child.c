@@ -1,4 +1,4 @@
-/* $Id: child.c,v 1.71 2006-12-12 12:16:55 nicm Exp $ */
+/* $Id: child.c,v 1.72 2006-12-12 16:11:21 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -506,6 +506,7 @@ do_action(struct rule *r, struct match_ctx *mctx, struct action *t)
 	}
 
 	/* figure out the users to use */
+	find = 0;
 	users = NULL;
 	if (r->find_uid) {		/* rule comes first */
 		find = 1;
