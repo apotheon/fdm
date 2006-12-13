@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.149 2006-12-13 19:10:48 nicm Exp $ */
+/* $Id: fdm.h,v 1.150 2006-12-13 19:34:37 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -1006,8 +1006,8 @@ void			 free_wrapped(struct mail *);
 	(((ch) >= 'a' && (ch) <= 'z') ? (ch) - 'a' :       	\
 	(((ch) >= 'A' && (ch) <= 'Z') ? 26 + (ch) - 'A' : 	\
 	(((ch) >= '0' && (ch) <= '9') ? 52 + (ch) - '0' : -1)))
-char 			*replacepmatch(char *, struct mail *,
-			     regmatch_t [NPMATCH]) ;
+char 			*replacepmatch(char *, struct account *, struct action *, char *,
+    			     struct mail *, regmatch_t [NPMATCH]) ;
 char			*replaceinfo(char *, struct account *, struct action *,
     			     char *);
 char 			*replace(char *, char *[REPL_LEN]);
