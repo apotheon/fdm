@@ -1,4 +1,4 @@
-/* $Id: replace.c,v 1.14 2006-11-24 18:56:22 nicm Exp $ */
+/* $Id: replace.c,v 1.15 2006-12-13 17:52:55 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -62,7 +62,8 @@ replaceinfo(char *src, struct account *a, struct action *t, char *s)
 
 	memset(map, 0, sizeof map);
 
-	map[REPL_IDX('a')] = a->name;
+	if (a != NULL)
+		map[REPL_IDX('a')] = a->name;
 	map[REPL_IDX('s')] = s;
 	map[REPL_IDX('h')] = conf.info.home;
 	map[REPL_IDX('n')] = conf.info.uid;
