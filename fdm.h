@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.147 2006-12-13 17:52:55 nicm Exp $ */
+/* $Id: fdm.h,v 1.148 2006-12-13 18:11:29 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -735,10 +735,9 @@ struct maildir_data {
 enum nntp_state {
 	NNTP_CONNECTING,
 	NNTP_GROUP,
-	NNTP_STAT,
+	NNTP_NEXT,
 	NNTP_ARTICLE,
 	NNTP_LINE,
-	NNTP_DONE,
 	NNTP_QUIT
 };
 
@@ -751,8 +750,6 @@ struct nntp_data {
 
 	enum nntp_state	 state;
 	char		*key;
-	u_int		 cur;
-	u_int		 last;
 
 	struct io	*io;
 };
