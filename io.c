@@ -1,4 +1,4 @@
-/* $Id: io.c,v 1.36 2006-11-28 17:52:30 nicm Exp $ */
+/* $Id: io.c,v 1.37 2006-12-14 16:16:23 nicm Exp $ */
 
 /*
  * Copyright (c) 2005 Nicholas Marriott <nicm__@ntlworld.com>
@@ -315,7 +315,7 @@ io_fill(struct io *io)
 
 		/* copy out the duplicate fd. errors are irrelevent for this */
 		if (io->dup_fd != -1) {
-			write(io->dup_fd, "< ", 3);
+			write(io->dup_fd, "< ", 2);
 			write(io->dup_fd, io->rbase + io->rsize, n);
 		}
 
@@ -388,7 +388,7 @@ io_push(struct io *io)
 
 		/* copy out the duplicate fd */
 		if (io->dup_fd != -1) {
-			write(io->dup_fd, "> ", 3);
+			write(io->dup_fd, "> ", 2);
 			write(io->dup_fd, io->wbase + io->woff, n);
 		}
 
