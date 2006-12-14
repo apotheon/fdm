@@ -1,5 +1,4 @@
-/* $Id: privsep.c,v 1.2 2006-11-18 18:32:13 nicm Exp $ */
-
+/* $Id: privsep.c,v 1.3 2006-12-14 10:34:38 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
