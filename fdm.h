@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.151 2006-12-13 20:34:41 nicm Exp $ */
+/* $Id: fdm.h,v 1.152 2006-12-14 10:15:49 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -719,12 +719,13 @@ enum nntp_state {
 /* Fetch nntp data. */
 struct nntp_data {
 	struct cache	*cache;
-	char		*group;
+	struct strings	*groups;
 	long long	 expiry;
 
 	struct server	 server;
 
 	enum nntp_state	 state;
+	u_int		 group;
 	char		*key;
 
 	struct io	*io;
@@ -942,7 +943,7 @@ void			 fill_info(const char *);
 /* cache.c */
 struct cache 		*cache_open(char *, char **);
 void			 cache_close(struct cache *);
-u_int			 cache_compact(struct cache *, long long);
+u_int			 cache_compact(struct cache *, long long, u_int *);
 void			 cache_add(struct cache *, char *);
 int			 cache_contains(struct cache *, char *);
 

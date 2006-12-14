@@ -1,6 +1,6 @@
 /* -*-C-*- */
 
-/* $Id: lex.l,v 1.67 2006-12-13 19:10:48 nicm Exp $ */
+/* $Id: lex.l,v 1.68 2006-12-14 10:15:49 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -125,6 +125,7 @@ flock return (LCKFLOCK);
 folder return (TOKFOLDER);
 from-headers return (TOKFROMHEADERS);
 group return (TOKGROUP);
+groups return (TOKGROUPS);
 header return (TOKHEADER);
 headers return (TOKHEADERS);
 imap return (TOKIMAP);

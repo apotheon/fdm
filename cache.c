@@ -1,4 +1,4 @@
-/* $Id: cache.c,v 1.3 2006-12-13 20:56:52 nicm Exp $ */
+/* $Id: cache.c,v 1.4 2006-12-14 10:15:49 nicm Exp $ */
 
 /*
  * Copyright (c) 2004 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -64,7 +64,7 @@ cache_close(struct cache *cc)
 }
 
 u_int
-cache_compact(struct cache *cc, long long age)
+cache_compact(struct cache *cc, long long age, u_int *total)
 {
 	struct cacheent *ce;
 	DBT		 key, data;
@@ -83,10 +83,15 @@ cache_compact(struct cache *cc, long long age)
 
 	ARRAY_INIT(&keys);
 	n = 0;
+	if (total != NULL)
+		*total = 0;
 
 	if ((error = cc->db->seq(cc->db, &key, &data, R_FIRST)) == -1)
 		fatal("db seq");
 	while (error == 0) {
+		if (total != NULL)
+			(*total)++;
+
 		if (data.size != sizeof *ce)
 			fatal("db corrupted");
 		ce = data.data;
