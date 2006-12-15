@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.154 2006-12-15 14:48:09 nicm Exp $ */
+/* $Id: fdm.h,v 1.155 2006-12-15 16:15:03 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -71,7 +71,7 @@ extern char	*__progname;
 	u_int	fd_i, fd_n;						\
 	fd_n = 0;							\
 	for (fd_i = 0; fd_i < NFDS; fd_i++) {				\
-		if (fcntl(fd_n, F_GETFL) != -1)				\
+		if (fcntl(fd_i, F_GETFL) != -1)				\
 			fd_n++;						\
 	}								\
 	log_debug2("%s: %u file descriptors in use", s, fd_n);		\
