@@ -62,7 +62,7 @@ Installing fdm is simple. Download the source tarball, and run:
 	$ make
 
 If using Linux, glibc doesn't come with a Berkeley DB implementation, so one
-must be installed. On Debian, the "libdb4.5-dev" and "libdb4.5" packages work.
+must be installed. On Debian, the "libdb4.3-dev" and "libdb4.3" packages work.
 Alternatively, source may be retrieved at:
 
 http://www.oracle.com/technology/software/products/berkeley-db/db/index.html
@@ -996,5 +996,5 @@ match "^List-Id:.*<full-disclosure\\.lists\\.grok\\.org\\.uk>" in headers
 	actions { "strip-full-disclosure" "full-disclosure" }
 
 ================================================================================
-$Id: MANUAL,v 1.19 2006-12-15 14:48:09 nicm Exp $
+$Id: MANUAL,v 1.20 2006-12-15 17:47:20 nicm Exp $
 
