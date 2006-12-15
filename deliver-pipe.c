@@ -1,4 +1,4 @@
-/* $Id: deliver-pipe.c,v 1.15 2006-11-30 14:58:54 nicm Exp $ */
+/* $Id: deliver-pipe.c,v 1.16 2006-12-15 10:03:11 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -40,7 +40,8 @@ pipe_deliver(struct deliver_ctx *dctx, struct action *t)
         FILE    	*f;
 	int	 	 error;
 
-	cmd = replaceinfo(t->data, a, t, m->s);
+	cmd = replacepmatch(t->data, a, t, m->s, m, dctx->pmatch_valid, 
+	    dctx->pmatch);
         if (cmd == NULL || *cmd == '\0') {
 		log_warnx("%s: empty command", a->name);
 		if (cmd != NULL)
