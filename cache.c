@@ -1,4 +1,4 @@
-/* $Id: cache.c,v 1.5 2006-12-15 14:48:09 nicm Exp $ */
+/* $Id: cache.c,v 1.6 2006-12-15 17:07:27 nicm Exp $ */
 
 /*
  * Copyright (c) 2004 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -18,6 +18,8 @@
 
 #include <sys/types.h>
 #include <sys/stat.h>
+
+#include <arpa/inet.h>
 
 #ifdef USE_DB_185_H
 #include <db_185.h>
