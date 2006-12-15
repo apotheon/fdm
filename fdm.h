@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.153 2006-12-15 10:03:11 nicm Exp $ */
+/* $Id: fdm.h,v 1.154 2006-12-15 14:48:09 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -28,9 +28,14 @@
 #include "compat/queue.h"
 #endif
 
+#ifdef USE_DB_185_H
+#include <db_185.h>
+#else
 #include <db.h>
+#endif
 #include <dirent.h>
 #include <stdarg.h>
+#include <stdint.h>
 #include <regex.h>
 
 #include <openssl/ssl.h>
@@ -393,7 +398,8 @@ struct rule {
 
 /* Cache entry. */
 struct cacheent {
-	uint64_t		 added;
+	uint32_t	added;
+	uint32_t	reserved;
 } __packed;
 
 /* Message-id cache. */
