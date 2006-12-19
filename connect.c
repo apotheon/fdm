@@ -1,4 +1,4 @@
-/* $Id: connect.c,v 1.37 2006-12-10 01:38:55 nicm Exp $ */
+/* $Id: connect.c,v 1.38 2006-12-19 10:32:40 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -18,6 +18,8 @@
 
 #include <sys/types.h>
 #include <sys/socket.h>
+
+#include <arpa/inet.h>
 
 #include <errno.h>
 #include <limits.h>
