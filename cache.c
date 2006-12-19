@@ -1,4 +1,4 @@
-/* $Id: cache.c,v 1.6 2006-12-15 17:07:27 nicm Exp $ */
+/* $Id: cache.c,v 1.7 2006-12-19 13:07:57 nicm Exp $ */
 
 /*
  * Copyright (c) 2004 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -99,7 +99,7 @@ cache_compact(struct cache *cc, long long age, u_int *total)
 			(*total)++;
 
 		if (data.size != sizeof *ce)
-			fatal("db corrupted");
+			fatalx("db corrupted");
 		ce = data.data;
 
 		if (ntohl(ce->added) < threshold) {
