@@ -1,6 +1,6 @@
 /* -*-C-*- */
 
-/* $Id: lex.l,v 1.68 2006-12-14 10:15:49 nicm Exp $ */
+/* $Id: lex.l,v 1.69 2006-12-21 10:29:24 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -152,7 +152,7 @@ port return (TOKPORT);
 proxy return (TOKPROXY);
 returns return (TOKRETURNS);
 rewrite return (TOKREWRITE);
-seconds return (TOKSECONDS);
+(second|seconds) return (TOKSECONDS);
 server return (TOKSERVER);
 set return (TOKSET);
 size return (TOKSIZE);
