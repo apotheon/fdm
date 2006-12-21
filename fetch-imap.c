@@ -1,4 +1,4 @@
-/* $Id: fetch-imap.c,v 1.29 2006-11-25 12:00:44 nicm Exp $ */
+/* $Id: fetch-imap.c,v 1.30 2006-12-21 10:38:19 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -44,6 +44,7 @@ int	 do_imap(struct account *, u_int *, struct mail *, int);
 #define IMAP_TAG_ERROR -3
 
 struct fetch	fetch_imap = { { "imap", "imaps" },
+			       NULL,
 			       imap_connect,
 			       imap_poll,
 			       imap_fetch,

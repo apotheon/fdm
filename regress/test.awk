@@ -1,4 +1,4 @@
-# $Id: test.awk,v 1.7 2006-12-01 15:14:13 nicm Exp $
+# $Id: test.awk,v 1.8 2006-12-21 10:38:19 nicm Exp $
 #
 # Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
 #
@@ -81,11 +81,11 @@ BEGIN {
 
 	do {
 		error = cmd | getline;
-		if (DEBUG != "") {
-			print ("\t" $0);
-		}
 		if (error == -1) {
 			break;
+		}
+		if (DEBUG != "") {
+			print ("\t" $0);
 		}
 		for (i = 0; i < nmatches; i++) {
 			if ($0 ~ matches[i]) {
