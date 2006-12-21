@@ -465,8 +465,7 @@ The cache is a file used to store the message-id's of previously downloaded and
 dropped articles - those matching a keep action will not be saved in the
 cache. If only one group is supplied in the account definition, %s tokens are
 replaced by the name of the group in the cache path. If multiple groups are
-provided, %s tokens are just removed. Note that the cache is opened or created
-when the configuration file is parsed. Entries in the cache are expired if they
+provided, %s tokens are just removed. Entries in the cache are expired if they
 are not used within the specified time. If no expiry time is given, the default
 of one month is used.
 
@@ -1038,5 +1037,5 @@ match "^List-Id:.*<full-disclosure\\.lists\\.grok\\.org\\.uk>" in headers
 	actions { "strip-full-disclosure" "full-disclosure" }
 
 ================================================================================
-$Id: MANUAL,v 1.24 2006-12-21 10:38:19 nicm Exp $
+$Id: MANUAL,v 1.25 2006-12-21 17:15:55 nicm Exp $
 
