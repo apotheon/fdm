@@ -1,4 +1,4 @@
-/* $Id: re.c,v 1.2 2006-12-10 12:00:38 nicm Exp $ */
+/* $Id: re.c,v 1.3 2006-12-21 10:00:23 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -18,7 +18,7 @@
 
 #include <sys/types.h>
 
-#include <fdm.h>
+#include "fdm.h"
 
 int
 re_compile(struct re *re, char *s, int flags, char **cause)
