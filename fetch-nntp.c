@@ -1,4 +1,4 @@
-/* $Id: fetch-nntp.c,v 1.10 2006-12-21 10:38:19 nicm Exp $ */
+/* $Id: fetch-nntp.c,v 1.11 2006-12-26 18:24:55 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -242,6 +242,7 @@ nntp_fetch(struct account *a, struct mail *m)
 				if (cache_contains(data->cache, data->key)) {
 					log_debug3("%s: found in cache: %s",
 					    a->name, data->key);
+					cache_update(data->cache, data->key);
 
 					xfree(data->key);
 					data->key = NULL;

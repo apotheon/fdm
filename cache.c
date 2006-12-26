@@ -1,4 +1,4 @@
-/* $Id: cache.c,v 1.8 2006-12-21 10:38:19 nicm Exp $ */
+/* $Id: cache.c,v 1.9 2006-12-26 18:24:55 nicm Exp $ */
 
 /*
  * Copyright (c) 2004 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -148,6 +148,12 @@ cache_add(struct cache *cc, char *item)
 		fatal("db put");
 
 	cc->db->sync(cc->db, 0);
+}
+
+void
+cache_update(struct cache *cc, char *item)
+{
+	cache_add(cc, item);
 }
 
 int

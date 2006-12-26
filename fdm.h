@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.156 2006-12-21 10:38:19 nicm Exp $ */
+/* $Id: fdm.h,v 1.157 2006-12-26 18:24:55 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -959,6 +959,7 @@ struct cache 		*cache_open(char *, char **);
 void			 cache_close(struct cache *);
 u_int			 cache_compact(struct cache *, long long, u_int *);
 void			 cache_add(struct cache *, char *);
+void			 cache_update(struct cache *, char *);
 int			 cache_contains(struct cache *, char *);
 
 /* re.c */
