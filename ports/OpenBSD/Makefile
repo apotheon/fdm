@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.9 2006-12-12 18:49:33 nicm Exp $
+# $Id: Makefile,v 1.10 2007-01-06 16:31:49 nicm Exp $
 
 COMMENT=	"fetches and delivers mail"
 
@@ -7,6 +7,7 @@ CATEGORIES=	mail
 
 MAINTAINER=     Nicholas Marriott <nicm@users.sourceforge.net>
 
+# BSD
 PERMIT_PACKAGE_CDROM=	Yes
 PERMIT_PACKAGE_FTP=	Yes
 PERMIT_DISTFILES_CDROM=	Yes
