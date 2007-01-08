@@ -1,4 +1,4 @@
-/* $Id: parent.c,v 1.45 2007-01-08 15:34:23 nicm Exp $ */
+/* $Id: parent.c,v 1.46 2007-01-08 16:48:46 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -22,7 +22,6 @@
 
 #include <fcntl.h>
 #include <paths.h>
-#include <signal.h>
 #include <string.h>
 #include <unistd.h>
 
@@ -44,7 +43,6 @@ parent(int fd, pid_t pid)
 	uid_t			 uid;
 	void			*buf;
 	size_t			 len;
-	sigset_t		 ss;
 
 #ifdef DEBUG
 	xmalloc_clear();
@@ -57,12 +55,6 @@ parent(int fd, pid_t pid)
 #ifndef NO_SETPROCTITLE
 	setproctitle("parent");
 #endif
-
-	sigemptyset(&ss);
-	sigaddset(&ss, SIGINT);
-	sigaddset(&ss, SIGTERM);
-	if (sigprocmask(SIG_BLOCK, &ss, NULL) != 0)
-		fatal("sigprocmask");
 
 	data = &msg.data;
 	m = &data->mail;
