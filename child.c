@@ -1,4 +1,4 @@
-/* $Id: child.c,v 1.76 2006-12-26 18:24:36 nicm Exp $ */
+/* $Id: child.c,v 1.77 2007-01-08 13:00:00 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -549,12 +549,18 @@ do_action(struct rule *r, struct match_ctx *mctx, struct action *t)
 	} else if (r->users != NULL) {
 		find = 0;
 		users = r->users;
-	} else if (t->find_uid) {
+	} else if (t->find_uid) {	/* then action */
 		find = 1;
 		users = find_users(m);
-	} else if (t->users != NULL) {	/* then action */
+	} else if (t->users != NULL) {
 		find = 0;
 		users = t->users;
+	} else if (a->find_uid) {	/* then account */
+		find = 1;
+		users = find_users(m);
+	} else if (a->users != NULL) {
+		find = 0;
+		users = a->users;
 	}
 	if (users == NULL) {
 		find = 1;
