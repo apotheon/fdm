@@ -1,4 +1,4 @@
-/* $Id: fetch-maildir.c,v 1.14 2006-12-21 10:38:19 nicm Exp $ */
+/* $Id: fetch-maildir.c,v 1.15 2007-01-09 18:05:33 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -206,7 +206,7 @@ restart:
 	} while (!S_ISREG(sb.st_mode));
 
 	log_debug2("%s: reading mail from: %s", a->name, data->entry);
-	if (sb.st_size == 0) {
+	if (sb.st_size <= 0) {
 		log_warnx("%s: %s: empty file", a->name, data->entry);
 		return (FETCH_ERROR);
 	}

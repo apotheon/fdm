@@ -1,4 +1,4 @@
-/* $Id: match-attachment.c,v 1.7 2006-12-11 15:21:15 nicm Exp $ */
+/* $Id: match-attachment.c,v 1.8 2007-01-09 18:05:33 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -71,11 +71,11 @@ attachment_match(struct match_ctx *mctx, struct expritem *ei)
 		case ATTACHOP_TOTALSIZE:
 			switch (data->cmp) {
 			case CMP_LT:
-				if (size < data->value.number)
+				if (size < data->value.size)
 					return (MATCH_TRUE);
 				return (MATCH_FALSE);
 			case CMP_GT:
-				if (size > data->value.number)
+				if (size > data->value.size)
 					return (MATCH_TRUE);
 				return (MATCH_FALSE);
 			default:
@@ -95,11 +95,11 @@ attachment_match(struct match_ctx *mctx, struct expritem *ei)
 			case ATTACHOP_ANYSIZE:
 				switch (data->cmp) {
 				case CMP_LT:
-					if (at->size < data->value.number)
+					if (at->size < data->value.size)
 						return (MATCH_TRUE);
 					break;
 				case CMP_GT:
-					if (at->size > data->value.number)
+					if (at->size > data->value.size)
 						return (MATCH_TRUE);
 					break;
 				default:

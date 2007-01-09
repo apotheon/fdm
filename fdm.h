@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.158 2007-01-08 13:00:00 nicm Exp $ */
+/* $Id: fdm.h,v 1.159 2007-01-09 18:05:33 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -659,12 +659,12 @@ struct attachment_data {
 		ATTACHOP_TOTALSIZE,
 		ATTACHOP_ANYSIZE,
 		ATTACHOP_ANYTYPE,
-		ATTACHOP_ANYNAME,
-		ATTACHOP_EXPRESSION /* XXX */
+		ATTACHOP_ANYNAME
 	} op;
 
 	enum cmp	 	 cmp;
 	union {
+		size_t		 size;
 		long long	 number;
 		char		*string;
 		struct re	 re;
