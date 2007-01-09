@@ -1,4 +1,4 @@
-/* $Id: connect.c,v 1.38 2006-12-19 10:32:40 nicm Exp $ */
+/* $Id: connect.c,v 1.39 2007-01-09 18:14:59 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -273,8 +273,8 @@ socks5proxy(struct server *srv, struct proxy *pr, struct io *io, char **cause)
 	*ptr++ = len;
 	memcpy(ptr, srv->host, len);
 	ptr += len;
-	*((u_int16_t *) ptr) = htons(port);
-	ptr += 2;
+	*ptr++ = (port >> 8) & 0xff;
+	*ptr++ = port & 0xff;
 	io_write(io, buf, ptr - buf);
 
 	/* connect response */
