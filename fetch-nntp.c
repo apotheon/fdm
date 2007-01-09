@@ -1,4 +1,4 @@
-/* $Id: fetch-nntp.c,v 1.11 2006-12-26 18:24:55 nicm Exp $ */
+/* $Id: fetch-nntp.c,v 1.12 2007-01-09 18:17:01 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -223,6 +223,7 @@ nntp_fetch(struct account *a, struct mail *m)
 					goto error;
 
 				ptr = strchr(line, '<');
+				ptr2 = NULL;
 				if (ptr != NULL)
 					ptr2 = strchr(ptr, '>');
 				if (ptr == NULL || ptr2 == NULL) {
