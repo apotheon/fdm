@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.79 2007-01-09 17:07:20 nicm Exp $
+# $Id: Makefile,v 1.80 2007-01-09 19:08:06 nicm Exp $
 
 .SUFFIXES: .c .o .y .l .h
 .PHONY: clean update-index.html upload-index.html lint regress yannotate
@@ -28,7 +28,7 @@ CFLAGS+= -DBUILD="\"$(VERSION) ($(DATE))\""
 .ifdef PROFILE
 CFLAGS+= -pg
 .endif
-CFLAGS+= -g -ggdb -DDEBUG
+#CFLAGS+= -g -ggdb -DDEBUG
 #CFLAGS+= -pedantic -std=c99
 #CFLAGS+= -Wredundant-decls  -Wdisabled-optimization -Wendif-label
 CFLAGS+= -Wno-long-long -Wall -W -Wnested-externs -Wformat=2
