@@ -1,4 +1,4 @@
-/* $Id: fetch-maildir.c,v 1.15 2007-01-09 18:05:33 nicm Exp $ */
+/* $Id: fetch-maildir.c,v 1.16 2007-01-09 18:24:00 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -210,7 +210,7 @@ restart:
 		log_warnx("%s: %s: empty file", a->name, data->entry);
 		return (FETCH_ERROR);
 	}
-	if (sb.st_size > conf.max_size)
+	if (sb.st_size > SIZE_MAX || sb.st_size > conf.max_size)
 		return (FETCH_OVERSIZE);
 
 	if ((fd = open(data->entry, O_RDONLY, 0)) < 0) {
