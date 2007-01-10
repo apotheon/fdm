@@ -1,7 +1,7 @@
-/* $Id: cache.c,v 1.10 2007-01-09 18:31:42 nicm Exp $ */
+/* $Id: cache.c,v 1.11 2007-01-10 16:39:35 nicm Exp $ */
 
 /*
- * Copyright (c) 2004 Nicholas Marriott <nicm@users.sourceforge.net>
+ * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
  *
  * Permission to use, copy, modify, and distribute this software for any
  * purpose with or without fee is hereby granted, provided that the above
