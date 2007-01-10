@@ -1,4 +1,4 @@
-/* $Id: parse.y,v 1.122 2007-01-09 18:05:33 nicm Exp $ */
+/* $Id: parse.y,v 1.123 2007-01-10 17:47:14 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -81,7 +81,7 @@ int
 yywrap(void)
 {
 	struct macro		*macro;
-	struct fileent	*top;
+	struct fileent		*top;
 	char			*file;
 
 	file = curfile == NULL ? conf.conf_file : curfile;
@@ -427,7 +427,7 @@ include: TOKINCLUDE strv
 /**      [$2: strv (char *)] */
 	 {
 		 char			*path;
-		 struct fileent	*top;
+		 struct fileent		*top;
 
 		 if (*$2 == '\0')
 			 yyerror("invalid include file");
