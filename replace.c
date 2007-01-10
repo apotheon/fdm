@@ -1,4 +1,4 @@
-/* $Id: replace.c,v 1.19 2006-12-15 10:03:12 nicm Exp $ */
+/* $Id: replace.c,v 1.20 2007-01-10 17:50:07 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -104,7 +104,7 @@ char *
 replaceinfo(char *src, struct account *a, struct action *t, char *s)
 {
 	char		*map[REPL_LEN];
-	    
+
 	memset(map, 0, REPL_LEN * sizeof (char *));
 	initmap(map, a, t, s);
 

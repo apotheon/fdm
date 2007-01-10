@@ -1,4 +1,4 @@
-/* $Id: deliver-rewrite.c,v 1.27 2006-12-15 10:03:11 nicm Exp $ */
+/* $Id: deliver-rewrite.c,v 1.28 2007-01-10 17:50:07 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -45,7 +45,7 @@ rewrite_deliver(struct deliver_ctx *dctx, struct action *t)
 	int	 	 status;
 	struct cmd	*cmd;
 
-	s = replacepmatch(t->data, a, t, m->s, m, dctx->pmatch_valid, 
+	s = replacepmatch(t->data, a, t, m->s, m, dctx->pmatch_valid,
 	    dctx->pmatch);
         if (s == NULL || *s == '\0') {
 		log_warnx("%s: empty command", a->name);

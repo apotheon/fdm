@@ -1,4 +1,4 @@
-/* $Id: xmalloc.c,v 1.29 2006-12-13 17:52:55 nicm Exp $ */
+/* $Id: xmalloc.c,v 1.30 2007-01-10 17:50:07 nicm Exp $ */
 
 /*
  * Copyright (c) 2004 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -43,8 +43,8 @@ ensure_for(void *buf, size_t *len, size_t now, size_t nmemb, size_t size)
 	if (*len == 0) {
 		*len = BUFSIZ;
 		buf = xmalloc(*len);
-	} 
-	
+	}
+
 	while (*len <= now) {
 		buf = xrealloc(buf, 2, *len);
 		*len *= 2;
@@ -64,7 +64,7 @@ ensure_size(void *buf, size_t *len, size_t nmemb, size_t size)
 	if (*len == 0) {
 		*len = BUFSIZ;
 		buf = xmalloc(*len);
-	} 
+	}
 
 	while (*len <= nmemb * size) {
 		buf = xrealloc(buf, 2, *len);

@@ -1,4 +1,4 @@
-/* $Id: deliver-mbox.c,v 1.28 2006-12-18 18:53:48 nicm Exp $ */
+/* $Id: deliver-mbox.c,v 1.29 2007-01-10 17:50:07 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -44,7 +44,7 @@ mbox_deliver(struct deliver_ctx *dctx, struct action *t)
 	int	 	 fd = -1, res = DELIVER_FAILURE;
 	struct stat	 sb;
 
-	path = replacepmatch(t->data, a, t, m->s, m, dctx->pmatch_valid, 
+	path = replacepmatch(t->data, a, t, m->s, m, dctx->pmatch_valid,
 	    dctx->pmatch);
 	if (path == NULL || *path == '\0') {
 		log_warnx("%s: empty path", a->name);

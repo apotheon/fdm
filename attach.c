@@ -1,4 +1,4 @@
-/* $Id: attach.c,v 1.7 2006-12-11 11:23:53 nicm Exp $ */
+/* $Id: attach.c,v 1.8 2007-01-10 17:50:07 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -94,7 +94,7 @@ void
 attach_free(struct attach *atr)
 {
 	struct attach	*at;
-	
+
 	while (!TAILQ_EMPTY(&atr->children)) {
 		at = TAILQ_FIRST(&atr->children);
 		TAILQ_REMOVE(&atr->children, at, entry);

@@ -1,4 +1,4 @@
-/* $Id: parse.y,v 1.123 2007-01-10 17:47:14 nicm Exp $ */
+/* $Id: parse.y,v 1.124 2007-01-10 17:50:07 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -1514,7 +1514,7 @@ expritem: not icase strv area
 		  if ($5 > SIZE_MAX)
 			  yyerror("size too large");
 #endif
-	  
+
 		  $$ = xcalloc(1, sizeof *$$);
 
 		  $$->match = &match_attachment;

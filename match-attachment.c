@@ -1,4 +1,4 @@
-/* $Id: match-attachment.c,v 1.8 2007-01-09 18:05:33 nicm Exp $ */
+/* $Id: match-attachment.c,v 1.9 2007-01-10 17:50:07 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -88,7 +88,7 @@ attachment_match(struct match_ctx *mctx, struct expritem *ei)
 		/* if no attachments, none of these conditions are true */
 		if (m->attach == NULL)
 			return (MATCH_FALSE);
-		
+
 		at = m->attach;
 		while (at != NULL) {
 			switch (data->op) {
@@ -126,7 +126,7 @@ attachment_match(struct match_ctx *mctx, struct expritem *ei)
 
 			at = attach_visit(at, NULL);
 		}
-		
+
 		return (MATCH_FALSE);
 	}
 }

@@ -1,4 +1,4 @@
-/* $Id: fetch-nntp.c,v 1.12 2007-01-09 18:17:01 nicm Exp $ */
+/* $Id: fetch-nntp.c,v 1.13 2007-01-10 17:50:07 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -370,7 +370,7 @@ nntp_desc(struct account *a)
 
 	groups = fmt_strings("groups ", data->groups);
 	xasprintf(&s, "nntp server \"%s\" port %s %s cache \"%s\" expiry %lld "
-	    "seconds", data->server.host, data->server.port, groups, 
+	    "seconds", data->server.host, data->server.port, groups,
 	    data->path, data->expiry);
 	xfree(groups);
 	return (s);
