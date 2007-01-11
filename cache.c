@@ -1,4 +1,4 @@
-/* $Id: cache.c,v 1.12 2007-01-10 17:50:07 nicm Exp $ */
+/* $Id: cache.c,v 1.13 2007-01-11 21:02:48 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -60,6 +60,7 @@ cache_open(char *path, char **cause)
 
 	return (cc);
 }
+
 void
 cache_close(struct cache *cc)
 {
