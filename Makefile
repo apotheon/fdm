@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.81 2007-01-11 20:53:59 nicm Exp $
+# $Id: Makefile,v 1.82 2007-01-11 22:01:57 nicm Exp $
 
 .SUFFIXES: .c .o .y .l .h
 .PHONY: clean update-index.html upload-index.html lint regress yannotate
@@ -64,7 +64,7 @@ LIBS= -lcrypto -lssl
 
 OBJS= ${SRCS:S/.c/.o/:S/.y/.o/:S/.l/.o/}
 
-DISTFILES= *.[chyl] Makefile GNUmakefile *.[1-9] README MANUAL \
+DISTFILES= *.[chyl] Makefile GNUmakefile *.[1-9] README MANUAL fdm-sanitize \
 	`find examples regress compat -type f -and ! -path '*CVS*'`
 
 CLEANFILES= ${PROG} *.o compat/*.o y.tab.c lex.yy.c y.tab.h .depend \
