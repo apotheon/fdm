@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.159 2007-01-09 18:05:33 nicm Exp $ */
+/* $Id: fdm.h,v 1.160 2007-01-15 15:33:07 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -950,8 +950,7 @@ extern struct macros	 macros;
 struct strings 		*weed_strings(struct strings *);
 char 			*fmt_strings(const char *, struct strings *);
 struct macro		*find_macro(char *);
-struct action  		*find_action(char *);
-struct actions		*find_actions(char *);
+struct actions		*match_actions(char *);
 
 /* fdm.c */
 int			 dropto(uid_t);
