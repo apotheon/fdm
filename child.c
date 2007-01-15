@@ -1,4 +1,4 @@
-/* $Id: child.c,v 1.80 2007-01-15 15:33:07 nicm Exp $ */
+/* $Id: child.c,v 1.81 2007-01-15 15:35:55 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -368,9 +368,7 @@ do_rules(struct match_ctx *mctx, struct rules *rules, const char **cause)
 		if (!ARRAY_EMPTY(aa)) {
 			for (i = 0; i < ARRAY_LENGTH(aa); i++) {
 				name = ARRAY_ITEM(aa, i, char *);
-				/* match the rule account list against the
-				   current account name */
-				if (name_match(a->name, name))
+				if (name_match(name, a->name))
 					break;
 			}
 			if (i == ARRAY_LENGTH(aa))
