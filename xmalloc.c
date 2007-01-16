@@ -1,4 +1,4 @@
-/* $Id: xmalloc.c,v 1.31 2007-01-16 17:19:13 nicm Exp $ */
+/* $Id: xmalloc.c,v 1.32 2007-01-16 17:21:44 nicm Exp $ */
 
 /*
  * Copyright (c) 2004 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -35,7 +35,7 @@ ensure_for(void *buf, size_t *len, size_t size, size_t adj)
 		fatalx("ensure_for: zero adj");
 
 	if (SIZE_MAX - size < adj)
-		fatalx("ensure_for: SIZE_MAX - size < adj");
+		fatalx("ensure_for: size + adj > SIZE_MAX");
 	size += adj;
 
 	if (*len == 0) {
