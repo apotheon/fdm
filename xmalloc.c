@@ -1,4 +1,4 @@
-/* $Id: xmalloc.c,v 1.30 2007-01-10 17:50:07 nicm Exp $ */
+/* $Id: xmalloc.c,v 1.31 2007-01-16 17:19:13 nicm Exp $ */
 
 /*
  * Copyright (c) 2004 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -29,23 +29,21 @@
 #include "fdm.h"
 
 void *
-ensure_for(void *buf, size_t *len, size_t now, size_t nmemb, size_t size)
+ensure_for(void *buf, size_t *len, size_t size, size_t adj)
 {
-	if (nmemb == 0 || size == 0)
-		fatalx("ensure_for: zero size");
-	if (SIZE_MAX / nmemb < size)
-		fatalx("ensure_for: nmemb * size > SIZE_MAX");
+	if (adj == 0)
+		fatalx("ensure_for: zero adj");
 
-	if (SIZE_MAX - now < nmemb * size)
-		fatalx("ensure_for: SIZE_MAX - now < nmemb * size");
-	now += nmemb * size;
+	if (SIZE_MAX - size < adj)
+		fatalx("ensure_for: SIZE_MAX - size < adj");
+	size += adj;
 
 	if (*len == 0) {
 		*len = BUFSIZ;
 		buf = xmalloc(*len);
 	}
 
-	while (*len <= now) {
+	while (*len <= size) {
 		buf = xrealloc(buf, 2, *len);
 		*len *= 2;
 	}
