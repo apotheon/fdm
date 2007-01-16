@@ -1,4 +1,4 @@
-/* $Id: deliver-smtp.c,v 1.27 2006-12-09 20:43:56 nicm Exp $ */
+/* $Id: deliver-smtp.c,v 1.28 2007-01-16 13:32:27 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -142,6 +142,7 @@ smtp_deliver(struct deliver_ctx *dctx, struct action *t)
 				}
 				state = SMTP_DONE;
 				io_writeline(io, ".");
+				io_flush(io, NULL);
 				break;
 			case SMTP_DONE:
 				if (code != 250)
