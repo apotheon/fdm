@@ -1,4 +1,4 @@
-/* $Id: mail.c,v 1.56 2006-12-11 16:34:16 nicm Exp $ */
+/* $Id: mail.c,v 1.57 2007-01-16 17:27:08 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -394,13 +394,13 @@ fill_wrapped(struct mail *m)
 {
 	char		*ptr;
 	size_t	 	 off, end, size;
-	u_int		 p;
+	u_int		 pos;
 
 	if (m->wrapped != NULL)
 		fatalx("fill_wrapped: wrapped mail");
 
 	size = 128 * sizeof (size_t);
-	p = 0;
+	pos = 0;
 	m->wrapped = xmalloc(size);
 
 	end = m->body == -1 ? m->size : (size_t) m->body;
@@ -419,18 +419,18 @@ fill_wrapped(struct mail *m)
 			continue;
 
 		/* save the position */
-		ENSURE_FOR2(m->wrapped, size, p, 2, sizeof (size_t));
-		m->wrapped[p] = off - 1;
-		p++;
-		m->wrapped[p] = 0;
+		ENSURE_SIZE2(m->wrapped, size, pos + 2, sizeof (size_t));
+		m->wrapped[pos] = off - 1;
+		pos++;
+		m->wrapped[pos]= 0;
 	}
 
-	if (p == 0) {
+	if (pos == 0) {
 		xfree(m->wrapped);
 		m->wrapped = NULL;
 	}
 
-	return (p);
+	return (pos);
 }
 
 void
