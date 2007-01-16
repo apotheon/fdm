@@ -1,4 +1,4 @@
-/* $Id: fetch-maildir.c,v 1.17 2007-01-16 23:09:41 nicm Exp $ */
+/* $Id: fetch-maildir.c,v 1.18 2007-01-16 23:12:56 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -78,7 +78,6 @@ maildir_makepaths(struct account *a)
 			log_warn("%s: glob(\"%s\")", a->name, s);
 			goto error;
 		}
-		xfree(s);
 
 		for (j = 0; j < g.gl_pathc; j++) {
 			xasprintf(&path, "%s/cur", g.gl_pathv[i]);
@@ -105,6 +104,8 @@ maildir_makepaths(struct account *a)
 				goto error;
 			}
 		}
+
+		xfree(s);
 	}
 
 	return (0);
