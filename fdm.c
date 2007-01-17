@@ -1,4 +1,4 @@
-/* $Id: fdm.c,v 1.87 2007-01-17 20:47:16 nicm Exp $ */
+/* $Id: fdm.c,v 1.88 2007-01-17 21:18:22 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -473,6 +473,8 @@ main(int argc, char **argv)
 
 	/* set up signal handlers */
 	sigemptyset(&act.sa_mask);
+	sigaddset(&act.sa_mask, SIGINT);
+	sigaddset(&act.sa_mask, SIGTERM);
 	act.sa_flags = SA_RESTART;
 
 	act.sa_handler = SIG_IGN;
