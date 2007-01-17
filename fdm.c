@@ -1,4 +1,4 @@
-/* $Id: fdm.c,v 1.88 2007-01-17 21:18:22 nicm Exp $ */
+/* $Id: fdm.c,v 1.89 2007-01-17 22:15:25 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -206,9 +206,11 @@ use_account(struct account *a, char **cause)
 		return (0);
 	}
 
-	/* if the account is disabled and no accounts are specified
-	   on the command line (whether or not it is included if there
-	   are is already confirmed), then skip it */
+	/* 
+	 * If the account is disabled and no accounts are specified
+	 * on the command line (whether or not it is included if there
+	 * are is already confirmed), then skip it.
+	 */
 	if (a->disabled && ARRAY_EMPTY(&conf.incl)) {
 		if (cause != NULL)
 			xasprintf(cause, "account %s is disabled", a->name);
