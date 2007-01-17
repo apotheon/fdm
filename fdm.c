@@ -1,4 +1,4 @@
-/* $Id: fdm.c,v 1.89 2007-01-17 22:15:25 nicm Exp $ */
+/* $Id: fdm.c,v 1.90 2007-01-17 22:24:35 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -231,7 +231,7 @@ usage(void)
 int
 main(int argc, char **argv)
 {
-        int		 opt, fds[2], lockfd, status, errors, rc;
+        int		 opt, fds[2], lockfd, status, errors, res;
 	u_int		 i;
 	enum fdmop       op = FDMOP_NONE;
 	const char	*errstr;
@@ -552,7 +552,7 @@ main(int argc, char **argv)
 			}
 			close(fds[0]);
 
-			rc = do_child(fds[1], op, a);
+			res = do_child(fds[1], op, a);
 #ifdef PROFILE
 			/*
 			 * We want to use _exit rather than exit in the child
@@ -565,7 +565,7 @@ main(int argc, char **argv)
 			extern void _mcleanup(void); 
 			_mcleanup();
 #endif
-			_exit(rc);
+			_exit(res);
 		}
 
 		log_debug("parent: child %ld (%s) started", (long) pid,
