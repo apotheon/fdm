@@ -1,4 +1,4 @@
-/* $Id: fetch-nntp.c,v 1.14 2007-01-17 23:04:50 nicm Exp $ */
+/* $Id: fetch-nntp.c,v 1.15 2007-01-17 23:06:19 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -162,7 +162,7 @@ nntp_fetch(struct account *a, struct mail *m)
 	do {
 		switch (io_pollline2(data->io, &line, &lbuf, &llen, &cause)) {
 		case 0:
-			cause = xstrdup("connect unexpectedly closed");
+			cause = xstrdup("connection unexpectedly closed");
 			break;
 		case -1:
 			goto error;
