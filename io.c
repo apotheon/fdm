@@ -1,4 +1,4 @@
-/* $Id: io.c,v 1.38 2007-01-16 13:32:27 nicm Exp $ */
+/* $Id: io.c,v 1.39 2007-01-17 19:55:24 nicm Exp $ */
 
 /*
  * Copyright (c) 2005 Nicholas Marriott <nicm__@ntlworld.com>
@@ -156,6 +156,7 @@ io_polln(struct io **ios, u_int n, struct io **rio, char **cause)
 	/* do the poll */
 	error = poll(pfds, n, INFTIM);
 	if (error == 0 || error == -1) {
+		xfree(pfds);
 		*rio = NULL;
 		if (errno == EINTR)
 			return (1);
