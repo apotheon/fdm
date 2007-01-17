@@ -1,4 +1,4 @@
-/* $Id: fdm.c,v 1.86 2007-01-17 19:37:52 nicm Exp $ */
+/* $Id: fdm.c,v 1.87 2007-01-17 20:47:16 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -684,7 +684,12 @@ main(int argc, char **argv)
 		for (i = 0; i < ARRAY_LENGTH(&children); i++) {
 			child = ARRAY_ITEM(&children, i,struct child *);
 			kill(child->pid, SIGTERM);
+
+			io_close(child->io);
+			io_free(child->io);
+			xfree(child);
 		}
+		ARRAY_FREE(&children);
 
 		/* and wait for them */
 		for (;;) {
