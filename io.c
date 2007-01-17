@@ -1,4 +1,4 @@
-/* $Id: io.c,v 1.40 2007-01-17 23:04:50 nicm Exp $ */
+/* $Id: io.c,v 1.41 2007-01-17 23:20:05 nicm Exp $ */
 
 /*
  * Copyright (c) 2005 Nicholas Marriott <nicm__@ntlworld.com>
@@ -650,15 +650,14 @@ io_pollline(struct io *io, char **line, char **cause)
 	return (res);
 }
 
-/* Poll until a line is received. */
+/* Poll until a line is received, using a user buffer. */
 int
-io_pollline2(struct io *io, char **line, char **lbuf, size_t *llen,
-    char **cause)
+io_pollline2(struct io *io, char **line, char **buf, size_t *len, char **cause)
 {
 	int	res;
 
 	for (;;) {
-		*line = io_readline2(io, lbuf, llen);
+		*line = io_readline2(io, buf, len);
 		if (*line != NULL)
 			return (1);
 		
