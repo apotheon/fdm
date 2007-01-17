@@ -1,4 +1,4 @@
-/* $Id: privsep.c,v 1.3 2006-12-14 10:34:38 nicm Exp $ */
+/* $Id: privsep.c,v 1.4 2007-01-17 19:37:52 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -39,6 +39,12 @@ privsep_send(struct io *io, struct msg *msg, void *buf, size_t len)
 	}
 
 	return (0);
+}
+
+int
+privsep_check(struct io *io)
+{
+	return (IO_RDSIZE(io) >= sizeof (struct msg));
 }
 
 int
