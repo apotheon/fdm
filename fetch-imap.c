@@ -1,4 +1,4 @@
-/* $Id: fetch-imap.c,v 1.30 2006-12-21 10:38:19 nicm Exp $ */
+/* $Id: fetch-imap.c,v 1.31 2007-01-17 21:53:07 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -430,9 +430,11 @@ imap_keep(struct account *a)
 
 	data->state = IMAP_DONE;
 
-	/* we don't need to /do/ anything here, but we need to poke the IMAP
-	   server so the response in the IMAP_DONE state is a) there and
-	   b) valid */
+	/*
+	 * We don't need to /do/ anything here, but we need to poke the IMAP
+	 * server so the response in the IMAP_DONE state is a) there and
+	 * b) valid.
+	 */
 	io_writeline(data->io, "%u NOOP", ++data->tag);
 
 	return (0);
