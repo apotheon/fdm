@@ -1,4 +1,4 @@
-/* $Id: fetch-maildir.c,v 1.20 2007-01-16 23:18:22 nicm Exp $ */
+/* $Id: fetch-maildir.c,v 1.21 2007-01-17 19:36:26 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -59,8 +59,7 @@ maildir_makepaths(struct account *a)
 {
 	struct maildir_data	*data = a->data;
 	char			*s, *path;
-	u_int			 i;
-	int			 j;
+	u_int			 i, j;
 	glob_t			 g;
 	struct stat		 sb;
 
@@ -79,7 +78,9 @@ maildir_makepaths(struct account *a)
 			goto error;
 		}
 
-		for (j = 0; j < g.gl_pathc; j++) {
+		if (g.gl_pathc < 1)
+			fatalx("negative or zero number of paths");
+		for (j = 0; j < (u_int) g.gl_pathc; j++) {
 			xasprintf(&path, "%s/cur", g.gl_pathv[j]);
 			ARRAY_ADD(data->paths, path, char *);
 			if (stat(path, &sb) != 0) {
