@@ -1,4 +1,4 @@
-/* $Id: connect.c,v 1.40 2007-01-09 18:35:00 nicm Exp $ */
+/* $Id: connect.c,v 1.41 2007-01-17 23:16:01 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -358,31 +358,24 @@ httpproxy(struct server *srv, struct proxy *pr, struct io *io, char **cause)
 
 	header = 0;
 	for (;;) {
-		if (io_poll(io, cause) != 1)
+		if (io_pollline(io, &line, cause) != 1)
 			return (1);
 
-		for (;;) {
-			line = io_readline(io);
-			if (line == NULL)
-				break;
-
-			if (header == 0) {
-				if (strlen(line) < 12 ||
-				    strncmp(line, "HTTP/", 5) != 0 ||
-				    strncmp(line + 8, " 200", 4) != 0) {
-					xfree(line);
-					xasprintf(cause, "unexpected data: %s",
-					    line);
-					return (1);
-				}
-				header = 1;
-			} else {
-				if (*line == '\0')
-					return (0);
+		if (header == 0) {
+			if (strlen(line) < 12 || 
+			    strncmp(line, "HTTP/", 5) != 0 ||
+			    strncmp(line + 8, " 200", 4) != 0) {
+				xfree(line);
+				xasprintf(cause, "unexpected data: %s", line);
+				return (1);
 			}
-
-			xfree(line);
+			header = 1;
+		} else {
+			if (*line == '\0')
+				return (0);
 		}
+		
+		xfree(line);
 	}
 }
 #endif /* NO_PROXY */
