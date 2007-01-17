@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.163 2007-01-17 19:37:52 nicm Exp $ */
+/* $Id: fdm.h,v 1.164 2007-01-17 22:17:40 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -321,8 +321,6 @@ ARRAY_DECL(children, struct child *);
 /* Account entry. */
 struct account {
 	char			 name[MAXNAMESIZE];
-
-	int			 error;
 
 	struct strings		*users;
 	int			 find_uid;
