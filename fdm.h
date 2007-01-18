@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.166 2007-01-18 16:05:34 nicm Exp $ */
+/* $Id: fdm.h,v 1.167 2007-01-18 17:05:26 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -308,8 +308,6 @@ struct re {
 
 /* A single child. */
 struct child {
-	int		 broken;
-
 	pid_t		 pid;
 	struct io	*io;
 	struct account	*account;

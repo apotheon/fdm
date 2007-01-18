@@ -1,4 +1,4 @@
-/* $Id: parent.c,v 1.48 2007-01-18 16:05:38 nicm Exp $ */
+/* $Id: parent.c,v 1.49 2007-01-18 17:05:26 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -69,6 +69,7 @@ do_parent(struct child *child)
 		
 		error = parent_action(data->action, &dctx, uid);
 		
+		memset(&msg, 0, sizeof msg);
 		msg.type = MSG_DONE;
 		msg.data.error = error;
 		mail_send(&m, &msg);
@@ -92,10 +93,10 @@ do_parent(struct child *child)
 		memcpy(&mctx.pmatch, &msg.data.pmatch, sizeof mctx.pmatch);
 		
 		error = parent_command(&mctx, data->cmddata, uid);
-		
+
+		memset(&msg, 0, sizeof msg);		
 		msg.type = MSG_DONE;
 		msg.data.error = error;
-		/* msg.data.mail is already m */
 		if (privsep_send(child->io, &msg, NULL, 0) != 0)
 			fatalx("parent: privsep_send error");
 		
