@@ -1,4 +1,4 @@
-/* $Id: match-command.c,v 1.16 2006-12-15 10:03:12 nicm Exp $ */
+/* $Id: match-command.c,v 1.17 2007-01-18 16:05:38 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -43,9 +43,12 @@ command_match(struct match_ctx *mctx, struct expritem *ei)
 	msg.data.account = a;
 	msg.data.cmddata = data;
 	msg.data.uid = data->uid;
+
 	msg.data.pmatch_valid = mctx->pmatch_valid;
 	memcpy(&msg.data.pmatch, mctx->pmatch, sizeof msg.data.pmatch);
-	copy_mail(m, &msg.data.mail);
+
+	mail_send(m, &msg);
+
 	slen = m->s != NULL ? strlen(m->s) : 0;
 	if (privsep_send(io, &msg, m->s, slen) != 0)
 		fatalx("child: privsep_send error");

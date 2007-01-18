@@ -1,4 +1,4 @@
-/* $Id: fetch-nntp.c,v 1.15 2007-01-17 23:06:19 nicm Exp $ */
+/* $Id: fetch-nntp.c,v 1.16 2007-01-18 16:05:37 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -249,7 +249,7 @@ nntp_fetch(struct account *a, struct mail *m)
 			log_debug2("%s: new: %s", a->name, data->key);
 
 			off = lines = 0;
-			init_mail(m, IO_BLOCKSIZE);
+			mail_open(m, IO_BLOCKSIZE);
 
 			data->state = NNTP_ARTICLE;
 			io_writeline(data->io, "ARTICLE");

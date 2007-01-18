@@ -1,4 +1,4 @@
-/* $Id: fetch-pop3.c,v 1.35 2007-01-17 23:06:19 nicm Exp $ */
+/* $Id: fetch-pop3.c,v 1.36 2007-01-18 16:05:38 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -194,7 +194,7 @@ do_pop3(struct account *a, u_int *n, struct mail *m, int is_poll)
 			}
 			
 			off = lines = 0;
-			init_mail(m, IO_ROUND(size));
+			mail_open(m, IO_ROUND(size));
 			
 			data->state = POP3_RETR;
 			io_writeline(data->io, "RETR %u", data->cur);

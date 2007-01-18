@@ -1,4 +1,4 @@
-/* $Id: fetch-imap.c,v 1.33 2007-01-17 23:06:19 nicm Exp $ */
+/* $Id: fetch-imap.c,v 1.34 2007-01-18 16:05:34 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -291,7 +291,7 @@ do_imap(struct account *a, u_int *n, struct mail *m, int is_poll)
 				flushing = 1;
 			
 			off = lines = 0;
-			init_mail(m, IO_ROUND(size));
+			mail_open(m, IO_ROUND(size));
 			
 			data->state = IMAP_LINE;
 			break;
