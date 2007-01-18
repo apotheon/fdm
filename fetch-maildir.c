@@ -1,4 +1,4 @@
-/* $Id: fetch-maildir.c,v 1.22 2007-01-18 16:05:34 nicm Exp $ */
+/* $Id: fetch-maildir.c,v 1.23 2007-01-18 22:45:26 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -46,10 +46,12 @@ struct fetch	 fetch_maildir = { { NULL, NULL },
 				   maildir_connect,
 				   maildir_poll,
 				   maildir_fetch,
+				   NULL,
 				   maildir_delete,
 				   NULL,
 				   NULL,
 				   maildir_disconnect,
+				   NULL,
 				   maildir_desc2
 };
 

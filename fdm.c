@@ -1,4 +1,4 @@
-/* $Id: fdm.c,v 1.93 2007-01-18 17:15:57 nicm Exp $ */
+/* $Id: fdm.c,v 1.94 2007-01-18 22:45:26 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -260,6 +260,7 @@ main(int argc, char **argv)
 	conf.max_size = DEFMAILSIZE;
 	conf.lock_types = LOCK_FLOCK;
 	conf.impl_act = DECISION_NONE;
+	conf.purge_after = 0;
 
 	log_init(1);
 
