@@ -1,4 +1,4 @@
-/* $Id: fdm.c,v 1.92 2007-01-18 17:05:26 nicm Exp $ */
+/* $Id: fdm.c,v 1.93 2007-01-18 17:15:57 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -619,7 +619,7 @@ main(int argc, char **argv)
 			/* child has said it is ready to exit, tell it to */
 			memset(&msg, 0, sizeof msg);
 			msg.type = MSG_EXIT;
-			if (privsep_send(io, &msg, NULL, 0) != 0)
+			if (privsep_send(child->io, &msg, NULL, 0) != 0)
 				fatalx("child: privsep_send error");		
 
 			/* wait for the child  */
