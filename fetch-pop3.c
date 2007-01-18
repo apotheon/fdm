@@ -1,4 +1,4 @@
-/* $Id: fetch-pop3.c,v 1.38 2007-01-18 22:45:26 nicm Exp $ */
+/* $Id: fetch-pop3.c,v 1.39 2007-01-18 23:41:02 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -159,6 +159,12 @@ pop3_connect(struct account *a)
 	return (0);
 
 error:
+	io_writeline(data->io, "QUIT");
+	io_flush(data->io, NULL);
+
+	io_close(data->io);
+	io_free(data->io);
+
 	xfree(lbuf);
 	return (1);
 }
