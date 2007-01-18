@@ -1,4 +1,4 @@
-/* $Id: fetch-imap.c,v 1.35 2007-01-18 16:46:01 nicm Exp $ */
+/* $Id: fetch-imap.c,v 1.36 2007-01-18 20:18:59 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -350,14 +350,27 @@ do_imap(struct account *a, u_int *n, struct mail *m, int is_poll)
 
 			data->cur++;
 			if (data->cur > data->num) {
-				data->state = IMAP_CLOSE;
-				io_writeline(data->io, "%u CLOSE", ++data->tag);
+				data->state = IMAP_EXPUNGE;
+				io_writeline(data->io, "%u EXPUNGE",
+				    ++data->tag);
 				break;
 			}
 			
 			data->state = IMAP_SIZE;
 			io_writeline(data->io, "%u FETCH %u BODY[]",
 			    ++data->tag, data->cur);
+			break;
+		case IMAP_EXPUNGE:
+			tag = imap_tag(line);
+			if (tag == IMAP_TAG_NONE)
+				continue;
+			if (tag != data->tag)
+				goto error;
+			if (!imap_okay(line))
+				goto error;
+			
+			data->state = IMAP_CLOSE;
+			io_writeline(data->io, "%u CLOSE", ++data->tag);
 			break;
 		case IMAP_CLOSE:
 			tag = imap_tag(line);
