@@ -1,4 +1,4 @@
-/* $Id: fetch-pop3.c,v 1.36 2007-01-18 16:05:38 nicm Exp $ */
+/* $Id: fetch-pop3.c,v 1.37 2007-01-18 16:46:01 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -124,7 +124,7 @@ do_pop3(struct account *a, u_int *n, struct mail *m, int is_poll)
 		switch (io_pollline2(data->io, &line, &lbuf, &llen, &cause)) {
 		case 0:
 			cause = xstrdup("connection unexpectedly closed");
-			break;
+			goto error;
 		case -1:
 			goto error;
 		}

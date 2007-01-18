@@ -1,4 +1,4 @@
-/* $Id: deliver-smtp.c,v 1.31 2007-01-17 23:06:19 nicm Exp $ */
+/* $Id: deliver-smtp.c,v 1.32 2007-01-18 16:46:01 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -93,7 +93,7 @@ smtp_deliver(struct deliver_ctx *dctx, struct action *t)
 		switch (io_pollline2(io, &line, &lbuf, &llen, &cause)) {
 		case 0:
 			cause = xstrdup("connection unexpectedly closed");
-			break;
+			goto error;
 		case -1:
 			goto error;
 		}
