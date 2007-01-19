@@ -1,4 +1,4 @@
-/* $Id: child.c,v 1.89 2007-01-19 14:24:01 nicm Exp $ */
+/* $Id: child.c,v 1.90 2007-01-19 16:12:15 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -31,7 +31,7 @@
 #include "fdm.h"
 
 int	poll_account(struct io *, struct account *);
-int	fetch_account(struct io *, struct account *);
+int	fetch_account(struct io *, struct account *, double);
 int	do_expr(struct rule *, struct match_ctx *);
 int	do_deliver(struct rule *, struct match_ctx *);
 int	do_action(struct rule *, struct match_ctx *, struct action *);
@@ -93,6 +93,8 @@ do_child(int fd, enum fdmop op, struct account *a)
 	struct io	*io;
 	struct msg	 msg;
 	int		 error, res = 0;
+	struct timeval	 tv;
+	double		 tim;
 
 #ifdef DEBUG
 	xmalloc_clear();
@@ -142,6 +144,9 @@ do_child(int fd, enum fdmop op, struct account *a)
 	}
 	log_debug("%s: processing", a->name);
 
+	gettimeofday(&tv, NULL);
+	tim = tv.tv_sec + tv.tv_usec / 1000000.0;
+
 	/* connect */
 	if (a->fetch->connect != NULL) {
 		if (a->fetch->connect(a) != 0) {
@@ -158,7 +163,7 @@ do_child(int fd, enum fdmop op, struct account *a)
 		error = poll_account(io, a);
 		break;
 	case FDMOP_FETCH:
-		error = fetch_account(io, a);
+		error = fetch_account(io, a, tim);
 		break;
 	default:
 		fatalx("child: unexpected command");
@@ -219,11 +224,10 @@ poll_account(unused struct io *io, struct account *a)
 }
 
 int
-fetch_account(struct io *io, struct account *a)
+fetch_account(struct io *io, struct account *a, double tim)
 {
 	struct mail	 m;
 	struct timeval	 tv;
-	double		 tim;
 	u_int	 	 l, n, dropped, kept;
 	int		 error;
  	const char	*cause = NULL;
@@ -232,9 +236,6 @@ fetch_account(struct io *io, struct account *a)
 	size_t		 len;
 
 	log_debug("%s: fetching", a->name);
-
-	gettimeofday(&tv, NULL);
-	tim = tv.tv_sec + tv.tv_usec / 1000000.0;
 
 	n = dropped = kept = 0;
         for (;;) {
