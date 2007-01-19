@@ -1,4 +1,4 @@
-/* $Id: fetch-imap.c,v 1.39 2007-01-19 12:35:10 nicm Exp $ */
+/* $Id: fetch-imap.c,v 1.40 2007-01-19 12:45:17 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -290,6 +290,12 @@ imap_disconnect(struct account *a)
 	return (0);
 
 error:
+	io_writeline(data->io, "%u LOGOUT", ++data->tag);
+	io_flush(data->io, NULL);
+
+	io_close(data->io);
+	io_free(data->io);
+
 	xfree(lbuf);
 	return (1);
 }
