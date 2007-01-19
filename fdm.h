@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.168 2007-01-18 22:45:26 nicm Exp $ */
+/* $Id: fdm.h,v 1.169 2007-01-19 12:35:10 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -783,24 +783,6 @@ struct pop3_data {
 	struct io	*io;
 };
 
-/* Fetch imap states. */
-enum imap_state {
-	IMAP_CONNECTING,
-	IMAP_USER,
-	IMAP_PASS,
-	IMAP_LOGIN,
-	IMAP_SELECT,
-	IMAP_SELECTWAIT,
-	IMAP_SIZE,
-	IMAP_LINE,
-	IMAP_LINEWAIT,
-	IMAP_LINEWAIT2,
-	IMAP_DONE,
-	IMAP_EXPUNGE,
-	IMAP_CLOSE,
-	IMAP_LOGOUT
-};
-
 /* Fetch imap data. */
 struct imap_data {
 	char		*user;
@@ -809,10 +791,12 @@ struct imap_data {
 
 	struct server	 server;
 
-	enum imap_state	 state;
 	int		 tag;
 	u_int		 cur;
 	u_int		 num;
+
+	u_int	 	 uid;
+	ARRAY_DECL(, u_int) kept;
 
 	struct io	*io;
 };
