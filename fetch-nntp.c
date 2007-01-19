@@ -1,4 +1,4 @@
-/* $Id: fetch-nntp.c,v 1.20 2007-01-19 14:33:50 nicm Exp $ */
+/* $Id: fetch-nntp.c,v 1.21 2007-01-19 16:24:23 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -33,7 +33,6 @@ int	nntp_disconnect(struct account *);
 int	nntp_fetch(struct account *, struct mail *);
 int	nntp_delete(struct account *);
 int	nntp_keep(struct account *);
-void	nntp_error(struct account *);
 char   *nntp_desc(struct account *);
 
 int	nntp_code(char *);
