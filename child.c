@@ -1,4 +1,4 @@
-/* $Id: child.c,v 1.87 2007-01-18 22:45:26 nicm Exp $ */
+/* $Id: child.c,v 1.88 2007-01-19 14:18:55 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -149,17 +149,18 @@ do_child(int fd, enum fdmop op, struct account *a)
 	default:
 		fatalx("child: unexpected command");
 	}
-	if (error != 0) {
-		if (a->fetch->error != NULL)
-			a->fetch->error(a);
+	if (error != 0)
 		res = 1;
-	}
 	
 	/* disconnect */
-	if (a->fetch->disconnect != NULL)
-		a->fetch->disconnect(a);
-	if (a->fetch->free != NULL)
-		a->fetch->free(a);
+	if (a->fetch->disconnect != NULL) {
+		if (a->fetch->disconnect(a) != 0)
+			res = 1;
+	}
+	if (a->fetch->free != NULL) {
+		if (a->fetch->free(a) != 0)
+			res = 1;
+	}
 
 	log_debug("%s: finished processing. exiting", a->name);
 
