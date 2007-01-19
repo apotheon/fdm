@@ -1,4 +1,4 @@
-/* $Id: fetch-nntp.c,v 1.22 2007-01-19 16:53:16 nicm Exp $ */
+/* $Id: fetch-nntp.c,v 1.23 2007-01-19 17:26:35 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -336,6 +336,8 @@ restart:
 		goto error;
 
 	mail_open(m, IO_BLOCKSIZE);
+	m->s = xstrdup(ARRAY_ITEM(data->groups, data->group, char *));
+
 	flushing = 0;
 	off = lines = 0;
 	for (;;) {

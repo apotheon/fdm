@@ -1,4 +1,4 @@
-/* $Id: mail.c,v 1.59 2007-01-18 16:05:38 nicm Exp $ */
+/* $Id: mail.c,v 1.60 2007-01-19 17:26:35 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -51,7 +51,7 @@ mail_open(struct mail *m, size_t size)
 
 	ARRAY_INIT(&m->tags);
 	ARRAY_INIT(&m->wrapped);
-	/* XXX m->s = NULL;   filled by fetch before open */
+	m->s = NULL;
 	m->attach = NULL;
 }
 

@@ -1,4 +1,4 @@
-/* $Id: fetch-imap.c,v 1.42 2007-01-19 16:53:16 nicm Exp $ */
+/* $Id: fetch-imap.c,v 1.43 2007-01-19 17:26:34 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -321,8 +321,6 @@ imap_fetch(struct account *a, struct mail *m)
 	if (data->cur > data->num)
 		return (FETCH_COMPLETE);
 
-	m->s = xstrdup(data->server.host);
-
 	llen = IO_LINESIZE;
 	lbuf = xmalloc(llen);
 
@@ -367,8 +365,10 @@ restart:
 		goto error;
 	}
 
-	/* read the message */
 	mail_open(m, IO_ROUND(size));
+	m->s = xstrdup(data->server.host);
+
+	/* read the message */
 	flushing = 0;
 	if (size > conf.max_size)
 		flushing = 1;
