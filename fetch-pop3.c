@@ -1,4 +1,4 @@
-/* $Id: fetch-pop3.c,v 1.39 2007-01-18 23:41:02 nicm Exp $ */
+/* $Id: fetch-pop3.c,v 1.40 2007-01-19 07:48:43 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -323,7 +323,6 @@ restart:
 		if (off + lines > conf.max_size)
 			flushing = 1;
 	}
-	data->cur++;
 
 	xfree(lbuf);
 	if (flushing)

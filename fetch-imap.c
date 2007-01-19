@@ -1,4 +1,4 @@
-/* $Id: fetch-imap.c,v 1.37 2007-01-18 22:45:26 nicm Exp $ */
+/* $Id: fetch-imap.c,v 1.38 2007-01-19 07:48:43 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -54,6 +54,7 @@ struct fetch	fetch_imap = { { "imap", "imaps" },
 			       imap_keep,
 			       imap_error,
 			       imap_disconnect,
+			       NULL,
 			       imap_desc
 };
 
