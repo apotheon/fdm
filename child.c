@@ -1,4 +1,4 @@
-/* $Id: child.c,v 1.90 2007-01-19 16:12:15 nicm Exp $ */
+/* $Id: child.c,v 1.91 2007-01-19 16:13:01 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -142,8 +142,8 @@ do_child(int fd, enum fdmop op, struct account *a)
 	default:
 		fatalx("child: unexpected command");
 	}
-	log_debug("%s: processing", a->name);
 
+	log_debug("%s: processing", a->name);
 	gettimeofday(&tv, NULL);
 	tim = tv.tv_sec + tv.tv_usec / 1000000.0;
 
