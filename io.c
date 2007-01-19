@@ -1,4 +1,4 @@
-/* $Id: io.c,v 1.41 2007-01-17 23:20:05 nicm Exp $ */
+/* $Id: io.c,v 1.42 2007-01-19 16:53:16 nicm Exp $ */
 
 /*
  * Copyright (c) 2005 Nicholas Marriott <nicm__@ntlworld.com>
@@ -640,7 +640,7 @@ io_pollline(struct io *io, char **line, char **cause)
 	size_t	 llen;
 	char	*lbuf;
 	int	 res;
-	
+
 	llen = IO_LINESIZE;
 	lbuf = xmalloc(llen);
 
@@ -660,7 +660,7 @@ io_pollline2(struct io *io, char **line, char **buf, size_t *len, char **cause)
 		*line = io_readline2(io, buf, len);
 		if (*line != NULL)
 			return (1);
-		
+
 		if ((res = io_poll(io, cause)) != 1)
 			return (res);
 	}

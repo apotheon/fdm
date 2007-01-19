@@ -1,4 +1,4 @@
-/* $Id: fetch-stdin.c,v 1.35 2007-01-19 14:18:55 nicm Exp $ */
+/* $Id: fetch-stdin.c,v 1.36 2007-01-19 16:53:16 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -131,20 +131,20 @@ stdin_fetch(struct account *a, struct mail *m)
 			xfree(lbuf);
 			return (FETCH_ERROR);
 		}
-		
+
 		len = strlen(line);
 		if (len == 0 && m->body == -1)
 			m->body = m->size + 1;
-		
+
 		resize_mail(m, m->size + len + 1);
-		
+
 		if (len > 0)
 			memcpy(m->data + m->size, line, len);
 
 		/* append an LF */
 		m->data[m->size + len] = '\n';
 		m->size += len + 1;
-		
+
 		if (m->size > conf.max_size) {
 			data->complete = 1;
 			xfree(lbuf);

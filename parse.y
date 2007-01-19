@@ -1,4 +1,4 @@
-/* $Id: parse.y,v 1.126 2007-01-18 22:45:26 nicm Exp $ */
+/* $Id: parse.y,v 1.127 2007-01-19 16:53:17 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -644,6 +644,7 @@ set: TOKSET TOKMAXSIZE size
 	     conf.impl_act = DECISION_DROP;
      }
    | TOKSET TOKPURGEAFTER numv
+/**  [$3: numv (long long)] */
      {
 	     if ($3 == 0)
 		     yyerror("invalid purge-after value: 0");

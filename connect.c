@@ -1,4 +1,4 @@
-/* $Id: connect.c,v 1.41 2007-01-17 23:16:01 nicm Exp $ */
+/* $Id: connect.c,v 1.42 2007-01-19 16:53:16 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -362,7 +362,7 @@ httpproxy(struct server *srv, struct proxy *pr, struct io *io, char **cause)
 			return (1);
 
 		if (header == 0) {
-			if (strlen(line) < 12 || 
+			if (strlen(line) < 12 ||
 			    strncmp(line, "HTTP/", 5) != 0 ||
 			    strncmp(line + 8, " 200", 4) != 0) {
 				xfree(line);
@@ -374,7 +374,7 @@ httpproxy(struct server *srv, struct proxy *pr, struct io *io, char **cause)
 			if (*line == '\0')
 				return (0);
 		}
-		
+
 		xfree(line);
 	}
 }
