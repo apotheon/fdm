@@ -1,4 +1,4 @@
-/* $Id: mail.c,v 1.60 2007-01-19 17:26:35 nicm Exp $ */
+/* $Id: mail.c,v 1.61 2007-01-20 13:49:17 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -154,6 +154,7 @@ openlock(char *path, u_int locks, int flags, mode_t mode)
 		if (fd == -1) {
 			if (errno == EEXIST)
 				errno = EAGAIN;
+			cleanup_deregister(lock);
 			xfree(lock);
 			return (-1);
 		}
@@ -191,6 +192,7 @@ error:
 	close(fd);
 	if (locks & LOCK_DOTLOCK) {
 		unlink(lock);
+		cleanup_deregister(lock);
 		xfree(lock);
 	}
 	errno = error;
