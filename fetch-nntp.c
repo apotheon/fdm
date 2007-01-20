@@ -1,4 +1,4 @@
-/* $Id: fetch-nntp.c,v 1.23 2007-01-19 17:26:35 nicm Exp $ */
+/* $Id: fetch-nntp.c,v 1.24 2007-01-20 11:04:47 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -387,6 +387,7 @@ nntp_delete(struct account *a)
 	cache_add(data->cache, data->key);
 
 	xfree(data->key);
+	data->key = NULL;
 
 	return (0);
 }
@@ -397,6 +398,7 @@ nntp_keep(struct account *a)
 	struct nntp_data	*data = a->data;
 
 	xfree(data->key);
+	data->key = NULL;
 
 	return (0);
 }
