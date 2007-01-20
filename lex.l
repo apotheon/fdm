@@ -1,6 +1,6 @@
 /* -*-C-*- */
 
-/* $Id: lex.l,v 1.70 2007-01-18 22:45:26 nicm Exp $ */
+/* $Id: lex.l,v 1.71 2007-01-20 13:29:52 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -113,6 +113,7 @@ cache return (TOKCACHE);
 case return (TOKCASE);
 continue return (TOKCONTINUE);
 count return (TOKCOUNT);
+compress return (TOKCOMPRESS);
 disabled return (TOKDISABLED);
 domain return (TOKDOMAIN);
 domains return (TOKDOMAINS);

@@ -1,4 +1,4 @@
-# $Id: GNUmakefile,v 1.39 2007-01-18 16:30:30 nicm Exp $
+# $Id: GNUmakefile,v 1.40 2007-01-20 13:29:52 nicm Exp $
 
 .PHONY: clean
 
@@ -59,7 +59,7 @@ CFLAGS+= -Wmissing-prototypes -Wstrict-prototypes -Wmissing-declarations
 CFLAGS+= -Wwrite-strings -Wshadow -Wpointer-arith -Wcast-qual -Wsign-compare
 CFLAGS+= -Wundef -Wshadow -Wbad-function-cast -Winline -Wcast-align
 
-LIBS+= -lssl
+LIBS+= -lssl -lz
 
 CLEANFILES= $(PROG) y.tab.c lex.yy.c y.tab.h $(OBJS) .depend
 

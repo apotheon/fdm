@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.84 2007-01-18 16:05:33 nicm Exp $
+# $Id: Makefile,v 1.85 2007-01-20 13:29:52 nicm Exp $
 
 .SUFFIXES: .c .o .y .l .h
 .PHONY: clean update-index.html upload-index.html lint regress yannotate
@@ -60,7 +60,7 @@ LDFLAGS+= -L/usr/local/lib
 .ifdef PROFILE
 LDFLAGS+= -pg
 .endif
-LIBS= -lcrypto -lssl
+LIBS= -lcrypto -lssl -lz
 
 OBJS= ${SRCS:S/.c/.o/:S/.y/.o/:S/.l/.o/}
 

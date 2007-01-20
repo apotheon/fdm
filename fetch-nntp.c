@@ -1,4 +1,4 @@
-/* $Id: fetch-nntp.c,v 1.26 2007-01-20 12:41:34 nicm Exp $ */
+/* $Id: fetch-nntp.c,v 1.27 2007-01-20 13:29:52 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -275,10 +275,6 @@ restart:
 		}
 		if (nntp_group(a, &lbuf, &llen) != 0)
 			goto error;
-		goto restart;
-	}
-	if (code == 423 || code == 430) {
-		io_writeline(data->io, "NEXT");
 		goto restart;
 	}
 	if (!nntp_is(a, line, "NEXT", code, 223)) {

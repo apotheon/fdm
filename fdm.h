@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.173 2007-01-20 12:41:34 nicm Exp $ */
+/* $Id: fdm.h,v 1.174 2007-01-20 13:29:52 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -804,6 +804,12 @@ enum smtp_state {
 struct smtp_data {
 	struct server	 server;
 	char		*to;
+};
+
+/* Deliver mbox data. */
+struct mbox_data {
+	char		*path;
+	int		 compress;
 };
 
 /* match-age.c */
