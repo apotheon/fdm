@@ -1,4 +1,4 @@
-/* $Id: deliver-mbox.c,v 1.31 2007-01-20 14:10:41 nicm Exp $ */
+/* $Id: deliver-mbox.c,v 1.32 2007-01-20 18:54:38 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -49,7 +49,7 @@ mbox_write(int fd, gzFile gzf, const void *buf, size_t len)
 	
 	if (n < 0)
 		return (-1);
-	if (n != len) {
+	if ((size_t) n != len) {
 		errno = EIO;
 		return (-1);
 	}
