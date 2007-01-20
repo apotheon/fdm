@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.172 2007-01-19 16:53:16 nicm Exp $ */
+/* $Id: fdm.h,v 1.173 2007-01-20 12:41:34 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -743,7 +743,6 @@ struct nntp_data {
 	struct server	 server;
 
 	u_int		 group;
-	long long	 first;
 	char		*key;
 
 	struct io	*io;
