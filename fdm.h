@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.180 2007-01-21 21:22:59 nicm Exp $ */
+/* $Id: fdm.h,v 1.181 2007-01-21 21:27:12 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -717,7 +717,7 @@ struct maildir_data {
 
 	DIR		*dirp;
 	char		*path;
-	char		*entry;
+	char		 entry[MAXPATHLEN];
 };
 
 /* NNTP group entry. */
