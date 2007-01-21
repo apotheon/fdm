@@ -1,4 +1,4 @@
-/* $Id: attach.c,v 1.9 2007-01-21 22:34:25 nicm Exp $ */
+/* $Id: attach.c,v 1.10 2007-01-21 22:39:32 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -236,8 +236,10 @@ attach_build(struct mail *m)
 	type = attach_type(m, hdr, "boundary", &b);
 	if (type == NULL || b == NULL)
 		goto error;
-	if (strncmp(type, "multipart/", 10) != 0)
+	if (strncmp(type, "multipart/", 10) != 0) {
+		xfree(type);
 		goto error;
+	}
 	bl = strlen(b);
 
 	atr = xmalloc(sizeof *atr);
