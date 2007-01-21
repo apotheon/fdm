@@ -1,4 +1,4 @@
-/* $Id: fetch-maildir.c,v 1.26 2007-01-21 21:27:12 nicm Exp $ */
+/* $Id: fetch-maildir.c,v 1.27 2007-01-21 21:28:16 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -296,8 +296,6 @@ maildir_disconnect(struct account *a)
 
 	maildir_freepaths(a);
 
-	if (data->entry != NULL)
-		xfree(data->entry);
 	if (data->dirp != NULL)
 		closedir(data->dirp);
 
