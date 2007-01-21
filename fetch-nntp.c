@@ -1,4 +1,4 @@
-/* $Id: fetch-nntp.c,v 1.30 2007-01-21 16:57:12 nicm Exp $ */
+/* $Id: fetch-nntp.c,v 1.31 2007-01-21 17:05:48 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -160,8 +160,8 @@ nntp_group(struct account *a, char **lbuf, size_t *llen)
 	u_int			 code, last, n;
 
 	group = CURRENT_GROUP(data);
-	io_writeline(data->io, "GROUP %s", group->name);
 
+	io_writeline(data->io, "GROUP %s", group->name);
 	if ((line = nntp_check(a, lbuf, llen, "GROUP", &code)) == NULL)
 		return (1);
 	if (!nntp_is(a, line, "GROUP", code, 211))
@@ -200,6 +200,7 @@ nntp_group(struct account *a, char **lbuf, size_t *llen)
 invalid:
 	log_warnx("%s: last message not found. resetting group", a->name);
 
+	io_writeline(data->io, "GROUP %s", group->name);
 	if ((line = nntp_check(a, lbuf, llen, "GROUP", &code)) == NULL)
 		return (1);
 	if (!nntp_is(a, line, "GROUP", code, 211))
@@ -208,6 +209,8 @@ invalid:
  		log_warnx("%s: GROUP: invalid response: %s", a->name, line);
 		return (1);
 	}
+
+	group->last = 0;
 	
 	return (0);
 }
@@ -564,7 +567,8 @@ restart:
 		goto error;
 	}
 	group->last = n;
-	xfree(group->id);
+	if (group->id != NULL)
+		xfree(group->id);
 	group->id = id;
 
 	/* retrieve the article */
