@@ -1,6 +1,6 @@
 /* -*-C-*- */
 
-/* $Id: lex.l,v 1.71 2007-01-20 13:29:52 nicm Exp $ */
+/* $Id: lex.l,v 1.72 2007-01-21 16:52:40 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -120,7 +120,6 @@ domains return (TOKDOMAINS);
 dotlock return (LCKDOTLOCK);
 drop return (TOKDROP);
 exec return (TOKEXEC);
-expiry return (TOKEXPIRY);
 fcntl return (LCKFCNTL);
 flock return (LCKFLOCK);
 folder return (TOKFOLDER);
