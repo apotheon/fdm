@@ -1,4 +1,4 @@
-/* $Id: fetch-nntp.c,v 1.29 2007-01-21 16:52:40 nicm Exp $ */
+/* $Id: fetch-nntp.c,v 1.30 2007-01-21 16:57:12 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -413,20 +413,22 @@ nntp_connect(struct account *a)
 	if (conf.debug > 3 && !conf.syslog)
 		data->io->dup_fd = STDOUT_FILENO;
 
-	if (nntp_load(a) != 0)
-		goto error;
-	data->group = 0;
-	do {
-		data->group++;
-		if (data->group == TOTAL_GROUPS(data)) {
-			log_debug("%s: no groups found", a->name);
-			goto error;
-		}
-	} while (CURRENT_GROUP(data)->ignore);
-
 	llen = IO_LINESIZE;
 	lbuf = xmalloc(llen);
 
+	if (nntp_load(a) != 0)
+		goto error;
+	data->group = 0;
+	if (CURRENT_GROUP(data)->ignore) {
+		do {
+			data->group++;
+			if (data->group == TOTAL_GROUPS(data)) {
+				log_debug("%s: no groups found", a->name);
+				goto error;
+			}
+		} while (CURRENT_GROUP(data)->ignore);
+	}
+		
 	if ((line = nntp_check(a, &lbuf, &llen, "CONNECT", &code)) == NULL)
 		goto error;
 	if (!nntp_is(a, line, "CONNECT", code, 200))
