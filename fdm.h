@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.177 2007-01-21 17:15:38 nicm Exp $ */
+/* $Id: fdm.h,v 1.178 2007-01-21 20:39:50 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -471,6 +471,9 @@ extern struct conf		 conf;
 
 /* Amount to poll after in io_update. */
 #define IO_FLUSHSIZE (8 * IO_BLOCKSIZE)
+
+/* Maximum number of pollfds. */
+#define IO_POLLFDS 64
 
 /* IO buffer size macros. */
 #define IO_ROUND(n) (((n / IO_BLOCKSIZE) + 1) * IO_BLOCKSIZE)
