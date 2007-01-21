@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.176 2007-01-21 16:52:40 nicm Exp $ */
+/* $Id: fdm.h,v 1.177 2007-01-21 17:15:38 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -28,11 +28,6 @@
 #include "compat/queue.h"
 #endif
 
-#ifdef USE_DB_185_H
-#include <db_185.h>
-#else
-#include <db.h>
-#endif
 #include <dirent.h>
 #include <signal.h>
 #include <stdarg.h>
@@ -403,17 +398,6 @@ struct rule {
 	struct strings		*actions;
 
 	TAILQ_ENTRY(rule)	 entry;
-};
-
-/* Cache entry. */
-struct cacheent {
-	uint32_t	added;
-	uint32_t	reserved;
-} __packed;
-
-/* Message-id cache. */
-struct cache {
-	DB			*db;
 };
 
 /* Lock types. */
