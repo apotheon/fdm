@@ -1,4 +1,4 @@
-/* $Id: fetch-nntp.c,v 1.32 2007-01-21 17:06:42 nicm Exp $ */
+/* $Id: fetch-nntp.c,v 1.33 2007-01-21 18:59:17 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -506,20 +506,19 @@ nntp_poll(struct account *a, u_int *n)
 	llen = IO_LINESIZE;
 	lbuf = xmalloc(llen);
 
-	*n = 0;
+	*n = CURRENT_GROUP(data)->size;
 	for (;;) {
-		(*n) += CURRENT_GROUP(data)->size;
+		data->group++;
+		if (data->group == TOTAL_GROUPS(data))
+			break;
+		if (CURRENT_GROUP(data)->ignore)
+			continue;
 
-		do {
-			data->group++;
-			if (data->group == TOTAL_GROUPS(data))
-				goto out;
-		} while (CURRENT_GROUP(data)->ignore);
 		if (nntp_group(a, &lbuf, &llen) != 0)
 			goto error;
+		(*n) += CURRENT_GROUP(data)->size;
 	}
 
-out:
 	xfree(lbuf);
 	return (0);
 
