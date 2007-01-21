@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.178 2007-01-21 20:39:50 nicm Exp $ */
+/* $Id: fdm.h,v 1.179 2007-01-21 21:00:54 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -505,6 +505,9 @@ struct io {
 	size_t		 wspace;	/* total size of buffer */
 	size_t		 wsize;		/* size of data currently in buffer */
 	size_t		 woff;
+
+	char		*lbuf;		/* line buffer */
+	size_t		 llen;		/* line buffer size */
 
 	const char	*eol;
 };
