@@ -1,4 +1,4 @@
-/* $Id: cache.c,v 1.13 2007-01-11 21:02:48 nicm Exp $ */
+/* $Id: cache.c,v 1.14 2007-01-21 14:32:26 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -72,7 +72,7 @@ cache_close(struct cache *cc)
 u_int
 cache_compact(struct cache *cc, long long age, u_int *total)
 {
-	struct cacheent *ce;
+	struct cacheent  ce;
 	DBT		 key, data;
 	int		 error;
 	u_int		 n, i;
@@ -95,19 +95,21 @@ cache_compact(struct cache *cc, long long age, u_int *total)
 	if ((error = cc->db->seq(cc->db, &key, &data, R_FIRST)) == -1)
 		fatal("db seq");
 	while (error == 0) {
-		if (total != NULL)
-			(*total)++;
-
-		if (data.size != sizeof *ce)
-			fatalx("db corrupted");
-		ce = data.data;
-
-		if (ntohl(ce->added) < threshold) {
-			xasprintf(&s, "%.*s", (int) key.size,
-			    (char *) key.data);
-			ARRAY_ADD(&keys, s, char *);
-			n++;
-		}
+		if (*((char *) key.data) != '_') {
+			if (total != NULL)
+				(*total)++;
+			
+			if (data.size != sizeof ce)
+				fatalx("db corrupted");
+			memcpy(&ce, data.data, sizeof ce);
+			
+			if (ntohl(ce.added) < threshold) {
+				xasprintf(&s, "%.*s", (int) key.size,
+				    (char *) key.data);
+				ARRAY_ADD(&keys, s, char *);
+				n++;
+			}
+		}			
 
 		if ((error = cc->db->seq(cc->db, &key, &data, R_NEXT)) == -1)
 			fatal("db seq");
@@ -127,6 +129,48 @@ cache_compact(struct cache *cc, long long age, u_int *total)
 		cc->db->sync(cc->db, 0);
 
 	return (n);
+}
+
+void
+cache_put(struct cache *cc, char *item, u_int value)
+{
+	DBT		 key, data;
+	char		*s;
+
+	xasprintf(&s, "_%s", item);
+	key.data = s;
+	key.size = strlen(s);
+	xfree(s);
+
+	data.data = &value;
+	data.size = sizeof value;
+
+	if (cc->db->put(cc->db, &key, &data, 0) == -1)
+		fatal("db put");
+
+	cc->db->sync(cc->db, 0);
+}
+
+int
+cache_get(struct cache *cc, char *item, u_int *value)
+{
+	DBT	 key, data;
+	char		*s;
+
+	xasprintf(&s, "_%s", item);
+	key.data = s;
+	key.size = strlen(s);
+	xfree(s);
+
+	switch (cc->db->get(cc->db, &key, &data, 0)) {
+	case -1:
+		fatal("db get");
+	case 1:
+		return (1);
+	}
+
+	memcpy(value, data.data, sizeof *value);
+	return (0);
 }
 
 void

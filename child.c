@@ -1,4 +1,4 @@
-/* $Id: child.c,v 1.92 2007-01-19 16:53:16 nicm Exp $ */
+/* $Id: child.c,v 1.93 2007-01-21 14:32:26 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -176,14 +176,15 @@ do_child(int fd, enum fdmop op, struct account *a)
 		if (a->fetch->disconnect(a) != 0)
 			res = 1;
 	}
+
+	log_debug("%s: finished processing. exiting", a->name);
+
+out:
 	if (a->fetch->free != NULL) {
 		if (a->fetch->free(a) != 0)
 			res = 1;
 	}
 
-	log_debug("%s: finished processing. exiting", a->name);
-
-out:
 	memset(&msg, 0, sizeof msg);
 	msg.type = MSG_EXIT;
 	log_debug3("%s: sending exit message to parent", a->name);
