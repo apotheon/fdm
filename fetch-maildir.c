@@ -1,4 +1,4 @@
-/* $Id: fetch-maildir.c,v 1.24 2007-01-19 14:18:55 nicm Exp $ */
+/* $Id: fetch-maildir.c,v 1.25 2007-01-21 21:22:59 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -154,7 +154,7 @@ maildir_poll(struct account *a, u_int *n)
 {
 	struct maildir_data	*data = a->data;
 	u_int			 i;
-	char			*path, *entry;
+	char			*path, name[MAXPATHLEN];
 	DIR			*dirp;
 	struct dirent		*dp;
 	struct stat		 sb;
@@ -170,14 +170,16 @@ maildir_poll(struct account *a, u_int *n)
 		}
 
 		while ((dp = readdir(dirp)) != NULL) {
-			xasprintf(&entry, "%s/%s", path, dp->d_name);
-			if (stat(entry, &sb) != 0) {
-				log_warn("%s: %s: stat", a->name, entry);
-				xfree(entry);
+			if (makepath(name, sizeof name, path, dp->d_name) < 0) {
+				log_warn("%s: %s", a->name, name);
 				closedir(dirp);
 				return (POLL_ERROR);
 			}
-			xfree(entry);
+			if (stat(name, &sb) != 0) {
+				log_warn("%s: %s: stat", a->name, name);
+				closedir(dirp);
+				return (POLL_ERROR);
+			}
 
 			if (!S_ISREG(sb.st_mode))
 				continue;

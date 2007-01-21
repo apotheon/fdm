@@ -1,4 +1,4 @@
-/* $Id: mail.c,v 1.61 2007-01-20 13:49:17 nicm Exp $ */
+/* $Id: mail.c,v 1.62 2007-01-21 21:22:59 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -138,6 +138,27 @@ resize_mail(struct mail *m, size_t size)
 		m->space *= 2;
 	}
 	m->data = m->base + m->off;
+}
+
+int
+makepath(char *buf, size_t len, char *path, char *name)
+{
+	int	n;
+
+	if (len > INT_MAX) {
+		errno = ENAMETOOLONG;
+		return (-1);
+	}
+
+	n = xsnprintf(buf, len, "%s/%s", path, name);
+	if (n < 0)
+		return (-1);
+	if ((size_t) n > len) {
+		errno = ENAMETOOLONG;
+		return (-1);
+	}
+
+	return (0);
 }
 
 int
