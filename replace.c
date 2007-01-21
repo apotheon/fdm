@@ -1,4 +1,4 @@
-/* $Id: replace.c,v 1.20 2007-01-10 17:50:07 nicm Exp $ */
+/* $Id: replace.c,v 1.21 2007-01-21 22:04:10 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -121,7 +121,7 @@ replace(char *src, char *map[REPL_LEN])
 		return (NULL);
 
 	off = 0;
-	len = 1024;
+	len = BUFSIZ;
 	dst = xmalloc(len);
 
 	for (ptr = src; *ptr != '\0'; ptr++) {
