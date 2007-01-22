@@ -1,4 +1,4 @@
-/* $Id: shm.c,v 1.11 2007-01-21 15:00:43 nicm Exp $ */
+/* $Id: shm.c,v 1.12 2007-01-22 18:26:32 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -45,6 +45,7 @@ shm_reopen(struct shm *shm)
 	shm->data = mmap(NULL, shm->size, SHM_PROTW, MAP_SHARED, shm->fd, 0);
 	if (shm->data == MAP_FAILED)
 		fatal("mmap");
+	madvise(shm->data, shm->size, MADV_SEQUENTIAL);
 
 	return (shm->data);
 }
@@ -78,6 +79,7 @@ shm_malloc(struct shm *shm, size_t size)
 	shm->data = mmap(NULL, shm->size, SHM_PROTW, MAP_SHARED, shm->fd, 0);
 	if (shm->data == MAP_FAILED)
 		fatal("mmap");
+	madvise(shm->data, shm->size, MADV_SEQUENTIAL);
 
 	return (shm->data);
 }
