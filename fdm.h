@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.184 2007-01-22 17:59:16 nicm Exp $ */
+/* $Id: fdm.h,v 1.185 2007-01-23 14:43:51 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -45,7 +45,7 @@
 #define MAXMAILSIZE	INT_MAX
 #define DEFMAILSIZE	(1 * 1024 * 1024 * 1024)	/* 1 GB */
 #define LOCKSLEEPTIME	2
-#define MAXNAMESIZE	32
+#define MAXNAMESIZE	64
 #define DEFEXPIRYTIME	TIME_MONTH
 
 extern char	*__progname;
