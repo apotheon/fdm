@@ -1,4 +1,4 @@
-/* $Id: command.c,v 1.18 2006-11-28 16:48:33 nicm Exp $ */
+/* $Id: command.c,v 1.19 2007-01-23 16:33:54 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -150,7 +150,7 @@ error:
 int
 cmd_poll(struct cmd *cmd, char **out, char **err, char **cause)
 {
-	struct io	*io, *ios[2];
+	struct io	*io, *ios[3];
 
 	/* retrieve a line if possible */
 	*out = *err = NULL;
