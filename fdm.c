@@ -1,4 +1,4 @@
-/* $Id: fdm.c,v 1.95 2007-01-19 16:53:16 nicm Exp $ */
+/* $Id: fdm.c,v 1.96 2007-01-23 23:02:35 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -207,9 +207,9 @@ use_account(struct account *a, char **cause)
 	}
 
 	/*
-	 * If the account is disabled and no accounts are specified
-	 * on the command line (whether or not it is included if there
-	 * are is already confirmed), then skip it.
+	 * If the account is disabled and no accounts are specified on the
+	 * command line (whether or not it is included if there are is already
+	 * confirmed), then skip it.
 	 */
 	if (a->disabled && ARRAY_EMPTY(&conf.incl)) {
 		if (cause != NULL)
