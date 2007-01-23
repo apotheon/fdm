@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.86 2007-01-21 17:15:38 nicm Exp $
+# $Id: Makefile,v 1.87 2007-01-23 16:44:55 nicm Exp $
 
 .SUFFIXES: .c .o .y .l .h
 .PHONY: clean update-index.html upload-index.html lint regress yannotate
@@ -93,7 +93,7 @@ dist:		clean
 			-f ${PROG}-${VERSION}.tar.gz ${DISTFILES}
 
 lint:
-		lint -hx ${CFLAGS:M-D*} ${SRCS:M*.c}
+		lint -cehvx ${CFLAGS:M-D*} ${SRCS:M*.c}
 
 depend:
 		mkdep ${CFLAGS} ${SRCS}
