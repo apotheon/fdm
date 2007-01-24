@@ -1,4 +1,4 @@
-/* $Id: fetch-pop3.c,v 1.45 2007-01-23 17:06:29 nicm Exp $ */
+/* $Id: fetch-pop3.c,v 1.46 2007-01-24 18:56:35 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -89,16 +89,6 @@ pop3_check(struct account *a, char **lbuf, size_t *llen)
 }
 
 int
-pop3_init(struct account *a)
-{
-	struct pop3_data	*data = a->data;
-
-	ARRAY_INIT(&data->kept);
-
-	return (0);
-}
-
-int
 pop3_free(struct account *a)
 {
 	struct pop3_data	*data = a->data;
@@ -110,6 +100,16 @@ pop3_free(struct account *a)
 	for (i = 0; i < ARRAY_LENGTH(&data->kept); i++)
 		xfree(ARRAY_ITEM(&data->kept, i, char *));
 	ARRAY_FREE(&data->kept);
+
+	return (0);
+}
+
+int
+pop3_init(struct account *a)
+{
+	struct pop3_data	*data = a->data;
+
+	ARRAY_INIT(&data->kept);
 
 	return (0);
 }
