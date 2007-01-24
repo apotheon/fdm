@@ -1,4 +1,4 @@
-/* $Id: parse.y,v 1.130 2007-01-21 16:52:40 nicm Exp $ */
+/* $Id: parse.y,v 1.131 2007-01-24 13:32:08 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -1042,6 +1042,7 @@ to: /* empty */
 	    $$ = $2;
     }
 
+/** COMPRESS: <flag> (int) */
 compress: TOKCOMPRESS
 	  {
 		  $$ = 1;
@@ -1103,7 +1104,7 @@ action: TOKPIPE strv
 		$$.data = $2;
 	}
       | TOKMBOX strv compress
-/**     [$2: strv (char *)] */
+/**     [$2: strv (char *)] [$3: compress (int)] */
 	{
 		struct mbox_data	*data;
 
@@ -1856,7 +1857,7 @@ groups: TOKGROUP strv
 /**     [$2: strv (char *)] */
 	{
 		char			*cp;
-		
+
 		if (*$2 == '\0')
 			yyerror("invalid group");
 
@@ -1967,7 +1968,6 @@ fetchtype: poptype server TOKUSER strv TOKPASS strv
 	 | TOKNNTP server groups TOKCACHE strv
 /**        [$2: server (struct { ... } server)] */
 /**        [$3: groups (struct strings *)] [$5: strv (char *)] */
-/**        [$6: expiry (long long)] */
            {
 		   struct nntp_data	*data;
 		   char			*group;
