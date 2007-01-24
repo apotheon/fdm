@@ -584,7 +584,14 @@ An action to deliver to an mbox is defined in the same way as for a maildir:
 	action "mymboxaction" mbox "/path/to/mbox"
 
 The same % tokens are replaced in the path. If the mbox does not exist, it
-is created.
+is created. Mboxes may optionally be gzip compressed by adding the 'compress'
+keyword:
+
+	action "mymboxaction" mbox "/path/to/mbox" compress
+
+fdm will append .gz to the mbox path (if it is not already present) and append
+compressed data. If the mbox exists but is not already compressed, uncompressed
+data will be appended.
 
 SMTP ---------------------------------------------------------------------------
 
@@ -1064,5 +1071,5 @@ match "^List-Id:.*<full-disclosure\\.lists\\.grok\\.org\\.uk>" in headers
 	actions { "strip-full-disclosure" "full-disclosure" }
 
 ================================================================================
-$Id: MANUAL,v 1.34 2007-01-23 12:49:33 nicm Exp $
+$Id: MANUAL,v 1.35 2007-01-24 23:12:18 nicm Exp $
 
