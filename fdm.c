@@ -1,4 +1,4 @@
-/* $Id: fdm.c,v 1.96 2007-01-23 23:02:35 nicm Exp $ */
+/* $Id: fdm.c,v 1.97 2007-01-24 09:59:37 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -685,6 +685,8 @@ main(int argc, char **argv)
 			}
 			log_debug2("parent: child %ld killed", (long) pid);
 		}
+
+		errors = 1;
 	}
 
 	if (gettimeofday(&tv, NULL) != 0)
