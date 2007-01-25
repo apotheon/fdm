@@ -825,7 +825,7 @@ Examples:
 
 	match exec "blah" (12, "^Out") action "meep"
 
-Attachments---------------------------------------------------------------------
+Attachments --------------------------------------------------------------------
 
 There are five conditions available to filter based on the size, quantity, type
 and name of attachments. Thay all specified prefixed with the 'attachment'
@@ -1097,5 +1097,5 @@ match "^List-Id:.*<full-disclosure\\.lists\\.grok\\.org\\.uk>" in headers
 	actions { "strip-full-disclosure" "full-disclosure" }
 
 ================================================================================
-$Id: MANUAL,v 1.38 2007-01-25 17:42:57 nicm Exp $
+$Id: MANUAL,v 1.39 2007-01-25 21:29:44 nicm Exp $
 
