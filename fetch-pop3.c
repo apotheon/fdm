@@ -1,4 +1,4 @@
-/* $Id: fetch-pop3.c,v 1.46 2007-01-24 18:56:35 nicm Exp $ */
+/* $Id: fetch-pop3.c,v 1.47 2007-01-25 21:21:25 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -205,6 +205,7 @@ pop3_poll(struct account *a, u_int *n)
 	struct pop3_data	*data = a->data;
 
 	*n = data->num;
+
 	return (0);
 }
 
