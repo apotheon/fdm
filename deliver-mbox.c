@@ -1,4 +1,4 @@
-/* $Id: deliver-mbox.c,v 1.32 2007-01-20 18:54:38 nicm Exp $ */
+/* $Id: deliver-mbox.c,v 1.33 2007-01-25 17:26:08 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -26,9 +26,11 @@
 #include <string.h>
 #include <time.h>
 #include <unistd.h>
-#include <zlib.h>
 
 #include "fdm.h"
+
+/* With gcc 2.95.x, you can't include zlib.h before openssl.h. */
+#include <zlib.h>
 
 int	 mbox_deliver(struct deliver_ctx *, struct action *);
 char	*mbox_desc(struct action *);
