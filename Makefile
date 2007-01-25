@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.91 2007-01-25 20:22:23 nicm Exp $
+# $Id: Makefile,v 1.92 2007-01-25 21:26:23 nicm Exp $
 
 .SUFFIXES: .c .o .y .l .h
 .PHONY: clean update-index.html upload-index.html lint regress yannotate
@@ -100,13 +100,6 @@ depend:
 
 regress:	${PROG}
 		cd regress && ${MAKE}
-
-port:
-		tar -zxc \
-			-s '/ports\/OpenBSD\/\(.*\)/${PROG}\/\1/' \
-			-f ${PROG}-${VERSION}-openbsd-${REL}-port.tar.gz \
-			ports/OpenBSD/Makefile ports/OpenBSD/distinfo \
-			ports/OpenBSD/pkg/PLIST ports/OpenBSD/pkg/DESCR
 
 yannotate:
 		awk -f yannotate.awk parse.y > parse.y.new
