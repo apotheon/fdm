@@ -1,4 +1,4 @@
-/* $Id: fetch-pop3.c,v 1.47 2007-01-25 21:21:25 nicm Exp $ */
+/* $Id: fetch-pop3.c,v 1.48 2007-01-26 17:52:23 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -290,7 +290,7 @@ restart:
 		goto error;
 
 	mail_open(m, IO_ROUND(size));
-	m->s = xstrdup(data->server.host);
+	m->src = xstrdup(data->server.host);
 
 	flushing = 0;
 	off = lines = 0;

@@ -1,4 +1,4 @@
-/* $Id: deliver-mbox.c,v 1.33 2007-01-25 17:26:08 nicm Exp $ */
+/* $Id: deliver-mbox.c,v 1.34 2007-01-26 17:52:23 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -71,7 +71,7 @@ mbox_deliver(struct deliver_ctx *dctx, struct action *t)
 	struct stat		 sb;
 	gzFile			 gzf = NULL;
 
-	path = replacepmatch(data->path, a, t, m->s, m, dctx->pmatch_valid,
+	path = replacepmatch(data->path, a, t, m->src, m, dctx->pmatch_valid,
 	    dctx->pmatch);
 	if (path == NULL || *path == '\0') {
 		if (path != NULL)

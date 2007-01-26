@@ -1,4 +1,4 @@
-/* $Id: fetch-imap.c,v 1.47 2007-01-24 19:03:53 nicm Exp $ */
+/* $Id: fetch-imap.c,v 1.48 2007-01-26 17:52:23 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -134,7 +134,7 @@ imap_connect(struct account *a)
 	data->getln = imap_getln;
 	data->putln = imap_putln;
 	data->flush = imap_flush;
-	data->s = data->server.host;
+	data->src = data->server.host;
 
 	if (imap_login(a) != 0)
 		return (1);

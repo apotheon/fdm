@@ -1,4 +1,4 @@
-/* $Id: deliver-maildir.c,v 1.22 2007-01-18 16:05:33 nicm Exp $ */
+/* $Id: deliver-maildir.c,v 1.23 2007-01-26 17:52:23 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -48,7 +48,7 @@ maildir_deliver(struct deliver_ctx *dctx, struct action *t)
 	ssize_t	 	 n;
 	size_t	 	 first, last;
 
-	path = replacepmatch(t->data, a, t, m->s, m, dctx->pmatch_valid,
+	path = replacepmatch(t->data, a, t, m->src, m, dctx->pmatch_valid,
 	    dctx->pmatch);
 	if (path == NULL || *path == '\0') {
 		log_warnx("%s: empty path", a->name);

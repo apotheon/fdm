@@ -1,4 +1,4 @@
-/* $Id: mail.c,v 1.65 2007-01-26 15:50:25 nicm Exp $ */
+/* $Id: mail.c,v 1.66 2007-01-26 17:52:23 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -51,7 +51,7 @@ mail_open(struct mail *m, size_t size)
 
 	ARRAY_INIT(&m->tags);
 	ARRAY_INIT(&m->wrapped);
-	m->s = NULL;
+	m->src = NULL;
 	m->attach = NULL;
 }
 
@@ -63,7 +63,7 @@ mail_send(struct mail *m, struct msg *msg)
 	memcpy(mm, m, sizeof *mm);
 	ARRAY_INIT(&mm->tags);
 	ARRAY_INIT(&mm->wrapped);
-	mm->s = NULL;
+	mm->src = NULL;
 	mm->attach = NULL;
 }
 
@@ -74,8 +74,8 @@ mail_receive(struct mail *m, struct msg *msg)
 
 	memcpy(&mm->tags, &m->tags, sizeof mm->tags);
 	ARRAY_INIT(&m->tags);
-	mm->s = m->s;
-	m->s = NULL;
+	mm->src = m->src;
+	m->src = NULL;
 	mm->attach = m->attach;
 	m->attach = NULL;
 
@@ -95,8 +95,8 @@ mail_free(struct mail *m)
 {
 	if (m->attach != NULL)
 		attach_free(m->attach);
-	if (m->s != NULL)
-		xfree(m->s);
+	if (m->src != NULL)
+		xfree(m->src);
 	/* copies of the pointers in rules, so free the array only */
 	ARRAY_FREE(&m->tags);
 	ARRAY_FREE(&m->wrapped);

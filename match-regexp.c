@@ -1,4 +1,4 @@
-/* $Id: match-regexp.c,v 1.10 2007-01-10 17:50:07 nicm Exp $ */
+/* $Id: match-regexp.c,v 1.11 2007-01-26 17:52:23 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -91,6 +91,6 @@ regexp_desc(struct expritem *ei)
 		break;
 	}
 
-	xasprintf(&s, "regexp \"%s\" in %s", data->re.s, area);
+	xasprintf(&s, "regexp \"%s\" in %s", data->re.str, area);
 	return (s);
 }

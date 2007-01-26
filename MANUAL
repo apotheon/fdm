@@ -581,10 +581,11 @@ In the path, the following special tokens are replaced:
 
 Token	Replaced with
 %a	The name of the account this mail was fetched from.
-%s	A string specific to the type of account the mail was fetched from.
-	For maildirs, it is the basename of the maildir, for IMAP and POP3 it
-	is the server hostname as specified in the account definition. For
-	NNTP it is the name of the group.
+%s	A string specific to the type of account the mail was fetched from
+	indicating in some way the source of the mail. For maildirs, it is the
+	basename of the maildir, for IMAP and POP3 it is the server hostname
+	as specified in the account definition. For NNTP it is the name of
+	the group.
 %h	The delivery user's home directory.
 %n	The delivery user's uid.
 %t	The name of the action.
@@ -1102,5 +1103,5 @@ match "^List-Id:.*<full-disclosure\\.lists\\.grok\\.org\\.uk>" in headers
 	actions { "strip-full-disclosure" "full-disclosure" }
 
 ================================================================================
-$Id: MANUAL,v 1.40 2007-01-26 16:31:25 nicm Exp $
+$Id: MANUAL,v 1.41 2007-01-26 17:52:23 nicm Exp $
 

@@ -1,4 +1,4 @@
-/* $Id: fetch-imappipe.c,v 1.4 2007-01-26 15:50:25 nicm Exp $ */
+/* $Id: fetch-imappipe.c,v 1.5 2007-01-26 17:52:23 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -143,7 +143,7 @@ imappipe_connect(struct account *a)
 	data->getln = imappipe_getln;
 	data->putln = imappipe_putln;
 	data->flush = imappipe_flush;
-	data->s = NULL;
+	data->src = NULL;
 
 	if (imap_login(a) != 0)
 		return (1);

@@ -1,4 +1,4 @@
-/* $Id: fetch-nntp.c,v 1.38 2007-01-23 17:38:02 nicm Exp $ */
+/* $Id: fetch-nntp.c,v 1.39 2007-01-26 17:52:23 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -572,7 +572,7 @@ restart:
 		goto restart;
 
 	mail_open(m, IO_BLOCKSIZE);
-	m->s = xstrdup(CURRENT_GROUP(data)->name);
+	m->src = xstrdup(CURRENT_GROUP(data)->name);
 
 	flushing = 0;
 	off = lines = 0;

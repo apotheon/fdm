@@ -1,4 +1,4 @@
-/* $Id: re.c,v 1.3 2006-12-21 10:00:23 nicm Exp $ */
+/* $Id: re.c,v 1.4 2007-01-26 17:52:24 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -31,7 +31,7 @@ re_compile(struct re *re, char *s, int flags, char **cause)
 		*cause = xstrdup("invalid regexp");
 		return (1);
 	}
-	re->s = s;
+	re->str = s;
 
 	if ((error = regcomp(&re->re, s, flags)) != 0) {
 		len = regerror(error, &re->re, NULL, 0);
@@ -52,7 +52,7 @@ re_execute(struct re *re, char *s, int npmatch, regmatch_t *pmatch, int flags,
 
 	res = regexec(&re->re, s, npmatch, pmatch, flags);
 	if (res != 0 && res != REG_NOMATCH) {
-		xasprintf(cause, "%s: regexec failed", re->s);
+		xasprintf(cause, "%s: regexec failed", re->str);
 		return (-1);
 	}
 

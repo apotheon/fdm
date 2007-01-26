@@ -1,4 +1,4 @@
-/* $Id: imap-common.c,v 1.2 2007-01-25 16:22:29 nicm Exp $ */
+/* $Id: imap-common.c,v 1.3 2007-01-26 17:52:23 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -268,8 +268,8 @@ restart:
 	}
 
 	mail_open(m, IO_ROUND(size));
-	if (data->s != NULL)
-		m->s = xstrdup(data->s);
+	if (data->src != NULL)
+		m->src = xstrdup(data->src);
 
 	flushing = 0;
 	if (size > conf.max_size)
