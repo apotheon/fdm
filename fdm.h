@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.191 2007-01-26 15:50:25 nicm Exp $ */
+/* $Id: fdm.h,v 1.192 2007-01-26 16:31:25 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -431,6 +431,7 @@ struct conf {
 	int			 check_only;
 	int			 allow_many;
 	int			 keep_all;
+	int			 no_received;
 	u_int			 purge_after;
 	enum decision		 impl_act;
 

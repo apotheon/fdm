@@ -973,6 +973,11 @@ Note that for POP3, purging deleted mail involves connecting and reconnecting
 from the server; some POP3 servers refuse reconnections if too many are made too
 quickly, so this option should be used with care.
 
+- no-received
+
+If this option is present, fdm will not insert a "Received" header into fetched
+mail.
+
 Archiving and searching mail ===================================================
 
 As fdm can fetch from maildirs, it can be used to filter mail from one maildir
@@ -1097,5 +1102,5 @@ match "^List-Id:.*<full-disclosure\\.lists\\.grok\\.org\\.uk>" in headers
 	actions { "strip-full-disclosure" "full-disclosure" }
 
 ================================================================================
-$Id: MANUAL,v 1.39 2007-01-25 21:29:44 nicm Exp $
+$Id: MANUAL,v 1.40 2007-01-26 16:31:25 nicm Exp $
 

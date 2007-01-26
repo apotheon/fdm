@@ -1,6 +1,6 @@
 /* -*-C-*- */
 
-/* $Id: lex.l,v 1.72 2007-01-21 16:52:40 nicm Exp $ */
+/* $Id: lex.l,v 1.73 2007-01-26 16:31:26 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -143,6 +143,7 @@ mbox return (TOKMBOX);
 nntp return (TOKNNTP);
 none return (TOKNONE);
 not return (TOKNOT);
+no-received return (TOKNORECEIVED);
 or return (TOKOR);
 pass return (TOKPASS);
 pipe return (TOKPIPE);
