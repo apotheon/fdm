@@ -1,4 +1,4 @@
-/* $Id: attach.c,v 1.14 2007-01-25 21:21:24 nicm Exp $ */
+/* $Id: attach.c,v 1.15 2007-01-26 10:15:59 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -62,8 +62,7 @@ attach_log(struct attach *atr, const char *fmt, ...)
 	u_int		 n;
 
 	va_start(ap, fmt);
-	if (vasprintf(&prefix, fmt, ap) < 0)
-		fatalx("vasprintf");
+	xvasprintf(&prefix, fmt, ap);
 	va_end(ap);
 
 	n = 0;
