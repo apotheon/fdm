@@ -1,4 +1,4 @@
-/* $Id: deliver-smtp.c,v 1.36 2007-01-26 19:47:21 nicm Exp $ */
+/* $Id: deliver-smtp.c,v 1.37 2007-01-26 19:49:06 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -193,7 +193,7 @@ smtp_desc(struct action *t, char *buf, size_t len)
 {
 	struct smtp_data	*data = t->data;
 
-	if (snprintf(buf, len, "smtp%s server \"%s\" port %s to \"%s\""
+	if (snprintf(buf, len, "smtp%s server \"%s\" port %s to \"%s\"",
 	    data->server.ssl ? "s" : "", data->server.host, data->server.port,
 	    data->to) == -1)
 		fatal("snprintf");

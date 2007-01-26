@@ -1,4 +1,4 @@
-/* $Id: match-age.c,v 1.26 2007-01-26 19:47:21 nicm Exp $ */
+/* $Id: match-age.c,v 1.27 2007-01-26 19:49:06 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -80,14 +80,13 @@ age_match(struct match_ctx *mctx, struct expritem *ei)
 	struct age_data	*data = ei->data;
 	struct account	*a = mctx->account;
 	struct mail	*m = mctx->mail;
-	char		*s, *ptr, *endptr, *hdr, tmp[256];
+	char		*s, *ptr, *endptr, *hdr;
 	const char	*errstr;
-	size_t		 len, off;
+	size_t		 len;
 	struct tm	 tm;
 	time_t		 then, now;
-	long long	 diff, t;
-	int		 tz, n;
-
+	long long	 diff;
+	int		 tz;
 	memset(&tm, 0, sizeof tm);
 
 	hdr = find_header(m, "Date:", &len, 1);
