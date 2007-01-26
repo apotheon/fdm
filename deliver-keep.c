@@ -1,4 +1,4 @@
-/* $Id: deliver-keep.c,v 1.2 2006-12-11 13:07:08 nicm Exp $ */
+/* $Id: deliver-keep.c,v 1.3 2007-01-26 18:49:13 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -18,10 +18,12 @@
 
 #include <sys/types.h>
 
+#include <string.h>
+
 #include "fdm.h"
 
 int	 keep_deliver(struct deliver_ctx *, struct action *);
-char	*keep_desc(struct action *);
+void	 keep_desc(struct action *, char *, size_t);
 
 struct deliver deliver_keep = { DELIVER_INCHILD, keep_deliver, keep_desc };
 
@@ -33,8 +35,8 @@ keep_deliver(struct deliver_ctx *dctx, unused struct action *t)
 	return (DELIVER_SUCCESS);
 }
 
-char *
-keep_desc(unused struct action *t)
+void
+keep_desc(unused struct action *t, char *buf, size_t len)
 {
-	return (xstrdup("keep"));
+	strlcpy(buf, "keep", len);
 }

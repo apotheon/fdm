@@ -1,4 +1,4 @@
-/* $Id: deliver-rewrite.c,v 1.30 2007-01-26 17:52:23 nicm Exp $ */
+/* $Id: deliver-rewrite.c,v 1.31 2007-01-26 18:49:13 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -29,7 +29,7 @@
 #include "fdm.h"
 
 int	 rewrite_deliver(struct deliver_ctx *, struct action *);
-char	*rewrite_desc(struct action *);
+void	 rewrite_desc(struct action *, char *, size_t);
 
 struct deliver deliver_rewrite = { DELIVER_WRBACK, rewrite_deliver,
 				   rewrite_desc };
@@ -123,11 +123,8 @@ error:
 	return (DELIVER_FAILURE);
 }
 
-char *
-rewrite_desc(struct action *t)
+void
+rewrite_desc(struct action *t, char *buf, size_t len)
 {
-	char	*s;
-
-	xasprintf(&s, "rewrite \"%s\"", (char *) t->data);
-	return (s);
+	snprintf(buf, len, "rewrite \"%s\"", (char *) t->data);
 }

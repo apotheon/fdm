@@ -1,4 +1,4 @@
-/* $Id: fetch-imappipe.c,v 1.5 2007-01-26 17:52:23 nicm Exp $ */
+/* $Id: fetch-imappipe.c,v 1.6 2007-01-26 18:49:13 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -24,7 +24,7 @@
 
 int	 	 imappipe_connect(struct account *);
 int	 	 imappipe_disconnect(struct account *);
-char		*imappipe_desc(struct account *);
+void		 imappipe_desc(struct account *, char *, size_t);
 
 int printflike2	 imappipe_putln(struct account *, const char *, ...);
 char	        *imappipe_getln(struct account *, int);
@@ -178,18 +178,16 @@ error:
 	return (1);
 }
 
-char *
-imappipe_desc(struct account *a)
+void
+imappipe_desc(struct account *a, char *buf, size_t len)
 {
 	struct imap_data	*data = a->data;
-	char			*s;
 
 	if (data->user != NULL) {
-		xasprintf(&s, "imap pipe \"%s\" user \"%s\" folder \"%s\"",
+		snprintf(buf, len, "imap pipe \"%s\" user \"%s\" folder \"%s\"",
 		    data->pipecmd, data->user, data->folder);
 	} else {
-		xasprintf(&s, "imap pipe \"%s\" folder \"%s\"", data->pipecmd,
-		    data->folder);
+		snprintf(buf, len, "imap pipe \"%s\" folder \"%s\"",
+		    data->pipecmd, data->folder);
 	}
-	return (s);
 }

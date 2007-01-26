@@ -1,4 +1,4 @@
-/* $Id: fetch-pop3.c,v 1.48 2007-01-26 17:52:23 nicm Exp $ */
+/* $Id: fetch-pop3.c,v 1.49 2007-01-26 18:49:13 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -35,7 +35,7 @@ int	pop3_fetch(struct account *, struct mail *);
 int	pop3_purge(struct account *);
 int	pop3_delete(struct account *);
 int	pop3_keep(struct account *);
-char   *pop3_desc(struct account *);
+void	pop3_desc(struct account *, char *, size_t);
 
 char   *pop3_line(struct account *, char **, size_t *);
 char   *pop3_check(struct account *, char **, size_t *);
@@ -379,14 +379,12 @@ pop3_keep(struct account *a)
 	return (0);
 }
 
-char *
-pop3_desc(struct account *a)
+void
+pop3_desc(struct account *a, char *buf, size_t len)
 {
 	struct pop3_data	*data = a->data;
-	char			*s;
 
-	xasprintf(&s, "pop3%s server \"%s\" port %s user \"%s\"",
+	snprintf(buf, len, "pop3%s server \"%s\" port %s user \"%s\"",
 	    data->server.ssl ? "s" : "", data->server.host, data->server.port,
 	    data->user);
-	return (s);
 }

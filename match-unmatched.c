@@ -1,4 +1,4 @@
-/* $Id: match-unmatched.c,v 1.4 2006-11-28 18:14:33 nicm Exp $ */
+/* $Id: match-unmatched.c,v 1.5 2007-01-26 18:49:13 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -23,7 +23,7 @@
 #include "fdm.h"
 
 int	unmatched_match(struct match_ctx *, struct expritem *);
-char   *unmatched_desc(struct expritem *);
+void	unmatched_desc(struct expritem *, char *, size_t);
 
 struct match match_unmatched = { unmatched_match, unmatched_desc };
 
@@ -35,8 +35,8 @@ unmatched_match(struct match_ctx *mctx, unused struct expritem *ei)
 	return (MATCH_TRUE);
 }
 
-char *
-unmatched_desc(unused struct expritem *ei)
+void
+unmatched_desc(unused struct expritem *ei, char *buf, size_t len)
 {
-	return (xstrdup("unmatched"));
+	strlcpy(buf, "unmatched", len);
 }

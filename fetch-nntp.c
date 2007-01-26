@@ -1,4 +1,4 @@
-/* $Id: fetch-nntp.c,v 1.39 2007-01-26 17:52:23 nicm Exp $ */
+/* $Id: fetch-nntp.c,v 1.40 2007-01-26 18:49:13 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -36,7 +36,7 @@ int	nntp_poll(struct account *, u_int *);
 int	nntp_fetch(struct account *, struct mail *);
 int	nntp_delete(struct account *);
 int	nntp_keep(struct account *);
-char   *nntp_desc(struct account *);
+void	nntp_desc(struct account *, char *, size_t);
 
 int	nntp_code(char *);
 char   *nntp_line(struct account *, char **, size_t *);
@@ -615,15 +615,14 @@ error:
 	return (FETCH_ERROR);
 }
 
-char *
-nntp_desc(struct account *a)
+void
+nntp_desc(struct account *a, char *buf, size_t len)
 {
 	struct nntp_data	*data = a->data;
-	char			*s, *names;
+	char			*names;
 
 	names = fmt_strings("groups ", data->names);
-	xasprintf(&s, "nntp server \"%s\" port %s %s cache \"%s\"",
+	xsnprintf(buf, len, "nntp server \"%s\" port %s %s cache \"%s\"",
 	    data->server.host, data->server.port, names, data->path);
 	xfree(names);
-	return (s);
 }

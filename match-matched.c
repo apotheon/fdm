@@ -1,4 +1,4 @@
-/* $Id: match-matched.c,v 1.4 2006-11-28 18:14:33 nicm Exp $ */
+/* $Id: match-matched.c,v 1.5 2007-01-26 18:49:13 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -23,7 +23,7 @@
 #include "fdm.h"
 
 int	matched_match(struct match_ctx *, struct expritem *);
-char   *matched_desc(struct expritem *);
+void	matched_desc(struct expritem *, char *, size_t);
 
 struct match match_matched = { matched_match, matched_desc };
 
@@ -35,8 +35,8 @@ matched_match(struct match_ctx *mctx, unused struct expritem *ei)
 	return (MATCH_FALSE);
 }
 
-char *
-matched_desc(unused struct expritem *ei)
+void
+matched_desc(unused struct expritem *ei, char *buf, size_t len)
 {
-	return (xstrdup("matched"));
+	strlcpy(buf, "matched", len);
 }

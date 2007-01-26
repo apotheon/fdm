@@ -1,4 +1,4 @@
-/* $Id: fetch-stdin.c,v 1.36 2007-01-19 16:53:16 nicm Exp $ */
+/* $Id: fetch-stdin.c,v 1.37 2007-01-26 18:49:13 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -31,7 +31,7 @@ int	 stdin_connect(struct account *);
 int	 stdin_disconnect(struct account *);
 int	 stdin_fetch(struct account *, struct mail *);
 int	 stdin_delete(struct account *);
-char	*stdin_desc(struct account *);
+void	 stdin_desc(struct account *, char *, size_t);
 
 struct fetch	fetch_stdin = { { NULL, NULL },
 				NULL,
@@ -163,8 +163,8 @@ stdin_fetch(struct account *a, struct mail *m)
 	return (FETCH_SUCCESS);
 }
 
-char *
-stdin_desc(unused struct account *a)
+void
+stdin_desc(unused struct account *a, char *buf, size_t len)
 {
-	return (xstrdup("stdin"));
+	strlcpy(buf, "stdin", len);
 }
