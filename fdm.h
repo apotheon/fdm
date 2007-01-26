@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.188 2007-01-25 16:29:25 nicm Exp $ */
+/* $Id: fdm.h,v 1.189 2007-01-26 10:00:39 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -373,6 +373,7 @@ enum ruletype {
 
 /* Rule entry. */
 struct rule {
+	u_int			 idx;
 	enum ruletype		 type;
 
 	struct strings		*accounts;
