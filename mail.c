@@ -1,4 +1,4 @@
-/* $Id: mail.c,v 1.70 2007-01-26 19:24:35 nicm Exp $ */
+/* $Id: mail.c,v 1.71 2007-01-26 20:07:42 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -166,11 +166,9 @@ printpath(char *buf, size_t len, const char *fmt, ...)
 	}
 
 	va_start(ap, fmt);
-	n = vsnprintf(buf, len, fmt, ap);
+	n = xvsnprintf(buf, len, fmt, ap);
 	va_end(ap);
 
-	if (n < 0)
-		return (1);
 	if ((size_t) n > len) {
 		errno = ENAMETOOLONG;
 		return (1);

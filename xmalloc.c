@@ -1,4 +1,4 @@
-/* $Id: xmalloc.c,v 1.33 2007-01-26 19:47:21 nicm Exp $ */
+/* $Id: xmalloc.c,v 1.34 2007-01-26 20:07:42 nicm Exp $ */
 
 /*
  * Copyright (c) 2004 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -158,6 +158,37 @@ xxvasprintf(char **ret, const char *fmt, va_list ap)
 
         if (i < 0 || *ret == NULL)
                 fatal("xvasprintf");
+
+        return (i);
+}
+
+int printflike3
+xsnprintf(char *buf, size_t len, const char *fmt, ...)
+{
+        va_list ap;
+        int	i;
+
+        va_start(ap, fmt);
+        i = xvsnprintf(buf, len, fmt, ap);
+        va_end(ap);
+
+	return (i);
+}
+
+int
+xvsnprintf(char *buf, size_t len, const char *fmt, va_list ap)
+{
+	int	i;
+
+	if (len > INT_MAX) {
+		errno = EINVAL;
+		fatal("xvsnprintf");
+	}	
+
+	i = vsnprintf(buf, len, fmt, ap);
+
+        if (i < 0)
+                fatal("xvsnprintf");
 
         return (i);
 }

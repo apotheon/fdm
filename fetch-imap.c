@@ -1,4 +1,4 @@
-/* $Id: fetch-imap.c,v 1.50 2007-01-26 19:47:21 nicm Exp $ */
+/* $Id: fetch-imap.c,v 1.51 2007-01-26 20:07:42 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -176,9 +176,8 @@ imap_desc(struct account *a, char *buf, size_t len)
 {
 	struct imap_data	*data = a->data;
 
-	if (snprintf(buf, len,
+	xsnprintf(buf, len, 
 	    "imap%s server \"%s\" port %s user \"%s\" folder \"%s\"",
 	    data->server.ssl ? "s" : "", data->server.host, data->server.port,
-	    data->user, data->folder) == -1)
-		fatal("snprintf");
+	    data->user, data->folder);
 }

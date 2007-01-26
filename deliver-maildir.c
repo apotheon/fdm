@@ -1,4 +1,4 @@
-/* $Id: deliver-maildir.c,v 1.28 2007-01-26 19:47:21 nicm Exp $ */
+/* $Id: deliver-maildir.c,v 1.29 2007-01-26 20:07:41 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -122,10 +122,10 @@ maildir_deliver(struct deliver_ctx *dctx, struct action *t)
 restart:
 	/* find a suitable name in tmp */
 	do {
-		len = snprintf(name, sizeof name, "%ld.%ld_%u.%s",
+		len = xsnprintf(name, sizeof name, "%ld.%ld_%u.%s",
 		    (long) time(NULL), (long) getpid(), delivered, host);
-		if (len < 0 || (size_t) len >= sizeof name) {
-			log_warn("%s: %s: snprintf", a->name, path);
+		if ((size_t) len >= sizeof name) {
+			log_warn("%s: %s: xsnprintf", a->name, path);
 			goto out;
 		}
 
@@ -196,6 +196,5 @@ out:
 void
 maildir_desc(struct action *t, char *buf, size_t len)
 {
-	if (snprintf(buf, len, "maildir \"%s\"", (char *) t->data) == -1)
-		fatal("snprintf");
+	xsnprintf(buf, len, "maildir \"%s\"", (char *) t->data);
 }

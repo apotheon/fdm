@@ -1,4 +1,4 @@
-/* $Id: match-size.c,v 1.7 2007-01-26 19:47:21 nicm Exp $ */
+/* $Id: match-size.c,v 1.8 2007-01-26 20:07:42 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -50,6 +50,5 @@ size_desc(struct expritem *ei, char *buf, size_t len)
 		cmp = "<";
 	else if (data->cmp == CMP_GT)
 		cmp = ">";
-	if (snprintf(buf, len, "size %s %zu", cmp, data->size) == -1)
-		fatal("snprintf");
+	xsnprintf(buf, len, "size %s %zu", cmp, data->size);
 }

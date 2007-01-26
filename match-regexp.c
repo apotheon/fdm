@@ -1,4 +1,4 @@
-/* $Id: match-regexp.c,v 1.13 2007-01-26 19:47:21 nicm Exp $ */
+/* $Id: match-regexp.c,v 1.14 2007-01-26 20:07:42 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -90,6 +90,5 @@ regexp_desc(struct expritem *ei, char *buf, size_t len)
 		break;
 	}
 
-	if (snprintf(buf, len, "regexp \"%s\" in %s", data->re.str, area) == -1)
-		fatal("snprintf");
+	xsnprintf(buf, len, "regexp \"%s\" in %s", data->re.str, area);
 }

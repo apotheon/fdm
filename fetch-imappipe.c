@@ -1,4 +1,4 @@
-/* $Id: fetch-imappipe.c,v 1.7 2007-01-26 19:47:21 nicm Exp $ */
+/* $Id: fetch-imappipe.c,v 1.8 2007-01-26 20:07:42 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -184,13 +184,11 @@ imappipe_desc(struct account *a, char *buf, size_t len)
 	struct imap_data	*data = a->data;
 
 	if (data->user == NULL) {
-		if (snprintf(buf, len, "imap pipe \"%s\" folder \"%s\"",
-		    data->pipecmd, data->folder) == -1)
-			fatal("snprintf");
-		return;
+		xsnprintf(buf, len, "imap pipe \"%s\" folder \"%s\"",
+		    data->pipecmd, data->folder);
+	} else {
+		xsnprintf(buf, len,
+		    "imap pipe \"%s\" user \"%s\" folder \"%s\"",
+		    data->pipecmd, data->user, data->folder);
 	}
-	
-	if (snprintf(buf, len, "imap pipe \"%s\" user \"%s\" folder \"%s\"",
-	    data->pipecmd, data->user, data->folder) == -1)
-		fatal("snprintf");
 }

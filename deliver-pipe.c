@@ -1,4 +1,4 @@
-/* $Id: deliver-pipe.c,v 1.20 2007-01-26 19:47:21 nicm Exp $ */
+/* $Id: deliver-pipe.c,v 1.21 2007-01-26 20:07:41 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -75,6 +75,5 @@ pipe_deliver(struct deliver_ctx *dctx, struct action *t)
 void
 pipe_desc(struct action *t, char *buf, size_t len)
 {
-	if (snprintf(buf, len, "pipe \"%s\"", (char *) t->data) == -1)
-		fatal("snprintf");
+	xsnprintf(buf, len, "pipe \"%s\"", (char *) t->data);
 }

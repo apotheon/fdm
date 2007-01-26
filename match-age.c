@@ -1,4 +1,4 @@
-/* $Id: match-age.c,v 1.27 2007-01-26 19:49:06 nicm Exp $ */
+/* $Id: match-age.c,v 1.28 2007-01-26 20:07:42 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -181,6 +181,5 @@ age_desc(struct expritem *ei, char *buf, size_t len)
 		cmp = "<";
 	else if (data->cmp == CMP_GT)
 		cmp = ">";
-	if (snprintf(buf, len, "age %s %lld seconds", cmp, data->time) == -1)
-		fatal("snprintf");
+	xsnprintf(buf, len, "age %s %lld seconds", cmp, data->time);
 }

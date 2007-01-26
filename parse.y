@@ -1,4 +1,4 @@
-/* $Id: parse.y,v 1.138 2007-01-26 19:47:21 nicm Exp $ */
+/* $Id: parse.y,v 1.139 2007-01-26 20:07:42 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -187,8 +187,7 @@ fmt_strings(const char *prefix, struct strings *sp)
 		slen = strlen(s);
 
 		ENSURE_FOR(buf, len, off, slen + 4);
-		if (snprintf(buf + off, len - off, "\"%s\" ", s) != 0)
-			fatal("snprintf");
+		xsnprintf(buf + off, len - off, "\"%s\" ", s);
 		off += slen + 3;
 	}
 
