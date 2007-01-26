@@ -1,4 +1,4 @@
-/* $Id: io.c,v 1.45 2007-01-26 10:15:59 nicm Exp $ */
+/* $Id: io.c,v 1.46 2007-01-26 18:14:08 nicm Exp $ */
 
 /*
  * Copyright (c) 2005 Nicholas Marriott <nicm__@ntlworld.com>
@@ -633,7 +633,7 @@ io_vwriteline(struct io *io, const char *fmt, va_list ap)
 	if (fmt != NULL) {
 		len = xvasprintf(&buf, fmt, ap);
 		io_write(io, buf, len);
-		free(buf);
+		xfree(buf);
 	}
 	io_write(io, io->eol, strlen(io->eol));
 }

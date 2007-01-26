@@ -1,4 +1,4 @@
-/* $Id: mail.c,v 1.66 2007-01-26 17:52:23 nicm Exp $ */
+/* $Id: mail.c,v 1.67 2007-01-26 18:14:08 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -309,13 +309,6 @@ insert_header(struct mail *m, const char *before, const char *fmt, ...)
 	char		*hdr, *ptr;
 	size_t		 hdrlen, len;
 
-	va_start(ap, fmt);
-	hdrlen = xvasprintf(&hdr, fmt, ap);
-	va_end(ap);
-	
-	/* include the \n */
-	hdrlen++;
-
 	if (before != NULL) {
 		/* insert before header */
 		ptr = find_header(m, before, &len, 0);
@@ -331,6 +324,13 @@ insert_header(struct mail *m, const char *before, const char *fmt, ...)
 			ptr = m->data + m->body - 1;
 	}
 
+	va_start(ap, fmt);
+	hdrlen = xvasprintf(&hdr, fmt, ap);
+	va_end(ap);
+	
+	/* include the \n */
+	hdrlen++;
+
 	/* insert the header */
 	resize_mail(m, hdrlen);
 	memmove(ptr + hdrlen, ptr, m->size - (ptr - m->data));
@@ -340,6 +340,7 @@ insert_header(struct mail *m, const char *before, const char *fmt, ...)
  	if (m->body != -1)
 		m->body += hdrlen;
 
+	xfree(hdr);
 	return (0);
 }
 
