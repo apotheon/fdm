@@ -1,4 +1,4 @@
-/* $Id: fetch-maildir.c,v 1.33 2007-01-26 19:24:35 nicm Exp $ */
+/* $Id: fetch-maildir.c,v 1.34 2007-01-26 21:09:52 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -252,7 +252,7 @@ restart:
 		return (FETCH_ERROR);
 	}
 
-	mail_open(m, sb.st_size);
+	mail_open(m, IO_ROUND(sb.st_size));
 	m->src = xstrdup(basename(dirname(data->path)));
 
 	log_debug2("%s: reading %zu bytes", a->name, m->size);
