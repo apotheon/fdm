@@ -1,4 +1,4 @@
-/* $Id: child.c,v 1.96 2007-01-26 15:50:24 nicm Exp $ */
+/* $Id: child.c,v 1.97 2007-01-26 15:55:32 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -233,7 +233,7 @@ fetch_account(struct io *io, struct account *a, double tim)
 	int		 error;
  	const char	*cause = NULL;
 	struct match_ctx mctx;
-	char		*hdr, recvtime[64], *recvname;
+	char		*hdr, recvtm[64], *recvnm;
 	size_t		 len;
 
 	log_debug("%s: fetching", a->name);
@@ -293,15 +293,16 @@ fetch_account(struct io *io, struct account *a, double tim)
 		 * supplied strings at 512 bytes gives plenty of space for
 		 * the other stuff, and if they get truncated, hey, who cares?
 		 */
-		if (rfc822_time(time(NULL), recvtime, sizeof recvtime) == NULL)
-			strlcpy(recvtime, "unknown", sizeof recvtime);
-		if (conf.info.fqdn != NULL)
-			recvname = conf.info.fqdn;
-		else
-			recvname = conf.info.host;	
-		error = insert_header(&m, "Received:", 
-		    "Received: by %.512s (%s " BUILD ");\n\t%s", 
-		    recvname, __progname, recvtime);
+		error = 1;
+		if (rfc822_time(time(NULL), recvtm, sizeof recvtm) != NULL) {
+			recvnm = conf.info.fqdn;
+			if (recvnm == NULL)
+				recvnm = conf.info.host;	
+
+			error = insert_header(&m, "Received:",
+			    "Received: by %.512s (%s " BUILD ");\n\t%s",
+			    recvnm, __progname, recvtm);
+		}
 		if (error != 0)
 			log_debug("%s: failed to add received header", a->name);
 
