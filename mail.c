@@ -1,4 +1,4 @@
-/* $Id: mail.c,v 1.67 2007-01-26 18:14:08 nicm Exp $ */
+/* $Id: mail.c,v 1.68 2007-01-26 18:55:43 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -155,7 +155,7 @@ rfc822_time(time_t t, char *buf, size_t len)
 }
 
 int
-makepath(char *buf, size_t len, char *path, char *name)
+makepath(char *buf, size_t len, const char *path, const char *name)
 {
 	int	n;
 
@@ -164,7 +164,7 @@ makepath(char *buf, size_t len, char *path, char *name)
 		return (-1);
 	}
 
-	n = xsnprintf(buf, len, "%s/%s", path, name);
+	n = snprintf(buf, len, "%s/%s", path, name);
 	if (n < 0)
 		return (-1);
 	if ((size_t) n > len) {

@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.194 2007-01-26 18:49:13 nicm Exp $ */
+/* $Id: fdm.h,v 1.195 2007-01-26 18:55:43 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -1039,7 +1039,7 @@ void			 mail_close(struct mail *);
 void			 mail_destroy(struct mail *);
 void			 resize_mail(struct mail *, size_t);
 char 			*rfc822_time(time_t, char *, size_t);
-int 			 makepath(char *, size_t, char *, char *);
+int 			 makepath(char *, size_t, const char *, const char *);
 int			 openlock(char *, u_int, int, mode_t);
 void			 closelock(int, char *, u_int);
 void			 line_init(struct mail *, char **, size_t *);
