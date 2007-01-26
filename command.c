@@ -1,4 +1,4 @@
-/* $Id: command.c,v 1.20 2007-01-24 18:56:35 nicm Exp $ */
+/* $Id: command.c,v 1.21 2007-01-26 10:58:55 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -155,6 +155,7 @@ cmd_poll(struct cmd *cmd, char **out, char **err, char **lbuf, size_t *llen,
     char **cause)
 {
 	struct io	*io, *ios[3];
+	size_t		 len;
 
 	/* retrieve a line if possible */
 	*err = *out = NULL;
@@ -163,16 +164,27 @@ cmd_poll(struct cmd *cmd, char **out, char **err, char **lbuf, size_t *llen,
 			*err = io_readline2(cmd->io_err, lbuf, llen);
 		else
 			*err = io_readline(cmd->io_err);
-		if (*err != NULL)
+		if (*err != NULL) {
+			/* strip CR if the line is terminated by one */
+			len = strlen(*err);
+			log_debug("-- %zu", len);
+			if (len > 0 && (*err)[len - 1] == '\r')
+				(*err)[len - 1] = '\0';
 			return (0);
+		}
 	}
 	if (cmd->io_out != NULL) {
 		if (lbuf != NULL)
 			*out = io_readline2(cmd->io_out, lbuf, llen);
 		else
 			*out = io_readline(cmd->io_out);
-		if (*out != NULL)
+		if (*out != NULL) {
+			/* strip CR if the line is terminated by one */
+			len = strlen(*out);
+			if (len > 0 && (*out)[len - 1] == '\r')
+				(*out)[len - 1] = '\0';
 			return (0);
+		}
 	}
 
 	/* close stdin if it is done */
