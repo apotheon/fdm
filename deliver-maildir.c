@@ -1,4 +1,4 @@
-/* $Id: deliver-maildir.c,v 1.26 2007-01-26 19:03:13 nicm Exp $ */
+/* $Id: deliver-maildir.c,v 1.27 2007-01-26 19:24:35 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -61,24 +61,24 @@ maildir_deliver(struct deliver_ctx *dctx, struct action *t)
 		log_warn("%s: %s: mkdir", a->name, path);
 		goto out;
 	}
-	if (makepath1(name, sizeof name, path, "cur") != 0) {
-		log_warn("%s: %s: makepath1", a->name, path);
+	if (printpath(name, sizeof name, "%s/cur", path) != 0) {
+		log_warn("%s: %s: printpath", a->name, path);
 		goto out;
 	}
 	if (mkdir(name, S_IRWXU) != 0 && errno != EEXIST) {
 		log_warn("%s: %s: mkdir", a->name, name);
 		goto out;
 	}
-	if (makepath1(name, sizeof name, path, "new") != 0) {
-		log_warn("%s: %s: makepath1", a->name, path);
+	if (printpath(name, sizeof name, "%s/new", path) != 0) {
+		log_warn("%s: %s: printpath", a->name, path);
 		goto out;
 	}
 	if (mkdir(name, S_IRWXU) != 0 && errno != EEXIST) {
 		log_warn("%s: %s: mkdir", a->name, name);
 		goto out;
 	}
-	if (makepath1(name, sizeof name, path, "tmp") < 0) {
-		log_warn("%s: %s: makepath1", a->name, path);
+	if (printpath(name, sizeof name, "%s/tmp", path) != 0) {
+		log_warn("%s: %s: printpath", a->name, path);
 		goto out;
 	}
 	if (mkdir(name, S_IRWXU) != 0 && errno != EEXIST) {
@@ -124,12 +124,12 @@ restart:
 	do {
 		if (xsnprintf(name, sizeof name, "%ld.%ld_%u.%s",
 		    (long) time(NULL), (long) getpid(), delivered, host) < 0) {
-			log_warn("%s: %s: xsnprintf", a->name, path);
+			log_warn("%s: %s: snprintf", a->name, path);
 			goto out;
 		}
 
-		if (makepath2(src, sizeof src, path, "tmp", name) < 0) {
-			log_warn("%s: %s: makepath2", a->name, path);
+		if (printpath(src, sizeof src, "%s/tmp/%s", path, name) < 0) {
+			log_warn("%s: %s: printpath", a->name, path);
 			goto out;
 		}
 
@@ -159,8 +159,8 @@ restart:
 
 	/* create the new path and attempt to link it. a failed link jumps
 	   back to find another name in the tmp directory */
-	if (makepath2(dst, sizeof dst, path, "new", name) < 0) {
-		log_warn("%s: %s: makepath2", a->name, path);
+	if (printpath(dst, sizeof dst, "%s/new/%s", path, name) < 0) {
+		log_warn("%s: %s: printpath", a->name, path);
 		goto out;
 	}
 	log_debug2("%s: linking .../%s to .../%s", a->name,

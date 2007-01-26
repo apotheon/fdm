@@ -1,4 +1,4 @@
-/* $Id: fetch-nntp.c,v 1.40 2007-01-26 18:49:13 nicm Exp $ */
+/* $Id: fetch-nntp.c,v 1.41 2007-01-26 19:24:35 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -622,7 +622,7 @@ nntp_desc(struct account *a, char *buf, size_t len)
 	char			*names;
 
 	names = fmt_strings("groups ", data->names);
-	xsnprintf(buf, len, "nntp server \"%s\" port %s %s cache \"%s\"",
+	snprintf(buf, len, "nntp server \"%s\" port %s %s cache \"%s\"",
 	    data->server.host, data->server.port, names, data->path);
 	xfree(names);
 }

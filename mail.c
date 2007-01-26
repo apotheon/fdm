@@ -1,4 +1,4 @@
-/* $Id: mail.c,v 1.69 2007-01-26 19:03:13 nicm Exp $ */
+/* $Id: mail.c,v 1.70 2007-01-26 19:24:35 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -155,48 +155,29 @@ rfc822_time(time_t t, char *buf, size_t len)
 }
 
 int
-makepath1(char *buf, size_t len, const char *path, const char *name1)
+printpath(char *buf, size_t len, const char *fmt, ...)
 {
+	va_list	ap;
 	int	n;
 
 	if (len > INT_MAX) {
 		errno = ENAMETOOLONG;
-		return (-1);
+		return (1);
 	}
 
-	n = snprintf(buf, len, "%s/%s", path, name1);
+	va_start(ap, fmt);
+	n = vsnprintf(buf, len, fmt, ap);
+	va_end(ap);
+
 	if (n < 0)
-		return (-1);
+		return (1);
 	if ((size_t) n > len) {
 		errno = ENAMETOOLONG;
-		return (-1);
+		return (1);
 	}
 
 	return (0);
 }
-
-int
-makepath2(char *buf, size_t len, const char *path, const char *name1, 
-    const char *name2)
-{
-	int	n;
-
-	if (len > INT_MAX) {
-		errno = ENAMETOOLONG;
-		return (-1);
-	}
-
-	n = snprintf(buf, len, "%s/%s/%s", path, name1, name2);
-	if (n < 0)
-		return (-1);
-	if ((size_t) n > len) {
-		errno = ENAMETOOLONG;
-		return (-1);
-	}
-
-	return (0);
-}
-
 int
 openlock(char *path, u_int locks, int flags, mode_t mode)
 {

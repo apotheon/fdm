@@ -1,4 +1,4 @@
-/* $Id: shm.c,v 1.12 2007-01-22 18:26:32 nicm Exp $ */
+/* $Id: shm.c,v 1.13 2007-01-26 19:24:36 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -58,9 +58,9 @@ shm_malloc(struct shm *shm, size_t size)
         if (size == 0)
                 fatalx("shm_malloc: zero size");
 
-	if (xsnprintf(shm->name, sizeof shm->name, "%s/%s.XXXXXXXXXX",
-	    conf.tmp_dir, __progname) < 0)
-		fatal("xsnprintf");
+	if (printpath(shm->name, sizeof shm->name,
+	    "%s/%s.XXXXXXXXXX", conf.tmp_dir, __progname) != 0)
+		fatal("printpath");
 	if ((shm->fd = mkstemp(shm->name)) < 0)
 		fatal("mkstemp");
 
