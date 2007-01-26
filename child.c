@@ -1,4 +1,4 @@
-/* $Id: child.c,v 1.97 2007-01-26 15:55:32 nicm Exp $ */
+/* $Id: child.c,v 1.98 2007-01-26 15:58:15 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -456,7 +456,14 @@ do_rules(struct match_ctx *mctx, struct rules *rules, const char **cause)
 		/* reset wrapped lines */
 		set_wrapped(m, '\n');
 
-		log_debug("%s: matched message to rule %u", a->name, r->idx);
+		/* report rule number */
+		if (TAILQ_EMPTY(&r->rules)) {
+			log_debug("%s: matched message with rule %u", a->name,
+			    r->idx);
+		} else {
+			log_debug("%s: matched message with rule %u (nested)",
+			    a->name, r->idx);
+		}
 
 		/* tag mail if needed */
 		if (r->tag != NULL) {
