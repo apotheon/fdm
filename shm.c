@@ -1,4 +1,4 @@
-/* $Id: shm.c,v 1.13 2007-01-26 19:24:36 nicm Exp $ */
+/* $Id: shm.c,v 1.14 2007-01-26 21:01:03 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -98,6 +98,9 @@ shm_realloc(struct shm *shm, size_t nmemb, size_t size)
                 fatalx("shm_realloc: zero size");
         if (SIZE_MAX / nmemb < size)
                 fatalx("shm_realloc: nmemb * size > SIZE_MAX");
+
+	if (munmap(shm->data, shm->size) != 0)
+		fatal("munmap");
 
 	if (newsize < shm->size) {
 		if (ftruncate(shm->fd, newsize) != 0)
