@@ -1,4 +1,4 @@
-/* $Id: fetch-imappipe.c,v 1.3 2007-01-24 19:06:59 nicm Exp $ */
+/* $Id: fetch-imappipe.c,v 1.4 2007-01-26 15:50:25 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -31,16 +31,16 @@ char	        *imappipe_getln(struct account *, int);
 void		 imappipe_flush(struct account *);
 
 struct fetch	fetch_imappipe = { { NULL, NULL },
-			       imap_init,	/* from imap-common.c */
-			       imappipe_connect,
-			       imap_poll,	/* from imap-common.c */
-			       imap_fetch,	/* from imap-common.c */
-			       imap_purge,	/* from imap-common.c */
-			       imap_delete,	/* from imap-common.c */
-			       imap_keep,	/* from imap-common.c */
-			       imappipe_disconnect,
-			       imap_free,	/* from imap-common.c */
-			       imappipe_desc
+				   imap_init,	/* from imap-common.c */
+				   imappipe_connect,
+				   imap_poll,	/* from imap-common.c */
+				   imap_fetch,	/* from imap-common.c */
+				   imap_purge,	/* from imap-common.c */
+				   imap_delete,	/* from imap-common.c */
+				   imap_keep,	/* from imap-common.c */
+				   imappipe_disconnect,
+				   imap_free,	/* from imap-common.c */
+				   imappipe_desc,
 };
 
 int printflike2
