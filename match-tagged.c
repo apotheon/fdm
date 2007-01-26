@@ -1,4 +1,4 @@
-/* $Id: match-tagged.c,v 1.8 2007-01-26 18:49:13 nicm Exp $ */
+/* $Id: match-tagged.c,v 1.9 2007-01-26 19:47:21 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -48,5 +48,6 @@ tagged_desc(struct expritem *ei, char *buf, size_t len)
 {
 	struct tagged_data	*data = ei->data;
 
-	snprintf(buf, len, "tagged %s", data->tag);
+	if (snprintf(buf, len, "tagged %s", data->tag) == -1)
+		fatal("snprintf");
 }

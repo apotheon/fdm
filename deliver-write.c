@@ -1,4 +1,4 @@
-/* $Id: deliver-write.c,v 1.16 2007-01-26 18:49:13 nicm Exp $ */
+/* $Id: deliver-write.c,v 1.17 2007-01-26 19:47:21 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -40,7 +40,8 @@ write_deliver(struct deliver_ctx *dctx, struct action *t)
 void
 write_desc(struct action *t, char *buf, size_t len)
 {
-	snprintf(buf, len, "write \"%s\"", (char *) t->data);
+	if (snprintf(buf, len, "write \"%s\"", (char *) t->data) == -1)
+		fatal("snprintf");
 }
 
 int

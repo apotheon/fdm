@@ -1,4 +1,4 @@
-/* $Id: match-attachment.c,v 1.11 2007-01-26 18:49:13 nicm Exp $ */
+/* $Id: match-attachment.c,v 1.12 2007-01-26 19:47:21 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -148,24 +148,29 @@ attachment_desc(struct expritem *ei, char *buf, size_t len)
 
 	switch (data->op) {
 	case ATTACHOP_COUNT:
-		snprintf(buf, len, 
-		    "attachment count %s %lld", cmp, data->value.num);
+		if (snprintf(buf, len, 
+		    "attachment count %s %lld", cmp, data->value.num) == -1)
+			fatal("snprintf");
 		break;
 	case ATTACHOP_TOTALSIZE:
-		snprintf(buf, len,
-		    "attachment total-size %s %lld", cmp, data->value.num);
+		if (snprintf(buf, len, "attachment " 
+		    "total-size %s %lld", cmp, data->value.num) == -1)
+			fatal("snprintf");
 		break;
 	case ATTACHOP_ANYSIZE:
-		snprintf(buf, len,
-		"attachment any-size %s %lld", cmp, data->value.num);
+		if (snprintf(buf, len,
+		    "attachment any-size %s %lld", cmp, data->value.num) == -1)
+			fatal("snprintf");
 		break;
 	case ATTACHOP_ANYTYPE:
-		snprintf(buf, len, 
-		    "attachment any-type \"%s\"", data->value.str);
+		if (snprintf(buf, len,
+		    "attachment any-type \"%s\"", data->value.str) == -1)
+			fatal("snprintf");
 		break;
 	case ATTACHOP_ANYNAME:
-		snprintf(buf, len, 
-		    "attachment any-name \"%s\"", data->value.str);
+		if (snprintf(buf, len, 
+		    "attachment any-name \"%s\"", data->value.str) == -1)
+			fatal("snprintf");
 		break;
 	default:
 		if (len > 0)

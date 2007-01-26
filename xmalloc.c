@@ -1,4 +1,4 @@
-/* $Id: xmalloc.c,v 1.32 2007-01-16 17:21:44 nicm Exp $ */
+/* $Id: xmalloc.c,v 1.33 2007-01-26 19:47:21 nicm Exp $ */
 
 /*
  * Copyright (c) 2004 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -82,25 +82,6 @@ xstrdup(const char *s)
 	ptr = xmalloc(len);
 
         return (strncpy(ptr, s, len));
-}
-
-int printflike3
-xsnprintf(char *str, size_t size, const char *fmt, ...)
-{
-	int	i;
-
-	va_list	ap;
-
-	va_start(ap, fmt);
-	i = vsnprintf(str, size, fmt, ap);
-	va_end(ap);
-
-	if (i > 0 && (size_t) i >= size) {	/* truncation is failure */
-		i = -1;
-		errno = EINVAL;
-	}
-
-	return (i);
 }
 
 void *

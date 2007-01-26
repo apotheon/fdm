@@ -1,4 +1,4 @@
-/* $Id: match-command.c,v 1.19 2007-01-26 18:49:13 nicm Exp $ */
+/* $Id: match-command.c,v 1.20 2007-01-26 19:47:21 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -69,16 +69,21 @@ command_desc(struct expritem *ei, char *buf, size_t len)
 	const char		*type;
 
 	*ret = '\0';
-	if (data->ret != -1)
-		snprintf(ret, sizeof ret, "%d", data->ret);
+	if (data->ret != -1) {
+		if (snprintf(ret, sizeof ret, "%d", data->ret) == -1)
+			fatal("snprintf");
+	}
 	type = data->pipe ? "pipe" : "exec";
 
 	if (data->re.str == NULL) {
-		snprintf(buf, len, "%s \"%s\" user %lu returns (%s, )", 
-		    type, data->cmd, (u_long) data->uid, ret);
+		if (snprintf(buf, len, "%s \"%s\" user %lu returns (%s, )", 
+		    type, data->cmd, (u_long) data->uid, ret) == -1)
+			fatal("snprintf");
 		return;
 	}
 	
-	snprintf(buf, len, "command %s \"%s\" user %lu returns (%s, \"%s\")",
-	    type, data->cmd, (u_long) data->uid, ret, data->re.str);
+	if (snprintf(buf, len,
+	    "command %s \"%s\" user %lu returns (%s, \"%s\")",
+	    type, data->cmd, (u_long) data->uid, ret, data->re.str) == -1)
+		fatal("snprintf");
 }

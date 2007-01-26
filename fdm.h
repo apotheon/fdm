@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.197 2007-01-26 19:24:35 nicm Exp $ */
+/* $Id: fdm.h,v 1.198 2007-01-26 19:47:21 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -1113,7 +1113,6 @@ __dead void		 fatalx(const char *);
 void		*ensure_size(void *, size_t *, size_t, size_t);
 void		*ensure_for(void *, size_t *, size_t, size_t);
 char		*xstrdup(const char *);
-int printflike3	 xsnprintf(char *, size_t, const char *, ...);
 void		*xxcalloc(size_t, size_t);
 void		*xxmalloc(size_t);
 void		*xxrealloc(void *, size_t, size_t);

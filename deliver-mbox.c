@@ -1,4 +1,4 @@
-/* $Id: deliver-mbox.c,v 1.35 2007-01-26 18:49:13 nicm Exp $ */
+/* $Id: deliver-mbox.c,v 1.36 2007-01-26 19:47:21 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -212,8 +212,12 @@ mbox_desc(struct action *t, char *buf, size_t len)
 {
 	struct mbox_data	*data = t->data;
 	
-	if (data->compress)
-		snprintf(buf, len, "mbox \"%s\" compress", data->path);
-	else
-		snprintf(buf, len, "mbox \"%s\"", data->path);
+	if (!data->compress) {
+		if (snprintf(buf, len, "mbox \"%s\"", data->path) == -1)
+			fatal("snprintf");
+		return;
+	}
+
+	if (snprintf(buf, len, "mbox \"%s\" compress", data->path) == -1)
+		fatal("snprintf");
 }

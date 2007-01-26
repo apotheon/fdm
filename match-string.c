@@ -1,4 +1,4 @@
-/* $Id: match-string.c,v 1.13 2007-01-26 18:49:13 nicm Exp $ */
+/* $Id: match-string.c,v 1.14 2007-01-26 19:47:21 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -64,5 +64,7 @@ string_desc(struct expritem *ei, char *buf, size_t len)
 {
 	struct string_data	*data = ei->data;
 
-	snprintf(buf, len, "string \"%s\" to \"%s\"", data->str, data->re.str);
+	if (snprintf(buf, len, 
+	    "string \"%s\" to \"%s\"", data->str, data->re.str) == -1)
+		fatal("snprintf");
 }

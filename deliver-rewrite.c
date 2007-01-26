@@ -1,4 +1,4 @@
-/* $Id: deliver-rewrite.c,v 1.31 2007-01-26 18:49:13 nicm Exp $ */
+/* $Id: deliver-rewrite.c,v 1.32 2007-01-26 19:47:21 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -126,5 +126,6 @@ error:
 void
 rewrite_desc(struct action *t, char *buf, size_t len)
 {
-	snprintf(buf, len, "rewrite \"%s\"", (char *) t->data);
+	if (snprintf(buf, len, "rewrite \"%s\"", (char *) t->data) == -1)
+		fatal("snprintf");
 }
