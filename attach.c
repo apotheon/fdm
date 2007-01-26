@@ -1,4 +1,4 @@
-/* $Id: attach.c,v 1.15 2007-01-26 10:15:59 nicm Exp $ */
+/* $Id: attach.c,v 1.16 2007-01-26 12:19:39 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -227,7 +227,7 @@ attach_build(struct mail *m)
 	int		 last;
 	u_int		 n;
 
-	hdr = find_header(m, "content-type:", &len);
+	hdr = find_header(m, "content-type:", &len, 1);
 	if (hdr == NULL)
 		return (NULL);
 	hdr -= 13;
