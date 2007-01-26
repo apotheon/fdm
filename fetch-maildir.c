@@ -1,4 +1,4 @@
-/* $Id: fetch-maildir.c,v 1.34 2007-01-26 21:09:52 nicm Exp $ */
+/* $Id: fetch-maildir.c,v 1.35 2007-01-26 21:19:16 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -255,7 +255,7 @@ restart:
 	mail_open(m, IO_ROUND(sb.st_size));
 	m->src = xstrdup(basename(dirname(data->path)));
 
-	log_debug2("%s: reading %zu bytes", a->name, m->size);
+	log_debug2("%s: reading %ju bytes", a->name, (uintmax_t) sb.st_size);
 	if (read(fd, m->data, sb.st_size) != sb.st_size) {
 		close(fd);
 		log_warn("%s: %s: read", a->name, data->entry);
