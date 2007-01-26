@@ -1,4 +1,4 @@
-/* $Id: parent.c,v 1.52 2007-01-26 17:52:24 nicm Exp $ */
+/* $Id: parent.c,v 1.53 2007-01-26 22:16:35 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -163,7 +163,7 @@ parent_action(struct action *t, struct deliver_ctx *dctx, uid_t uid)
 
 				mail_receive(m, &msg);
 				log_debug2("%s: got new mail from delivery: "
-				    "size %zu, body=%zd", a->name, m->size,
+				    "size %zu, body %zd", a->name, m->size,
 				    m->body);
 			} else
 				mail_destroy(&dctx->wr_mail);
