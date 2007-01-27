@@ -1,3 +1,7 @@
+27 January 2007
+
+* Fix attachment parsing so that it works as intended.
+
 26 January 2007
 
 * Assigned a number to each rule and changed logging to refer to it. Also
@@ -15,4 +19,4 @@
   the mail was very rarely reallocated, now that the header is added it is.
 * Changed all the descriptions to static buffers and audited use of snprintf.
 
-$Id: CHANGES,v 1.6 2007-01-26 21:34:37 nicm Exp $
+$Id: CHANGES,v 1.7 2007-01-27 16:57:19 nicm Exp $
