@@ -1,4 +1,4 @@
-/* $Id: fdm.c,v 1.103 2007-02-07 14:52:19 nicm Exp $ */
+/* $Id: fdm.c,v 1.104 2007-02-07 16:25:57 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -325,7 +325,8 @@ main(int argc, char **argv)
 				macro->value.num = strtonum(ptr, 0, LLONG_MAX,
 				    &errstr);
 				if (errstr != NULL) {
-					log_warnx("number is %s", errstr);
+					log_warnx("number is %s: %s", errstr,
+					    ptr);
 					exit(1);
 				}
 				log_debug2("added -D macro \"%s\": %lld",

@@ -1,4 +1,4 @@
-/* $Id: fetch-nntp.c,v 1.44 2007-01-29 00:26:29 nicm Exp $ */
+/* $Id: fetch-nntp.c,v 1.45 2007-02-07 16:25:57 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -183,8 +183,11 @@ nntp_group(struct account *a, char **lbuf, size_t *llen)
 		return (1);
 	}
 	
-	if (group->last > last)
+	if (group->last > last) {
+		log_warnx("%s: new last %u is less than old %u", a->name,
+		    last, group->last);
 		goto invalid;
+	}
 	group->size = last - group->last;
 
 	io_writeline(data->io, "STAT %u", group->last);
