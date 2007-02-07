@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.93 2007-01-31 11:54:45 nicm Exp $
+# $Id: Makefile,v 1.94 2007-02-07 14:52:19 nicm Exp $
 
 .SUFFIXES: .c .o .y .l .h
 .PHONY: clean update-index.html upload-index.html lint regress yannotate
@@ -30,7 +30,7 @@ CFLAGS+= -pg -DPROFILE
 .endif
 CFLAGS+= -g -ggdb -DDEBUG
 #CFLAGS+= -pedantic -std=c99
-#CFLAGS+= -Wredundant-decls  -Wdisabled-optimization -Wendif-label
+#CFLAGS+= -Wredundant-decls  -Wdisabled-optimization -Wendif-labels
 CFLAGS+= -Wno-long-long -Wall -W -Wnested-externs -Wformat=2
 CFLAGS+= -Wmissing-prototypes -Wstrict-prototypes -Wmissing-declarations
 CFLAGS+= -Wwrite-strings -Wshadow -Wpointer-arith -Wcast-qual -Wsign-compare

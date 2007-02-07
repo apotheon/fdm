@@ -229,7 +229,8 @@ Command line arguments ---------------------------------------------------------
 
 The fdm binary has the following synopsis:
 
-fdm [-klmnv] [-f conffile] [-u user] [-a account] [-x account] [fetch | poll]
+	fdm [-klmnv] [-f conffile] [-u user] [-a account] [-x account]
+		[-D name=value] [fetch | poll]
 
 The meaning of the flags are covered in the fdm(1) man page, but a brief
 description is given below. The flags are also mentioned at relevant points
@@ -262,6 +263,9 @@ Flag	Meaning
 	Process all accounts except those that match the given pattern. Again,
 	fnmatch(3) wildcards may be used, and the -x option may be specified
 	multiple times.
+-D name=value
+	Define a macro. The macro name must be prefixed with '$' or '%' to
+	indicate if it is a string or numeric macro.
 
 If -n is not specified, the flags must be followed by one of the keywords
 'fetch' or 'poll'. The 'fetch' keyword will fetch and deliver mail, the 'poll'
@@ -1103,5 +1107,5 @@ match "^List-Id:.*<full-disclosure\\.lists\\.grok\\.org\\.uk>" in headers
 	actions { "strip-full-disclosure" "full-disclosure" }
 
 ================================================================================
-$Id: MANUAL,v 1.41 2007-01-26 17:52:23 nicm Exp $
+$Id: MANUAL,v 1.42 2007-02-07 14:52:19 nicm Exp $
 
