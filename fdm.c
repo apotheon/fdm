@@ -1,4 +1,4 @@
-/* $Id: fdm.c,v 1.105 2007-02-08 11:30:21 nicm Exp $ */
+/* $Id: fdm.c,v 1.106 2007-02-08 12:22:04 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -285,7 +285,7 @@ main(int argc, char **argv)
 	conf.impl_act = DECISION_NONE;
 	conf.purge_after = 0;
 	conf.file_umask = DEFUMASK;
-	conf.file_group = -1;
+	conf.file_group = NOGRP;
 
 	log_init(1);
 
