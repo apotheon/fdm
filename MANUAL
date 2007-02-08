@@ -625,6 +625,8 @@ fdm will append .gz to the mbox path (if it is not already present) and append
 compressed data. If the mbox exists but is not already compressed, uncompressed
 data will be appended.
 
+If the mbox does not exist, it is created.
+
 SMTP ---------------------------------------------------------------------------
 
 An action may be defined to pass mail on over SMTP. The server host must be
@@ -1120,5 +1122,5 @@ match "^List-Id:.*<full-disclosure\\.lists\\.grok\\.org\\.uk>" in headers
 	actions { "strip-full-disclosure" "full-disclosure" }
 
 ================================================================================
-$Id: MANUAL,v 1.43 2007-02-08 11:30:21 nicm Exp $
+$Id: MANUAL,v 1.44 2007-02-08 14:52:52 nicm Exp $
 
