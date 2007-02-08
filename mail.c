@@ -1,4 +1,4 @@
-/* $Id: mail.c,v 1.73 2007-01-26 21:34:37 nicm Exp $ */
+/* $Id: mail.c,v 1.74 2007-02-08 11:30:22 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -247,6 +247,44 @@ closelock(int fd, char *path, u_int locks)
 	}
 
 	close(fd);
+}
+
+int
+checkperms(char *hdr, char *path, int *exists)
+{
+	struct stat	sb;
+	gid_t		gid;
+	mode_t		mode;
+	
+	if (stat(path, &sb) != 0) {
+		if (errno == ENOENT) {
+			*exists = 0;
+			return (0);
+		}
+		return (1);
+	} 
+	*exists = 1;
+
+	mode = (S_ISDIR(sb.st_mode) ? DIRMODE : FILEMODE) & ~conf.file_umask;
+	if ((sb.st_mode & DIRMODE) != mode) {
+		log_warnx("%s: %s: bad permissions: %o%o%o, should be %o%o%o",
+		    hdr, path, MODE(sb.st_mode), MODE(mode));
+	}
+
+	if (sb.st_uid != getuid()) {
+		log_warnx("%s: %s: bad owner: %lu, should be %lu", hdr, path,
+		    (u_long) sb.st_uid, (u_long) getuid());
+	}
+		
+	gid = conf.file_group;
+	if (gid == NOGRP)
+		gid = getgid();
+	if (sb.st_gid != gid) {
+		log_warnx("%s: %s: bad group: %lu, should be %lu", hdr, path,
+		    (u_long) sb.st_gid, (u_long) gid);
+	}
+
+	return (0);
 }
 
 void

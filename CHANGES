@@ -1,3 +1,9 @@
+08 February 2007
+
+* Added file-umask and file-group options to control permissions and group
+  ownership of created mboxes and maildirs. Altered the permissions checks
+  to take this into account, and extended them to maildirs.
+
 07 February 2007
 
 * Added -D command line option.
@@ -27,4 +33,4 @@
   the mail was very rarely reallocated, now that the header is added it is.
 * Changed all the descriptions to static buffers and audited use of snprintf.
 
-$Id: CHANGES,v 1.8 2007-02-07 14:52:19 nicm Exp $
+$Id: CHANGES,v 1.9 2007-02-08 11:30:21 nicm Exp $

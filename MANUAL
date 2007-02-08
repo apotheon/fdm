@@ -983,6 +983,19 @@ quickly, so this option should be used with care.
 If this option is present, fdm will not insert a "Received" header into fetched
 mail.
 
+- file-umask [user|<umask>]
+
+This specifies the umask to use when creating files. 'user' means to use the
+umask set when fdm is started, or it may be specified as a three-digit octal
+number. The default is 077.
+
+- file-group [user|<group>]
+
+This option allows the default group ownership of files and directories created
+by fdm to be specified. 'group' may be a group name string or a numeric gid. If
+'user' is used, or if this option is not set in the configuration file, fdm
+does not attempt to set the group of new files and directories.
+
 Archiving and searching mail ===================================================
 
 As fdm can fetch from maildirs, it can be used to filter mail from one maildir
@@ -1107,5 +1120,5 @@ match "^List-Id:.*<full-disclosure\\.lists\\.grok\\.org\\.uk>" in headers
 	actions { "strip-full-disclosure" "full-disclosure" }
 
 ================================================================================
-$Id: MANUAL,v 1.42 2007-02-07 14:52:19 nicm Exp $
+$Id: MANUAL,v 1.43 2007-02-08 11:30:21 nicm Exp $
 
