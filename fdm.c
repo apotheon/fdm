@@ -1,4 +1,4 @@
-/* $Id: fdm.c,v 1.106 2007-02-08 12:22:04 nicm Exp $ */
+/* $Id: fdm.c,v 1.107 2007-02-09 15:40:20 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -148,9 +148,9 @@ fill_fqdn(char *host, char **fqdn, char **addr)
 
 	if (getaddrinfo(host, NULL, NULL, &ai) != 0)
 		return;
-		
+
 	if (getnameinfo(ai->ai_addr,
-	    ai->ai_addrlen, ni, sizeof ni, NULL, 0, NI_NUMERICHOST) == 0) 
+	    ai->ai_addrlen, ni, sizeof ni, NULL, 0, NI_NUMERICHOST) == 0)
 		xasprintf(addr, "[%s]", ni);
 
 	if (getnameinfo(ai->ai_addr,

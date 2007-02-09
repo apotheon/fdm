@@ -1,4 +1,4 @@
-/* $Id: io.c,v 1.48 2007-01-27 18:18:30 nicm Exp $ */
+/* $Id: io.c,v 1.49 2007-02-09 15:40:20 nicm Exp $ */
 
 /*
  * Copyright (c) 2005 Nicholas Marriott <nicm__@ntlworld.com>
@@ -600,7 +600,7 @@ io_readline(struct io *io)
 		io->llen = IO_LINESIZE;
 		io->lbuf = xmalloc(io->llen);
 	}
-	
+
 	if ((line = io_readline2(io, &io->lbuf, &io->llen)) != NULL)
 		io->lbuf = NULL;
 	return (line);
@@ -638,7 +638,7 @@ io_vwriteline(struct io *io, const char *fmt, va_list ap)
 	if (fmt != NULL) {
 		n = xvsnprintf(NULL, 0, fmt, ap);
 		ENSURE_FOR(io->wbase, io->wspace, io->wsize + io->woff, n + 1);
-		
+
  		xvsnprintf(io->wbase + io->woff + io->wsize, n + 1, fmt, ap);
 		io->wsize += n;
 	}
@@ -655,7 +655,7 @@ io_pollline(struct io *io, char **line, char **cause)
 		io->llen = IO_LINESIZE;
 		io->lbuf = xmalloc(io->llen);
 	}
-	
+
 	if ((res = io_pollline2(io, line, &io->lbuf, &io->llen, cause)) == 1)
 		io->lbuf = NULL;
 	return (res);

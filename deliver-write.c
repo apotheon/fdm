@@ -1,4 +1,4 @@
-/* $Id: deliver-write.c,v 1.18 2007-01-26 20:07:41 nicm Exp $ */
+/* $Id: deliver-write.c,v 1.19 2007-02-09 15:40:20 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -51,8 +51,7 @@ do_write(struct deliver_ctx *dctx, struct action *t, int append)
         char		*path;
         FILE    	*f;
 
-	path = replacepmatch(t->data, a, t, m->src, m, dctx->pmatch_valid,
-	    dctx->pmatch);
+	path = replace(t->data, &m->tags, m, dctx->pm_valid, dctx->pm);
         if (path == NULL || *path == '\0') {
 		if (path != NULL)
 			xfree(path);

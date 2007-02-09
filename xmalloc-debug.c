@@ -1,4 +1,4 @@
-/* $Id: xmalloc-debug.c,v 1.7 2007-02-05 12:48:12 nicm Exp $ */
+/* $Id: xmalloc-debug.c,v 1.8 2007-02-09 15:40:20 nicm Exp $ */
 
 /*
  * Copyright (c) 2004 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -84,7 +84,7 @@ xmalloc_called(const char *file, u_int line, enum xmalloc_type type)
 	u_int			 i;
 
 	for (i = 0; i < XMALLOC_SLOTS; i++) {
-		if (xmalloc_ctx.calls[i].type  == type && 
+		if (xmalloc_ctx.calls[i].type  == type &&
 		    xmalloc_ctx.calls[i].line == line &&
 		    strcmp(xmalloc_ctx.calls[i].file, file) == 0)
 			break;

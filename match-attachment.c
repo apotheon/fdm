@@ -1,4 +1,4 @@
-/* $Id: match-attachment.c,v 1.13 2007-01-26 20:07:42 nicm Exp $ */
+/* $Id: match-attachment.c,v 1.14 2007-02-09 15:40:20 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -148,11 +148,11 @@ attachment_desc(struct expritem *ei, char *buf, size_t len)
 
 	switch (data->op) {
 	case ATTACHOP_COUNT:
-		xsnprintf(buf, len, 
+		xsnprintf(buf, len,
 		    "attachment count %s %lld", cmp, data->value.num);
 		break;
 	case ATTACHOP_TOTALSIZE:
-		xsnprintf(buf, len, 
+		xsnprintf(buf, len,
 		    "attachment total-size %s %lld", cmp, data->value.num);
 		break;
 	case ATTACHOP_ANYSIZE:
@@ -164,7 +164,7 @@ attachment_desc(struct expritem *ei, char *buf, size_t len)
 		    "attachment any-type \"%s\"", data->value.str);
 		break;
 	case ATTACHOP_ANYNAME:
-		xsnprintf(buf, len, 
+		xsnprintf(buf, len,
 		    "attachment any-name \"%s\"", data->value.str);
 		break;
 	default:

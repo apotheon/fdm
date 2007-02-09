@@ -1,4 +1,4 @@
-/* $Id: imap-common.c,v 1.3 2007-01-26 17:52:23 nicm Exp $ */
+/* $Id: imap-common.c,v 1.4 2007-02-09 15:40:20 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -106,7 +106,7 @@ imap_login(struct account *a)
 		return (1);
 	}
 
-	if (data->putln(a, "%u LOGIN {%zu}", ++data->tag, 
+	if (data->putln(a, "%u LOGIN {%zu}", ++data->tag,
 	    strlen(data->user)) != 0)
 		return (1);
 	if ((line = data->getln(a, IMAP_CONTINUE)) == NULL)
@@ -159,7 +159,7 @@ imap_close(struct account *a)
 	if (!imap_okay(a, line))
 		return (1);
 
-	return (0);		
+	return (0);
 }
 
 int
@@ -175,7 +175,7 @@ imap_logout(struct account *a)
 	if (!imap_okay(a, line))
 		return (1);
 
-	return (0);		
+	return (0);
 }
 
 void
@@ -268,8 +268,11 @@ restart:
 	}
 
 	mail_open(m, IO_ROUND(size));
-	if (data->src != NULL)
-		m->src = xstrdup(data->src);
+	default_tags(&m->tags, data->server.host, a);
+	if (data->server.host != NULL) {
+		add_tag(&m->tags, "server", data->server.host);
+		add_tag(&m->tags, "port", data->server.port);
+	}
 
 	flushing = 0;
 	if (size > conf.max_size)
@@ -285,7 +288,7 @@ restart:
 
 		if (!flushing) {
 			resize_mail(m, off + len + 1);
-			
+
 			if (len > 0)
 				memcpy(m->data + off, line, len);
 			m->data[off + len] = '\n';
@@ -343,7 +346,7 @@ imap_delete(struct account *a)
 	if (!imap_okay(a, line))
 		return (1);
 
-	return (0);		
+	return (0);
 }
 
 int
