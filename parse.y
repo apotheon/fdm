@@ -1,4 +1,4 @@
-/* $Id: parse.y,v 1.141 2007-02-09 15:40:20 nicm Exp $ */
+/* $Id: parse.y,v 1.142 2007-02-09 16:48:10 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -280,7 +280,7 @@ find_macro(char *name)
 %token TOKMEGABYTES TOKGIGABYTES TOKBYTES TOKATTACHMENT TOKCOUNT TOKTOTALSIZE
 %token TOKANYTYPE TOKANYNAME TOKANYSIZE TOKEQ TOKNE TOKNNTP TOKCACHE TOKGROUP
 %token TOKGROUPS TOKPURGEAFTER TOKCOMPRESS TOKNORECEIVED TOKFILEUMASK
-%token TOKFILEGROUP TOKVALUE
+%token TOKFILEGROUP TOKVALUE TOKTIMEOUT
 %token LCKFLOCK LCKFCNTL LCKDOTLOCK
 
 %union
@@ -601,6 +601,13 @@ set: TOKSET TOKMAXSIZE size
 /**  [$3: uid (uid_t)] */
      {
 	     conf.def_user = $3;
+     }
+   | TOKSET TOKTIMEOUT time
+/**  [$3: size (long long)] */
+     {
+	     if ($3 > INT_MAX / 1000)
+		     yyerror("timeout too long: %lld", $3);
+	     conf.timeout = $3;
      }
    | TOKSET domains
 /**  [$2: domains (struct strings *)] */

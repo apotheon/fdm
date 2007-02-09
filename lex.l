@@ -1,6 +1,6 @@
 /* -*-C-*- */
 
-/* $Id: lex.l,v 1.76 2007-02-09 15:40:20 nicm Exp $ */
+/* $Id: lex.l,v 1.77 2007-02-09 16:48:10 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -165,6 +165,7 @@ stdin return (TOKSTDIN);
 string return (TOKSTRING);
 tag return (TOKTAG);
 tagged return (TOKTAGGED);
+timeout return (TOKTIMEOUT);
 to return (TOKTO);
 total-size return (TOKTOTALSIZE);
 unmatched return (TOKUNMATCHED);

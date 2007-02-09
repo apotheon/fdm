@@ -1,4 +1,4 @@
-/* $Id: fetch-imap.c,v 1.52 2007-02-09 15:40:20 nicm Exp $ */
+/* $Id: fetch-imap.c,v 1.53 2007-02-09 16:48:10 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -122,7 +122,8 @@ imap_connect(struct account *a)
 	struct imap_data	*data = a->data;
 	char			*cause;
 
-	data->io = connectproxy(&data->server, conf.proxy, IO_CRLF, &cause);
+	data->io = connectproxy(&data->server, conf.proxy, IO_CRLF,
+	    conf.timeout * 1000, &cause);
 	if (data->io == NULL) {
 		log_warnx("%s: %s", a->name, cause);
 		xfree(cause);

@@ -1,4 +1,4 @@
-/* $Id: child.c,v 1.104 2007-02-09 15:40:20 nicm Exp $ */
+/* $Id: child.c,v 1.105 2007-02-09 16:48:07 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -101,7 +101,7 @@ do_child(int fd, enum fdmop op, struct account *a)
 	COUNTFDS(a->name);
 #endif
 
-	io = io_create(fd, NULL, IO_LF);
+	io = io_create(fd, NULL, IO_LF, INFTIM);
 	log_debug("%s: started, pid %ld", a->name, (long) getpid());
 
 	if (a->fetch->init != NULL) {

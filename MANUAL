@@ -1041,6 +1041,11 @@ by fdm to be specified. 'group' may be a group name string or a numeric gid. If
 'user' is used, or if this option is not set in the configuration file, fdm
 does not attempt to set the group of new files and directories.
 
+- timeout <time>
+
+This controls the maximum time to wait for a server to send data before closing
+a connection. The default is 900 seconds.
+
 Archiving and searching mail ===================================================
 
 As fdm can fetch from maildirs, it can be used to filter mail from one maildir
@@ -1165,5 +1170,5 @@ match "^List-Id:.*<full-disclosure\\.lists\\.grok\\.org\\.uk>" in headers
 	actions { "strip-full-disclosure" "full-disclosure" }
 
 ================================================================================
-$Id: MANUAL,v 1.45 2007-02-09 15:40:20 nicm Exp $
+$Id: MANUAL,v 1.46 2007-02-09 16:48:07 nicm Exp $
 
