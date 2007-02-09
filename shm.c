@@ -1,4 +1,4 @@
-/* $Id: shm.c,v 1.14 2007-01-26 21:01:03 nicm Exp $ */
+/* $Id: shm.c,v 1.15 2007-02-09 14:44:09 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -53,7 +53,7 @@ shm_reopen(struct shm *shm)
 void *
 shm_malloc(struct shm *shm, size_t size)
 {
-	char	c[1];
+	char	c;
 
         if (size == 0)
                 fatalx("shm_malloc: zero size");
@@ -72,8 +72,8 @@ shm_malloc(struct shm *shm, size_t size)
 	if (lseek(shm->fd, size, SEEK_SET) < 0)
 		fatal("lseek");
 
-	c[0] = '\0';
-	if (write(shm->fd, c, 1) < 0)
+	c = '\0';
+	if (write(shm->fd, &c, 1) < 0)
 		fatal("write");
 
 	shm->data = mmap(NULL, shm->size, SHM_PROTW, MAP_SHARED, shm->fd, 0);
@@ -88,7 +88,7 @@ void *
 shm_realloc(struct shm *shm, size_t nmemb, size_t size)
 {
 	size_t	newsize = nmemb * size;
-	char	c[1];
+	char	c;
 
 #ifdef SHM_DEBUG
 	log_debug("shm_realloc: %s: %zu -> %zu", shm->name, shm->size, newsize);
@@ -109,8 +109,8 @@ shm_realloc(struct shm *shm, size_t nmemb, size_t size)
 		if (lseek(shm->fd, newsize, SEEK_SET) < 0)
 			fatal("lseek");
 
-		c[0] = '\0';
-		if (write(shm->fd, c, 1) < 0)
+		c = '\0';
+		if (write(shm->fd, &c, 1) < 0)
 			fatal("write");
 	}
 
