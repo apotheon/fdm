@@ -1,4 +1,4 @@
-/* $Id: replace.c,v 1.25 2007-02-09 15:40:20 nicm Exp $ */
+/* $Id: replace.c,v 1.26 2007-02-12 10:03:15 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -232,7 +232,7 @@ replace(const char *src, struct tags *tags, struct mail *m, int pm_valid,
 				ptr = tend;
 				continue;
 			}
-			strlcpy(name, ptr, tend - ptr);
+			strlcpy(name, ptr, (tend - ptr) + 1);
 			if ((tag = find_tag(tags, name)) == NULL) {
 				ptr = tend;
 				continue;
