@@ -1,4 +1,4 @@
-/* $Id: child.c,v 1.105 2007-02-09 16:48:07 nicm Exp $ */
+/* $Id: child.c,v 1.106 2007-02-16 13:54:49 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -144,7 +144,8 @@ do_child(int fd, enum fdmop op, struct account *a)
 	}
 
 	log_debug("%s: processing", a->name);
-	gettimeofday(&tv, NULL);
+	if (gettimeofday(&tv, NULL) != 0)
+		fatal("gettimeofday");
 	tim = tv.tv_sec + tv.tv_usec / 1000000.0;
 
 	/* connect */
