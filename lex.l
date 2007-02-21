@@ -1,6 +1,6 @@
 /* -*-C-*- */
 
-/* $Id: lex.l,v 1.77 2007-02-09 16:48:10 nicm Exp $ */
+/* $Id: lex.l,v 1.78 2007-02-21 09:35:58 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -155,6 +155,7 @@ pop3s return (TOKPOP3S);
 port return (TOKPORT);
 proxy return (TOKPROXY);
 purge-after return (TOKPURGEAFTER);
+remove-header return (TOKREMOVEHEADER);
 returns return (TOKRETURNS);
 rewrite return (TOKREWRITE);
 server return (TOKSERVER);

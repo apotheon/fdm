@@ -1,4 +1,4 @@
-/* $Id: parent.c,v 1.55 2007-02-09 16:48:10 nicm Exp $ */
+/* $Id: parent.c,v 1.56 2007-02-21 09:35:58 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -67,7 +67,7 @@ do_parent(struct child *child)
 		dctx.account = data->account;
 		dctx.mail = &m;
 		dctx.decision = NULL;	/* only altered in child */
-		dctx.pm_valid = msg.data.pm_valid;
+		dctx.pm_valid = &msg.data.pm_valid;
 		memcpy(&dctx.pm, &msg.data.pm, sizeof dctx.pm);
 
 		error = parent_action(data->action, &dctx, uid);
