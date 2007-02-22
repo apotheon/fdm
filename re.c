@@ -1,4 +1,4 @@
-/* $Id: re.c,v 1.4 2007-01-26 17:52:24 nicm Exp $ */
+/* $Id: re.c,v 1.5 2007-02-22 22:34:23 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -45,12 +45,12 @@ re_compile(struct re *re, char *s, int flags, char **cause)
 }
 
 int
-re_execute(struct re *re, char *s, int npmatch, regmatch_t *pmatch, int flags,
+re_execute(struct re *re, char *s, int npm, regmatch_t *pm, int flags,
     char **cause)
 {
 	int	res;
 
-	res = regexec(&re->re, s, npmatch, pmatch, flags);
+	res = regexec(&re->re, s, npm, pm, flags);
 	if (res != 0 && res != REG_NOMATCH) {
 		xasprintf(cause, "%s: regexec failed", re->str);
 		return (-1);
