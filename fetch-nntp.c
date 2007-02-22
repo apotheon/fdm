@@ -1,4 +1,4 @@
-/* $Id: fetch-nntp.c,v 1.48 2007-02-19 12:43:27 nicm Exp $ */
+/* $Id: fetch-nntp.c,v 1.49 2007-02-22 22:42:00 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -122,7 +122,7 @@ nntp_check(struct account *a, char **lbuf, size_t *llen, int *cdp, u_int n, ...)
 	} while (*cdp >= 100 && *cdp <= 199);
 
 	va_start(ap, n);
-	for (i = n; i > 0; i++) {
+	for (i = n; i > 0; i--) {
 		arg = va_arg(ap, int);
 		if (*cdp == arg)
 			break;
