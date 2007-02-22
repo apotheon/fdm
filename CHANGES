@@ -1,6 +1,11 @@
+22 February 2007
+
+* Added stdout delivery.
+* New append-string delivery to add data to a mail.
+
 19 February 2007
 
-* Add a remove-header action to remove all instances of a header. Based on a
+* Added a remove-header action to remove all instances of a header. Based on a
   a request by Tobias Ulmer.
 
 09 February 2007
@@ -49,4 +54,4 @@
   the mail was very rarely reallocated, now that the header is added it is.
 * Changed all the descriptions to static buffers and audited use of snprintf.
 
-$Id: CHANGES,v 1.14 2007-02-21 09:35:58 nicm Exp $
+$Id: CHANGES,v 1.15 2007-02-22 10:31:47 nicm Exp $
