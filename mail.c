@@ -1,4 +1,4 @@
-/* $Id: mail.c,v 1.76 2007-02-21 09:35:58 nicm Exp $ */
+/* $Id: mail.c,v 1.77 2007-02-22 10:16:34 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -124,8 +124,8 @@ mail_destroy(struct mail *m)
 void
 resize_mail(struct mail *m, size_t size)
 {
-	if (SIZE_MAX - m->off < m->size)
-		fatalx("resize_mail: SIZE_MAX - m->off < m->size");
+	if (SIZE_MAX - m->off < size)
+		fatalx("resize_mail: SIZE_MAX - m->off < size");
 	while (m->space <= (m->off + size)) {
 		m->base = shm_realloc(&m->shm, 2, m->space);
 		m->space *= 2;
