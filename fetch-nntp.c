@@ -1,4 +1,4 @@
-/* $Id: fetch-nntp.c,v 1.49 2007-02-22 22:42:00 nicm Exp $ */
+/* $Id: fetch-nntp.c,v 1.50 2007-02-22 23:05:25 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -170,6 +170,7 @@ nntp_group(struct account *a, char **lbuf, size_t *llen)
 	u_int			 n, last;
 
 	group = CURRENT_GROUP(data);
+	log_debug("%s: fetching group: %s", a->name, group->name);
 
 	io_writeline(data->io, "GROUP %s", group->name);
 	if ((line = nntp_check(a, lbuf, llen, NULL, 1, 211)) == NULL)
