@@ -241,7 +241,7 @@ in the rest of this document.
 
 Flag	Meaning
 -k 	Keep all mail (do not delete it from the server). This is useful for
-	testing delivery rules without risking mailing ending up permanently
+	testing delivery rules without risking mail ending up permanently
 	in the wrong place.
 -l	Log to syslog(3) using the 'mail' facility rather than outputting to
 	stderr.
@@ -1201,5 +1201,5 @@ match "^List-Id:.*<full-disclosure\\.lists\\.grok\\.org\\.uk>" in headers
 	actions { "strip-full-disclosure" "full-disclosure" }
 
 ================================================================================
-$Id: MANUAL,v 1.48 2007-02-22 10:31:47 nicm Exp $
+$Id: MANUAL,v 1.49 2007-02-22 22:36:38 nicm Exp $
 
