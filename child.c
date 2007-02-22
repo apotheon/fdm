@@ -1,4 +1,4 @@
-/* $Id: child.c,v 1.107 2007-02-21 09:35:58 nicm Exp $ */
+/* $Id: child.c,v 1.108 2007-02-22 16:56:57 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -291,7 +291,7 @@ fetch_account(struct io *io, struct account *a, double tim)
 		 * Insert received header.
 		 *
 		 * No header line must exceed 998 bytes. Limiting the user-
-		 * supplied host at 512 bytes gives plenty of space for
+		 * supplied stuff to 900 bytes gives plenty of space for
 		 * the other stuff, and if it gets truncated, who cares?
 		 */
 		if (!conf.no_received) {
@@ -302,8 +302,9 @@ fetch_account(struct io *io, struct account *a, double tim)
 					rnm = conf.info.host;
 
 				error = insert_header(&m, "received",
-				    "Received: by %.512s (%s " BUILD ");\n\t%s",
-				    rnm, __progname, rtm);
+				    "Received: by %.450s (%s " BUILD ", "
+				    "account \"%.450s\");\n\t%s",
+				    rnm, __progname, a->name, rtm);
 			}
 			if (error != 0) {
 				log_debug("%s: failed to add received header",
