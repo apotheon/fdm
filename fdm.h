@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.204 2007-02-22 10:31:47 nicm Exp $ */
+/* $Id: fdm.h,v 1.205 2007-02-23 12:45:28 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -1015,6 +1015,7 @@ struct macro		*find_macro(char *);
 struct actions		*match_actions(char *);
 
 /* fdm.c */
+double			 get_time(void);
 int			 dropto(uid_t);
 int			 check_incl(char *);
 int		         check_excl(char *);

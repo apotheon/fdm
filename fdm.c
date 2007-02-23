@@ -1,4 +1,4 @@
-/* $Id: fdm.c,v 1.109 2007-02-16 14:09:15 nicm Exp $ */
+/* $Id: fdm.c,v 1.110 2007-02-23 12:45:28 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -66,6 +66,16 @@ sighandler(int sig)
 		sigterm = 1;
 		break;
 	}
+}
+
+double
+get_time(void)
+{
+	struct timeval	 tv;
+
+	if (gettimeofday(&tv, NULL) != 0)
+		fatal("gettimeofday");
+	return (tv.tv_sec + tv.tv_usec / 1000000.0);
 }
 
 int
@@ -269,7 +279,6 @@ main(int argc, char **argv)
 	struct children	 children;
 	struct child	*child;
 	struct io      **ios, *io;
-	struct timeval	 tv;
 	double		 tim;
 	struct sigaction act;
 	struct msg	 msg;
@@ -698,10 +707,7 @@ main(int argc, char **argv)
 	setproctitle("parent");
 #endif
 	log_debug("parent: started, pid is %ld", (long) getpid());
-
-	if (gettimeofday(&tv, NULL) != 0)
-		fatal("gettimeofday");
-	tim = tv.tv_sec + tv.tv_usec / 1000000.0;
+	tim = get_time();
 
 	res = 0;
 	ios = xcalloc(ARRAY_LENGTH(&children), sizeof (struct io *));
@@ -810,9 +816,7 @@ main(int argc, char **argv)
 		res = 1;
 	}
 
-	if (gettimeofday(&tv, NULL) != 0)
-		fatal("gettimeofday");
-	tim = (tv.tv_sec + tv.tv_usec / 1000000.0) - tim;
+	tim = get_time() - tim;
  	log_debug("parent: finished, total time %.3f seconds", tim);
 
 out:
