@@ -41,6 +41,7 @@
 
 26 January 2007
 
+* Started a changelog.
 * Assigned a number to each rule and changed logging to refer to it. Also
   tweaked the -vv configuration file output.
 * Changed some vasprintf to xvasprintf now that the latter exists.
@@ -56,4 +57,4 @@
   the mail was very rarely reallocated, now that the header is added it is.
 * Changed all the descriptions to static buffers and audited use of snprintf.
 
-$Id: CHANGES,v 1.17 2007-02-22 23:05:25 nicm Exp $
+$Id: CHANGES,v 1.18 2007-02-27 17:42:57 nicm Exp $
