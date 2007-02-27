@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.99 2007-02-27 20:16:29 nicm Exp $
+# $Id: Makefile,v 1.100 2007-02-27 23:22:54 nicm Exp $
 
 .SUFFIXES: .c .o .y .l .h
 .PHONY: clean update-index.html upload-index.html lint regress yannotate
@@ -30,7 +30,7 @@ CFLAGS+= -DBUILD="\"$(VERSION) ($(DATE))\""
 .ifdef PROFILE
 CFLAGS+= -pg -DPROFILE
 .endif
-CFLAGS+= -g -ggdb -DDEBUG
+#CFLAGS+= -g -ggdb -DDEBUG
 #CFLAGS+= -pedantic -std=c99
 #CFLAGS+= -Wredundant-decls  -Wdisabled-optimization -Wendif-labels
 CFLAGS+= -Wno-long-long -Wall -W -Wnested-externs -Wformat=2
@@ -40,7 +40,8 @@ CFLAGS+= -Wundef -Wshadow -Wbad-function-cast -Winline -Wcast-align
 
 # NetBSD
 .if ${OS} == "NetBSD"
-SRCS+= compat/strtonum.c
+SRCS+= compat/strtonum.c compat/vis.c
+INCDIRS+= -Icompat
 CFLAGS+= -DNO_STRTONUM -DNO_SETRESUID -DNO_SETRESGID
 .endif
 
