@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.98 2007-02-22 22:32:58 nicm Exp $
+# $Id: Makefile,v 1.99 2007-02-27 20:16:29 nicm Exp $
 
 .SUFFIXES: .c .o .y .l .h
 .PHONY: clean update-index.html upload-index.html lint regress yannotate
@@ -25,6 +25,7 @@ LEX= lex
 YACC= yacc -d
 
 CC= cc
+INCDIRS+= -I. -I- -I/usr/local/include
 CFLAGS+= -DBUILD="\"$(VERSION) ($(DATE))\""
 .ifdef PROFILE
 CFLAGS+= -pg -DPROFILE
@@ -45,6 +46,9 @@ CFLAGS+= -DNO_STRTONUM -DNO_SETRESUID -DNO_SETRESGID
 
 # FreeBSD
 .if ${OS} == "FreeBSD"
+SRCS+= compat/vis.c
+INCDIRS+= -Icompat
+
 # FreeBSD 5
 .if ${REL:R} == 5
 SRCS+= compat/strtonum.c
@@ -56,7 +60,6 @@ PREFIX?= /usr/local
 INSTALLBIN= install -g bin -o root -m 555
 INSTALLMAN= install -g bin -o root -m 444
 
-INCDIRS= -I- -I. -I/usr/local/include
 LDFLAGS+= -L/usr/local/lib
 .ifdef PROFILE
 LDFLAGS+= -pg
