@@ -1,3 +1,11 @@
+28 February 2007
+
+* Man page cleanups, from Tamas TEVESZ.
+
+27 February 2007
+
+* fdm 1.0 released.
+
 22 February 2007
 
 * Fixed silly typo in NNTP code check. SF bug 1650701.
@@ -57,4 +65,4 @@
   the mail was very rarely reallocated, now that the header is added it is.
 * Changed all the descriptions to static buffers and audited use of snprintf.
 
-$Id: CHANGES,v 1.18 2007-02-27 17:42:57 nicm Exp $
+$Id: CHANGES,v 1.19 2007-02-28 09:20:51 nicm Exp $
