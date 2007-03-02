@@ -1,6 +1,6 @@
 /* -*-C-*- */
 
-/* $Id: lex.l,v 1.79 2007-02-22 10:31:47 nicm Exp $ */
+/* $Id: lex.l,v 1.80 2007-03-02 20:12:26 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -117,12 +117,14 @@ case return (TOKCASE);
 compress return (TOKCOMPRESS);
 continue return (TOKCONTINUE);
 count return (TOKCOUNT);
+delete-after return (TOKDELETEAFTER);
 disabled return (TOKDISABLED);
 domain return (TOKDOMAIN);
 domains return (TOKDOMAINS);
 dotlock return (LCKDOTLOCK);
 drop return (TOKDROP);
 exec return (TOKEXEC);
+expire-after return (TOKEXPIREAFTER);
 fcntl return (LCKFCNTL);
 file-group return (TOKFILEGROUP);
 file-umask return (TOKFILEUMASK);

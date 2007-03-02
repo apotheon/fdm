@@ -1,4 +1,4 @@
-/* $Id: fetch-maildir.c,v 1.38 2007-03-02 11:33:27 nicm Exp $ */
+/* $Id: fetch-maildir.c,v 1.39 2007-03-02 20:12:26 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -64,9 +64,9 @@ maildir_makepaths(struct account *a)
 	u_int			 i, j;
 	glob_t			 g;
 	struct stat		 sb;
-	struct cache		*tags;
+	struct strb		*tags;
 
-	cache_create(&tags);
+	strb_create(&tags);
 	default_tags(&tags, NULL, a);
 
 	data->paths = xmalloc(sizeof *data->paths);
@@ -115,7 +115,7 @@ maildir_makepaths(struct account *a)
 		xfree(s);
 	}
 
-	cache_destroy(&tags);
+	strb_destroy(&tags);
 	return (0);
 
 error:
@@ -123,7 +123,7 @@ error:
 		xfree(s);
 	maildir_freepaths(a);
 
-	cache_destroy(&tags);
+	strb_destroy(&tags);
 	return (1);
 }
 
