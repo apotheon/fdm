@@ -1,4 +1,4 @@
-/* $Id: fetch-nntp.c,v 1.50 2007-02-22 23:05:25 nicm Exp $ */
+/* $Id: fetch-nntp.c,v 1.51 2007-03-02 09:37:40 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -574,9 +574,9 @@ restart:
 
 	mail_open(m, IO_BLOCKSIZE);
 	default_tags(&m->tags, CURRENT_GROUP(data)->name, a);
-	add_tag(&m->tags, "group", CURRENT_GROUP(data)->name);
-	add_tag(&m->tags, "server", data->server.host);
-	add_tag(&m->tags, "port", data->server.port);
+	add_tag(&m->tags, "group", "%s", CURRENT_GROUP(data)->name);
+	add_tag(&m->tags, "server", "%s", data->server.host);
+	add_tag(&m->tags, "port", "%s", data->server.port);
 
 	flushing = 0;
 	off = lines = 0;

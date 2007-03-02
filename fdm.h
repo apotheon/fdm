@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.205 2007-02-23 12:45:28 nicm Exp $ */
+/* $Id: fdm.h,v 1.206 2007-03-02 09:37:40 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -1023,16 +1023,6 @@ int			 use_account(struct account *, char **);
 void			 fill_info(const char *);
 void			 fill_fqdn(char *, char **, char **);
 
-/* cache.c */
-struct cache 		*cache_open(char *, char **);
-void			 cache_close(struct cache *);
-u_int			 cache_compact(struct cache *, long long, u_int *);
-void			 cache_add(struct cache *, char *);
-void			 cache_update(struct cache *, char *);
-void			 cache_put(struct cache *, char *, u_int);
-int			 cache_get(struct cache *, char *, u_int *);
-int			 cache_contains(struct cache *, char *);
-
 /* imap-common.c */
 int			 imap_tag(char *);
 int			 imap_init(struct account *);
@@ -1123,7 +1113,8 @@ void			 cleanup_register(char *);
 void			 cleanup_deregister(char *);
 
 /* replace.c */
-void			 add_tag(struct tags *, const char *, const char *);
+void printflike3	 add_tag(struct tags *, const char *, const char *,
+			     ...);
 struct tag 		*find_tag(struct tags *, const char *);
 struct tag 		*match_tag(struct tags *, const char *);
 void			 default_tags(struct tags *, char *, struct account *);

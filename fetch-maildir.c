@@ -1,4 +1,4 @@
-/* $Id: fetch-maildir.c,v 1.36 2007-02-09 15:40:20 nicm Exp $ */
+/* $Id: fetch-maildir.c,v 1.37 2007-03-02 09:37:40 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -260,7 +260,7 @@ restart:
 
 	mail_open(m, IO_ROUND(sb.st_size));
 	default_tags(&m->tags, basename(dirname(data->path)), a);
-	add_tag(&m->tags, "maildir", basename(dirname(data->path)));
+	add_tag(&m->tags, "maildir", "%s", basename(dirname(data->path)));
 
 	log_debug2("%s: reading %ju bytes", a->name, (uintmax_t) sb.st_size);
 	if (read(fd, m->data, sb.st_size) != sb.st_size) {

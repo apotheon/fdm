@@ -1,4 +1,4 @@
-/* $Id: imap-common.c,v 1.4 2007-02-09 15:40:20 nicm Exp $ */
+/* $Id: imap-common.c,v 1.5 2007-03-02 09:37:40 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -270,9 +270,10 @@ restart:
 	mail_open(m, IO_ROUND(size));
 	default_tags(&m->tags, data->server.host, a);
 	if (data->server.host != NULL) {
-		add_tag(&m->tags, "server", data->server.host);
-		add_tag(&m->tags, "port", data->server.port);
+		add_tag(&m->tags, "server", "%s", data->server.host);
+		add_tag(&m->tags, "port", "%s", data->server.port);
 	}
+	add_tag(&m->tags, "server_uid", "%u", data->uid);
 
 	flushing = 0;
 	if (size > conf.max_size)
