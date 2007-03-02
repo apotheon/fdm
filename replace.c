@@ -1,4 +1,4 @@
-/* $Id: replace.c,v 1.28 2007-03-02 11:33:27 nicm Exp $ */
+/* $Id: replace.c,v 1.29 2007-03-02 18:32:12 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -95,7 +95,7 @@ add_tag(struct cache **tags, const char *key, const char *fmt, ...)
 	xvasprintf(&value, fmt, ap);
 	va_end(ap);
 
-	cache_add(tags, key, value);
+	cache_add(tags, key, value, strlen(value) + 1);
 
 	xfree(value);
 }
