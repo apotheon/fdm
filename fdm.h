@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.211 2007-03-02 20:12:26 nicm Exp $ */
+/* $Id: fdm.h,v 1.212 2007-03-02 20:52:32 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -861,10 +861,6 @@ struct imap_data {
 	char		*user;
 	char		*pass;
 	char		*folder;
-
-	char		*path;
-	long long	 delete;
-	long long	 expire;
 
 	int		 tag;
 	u_int		 cur;
