@@ -1,4 +1,4 @@
-/* $Id: deliver-mbox.c,v 1.40 2007-02-21 09:35:58 nicm Exp $ */
+/* $Id: deliver-mbox.c,v 1.41 2007-03-02 11:33:27 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -70,7 +70,7 @@ mbox_deliver(struct deliver_ctx *dctx, struct action *t)
 	int	 		 exists, fd = -1, fd2, res = DELIVER_FAILURE;
 	gzFile			 gzf = NULL;
 
-	path = replace(data->path, &m->tags, m, *dctx->pm_valid, dctx->pm);
+	path = replace(data->path, m->tags, m, *dctx->pm_valid, dctx->pm);
 	if (path == NULL || *path == '\0') {
 		if (path != NULL)
 			xfree(path);

@@ -1,4 +1,4 @@
-/* $Id: match-string.c,v 1.16 2007-02-09 15:40:20 nicm Exp $ */
+/* $Id: match-string.c,v 1.17 2007-03-02 11:33:27 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -42,7 +42,7 @@ string_match(struct match_ctx *mctx, struct expritem *ei)
 		return (MATCH_FALSE);
 	}
 
-	s = replace(data->str, &m->tags, m, 1, mctx->pm);
+	s = replace(data->str, m->tags, m, 1, mctx->pm);
 	log_debug2("%s: matching \"%s\" to \"%s\"", a->name, s, data->re.str);
 
 	res = re_simple(&data->re, s, &cause);
