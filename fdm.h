@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.208 2007-03-02 16:47:17 nicm Exp $ */
+/* $Id: fdm.h,v 1.209 2007-03-02 17:10:58 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -289,6 +289,7 @@ struct cacheent {
 
 /* Cache header. */
 struct cache {
+	int	 sorted;
 	u_int	 entries;
 
 	size_t	 str_used;
