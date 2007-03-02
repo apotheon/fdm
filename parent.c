@@ -1,4 +1,4 @@
-/* $Id: parent.c,v 1.57 2007-03-02 11:33:27 nicm Exp $ */
+/* $Id: parent.c,v 1.58 2007-03-02 16:47:17 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -57,7 +57,7 @@ do_parent(struct child *child)
 		if (buf == NULL || len == 0)
 			fatalx("parent: bad tags");
 		m.tags = buf;
-		
+
 		uid = data->uid;
 		memset(&dctx, 0, sizeof dctx);
 		dctx.account = data->account;
