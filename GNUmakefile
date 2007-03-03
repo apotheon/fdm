@@ -1,4 +1,4 @@
-# $Id: GNUmakefile,v 1.50 2007-02-28 09:20:51 nicm Exp $
+# $Id: GNUmakefile,v 1.51 2007-03-03 00:27:32 nicm Exp $
 
 .PHONY: clean
 
@@ -35,7 +35,7 @@ SRCS= fdm.c log.c xmalloc.c xmalloc-debug.c io.c replace.c connect.c mail.c \
       match-tagged.c match-size.c match-string.c match-matched.c match-age.c \
       match-unmatched.c match-attachment.c child.c parent.c privsep.c attach.c \
       cleanup.c imap-common.c fetch-imappipe.c deliver-remove-header.c \
-      deliver-stdout.c deliver-append-string.c \
+      deliver-stdout.c deliver-append-string.c strb.c \
       y.tab.c lex.yy.c
 
 DEFS= -DBUILD="\"$(VERSION) ($(DATE))\""
