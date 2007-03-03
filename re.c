@@ -1,4 +1,4 @@
-/* $Id: re.c,v 1.6 2007-03-03 23:48:31 nicm Exp $ */
+/* $Id: re.c,v 1.7 2007-03-03 23:52:08 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -52,6 +52,10 @@ re_execute(struct re *re, char *s, int npm, regmatch_t *pm, int flags,
 {
 	int	res;
 
+	/*
+	 * If the source string is empty, there is no regexp, so just check
+	 * whether or not the target string is also empty.
+	 */
 	if (*re->str == '\0') {
 		if (*s == '\0')
 			return (1);
