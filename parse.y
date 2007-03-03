@@ -1,4 +1,4 @@
-/* $Id: parse.y,v 1.149 2007-03-03 13:24:58 nicm Exp $ */
+/* $Id: parse.y,v 1.150 2007-03-03 22:39:05 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -1123,9 +1123,6 @@ to: /* empty */
   | TOKTO strv
 /**  [$2: strv (char *)] */
     {
-	    if (*$2 == '\0')
-		    yyerror("invalid to");
-
 	    $$ = $2;
     }
 
