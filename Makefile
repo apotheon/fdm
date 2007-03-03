@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.103 2007-03-02 20:12:26 nicm Exp $
+# $Id: Makefile,v 1.104 2007-03-03 17:24:51 nicm Exp $
 
 .SUFFIXES: .c .o .y .l .h
 .PHONY: clean update-index.html upload-index.html lint regress yannotate
@@ -48,7 +48,7 @@ CFLAGS+= -DNO_STRTONUM -DNO_SETRESUID -DNO_SETRESGID
 # FreeBSD
 .if ${OS} == "FreeBSD"
 SRCS+= compat/vis.c
-INCDIRS+= -Icompat
+INCDIRS+= -Icompat -I/usr/local/include/openssl
 
 # FreeBSD 5
 .if ${REL:R} == 5

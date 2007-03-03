@@ -1,4 +1,4 @@
-/* $Id: fetch-maildir.c,v 1.39 2007-03-02 20:12:26 nicm Exp $ */
+/* $Id: fetch-maildir.c,v 1.40 2007-03-03 17:24:51 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -255,7 +255,7 @@ restart:
 		return (FETCH_OVERSIZE);
 
 	if ((fd = open(data->entry, O_RDONLY, 0)) < 0) {
-		log_warn("%s: %s: stat", a->name, data->entry);
+		log_warn("%s: %s: open", a->name, data->entry);
 		return (FETCH_ERROR);
 	}
 

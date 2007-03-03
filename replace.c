@@ -1,4 +1,4 @@
-/* $Id: replace.c,v 1.30 2007-03-02 20:12:26 nicm Exp $ */
+/* $Id: replace.c,v 1.31 2007-03-03 17:24:51 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -86,18 +86,13 @@ static const char *aliases[] = {
 };
 
 void printflike3
-add_tag(struct strb **tags, const char *key, const char *fmt, ...)
+add_tag(struct strb **tags, const char *key, const char *value, ...)
 {
 	va_list		 ap;
-	char		*value;
 
-	va_start(ap, fmt);
-	xvasprintf(&value, fmt, ap);
+	va_start(ap, value);
+	strb_vadd(tags, key, value, ap);
 	va_end(ap);
-
-	strb_add(tags, key, value);
-
-	xfree(value);
 }
 
 const char *
