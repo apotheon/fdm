@@ -1,4 +1,4 @@
-/* $Id: parse.y,v 1.148 2007-03-02 20:54:20 nicm Exp $ */
+/* $Id: parse.y,v 1.149 2007-03-03 13:24:58 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -698,6 +698,7 @@ set: TOKSET TOKMAXSIZE size
 /**  [$3: numv (long long)] */
      {
 	     char	s[8];
+	     u_int	n;
 
 	     /*
 	      * We can't differentiate umasks in octal from normal numbers
@@ -710,8 +711,9 @@ set: TOKSET TOKMAXSIZE size
 	     if (s[3] != '\0' || s[0] < '0' || s[0] > '7' ||
 		 s[1] < 0 || s[1] > '7' || s[2] < '0' || s[2] > '7')
 		     yyerror("invalid umask: %s", s);
-	     if (sscanf(s, "%o", &conf.file_umask) != 1)
+	     if (sscanf(s, "%o", &n) != 1)
 		     yyerror("invalid umask: %s", s);
+	     conf.file_umask = n;
      }
 
 /** DEFMACRO */
