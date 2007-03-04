@@ -1,4 +1,4 @@
-/* $Id: child.c,v 1.112 2007-03-02 20:12:26 nicm Exp $ */
+/* $Id: child.c,v 1.113 2007-03-04 18:09:55 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -310,13 +310,6 @@ fetch_account(struct io *io, struct account *a, double tim)
 		/* fill wrapped line list */
 		l = fill_wrapped(&m);
 		log_debug2("%s: found %u wrapped lines", a->name, l);
-
-		/* fill attachments */
-		m.attach = attach_build(&m);
-		if (m.attach != NULL)
-			attach_log(m.attach, "%s: attachment", a->name);
-		else
-			log_debug("%s: no attachments", a->name);
 
 		/* handle rule evaluation and actions */
 		mctx.matched = mctx.stopped = 0;
