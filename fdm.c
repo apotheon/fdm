@@ -1,4 +1,4 @@
-/* $Id: fdm.c,v 1.110 2007-02-23 12:45:28 nicm Exp $ */
+/* $Id: fdm.c,v 1.111 2007-03-04 17:52:13 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -324,6 +324,7 @@ main(int argc, char **argv)
 			}
 
 			macro = xmalloc(sizeof *macro);
+			macro->fixed = 1;
 			strlcpy(macro->name, optarg, sizeof macro->name);
 			TAILQ_INSERT_HEAD(&macros, macro, entry);
 

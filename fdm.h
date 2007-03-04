@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.215 2007-03-04 16:01:31 nicm Exp $ */
+/* $Id: fdm.h,v 1.216 2007-03-04 17:52:13 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -218,6 +218,7 @@ struct macro {
 		MACRO_NUMBER,
 		MACRO_STRING
 	} type;
+	int			 fixed;
 
 	TAILQ_ENTRY(macro)	entry;
 };

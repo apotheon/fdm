@@ -268,7 +268,9 @@ Flag	Meaning
 	multiple times.
 -D name=value
 	Define a macro. The macro name must be prefixed with '$' or '%' to
-	indicate if it is a string or numeric macro.
+	indicate if it is a string or numeric macro. Macros defined on the
+	command line override any macros with the same name defined in the
+	configuration file.
 
 If -n is not specified, the flags must be followed by one of the keywords
 'fetch' or 'poll'. The 'fetch' keyword will fetch and deliver mail, the 'poll'
@@ -1198,5 +1200,5 @@ match "^List-Id:.*<full-disclosure\\.lists\\.grok\\.org\\.uk>" in headers
 	actions { "strip-full-disclosure" "full-disclosure" }
 
 ================================================================================
-$Id: MANUAL,v 1.51 2007-03-02 11:33:26 nicm Exp $
+$Id: MANUAL,v 1.52 2007-03-04 17:52:13 nicm Exp $
 
