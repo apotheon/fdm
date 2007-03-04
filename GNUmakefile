@@ -1,4 +1,4 @@
-# $Id: GNUmakefile,v 1.52 2007-03-04 16:01:30 nicm Exp $
+# $Id: GNUmakefile,v 1.53 2007-03-04 18:07:04 nicm Exp $
 
 .PHONY: clean
 
@@ -69,7 +69,7 @@ $(PROG): $(OBJS)
 	$(CC) $(LDFLAGS) $(LIBS) -o $@ $+
 
 depend: $(SRCS)
-	$(CC) -MM $(SRCS) > .depend
+	$(CC) $(CPPFLAGS) -MM $(SRCS) > .depend
 
 y.tab.c y.tab.h: parse.y
 	$(YACC) $(YFLAGS) $<
