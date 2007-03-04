@@ -1,3 +1,9 @@
+03 March 2007
+
+* Linux dirname(3)/basename(3) screws up the buffer. Fixed it thanks to Frank
+  Terbeck.
+* Fixed bugs in string parsing thanks to Frank Terbeck.
+
 02 March 2007
 
 * Made add_tag use varargs and added a server_uid tag to POP3/IMAP messages.
@@ -73,4 +79,4 @@
   the mail was very rarely reallocated, now that the header is added it is.
 * Changed all the descriptions to static buffers and audited use of snprintf.
 
-$Id: CHANGES,v 1.21 2007-03-02 11:33:26 nicm Exp $
+$Id: CHANGES,v 1.22 2007-03-04 00:34:14 nicm Exp $

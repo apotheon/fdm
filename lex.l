@@ -1,6 +1,6 @@
 /* -*-C-*- */
 
-/* $Id: lex.l,v 1.81 2007-03-02 20:52:32 nicm Exp $ */
+/* $Id: lex.l,v 1.82 2007-03-04 00:34:14 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -206,13 +206,18 @@ read_str(char endc, int esc)
         buf = xmalloc(len + 1);
 
         while (!done) {
-                switch (ch = input()) {
+		ch = input();
+		if (ch == endc) {
+                        done = 1;
+                        continue;
+		}
+                switch (ch) {
 		case 0:
 		case EOF:
 			yyerror("unterminated string");
                 case '\\':
 			if (!esc)
-				continue;
+				break;
                         switch (ch = input()) {
 			case 0:
 			case EOF:
@@ -278,10 +283,6 @@ read_str(char endc, int esc)
 				xfree(s);
 			continue;
                 }
-		if (ch == endc) {
-                        done = 1;
-                        continue;
-		}
 
                 buf[pos] = ch;
                 pos++;
