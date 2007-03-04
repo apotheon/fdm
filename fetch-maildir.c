@@ -1,4 +1,4 @@
-/* $Id: fetch-maildir.c,v 1.41 2007-03-03 22:08:39 nicm Exp $ */
+/* $Id: fetch-maildir.c,v 1.42 2007-03-04 16:29:06 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -289,6 +289,7 @@ restart:
 			break;
 		}
 	}
+	m->size = sb.st_size;
 
 	return (FETCH_SUCCESS);
 }
