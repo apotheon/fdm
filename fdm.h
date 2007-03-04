@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.216 2007-03-04 17:52:13 nicm Exp $ */
+/* $Id: fdm.h,v 1.217 2007-03-04 18:20:25 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -315,6 +315,7 @@ struct mail {
 	struct shm		 shm;
 
 	struct attach		*attach;
+	int			 attach_built;
 
 	char			*base;
 

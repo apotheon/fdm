@@ -1,4 +1,4 @@
-/* $Id: match-attachment.c,v 1.15 2007-03-04 18:09:55 nicm Exp $ */
+/* $Id: match-attachment.c,v 1.16 2007-03-04 18:20:25 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -37,13 +37,14 @@ attachment_match(struct match_ctx *mctx, struct expritem *ei)
 	size_t			 size;
 	u_int			 n;
 
-	if (m->attach == NULL) {
+	if (!m->attach_built) {
 		/* fill attachments */
 		m->attach = attach_build(m);
 		if (m->attach != NULL)
 			attach_log(m->attach, "%s: attachment", a->name);
 		else
 			log_debug("%s: no attachments", a->name);
+		m->attach_built = 1;
 	}
 
 	if (data->op == ATTACHOP_COUNT || data->op == ATTACHOP_TOTALSIZE) {
