@@ -1,6 +1,6 @@
 /* -*-C-*- */
 
-/* $Id: lex.l,v 1.82 2007-03-04 00:34:14 nicm Exp $ */
+/* $Id: lex.l,v 1.83 2007-03-04 16:01:31 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -101,6 +101,7 @@ accounts return (TOKACCOUNTS);
 action return (TOKACTION);
 actions return (TOKACTIONS);
 add-from return (TOKADDFROM);
+add-header return (TOKADDHEADER);
 age return (TOKAGE);
 all return (TOKALL);
 allow-multiple return (TOKALLOWMANY);

@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.214 2007-03-03 22:08:39 nicm Exp $ */
+/* $Id: fdm.h,v 1.215 2007-03-04 16:01:31 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -908,6 +908,12 @@ struct stdout_data {
 	int		 add_from;
 };
 
+/* Deliver add-header data. */
+struct add_header_data {
+	char		*hdr;
+	char		*value;
+};
+
 /* match-age.c */
 extern struct match	 match_age;
 
@@ -973,6 +979,9 @@ extern struct deliver 	 deliver_maildir;
 
 /* deliver-remove-header.c */
 extern struct deliver	 deliver_remove_header;
+
+/* deliver-add-header.c */
+extern struct deliver	 deliver_add_header;
 
 /* deliver-append-string.c */
 extern struct deliver	 deliver_append_string;
