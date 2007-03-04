@@ -1,4 +1,4 @@
-/* $Id: fdm.c,v 1.111 2007-03-04 17:52:13 nicm Exp $ */
+/* $Id: fdm.c,v 1.112 2007-03-04 18:31:53 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -174,7 +174,7 @@ dropto(uid_t uid)
 	struct passwd	*pw;
 	gid_t		 gid;
 
-	if (uid == 0)
+	if (uid == NOUSR || uid == 0)
 		return (0);
 
 	pw = getpwuid(uid);
