@@ -1,4 +1,4 @@
-/* $Id: deliver-maildir.c,v 1.34 2007-03-02 11:33:26 nicm Exp $ */
+/* $Id: deliver-maildir.c,v 1.35 2007-03-05 15:31:51 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -172,7 +172,8 @@ restart:
 		delivered++;
 	} while (fd == -1);
 	cleanup_register(src);
-	if (conf.file_group != NOGRP && fchown(fd, -1, conf.file_group) == -1) {
+	if (conf.file_group != NOGRP && 
+	    fchown(fd, (uid_t) -1, conf.file_group) == -1) {
 		log_warn("%s: %s: fchown", a->name, path);
 		goto out;
 	}
