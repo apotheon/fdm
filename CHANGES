@@ -19,7 +19,7 @@
 
 * Made add_tag use varargs and added a server_uid tag to POP3/IMAP messages.
 * Added infrastructure to maintain a cache of variable-length strings within a
-  single contiguous block of data (cache.c), so it can be passed easily up
+  single contiguous block of data (strb.c), so it can be passed easily up
   to the parent process. Use this for storing mail tags to get rid of the
   arbitrary tag length limits.
 
@@ -90,4 +90,4 @@
   the mail was very rarely reallocated, now that the header is added it is.
 * Changed all the descriptions to static buffers and audited use of snprintf.
 
-$Id: CHANGES,v 1.26 2007-03-04 18:12:48 nicm Exp $
+$Id: CHANGES,v 1.27 2007-03-05 15:48:56 nicm Exp $
