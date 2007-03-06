@@ -1,4 +1,4 @@
-/* $Id: command.c,v 1.23 2007-02-09 16:48:07 nicm Exp $ */
+/* $Id: command.c,v 1.24 2007-03-06 13:08:34 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -158,7 +158,10 @@ cmd_poll(struct cmd *cmd, char **out, char **err, char **lbuf, size_t *llen,
 	size_t		 len;
 
 	/* retrieve a line if possible */
-	*err = *out = NULL;
+	if (err != NULL)
+		*err = NULL;
+	if (out != NULL)
+		*out = NULL;
 	if (cmd->io_err != NULL) {
 		if (lbuf != NULL)
 			*err = io_readline2(cmd->io_err, lbuf, llen);
