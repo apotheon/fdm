@@ -1,4 +1,4 @@
-/* $Id: match-regexp.c,v 1.16 2007-03-06 17:26:38 nicm Exp $ */
+/* $Id: match-regexp.c,v 1.17 2007-03-06 18:01:21 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -34,11 +34,11 @@ struct match match_regexp = {
 int
 match_regexp_match(struct match_ctx *mctx, struct expritem *ei)
 {
-	struct regexp_data	*data = ei->data;
-	struct account		*a = mctx->account;
-	struct mail		*m = mctx->mail;
-	int			 res;
-	char		        *cause;
+	struct match_regexp_data	*data = ei->data;
+	struct account			*a = mctx->account;
+	struct mail			*m = mctx->mail;
+	int				 res;
+	char			        *cause;
 
 	if (data->area == AREA_BODY && m->body == -1)
 		return (MATCH_FALSE);
@@ -78,8 +78,8 @@ match_regexp_match(struct match_ctx *mctx, struct expritem *ei)
 void
 match_regexp_desc(struct expritem *ei, char *buf, size_t len)
 {
-	struct regexp_data	*data = ei->data;
-	const char		*area = NULL;
+	struct match_regexp_data	*data = ei->data;
+	const char			*area = NULL;
 
 	switch (data->area) {
 	case AREA_BODY:

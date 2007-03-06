@@ -1,4 +1,4 @@
-/* $Id: parent.c,v 1.60 2007-03-06 17:26:38 nicm Exp $ */
+/* $Id: parent.c,v 1.61 2007-03-06 18:01:22 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -30,7 +30,7 @@
 #include "match.h"
 
 int	parent_action(struct action *, struct deliver_ctx *, uid_t);
-int	parent_command(struct match_ctx *, struct command_data *, uid_t);
+int	parent_command(struct match_ctx *, struct match_command_data *, uid_t);
 
 int
 do_parent(struct child *child)
@@ -259,7 +259,8 @@ parent_action(struct action *t, struct deliver_ctx *dctx, uid_t uid)
 }
 
 int
-parent_command(struct match_ctx *mctx, struct command_data *data, uid_t uid)
+parent_command(struct match_ctx *mctx, struct match_command_data *data,
+    uid_t uid)
 {
 	struct account	*a = mctx->account;
 	struct mail	*m = mctx->mail;

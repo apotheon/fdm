@@ -1,4 +1,4 @@
-/* $Id: deliver-add-header.c,v 1.3 2007-03-06 17:26:37 nicm Exp $ */
+/* $Id: deliver-add-header.c,v 1.4 2007-03-06 18:01:21 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -35,10 +35,10 @@ struct deliver deliver_add_header = {
 int
 deliver_add_header_deliver(struct deliver_ctx *dctx, struct action *t)
 {
-	struct account		*a = dctx->account;
-	struct mail		*m = dctx->mail;
-	struct add_header_data	*data = t->data;
-	char			*value;
+	struct account			*a = dctx->account;
+	struct mail			*m = dctx->mail;
+	struct deliver_add_header_data	*data = t->data;
+	char				*value;
 	
 	value = replace(data->value, m->tags, m, *dctx->pm_valid, dctx->pm);
 	if (value == NULL) {
@@ -67,7 +67,7 @@ deliver_add_header_deliver(struct deliver_ctx *dctx, struct action *t)
 void
 deliver_add_header_desc(struct action *t, char *buf, size_t len)
 {
-	struct add_header_data	*data = t->data;
+	struct deliver_add_header_data	*data = t->data;
 
 	xsnprintf(buf, len, "add-header \"%s\" \"%s\"", data->hdr, data->value);
 }

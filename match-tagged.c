@@ -1,4 +1,4 @@
-/* $Id: match-tagged.c,v 1.13 2007-03-06 17:26:38 nicm Exp $ */
+/* $Id: match-tagged.c,v 1.14 2007-03-06 18:01:21 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -35,8 +35,8 @@ struct match match_tagged = {
 int
 match_tagged_match(struct match_ctx *mctx, struct expritem *ei)
 {
-	struct tagged_data	*data = ei->data;
-	struct mail		*m = mctx->mail;
+	struct match_tagged_data	*data = ei->data;
+	struct mail			*m = mctx->mail;
 
 	if (match_tag(m->tags, data->tag) != NULL)
 		return (MATCH_TRUE);
@@ -46,7 +46,7 @@ match_tagged_match(struct match_ctx *mctx, struct expritem *ei)
 void
 match_tagged_desc(struct expritem *ei, char *buf, size_t len)
 {
-	struct tagged_data	*data = ei->data;
+	struct match_tagged_data	*data = ei->data;
 
 	xsnprintf(buf, len, "tagged %s", data->tag);
 }

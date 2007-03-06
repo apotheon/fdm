@@ -1,4 +1,4 @@
-/* $Id: match-size.c,v 1.9 2007-03-06 17:26:38 nicm Exp $ */
+/* $Id: match-size.c,v 1.10 2007-03-06 18:01:21 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -34,7 +34,7 @@ struct match match_size = {
 int
 match_size_match(struct match_ctx *mctx, struct expritem *ei)
 {
-	struct size_data	*data = ei->data;
+	struct match_size_data	*data = ei->data;
 	struct mail		*m = mctx->mail;
 
 	if (data->cmp == CMP_LT && m->size < data->size)
@@ -47,7 +47,7 @@ match_size_match(struct match_ctx *mctx, struct expritem *ei)
 void
 match_size_desc(struct expritem *ei, char *buf, size_t len)
 {
-	struct size_data	*data = ei->data;
+	struct match_size_data	*data = ei->data;
 	const char		*cmp = "";
 
 	if (data->cmp == CMP_LT)

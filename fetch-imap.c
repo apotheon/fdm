@@ -1,4 +1,4 @@
-/* $Id: fetch-imap.c,v 1.54 2007-03-06 17:26:37 nicm Exp $ */
+/* $Id: fetch-imap.c,v 1.55 2007-03-06 18:01:21 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -48,7 +48,7 @@ struct fetch fetch_imap = {
 int printflike2
 imap_putln(struct account *a, const char *fmt, ...)
 {
-	struct imap_data	*data = a->data;
+	struct fetch_imap_data	*data = a->data;
 
 	va_list	ap;
 
@@ -62,7 +62,7 @@ imap_putln(struct account *a, const char *fmt, ...)
 char *
 imap_getln(struct account *a, int type)
 {
-	struct imap_data	*data = a->data;
+	struct fetch_imap_data	*data = a->data;
 	char		       **lbuf = &data->lbuf;
 	size_t			*llen = &data->llen;
 	char			*line, *cause;
@@ -113,7 +113,7 @@ invalid:
 void
 imap_flush(struct account *a)
 {
-	struct imap_data	*data = a->data;
+	struct fetch_imap_data	*data = a->data;
 
 	io_flush(data->io, NULL);
 }
@@ -121,7 +121,7 @@ imap_flush(struct account *a)
 int
 fetch_imap_connect(struct account *a)
 {
-	struct imap_data	*data = a->data;
+	struct fetch_imap_data	*data = a->data;
 	char			*cause;
 
 	data->io = connectproxy(&data->server, conf.proxy, IO_CRLF,
@@ -153,7 +153,7 @@ fetch_imap_connect(struct account *a)
 int
 fetch_imap_disconnect(struct account *a)
 {
-	struct imap_data	*data = a->data;
+	struct fetch_imap_data	*data = a->data;
 
 	if (imap_close(a) != 0)
 		goto error;
@@ -177,7 +177,7 @@ error:
 void
 fetch_imap_desc(struct account *a, char *buf, size_t len)
 {
-	struct imap_data	*data = a->data;
+	struct fetch_imap_data	*data = a->data;
 
 	xsnprintf(buf, len,
 	    "imap%s server \"%s\" port %s user \"%s\" folder \"%s\"",
