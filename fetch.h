@@ -1,4 +1,4 @@
-/* $Id: fetch.h,v 1.4 2007-03-06 18:10:17 nicm Exp $ */
+/* $Id: fetch.h,v 1.5 2007-03-06 18:36:50 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -163,5 +163,21 @@ extern struct fetch 	 fetch_imap;
 
 /* fetch-imappipe.c */
 extern struct fetch 	 fetch_imappipe;
+
+/* imap-common.c */
+int			 imap_tag(char *);
+int			 imap_init(struct account *);
+int			 imap_free(struct account *);
+int			 imap_login(struct account *);
+int			 imap_select(struct account *);
+int			 imap_close(struct account *);
+int			 imap_logout(struct account *);
+void			 imap_abort(struct account *);
+int			 imap_uid(struct account *);
+int			 imap_poll(struct account *, u_int *);
+int			 imap_fetch(struct account *, struct mail *);
+int			 imap_purge(struct account *);
+int			 imap_delete(struct account *);
+int	 		 imap_keep(struct account *);
 
 #endif
