@@ -1,4 +1,4 @@
-/* $Id: parse.y,v 1.154 2007-03-06 17:26:38 nicm Exp $ */
+/* $Id: parse.y,v 1.155 2007-03-06 17:33:47 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -2070,21 +2070,21 @@ groups: TOKGROUP strv
 /** POPTYPE: <flag> (int) */
 poptype: TOKPOP3
          {
-		 $$ = 0;
+		 $$ = FETCHPORT_NORMAL;
          }
        | TOKPOP3S
 	 {
-		 $$ = 1;
+		 $$ = FETCHPORT_SSL;
 	 }
 
 /** IMAPTYPE: <flag> (int) */
 imaptype: TOKIMAP
           {
-		  $$ = 0;
+		  $$ = FETCHPORT_NORMAL;
           }
         | TOKIMAPS
 	  {
-		  $$ = 1;
+		  $$ = FETCHPORT_SSL;
 	  }
 
 /** USERPASS: <userpass> (struct { ... } userpass) */
