@@ -1,4 +1,4 @@
-/* $Id: deliver.h,v 1.2 2007-03-06 18:01:21 nicm Exp $ */
+/* $Id: deliver.h,v 1.3 2007-03-06 18:27:40 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -53,7 +53,7 @@ struct deliver {
 };
 
 /* Deliver smtp states. */
-enum smtp_state {
+enum deliver_smtp_state {
 	SMTP_CONNECTING,
 	SMTP_HELO,
 	SMTP_FROM,
