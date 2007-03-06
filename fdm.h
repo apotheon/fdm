@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.217 2007-03-04 18:20:25 nicm Exp $ */
+/* $Id: fdm.h,v 1.218 2007-03-06 13:23:47 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -969,6 +969,10 @@ extern struct deliver	 deliver_stdout;
 
 /* deliver-pipe.c */
 extern struct deliver 	 deliver_pipe;
+int	 		 do_pipe(struct deliver_ctx *, struct action *, int);
+
+/* deliver-exec.c */
+extern struct deliver 	 deliver_exec;
 
 /* deliver-drop.c */
 extern struct deliver 	 deliver_drop;

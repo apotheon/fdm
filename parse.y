@@ -1,4 +1,4 @@
-/* $Id: parse.y,v 1.152 2007-03-04 17:52:13 nicm Exp $ */
+/* $Id: parse.y,v 1.153 2007-03-06 13:23:47 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -1160,6 +1160,16 @@ action: TOKPIPE strv
 			yyerror("invalid command");
 
 		$$.deliver = &deliver_pipe;
+
+		$$.data = $2;
+	}
+      | TOKEXEC strv
+/**     [$2: strv (char *)] */
+	{
+		if (*$2 == '\0')
+			yyerror("invalid command");
+
+		$$.deliver = &deliver_exec;
 
 		$$.data = $2;
 	}
