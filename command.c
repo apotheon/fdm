@@ -1,4 +1,4 @@
-/* $Id: command.c,v 1.24 2007-03-06 13:08:34 nicm Exp $ */
+/* $Id: command.c,v 1.25 2007-03-06 13:20:13 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -115,7 +115,8 @@ cmd_start(const char *s, int flags, char *buf, size_t len, char **cause)
 			io_writefixed(cmd->io_in, buf, len);
 		}
 		cmd->io_in->flags &= ~IO_RD;
-	}
+	} else
+		cmd->io_in = NULL;
 	if (fd_out[0] != -1) {
 		cmd->io_out = io_create(fd_out[0], NULL, IO_LF, INFTIM);
 		cmd->io_out->flags &= ~IO_WR;
