@@ -1,4 +1,4 @@
-/* $Id: deliver-mbox.c,v 1.41 2007-03-02 11:33:27 nicm Exp $ */
+/* $Id: deliver-mbox.c,v 1.42 2007-03-06 10:04:28 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -86,6 +86,9 @@ mbox_deliver(struct deliver_ctx *dctx, struct action *t)
 		}
 	}
 	log_debug("%s: saving to mbox %s", a->name, path);
+
+	/* save the mbox path */
+	add_tag(&m->tags, "mbox_file", "%s", path);
 
 	/* create a from line for the mail */
 	from = make_from(m);

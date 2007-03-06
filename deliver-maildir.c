@@ -1,4 +1,4 @@
-/* $Id: deliver-maildir.c,v 1.35 2007-03-05 15:31:51 nicm Exp $ */
+/* $Id: deliver-maildir.c,v 1.36 2007-03-06 10:04:28 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -217,6 +217,9 @@ restart:
 		goto out;
 	}
 	cleanup_deregister(src);
+
+	/* save the mail file as a tag */
+	add_tag(&m->tags, "mail_file", "%s", dst);
 
 	res = DELIVER_SUCCESS;
 out:
