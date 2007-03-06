@@ -1,4 +1,4 @@
-/* $Id: deliver-pipe.c,v 1.25 2007-03-06 13:23:47 nicm Exp $ */
+/* $Id: deliver-pipe.c,v 1.26 2007-03-06 17:26:37 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -25,20 +25,25 @@
 #include <unistd.h>
 
 #include "fdm.h"
+#include "deliver.h"
 
-int	 pipe_deliver(struct deliver_ctx *, struct action *);
-void	 pipe_desc(struct action *, char *, size_t);
+int	 deliver_pipe_deliver(struct deliver_ctx *, struct action *);
+void	 deliver_pipe_desc(struct action *, char *, size_t);
 
-struct deliver deliver_pipe = { DELIVER_ASUSER, pipe_deliver, pipe_desc };
+struct deliver deliver_pipe = { 
+	DELIVER_ASUSER,
+	deliver_pipe_deliver,
+	deliver_pipe_desc
+};
 
 int
-pipe_deliver(struct deliver_ctx *dctx, struct action *t)
+deliver_pipe_deliver(struct deliver_ctx *dctx, struct action *t)
 {
 	return (do_pipe(dctx, t, 1));
 }
 
 void
-pipe_desc(struct action *t, char *buf, size_t len)
+deliver_pipe_desc(struct action *t, char *buf, size_t len)
 {
 	xsnprintf(buf, len, "pipe \"%s\"", (char *) t->data);
 }

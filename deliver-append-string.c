@@ -1,4 +1,4 @@
-/* $Id: deliver-append-string.c,v 1.1 2007-02-22 10:31:47 nicm Exp $ */
+/* $Id: deliver-append-string.c,v 1.2 2007-03-06 17:26:37 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -22,16 +22,19 @@
 #include <vis.h>
 
 #include "fdm.h"
+#include "deliver.h"
 
-int	 append_string_deliver(struct deliver_ctx *, struct action *);
-void	 append_string_desc(struct action *, char *, size_t);
+int	 deliver_append_string_deliver(struct deliver_ctx *, struct action *);
+void	 deliver_append_string_desc(struct action *, char *, size_t);
 
-struct deliver deliver_append_string = { DELIVER_INCHILD,
-					 append_string_deliver,
-					 append_string_desc };
+struct deliver deliver_append_string = {
+	DELIVER_INCHILD,
+	deliver_append_string_deliver,
+	deliver_append_string_desc
+};
 
 int
-append_string_deliver(struct deliver_ctx *dctx, struct action *t)
+deliver_append_string_deliver(struct deliver_ctx *dctx, struct action *t)
 {
 	struct mail	*m = dctx->mail;
 	char		*ptr = t->data;
@@ -46,7 +49,7 @@ append_string_deliver(struct deliver_ctx *dctx, struct action *t)
 }
 
 void
-append_string_desc(struct action *t, char *buf, size_t len)
+deliver_append_string_desc(struct action *t, char *buf, size_t len)
 {
 	size_t			 sz;
 

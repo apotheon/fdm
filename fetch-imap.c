@@ -1,4 +1,4 @@
-/* $Id: fetch-imap.c,v 1.53 2007-02-09 16:48:10 nicm Exp $ */
+/* $Id: fetch-imap.c,v 1.54 2007-03-06 17:26:37 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -21,26 +21,28 @@
 #include <unistd.h>
 
 #include "fdm.h"
+#include "fetch.h"
 
-int	 	 imap_connect(struct account *);
-int	 	 imap_disconnect(struct account *);
-void		 imap_desc(struct account *, char *, size_t);
+int	 	 fetch_imap_connect(struct account *);
+int	 	 fetch_imap_disconnect(struct account *);
+void		 fetch_imap_desc(struct account *, char *, size_t);
 
 int printflike2	 imap_putln(struct account *, const char *, ...);
 char	        *imap_getln(struct account *, int);
 void		 imap_flush(struct account *);
 
-struct fetch	fetch_imap = { { "imap", "imaps" },
-			       imap_init,	/* from imap-common.c */
-			       imap_connect,
-			       imap_poll,	/* from imap-common.c */
-			       imap_fetch,	/* from imap-common.c */
-			       imap_purge,	/* from imap-common.c */
-			       imap_delete,	/* from imap-common.c */
-			       imap_keep,	/* from imap-common.c */
-			       imap_disconnect,
-			       imap_free,	/* from imap-common.c */
-			       imap_desc
+struct fetch fetch_imap = {
+	{ "imap", "imaps" },
+	imap_init,	/* from imap-common.c */
+	fetch_imap_connect,
+	imap_poll,	/* from imap-common.c */
+	imap_fetch,	/* from imap-common.c */
+	imap_purge,	/* from imap-common.c */
+	imap_delete,	/* from imap-common.c */
+	imap_keep,	/* from imap-common.c */
+	fetch_imap_disconnect,
+	imap_free,	/* from imap-common.c */
+	fetch_imap_desc
 };
 
 int printflike2
@@ -117,7 +119,7 @@ imap_flush(struct account *a)
 }
 
 int
-imap_connect(struct account *a)
+fetch_imap_connect(struct account *a)
 {
 	struct imap_data	*data = a->data;
 	char			*cause;
@@ -149,7 +151,7 @@ imap_connect(struct account *a)
 }
 
 int
-imap_disconnect(struct account *a)
+fetch_imap_disconnect(struct account *a)
 {
 	struct imap_data	*data = a->data;
 
@@ -173,7 +175,7 @@ error:
 }
 
 void
-imap_desc(struct account *a, char *buf, size_t len)
+fetch_imap_desc(struct account *a, char *buf, size_t len)
 {
 	struct imap_data	*data = a->data;
 

@@ -1,4 +1,4 @@
-/* $Id: child.c,v 1.115 2007-03-06 10:04:28 nicm Exp $ */
+/* $Id: child.c,v 1.116 2007-03-06 17:26:37 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -29,6 +29,9 @@
 #include <unistd.h>
 
 #include "fdm.h"
+#include "deliver.h"
+#include "fetch.h"
+#include "match.h"
 
 int	poll_account(struct io *, struct account *);
 int	fetch_account(struct io *, struct account *, double);

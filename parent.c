@@ -1,4 +1,4 @@
-/* $Id: parent.c,v 1.59 2007-03-06 10:04:29 nicm Exp $ */
+/* $Id: parent.c,v 1.60 2007-03-06 17:26:38 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -26,6 +26,8 @@
 #include <unistd.h>
 
 #include "fdm.h"
+#include "deliver.h"
+#include "match.h"
 
 int	parent_action(struct action *, struct deliver_ctx *, uid_t);
 int	parent_command(struct match_ctx *, struct command_data *, uid_t);

@@ -1,4 +1,4 @@
-/* $Id: match-attachment.c,v 1.16 2007-03-04 18:20:25 nicm Exp $ */
+/* $Id: match-attachment.c,v 1.17 2007-03-06 17:26:38 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -21,14 +21,18 @@
 #include <fnmatch.h>
 
 #include "fdm.h"
+#include "match.h"
 
-int	attachment_match(struct match_ctx *, struct expritem *);
-void	attachment_desc(struct expritem *, char *, size_t);
+int	match_attachment_match(struct match_ctx *, struct expritem *);
+void	match_attachment_desc(struct expritem *, char *, size_t);
 
-struct match match_attachment = { attachment_match, attachment_desc };
+struct match match_attachment = {
+	match_attachment_match,
+	match_attachment_desc
+};
 
 int
-attachment_match(struct match_ctx *mctx, struct expritem *ei)
+match_attachment_match(struct match_ctx *mctx, struct expritem *ei)
 {
 	struct attachment_data	*data = ei->data;
 	struct account		*a = mctx->account;
@@ -143,7 +147,7 @@ attachment_match(struct match_ctx *mctx, struct expritem *ei)
 }
 
 void
-attachment_desc(struct expritem *ei, char *buf, size_t len)
+match_attachment_desc(struct expritem *ei, char *buf, size_t len)
 {
 	struct attachment_data	*data = ei->data;
 	const char 		*cmp = "";

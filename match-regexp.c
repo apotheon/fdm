@@ -1,4 +1,4 @@
-/* $Id: match-regexp.c,v 1.15 2007-02-09 15:40:20 nicm Exp $ */
+/* $Id: match-regexp.c,v 1.16 2007-03-06 17:26:38 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -21,14 +21,18 @@
 #include <regex.h>
 
 #include "fdm.h"
+#include "match.h"
 
-int	regexp_match(struct match_ctx *, struct expritem *);
-void	regexp_desc(struct expritem *, char *, size_t);
+int	match_regexp_match(struct match_ctx *, struct expritem *);
+void	match_regexp_desc(struct expritem *, char *, size_t);
 
-struct match match_regexp = { regexp_match, regexp_desc };
+struct match match_regexp = {
+	match_regexp_match,
+	match_regexp_desc
+};
 
 int
-regexp_match(struct match_ctx *mctx, struct expritem *ei)
+match_regexp_match(struct match_ctx *mctx, struct expritem *ei)
 {
 	struct regexp_data	*data = ei->data;
 	struct account		*a = mctx->account;
@@ -72,7 +76,7 @@ regexp_match(struct match_ctx *mctx, struct expritem *ei)
 }
 
 void
-regexp_desc(struct expritem *ei, char *buf, size_t len)
+match_regexp_desc(struct expritem *ei, char *buf, size_t len)
 {
 	struct regexp_data	*data = ei->data;
 	const char		*area = NULL;

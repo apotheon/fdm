@@ -1,4 +1,4 @@
-/* $Id: imap-common.c,v 1.6 2007-03-04 16:01:31 nicm Exp $ */
+/* $Id: imap-common.c,v 1.7 2007-03-06 17:26:38 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -21,6 +21,7 @@
 #include <string.h>
 
 #include "fdm.h"
+#include "fetch.h"
 
 int	imap_okay(struct account *, char *);
 
