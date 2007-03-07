@@ -1,4 +1,4 @@
-/* $Id: parent.c,v 1.63 2007-03-07 11:23:43 nicm Exp $ */
+/* $Id: parent.c,v 1.64 2007-03-07 18:04:01 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -65,7 +65,7 @@ parent_get(struct mail *m, struct msg *msg, void *buf, struct deliver_ctx *dctx,
 		memset(dctx, 0, sizeof dctx);
 		dctx->account = msg->data.account;
 		dctx->mail = m;
-		dctx->decision = NULL;	/* only altered in child */
+		dctx->decision = NULL;		/* only altered in child */
 		dctx->pm_valid = &msg->data.pm_valid;
 		memcpy(&dctx->pm, &msg->data.pm, sizeof dctx->pm);
 	}
@@ -74,7 +74,7 @@ parent_get(struct mail *m, struct msg *msg, void *buf, struct deliver_ctx *dctx,
 		memset(mctx, 0, sizeof mctx);
 		mctx->account = msg->data.account;
 		mctx->mail = m;
-		mctx->decision = NULL;	/* only altered in child */
+		mctx->decision = DECISION_NONE;	/* only altered in child */
 		mctx->pm_valid = msg->data.pm_valid;
 		memcpy(&mctx->pm, &msg->data.pm, sizeof mctx->pm);
 	}
