@@ -1,4 +1,4 @@
-/* $Id: child.c,v 1.116 2007-03-06 17:26:37 nicm Exp $ */
+/* $Id: child.c,v 1.117 2007-03-07 00:27:56 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -663,10 +663,10 @@ do_action(struct rule *r, struct match_ctx *mctx, struct action *t)
 
 		mail_send(m, &msg);
 
-		if (privsep_send(mctx->io, &msg, m->tags,
+		if (privsep_send(mctx->io, &msg, m->tags, 
 		    STRB_SIZE(m->tags)) != 0) 
 			fatalx("child: privsep_send error");
-
+		
 		if (privsep_recv(mctx->io, &msg, &buf, &len) != 0)
 			fatalx("child: privsep_recv error");
 		if (msg.type != MSG_DONE)

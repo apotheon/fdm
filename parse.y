@@ -1,4 +1,4 @@
-/* $Id: parse.y,v 1.157 2007-03-06 18:10:17 nicm Exp $ */
+/* $Id: parse.y,v 1.158 2007-03-07 00:27:56 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -1578,7 +1578,7 @@ expritem: not icase strv area
 		  data->ret = $7;
 
 		  if ($9 != NULL) {
-			  flags = REG_EXTENDED|REG_NOSUB|REG_NEWLINE;
+			  flags = REG_EXTENDED|REG_NEWLINE;
 			  if (re_compile(&data->re, $9, flags, &cause) != 0)
 				  yyerror("%s", cause);
 		  }
