@@ -1,3 +1,11 @@
+08 March 2007
+
+* Try to introduce some consistency into tag replacement in strings. Introduce
+  a new type (struct replstr) which indicates a string that should be replaced
+  before use, and try to make sure replacement happens possibly for all strings
+  where replacement should happen on parse. Hopefully this will make it easier
+  to handle replacement properly in future too.
+
 07 March 2007
 
 * Handle POLLHUP properly in io.c: if it is set and POLLIN isn't set, the 
@@ -105,4 +113,4 @@
   the mail was very rarely reallocated, now that the header is added it is.
 * Changed all the descriptions to static buffers and audited use of snprintf.
 
-$Id: CHANGES,v 1.31 2007-03-07 19:07:42 nicm Exp $
+$Id: CHANGES,v 1.32 2007-03-08 16:13:40 nicm Exp $
