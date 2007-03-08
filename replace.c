@@ -1,4 +1,4 @@
-/* $Id: replace.c,v 1.32 2007-03-08 15:44:53 nicm Exp $ */
+/* $Id: replace.c,v 1.33 2007-03-08 21:52:37 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -174,7 +174,7 @@ replace(struct replstr *rs, struct strb *tags, struct mail *m, int pm_valid,
 		return (xstrdup(""));
 
 	off = 0;
-	len = BUFSIZ;
+	len = REPLBUFSIZE;
 	dst = xmalloc(len);
 
 	for (ptr = src; *ptr != '\0'; ptr++) {
