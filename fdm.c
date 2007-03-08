@@ -1,4 +1,4 @@
-/* $Id: fdm.c,v 1.112 2007-03-04 18:31:53 nicm Exp $ */
+/* $Id: fdm.c,v 1.113 2007-03-08 13:21:33 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -552,6 +552,10 @@ main(int argc, char **argv)
 	if (sizeof tmp > off && conf.file_group != NOGRP) {
 		off += xsnprintf(tmp + off, (sizeof tmp) - off,
 		    "file-group=%lu, ", (u_long) conf.file_group);
+	}
+	if (sizeof tmp > off && conf.lock_file != NULL) {
+		off += xsnprintf(tmp + off, (sizeof tmp) - off,
+		    "lock-file=\"%s\", ", conf.lock_file);
 	}
 	if (off >= 2) {
 		tmp[off - 2] = '\0';
