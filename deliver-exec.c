@@ -1,4 +1,4 @@
-/* $Id: deliver-exec.c,v 1.2 2007-03-06 17:26:37 nicm Exp $ */
+/* $Id: deliver-exec.c,v 1.3 2007-03-08 15:44:52 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -45,5 +45,7 @@ deliver_exec_deliver(struct deliver_ctx *dctx, struct action *t)
 void
 deliver_exec_desc(struct action *t, char *buf, size_t len)
 {
-	xsnprintf(buf, len, "exec \"%s\"", (char *) t->data);
+	struct deliver_pipe_data	*data = t->data;
+
+	xsnprintf(buf, len, "exec \"%s\"", data->cmd.str);
 }

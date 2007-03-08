@@ -1,4 +1,4 @@
-/* $Id: deliver-append.c,v 1.11 2007-03-06 17:26:37 nicm Exp $ */
+/* $Id: deliver-append.c,v 1.12 2007-03-08 15:44:52 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -45,5 +45,7 @@ deliver_append_deliver(struct deliver_ctx *dctx, struct action *t)
 void
 deliver_append_desc(struct action *t, char *buf, size_t len)
 {
-	xsnprintf(buf, len, "append \"%s\"", (char *) t->data);
+	struct deliver_write_data	*data = t->data;
+
+	xsnprintf(buf, len, "append \"%s\"", data->path.str);
 }

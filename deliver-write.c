@@ -1,4 +1,4 @@
-/* $Id: deliver-write.c,v 1.23 2007-03-06 17:26:37 nicm Exp $ */
+/* $Id: deliver-write.c,v 1.24 2007-03-08 15:44:52 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -45,18 +45,21 @@ deliver_write_deliver(struct deliver_ctx *dctx, struct action *t)
 void
 deliver_write_desc(struct action *t, char *buf, size_t len)
 {
-	xsnprintf(buf, len, "write \"%s\"", (char *) t->data);
+	struct deliver_write_data	*data = t->data;
+
+	xsnprintf(buf, len, "write \"%s\"", data->path.str);
 }
 
 int
 do_write(struct deliver_ctx *dctx, struct action *t, int appendf)
 {
-	struct account	*a = dctx->account;
-	struct mail	*m = dctx->mail;
-        char		*path;
-        FILE    	*f;
+	struct account			*a = dctx->account;
+	struct mail			*m = dctx->mail;
+	struct deliver_write_data	*data = t->data;
+        char				*path;
+        FILE    			*f;
 
-	path = replace(t->data, m->tags, m, *dctx->pm_valid, dctx->pm);
+	path = replace(&data->path, m->tags, m, *dctx->pm_valid, dctx->pm);
         if (path == NULL || *path == '\0') {
 		if (path != NULL)
 			xfree(path);

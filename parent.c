@@ -1,4 +1,4 @@
-/* $Id: parent.c,v 1.64 2007-03-07 18:04:01 nicm Exp $ */
+/* $Id: parent.c,v 1.65 2007-03-08 15:44:53 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -369,7 +369,7 @@ parent_cmd_hook(pid_t pid, struct account *a, unused struct msg *msg,
 		return (0);
 
 	/* sort out the command */
-	s = replace(data->cmd, m->tags, m, mctx->pm_valid, mctx->pm);
+	s = replace(&data->cmd, m->tags, m, mctx->pm_valid, mctx->pm);
         if (s == NULL || *s == '\0') {
 		log_warnx("%s: empty command", a->name);
 		goto error;

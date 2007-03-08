@@ -1,4 +1,4 @@
-/* $Id: match.h,v 1.2 2007-03-06 18:01:22 nicm Exp $ */
+/* $Id: match.h,v 1.3 2007-03-08 15:44:53 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -59,7 +59,7 @@ struct match_attachment_data {
 	union {
 		size_t		 size;
 		long long	 num;
-		char		*str;
+		struct replstr	 str;
 		struct re	 re;
 	} value;
 };
@@ -78,14 +78,14 @@ struct match_size_data {
 
 /* Match tagged data. */
 struct match_tagged_data {
-	char		*tag;
+	struct replstr	 tag;
 };
 
 /* Match string data. */
 struct match_string_data {
 	struct re	 re;
 
-	char		*str;
+	struct replstr	 str;
 };
 
 /* Match regexp data. */
@@ -97,7 +97,7 @@ struct match_regexp_data {
 
 /* Match command data. */
 struct match_command_data {
-	char		*cmd;
+	struct replstr	 cmd;
 	uid_t		 uid;
 	int		 pipe;		/* pipe mail to command */
 
