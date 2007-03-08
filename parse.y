@@ -1,4 +1,4 @@
-/* $Id: parse.y,v 1.158 2007-03-07 00:27:56 nicm Exp $ */
+/* $Id: parse.y,v 1.159 2007-03-08 12:29:30 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -26,7 +26,6 @@
 #include <ctype.h>
 #include <fnmatch.h>
 #include <grp.h>
-#include <libgen.h>
 #include <limits.h>
 #include <netdb.h>
 #include <pwd.h>
@@ -470,7 +469,7 @@ include: TOKINCLUDE strv
 
 		 yyin = fopen($2, "r");
 		 if (yyin == NULL) {
-			 xasprintf(&path, "%s/%s", dirname(conf.conf_file), $2);
+			 xasprintf(&path, "%s/%s", xdirname(conf.conf_file), $2);
 			 if (access(path, R_OK) != 0)
 				 yyerror("%s: %s", $2, strerror(errno));
 			 yyin = fopen(path, "r");

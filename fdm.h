@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.221 2007-03-06 18:36:50 nicm Exp $ */
+/* $Id: fdm.h,v 1.222 2007-03-08 12:29:30 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -827,6 +827,8 @@ int printflike2	 xxasprintf(char **, const char *, ...);
 int		 xxvasprintf(char **, const char *, va_list);
 int printflike3	 xsnprintf(char *, size_t, const char *, ...);
 int		 xvsnprintf(char *, size_t, const char *, va_list);
+char 		*xdirname(const char *);
+char 		*xbasename(const char *);
 
 /* xmalloc-debug.c */
 #ifdef DEBUG
