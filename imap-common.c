@@ -1,4 +1,4 @@
-/* $Id: imap-common.c,v 1.8 2007-03-06 18:01:21 nicm Exp $ */
+/* $Id: imap-common.c,v 1.9 2007-03-08 18:15:36 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -275,6 +275,7 @@ restart:
 		add_tag(&m->tags, "port", "%s", data->server.port);
 	}
 	add_tag(&m->tags, "server_uid", "%u", data->uid);
+	add_tag(&m->tags, "folder", "%s", data->folder);
 
 	flushing = 0;
 	if (size > conf.max_size)
