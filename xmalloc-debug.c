@@ -1,4 +1,4 @@
-/* $Id: xmalloc-debug.c,v 1.10 2007-03-07 11:27:44 nicm Exp $ */
+/* $Id: xmalloc-debug.c,v 1.11 2007-03-08 20:16:22 nicm Exp $ */
 
 /*
  * Copyright (c) 2004 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -320,7 +320,7 @@ dxcalloc(const char *file, u_int line, size_t nmemb, size_t size)
 	ptr = xxcalloc(nmemb, size);
 
 	xmalloc_ctx.mallocs++;
-	xmalloc_new(file, line, ptr, size);
+	xmalloc_new(file, line, ptr, nmemb * size);
 
 	xmalloc_called(file, line, XMALLOC_MALLOC);
 
