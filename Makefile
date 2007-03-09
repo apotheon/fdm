@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.107 2007-03-09 08:30:34 nicm Exp $
+# $Id: Makefile,v 1.108 2007-03-09 21:06:00 nicm Exp $
 
 .SUFFIXES: .c .o .y .l .h
 .PHONY: clean update-index.html upload-index.html lint regress yannotate
@@ -38,6 +38,13 @@ CFLAGS+= -Wno-long-long -Wall -W -Wnested-externs -Wformat=2
 CFLAGS+= -Wmissing-prototypes -Wstrict-prototypes -Wmissing-declarations
 CFLAGS+= -Wwrite-strings -Wshadow -Wpointer-arith -Wcast-qual -Wsign-compare
 CFLAGS+= -Wundef -Wshadow -Wbad-function-cast -Winline -Wcast-align
+
+# OS X
+.if ${OS} == "Darwin"
+SRCS+= compat/strtonum.c compat/vis.c
+INCDIRS+= -Icompat -I/usr/local/include/openssl
+CFLAGS+= -DNO_STRTONUM -DNO_SETRESUID -DNO_SETRESGID
+.endif
 
 # NetBSD
 .if ${OS} == "NetBSD"
