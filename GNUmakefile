@@ -1,4 +1,4 @@
-# $Id: GNUmakefile,v 1.55 2007-03-09 08:30:34 nicm Exp $
+# $Id: GNUmakefile,v 1.56 2007-03-09 21:15:00 nicm Exp $
 
 .PHONY: clean
 
@@ -40,6 +40,12 @@ SRCS= fdm.c log.c xmalloc.c xmalloc-debug.c io.c replace.c connect.c mail.c \
       y.tab.c lex.yy.c
 
 DEFS= -DBUILD="\"$(VERSION) ($(DATE))\""
+
+ifeq ($(shell uname),Darwin)
+INCDIRS+= -I/usr/local/include/openssl -Icompat
+SRCS+= compat/strtonum.c compat/vis.c
+DEFS+= -DNO_STRTONUM -DNO_SETRESUID -DNO_SETRESGID
+endif
 
 ifeq ($(shell uname),Linux)
 INCDIRS+= -I/usr/include/openssl -Icompat
