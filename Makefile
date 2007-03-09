@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.108 2007-03-09 21:06:00 nicm Exp $
+# $Id: Makefile,v 1.109 2007-03-09 21:19:42 nicm Exp $
 
 .SUFFIXES: .c .o .y .l .h
 .PHONY: clean update-index.html upload-index.html lint regress yannotate
@@ -43,7 +43,7 @@ CFLAGS+= -Wundef -Wshadow -Wbad-function-cast -Winline -Wcast-align
 .if ${OS} == "Darwin"
 SRCS+= compat/strtonum.c compat/vis.c
 INCDIRS+= -Icompat -I/usr/local/include/openssl
-CFLAGS+= -DNO_STRTONUM -DNO_SETRESUID -DNO_SETRESGID
+CFLAGS+= -DNO_STRTONUM -DNO_SETRESUID -DNO_SETRESGID -DNO_SETPROCTITLE
 .endif
 
 # NetBSD

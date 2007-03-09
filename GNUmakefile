@@ -1,4 +1,4 @@
-# $Id: GNUmakefile,v 1.56 2007-03-09 21:15:00 nicm Exp $
+# $Id: GNUmakefile,v 1.57 2007-03-09 21:19:42 nicm Exp $
 
 .PHONY: clean
 
@@ -44,7 +44,7 @@ DEFS= -DBUILD="\"$(VERSION) ($(DATE))\""
 ifeq ($(shell uname),Darwin)
 INCDIRS+= -I/usr/local/include/openssl -Icompat
 SRCS+= compat/strtonum.c compat/vis.c
-DEFS+= -DNO_STRTONUM -DNO_SETRESUID -DNO_SETRESGID
+DEFS+= -DNO_STRTONUM -DNO_SETRESUID -DNO_SETRESGID -DNO_SETPROCTITLE
 endif
 
 ifeq ($(shell uname),Linux)
