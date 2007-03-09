@@ -1,4 +1,4 @@
-# $Id: GNUmakefile,v 1.54 2007-03-06 13:23:47 nicm Exp $
+# $Id: GNUmakefile,v 1.55 2007-03-09 08:30:34 nicm Exp $
 
 .PHONY: clean
 
@@ -52,7 +52,7 @@ endif
 
 OBJS= $(patsubst %.c,%.o,$(SRCS))
 CPPFLAGS+= $(DEFS) -I. -I- $(INCDIRS)
-#CFLAGS+= -g -ggdb -DDEBUG
+CFLAGS+= -g -ggdb -DDEBUG
 #CFLAGS+= -pedantic -std=c99
 #CFLAGS+= -Wredundant-decls  -Wdisabled-optimization -Wendif-label
 CFLAGS+= -Wno-long-long -Wall -W -Wnested-externs -Wformat=2
