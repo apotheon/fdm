@@ -1,4 +1,4 @@
-/* $Id: fdm.c,v 1.114 2007-03-08 21:52:37 nicm Exp $ */
+/* $Id: fdm.c,v 1.115 2007-03-10 03:47:46 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -306,7 +306,7 @@ main(int argc, char **argv)
 	ARRAY_INIT(&conf.incl);
 	ARRAY_INIT(&conf.excl);
 
-        while ((opt = getopt(argc, argv, "a:D:f:klmnu:vx:")) != EOF) {
+        while ((opt = getopt(argc, argv, "a:D:f:klmnu:vx:?")) != EOF) {
                 switch (opt) {
 		case 'a':
 			ARRAY_ADD(&conf.incl, optarg, char *);
