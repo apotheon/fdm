@@ -1,9 +1,7 @@
 11 March 2007
 
-* glibc's vsnprintf appears to be buggy and this causes problems when
-  writing directly into a string buffer on PPC. Sadly I haven't got a PPC
-  machine to investigate in detail, but a workaround (asprintf first then
-  memcpy) seems to fix it. Reported by Daniel Wilmer.
+* You can't use a va_list twice even when it's passed in as an argument. Duh.
+  Fixes segfaults on PPC. Reported by Daniel Wilmer.
 
 08 March 2007
 
@@ -120,4 +118,4 @@
   the mail was very rarely reallocated, now that the header is added it is.
 * Changed all the descriptions to static buffers and audited use of snprintf.
 
-$Id: CHANGES,v 1.33 2007-03-11 21:43:05 nicm Exp $
+$Id: CHANGES,v 1.34 2007-03-11 22:56:51 nicm Exp $
