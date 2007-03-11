@@ -1,4 +1,4 @@
-/* $Id: fetch-imappipe.c,v 1.13 2007-03-11 19:04:03 nicm Exp $ */
+/* $Id: fetch-imappipe.c,v 1.14 2007-03-11 19:07:36 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -162,19 +162,12 @@ fetch_imappipe_connect(struct account *a)
 int
 fetch_imappipe_disconnect(struct account *a)
 {
-	struct fetch_imap_data	*data = a->data;
-
-	if (imap_close(a) != 0)
-		goto error;
-	if (imap_logout(a) != 0)
-		goto error;
+	if (imap_close(a) != 0 || imap_logout(a) != 0) {
+		imap_abort(a);
+		return (1);
+	}
 
 	return (0);
-
-error:
-	imap_abort(a);
-
-	return (1);
 }
 
 int
