@@ -1,4 +1,4 @@
-/* $Id: fetch-imappipe.c,v 1.12 2007-03-06 18:27:40 nicm Exp $ */
+/* $Id: fetch-imappipe.c,v 1.13 2007-03-11 19:04:03 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -25,6 +25,7 @@
 
 int	 	 fetch_imappipe_connect(struct account *);
 int	 	 fetch_imappipe_disconnect(struct account *);
+int	 	 fetch_imappipe_free(struct account *);
 void		 fetch_imappipe_desc(struct account *, char *, size_t);
 
 int printflike2	 fetch_imappipe_putln(struct account *, const char *, ...);
@@ -41,7 +42,7 @@ struct fetch fetch_imappipe = {
 	imap_delete,	/* from imap-common.c */
 	imap_keep,	/* from imap-common.c */
 	fetch_imappipe_disconnect,
-	imap_free,	/* from imap-common.c */
+	fetch_imappipe_free,
 	fetch_imappipe_desc,
 };
 
@@ -168,16 +169,26 @@ fetch_imappipe_disconnect(struct account *a)
 	if (imap_logout(a) != 0)
 		goto error;
 
-	cmd_free(data->cmd);
-
 	return (0);
 
 error:
 	imap_abort(a);
 
-	cmd_free(data->cmd);
-
 	return (1);
+}
+
+int
+fetch_imappipe_free(struct account *a)
+{
+	struct fetch_imap_data	*data = a->data;
+
+	if (data->cmd != NULL)
+		cmd_free(data->cmd);
+
+	if (imap_free(a) != 0)
+		return (1);
+		
+	return (0);
 }
 
 void
