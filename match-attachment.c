@@ -1,4 +1,4 @@
-/* $Id: match-attachment.c,v 1.20 2007-03-08 18:35:36 nicm Exp $ */
+/* $Id: match-attachment.c,v 1.21 2007-03-12 11:21:43 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -108,7 +108,7 @@ match_attachment_match(struct match_ctx *mctx, struct expritem *ei)
 	
 	/* for any type or name matches, construct the value */  
 	if (data->op == ATTACHOP_ANYTYPE || data->op == ATTACHOP_ANYNAME) {
-		value = replace(&data->value.str,
+		value = replacestr(&data->value.str,
 		    m->tags, m, mctx->pm_valid, mctx->pm);
 	}
 

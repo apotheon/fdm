@@ -1,4 +1,4 @@
-/* $Id: deliver-add-header.c,v 1.5 2007-03-08 15:44:52 nicm Exp $ */
+/* $Id: deliver-add-header.c,v 1.6 2007-03-12 11:21:42 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -40,14 +40,14 @@ deliver_add_header_deliver(struct deliver_ctx *dctx, struct action *t)
 	struct deliver_add_header_data	*data = t->data;
 	char				*hdr, *value;
 
-	hdr = replace(&data->hdr, m->tags, m, *dctx->pm_valid, dctx->pm);
+	hdr = replacestr(&data->hdr, m->tags, m, *dctx->pm_valid, dctx->pm);
 	if (hdr == NULL || *hdr == '\0') {
 		if (hdr != NULL)
 			xfree(hdr);
 		log_warnx("%s: empty header", a->name);
 		return (DELIVER_FAILURE);
 	}
-	value = replace(&data->value, m->tags, m, *dctx->pm_valid, dctx->pm);
+	value = replacestr(&data->value, m->tags, m, *dctx->pm_valid, dctx->pm);
 	if (value == NULL) {
 		log_warnx("%s: bad value for header %s", a->name, hdr);
 		xfree(hdr);

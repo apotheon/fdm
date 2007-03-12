@@ -1,4 +1,4 @@
-/* $Id: deliver-pipe.c,v 1.27 2007-03-08 15:44:52 nicm Exp $ */
+/* $Id: deliver-pipe.c,v 1.28 2007-03-12 11:21:43 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -62,7 +62,7 @@ do_pipe(struct deliver_ctx *dctx, struct action *t, int pipef)
 	char				*lbuf;
 	size_t				 llen;
 
-	s = replace(&data->cmd, m->tags, m, *dctx->pm_valid, dctx->pm);
+	s = replacepath(&data->cmd, m->tags, m, *dctx->pm_valid, dctx->pm);
         if (s == NULL || *s == '\0') {
 		log_warnx("%s: empty command", a->name);
 		if (s != NULL)

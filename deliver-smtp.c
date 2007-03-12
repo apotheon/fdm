@@ -1,4 +1,4 @@
-/* $Id: deliver-smtp.c,v 1.43 2007-03-08 15:44:52 nicm Exp $ */
+/* $Id: deliver-smtp.c,v 1.44 2007-03-12 11:21:43 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -87,7 +87,8 @@ deliver_smtp_deliver(struct deliver_ctx *dctx, struct action *t)
 	if (data->to.str == NULL)
 		to = xstrdup(from);
 	else {
-		to = replace(&data->to, m->tags, m, *dctx->pm_valid, dctx->pm);
+		to = replacestr(&data->to, m->tags, m, *dctx->pm_valid,
+		    dctx->pm);
 		if (to == NULL || *to == '\0') {
 			log_warnx("%s: empty to", a->name);
 			goto error;

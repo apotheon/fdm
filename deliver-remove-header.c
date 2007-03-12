@@ -1,4 +1,4 @@
-/* $Id: deliver-remove-header.c,v 1.3 2007-03-08 15:44:52 nicm Exp $ */
+/* $Id: deliver-remove-header.c,v 1.4 2007-03-12 11:21:43 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -42,7 +42,7 @@ deliver_remove_header_deliver(struct deliver_ctx *dctx, struct action *t)
 	size_t				  	 len, off, wrap;
 	u_int					 i;
 
-	hdr = replace(&data->hdr, m->tags, m, *dctx->pm_valid, dctx->pm);
+	hdr = replacestr(&data->hdr, m->tags, m, *dctx->pm_valid, dctx->pm);
 	if (hdr == NULL || *hdr == '\0') {
 		if (hdr != NULL)
 			xfree(hdr);

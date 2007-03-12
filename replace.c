@@ -1,4 +1,4 @@
-/* $Id: replace.c,v 1.33 2007-03-08 21:52:37 nicm Exp $ */
+/* $Id: replace.c,v 1.34 2007-03-12 11:21:44 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -158,16 +158,36 @@ update_tags(struct strb **tags)
 }
 
 char *
-replace(struct replstr *rs, struct strb *tags, struct mail *m, int pm_valid,
+replacestr(struct replstr *rs, struct strb *tags, struct mail *m,
+    int pm_valid, regmatch_t pm[NPMATCH])
+{
+	return (replace(rs->str, tags, m, pm_valid, pm));
+}
+
+char *
+replacepath(struct replpath *rp, struct strb *tags, struct mail *m,
+    int pm_valid, regmatch_t pm[NPMATCH])
+{
+	char	*s, *ss;
+
+	s = replace(rp->str, tags, m, pm_valid, pm);
+	ss = expand_path(s);
+	if (ss == NULL)
+		return (s);
+	xfree(s);
+	return (ss);
+}
+
+char *
+replace(char *src, struct strb *tags, struct mail *m, int pm_valid,
     regmatch_t pm[NPMATCH])
 {
 	char		*ptr, *tend;
 	const char	*tptr, *alias;
-	char		*src, *dst, ch;
+	char		*dst, ch;
 	size_t	 	 off, len, tlen;
 	u_int		 idx;
 
-	src = rs->str;
 	if (src == NULL)
 		return (NULL);
 	if (*src == '\0')

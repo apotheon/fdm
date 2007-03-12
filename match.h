@@ -1,4 +1,4 @@
-/* $Id: match.h,v 1.3 2007-03-08 15:44:53 nicm Exp $ */
+/* $Id: match.h,v 1.4 2007-03-12 11:21:43 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -97,7 +97,7 @@ struct match_regexp_data {
 
 /* Match command data. */
 struct match_command_data {
-	struct replstr	 cmd;
+	struct replpath	 cmd;
 	uid_t		 uid;
 	int		 pipe;		/* pipe mail to command */
 

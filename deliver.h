@@ -1,4 +1,4 @@
-/* $Id: deliver.h,v 1.4 2007-03-08 15:44:52 nicm Exp $ */
+/* $Id: deliver.h,v 1.5 2007-03-12 11:21:43 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -71,7 +71,7 @@ struct deliver_smtp_data {
 
 /* Deliver mbox data. */
 struct deliver_mbox_data {
-	struct replstr	path;
+	struct replpath	path;
 	int		compress;
 };
 
@@ -93,22 +93,22 @@ struct deliver_remove_header_data {
 
 /* Deliver write data. */
 struct deliver_write_data {
-	struct replstr	path;
+	struct replpath	path;
 };
 
 /* Deliver maildir data. */
 struct deliver_maildir_data {
-	struct replstr	path;
+	struct replpath	path;
 };
 
 /* Deliver rewrite data. */
 struct deliver_rewrite_data {
-	struct replstr	cmd;
+	struct replpath	cmd;
 };
 
 /* Deliver pipe data. */
 struct deliver_pipe_data {
-	struct replstr	cmd;
+	struct replpath	cmd;
 };
 
 /* Deliver append-string data. */
