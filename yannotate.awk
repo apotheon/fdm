@@ -1,4 +1,4 @@
-# $Id: yannotate.awk,v 1.9 2006-12-11 12:50:24 nicm Exp $
+# $Id: yannotate.awk,v 1.10 2007-03-12 10:24:24 nicm Exp $
 #
 # Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
 #
@@ -69,7 +69,7 @@ function wspace(s, o) {
 
 BEGIN {
 	union = 0;
-	name = ""
+	name = "";
 }
 
 /^[ \t]*\/\*\*/ {
