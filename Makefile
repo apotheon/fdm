@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.110 2007-03-12 10:24:20 nicm Exp $
+# $Id: Makefile,v 1.111 2007-03-12 12:25:12 nicm Exp $
 
 .SUFFIXES: .c .o .y .l .h
 .PHONY: clean lint regress yannotate \
@@ -101,7 +101,7 @@ all:		${PROG}
 ${PROG}:	${OBJS}
 		${CC} ${LDFLAGS} -o ${PROG} ${LIBS} ${OBJS}
 
-dist:		clean
+dist:		clean update-manual
 		grep '^#CFLAGS.*-DDEBUG' Makefile GNUmakefile
 		tar -zxc \
 			-s '/.*/${PROG}-${VERSION}\/\0/' \
