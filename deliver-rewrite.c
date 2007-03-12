@@ -1,4 +1,4 @@
-/* $Id: deliver-rewrite.c,v 1.40 2007-03-12 11:21:43 nicm Exp $ */
+/* $Id: deliver-rewrite.c,v 1.41 2007-03-12 14:28:50 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -65,7 +65,8 @@ deliver_rewrite_deliver(struct deliver_ctx *dctx, struct action *t)
 	md->size = 0;
 
 	log_debug2("%s: %s: starting", a->name, s);
-	cmd = cmd_start(s, CMD_IN|CMD_OUT|CMD_ONCE, m->data, m->size, &cause);
+	cmd = cmd_start(s, CMD_IN|CMD_OUT|CMD_ONCE, conf.timeout, m->data,
+	    m->size, &cause);
 	if (cmd == NULL) {
 		log_warnx("%s: %s: %s", a->name, s, cause);
 		xfree(cause);

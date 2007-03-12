@@ -1,4 +1,4 @@
-/* $Id: parent.c,v 1.67 2007-03-12 11:21:43 nicm Exp $ */
+/* $Id: parent.c,v 1.68 2007-03-12 14:28:50 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -382,7 +382,7 @@ parent_cmd_hook(pid_t pid, struct account *a, unused struct msg *msg,
 		flags |= CMD_IN;
 	if (data->re.str != NULL)
 		flags |= CMD_OUT;
-	cmd = cmd_start(s, flags, m->data, m->size, &cause);
+	cmd = cmd_start(s, flags, conf.timeout, m->data, m->size, &cause);
 	if (cmd == NULL) {
 		log_warnx("%s: %s: %s", a->name, s, cause);
 		goto error;

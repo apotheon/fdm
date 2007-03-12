@@ -1,4 +1,4 @@
-/* $Id: fetch-imappipe.c,v 1.14 2007-03-11 19:07:36 nicm Exp $ */
+/* $Id: fetch-imappipe.c,v 1.15 2007-03-12 14:28:50 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -132,7 +132,8 @@ fetch_imappipe_connect(struct account *a)
 	struct fetch_imap_data	*data = a->data;
 	char			*cause;
 
-	data->cmd = cmd_start(data->pipecmd, CMD_IN|CMD_OUT, NULL, 0, &cause);
+	data->cmd = cmd_start(data->pipecmd, CMD_IN|CMD_OUT, conf.timeout,
+	    NULL, 0, &cause);
 	if (data->cmd == NULL) {
 		log_warnx("%s: %s", a->name, cause);
 		xfree(cause);
