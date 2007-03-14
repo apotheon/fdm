@@ -1,4 +1,4 @@
-/* $Id: parse.y,v 1.167 2007-03-14 12:40:45 nicm Exp $ */
+/* $Id: parse.y,v 1.168 2007-03-14 15:53:18 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -1910,7 +1910,6 @@ expritem: not icase replstrv area
 /**       [$4: user (uid_t)] [$7: retrc (long long)] [$9: retre (char *)] */
 	  {
 		  struct match_command_data	*data;
-		  int	 			 flags;
 		  char				*cause;
 
 		  if (*$3 == '\0' || ($3[0] == '|' && $3[1] == '\0'))
