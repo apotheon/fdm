@@ -1,4 +1,4 @@
-/* $Id: fdm.c,v 1.116 2007-03-11 19:02:34 nicm Exp $ */
+/* $Id: fdm.c,v 1.117 2007-03-14 10:22:04 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -540,7 +540,7 @@ main(int argc, char **argv)
 	}
 	if (sizeof tmp > off) {
 		off += xsnprintf(tmp + off, (sizeof tmp) - off,
-		    "timeout=%d, ", conf.timeout);
+		    "timeout=%d, ", conf.timeout / 1000);
 	}
 	if (sizeof tmp > off) {
 		off += xsnprintf(tmp + off, (sizeof tmp) - off,

@@ -1,4 +1,4 @@
-/* $Id: parse.y,v 1.165 2007-03-12 11:21:43 nicm Exp $ */
+/* $Id: parse.y,v 1.166 2007-03-14 10:22:04 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -920,7 +920,7 @@ set: TOKSET TOKMAXSIZE size
      {
 	     if ($3 > INT_MAX / 1000)
 		     yyerror("timeout too long: %lld", $3);
-	     conf.timeout = $3;
+	     conf.timeout = $3 * 1000;
      }
    | TOKSET domains
 /**  [$2: domains (struct strings *)] */

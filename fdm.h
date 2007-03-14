@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.227 2007-03-12 14:39:38 nicm Exp $ */
+/* $Id: fdm.h,v 1.228 2007-03-14 10:22:04 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -44,7 +44,7 @@
 #define SYSLOCKFILE	"/var/run/fdm.lock"
 #define MAXMAILSIZE	INT_MAX
 #define DEFMAILSIZE	(1 * 1024 * 1024 * 1024)	/* 1 GB */
-#define DEFTIMEOUT	900
+#define DEFTIMEOUT	(900 * 1000)
 #define LOCKSLEEPTIME	2
 #define MAXNAMESIZE	64
 #define DEFUMASK	(S_IRWXG|S_IRWXO)

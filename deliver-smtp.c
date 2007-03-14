@@ -1,4 +1,4 @@
-/* $Id: deliver-smtp.c,v 1.44 2007-03-12 11:21:43 nicm Exp $ */
+/* $Id: deliver-smtp.c,v 1.45 2007-03-14 10:22:04 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -73,8 +73,8 @@ deliver_smtp_deliver(struct deliver_ctx *dctx, struct action *t)
 	enum deliver_smtp_state		 state;
 	size_t		 		 len, llen;
 
-	io = connectproxy(&data->server, conf.proxy, IO_CRLF,
-	    conf.timeout * 1000, &cause);
+	io = connectproxy(&data->server,
+	    conf.proxy, IO_CRLF, conf.timeout, &cause);
 	if (io == NULL) {
 		log_warnx("%s: %s", a->name, cause);
 		xfree(cause);
