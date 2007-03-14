@@ -1,4 +1,4 @@
-/* $Id: match-command.c,v 1.29 2007-03-08 15:44:53 nicm Exp $ */
+/* $Id: match-command.c,v 1.30 2007-03-14 12:40:44 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -50,9 +50,6 @@ match_command_match(struct match_ctx *mctx, struct expritem *ei)
 	msg.data.account = a;
 	msg.data.cmddata = data;
 	msg.data.uid = data->uid;
-
-	msg.data.pm_valid = mctx->pm_valid;
-	memcpy(&msg.data.pm, mctx->pm, sizeof msg.data.pm);
 
 	mail_send(m, &msg);
 

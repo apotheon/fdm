@@ -1,4 +1,4 @@
-/* $Id: match.h,v 1.4 2007-03-12 11:21:43 nicm Exp $ */
+/* $Id: match.h,v 1.5 2007-03-14 12:40:45 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -30,13 +30,8 @@ struct match_ctx {
 	struct account	*account;
 	struct mail     *mail;
 
-	enum decision	 decision;
-
 	int		 matched;
 	int		 stopped;
-
-	int		 pm_valid;
-	regmatch_t	 pm[NPMATCH];
 };
 
 /* Match functions. */

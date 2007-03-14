@@ -1,4 +1,4 @@
-/* $Id: deliver.h,v 1.5 2007-03-12 11:21:43 nicm Exp $ */
+/* $Id: deliver.h,v 1.6 2007-03-14 12:40:44 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -29,11 +29,6 @@ struct deliver_ctx {
 	struct mail	*mail;
 
 	struct mail	 wr_mail;
-
-	enum decision	*decision;
-
-	int		*pm_valid;
-	regmatch_t	 pm[NPMATCH];
 };
 
 /* Delivery types. */

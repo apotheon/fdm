@@ -1,4 +1,4 @@
-/* $Id: match-tagged.c,v 1.16 2007-03-12 11:21:43 nicm Exp $ */
+/* $Id: match-tagged.c,v 1.17 2007-03-14 12:40:44 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -39,7 +39,7 @@ match_tagged_match(struct match_ctx *mctx, struct expritem *ei)
 	struct mail			*m = mctx->mail;
 	char				*tag;
 
-	tag = replacestr(&data->tag, m->tags, m, mctx->pm_valid, mctx->pm);
+	tag = replacestr(&data->tag, m->tags, m, &m->rml);
 	if (match_tag(m->tags, tag) != NULL) {
 		xfree(tag);
 		return (MATCH_TRUE);
