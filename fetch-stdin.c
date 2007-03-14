@@ -1,4 +1,4 @@
-/* $Id: fetch-stdin.c,v 1.43 2007-03-14 16:46:22 nicm Exp $ */
+/* $Id: fetch-stdin.c,v 1.44 2007-03-14 16:59:56 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -54,14 +54,14 @@ fetch_stdin_connect(struct account *a)
 
 	if (isatty(STDIN_FILENO)) {
 		log_warnx("%s: stdin is a tty. ignoring", a->name);
-		return (1);
+		return (FETCH_ERROR);
 	}
 
 	if (fcntl(STDIN_FILENO, F_GETFL) == -1) {
 		if (errno != EBADF)
 			fatal("fcntl");
 		log_warnx("%s: stdin is invalid", a->name);
-		return (1);
+		return (FETCH_ERROR);
 	}
 
 	data->io = io_create(STDIN_FILENO, NULL, IO_LF, conf.timeout);
@@ -70,7 +70,7 @@ fetch_stdin_connect(struct account *a)
 
 	data->complete = 0;
 
-	return (0);
+	return (FETCH_SUCCESS);
 }
 
 int
@@ -82,7 +82,7 @@ fetch_stdin_disconnect(struct account *a)
 
 	close(STDIN_FILENO);
 
-	return (0);
+	return (FETCH_SUCCESS);
 }
 
 int
@@ -93,7 +93,7 @@ fetch_stdin_done(struct account *a, enum decision d)
 	size_t			 llen;
 
 	if (d == DECISION_KEEP)
-		return (0);
+		return (FETCH_SUCCESS);
 
 	llen = IO_LINESIZE;
 	lbuf = xmalloc(llen);
@@ -102,7 +102,7 @@ fetch_stdin_done(struct account *a, enum decision d)
 		;
 
 	xfree(lbuf);
-	return (0);
+	return (FETCH_SUCCESS);
 }
 
 int

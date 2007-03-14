@@ -1,4 +1,4 @@
-/* $Id: fetch.h,v 1.6 2007-03-14 16:46:22 nicm Exp $ */
+/* $Id: fetch.h,v 1.7 2007-03-14 16:59:56 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -18,10 +18,6 @@
 
 #ifndef FETCH_H
 #define FETCH_H
-
-/* Poll return codes. */
-#define POLL_SUCCESS FETCH_SUCCESS
-#define POLL_ERROR FETCH_ERROR
 
 /* Fetch return codes. */
 #define FETCH_SUCCESS 0
