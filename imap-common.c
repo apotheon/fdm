@@ -1,4 +1,4 @@
-/* $Id: imap-common.c,v 1.11 2007-03-14 16:59:56 nicm Exp $ */
+/* $Id: imap-common.c,v 1.12 2007-03-14 18:14:03 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -64,7 +64,7 @@ imap_okay(struct account *a, char *line)
 }
 
 int
-imap_init(struct account *a)
+imap_start(struct account *a)
 {
 	struct fetch_imap_data	*data = a->data;
 
@@ -79,7 +79,7 @@ imap_init(struct account *a)
 }
 
 int
-imap_free(struct account *a)
+imap_finish(struct account *a)
 {
 	struct fetch_imap_data	*data = a->data;
 

@@ -1,4 +1,4 @@
-/* $Id: fetch-stdin.c,v 1.44 2007-03-14 16:59:56 nicm Exp $ */
+/* $Id: fetch-stdin.c,v 1.45 2007-03-14 18:14:03 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -28,27 +28,25 @@
 #include "fdm.h"
 #include "fetch.h"
 
-int	 fetch_stdin_connect(struct account *);
-int	 fetch_stdin_disconnect(struct account *);
+int	 fetch_stdin_start(struct account *);
+int	 fetch_stdin_finish(struct account *);
 int	 fetch_stdin_fetch(struct account *, struct mail *);
 int	 fetch_stdin_done(struct account *, enum decision);
 void	 fetch_stdin_desc(struct account *, char *, size_t);
 
 struct fetch fetch_stdin = {
 	{ NULL, NULL },
-	NULL,
-	fetch_stdin_connect,
+	fetch_stdin_start,
 	NULL,
 	fetch_stdin_fetch,
 	NULL,
 	fetch_stdin_done,
-	fetch_stdin_disconnect,
-	NULL,
+	fetch_stdin_finish,
 	fetch_stdin_desc
 };
 
 int
-fetch_stdin_connect(struct account *a)
+fetch_stdin_start(struct account *a)
 {
 	struct fetch_stdin_data	*data = a->data;
 
@@ -74,11 +72,12 @@ fetch_stdin_connect(struct account *a)
 }
 
 int
-fetch_stdin_disconnect(struct account *a)
+fetch_stdin_finish(struct account *a)
 {
 	struct fetch_stdin_data	*data = a->data;
 
-	io_free(data->io);
+	if (data->io != NULL)
+		io_free(data->io);
 
 	close(STDIN_FILENO);
 
