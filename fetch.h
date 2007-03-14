@@ -1,4 +1,4 @@
-/* $Id: fetch.h,v 1.5 2007-03-06 18:36:50 nicm Exp $ */
+/* $Id: fetch.h,v 1.6 2007-03-14 16:46:22 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -40,8 +40,7 @@ struct fetch {
 	int 		 (*poll)(struct account *, u_int *);
 	int	 	 (*fetch)(struct account *, struct mail *);
 	int		 (*purge)(struct account *);
-	int		 (*delete)(struct account *);
-	int		 (*keep)(struct account *);
+	int		 (*done)(struct account *, enum decision);
 	int		 (*disconnect)(struct account *);
 	int		 (*free)(struct account *);
 	void		 (*desc)(struct account *, char *, size_t);
@@ -177,7 +176,6 @@ int			 imap_uid(struct account *);
 int			 imap_poll(struct account *, u_int *);
 int			 imap_fetch(struct account *, struct mail *);
 int			 imap_purge(struct account *);
-int			 imap_delete(struct account *);
-int	 		 imap_keep(struct account *);
+int			 imap_done(struct account *, enum decision);
 
 #endif

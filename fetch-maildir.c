@@ -1,4 +1,4 @@
-/* $Id: fetch-maildir.c,v 1.47 2007-03-08 15:44:53 nicm Exp $ */
+/* $Id: fetch-maildir.c,v 1.48 2007-03-14 16:46:22 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -35,7 +35,7 @@ int	 fetch_maildir_connect(struct account *);
 int	 fetch_maildir_disconnect(struct account *);
 int	 fetch_maildir_poll(struct account *, u_int *);
 int	 fetch_maildir_fetch(struct account *, struct mail *);
-int	 fetch_maildir_delete(struct account *);
+int	 fetch_maildir_done(struct account *, enum decision);
 void	 fetch_maildir_desc(struct account *, char *, size_t);
 
 int	 fetch_maildir_makepaths(struct account *);
@@ -48,8 +48,7 @@ struct fetch fetch_maildir = {
 	fetch_maildir_poll,
 	fetch_maildir_fetch,
 	NULL,
-	fetch_maildir_delete,
-	NULL,
+	fetch_maildir_done,
 	fetch_maildir_disconnect,
 	NULL,
 	fetch_maildir_desc
@@ -277,9 +276,12 @@ restart:
 }
 
 int
-fetch_maildir_delete(struct account *a)
+fetch_maildir_done(struct account *a, enum decision d)
 {
 	struct fetch_maildir_data	*data = a->data;
+
+	if (d == DECISION_KEEP)
+		return (0);
 
 	if (unlink(data->entry) != 0) {
 		log_warn("%s: %s: unlink", a->name, data->entry);

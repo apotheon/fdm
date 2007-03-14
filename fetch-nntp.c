@@ -1,4 +1,4 @@
-/* $Id: fetch-nntp.c,v 1.56 2007-03-14 10:22:04 nicm Exp $ */
+/* $Id: fetch-nntp.c,v 1.57 2007-03-14 16:46:22 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -61,7 +61,6 @@ struct fetch fetch_nntp = {
 	fetch_nntp_poll,
 	fetch_nntp_fetch,
 	fetch_nntp_save,
-	NULL,
 	NULL,
 	fetch_nntp_disconnect,
 	fetch_nntp_free,

@@ -1,4 +1,4 @@
-/* $Id: fetch-stdin.c,v 1.42 2007-03-14 10:22:04 nicm Exp $ */
+/* $Id: fetch-stdin.c,v 1.43 2007-03-14 16:46:22 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -31,7 +31,7 @@
 int	 fetch_stdin_connect(struct account *);
 int	 fetch_stdin_disconnect(struct account *);
 int	 fetch_stdin_fetch(struct account *, struct mail *);
-int	 fetch_stdin_delete(struct account *);
+int	 fetch_stdin_done(struct account *, enum decision);
 void	 fetch_stdin_desc(struct account *, char *, size_t);
 
 struct fetch fetch_stdin = {
@@ -41,8 +41,7 @@ struct fetch fetch_stdin = {
 	NULL,
 	fetch_stdin_fetch,
 	NULL,
-	fetch_stdin_delete,
-	NULL,
+	fetch_stdin_done,
 	fetch_stdin_disconnect,
 	NULL,
 	fetch_stdin_desc
@@ -87,11 +86,14 @@ fetch_stdin_disconnect(struct account *a)
 }
 
 int
-fetch_stdin_delete(struct account *a)
+fetch_stdin_done(struct account *a, enum decision d)
 {
 	struct fetch_stdin_data	*data = a->data;
 	char		        *line, *lbuf;
 	size_t			 llen;
+
+	if (d == DECISION_KEEP)
+		return (0);
 
 	llen = IO_LINESIZE;
 	lbuf = xmalloc(llen);

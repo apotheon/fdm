@@ -1,4 +1,4 @@
-/* $Id: fetch-imappipe.c,v 1.15 2007-03-12 14:28:50 nicm Exp $ */
+/* $Id: fetch-imappipe.c,v 1.16 2007-03-14 16:46:22 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -39,8 +39,7 @@ struct fetch fetch_imappipe = {
 	imap_poll,	/* from imap-common.c */
 	imap_fetch,	/* from imap-common.c */
 	imap_purge,	/* from imap-common.c */
-	imap_delete,	/* from imap-common.c */
-	imap_keep,	/* from imap-common.c */
+	imap_done,	/* from imap-common.c */
 	fetch_imappipe_disconnect,
 	fetch_imappipe_free,
 	fetch_imappipe_desc,
