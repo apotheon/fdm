@@ -1,4 +1,4 @@
-/* $Id: fetch-pop3.c,v 1.62 2007-03-14 18:14:03 nicm Exp $ */
+/* $Id: fetch-pop3.c,v 1.63 2007-03-14 20:06:41 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -238,8 +238,9 @@ restart:
 		goto error;
 	}
 	if (size == 0) {
-		log_warnx("%s: zero-length message", a->name);
-		goto error;
+		m->size = 0;
+		xfree(lbuf);
+		return (FETCH_EMPTY);
 	}
 	if (size > conf.max_size) {
 		m->size = size;

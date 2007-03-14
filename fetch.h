@@ -1,4 +1,4 @@
-/* $Id: fetch.h,v 1.8 2007-03-14 18:14:03 nicm Exp $ */
+/* $Id: fetch.h,v 1.9 2007-03-14 20:06:41 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -23,7 +23,8 @@
 #define FETCH_SUCCESS 0
 #define FETCH_ERROR 1
 #define FETCH_OVERSIZE 2
-#define FETCH_COMPLETE 3
+#define FETCH_EMPTY 3
+#define FETCH_COMPLETE 4
 
 /* Fetch functions. */
 struct fetch {

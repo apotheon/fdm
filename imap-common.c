@@ -1,4 +1,4 @@
-/* $Id: imap-common.c,v 1.12 2007-03-14 18:14:03 nicm Exp $ */
+/* $Id: imap-common.c,v 1.13 2007-03-14 20:06:41 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -263,10 +263,8 @@ restart:
  		log_warnx("%s: message index incorrect: %s", a->name, line);
 		return (FETCH_ERROR);
 	}
-	if (size == 0) {
-		log_warnx("%s: zero-length message", a->name);
-		return (FETCH_ERROR);
-	}
+	if (size == 0)
+		return (FETCH_EMPTY);
 
 	mail_open(m, IO_ROUND(size));
 	default_tags(&m->tags, data->server.host, a);
