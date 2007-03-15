@@ -1,4 +1,4 @@
-/* $Id: imap-common.c,v 1.17 2007-03-15 18:02:18 nicm Exp $ */
+/* $Id: imap-common.c,v 1.18 2007-03-15 18:09:59 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -315,7 +315,6 @@ restart:
 		aux = xmalloc(sizeof *aux);
 		aux->idx = data->cur;
 		aux->uid = data->uid;
-		data->uid = NULL;
 		m->auxdata = aux;
 		m->auxfree = imap_free;
 
