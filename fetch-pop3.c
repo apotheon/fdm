@@ -1,4 +1,4 @@
-/* $Id: fetch-pop3.c,v 1.67 2007-03-15 18:01:05 nicm Exp $ */
+/* $Id: fetch-pop3.c,v 1.68 2007-03-15 18:02:18 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -183,7 +183,7 @@ fetch_pop3_connect(struct account *a)
  		log_warnx("%s: invalid response: %s", a->name, line);
 		return (FETCH_ERROR);
 	}
-	log_debug2("%s: %u messages found", a->name, data->num);
+	log_debug("%s: %u messages found", a->name, data->num);
 
 	data->cur = 0;
 
