@@ -1,4 +1,4 @@
-/* $Id: xmalloc-debug.c,v 1.11 2007-03-08 20:16:22 nicm Exp $ */
+/* $Id: xmalloc-debug.c,v 1.12 2007-03-15 18:11:05 nicm Exp $ */
 
 /*
  * Copyright (c) 2004 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -62,7 +62,7 @@ struct {
 	struct xmalloc_call	 calls[XMALLOC_SLOTS];
 } xmalloc_ctx;
 
-#define XMALLOC_PRINT log_debug2
+#define XMALLOC_PRINT log_debug3
 
 #define XMALLOC_PEEK 8
 #define XMALLOC_LINES 32
