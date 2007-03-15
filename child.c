@@ -1,4 +1,4 @@
-/* $Id: child.c,v 1.127 2007-03-15 17:00:58 nicm Exp $ */
+/* $Id: child.c,v 1.128 2007-03-15 17:33:11 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -340,7 +340,7 @@ fetch_account(struct io *io, struct account *a, double tim)
 				log_debug3("%s: queue empty", a->name);
 				error = a->fetch->fetch(a, m, 0);
 			} else {
-				log_debug("%s: queue non-empty", a->name);
+				log_debug3("%s: queue non-empty", a->name);
 				error = a->fetch->fetch(a, m, FETCH_NOWAIT);
 			}
 			switch (error) {
