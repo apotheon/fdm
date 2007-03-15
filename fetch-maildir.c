@@ -1,4 +1,4 @@
-/* $Id: fetch-maildir.c,v 1.51 2007-03-14 20:06:41 nicm Exp $ */
+/* $Id: fetch-maildir.c,v 1.52 2007-03-15 17:00:59 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -125,6 +125,8 @@ int
 fetch_maildir_start(struct account *a)
 {
 	struct fetch_maildir_data	*data = a->data;
+
+	fatalx("maildir is currently broken");
 
 	data->dirp = NULL;
 

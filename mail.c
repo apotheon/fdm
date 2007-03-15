@@ -1,4 +1,4 @@
-/* $Id: mail.c,v 1.81 2007-03-04 18:20:25 nicm Exp $ */
+/* $Id: mail.c,v 1.82 2007-03-15 17:00:59 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -75,6 +75,11 @@ mail_receive(struct mail *m, struct msg *msg)
 	mm->attach = m->attach;
 	m->attach = NULL;
 
+	mm->auxfree = m->auxfree;
+	m->auxfree = NULL;
+	mm->auxdata = m->auxdata;
+	m->auxdata = NULL;
+
 	mail_destroy(m);
 
 	memcpy(m, mm, sizeof *m);
@@ -94,6 +99,9 @@ mail_free(struct mail *m)
 	if (m->tags != NULL)
 		strb_destroy(&m->tags);
 	ARRAY_FREE(&m->wrapped);
+
+	if (m->auxfree != NULL && m->auxdata != NULL)
+		m->auxfree(m->auxdata);
 }
 
 void

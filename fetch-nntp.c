@@ -1,4 +1,4 @@
-/* $Id: fetch-nntp.c,v 1.59 2007-03-14 18:14:03 nicm Exp $ */
+/* $Id: fetch-nntp.c,v 1.60 2007-03-15 17:00:59 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -376,6 +376,8 @@ fetch_nntp_start(struct account *a)
 	u_int			 i;
 	char			*lbuf, *line, *cause;
 	size_t			 llen;
+
+	fatalx("nntp is currently broken");
 
 	ARRAY_INIT(&data->groups);
 	for (i = 0; i < ARRAY_LENGTH(data->names); i++) {

@@ -1,4 +1,4 @@
-/* $Id: command.c,v 1.27 2007-03-12 14:30:11 nicm Exp $ */
+/* $Id: command.c,v 1.28 2007-03-15 17:00:58 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -207,6 +207,8 @@ cmd_poll(struct cmd *cmd, char **out, char **err, char **lbuf, size_t *llen,
 		ios[2] = cmd->io_err;
 		switch (io_polln(ios, 3, &io, cmd->timeout, cause)) {
 		case -1:
+			if (errno == EAGAIN)
+				return (0);
 			return (1);
 		case 0:
 			/* if the closed io is empty, free it */

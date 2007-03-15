@@ -1,4 +1,4 @@
-/* $Id: match.h,v 1.5 2007-03-14 12:40:45 nicm Exp $ */
+/* $Id: match.h,v 1.6 2007-03-15 17:00:59 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -32,7 +32,13 @@ struct match_ctx {
 
 	int		 matched;
 	int		 stopped;
+
+	struct rule	*rule;
+	ARRAY_DECL(, struct rule *) stack;
+	
+	TAILQ_ENTRY(match_ctx) entry;
 };
+TAILQ_HEAD(match_queue, match_ctx);
 
 /* Match functions. */
 struct match {
