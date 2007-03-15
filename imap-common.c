@@ -1,4 +1,4 @@
-/* $Id: imap-common.c,v 1.14 2007-03-15 17:00:59 nicm Exp $ */
+/* $Id: imap-common.c,v 1.15 2007-03-15 17:53:27 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -150,6 +150,8 @@ imap_select(struct account *a)
 		return (1);
 	if (!imap_okay(a, line))
 		return (1);
+	log_debug("%s: %u messages found", a->name, data->num);
+
 	data->cur = 0;
 
 	return (0);

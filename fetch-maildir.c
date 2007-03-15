@@ -1,4 +1,4 @@
-/* $Id: fetch-maildir.c,v 1.52 2007-03-15 17:00:59 nicm Exp $ */
+/* $Id: fetch-maildir.c,v 1.53 2007-03-15 17:53:27 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -166,7 +166,7 @@ fetch_maildir_poll(struct account *a, u_int *n)
 	for (i = 0; i < ARRAY_LENGTH(data->paths); i++) {
 		path = ARRAY_ITEM(data->paths, i, char *);
 
-		log_debug("%s: trying path: %s", a->name, path);
+		log_debug2("%s: trying path: %s", a->name, path);
 		if ((dirp = opendir(path)) == NULL) {
 			log_warn("%s: %s: opendir", a->name, path);
 			return (FETCH_ERROR);

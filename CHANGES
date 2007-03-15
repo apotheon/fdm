@@ -1,5 +1,6 @@
 15 March 2007
 
+* Seriously reduce -v output in favour of -vv and -vvv.
 * Save mail in a queue as it is fetched and perform matching/delivery on it
   while waiting for the server to send the next mail. This can give a 20-50%
   speed increase with some rulesets, particularly with slow POP3 servers.
@@ -135,4 +136,4 @@
   the mail was very rarely reallocated, now that the header is added it is.
 * Changed all the descriptions to static buffers and audited use of snprintf.
 
-$Id: CHANGES,v 1.39 2007-03-15 17:00:58 nicm Exp $
+$Id: CHANGES,v 1.40 2007-03-15 17:53:27 nicm Exp $

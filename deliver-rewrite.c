@@ -1,4 +1,4 @@
-/* $Id: deliver-rewrite.c,v 1.42 2007-03-14 12:40:44 nicm Exp $ */
+/* $Id: deliver-rewrite.c,v 1.43 2007-03-15 17:53:27 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -60,11 +60,10 @@ deliver_rewrite_deliver(struct deliver_ctx *dctx, struct action *t)
                 return (DELIVER_FAILURE);
         }
 
-	log_debug("%s: rewriting using \"%s\"", a->name, s);
+	log_debug2("%s: rewriting using \"%s\"", a->name, s);
 
 	md->size = 0;
 
-	log_debug2("%s: %s: starting", a->name, s);
 	cmd = cmd_start(s, CMD_IN|CMD_OUT|CMD_ONCE, conf.timeout, m->data,
 	    m->size, &cause);
 	if (cmd == NULL) {
@@ -72,7 +71,7 @@ deliver_rewrite_deliver(struct deliver_ctx *dctx, struct action *t)
 		xfree(cause);
 		goto error;
 	}
-	log_debug2("%s: %s: started", a->name, s);
+	log_debug3("%s: %s: started", a->name, s);
 
 	llen = IO_LINESIZE;
 	lbuf = xmalloc(llen);

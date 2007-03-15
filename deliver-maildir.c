@@ -1,4 +1,4 @@
-/* $Id: deliver-maildir.c,v 1.40 2007-03-14 12:40:43 nicm Exp $ */
+/* $Id: deliver-maildir.c,v 1.41 2007-03-15 17:53:27 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -61,7 +61,7 @@ deliver_maildir_deliver(struct deliver_ctx *dctx, struct action *t)
 		log_warnx("%s: empty path", a->name);
 		goto out;
 	}
-	log_debug("%s: saving to maildir %s", a->name, path);
+	log_debug2("%s: saving to maildir %s", a->name, path);
 
 	/* create the maildir directories */
 	gid = conf.file_group;

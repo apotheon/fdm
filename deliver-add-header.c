@@ -1,4 +1,4 @@
-/* $Id: deliver-add-header.c,v 1.7 2007-03-14 12:40:43 nicm Exp $ */
+/* $Id: deliver-add-header.c,v 1.8 2007-03-15 17:53:27 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -53,6 +53,7 @@ deliver_add_header_deliver(struct deliver_ctx *dctx, struct action *t)
 		xfree(hdr);
 		return (DELIVER_FAILURE);
 	}
+	log_debug2("%s: adding header: %s", a->name, hdr);
 	
 	if (insert_header(m, NULL, "%s: %s", hdr, value) != 0) {
 		log_warnx("%s: failed to add header %s (%s)", a->name,

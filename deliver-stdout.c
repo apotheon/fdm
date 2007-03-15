@@ -1,4 +1,4 @@
-/* $Id: deliver-stdout.c,v 1.3 2007-03-06 18:01:21 nicm Exp $ */
+/* $Id: deliver-stdout.c,v 1.4 2007-03-15 17:53:27 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -41,11 +41,11 @@ deliver_stdout_deliver(struct deliver_ctx *dctx, struct action *t)
 	struct deliver_stdout_data	*data = t->data;
         char				*from;
 
-	log_debug("%s: writing to stdout", a->name);
+	log_debug2("%s: writing to stdout", a->name);
 	
 	if (data->add_from) {
 		from = make_from(m);
-		log_debug("%s: using from line: %s", a->name, from);
+		log_debug3("%s: using from line: %s", a->name, from);
 
 		if (fwrite(from, strlen(from), 1, stdout) != 1) {
 			log_warn("%s: fwrite", a->name);

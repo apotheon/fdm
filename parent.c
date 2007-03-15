@@ -1,4 +1,4 @@
-/* $Id: parent.c,v 1.69 2007-03-14 12:40:45 nicm Exp $ */
+/* $Id: parent.c,v 1.70 2007-03-15 17:53:27 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -176,7 +176,7 @@ parent_child(struct account *a, struct mail *m, const char *name, uid_t uid,
 			child_exit(1);
 		}
 	} else {
-		log_debug("%s: not root. using current user", a->name);
+		log_debug2("%s: not root. using current user", a->name);
 		uid = geteuid();
 	}
 #ifndef NO_SETPROCTITLE
