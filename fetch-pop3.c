@@ -1,4 +1,4 @@
-/* $Id: fetch-pop3.c,v 1.64 2007-03-15 17:00:59 nicm Exp $ */
+/* $Id: fetch-pop3.c,v 1.65 2007-03-15 17:03:25 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -316,6 +316,7 @@ restart:
 				break;
 			}
 		}
+		data->state = POP3_RETR;
 		break;
 	case POP3_RETR:
 		io_writeline(data->io, "RETR %u", data->cur);
