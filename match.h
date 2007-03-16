@@ -1,4 +1,4 @@
-/* $Id: match.h,v 1.6 2007-03-15 17:00:59 nicm Exp $ */
+/* $Id: match.h,v 1.7 2007-03-16 23:19:56 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -19,6 +19,8 @@
 #ifndef MATCH_H
 #define MATCH_H
 
+#include "deliver.h"
+
 /* Match return codes. */
 #define MATCH_FALSE 0
 #define MATCH_TRUE 1
@@ -26,17 +28,22 @@
 
 /* Match context. */
 struct match_ctx {
-	struct io	*io;
-	struct account	*account;
-	struct mail     *mail;
+	struct io			*io;
+	struct account			*account;
+	struct mail  	 	  	*mail;
 
-	int		 matched;
-	int		 stopped;
+	int		 		 matched;
+	int				 stopped;
 
-	struct rule	*rule;
-	ARRAY_DECL(, struct rule *) stack;
-	
-	TAILQ_ENTRY(match_ctx) entry;
+	struct rule			*rule;
+	ARRAY_DECL(, struct rule *)	 stack;
+
+	struct deliver_queue 	 	 dqueue;
+
+	TAILQ_ENTRY(match_ctx)		 entry;
+#define match_entry entry
+#define deliver_entry entry
+#define done_entry entry
 };
 TAILQ_HEAD(match_queue, match_ctx);
 

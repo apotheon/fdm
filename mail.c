@@ -1,4 +1,4 @@
-/* $Id: mail.c,v 1.82 2007-03-15 17:00:59 nicm Exp $ */
+/* $Id: mail.c,v 1.83 2007-03-16 23:19:56 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -37,8 +37,6 @@ void	mail_free(struct mail *);
 void
 mail_open(struct mail *m, size_t size)
 {
-	memset(m, 0, sizeof m);
-
 	m->size = size;
 	m->space = m->size;
 	m->body = -1;
@@ -69,6 +67,9 @@ void
 mail_receive(struct mail *m, struct msg *msg)
 {
 	struct mail	*mm = &msg->data.mail;
+
+	mm->done = m->done;
+	mm->idx = m->idx;
 
 	mm->tags = m->tags;
 	m->tags = NULL;

@@ -1,4 +1,4 @@
-/* $Id: deliver.h,v 1.6 2007-03-14 12:40:44 nicm Exp $ */
+/* $Id: deliver.h,v 1.7 2007-03-16 23:19:55 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -25,11 +25,20 @@
 
 /* Deliver context. */
 struct deliver_ctx {
+	struct action	*action;
+	struct rule	*rule;
+
 	struct account	*account;
 	struct mail	*mail;
 
+	uid_t		 uid;
+
 	struct mail	 wr_mail;
+
+	int		 blocked; /* blocked waiting for parent */
+	TAILQ_ENTRY(deliver_ctx) entry;
 };
+TAILQ_HEAD(deliver_queue, deliver_ctx);
 
 /* Delivery types. */
 enum delivertype {

@@ -1,4 +1,4 @@
-/* $Id: match-command.c,v 1.30 2007-03-14 12:40:44 nicm Exp $ */
+/* $Id: match-command.c,v 1.31 2007-03-16 23:19:56 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -46,6 +46,7 @@ match_command_match(struct match_ctx *mctx, struct expritem *ei)
 	 * We are called as the child so to change uid this needs to be done
 	 * largely in the parent.
 	 */
+	memset(&msg, 0, sizeof msg);
 	msg.type = MSG_COMMAND;
 	msg.data.account = a;
 	msg.data.cmddata = data;
