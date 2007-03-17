@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.233 2007-03-17 12:55:27 nicm Exp $ */
+/* $Id: fdm.h,v 1.234 2007-03-17 14:43:08 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -680,7 +680,6 @@ struct io {
 	int		 timeout;
 	const char	*eol;
 };
-ARRAY_DECL(ios, struct io *);
 
 /* Command flags. */
 #define CMD_IN  0x1

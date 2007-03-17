@@ -1,4 +1,4 @@
-/* $Id: fetch.h,v 1.13 2007-03-17 14:11:53 nicm Exp $ */
+/* $Id: fetch.h,v 1.14 2007-03-17 14:43:08 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -35,10 +35,11 @@ struct fetch {
 #define FETCHPORT_SSL 1
 	const char	*ports[2];	/* normal port, ssl port */
 
-	int		 (*start)(struct account *, struct ios *);
+	int		 (*start)(struct account *);
+	void		 (*fill)(struct account *, struct io **, u_int *n);
 	int 		 (*poll)(struct account *, u_int *);
 	int	 	 (*fetch)(struct account *, struct mail *);
-	int		 (*purge)(struct account *, struct ios *);
+	int		 (*purge)(struct account *);
 	int		 (*done)(struct account *, struct mail *);
 	int		 (*finish)(struct account *);
 	void		 (*desc)(struct account *, char *, size_t);
@@ -221,7 +222,7 @@ void			 imap_abort(struct account *);
 int			 imap_uid(struct account *);
 int			 imap_poll(struct account *, u_int *);
 int			 imap_fetch(struct account *, struct mail *);
-int			 imap_purge(struct account *, struct ios *);
+int			 imap_purge(struct account *);
 int			 imap_done(struct account *, struct mail *);
 
 #endif
