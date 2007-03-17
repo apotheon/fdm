@@ -1,4 +1,4 @@
-/* $Id: fetch-stdin.c,v 1.51 2007-03-17 17:47:15 nicm Exp $ */
+/* $Id: fetch-stdin.c,v 1.52 2007-03-17 23:18:05 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -168,20 +168,19 @@ restart:
 	if (data->bodylines != -1)
 		data->bodylines++;
 
-	if (len > 0) {
-		resize_mail(m, m->size + len + 1);
+	resize_mail(m, m->size + len + 1);
+	if (len > 0)
 		memcpy(m->data + m->size, line, len);
 
-		/* append an LF */
-		m->data[m->size + len] = '\n';
-		m->size += len + 1;
-
-		if (m->size > conf.max_size) {
-			data->complete = 1;
-			return (FETCH_OVERSIZE);
-		}
+	/* append an LF */
+	m->data[m->size + len] = '\n';
+	m->size += len + 1;
+	
+	if (m->size > conf.max_size) {
+		data->complete = 1;
+		return (FETCH_OVERSIZE);
 	}
-
+	
 	goto restart;
 
 complete:
