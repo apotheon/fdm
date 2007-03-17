@@ -1,4 +1,4 @@
-/* $Id: shm.c,v 1.15 2007-02-09 14:44:09 nicm Exp $ */
+/* $Id: shm.c,v 1.16 2007-03-17 12:49:11 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -128,6 +128,9 @@ shm_free(struct shm *shm)
 #ifdef SHM_DEBUG
 	log_debug("shm_free: %s", shm->name);
 #endif
+
+	if (shm->fd == -1)
+		return;
 
 	if (munmap(shm->data, shm->size) != 0)
 		fatal("munmap");
