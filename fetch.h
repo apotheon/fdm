@@ -1,4 +1,4 @@
-/* $Id: fetch.h,v 1.12 2007-03-17 12:55:27 nicm Exp $ */
+/* $Id: fetch.h,v 1.13 2007-03-17 14:11:53 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -55,6 +55,10 @@ struct fetch_maildir_data {
 	char		*path;
 	char		 entry[MAXPATHLEN];
 	char		 maildir[MAXPATHLEN];
+};
+
+struct fetch_maildir_mail {
+	char		 path[MAXPATHLEN];
 };
 
 /* NNTP group entry. */
