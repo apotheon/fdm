@@ -1,4 +1,4 @@
-/* $Id: child-fetch.c,v 1.7 2007-03-17 14:43:07 nicm Exp $ */
+/* $Id: child-fetch.c,v 1.8 2007-03-17 15:04:37 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -283,8 +283,8 @@ run_done(struct account *a, int *dropped, int *kept, const char **cause)
 	    get_time() - mctx->tim);
 	xfree(mctx);
 
-	if (mctx->account->fetch->done != NULL) {
-		switch (mctx->mail->decision) {
+	if (a->fetch->done != NULL) {
+		switch (m->decision) {
 		case DECISION_DROP:
 			type = "deleting";
 			(*dropped)++;
