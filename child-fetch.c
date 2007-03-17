@@ -1,4 +1,4 @@
-/* $Id: child-fetch.c,v 1.3 2007-03-17 12:55:27 nicm Exp $ */
+/* $Id: child-fetch.c,v 1.4 2007-03-17 13:27:20 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -428,6 +428,7 @@ fetch_account(struct io *pio, struct account *a, struct ios *ios, double tim)
 
 	n = dropped = kept = 0;
 	m = NULL;
+	blocked = 0; 
 	for (;;) {
 		m = xcalloc(1, sizeof *m);
 		m->body = -1;
