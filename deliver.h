@@ -1,4 +1,4 @@
-/* $Id: deliver.h,v 1.7 2007-03-16 23:19:55 nicm Exp $ */
+/* $Id: deliver.h,v 1.8 2007-03-17 01:12:04 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -25,6 +25,8 @@
 
 /* Deliver context. */
 struct deliver_ctx {
+	double		 tim;
+
 	struct action	*action;
 	struct rule	*rule;
 

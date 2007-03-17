@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.231 2007-03-16 23:19:55 nicm Exp $ */
+/* $Id: fdm.h,v 1.232 2007-03-17 01:12:04 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -43,6 +43,8 @@
 #define LOCKFILE	".fdm.lock"
 #define SYSLOCKFILE	"/var/run/fdm.lock"
 #define MAXMAILSIZE	INT_MAX
+#define MAXMAILQUEUED	5
+#define MINMAILQUEUED	3
 #define DEFMAILSIZE	(1 * 1024 * 1024 * 1024)	/* 1 GB */
 #define DEFTIMEOUT	(900 * 1000)
 #define LOCKSLEEPTIME	10000

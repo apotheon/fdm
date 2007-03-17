@@ -1,4 +1,4 @@
-/* $Id: match.h,v 1.7 2007-03-16 23:19:56 nicm Exp $ */
+/* $Id: match.h,v 1.8 2007-03-17 01:12:04 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -28,6 +28,8 @@
 
 /* Match context. */
 struct match_ctx {
+	double				 tim;
+
 	struct io			*io;
 	struct account			*account;
 	struct mail  	 	  	*mail;
@@ -41,10 +43,8 @@ struct match_ctx {
 	struct deliver_queue 	 	 dqueue;
 
 	TAILQ_ENTRY(match_ctx)		 entry;
-#define match_entry entry
-#define deliver_entry entry
-#define done_entry entry
 };
+/* XXX should this be an array since we need to know the length? */
 TAILQ_HEAD(match_queue, match_ctx);
 
 /* Match functions. */
