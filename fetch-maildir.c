@@ -1,4 +1,4 @@
-/* $Id: fetch-maildir.c,v 1.56 2007-03-17 14:43:08 nicm Exp $ */
+/* $Id: fetch-maildir.c,v 1.57 2007-03-17 14:59:53 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -225,7 +225,7 @@ restart:
 		strlcpy(data->maildir,
 		    xbasename(xdirname(data->path)), sizeof data->maildir);
 
-		log_debug("%s: trying path: %s", a->name, data->path);
+		log_debug2("%s: trying path: %s", a->name, data->path);
 		if ((data->dirp = opendir(data->path)) == NULL) {
 			log_warn("%s: %s: opendir", a->name, data->path);
 			return (FETCH_ERROR);

@@ -1,4 +1,4 @@
-/* $Id: parse.y,v 1.168 2007-03-14 15:53:18 nicm Exp $ */
+/* $Id: parse.y,v 1.169 2007-03-17 14:59:53 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -478,8 +478,11 @@ free_account(struct account *a)
 			freeaddrinfo(data->server.ai);
 	} else if (a->fetch == &fetch_imappipe) {
 		struct fetch_imap_data		*data = a->data;
-		xfree(data->user);
-		xfree(data->pass);
+		if (data->user != NULL)
+			xfree(data->user);
+		if (data->pass != NULL)
+			xfree(data->pass);
+		xfree(data->folder);
 		xfree(data->pipecmd);
 	} else if (a->fetch == &fetch_maildir) {
 		struct fetch_maildir_data	*data = a->data;
