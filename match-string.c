@@ -1,4 +1,4 @@
-/* $Id: match-string.c,v 1.22 2007-03-14 12:40:44 nicm Exp $ */
+/* $Id: match-string.c,v 1.23 2007-03-17 13:07:49 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -28,6 +28,7 @@ int	match_string_match(struct match_ctx *, struct expritem *);
 void	match_string_desc(struct expritem *, char *, size_t);
 
 struct match match_string = {
+	"string",
 	match_string_match,
 	match_string_desc
 };

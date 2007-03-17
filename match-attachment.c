@@ -1,4 +1,4 @@
-/* $Id: match-attachment.c,v 1.22 2007-03-14 12:40:44 nicm Exp $ */
+/* $Id: match-attachment.c,v 1.23 2007-03-17 13:07:49 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -27,6 +27,7 @@ int	match_attachment_match(struct match_ctx *, struct expritem *);
 void	match_attachment_desc(struct expritem *, char *, size_t);
 
 struct match match_attachment = {
+	"attachment",
 	match_attachment_match,
 	match_attachment_desc
 };
