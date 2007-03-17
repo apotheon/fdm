@@ -1,4 +1,4 @@
-/* $Id: imap-common.c,v 1.22 2007-03-17 14:53:54 nicm Exp $ */
+/* $Id: imap-common.c,v 1.23 2007-03-17 15:26:47 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -82,6 +82,7 @@ imap_start(struct account *a)
 	data->lbuf = xmalloc(data->llen);
 
 	data->tag = 0;
+	data->state = IMAP_START;
 
 	return (FETCH_SUCCESS);
 }

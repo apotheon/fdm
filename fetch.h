@@ -1,4 +1,4 @@
-/* $Id: fetch.h,v 1.14 2007-03-17 14:43:08 nicm Exp $ */
+/* $Id: fetch.h,v 1.15 2007-03-17 15:26:47 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -81,6 +81,20 @@ struct fetch_nntp_data {
 
 	u_int		 group;
 	ARRAY_DECL(, struct fetch_nntp_group *) groups;
+
+	enum {
+		NNTP_START,
+		NNTP_NEXT,
+		NNTP_ARTICLE,
+		NNTP_LINE,
+	} state;
+	int		 flushing;
+	int		 bodylines;
+	u_int		 lines;
+	size_t		 size;
+
+	size_t		 llen;
+	char		*lbuf;
 
 	struct io	*io;
 };

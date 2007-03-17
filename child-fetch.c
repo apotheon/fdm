@@ -1,4 +1,4 @@
-/* $Id: child-fetch.c,v 1.8 2007-03-17 15:04:37 nicm Exp $ */
+/* $Id: child-fetch.c,v 1.9 2007-03-17 15:26:47 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -359,7 +359,7 @@ fetch_poll(struct account *a, int blocked, struct io *pio, struct io **rio)
 		return (0); 
 	
 	timeout = 0;
-	if (TAILQ_EMPTY(&matchq) && blocked)
+	if (TAILQ_EMPTY(&matchq) && (TAILQ_EMPTY(&deliverq) || blocked))
 		timeout = conf.timeout;
 
 	log_debug3("%s: polling %u fds, timeout=%d", a->name, n, timeout);
