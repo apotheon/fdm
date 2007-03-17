@@ -1,4 +1,4 @@
-/* $Id: deliver-keep.c,v 1.5 2007-03-14 12:40:43 nicm Exp $ */
+/* $Id: deliver-keep.c,v 1.6 2007-03-17 12:55:27 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -27,6 +27,7 @@ int	 deliver_keep_deliver(struct deliver_ctx *, struct action *);
 void	 deliver_keep_desc(struct action *, char *, size_t);
 
 struct deliver deliver_keep = {
+	"keep",
 	DELIVER_INCHILD, 
 	deliver_keep_deliver,
 	deliver_keep_desc

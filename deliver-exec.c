@@ -1,4 +1,4 @@
-/* $Id: deliver-exec.c,v 1.3 2007-03-08 15:44:52 nicm Exp $ */
+/* $Id: deliver-exec.c,v 1.4 2007-03-17 12:55:27 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -31,6 +31,7 @@ int	 deliver_exec_deliver(struct deliver_ctx *, struct action *);
 void	 deliver_exec_desc(struct action *, char *, size_t);
 
 struct deliver deliver_exec = {
+	"exec",
 	DELIVER_ASUSER,
 	deliver_exec_deliver,
 	deliver_exec_desc

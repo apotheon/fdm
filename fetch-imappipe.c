@@ -1,4 +1,4 @@
-/* $Id: fetch-imappipe.c,v 1.20 2007-03-16 23:19:56 nicm Exp $ */
+/* $Id: fetch-imappipe.c,v 1.21 2007-03-17 12:55:27 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -32,6 +32,7 @@ int		 fetch_imappipe_getln(struct account *, int, char **);
 void		 fetch_imappipe_flush(struct account *);
 
 struct fetch fetch_imappipe = {
+	"imappipe",
 	{ NULL, NULL },
 	fetch_imappipe_start,
 	imap_poll,	/* from imap-common.c */

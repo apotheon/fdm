@@ -1,4 +1,4 @@
-/* $Id: match-command.c,v 1.31 2007-03-16 23:19:56 nicm Exp $ */
+/* $Id: match-command.c,v 1.32 2007-03-17 12:55:27 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -27,6 +27,7 @@ int	match_command_match(struct match_ctx *, struct expritem *);
 void	match_command_desc(struct expritem *, char *, size_t);
 
 struct match match_command = {
+	"command",
 	match_command_match,
 	match_command_desc
 };

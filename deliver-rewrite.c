@@ -1,4 +1,4 @@
-/* $Id: deliver-rewrite.c,v 1.43 2007-03-15 17:53:27 nicm Exp $ */
+/* $Id: deliver-rewrite.c,v 1.44 2007-03-17 12:55:27 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -33,6 +33,7 @@ int	 deliver_rewrite_deliver(struct deliver_ctx *, struct action *);
 void	 deliver_rewrite_desc(struct action *, char *, size_t);
 
 struct deliver deliver_rewrite = {
+	"rewrite",
 	DELIVER_WRBACK,
 	deliver_rewrite_deliver,
 	deliver_rewrite_desc

@@ -1,4 +1,4 @@
-/* $Id: deliver-remove-header.c,v 1.6 2007-03-15 17:53:27 nicm Exp $ */
+/* $Id: deliver-remove-header.c,v 1.7 2007-03-17 12:55:27 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -27,6 +27,7 @@ int	 deliver_remove_header_deliver(struct deliver_ctx *, struct action *);
 void	 deliver_remove_header_desc(struct action *, char *, size_t);
 
 struct deliver deliver_remove_header = {
+	"remove-header",
 	DELIVER_INCHILD,
 	deliver_remove_header_deliver,
 	deliver_remove_header_desc

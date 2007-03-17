@@ -1,4 +1,4 @@
-/* $Id: match-size.c,v 1.10 2007-03-06 18:01:21 nicm Exp $ */
+/* $Id: match-size.c,v 1.11 2007-03-17 12:55:27 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -27,6 +27,7 @@ int	match_size_match(struct match_ctx *, struct expritem *);
 void	match_size_desc(struct expritem *, char *, size_t);
 
 struct match match_size = {
+	"size",
 	match_size_match,
 	match_size_desc
 };

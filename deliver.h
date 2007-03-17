@@ -1,4 +1,4 @@
-/* $Id: deliver.h,v 1.8 2007-03-17 01:12:04 nicm Exp $ */
+/* $Id: deliver.h,v 1.9 2007-03-17 12:55:27 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -52,6 +52,7 @@ enum delivertype {
 
 /* Deliver functions. */
 struct deliver {
+	const char	*name;
 	enum delivertype type;
 
 	int	 	 (*deliver)(struct deliver_ctx *, struct action *);

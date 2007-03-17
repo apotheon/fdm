@@ -1,4 +1,4 @@
-/* $Id: deliver-append-string.c,v 1.2 2007-03-06 17:26:37 nicm Exp $ */
+/* $Id: deliver-append-string.c,v 1.3 2007-03-17 12:55:27 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -28,6 +28,7 @@ int	 deliver_append_string_deliver(struct deliver_ctx *, struct action *);
 void	 deliver_append_string_desc(struct action *, char *, size_t);
 
 struct deliver deliver_append_string = {
+	"append-string",
 	DELIVER_INCHILD,
 	deliver_append_string_deliver,
 	deliver_append_string_desc

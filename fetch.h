@@ -1,4 +1,4 @@
-/* $Id: fetch.h,v 1.11 2007-03-16 23:19:56 nicm Exp $ */
+/* $Id: fetch.h,v 1.12 2007-03-17 12:55:27 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -29,6 +29,8 @@
 
 /* Fetch functions. */
 struct fetch {
+	const char	*name;
+
 #define FETCHPORT_NORMAL 0
 #define FETCHPORT_SSL 1
 	const char	*ports[2];	/* normal port, ssl port */

@@ -1,4 +1,4 @@
-/* $Id: deliver-stdout.c,v 1.4 2007-03-15 17:53:27 nicm Exp $ */
+/* $Id: deliver-stdout.c,v 1.5 2007-03-17 12:55:27 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -28,6 +28,7 @@ int	 deliver_stdout_deliver(struct deliver_ctx *, struct action *);
 void	 deliver_stdout_desc(struct action *, char *, size_t);
 
 struct deliver deliver_stdout = {
+	"stdout",
 	DELIVER_INCHILD, 
 	deliver_stdout_deliver,
 	deliver_stdout_desc

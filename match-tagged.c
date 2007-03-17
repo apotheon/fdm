@@ -1,4 +1,4 @@
-/* $Id: match-tagged.c,v 1.17 2007-03-14 12:40:44 nicm Exp $ */
+/* $Id: match-tagged.c,v 1.18 2007-03-17 12:55:27 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -28,6 +28,7 @@ int	match_tagged_match(struct match_ctx *, struct expritem *);
 void	match_tagged_desc(struct expritem *, char *, size_t);
 
 struct match match_tagged = {
+	"tagged",
 	match_tagged_match,
 	match_tagged_desc
 };

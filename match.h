@@ -1,4 +1,4 @@
-/* $Id: match.h,v 1.8 2007-03-17 01:12:04 nicm Exp $ */
+/* $Id: match.h,v 1.9 2007-03-17 12:55:27 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -49,6 +49,8 @@ TAILQ_HEAD(match_queue, match_ctx);
 
 /* Match functions. */
 struct match {
+	const char	*name;
+
 	int		 (*match)(struct match_ctx *, struct expritem *);
 	void 		 (*desc)(struct expritem *, char *, size_t);
 };

@@ -1,4 +1,4 @@
-/* $Id: parent-deliver.c,v 1.1 2007-03-16 23:19:56 nicm Exp $ */
+/* $Id: parent-deliver.c,v 1.2 2007-03-17 12:55:27 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -36,7 +36,7 @@ parent_deliver(struct child *child, struct msg *msg, void *buf, size_t len)
 	struct account			*a = data->account;
 	struct mail			*m = data->mail;
 
-	log_debug2("parent_deliver: got message type %d from child %ld",
+	log_debug3("parent_deliver: got message type %d from child %ld",
 	    msg->type, (long) child->pid);
 
 	switch (msg->type) {

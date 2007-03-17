@@ -1,4 +1,4 @@
-/* $Id: deliver-add-header.c,v 1.8 2007-03-15 17:53:27 nicm Exp $ */
+/* $Id: deliver-add-header.c,v 1.9 2007-03-17 12:55:27 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -27,6 +27,7 @@ int	 deliver_add_header_deliver(struct deliver_ctx *, struct action *);
 void	 deliver_add_header_desc(struct action *, char *, size_t);
 
 struct deliver deliver_add_header = {
+	"add-header",
 	DELIVER_INCHILD,
 	deliver_add_header_deliver,
 	deliver_add_header_desc

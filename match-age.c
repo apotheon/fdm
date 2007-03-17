@@ -1,4 +1,4 @@
-/* $Id: match-age.c,v 1.33 2007-03-06 18:27:40 nicm Exp $ */
+/* $Id: match-age.c,v 1.34 2007-03-17 12:55:27 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -31,6 +31,7 @@ void	match_age_desc(struct expritem *, char *, size_t);
 int	match_age_tzlookup(const char *, int *);
 
 struct match match_age = {
+	"age",
 	match_age_match,
 	match_age_desc
 };

@@ -1,4 +1,4 @@
-/* $Id: match-regexp.c,v 1.18 2007-03-14 12:40:44 nicm Exp $ */
+/* $Id: match-regexp.c,v 1.19 2007-03-17 12:55:27 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -27,6 +27,7 @@ int	match_regexp_match(struct match_ctx *, struct expritem *);
 void	match_regexp_desc(struct expritem *, char *, size_t);
 
 struct match match_regexp = {
+	"regexp",
 	match_regexp_match,
 	match_regexp_desc
 };

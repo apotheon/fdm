@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.232 2007-03-17 01:12:04 nicm Exp $ */
+/* $Id: fdm.h,v 1.233 2007-03-17 12:55:27 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -355,6 +355,7 @@ struct rmlist {
 
 /* A single mail. */
 struct mail {
+	double			 tim;
 	u_int			 idx;
 
 	struct strb		*tags;
