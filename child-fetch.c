@@ -1,4 +1,4 @@
-/* $Id: child-fetch.c,v 1.10 2007-03-17 17:47:15 nicm Exp $ */
+/* $Id: child-fetch.c,v 1.11 2007-03-17 18:02:46 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -359,7 +359,7 @@ fetch_poll(struct account *a, int blocked, struct io *pio, struct io **rio)
 
 	if (a->fetch->fill != NULL)
 		a->fetch->fill(a, iop, &n);
-	if (n== 1 && !blocked)
+	if (n == 1 && !blocked)
 		return (0); 
 	
 	timeout = 0;
