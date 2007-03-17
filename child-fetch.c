@@ -1,4 +1,4 @@
-/* $Id: child-fetch.c,v 1.9 2007-03-17 15:26:47 nicm Exp $ */
+/* $Id: child-fetch.c,v 1.10 2007-03-17 17:47:15 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -85,6 +85,10 @@ child_fetch(struct child *child, struct io *io)
 #ifndef NO_SETPROCTITLE
 	setproctitle("child: %s", a->name);
 #endif
+
+	fill_info(NULL);
+	log_debug2("%s: user is: %s, home is: %s", a->name, conf.info.user,
+	    conf.info.home);
 
 	if (op == FDMOP_POLL && a->fetch->poll == NULL) {
 		log_info("%s: polling not supported", a->name);

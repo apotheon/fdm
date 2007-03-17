@@ -1,4 +1,4 @@
-/* $Id: fetch-stdin.c,v 1.50 2007-03-17 14:43:08 nicm Exp $ */
+/* $Id: fetch-stdin.c,v 1.51 2007-03-17 17:47:15 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -133,6 +133,11 @@ fetch_stdin_fetch(struct account *a, struct mail *m)
 	if (m->data == NULL) {
 		mail_open(m, IO_BLOCKSIZE);
 		m->size = 0;
+
+		m->auxdata = NULL;
+		m->auxfree = NULL;
+
+		default_tags(&m->tags, NULL, a);
 	}
 
 restart:
