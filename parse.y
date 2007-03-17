@@ -1,4 +1,4 @@
-/* $Id: parse.y,v 1.169 2007-03-17 14:59:53 nicm Exp $ */
+/* $Id: parse.y,v 1.170 2007-03-17 23:14:31 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -1042,7 +1042,8 @@ defmacro: STRMACRO '=' STRING
 			  macro->fixed = 0;
 			  strlcpy(macro->name, $1, sizeof macro->name);
 			  TAILQ_INSERT_HEAD(&macros, macro, entry);
-		  }
+		  } else
+			  xfree(macro->value.str);
 		  if (!macro->fixed) {
 			  macro->type = MACRO_STRING;
 			  macro->value.str = $3;
