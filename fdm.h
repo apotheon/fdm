@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.235 2007-03-18 10:54:18 nicm Exp $ */
+/* $Id: fdm.h,v 1.236 2007-03-18 11:40:03 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -909,8 +909,8 @@ int			 io_flush(struct io *, char **);
 int			 io_wait(struct io *, size_t, char **);
 
 /* log.c */
+void			 vlog(FILE *, int, const char *, va_list);
 void			 log_init(int);
-void		    	 vlog(int, const char *, va_list);
 void printflike1	 log_warn(const char *, ...);
 void printflike1	 log_warnx(const char *, ...);
 void printflike1	 log_info(const char *, ...);

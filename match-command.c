@@ -1,4 +1,4 @@
-/* $Id: match-command.c,v 1.32 2007-03-17 12:55:27 nicm Exp $ */
+/* $Id: match-command.c,v 1.33 2007-03-18 11:40:03 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -84,11 +84,23 @@ match_command_desc(struct expritem *ei, char *buf, size_t len)
 	type = data->pipe ? "pipe" : "exec";
 
 	if (data->re.str == NULL) {
-		xsnprintf(buf, len, "%s \"%s\" user %lu returns (%s, )",
-		    type, data->cmd.str, (u_long) data->uid, ret);
+		if (data->uid != NOUSR) {
+			xsnprintf(buf, len, "%s \"%s\" user %lu returns (%s, )",
+			    type, data->cmd.str, (u_long) data->uid, ret);
+		} else {
+			xsnprintf(buf, len, "%s \"%s\" returns (%s, )", type,
+			    data->cmd.str, ret);
+		}
 	} else {
-		xsnprintf(buf, len,
-		    "command %s \"%s\" user %lu returns (%s, \"%s\")",
-		    type, data->cmd.str, (u_long) data->uid, ret, data->re.str);
+		if (data->uid != NOUSR) {
+			xsnprintf(buf, len,
+			    "command %s \"%s\" user %lu returns (%s, \"%s\")",
+			    type, data->cmd.str, (u_long) data->uid, ret,
+			    data->re.str);
+		} else {
+			xsnprintf(buf, len,
+			    "command %s \"%s\" returns (%s, \"%s\")",
+			    type, data->cmd.str, ret, data->re.str);
+		}
 	}
 }

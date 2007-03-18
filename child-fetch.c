@@ -1,4 +1,4 @@
-/* $Id: child-fetch.c,v 1.14 2007-03-18 10:54:18 nicm Exp $ */
+/* $Id: child-fetch.c,v 1.15 2007-03-18 11:40:03 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -91,10 +91,10 @@ child_fetch(struct child *child, struct io *io)
 	    conf.info.home);
 
 	if (op == FDMOP_POLL && a->fetch->poll == NULL) {
-		log_info("%s: polling not supported", a->name);
+		log_warnx("%s: polling not supported", a->name);
 		goto out;
 	} else if (op == FDMOP_FETCH && a->fetch->fetch == NULL) {
-		log_info("%s: fetching not supported", a->name);
+		log_warnx("%s: fetching not supported", a->name);
 		goto out;
 	}
 	tim = get_time();

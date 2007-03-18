@@ -1,4 +1,4 @@
-/* $Id: parse.y,v 1.171 2007-03-18 10:54:18 nicm Exp $ */
+/* $Id: parse.y,v 1.172 2007-03-18 11:40:03 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -80,7 +80,7 @@ yyerror(const char *fmt, ...)
 	xasprintf(&s, "%s: %s at line %d", file, fmt, yylineno);
 
 	va_start(ap, fmt);
-	vlog(LOG_CRIT, s, ap);
+	vlog(stderr, LOG_CRIT, s, ap);
 	va_end(ap);
 
 	exit(1);
@@ -1306,7 +1306,7 @@ gid: replstrv
 /** USER: <uid> (uid_t) */
 user: /* empty */
       {
-	      $$ = 0;
+	      $$ = NOUSR;
       }
     | TOKUSER uid
 /**   [$2: uid (uid_t)] */
