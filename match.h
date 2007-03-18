@@ -1,4 +1,4 @@
-/* $Id: match.h,v 1.9 2007-03-17 12:55:27 nicm Exp $ */
+/* $Id: match.h,v 1.10 2007-03-18 19:10:55 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -111,7 +111,7 @@ struct match_command_data {
 	uid_t		 uid;
 	int		 pipe;		/* pipe mail to command */
 
-	struct re	 re;		/* re->re NULL to not check */
+	struct re	 re;		/* re->str NULL to not check */
 	int		 ret;		/* -1 to not check */
 };
 

@@ -1,4 +1,4 @@
-/* $Id: mail.c,v 1.83 2007-03-16 23:19:56 nicm Exp $ */
+/* $Id: mail.c,v 1.84 2007-03-18 19:10:55 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -125,6 +125,8 @@ mail_destroy(struct mail *m)
 
 	mail_free(m);
 	if (m->base != NULL) {
+		log_debug("mail_destroy: %ld %d %s", (long) getpid(),
+		    m->idx, m->shm.name);
 		strlcpy(path, m->shm.name, sizeof path);
 		shm_destroy(&m->shm);
 		cleanup_deregister(path);

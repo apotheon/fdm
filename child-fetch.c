@@ -1,4 +1,4 @@
-/* $Id: child-fetch.c,v 1.15 2007-03-18 11:40:03 nicm Exp $ */
+/* $Id: child-fetch.c,v 1.16 2007-03-18 19:10:55 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -315,6 +315,7 @@ void
 flush_queue(struct match_queue *mq)
 {
 	struct match_ctx	*mctx;
+	struct deliver_ctx	*dctx;
 	struct mail		*m;
 
 	while (!TAILQ_EMPTY(mq)) {
@@ -322,6 +323,11 @@ flush_queue(struct match_queue *mq)
 		m = mctx->mail;
 
 		TAILQ_REMOVE(mq, mctx, entry);
+		while (!TAILQ_EMPTY(&mctx->dqueue)) {
+			dctx = TAILQ_FIRST(&mctx->dqueue);
+			TAILQ_REMOVE(&mctx->dqueue, dctx, entry);
+			xfree(dctx);
+		}
 		ARRAY_FREE(&mctx->stack);
 		xfree(mctx);
 

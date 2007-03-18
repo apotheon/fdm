@@ -1,4 +1,4 @@
-/* $Id: parse.y,v 1.172 2007-03-18 11:40:03 nicm Exp $ */
+/* $Id: parse.y,v 1.173 2007-03-18 19:10:55 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -428,6 +428,8 @@ free_rule(struct rule *r)
 		} else if (ei->match == &match_command) {
 			struct match_command_data	*data = ei->data;
 			xfree(data->cmd.str);
+			if (data->re.str != NULL)
+				re_free(&data->re);
 		} else if (ei->match == &match_tagged) {
 			struct match_tagged_data	*data = ei->data;
 			xfree(data->tag.str);
