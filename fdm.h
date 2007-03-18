@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.234 2007-03-17 14:43:08 nicm Exp $ */
+/* $Id: fdm.h,v 1.235 2007-03-18 10:54:18 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -350,8 +350,8 @@ struct rmlist {
 };
 
 /* Regexp flags. */
-#define RE_ICASE 0x1
-#define RE_NOSUB 0x2
+#define RE_IGNCASE 0x1
+#define RE_NOSUBST 0x2
 
 /* A single mail. */
 struct mail {
