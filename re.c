@@ -1,4 +1,4 @@
-/* $Id: re.c,v 1.10 2007-03-18 10:54:18 nicm Exp $ */
+/* $Id: re.c,v 1.11 2007-03-18 18:44:57 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -69,7 +69,7 @@ re_string(struct re *re, char *s, struct rmlist *rml, char **cause)
 	}
 
 	if (rml != NULL)
-		memset(rml, 0, NPMATCH * (sizeof *rml));
+		memset(rml, 0, sizeof *rml);
 
 	/*
 	 * If the source string is empty, there is no regexp, so just check
@@ -85,8 +85,8 @@ re_string(struct re *re, char *s, struct rmlist *rml, char **cause)
 	if (res != 0 && res != REG_NOMATCH) {
 		xasprintf(cause, "%s: regexec failed", re->str);
 		return (-1);
-	} else
-
+	}
+	
 	if (rml != NULL) {
 		for (i = 0; i < NPMATCH; i++) {
 			if (pm[i].rm_eo <= pm[i].rm_so)
@@ -132,7 +132,7 @@ re_block(struct re *re, void *buf, size_t len, struct rmlist *rml, char **cause)
 	if (res != 0 && res != REG_NOMATCH) {
 		xasprintf(cause, "%s: regexec failed", re->str);
 		return (-1);
-	} else
+	}
 
 	if (rml != NULL) {
 		for (i = 0; i < NPMATCH; i++) {
