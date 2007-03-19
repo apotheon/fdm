@@ -1,4 +1,4 @@
-/* $Id: fetch-stdin.c,v 1.52 2007-03-17 23:18:05 nicm Exp $ */
+/* $Id: fetch-stdin.c,v 1.53 2007-03-19 20:49:48 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -30,7 +30,7 @@
 
 int	 fetch_stdin_start(struct account *);
 void	 fetch_stdin_fill(struct account *, struct io **, u_int *);
-int	 fetch_stdin_finish(struct account *);
+int	 fetch_stdin_finish(struct account *, int);
 int	 fetch_stdin_fetch(struct account *, struct mail *);
 int	 fetch_stdin_done(struct account *, struct mail *);
 void	 fetch_stdin_desc(struct account *, char *, size_t);
@@ -89,7 +89,7 @@ fetch_stdin_fill(struct account *a, struct io **iop, u_int *n)
 }
 
 int
-fetch_stdin_finish(struct account *a)
+fetch_stdin_finish(struct account *a, unused int aborted)
 {
 	struct fetch_stdin_data	*data = a->data;
 

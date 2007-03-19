@@ -1,4 +1,4 @@
-/* $Id: fetch-maildir.c,v 1.58 2007-03-17 17:22:11 nicm Exp $ */
+/* $Id: fetch-maildir.c,v 1.59 2007-03-19 20:49:48 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -32,7 +32,7 @@
 #include "fetch.h"
 
 int	 fetch_maildir_start(struct account *);
-int	 fetch_maildir_finish(struct account *);
+int	 fetch_maildir_finish(struct account *, int);
 int	 fetch_maildir_poll(struct account *, u_int *);
 int	 fetch_maildir_fetch(struct account *, struct mail *);
 int	 fetch_maildir_done(struct account *, struct mail *);
@@ -150,7 +150,7 @@ fetch_maildir_start(struct account *a)
 }
 
 int
-fetch_maildir_finish(struct account *a)
+fetch_maildir_finish(struct account *a, unused int aborted)
 {
 	struct fetch_maildir_data	*data = a->data;
 
