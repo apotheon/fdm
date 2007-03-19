@@ -1,4 +1,4 @@
-/* $Id: fetch.h,v 1.15 2007-03-17 15:26:47 nicm Exp $ */
+/* $Id: fetch.h,v 1.16 2007-03-19 20:04:48 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -26,6 +26,7 @@
 #define FETCH_EMPTY 3
 #define FETCH_COMPLETE 4
 #define FETCH_AGAIN 5
+#define FETCH_NONE 6
 
 /* Fetch functions. */
 struct fetch {
@@ -41,7 +42,7 @@ struct fetch {
 	int	 	 (*fetch)(struct account *, struct mail *);
 	int		 (*purge)(struct account *);
 	int		 (*done)(struct account *, struct mail *);
-	int		 (*finish)(struct account *);
+	int		 (*finish)(struct account *, int);
 	void		 (*desc)(struct account *, char *, size_t);
 };
 

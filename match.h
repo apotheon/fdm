@@ -1,4 +1,4 @@
-/* $Id: match.h,v 1.10 2007-03-18 19:10:55 nicm Exp $ */
+/* $Id: match.h,v 1.11 2007-03-19 20:04:48 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -25,33 +25,13 @@
 #define MATCH_FALSE 0
 #define MATCH_TRUE 1
 #define MATCH_ERROR 2
-
-/* Match context. */
-struct match_ctx {
-	double				 tim;
-
-	struct io			*io;
-	struct account			*account;
-	struct mail  	 	  	*mail;
-
-	int		 		 matched;
-	int				 stopped;
-
-	struct rule			*rule;
-	ARRAY_DECL(, struct rule *)	 stack;
-
-	struct deliver_queue 	 	 dqueue;
-
-	TAILQ_ENTRY(match_ctx)		 entry;
-};
-/* XXX should this be an array since we need to know the length? */
-TAILQ_HEAD(match_queue, match_ctx);
+#define MATCH_PARENT 3
 
 /* Match functions. */
 struct match {
 	const char	*name;
 
-	int		 (*match)(struct match_ctx *, struct expritem *);
+	int		 (*match)(struct mail_ctx *, struct expritem *);
 	void 		 (*desc)(struct expritem *, char *, size_t);
 };
 

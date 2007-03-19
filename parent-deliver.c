@@ -1,4 +1,4 @@
-/* $Id: parent-deliver.c,v 1.2 2007-03-17 12:55:27 nicm Exp $ */
+/* $Id: parent-deliver.c,v 1.3 2007-03-19 20:04:48 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -30,14 +30,11 @@
 #include "match.h"
 
 int
-parent_deliver(struct child *child, struct msg *msg, void *buf, size_t len)
+parent_deliver(struct child *child, struct msg *msg, struct msgbuf *msgbuf)
 {
 	struct child_deliver_data	*data = child->data;
 	struct account			*a = data->account;
 	struct mail			*m = data->mail;
-
-	log_debug3("parent_deliver: got message type %d from child %ld",
-	    msg->type, (long) child->pid);
 
 	switch (msg->type) {
 	case MSG_DONE:
@@ -46,20 +43,24 @@ parent_deliver(struct child *child, struct msg *msg, void *buf, size_t len)
 		fatalx("parent_deliver: unexpected message");
 	}
 
-	if (buf == NULL || len == 0)
+	if (msgbuf->buf == NULL || msgbuf->len == 0)
 		fatalx("parent_deliver: bad tags");
 	strb_destroy(&m->tags);
-	m->tags = buf;
+	m->tags = msgbuf->buf;
 
 	/* call the hook */
 	data->hook(1, a, msg, data, &msg->data.error);
 	
 	msg->type = MSG_DONE;
+	msg->id = data->msgid;
+
+	msgbuf->buf = m->tags;
+	msgbuf->len = STRB_SIZE(m->tags);
 
 	mail_send(m, msg);
 
 	child = data->child;
-	if (privsep_send(child->io, msg, m->tags, STRB_SIZE(m->tags)) != 0)
+	if (privsep_send(child->io, msg, msgbuf) != 0)
 		fatalx("parent_deliver: privsep_send error");
 	
 	mail_close(m);

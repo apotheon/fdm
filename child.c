@@ -1,4 +1,4 @@
-/* $Id: child.c,v 1.130 2007-03-16 23:19:55 nicm Exp $ */
+/* $Id: child.c,v 1.131 2007-03-19 20:04:47 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -75,7 +75,7 @@ child_exit(int status)
 
 struct child *
 child_start(struct children *children, uid_t uid, int (*start)(struct child *,
-    struct io *), int (*msg)(struct child *, struct msg *, void *, size_t),
+    struct io *), int (*msg)(struct child *, struct msg *, struct msgbuf *),
     void *data)
 {
 	struct child	*child, *childp;

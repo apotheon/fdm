@@ -1,4 +1,4 @@
-/* $Id: match-string.c,v 1.23 2007-03-17 13:07:49 nicm Exp $ */
+/* $Id: match-string.c,v 1.24 2007-03-19 20:04:48 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -24,7 +24,7 @@
 #include "fdm.h"
 #include "match.h"
 
-int	match_string_match(struct match_ctx *, struct expritem *);
+int	match_string_match(struct mail_ctx *, struct expritem *);
 void	match_string_desc(struct expritem *, char *, size_t);
 
 struct match match_string = {
@@ -34,7 +34,7 @@ struct match match_string = {
 };
 
 int
-match_string_match(struct match_ctx *mctx, struct expritem *ei)
+match_string_match(struct mail_ctx *mctx, struct expritem *ei)
 {
 	struct match_string_data	*data = ei->data;
 	struct account			*a = mctx->account;

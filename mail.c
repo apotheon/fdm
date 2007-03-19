@@ -1,4 +1,4 @@
-/* $Id: mail.c,v 1.85 2007-03-18 19:12:35 nicm Exp $ */
+/* $Id: mail.c,v 1.86 2007-03-19 20:04:48 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -68,7 +68,6 @@ mail_receive(struct mail *m, struct msg *msg)
 {
 	struct mail	*mm = &msg->data.mail;
 
-	mm->done = m->done;
 	mm->idx = m->idx;
 
 	mm->tags = m->tags;

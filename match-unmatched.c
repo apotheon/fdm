@@ -1,4 +1,4 @@
-/* $Id: match-unmatched.c,v 1.7 2007-03-17 12:55:27 nicm Exp $ */
+/* $Id: match-unmatched.c,v 1.8 2007-03-19 20:04:48 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -23,7 +23,7 @@
 #include "fdm.h"
 #include "match.h"
 
-int	match_unmatched_match(struct match_ctx *, struct expritem *);
+int	match_unmatched_match(struct mail_ctx *, struct expritem *);
 void	match_unmatched_desc(struct expritem *, char *, size_t);
 
 struct match match_unmatched = { 
@@ -33,7 +33,7 @@ struct match match_unmatched = {
 };
 
 int
-match_unmatched_match(struct match_ctx *mctx, unused struct expritem *ei)
+match_unmatched_match(struct mail_ctx *mctx, unused struct expritem *ei)
 {
 	if (mctx->matched)
 		return (MATCH_FALSE);
