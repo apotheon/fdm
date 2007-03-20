@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.239 2007-03-20 18:17:46 nicm Exp $ */
+/* $Id: fdm.h,v 1.240 2007-03-20 23:00:35 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -612,6 +612,7 @@ struct rule {
 
 /* Configuration settings. */
 struct conf {
+	int			 quiet;
 	int 			 debug;
 	int			 syslog;
 

@@ -1,4 +1,4 @@
-/* $Id: fetch-pop3.c,v 1.73 2007-03-19 20:04:48 nicm Exp $ */
+/* $Id: fetch-pop3.c,v 1.74 2007-03-20 23:00:35 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -374,7 +374,7 @@ complete:
 	}
 
 	if (m->size + data->lines != data->size) {
-		log_warnx("%s: server lied about message size: expected %zu, "
+		log_info("%s: server lied about message size: expected %zu, "
 		    "got %zu (%u lines)", a->name, data->size, m->size + 
 		    data->lines, data->lines);
 	}

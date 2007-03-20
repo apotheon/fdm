@@ -1,4 +1,4 @@
-/* $Id: log.c,v 1.5 2007-03-18 11:40:03 nicm Exp $ */
+/* $Id: log.c,v 1.6 2007-03-20 23:00:36 nicm Exp $ */
 /*      $OpenBSD: log.c,v 1.6 2004/07/12 09:22:38 dtucker Exp $ */
 
 /*
@@ -116,6 +116,9 @@ void printflike1
 log_info(const char *emsg, ...)
 {
 	va_list	ap;
+
+	if (conf.quiet)
+		return;
 
 	va_start(ap, emsg);
 	vlog(stdout, LOG_INFO, emsg, ap);
