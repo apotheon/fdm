@@ -1,4 +1,4 @@
-/* $Id: deliver-maildir.c,v 1.42 2007-03-17 12:55:27 nicm Exp $ */
+/* $Id: deliver-maildir.c,v 1.43 2007-03-20 14:41:44 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -189,7 +189,7 @@ restart:
 	/* write the message */
 	log_debug2("%s: writing to %s", a->name, src);
 	n = write(fd, m->data, m->size);
-	if (n < 0 || (size_t) n != m->size) {
+	if (n < 0 || (size_t) n != m->size || fsync(fd) != 0) {
 		log_warn("%s: write", a->name);
 		close(fd);
 		unlink(src);

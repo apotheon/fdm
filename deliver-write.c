@@ -1,4 +1,4 @@
-/* $Id: deliver-write.c,v 1.28 2007-03-17 12:55:27 nicm Exp $ */
+/* $Id: deliver-write.c,v 1.29 2007-03-20 14:41:44 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -80,6 +80,11 @@ do_write(struct deliver_ctx *dctx, struct action *t, int appendf)
 	}
 	if (fwrite(m->data, m->size, 1, f) != 1) {
 		log_warn("%s: %s: fwrite", a->name, path);
+		xfree(path);
+		return (DELIVER_FAILURE);
+	}
+	if (fsync(fileno(f)) != 0) {
+		log_warn("%s: %s: fsync", a->name, path);
 		xfree(path);
 		return (DELIVER_FAILURE);
 	}

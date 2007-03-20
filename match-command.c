@@ -1,4 +1,4 @@
-/* $Id: match-command.c,v 1.34 2007-03-19 20:04:48 nicm Exp $ */
+/* $Id: match-command.c,v 1.35 2007-03-20 14:41:45 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -41,6 +41,8 @@ match_command_match(struct mail_ctx *mctx, struct expritem *ei)
 	struct io			*io = mctx->io;
 	struct msg			 msg;
 	struct msgbuf			 msgbuf;
+
+	set_wrapped(m, '\n');
 
 	/*
 	 * We are called as the child so to change uid this needs to be done

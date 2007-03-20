@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.237 2007-03-19 20:04:48 nicm Exp $ */
+/* $Id: fdm.h,v 1.238 2007-03-20 14:41:44 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -374,6 +374,7 @@ struct mail {
 	size_t	 	 	 space;		/* size of malloc'd area */
 
 	ARRAY_DECL(, size_t *)	 wrapped;	/* list of wrapped lines */
+	char			 wrapchar;	/* wrapped character */
 
 	ssize_t		 	 body;		/* offset of body */
 
