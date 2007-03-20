@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.238 2007-03-20 14:41:44 nicm Exp $ */
+/* $Id: fdm.h,v 1.239 2007-03-20 18:17:46 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -799,6 +799,11 @@ void			 free_action(struct action *);
 void			 free_rule(struct rule *);
 void			 free_account(struct account *); 
 char			*expand_path(char *);
+
+/* netrc.c */
+FILE 			*netrc_open(const char *, char **);
+void			 netrc_close(FILE *);
+int			 netrc_lookup(FILE *, const char *, char **, char **);
 
 /* fdm.c */
 double			 get_time(void);
