@@ -1,4 +1,4 @@
-/* $Id: parse.y,v 1.176 2007-03-20 18:42:53 nicm Exp $ */
+/* $Id: parse.y,v 1.177 2007-03-20 19:00:49 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -630,7 +630,7 @@ netrc_both(const char *host, char **user, char **pass)
 %token TOKANYTYPE TOKANYNAME TOKANYSIZE TOKEQ TOKNE TOKNNTP TOKCACHE TOKGROUP
 %token TOKGROUPS TOKPURGEAFTER TOKCOMPRESS TOKNORECEIVED TOKFILEUMASK
 %token TOKFILEGROUP TOKVALUE TOKTIMEOUT TOKREMOVEHEADER TOKSTDOUT
-%token TOKADDFROM TOKAPPENDSTRING TOKADDHEADER TOKFROMNETRC
+%token TOKADDFROM TOKAPPENDSTRING TOKADDHEADER
 %token LCKFLOCK LCKFCNTL LCKDOTLOCK
 
 %union
@@ -2480,14 +2480,14 @@ userpassnetrc: TOKUSER replstrv TOKPASS replstrv
 		     $$.pass = $4;
 		     $$.pass_netrc = 0;
 	     }
-           | TOKUSER TOKFROMNETRC TOKPASS TOKFROMNETRC
+	   | /* empty */
 	     {
 		     $$.user = NULL;
 		     $$.user_netrc = 1;
 		     $$.pass = NULL;
 		     $$.pass_netrc = 1;
 	     }
-           | TOKUSER replstrv TOKPASS TOKFROMNETRC
+           | TOKUSER replstrv
 	     {
 		     if (*$2 == '\0')
 			     yyerror("invalid user");
@@ -2497,14 +2497,14 @@ userpassnetrc: TOKUSER replstrv TOKPASS replstrv
 		     $$.pass = NULL;
 		     $$.pass_netrc = 1;
 	     }
-           | TOKUSER TOKFROMNETRC TOKPASS replstrv
+           | TOKPASS replstrv
 	     {
-		     if (*$4 == '\0')
+		     if (*$2 == '\0')
 			     yyerror("invalid pass");
 
 		     $$.user = NULL;
 		     $$.user_netrc = 1;
-		     $$.pass = $4;
+		     $$.pass = $2;
 		     $$.pass_netrc = 0;
 	     }
 
