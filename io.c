@@ -1,4 +1,4 @@
-/* $Id: io.c,v 1.55 2007-03-16 23:19:56 nicm Exp $ */
+/* $Id: io.c,v 1.56 2007-03-21 15:52:22 nicm Exp $ */
 
 /*
  * Copyright (c) 2005 Nicholas Marriott <nicm__@ntlworld.com>
@@ -296,7 +296,7 @@ io_fill(struct io *io)
 	if (io->ssl == NULL) {
 		n = read(io->fd, io->rbase + io->roff + io->rsize,
 		    IO_BLOCKSIZE);
-		if (n == 0)
+		if (n == 0 || (n == -1 && errno == EPIPE))
 			return (0);
 		if (n == -1 && errno != EINTR && errno != EAGAIN) {
 			if (io->error != NULL)
@@ -371,7 +371,7 @@ io_push(struct io *io)
 	/* write as much as possible */
 	if (io->ssl == NULL) {
 		n = write(io->fd, io->wbase + io->woff, io->wsize);
-		if (n == 0)
+		if (n == 0 || (n == -1 && errno == EPIPE))
 			return (0);
 		if (n == -1 && errno != EINTR && errno != EAGAIN) {
 			if (io->error != NULL)
