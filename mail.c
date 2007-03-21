@@ -1,4 +1,4 @@
-/* $Id: mail.c,v 1.87 2007-03-20 14:41:45 nicm Exp $ */
+/* $Id: mail.c,v 1.88 2007-03-21 22:49:45 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -460,7 +460,7 @@ find_users(struct mail *m)
 		if (*ARRAY_ITEM(conf.headers, i, char *) == '\0')
 			continue;
 
-		hdr = find_header(m, ARRAY_ITEM(conf.headers, i, char *), 
+		hdr = find_header(m, ARRAY_ITEM(conf.headers, i, char *),
 		    &len, 1);
 		if (hdr == NULL || len == 0)
 			continue;

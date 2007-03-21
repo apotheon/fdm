@@ -1,4 +1,4 @@
-/* $Id: re.c,v 1.11 2007-03-18 18:44:57 nicm Exp $ */
+/* $Id: re.c,v 1.12 2007-03-21 22:49:45 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -86,7 +86,7 @@ re_string(struct re *re, char *s, struct rmlist *rml, char **cause)
 		xasprintf(cause, "%s: regexec failed", re->str);
 		return (-1);
 	}
-	
+
 	if (rml != NULL) {
 		for (i = 0; i < NPMATCH; i++) {
 			if (pm[i].rm_eo <= pm[i].rm_so)

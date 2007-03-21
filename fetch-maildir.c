@@ -1,4 +1,4 @@
-/* $Id: fetch-maildir.c,v 1.59 2007-03-19 20:49:48 nicm Exp $ */
+/* $Id: fetch-maildir.c,v 1.60 2007-03-21 22:49:45 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -276,7 +276,7 @@ restart:
 	strlcpy(aux->path, data->entry, sizeof aux->path);
 	m->auxdata = aux;
 	m->auxfree = fetch_maildir_free;
-	
+
 	log_debug2("%s: reading %ju bytes", a->name, (uintmax_t) sb.st_size);
 	if (read(fd, m->data, sb.st_size) != sb.st_size) {
 		close(fd);

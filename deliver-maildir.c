@@ -1,4 +1,4 @@
-/* $Id: deliver-maildir.c,v 1.43 2007-03-20 14:41:44 nicm Exp $ */
+/* $Id: deliver-maildir.c,v 1.44 2007-03-21 22:49:44 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -35,7 +35,7 @@ void	 deliver_maildir_desc(struct action *, char *, size_t);
 
 struct deliver deliver_maildir = {
 	"maildir",
-	DELIVER_ASUSER, 
+	DELIVER_ASUSER,
 	deliver_maildir_deliver,
 	deliver_maildir_desc
 };
@@ -180,7 +180,7 @@ restart:
 		delivered++;
 	} while (fd == -1);
 	cleanup_register(src);
-	if (conf.file_group != NOGRP && 
+	if (conf.file_group != NOGRP &&
 	    fchown(fd, (uid_t) -1, conf.file_group) == -1) {
 		log_warn("%s: %s: fchown", a->name, path);
 		goto out;

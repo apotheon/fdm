@@ -1,4 +1,4 @@
-/* $Id: deliver-append-string.c,v 1.3 2007-03-17 12:55:27 nicm Exp $ */
+/* $Id: deliver-append-string.c,v 1.4 2007-03-21 22:49:44 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -40,12 +40,12 @@ deliver_append_string_deliver(struct deliver_ctx *dctx, struct action *t)
 	struct mail	*m = dctx->mail;
 	char		*ptr = t->data;
 	size_t		 len;
-	
+
 	len = strlen(ptr);
 	resize_mail(m, m->size + len);
 	memcpy(m->data + m->size, ptr, len);
 	m->size += len;
-	
+
 	return (DELIVER_SUCCESS);
 }
 
@@ -59,7 +59,7 @@ deliver_append_string_desc(struct action *t, char *buf, size_t len)
 		return;
 	buf += sz;
 	len -= sz;
-	
+
 	sz = strnvis(buf, t->data, len, VIS_CSTYLE|VIS_TAB|VIS_NL);
 	if (sz >= len)
 		return;

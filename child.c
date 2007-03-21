@@ -1,4 +1,4 @@
-/* $Id: child.c,v 1.131 2007-03-19 20:04:47 nicm Exp $ */
+/* $Id: child.c,v 1.132 2007-03-21 22:49:44 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -100,7 +100,7 @@ child_start(struct children *children, uid_t uid, int (*start)(struct child *,
 		}
 		io_close(child->io);
 		io_free(child->io);
-		
+
 		if (geteuid() == 0) {
 			if (dropto(uid) != 0)
 				fatal("dropto");

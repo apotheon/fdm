@@ -1,4 +1,4 @@
-/* $Id: fetch-imap.c,v 1.67 2007-03-19 20:49:48 nicm Exp $ */
+/* $Id: fetch-imap.c,v 1.68 2007-03-21 22:49:45 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -133,7 +133,7 @@ fetch_imap_start(struct account *a)
 	if (imap_start(a) != FETCH_SUCCESS)
 		return (FETCH_ERROR);
 
-	data->io = connectproxy(&data->server, 
+	data->io = connectproxy(&data->server,
 	    conf.proxy, IO_CRLF, conf.timeout, &cause);
 	if (data->io == NULL) {
 		log_warnx("%s: %s", a->name, cause);
@@ -180,7 +180,7 @@ fetch_imap_finish(struct account *a, int aborted)
 			goto error;
 		}
 
-		if (data->io != NULL) { 
+		if (data->io != NULL) {
 			io_close(data->io);
 			io_free(data->io);
 		}
@@ -189,11 +189,11 @@ fetch_imap_finish(struct account *a, int aborted)
 	return (imap_finish(a));
 
 error:
-	if (data->io != NULL) { 
+	if (data->io != NULL) {
 		io_close(data->io);
 		io_free(data->io);
 	}
-	
+
 	imap_finish(a);
 	return (FETCH_ERROR);
 }

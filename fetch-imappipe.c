@@ -1,4 +1,4 @@
-/* $Id: fetch-imappipe.c,v 1.23 2007-03-19 20:49:48 nicm Exp $ */
+/* $Id: fetch-imappipe.c,v 1.24 2007-03-21 22:49:45 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -195,7 +195,7 @@ fetch_imappipe_finish(struct account *a, int aborted)
 			imap_abort(a);
 			goto error;
 		}
-		
+
 		if (data->cmd != NULL)
 			cmd_free(data->cmd);
 	}

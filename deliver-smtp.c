@@ -1,4 +1,4 @@
-/* $Id: deliver-smtp.c,v 1.47 2007-03-17 12:55:27 nicm Exp $ */
+/* $Id: deliver-smtp.c,v 1.48 2007-03-21 22:49:44 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -36,7 +36,7 @@ int	 deliver_smtp_code(char *);
 struct deliver deliver_smtp = {
 	"smtp",
 	DELIVER_ASUSER,
-	deliver_smtp_deliver, 
+	deliver_smtp_deliver,
 	deliver_smtp_desc
 };
 

@@ -1,4 +1,4 @@
-/* $Id: fdm.c,v 1.123 2007-03-21 15:55:55 nicm Exp $ */
+/* $Id: fdm.c,v 1.124 2007-03-21 22:49:45 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -583,7 +583,7 @@ main(int argc, char **argv)
 		    "file-group=%lu, ", (u_long) conf.file_group);
 	}
 	if (sizeof tmp > off) {
-		off += xsnprintf(tmp + off, (sizeof tmp) - off, 
+		off += xsnprintf(tmp + off, (sizeof tmp) - off,
 		    "queue-high=%u, queue-low=%u, ", conf.queue_high,
 		    conf.queue_low);
 	}
