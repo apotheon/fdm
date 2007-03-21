@@ -1,4 +1,4 @@
-/* $Id: strb.c,v 1.5 2007-03-11 22:56:51 nicm Exp $ */
+/* $Id: strb.c,v 1.6 2007-03-21 21:44:32 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -140,8 +140,8 @@ strb_vadd(struct strb **sbp, const char *key, const char *value, va_list ap)
 void *
 strb_address(struct strb *sb, const char *key)
 {
-	struct strbent	 sbe;
-	u_int		  i;
+	struct strbent	sbe;
+	u_int		i;
 
 	for (i = 0; i < sb->ent_used; i++) {
 		memcpy(&sbe, STRB_ENTRY(sb, i), sizeof sbe);
