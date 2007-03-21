@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.240 2007-03-20 23:00:35 nicm Exp $ */
+/* $Id: fdm.h,v 1.241 2007-03-21 10:08:59 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -43,8 +43,9 @@
 #define LOCKFILE	".fdm.lock"
 #define SYSLOCKFILE	"/var/run/fdm.lock"
 #define MAXMAILSIZE	INT_MAX
-#define MAXMAILQUEUED	5
-#define MINMAILQUEUED	3
+#define MAXQUEUEVALUE	50
+#define MAXMAILQUEUE	5
+#define MINMAILQUEUE	3
 #define DEFMAILSIZE	(1 * 1024 * 1024 * 1024)	/* 1 GB */
 #define DEFTIMEOUT	(900 * 1000)
 #define LOCKSLEEPTIME	10000
@@ -648,6 +649,9 @@ struct conf {
 	int			 no_received;
 	u_int			 purge_after;
 	enum decision		 impl_act;
+
+	int			 queue_high;
+	int			 queue_low;
 
 	mode_t			 file_umask;
 	gid_t			 file_group;
