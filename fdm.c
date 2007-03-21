@@ -1,4 +1,4 @@
-/* $Id: fdm.c,v 1.122 2007-03-21 10:08:59 nicm Exp $ */
+/* $Id: fdm.c,v 1.123 2007-03-21 15:55:55 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -469,12 +469,12 @@ main(int argc, char **argv)
 
 	/* sort out queue limits */
 	if (conf.queue_high == -1)
-		conf.queue_high = MAXMAILQUEUE;
+		conf.queue_high = DEFMAILQUEUE;
 	if (conf.queue_low == -1) {
-		conf.queue_low = conf.queue_high * MINMAILQUEUE / MAXMAILQUEUE;
+		conf.queue_low = conf.queue_high * 3 / 4;
 		if (conf.queue_low >= conf.queue_high)
 			conf.queue_low = conf.queue_high - 1;
-	}
+ 	}
 
 	/* set the umask */
 	umask(conf.file_umask);

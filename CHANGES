@@ -1,3 +1,8 @@
+21 March 2007
+
+* queue-low and queue-high options. Default queue limit is 2.
+* Default maximum-size now 32 MB and maximum now 1 GB.
+
 20 March 2007
 
 * -q option to quiet unnecessary chatter.
@@ -159,4 +164,4 @@
   the mail was very rarely reallocated, now that the header is added it is.
 * Changed all the descriptions to static buffers and audited use of snprintf.
 
-$Id: CHANGES,v 1.46 2007-03-20 23:00:35 nicm Exp $
+$Id: CHANGES,v 1.47 2007-03-21 15:55:55 nicm Exp $

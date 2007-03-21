@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.241 2007-03-21 10:08:59 nicm Exp $ */
+/* $Id: fdm.h,v 1.242 2007-03-21 15:55:55 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -42,11 +42,10 @@
 #define SYSCONFFILE	"/etc/fdm.conf"
 #define LOCKFILE	".fdm.lock"
 #define SYSLOCKFILE	"/var/run/fdm.lock"
-#define MAXMAILSIZE	INT_MAX
 #define MAXQUEUEVALUE	50
-#define MAXMAILQUEUE	5
-#define MINMAILQUEUE	3
-#define DEFMAILSIZE	(1 * 1024 * 1024 * 1024)	/* 1 GB */
+#define DEFMAILQUEUE	2
+#define DEFMAILSIZE	(32 * 1024 * 1024)	/* 32 MB */
+#define MAXMAILSIZE	IO_MAXBUFFERLEN
 #define DEFTIMEOUT	(900 * 1000)
 #define LOCKSLEEPTIME	10000
 #define LOCKRETRIES	1000 
