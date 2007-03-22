@@ -1,4 +1,4 @@
-/* $Id: log.c,v 1.6 2007-03-20 23:00:36 nicm Exp $ */
+/* $Id: log.c,v 1.7 2007-03-22 18:56:20 nicm Exp $ */
 /*      $OpenBSD: log.c,v 1.6 2004/07/12 09:22:38 dtucker Exp $ */
 
 /*
@@ -72,7 +72,7 @@ vlog(FILE *f, int pri, const char *fmt, va_list ap)
 			vfprintf(f, nfmt, ap);
 			free(nfmt);
 		}
-		fflush(stderr);
+		fflush(f);
 	} else
 		vsyslog(pri, fmt, ap);
 }
