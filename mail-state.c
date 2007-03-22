@@ -1,4 +1,4 @@
-/* $Id: mail-state.c,v 1.3 2007-03-21 22:49:45 nicm Exp $ */
+/* $Id: mail-state.c,v 1.4 2007-03-22 20:15:58 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -328,7 +328,7 @@ done:
 	 * Remove completed action from queue.
 	 */
 	TAILQ_REMOVE(&mctx->dqueue, dctx, entry);
-	log_debug("%s: message %u delivered (rule %u, %s) after %.3f seconds",
+	log_debug("%s: message %u delivered (rule %u, %s) in %.3f seconds",
 	    a->name, m->idx, dctx->rule->idx,
 	    dctx->action->deliver->name, get_time() - dctx->tim);
 	xfree(dctx);
