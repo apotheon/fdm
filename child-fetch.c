@@ -1,4 +1,4 @@
-/* $Id: child-fetch.c,v 1.27 2007-03-22 23:21:19 nicm Exp $ */
+/* $Id: child-fetch.c,v 1.28 2007-03-22 23:58:31 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -254,7 +254,7 @@ fetch_done(struct mail_ctx *mctx)
 	switch (m->decision) {
 	case DECISION_DROP:
 		dropped++;
-		log_debug("%s: dropping message %u", a->name, m->idx);
+		log_debug("%s: deleting message %u", a->name, m->idx);
 		break;
 	case DECISION_KEEP:
 		kept++;
