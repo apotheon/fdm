@@ -1,4 +1,4 @@
-/* $Id: child-fetch.c,v 1.24 2007-03-22 18:44:34 nicm Exp $ */
+/* $Id: child-fetch.c,v 1.25 2007-03-22 19:01:32 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -249,6 +249,8 @@ fetch_done(struct mail_ctx *mctx)
 	if (a->fetch->done == NULL)
 		return (0);
 
+	if (conf.keep_all || a->keep)
+		m->decision = DECISION_KEEP;
 	switch (m->decision) {
 	case DECISION_DROP:
 		dropped++;
