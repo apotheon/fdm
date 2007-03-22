@@ -1,4 +1,4 @@
-/* $Id: fetch-pop3.c,v 1.76 2007-03-22 18:44:34 nicm Exp $ */
+/* $Id: fetch-pop3.c,v 1.77 2007-03-22 19:03:04 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -300,7 +300,7 @@ restart:
 				 * Seen this message before and kept it, so
 				 * skip it this time.
 				 */
-				data->state = POP3_LIST;
+				data->state = POP3_START;
 				break;
 			}
 		}
