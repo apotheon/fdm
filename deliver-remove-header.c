@@ -1,4 +1,4 @@
-/* $Id: deliver-remove-header.c,v 1.9 2007-03-21 22:49:44 nicm Exp $ */
+/* $Id: deliver-remove-header.c,v 1.10 2007-03-22 23:21:19 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -52,7 +52,6 @@ deliver_remove_header_deliver(struct deliver_ctx *dctx, struct action *t)
 	}
 	log_debug2("%s: removing header: %s", a->name, hdr);
 
-	/* XXX necessary? */
 	ARRAY_FREE(&m->wrapped);
 	m->wrapchar = '\0';
 	fill_wrapped(m);

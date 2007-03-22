@@ -1,4 +1,4 @@
-/* $Id: attach.c,v 1.21 2007-03-15 17:53:27 nicm Exp $ */
+/* $Id: attach.c,v 1.22 2007-03-22 23:21:19 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -154,9 +154,11 @@ attach_type(struct mail *m, char *hdr, const char *name, char **value)
 	len--;
 	hdr++;
 
-	/* now follows a set of attributes of the form name=value, seperated
-	   by semicolons, possibly crossing multiple lines and possibly with
-	   the value enclosed in quotes */
+	/*
+	 * Now follows a set of attributes of the form name=value, seperated
+	 * by semicolons, possibly crossing multiple lines and possibly with
+	 * the value enclosed in quotes.
+	 */
 	namelen = strlen(name);
 	for (;;) {
 		/* skip spaces and newlines */

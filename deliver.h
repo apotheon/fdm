@@ -1,4 +1,4 @@
-/* $Id: deliver.h,v 1.10 2007-03-19 20:04:47 nicm Exp $ */
+/* $Id: deliver.h,v 1.11 2007-03-22 23:21:19 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -42,10 +42,9 @@ struct deliver_ctx {
 
 /* Delivery types. */
 enum delivertype {
-	DELIVER_INCHILD,	/* do not pass up to parent */
-	DELIVER_ASUSER,		/* do pass up to parent to drop privs */
-	DELIVER_WRBACK		/* modifies mail: pass up to parent and expect
-				   a new mail back */
+	DELIVER_INCHILD,/* don't pass to parent */
+	DELIVER_ASUSER,	/* pass to parent to drop privs */
+	DELIVER_WRBACK	/* modifies mail: pass to parent and receive new mail */
 };
 
 /* Deliver functions. */

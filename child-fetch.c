@@ -1,4 +1,4 @@
-/* $Id: child-fetch.c,v 1.26 2007-03-22 20:15:58 nicm Exp $ */
+/* $Id: child-fetch.c,v 1.27 2007-03-22 23:21:19 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -168,7 +168,7 @@ fetch_poll(struct account *a, struct io *pio, struct mail_ctx *mctx,
     int blocked, u_int queued)
 {
 	static int	 holding;	/* holding fetch until queues drop */
-	struct io	*rio, *iop[NFDS];
+	struct io	*rio, *iop[IO_POLLFDS];
 	char		*cause;
 	u_int		 n;
 	int		 timeout, error;
