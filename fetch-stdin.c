@@ -1,4 +1,4 @@
-/* $Id: fetch-stdin.c,v 1.54 2007-03-21 22:49:45 nicm Exp $ */
+/* $Id: fetch-stdin.c,v 1.55 2007-03-22 18:44:34 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -28,7 +28,7 @@
 #include "fdm.h"
 #include "fetch.h"
 
-int	 fetch_stdin_start(struct account *);
+int	 fetch_stdin_start(struct account *, int *);
 void	 fetch_stdin_fill(struct account *, struct io **, u_int *);
 int	 fetch_stdin_finish(struct account *, int);
 int	 fetch_stdin_fetch(struct account *, struct mail *);
@@ -49,7 +49,7 @@ struct fetch fetch_stdin = {
 };
 
 int
-fetch_stdin_start(struct account *a)
+fetch_stdin_start(struct account *a, unused int *total)
 {
 	struct fetch_stdin_data	*data = a->data;
 

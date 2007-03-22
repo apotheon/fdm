@@ -1,4 +1,4 @@
-/* $Id: fetch-nntp.c,v 1.68 2007-03-21 22:49:45 nicm Exp $ */
+/* $Id: fetch-nntp.c,v 1.69 2007-03-22 18:44:34 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -29,7 +29,7 @@
 #include "fdm.h"
 #include "fetch.h"
 
-int	fetch_nntp_start(struct account *);
+int	fetch_nntp_start(struct account *, int *);
 void	fetch_nntp_fill(struct account *, struct io **, u_int *);
 int	fetch_nntp_finish(struct account *, int);
 int	fetch_nntp_poll(struct account *, u_int *);
@@ -370,7 +370,7 @@ error:
 }
 
 int
-fetch_nntp_start(struct account *a)
+fetch_nntp_start(struct account *a, unused int *total)
 {
 	struct fetch_nntp_data	*data = a->data;
 	struct fetch_nntp_group	*group;

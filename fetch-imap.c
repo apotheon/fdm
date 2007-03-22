@@ -1,4 +1,4 @@
-/* $Id: fetch-imap.c,v 1.68 2007-03-21 22:49:45 nicm Exp $ */
+/* $Id: fetch-imap.c,v 1.69 2007-03-22 18:44:34 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -23,7 +23,7 @@
 #include "fdm.h"
 #include "fetch.h"
 
-int	 	 fetch_imap_start(struct account *);
+int	 	 fetch_imap_start(struct account *, int *);
 void	         fetch_imap_fill(struct account *, struct io **, u_int *);
 int	 	 fetch_imap_finish(struct account *, int);
 void		 fetch_imap_desc(struct account *, char *, size_t);
@@ -125,7 +125,7 @@ fetch_imap_flush(struct account *a)
 }
 
 int
-fetch_imap_start(struct account *a)
+fetch_imap_start(struct account *a, int *total)
 {
 	struct fetch_imap_data	*data = a->data;
 	char			*cause;
@@ -156,6 +156,7 @@ fetch_imap_start(struct account *a)
 		return (FETCH_ERROR);
 	}
 
+	*total = data->num;
 	return (FETCH_SUCCESS);
 }
 
