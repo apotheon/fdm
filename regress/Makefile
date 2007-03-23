@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.11 2007-01-10 17:50:08 nicm Exp $
+# $Id: Makefile,v 1.12 2007-03-23 16:45:10 nicm Exp $
 
 CLEANFILES= *~
 
@@ -10,8 +10,8 @@ TARGETS=
 TARGETS+= ${n}
 ${n}:
 		@echo ${n}:
-		@awk -v CMD="../fdm -vvvnf /dev/stdin" -v DEBUG=${DEBUG} \
-			-f test.awk ${n}
+		@HOME=. awk -v CMD="../fdm -vvvnf /dev/stdin" \
+			-v DEBUG=${DEBUG} -f test.awk ${n}
 .endfor
 
 .MAIN:		all
