@@ -1,4 +1,4 @@
-/* $Id: fdm.c,v 1.125 2007-03-25 15:45:49 nicm Exp $ */
+/* $Id: fdm.c,v 1.126 2007-03-25 19:00:03 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -87,7 +87,8 @@ load_conf(void)
 
         yyparse();
 
-        fclose(yyin);
+        if (fclose(yyin) != 0)
+		return (1);
 
         return (0);
 }
