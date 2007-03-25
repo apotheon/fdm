@@ -1,4 +1,4 @@
-/* $Id: deliver-maildir.c,v 1.46 2007-03-25 15:53:17 nicm Exp $ */
+/* $Id: deliver-maildir.c,v 1.47 2007-03-25 17:07:56 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -208,7 +208,8 @@ restart:
 	    src + strlen(path) + 1, dst + strlen(path) + 1);
 	if (link(src, dst) != 0) {
 		if (errno == EEXIST) {
-			unlink(src);
+			if (unlink(src) != 0)
+				fatal("unlink");
 			cleanup_deregister(src);
 			xfd = fd = -1;
 
