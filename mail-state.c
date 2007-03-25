@@ -1,4 +1,4 @@
-/* $Id: mail-state.c,v 1.4 2007-03-22 20:15:58 nicm Exp $ */
+/* $Id: mail-state.c,v 1.5 2007-03-25 15:45:50 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -480,7 +480,7 @@ start_action(struct mail_ctx *mctx, struct deliver_ctx *dctx)
 		cleanup_deregister(md->shm.name);
 		strb_destroy(&md->tags);
 
-		mail_receive(m, &msg);
+		mail_receive(m, &msg, 1);
 		log_debug2("%s: received modified mail: size %zu, body %zd",
 		    a->name, m->size, m->body);
 
@@ -536,7 +536,7 @@ finish_action(struct deliver_ctx *dctx, struct msg *msg, struct msgbuf *msgbuf)
 	if (t->deliver->type != DELIVER_WRBACK)
 		return (ACTION_DONE);
 
-	mail_receive(m, msg);
+	mail_receive(m, msg, 1);
 	log_debug2("%s: message %u, received modified mail: size %zu, body %zd",
 	    a->name, m->idx, m->size, m->body);
 

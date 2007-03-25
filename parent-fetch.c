@@ -1,4 +1,4 @@
-/* $Id: parent-fetch.c,v 1.4 2007-03-21 22:49:45 nicm Exp $ */
+/* $Id: parent-fetch.c,v 1.5 2007-03-25 15:45:50 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -48,7 +48,7 @@ parent_fetch(struct child *child, struct msg *msg, struct msgbuf *msgbuf)
 		if (msgbuf->buf == NULL || msgbuf->len == 0)
 			fatalx("parent_fetch: bad tags");
 		m = xcalloc(1, sizeof *m);
-		mail_receive(m, msg);
+		mail_receive(m, msg, 0);
 		m->tags = msgbuf->buf;
 
 		dctx = xcalloc(1, sizeof *dctx);
@@ -61,7 +61,7 @@ parent_fetch(struct child *child, struct msg *msg, struct msgbuf *msgbuf)
 		if (msgbuf->buf == NULL || msgbuf->len == 0)
 			fatalx("parent_fetch: bad tags");
 		m = xcalloc(1, sizeof *m);
-		mail_receive(m, msg);
+		mail_receive(m, msg, 0);
 		m->tags = msgbuf->buf;
 
 		mctx = xcalloc(1, sizeof *mctx);

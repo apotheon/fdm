@@ -1,4 +1,4 @@
-/* $Id: shm.c,v 1.16 2007-03-17 12:49:11 nicm Exp $ */
+/* $Id: shm.c,v 1.17 2007-03-25 15:45:50 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -146,9 +146,10 @@ void
 shm_destroy(struct shm *shm)
 {
 #ifdef SHM_DEBUG
-	log_debug("shm_destroy: %s", shm->name);
+	log_debug("%ld shm_destroy: %s", (long) getpid(), shm->name);
 #endif
 
 	shm_free(shm);
-	unlink(shm->name);
+	if (unlink(shm->name) != 0)
+		fatal("unlink");
 }

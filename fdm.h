@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.244 2007-03-22 23:21:19 nicm Exp $ */
+/* $Id: fdm.h,v 1.245 2007-03-25 15:45:49 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -884,7 +884,7 @@ struct io		*connectio(struct server *, const char *, int, char **);
 /* mail.c */
 void			 mail_open(struct mail *, size_t);
 void			 mail_send(struct mail *, struct msg *);
-void			 mail_receive(struct mail *, struct msg *);
+void			 mail_receive(struct mail *, struct msg *, int);
 void			 mail_reopen(struct mail *, char *);
 void			 mail_close(struct mail *);
 void			 mail_destroy(struct mail *);

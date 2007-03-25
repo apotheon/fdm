@@ -1,4 +1,4 @@
-/* $Id: fdm.c,v 1.124 2007-03-21 22:49:45 nicm Exp $ */
+/* $Id: fdm.c,v 1.125 2007-03-25 15:45:49 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -845,8 +845,10 @@ main(int argc, char **argv)
  	log_debug2("parent: finished, total time %.3f seconds", tim);
 
 out:
-	if (!conf.allow_many && *conf.lock_file != '\0')
-		unlink(conf.lock_file);
+	if (!conf.allow_many && *conf.lock_file != '\0') {
+		if (unlink(conf.lock_file) != 0)
+			fatal("unlink");
+	}
 
 #ifdef DEBUG
 	COUNTFDS("parent");

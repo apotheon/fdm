@@ -1,4 +1,4 @@
-/* $Id: cleanup.c,v 1.2 2007-01-19 16:53:16 nicm Exp $ */
+/* $Id: cleanup.c,v 1.3 2007-03-25 15:45:49 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -47,8 +47,12 @@ cleanup_purge(void)
 	 * This must be signal safe.
 	 */
 
- 	TAILQ_FOREACH(cent, &cleanlist, entry)
-		unlink(cent->path);
+ 	TAILQ_FOREACH(cent, &cleanlist, entry) {
+		if (unlink(cent->path) != 0) {
+			write(STDERR_FILENO, "unlink failed\n", 14);
+			_exit(1);
+		}
+	}
 }
 
 void
