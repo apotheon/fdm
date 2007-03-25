@@ -1,4 +1,4 @@
-/* $Id: fetch-nntp.c,v 1.70 2007-03-25 15:45:50 nicm Exp $ */
+/* $Id: fetch-nntp.c,v 1.71 2007-03-25 18:21:25 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -303,7 +303,12 @@ fetch_nntp_load(struct account *a)
 		xfree(name);
 	}
 
-	fclose(f);
+	if (fclose(f) != 0) {
+		log_warn("%s: fclose", a->name);
+		f = NULL;
+		goto error;
+	}
+
 	closelock(fd, data->path, conf.lock_types);
 	return (0);
 
@@ -353,7 +358,11 @@ fetch_nntp_save(struct account *a)
 		    group->name, group->last, strlen(group->id), group->id);
 	}
 
-	fclose(f);
+	if (fclose(f) != 0) {
+		log_warn("%s: fclose", a->name);
+		f = NULL;
+		goto error;
+	}
 	f = NULL;
 
 	if (rename(tmp, data->path) == -1) {

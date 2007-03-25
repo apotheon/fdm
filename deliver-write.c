@@ -1,4 +1,4 @@
-/* $Id: deliver-write.c,v 1.30 2007-03-25 18:00:41 nicm Exp $ */
+/* $Id: deliver-write.c,v 1.31 2007-03-25 18:21:25 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -89,7 +89,10 @@ do_write(struct deliver_ctx *dctx, struct action *t, int appendf)
 		log_warn("%s: %s: fsync", a->name, path);
 		goto error;
 	}
-	fclose(f);
+	if (fclose(f) != 0) {
+		log_warn("%s: %s: fclose", a->name, path);
+		goto error;
+	}
 
 	xfree(path);
 	return (DELIVER_SUCCESS);
