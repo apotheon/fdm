@@ -1,3 +1,8 @@
+25 March 2007
+
+* Die on unlink(2) failures, led to discovery of a double-unlink of a tmp file 
+  (bad!), also fixed. Part of SF bug 1687830 from Markus Elfring.
+
 22 March 2007
 
 * Return total number of mails from start function if possible and print 
@@ -169,4 +174,4 @@
   the mail was very rarely reallocated, now that the header is added it is.
 * Changed all the descriptions to static buffers and audited use of snprintf.
 
-$Id: CHANGES,v 1.48 2007-03-22 18:44:34 nicm Exp $
+$Id: CHANGES,v 1.49 2007-03-25 15:53:17 nicm Exp $

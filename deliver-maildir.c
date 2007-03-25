@@ -1,4 +1,4 @@
-/* $Id: deliver-maildir.c,v 1.45 2007-03-25 15:45:49 nicm Exp $ */
+/* $Id: deliver-maildir.c,v 1.46 2007-03-25 15:53:17 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -52,7 +52,7 @@ deliver_maildir_deliver(struct deliver_ctx *dctx, struct action *t)
 	char				 host2[MAXHOSTNAMELEN], *host;
 	char	 			 name[MAXPATHLEN];
 	char				 src[MAXPATHLEN], dst[MAXPATHLEN];
-	int	 			 exists, xfd = -1, fd = -1, len, res;
+	int	 			 exists, xfd = -1, fd = -1, len;
 	ssize_t			 	 n;
 	size_t	 			 first, last;
 	gid_t				 gid;
