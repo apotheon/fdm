@@ -1065,7 +1065,7 @@ than leaving it for the user to sort out.
 - queue-high <number>
 
 This sets the number of mails fdm will queue simultaneously. The default is
-two.  Once this limit is reached, fdm will cease fetching mail until the number
+two. Once this limit is reached, fdm will cease fetching mail until the number
 queued drops to the value of the 'queue-low' setting.
 
 fdm queues mails so that they may be processed while waiting for data from the
@@ -1305,5 +1305,5 @@ match "^List-Id:.*<full-disclosure\\.lists\\.grok\\.org\\.uk>" in headers
 	actions { "strip-full-disclosure" "full-disclosure" }
 
 ================================================================================
-$Id: MANUAL.in,v 1.7 2007-03-21 16:25:50 nicm Exp $
+$Id: MANUAL.in,v 1.8 2007-03-26 13:40:49 nicm Exp $
 
