@@ -1,4 +1,4 @@
-/* $Id: shm-sysv.c,v 1.2 2007-03-26 19:44:17 nicm Exp $ */
+/* $Id: shm-sysv.c,v 1.3 2007-03-26 19:58:48 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -60,7 +60,7 @@ shm_destroy(struct shm *shm)
 	
 	if (shmctl(shm->id, IPC_RMID, NULL) != 0)
 		fatal("shmctl");
-	shm->id = 0;
+	shm->id = -1;
 }
 
 void
