@@ -1,4 +1,4 @@
-/* $Id: shm.c,v 1.18 2007-03-26 16:01:38 nicm Exp $ */
+/* $Id: shm-mmap.c,v 1.1 2007-03-26 18:57:11 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -29,7 +29,9 @@
 
 #include "fdm.h"
 
-#undef SHM_DEBUG
+/*
+ * This implements a sort of shared memory using mmap'd files in TMPDIR.
+ */
 
 #define SHM_PROTW PROT_READ|PROT_WRITE
 #define SHM_PROTR PROT_READ

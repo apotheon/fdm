@@ -1,4 +1,4 @@
-/* $Id: parent-fetch.c,v 1.6 2007-03-26 16:01:38 nicm Exp $ */
+/* $Id: parent-fetch.c,v 1.7 2007-03-26 18:57:11 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -119,8 +119,12 @@ parent_fetch_action(struct child *child, struct children *children,
 			return;
 		}
 		if (geteuid() == 0 &&
-		    fchown(md->shm.fd, conf.child_uid, conf.child_gid) != 0)
-			fatal("fchown");
+		    shm_owner(&md->shm, conf.child_uid, conf.child_gid) != 0) {
+			mail_destroy(md);
+			log_warn("parent: failed to set mail ownership");
+			parent_fetch_error(child, msg);
+			return;
+		}
 		md->decision = m->decision;
 	}
 
