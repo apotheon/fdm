@@ -1,4 +1,4 @@
-/* $Id: cleanup.c,v 1.4 2007-03-26 18:57:11 nicm Exp $ */
+/* $Id: cleanup.c,v 1.5 2007-03-26 20:05:51 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -26,7 +26,6 @@
 
 struct cleanent {
 	char			*path;
-
 
 	TAILQ_ENTRY(cleanent)	 entry;
 };
