@@ -1,4 +1,4 @@
-/* $Id: fdm.c,v 1.129 2007-03-26 20:45:24 nicm Exp $ */
+/* $Id: fdm.c,v 1.130 2007-03-26 22:36:40 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -445,7 +445,7 @@ main(int argc, char **argv)
 	} else
 		log_debug2("uname: %s", strerror(errno));
 
-	/* save the home dir and misc user info and set the umask */
+	/* save the home dir and misc user info */
 	fill_info(getenv("HOME"));
 	log_debug2("user is: %s, home is: %s", conf.info.user, conf.info.home);
 
