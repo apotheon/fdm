@@ -1,4 +1,4 @@
-/* $Id: mail.c,v 1.92 2007-03-26 18:57:11 nicm Exp $ */
+/* $Id: mail.c,v 1.93 2007-03-26 20:30:00 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -43,7 +43,7 @@ mail_open(struct mail *m, size_t size)
 
 	if ((m->base = shm_create(&m->shm, m->size)) == NULL)
 		return (1);
- 	cleanup_register(m->shm.name);
+ 	SHM_REGISTER(&m->shm);
 
 	m->off = 0;
 	m->data = m->base + m->off;
@@ -93,7 +93,7 @@ mail_receive(struct mail *m, struct msg *msg, int destroy)
 	memcpy(m, mm, sizeof *m);
 	if ((m->base = shm_reopen(&m->shm)) == NULL)
 		return (1);
-	cleanup_register(m->shm.name);
+ 	SHM_REGISTER(&m->shm);
 
 	m->data = m->base + m->off;
 	ARRAY_INIT(&m->wrapped);
@@ -119,26 +119,20 @@ mail_free(struct mail *m)
 void
 mail_close(struct mail *m)
 {
-	char	path[MAXPATHLEN];
-
 	mail_free(m);
 	if (m->base != NULL) {
-		strlcpy(path, m->shm.name, sizeof path);
+		SHM_DEREGISTER(&m->shm);
 		shm_close(&m->shm);
-		cleanup_deregister(path);
 	}
 }
 
 void
 mail_destroy(struct mail *m)
 {
-	char	path[MAXPATHLEN];
-
 	mail_free(m);
 	if (m->base != NULL) {
-		strlcpy(path, m->shm.name, sizeof path);
+		SHM_DEREGISTER(&m->shm);
 		shm_destroy(&m->shm);
-		cleanup_deregister(path);
 	}
 }
 

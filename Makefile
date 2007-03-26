@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.117 2007-03-26 18:57:11 nicm Exp $
+# $Id: Makefile,v 1.118 2007-03-26 20:30:00 nicm Exp $
 
 .SUFFIXES: .c .o .y .l .h
 .PHONY: clean lint regress yannotate manual \
@@ -21,7 +21,7 @@ SRCS= fdm.c log.c xmalloc.c xmalloc-debug.c io.c replace.c connect.c mail.c \
       cleanup.c imap-common.c fetch-imappipe.c deliver-remove-header.c \
       deliver-stdout.c deliver-append-string.c strb.c deliver-add-header.c \
       deliver-exec.c child-fetch.c parent-fetch.c child-deliver.c \
-      parent-deliver.c mail-state.c netrc.c shm-sysv.c \
+      parent-deliver.c mail-state.c netrc.c shm-mmap.c shm-sysv.c \
       parse.y lex.l
 
 LEX= lex
@@ -40,6 +40,12 @@ CFLAGS+= -Wno-long-long -Wall -W -Wnested-externs -Wformat=2
 CFLAGS+= -Wmissing-prototypes -Wstrict-prototypes -Wmissing-declarations
 CFLAGS+= -Wwrite-strings -Wshadow -Wpointer-arith -Wcast-qual -Wsign-compare
 CFLAGS+= -Wundef -Wshadow -Wbad-function-cast -Winline -Wcast-align
+
+.ifdef SHM_SYSV
+CFLAGS+= -DSHM_SYSV
+.else
+CFLAGS+= -DSHM_MMAP
+.endif
 
 # OS X
 .if ${OS} == "Darwin"

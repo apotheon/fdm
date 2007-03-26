@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.247 2007-03-26 18:57:11 nicm Exp $ */
+/* $Id: fdm.h,v 1.248 2007-03-26 20:30:00 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -286,11 +286,18 @@ struct proxy {
 
 /* Shared memory. */
 struct shm {
+#ifdef SHM_SYSV
 	key_t	 key;
 	int	 id;
-
+#define SHM_REGISTER(shm)
+#define SHM_DEREGISTER(shm)
+#endif
+#ifdef SHM_MMAP
 	char	 name[MAXPATHLEN];
 	int	 fd;
+#define SHM_REGISTER(shm) cleanup_register((shm)->name)
+#define SHM_DEREGISTER(shm) cleanup_deregister((shm)->name)
+#endif
 
 	void	*data;
 	size_t	 size;

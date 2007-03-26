@@ -1,4 +1,4 @@
-/* $Id: shm-sysv.c,v 1.3 2007-03-26 19:58:48 nicm Exp $ */
+/* $Id: shm-sysv.c,v 1.4 2007-03-26 20:30:00 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -24,6 +24,8 @@
 #include <string.h>
 
 #include "fdm.h"
+
+#ifdef SHM_SYSV
 
 void *
 shm_create(struct shm *shm, size_t size)
@@ -133,4 +135,6 @@ shm_resize(struct shm *shm, size_t nmemb, size_t size)
 
 	return (shm->data);
 }
+
+#endif /* SHM_SYSV */
 
