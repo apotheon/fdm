@@ -1,4 +1,4 @@
-/* $Id: mail.c,v 1.90 2007-03-26 16:01:38 nicm Exp $ */
+/* $Id: mail.c,v 1.91 2007-03-26 16:34:05 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -124,6 +124,7 @@ mail_close(struct mail *m)
 	mail_free(m);
 	if (m->base != NULL) {
 		strlcpy(path, m->shm.name, sizeof path);
+		shm_free(&m->shm);
 		cleanup_deregister(path);
 	}
 }

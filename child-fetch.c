@@ -1,4 +1,4 @@
-/* $Id: child-fetch.c,v 1.28 2007-03-22 23:58:31 nicm Exp $ */
+/* $Id: child-fetch.c,v 1.29 2007-03-26 16:34:05 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -73,7 +73,7 @@ child_fetch(struct child *child, struct io *io)
 #endif
 
 	io->flags |= IO_NOWAIT;
-	log_debug2("%s: started, pid %ld", a->name, (long) getpid());
+	log_debug2("%s: fetch started, pid %ld", a->name, (long) getpid());
 
 #ifndef NO_SETPROCTITLE
 	setproctitle("child: %s", a->name);
@@ -134,13 +134,10 @@ out:
 	if (msg.type != MSG_EXIT)
 		fatalx("child: unexpected message");
 
-	io_close(io);
-	io_free(io);
-
 #ifdef DEBUG
 	COUNTFDS(a->name);
 	xmalloc_report(a->name);
-#endif
+#endif 
 
 	return (error);
 }
