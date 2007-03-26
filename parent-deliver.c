@@ -1,4 +1,4 @@
-/* $Id: parent-deliver.c,v 1.5 2007-03-26 16:01:38 nicm Exp $ */
+/* $Id: parent-deliver.c,v 1.6 2007-03-26 20:44:48 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -60,13 +60,8 @@ parent_deliver(struct child *child, struct msg *msg, struct msgbuf *msgbuf)
 	mail_send(m, msg);
 
 	child = data->child;
-	if (kill(child->pid, 0) == -1) {
-		if (errno != ESRCH)
-			fatal("kill");
-	} else {
-		if (privsep_send(child->io, msg, msgbuf) != 0)
-			fatalx("parent_deliver: privsep_send error");
-	}
+	if (child->io != NULL && privsep_send(child->io, msg, msgbuf) != 0)
+		fatalx("parent_deliver: privsep_send error");
 
 	mail_close(m);
 	xfree(m);

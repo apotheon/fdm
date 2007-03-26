@@ -1,4 +1,4 @@
-/* $Id: fdm.c,v 1.127 2007-03-26 19:44:17 nicm Exp $ */
+/* $Id: fdm.c,v 1.128 2007-03-26 20:44:48 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -792,6 +792,8 @@ main(int argc, char **argv)
 			}
 
 			io_close(child->io);
+			io_free(child->io);
+			child->io = NULL;
 
 			ARRAY_REMOVE(&children, i, struct child *);
 			ARRAY_ADD(&dead_children, child, struct child *);
