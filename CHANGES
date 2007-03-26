@@ -1,5 +1,7 @@
 26 March 2007
 
+* Fix stupid use of struct strings for uid_ts and make users be printed when
+  printing rules, actions, accounts.
 * Option to use SYSV shared memory (build with make -DSHM_SYSV). Not a real
   option, or documented, yet because I'm not sure how to deal with cleaning up
   on SIGTERM. It might even go away again.
@@ -191,4 +193,4 @@
   the mail was very rarely reallocated, now that the header is added it is.
 * Changed all the descriptions to static buffers and audited use of snprintf.
 
-$Id: CHANGES,v 1.54 2007-03-26 20:56:45 nicm Exp $
+$Id: CHANGES,v 1.55 2007-03-26 22:17:22 nicm Exp $

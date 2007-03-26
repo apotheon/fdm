@@ -1,4 +1,4 @@
-/* $Id: mail.c,v 1.93 2007-03-26 20:30:00 nicm Exp $ */
+/* $Id: mail.c,v 1.94 2007-03-26 22:17:22 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -453,11 +453,11 @@ find_header(struct mail *m, const char *hdr, size_t *len, int value)
 	return (out);
 }
 
-struct strings *
+struct users *
 find_users(struct mail *m)
 {
 	struct passwd	*pw;
-	struct strings	*users;
+	struct users	*users;
 	u_int	 	 i, j;
 	char		*hdr, *ptr, *dptr, *dom;
 	size_t	 	 len, alen;
@@ -509,7 +509,7 @@ find_users(struct mail *m)
 		xfree(users);
 		return (NULL);
 	}
-	return (weed_strings(users));
+	return (weed_users(users));
 }
 
 char *
