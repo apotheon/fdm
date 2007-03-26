@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.245 2007-03-25 15:45:49 nicm Exp $ */
+/* $Id: fdm.h,v 1.246 2007-03-26 16:01:38 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -882,13 +882,12 @@ struct io 		*connectproxy(struct server *, struct proxy *,
 struct io		*connectio(struct server *, const char *, int, char **);
 
 /* mail.c */
-void			 mail_open(struct mail *, size_t);
+int			 mail_open(struct mail *, size_t);
 void			 mail_send(struct mail *, struct msg *);
-void			 mail_receive(struct mail *, struct msg *, int);
-void			 mail_reopen(struct mail *, char *);
+int			 mail_receive(struct mail *, struct msg *, int);
 void			 mail_close(struct mail *);
 void			 mail_destroy(struct mail *);
-void			 resize_mail(struct mail *, size_t);
+int			 mail_resize(struct mail *, size_t);
 char 			*rfc822_time(time_t, char *, size_t);
 int 			 printpath(char *, size_t, const char *, ...);
 int			 openlock(const char *, u_int, int, mode_t);

@@ -1,4 +1,4 @@
-/* $Id: fetch-maildir.c,v 1.63 2007-03-25 20:12:26 nicm Exp $ */
+/* $Id: fetch-maildir.c,v 1.64 2007-03-26 16:01:38 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -284,7 +284,10 @@ restart:
 		return (FETCH_ERROR);
 	}
 
-	mail_open(m, IO_ROUND(sb.st_size));
+	if (mail_open(m, IO_ROUND(sb.st_size)) != 0) {
+		log_warn("%s: failed to create mail", a->name);
+		return (FETCH_ERROR);
+	}
 	default_tags(&m->tags, data->maildir, a);
 	add_tag(&m->tags, "maildir", "%s", data->maildir);
 

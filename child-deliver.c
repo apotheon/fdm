@@ -1,4 +1,4 @@
-/* $Id: child-deliver.c,v 1.5 2007-03-25 15:45:49 nicm Exp $ */
+/* $Id: child-deliver.c,v 1.6 2007-03-26 16:01:38 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -91,7 +91,10 @@ child_deliver_action_hook(pid_t pid, struct account *a, struct msg *msg,
 		}
 
 		mail_close(md);
-		mail_receive(m, msg, 0);
+		if (mail_receive(m, msg, 0) != 0) {
+			log_warn("parent_deliver: can't receive mail");
+			*result = DELIVER_FAILURE;
+		}
 
 		xfree(dctx);
 		return;

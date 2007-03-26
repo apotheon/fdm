@@ -1,4 +1,4 @@
-/* $Id: imap-common.c,v 1.25 2007-03-22 18:44:34 nicm Exp $ */
+/* $Id: imap-common.c,v 1.26 2007-03-26 16:01:38 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -305,7 +305,10 @@ restart:
 		if (data->size == 0)
 			return (FETCH_EMPTY);
 
-		mail_open(m, IO_ROUND(data->size));
+		if (mail_open(m, IO_ROUND(data->size)) != 0) {
+			log_warn("%s: failed to create mail", a->name);
+			return (FETCH_ERROR);
+		}
 		m->size = 0;
 
 		aux = xmalloc(sizeof *aux);
@@ -336,7 +339,10 @@ restart:
 		}
 
 		if (!data->flushing) {
-			resize_mail(m, m->size + len + 1);
+			if (mail_resize(m, m->size + len + 1) != 0) {
+				log_warn("%s: failed to resize mail", a->name);
+				return (FETCH_ERROR);
+			}
 
 			if (len > 0)
 				memcpy(m->data + m->size, line, len);
