@@ -1,4 +1,4 @@
-/* $Id: replace.c,v 1.35 2007-03-14 12:40:45 nicm Exp $ */
+/* $Id: replace.c,v 1.36 2007-03-26 21:27:50 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -197,8 +197,6 @@ replace(char *src, struct strb *tags, struct mail *m, struct rmlist *rml)
 	dst = xmalloc(len);
 
 	for (ptr = src; *ptr != '\0'; ptr++) {
-		alias = NULL;
-
 		switch (*ptr) {
 		case '%':
 			break;
@@ -247,6 +245,7 @@ replace(char *src, struct strb *tags, struct mail *m, struct rmlist *rml)
 				break;
 			}
 
+			alias = NULL;
 			if (ALIAS_IDX(ch) != -1)
 				alias = aliases[ALIAS_IDX(ch)];
 			if (alias == NULL)

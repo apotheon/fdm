@@ -1,4 +1,4 @@
-/* $Id: child-fetch.c,v 1.29 2007-03-26 16:34:05 nicm Exp $ */
+/* $Id: child-fetch.c,v 1.30 2007-03-26 21:27:50 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -72,7 +72,6 @@ child_fetch(struct child *child, struct io *io)
 	COUNTFDS(a->name);
 #endif
 
-	io->flags |= IO_NOWAIT;
 	log_debug2("%s: fetch started, pid %ld", a->name, (long) getpid());
 
 #ifndef NO_SETPROCTITLE
@@ -121,7 +120,6 @@ out:
 			error = 1;
 	}
 
-	io->flags &= ~IO_NOWAIT;
 	memset(&msg, 0, sizeof msg);
 
 	msg.type = MSG_EXIT;
