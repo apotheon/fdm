@@ -1,4 +1,4 @@
-/* $Id: shm-sysv.c,v 1.1 2007-03-26 18:57:11 nicm Exp $ */
+/* $Id: shm-sysv.c,v 1.2 2007-03-26 19:44:17 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -50,7 +50,6 @@ restart:
 			fatal("shmctl");
 		return (NULL);
 	}
-
 	return (shm->data);
 } 
 
