@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.118 2007-03-26 20:30:00 nicm Exp $
+# $Id: Makefile,v 1.119 2007-03-26 22:31:12 nicm Exp $
 
 .SUFFIXES: .c .o .y .l .h
 .PHONY: clean lint regress yannotate manual \
@@ -119,7 +119,7 @@ lint:
 		lint -cehvx ${CFLAGS:M-D*} ${SRCS:M*.c}
 
 depend:
-		mkdep ${CFLAGS} ${SRCS}
+		mkdep ${CFLAGS} ${SRCS:M*.c}
 
 regress:	${PROG}
 		cd regress && ${MAKE}
