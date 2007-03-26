@@ -1,4 +1,4 @@
-/* $Id: mail-state.c,v 1.8 2007-03-26 22:17:22 nicm Exp $ */
+/* $Id: mail-state.c,v 1.9 2007-03-26 22:27:51 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -440,10 +440,14 @@ start_action(struct mail_ctx *mctx, struct deliver_ctx *dctx)
 	struct account	*a = dctx->account;
 	struct action	*t = dctx->action;
 	struct mail	*m = dctx->mail;
+#if 0
 	struct mail	*md = &dctx->wr_mail;
+#endif
 	struct msg	 msg;
 	struct msgbuf	 msgbuf;
+#if 0
 	u_int		 lines;
+#endif
 
 	dctx->tim = get_time();
  	if (t->deliver->deliver == NULL)
