@@ -1,4 +1,4 @@
-/* $Id: fdm.c,v 1.128 2007-03-26 20:44:48 nicm Exp $ */
+/* $Id: fdm.c,v 1.129 2007-03-26 20:45:24 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -804,7 +804,6 @@ main(int argc, char **argv)
 	/* free the dead children */
 	for (i = 0; i < ARRAY_LENGTH(&dead_children); i++) {
 		child = ARRAY_ITEM(&dead_children, i, struct child *);
-		io_free(child->io);
 		if (child->data != NULL)
 			xfree(child->data);
 		xfree(child);
