@@ -1,4 +1,4 @@
-/* $Id: shm-mmap.c,v 1.3 2007-03-26 20:30:00 nicm Exp $ */
+/* $Id: shm-mmap.c,v 1.4 2007-03-26 20:56:45 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -30,9 +30,6 @@
 
 /*
  * This implements shared memory using mmap'd files in TMPDIR.
- *
- * If the disk gets full, we get a SIGBUS and die, but there isn't much to do
- * aside from some horrible slow hacks to ensure everything is writable.
  */
 
 #define SHM_PROT PROT_READ|PROT_WRITE
