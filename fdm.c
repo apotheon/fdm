@@ -1,4 +1,4 @@
-/* $Id: fdm.c,v 1.130 2007-03-26 22:36:40 nicm Exp $ */
+/* $Id: fdm.c,v 1.131 2007-03-27 10:57:50 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -269,7 +269,7 @@ main(int argc, char **argv)
 	u_int		 i;
 	enum fdmop       op = FDMOP_NONE;
 	const char	*errstr, *proxy = NULL, *s;
-	char		 tmp[1024], *ptr, *strs, *user = NULL, *lock = NULL;
+	char		 tmp[BUFSIZ], *ptr, *strs, *user = NULL, *lock = NULL;
 	long		 n;
 	struct utsname	 un;
 	struct passwd	*pw;
