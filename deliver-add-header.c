@@ -1,4 +1,4 @@
-/* $Id: deliver-add-header.c,v 1.12 2007-03-22 23:21:19 nicm Exp $ */
+/* $Id: deliver-add-header.c,v 1.13 2007-03-27 11:01:07 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -39,29 +39,24 @@ deliver_add_header_deliver(struct deliver_ctx *dctx, struct action *t)
 	struct account			*a = dctx->account;
 	struct mail			*m = dctx->mail;
 	struct deliver_add_header_data	*data = t->data;
-	char				*hdr, *value;
+	char				*hdr, *value = NULL;
 
 	hdr = replacestr(&data->hdr, m->tags, m, &m->rml);
 	if (hdr == NULL || *hdr == '\0') {
-		if (hdr != NULL)
-			xfree(hdr);
 		log_warnx("%s: empty header", a->name);
-		return (DELIVER_FAILURE);
+		goto error;
 	}
 	value = replacestr(&data->value, m->tags, m, &m->rml);
 	if (value == NULL) {
 		log_warnx("%s: bad value for header %s", a->name, hdr);
-		xfree(hdr);
-		return (DELIVER_FAILURE);
+		goto error;
 	}
 	log_debug2("%s: adding header: %s", a->name, hdr);
-
+	
 	if (insert_header(m, NULL, "%s: %s", hdr, value) != 0) {
 		log_warnx("%s: failed to add header %s (%s)", a->name,
 		    hdr, value);
-		xfree(hdr);
-		xfree(value);
-		return (DELIVER_FAILURE);
+		goto error;
 	}
 
 	ARRAY_FREE(&m->wrapped);
@@ -74,6 +69,13 @@ deliver_add_header_deliver(struct deliver_ctx *dctx, struct action *t)
 	xfree(hdr);
 	xfree(value);
 	return (DELIVER_SUCCESS);
+
+error:
+	if (hdr != NULL)
+		xfree(hdr);
+	if (value != NULL)
+		xfree(value);
+	return (DELIVER_FAILURE);
 }
 
 void
