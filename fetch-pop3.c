@@ -1,4 +1,4 @@
-/* $Id: fetch-pop3.c,v 1.78 2007-03-26 16:01:38 nicm Exp $ */
+/* $Id: fetch-pop3.c,v 1.79 2007-03-27 13:56:08 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -381,7 +381,10 @@ complete:
 		    data->bodylines);
 	}
 
-	if (m->size + data->lines != data->size) {
+	/*
+	 * Accept size with either CRLF or just LF line endings.
+	 */
+	if (m->size + data->lines != data->size && m->size != data->size) {
 		log_info("%s: server lied about message size: expected %zu, "
 		    "got %zu (%u lines)", a->name, data->size, m->size +
 		    data->lines, data->lines);
