@@ -1,4 +1,4 @@
-/* $Id: parse.y,v 1.182 2007-03-26 22:17:22 nicm Exp $ */
+/* $Id: parse.y,v 1.183 2007-03-27 10:07:39 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -189,7 +189,7 @@ weed_users(struct users *up)
 		uid = ARRAY_ITEM(up, i, uid_t);
 		if (uid == NOUSR)
 			continue;
-		
+
 		for (j = i + 1; j < ARRAY_LENGTH(up); j++) {
 			if (ARRAY_ITEM(up, j, uid_t) == uid)
 				ARRAY_ITEM(up, j, uid_t) = NOUSR;

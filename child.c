@@ -1,4 +1,4 @@
-/* $Id: child.c,v 1.133 2007-03-26 16:34:05 nicm Exp $ */
+/* $Id: child.c,v 1.134 2007-03-27 10:07:39 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -110,7 +110,7 @@ child_start(struct children *children, uid_t uid, int (*start)(struct child *,
 		n = start(child, io);
 		io_close(io);
 		io_free(io);
-		
+
 #ifdef PROFILE
 		/*
 		 * We want to use _exit rather than exit in the child process,
@@ -122,7 +122,7 @@ child_start(struct children *children, uid_t uid, int (*start)(struct child *,
 		extern void _mcleanup(void);
 		_mcleanup();
 #endif
-		
+
 		child_exit(n);
 	}
 	close(fds[1]);

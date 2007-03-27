@@ -1,4 +1,4 @@
-/* $Id: parent-fetch.c,v 1.7 2007-03-26 18:57:11 nicm Exp $ */
+/* $Id: parent-fetch.c,v 1.8 2007-03-27 10:07:39 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -89,7 +89,7 @@ parent_fetch(struct child *child, struct msg *msg, struct msgbuf *msgbuf)
 }
 
 void
-parent_fetch_error(struct child *child, struct msg *msg) 
+parent_fetch_error(struct child *child, struct msg *msg)
 {
 	msg->type = MSG_DONE;
 	msg->data.error = DELIVER_FAILURE;
@@ -106,7 +106,7 @@ parent_fetch_action(struct child *child, struct children *children,
 	struct mail			*m = dctx->mail;
 	struct mail			*md = &dctx->wr_mail;
 	struct child_deliver_data	*data;
- 
+
 	memset(md, 0, sizeof *md);
 	/*
 	 * If writing back, open a new mail now and set its ownership so it

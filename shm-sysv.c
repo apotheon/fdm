@@ -1,4 +1,4 @@
-/* $Id: shm-sysv.c,v 1.4 2007-03-26 20:30:00 nicm Exp $ */
+/* $Id: shm-sysv.c,v 1.5 2007-03-27 10:07:39 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -17,8 +17,8 @@
  */
 
 #include <sys/types.h>
-#include <sys/ipc.h>                                                        
-#include <sys/shm.h>  
+#include <sys/ipc.h>
+#include <sys/shm.h>
 #include <sys/stat.h>
 
 #include <string.h>
@@ -53,13 +53,13 @@ restart:
 		return (NULL);
 	}
 	return (shm->data);
-} 
+}
 
 void
 shm_destroy(struct shm *shm)
 {
 	shm_close(shm);
-	
+
 	if (shmctl(shm->id, IPC_RMID, NULL) != 0)
 		fatal("shmctl");
 	shm->id = -1;

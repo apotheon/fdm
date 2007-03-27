@@ -1,4 +1,4 @@
-/* $Id: mail.c,v 1.94 2007-03-26 22:17:22 nicm Exp $ */
+/* $Id: mail.c,v 1.95 2007-03-27 10:07:39 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -87,7 +87,7 @@ mail_receive(struct mail *m, struct msg *msg, int destroy)
 
 	if (destroy)
 		mail_destroy(m);
-	else 
+	else
 		mail_close(m);
 
 	memcpy(m, mm, sizeof *m);

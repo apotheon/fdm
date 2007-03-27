@@ -1,4 +1,4 @@
-/* $Id: deliver-rewrite.c,v 1.45 2007-03-26 16:01:38 nicm Exp $ */
+/* $Id: deliver-rewrite.c,v 1.46 2007-03-27 10:07:39 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -100,7 +100,7 @@ deliver_rewrite_deliver(struct deliver_ctx *dctx, struct action *t)
 					    a->name);
 					goto error;
 				}
-				
+
 				if (len > 0)
 					memcpy(md->data + md->size, out, len);
 
