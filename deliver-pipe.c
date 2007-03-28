@@ -1,4 +1,4 @@
-/* $Id: deliver-pipe.c,v 1.33 2007-03-21 22:49:44 nicm Exp $ */
+/* $Id: deliver-pipe.c,v 1.34 2007-03-28 19:59:57 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -27,8 +27,8 @@
 #include "fdm.h"
 #include "deliver.h"
 
-int	 deliver_pipe_deliver(struct deliver_ctx *, struct action *);
-void	 deliver_pipe_desc(struct action *, char *, size_t);
+int	 deliver_pipe_deliver(struct deliver_ctx *, struct actitem *);
+void	 deliver_pipe_desc(struct actitem *, char *, size_t);
 
 struct deliver deliver_pipe = {
 	"pipe",
@@ -38,25 +38,25 @@ struct deliver deliver_pipe = {
 };
 
 int
-deliver_pipe_deliver(struct deliver_ctx *dctx, struct action *t)
+deliver_pipe_deliver(struct deliver_ctx *dctx, struct actitem *ti)
 {
-	return (do_pipe(dctx, t, 1));
+	return (do_pipe(dctx, ti, 1));
 }
 
 void
-deliver_pipe_desc(struct action *t, char *buf, size_t len)
+deliver_pipe_desc(struct actitem *ti, char *buf, size_t len)
 {
-	struct deliver_pipe_data	*data = t->data;
+	struct deliver_pipe_data	*data = ti->data;
 
 	xsnprintf(buf, len, "pipe \"%s\"", data->cmd.str);
 }
 
 int
-do_pipe(struct deliver_ctx *dctx, struct action *t, int pipef)
+do_pipe(struct deliver_ctx *dctx, struct actitem *ti, int pipef)
 {
 	struct account			*a = dctx->account;
 	struct mail			*m = dctx->mail;
-	struct deliver_pipe_data	*data = t->data;
+	struct deliver_pipe_data	*data = ti->data;
         char				*s, *cause, *err;
 	int				 status;
 	struct cmd			*cmd;

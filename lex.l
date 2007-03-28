@@ -1,6 +1,6 @@
 /* -*-C-*- */
 
-/* $Id: lex.l,v 1.87 2007-03-28 12:05:21 nicm Exp $ */
+/* $Id: lex.l,v 1.88 2007-03-28 19:59:58 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -239,6 +239,9 @@ read_str(char endc, int esc)
                         break;
 		case '$':
 		case '%':
+			if (!esc)
+				break;
+
 			name[0] = ch;
 			off = 1;
 
