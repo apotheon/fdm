@@ -1,4 +1,4 @@
-/* $Id: mail-state.c,v 1.9 2007-03-26 22:27:51 nicm Exp $ */
+/* $Id: mail-state.c,v 1.10 2007-03-28 10:34:47 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -161,6 +161,23 @@ mail_match(struct mail_ctx *mctx, struct msg *msg, struct msgbuf *msgbuf)
 	 * Check this expression item and adjust the result.
 	 */
 	ei = mctx->expritem;
+
+	/* Handle short-circuit evaluation. */
+	switch (ei->op) {
+	case OP_NONE:
+		break;
+	case OP_AND:
+		/* And and the result is already false. */
+		if (!mctx->result)
+			goto skip;
+		break;
+	case OP_OR:
+		/* Or and the result is already true. */
+		if (mctx->result)
+			goto skip;
+		break;
+	}
+
 	switch (ei->match->match(mctx, ei)) {
 	case MATCH_ERROR:
 		return (MAIL_ERROR);

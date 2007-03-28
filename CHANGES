@@ -1,3 +1,7 @@
+28 March 2007
+
+* Allow short-circuit evaluation of 'and' and 'or' operators.
+
 27 March 2007
 
 * Accept size with either CRLF or LF as when warning about bad size predictions
@@ -199,4 +203,4 @@
   the mail was very rarely reallocated, now that the header is added it is.
 * Changed all the descriptions to static buffers and audited use of snprintf.
 
-$Id: CHANGES,v 1.56 2007-03-27 14:24:09 nicm Exp $
+$Id: CHANGES,v 1.57 2007-03-28 10:34:47 nicm Exp $
