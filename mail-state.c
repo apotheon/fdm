@@ -1,4 +1,4 @@
-/* $Id: mail-state.c,v 1.12 2007-03-28 14:57:52 nicm Exp $ */
+/* $Id: mail-state.c,v 1.13 2007-03-28 17:24:39 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -180,6 +180,8 @@ mail_match(struct mail_ctx *mctx, struct msg *msg, struct msgbuf *msgbuf)
 	case MATCH_FALSE:
 		this = 0;
 		break;
+	default:
+		fatalx("child: unexpected op");
 	}
 	apply_result(ei, &mctx->result, this);
 

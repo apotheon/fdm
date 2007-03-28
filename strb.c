@@ -1,4 +1,4 @@
-/* $Id: strb.c,v 1.8 2007-03-22 23:21:19 nicm Exp $ */
+/* $Id: strb.c,v 1.9 2007-03-28 17:24:39 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -68,7 +68,7 @@ strb_dump(struct strb *sb, const char *prefix, void (*p)(const char *, ...))
 	}
 }
 
-void
+void printflike3
 strb_add(struct strb **sbp, const char *key, const char *value, ...)
 {
 	va_list	ap;

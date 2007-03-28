@@ -1,4 +1,4 @@
-/* $Id: mail.c,v 1.95 2007-03-27 10:07:39 nicm Exp $ */
+/* $Id: mail.c,v 1.96 2007-03-28 17:24:39 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -164,7 +164,7 @@ rfc822_time(time_t t, char *buf, size_t len)
 	return (buf);
 }
 
-int
+int printflike3
 printpath(char *buf, size_t len, const char *fmt, ...)
 {
 	va_list	ap;
@@ -352,7 +352,7 @@ remove_header(struct mail *m, const char *hdr)
 	return (0);
 }
 
-int
+int printflike3
 insert_header(struct mail *m, const char *before, const char *fmt, ...)
 {
 	va_list		 ap;
