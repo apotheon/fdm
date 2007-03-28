@@ -1,4 +1,4 @@
-/* $Id: shm-mmap.c,v 1.5 2007-03-27 10:07:39 nicm Exp $ */
+/* $Id: shm-mmap.c,v 1.6 2007-03-28 17:17:18 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -140,8 +140,10 @@ shm_create(struct shm *shm, size_t size)
 	madvise(shm->data, size, MADV_SEQUENTIAL);
 
 	if (shm_verify(shm->data, 0, shm->size) != 0) {
+		error = errno;
 		if (munmap(shm->data, shm->size) != 0)
 			fatal("munmap");
+		errno = error;
 		goto error;
 	}
 
