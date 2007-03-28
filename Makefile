@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.119 2007-03-26 22:31:12 nicm Exp $
+# $Id: Makefile,v 1.120 2007-03-28 12:05:21 nicm Exp $
 
 .SUFFIXES: .c .o .y .l .h
 .PHONY: clean lint regress yannotate manual \
@@ -25,7 +25,7 @@ SRCS= fdm.c log.c xmalloc.c xmalloc-debug.c io.c replace.c connect.c mail.c \
       parse.y lex.l
 
 LEX= lex
-YACC= yacc -d
+YACC= yacc -dv
 
 CC= cc
 INCDIRS+= -I. -I- -I/usr/local/include
