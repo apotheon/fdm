@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.253 2007-03-29 17:37:16 nicm Exp $ */
+/* $Id: fdm.h,v 1.254 2007-03-29 19:22:30 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -811,7 +811,13 @@ void			 shm_close(struct shm *);
 void			*shm_reopen(struct shm *);
 void			*shm_resize(struct shm *, size_t, size_t);
 
+/* lex.l */
+extern char		*curfile;
+void			 include_start(char *);
+int			 include_finish(void);
+
 /* parse.y */
+extern struct strb	*parse_tags;
 extern struct macros	 macros;
 struct users		*weed_users(struct users *);
 struct strings 		*weed_strings(struct strings *);

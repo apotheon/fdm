@@ -1,5 +1,9 @@
 29 March 2007
 
+* Because yacc needs to move back and forwards, just swapping the file out from
+  under it when including can cause problems. So, switch to letting lex do all
+  the work and feed the include file to yacc as if it was inline. This sucks a
+  bit but there aren't many other options. Reported by Frank Terbeck.
 * Lambda actions:
 
 	match "regexp" action mbox ...
@@ -222,4 +226,4 @@
   the mail was very rarely reallocated, now that the header is added it is.
 * Changed all the descriptions to static buffers and audited use of snprintf.
 
-$Id: CHANGES,v 1.60 2007-03-29 15:39:58 nicm Exp $
+$Id: CHANGES,v 1.61 2007-03-29 19:22:30 nicm Exp $
