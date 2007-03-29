@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.252 2007-03-29 15:39:58 nicm Exp $ */
+/* $Id: fdm.h,v 1.253 2007-03-29 17:37:16 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -615,9 +615,6 @@ struct rule {
 	int			 find_uid;	/* find uids from headers */
 
 	int			 stop;		/* stop matching at this rule */
-
-	struct replstr		 key;
-	struct replstr		 value;
 
 	struct rules		 rules;
 	struct action		*lambda;
