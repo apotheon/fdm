@@ -1,4 +1,4 @@
-/* $Id: fdm.c,v 1.131 2007-03-27 10:57:50 nicm Exp $ */
+/* $Id: fdm.c,v 1.132 2007-03-30 12:48:04 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -310,9 +310,6 @@ main(int argc, char **argv)
 
 	ARRAY_INIT(&conf.incl);
 	ARRAY_INIT(&conf.excl);
-
-	setbuf(stdout, NULL);
-	setbuf(stderr, NULL);
 
         while ((opt = getopt(argc, argv, "a:D:f:klmnqu:vx:?")) != EOF) {
                 switch (opt) {
