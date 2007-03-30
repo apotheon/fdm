@@ -1,3 +1,8 @@
+30 March 2007
+
+* Allow plural and singular to be interchanged in most places, don't insist on
+  "accounts { "abc" }" and "account "abc"".
+
 29 March 2007
 
 * Tags are now done using an action (tag) rather than a special-case match
@@ -229,4 +234,4 @@
   the mail was very rarely reallocated, now that the header is added it is.
 * Changed all the descriptions to static buffers and audited use of snprintf.
 
-$Id: CHANGES,v 1.62 2007-03-29 19:51:34 nicm Exp $
+$Id: CHANGES,v 1.63 2007-03-30 09:52:40 nicm Exp $
