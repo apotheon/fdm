@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.122 2007-03-29 17:37:16 nicm Exp $
+# $Id: Makefile,v 1.123 2007-04-03 12:12:18 nicm Exp $
 
 .SUFFIXES: .c .o .y .l .h
 .PHONY: clean lint regress yannotate manual \
@@ -32,7 +32,9 @@ CC= cc
 INCDIRS+= -I. -I- -I/usr/local/include
 CFLAGS+= -DBUILD="\"$(VERSION) ($(DATE))\""
 .ifdef PROFILE
-CFLAGS+= -pg -DPROFILE
+# Don't use ccache
+CC= /usr/bin/gcc
+CFLAGS+= -pg -DPROFILE -fprofile-arcs -ftest-coverage -O0
 .endif
 CFLAGS+= -g -ggdb -DDEBUG
 #CFLAGS+= -pedantic -std=c99
@@ -91,7 +93,8 @@ DISTFILES= *.[chyl] Makefile GNUmakefile *.[1-9] fdm-sanitize \
 	   `find examples regress compat -type f -and ! -path '*CVS*'`
 
 CLEANFILES= ${PROG} *.o compat/*.o y.tab.c lex.yy.c y.tab.h .depend \
-	    ${PROG}-*.tar.gz *~ *.ln ${PROG}.core MANUAL index.html
+	    ${PROG}-*.tar.gz *~ *.ln ${PROG}.core MANUAL index.html \
+	    *.bb *.bbg *.da *.gcov
 
 .c.o:
 		${CC} ${CFLAGS} ${INCDIRS} -c ${.IMPSRC} -o ${.TARGET}
