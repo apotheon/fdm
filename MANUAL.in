@@ -1279,7 +1279,8 @@ further information if it is required.
 
 Two main reasons:
 
-1. I didn't like the existing tools.
+1. I didn't like the existing tools. That is not to say that other tools are
+   bad or aren't useful, merely that fdm meets my needs better.
 
 And more importantly:
 
@@ -1328,5 +1329,5 @@ match "^List-Id:.*<full-disclosure\\.lists\\.grok\\.org\\.uk>" in headers
 	action "full-disclosure"
 
 ================================================================================
-$Id: MANUAL.in,v 1.14 2007-04-03 12:12:18 nicm Exp $
+$Id: MANUAL.in,v 1.15 2007-04-03 12:19:26 nicm Exp $
 
