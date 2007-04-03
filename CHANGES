@@ -1,3 +1,9 @@
+03 April 2007
+
+* Instead of doing complicated things to see if a mmap'd region is okay, just
+  fill it with zeros using write(2). This also avoids FS fragmentation on
+  FreeBSD, per its mmap(2). Also use MAP_NOSYNC.
+
 30 March 2007
 
 * Allow plural and singular to be interchanged in most places, don't insist on
@@ -234,4 +240,4 @@
   the mail was very rarely reallocated, now that the header is added it is.
 * Changed all the descriptions to static buffers and audited use of snprintf.
 
-$Id: CHANGES,v 1.63 2007-03-30 09:52:40 nicm Exp $
+$Id: CHANGES,v 1.64 2007-04-03 19:03:02 nicm Exp $
