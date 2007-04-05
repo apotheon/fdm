@@ -1,4 +1,4 @@
-/* $Id: connect.c,v 1.45 2007-02-27 20:32:46 nicm Exp $ */
+/* $Id: connect.c,v 1.46 2007-04-05 10:41:48 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -21,6 +21,7 @@
 #include <netinet/in.h>
 
 #include <errno.h>
+#include <fcntl.h>
 #include <limits.h>
 #include <netdb.h>
 #include <stdio.h>
@@ -424,7 +425,7 @@ makessl(int fd, char **cause)
 struct io *
 connectio(struct server *srv, const char *eol, int timeout, char **cause)
 {
-	int		 fd = -1, error = 0;
+	int		 fd = -1, error = 0, mode;
 	struct addrinfo	 hints;
 	struct addrinfo	*ai;
 	const char	*fn = NULL;
@@ -465,6 +466,16 @@ connectio(struct server *srv, const char *eol, int timeout, char **cause)
 	if (!srv->ssl)
 		return (io_create(fd, NULL, eol, timeout));
 
+	/*
+	 * Set non-blocking. Normally io_create does this, but it must be
+	 * done before SSL_set_fd otherwise the SSL won't be non-blocking for
+	 * SSL_connect.
+	 */
+	if ((mode = fcntl(fd, F_GETFL)) == -1)
+		fatal("fcntl");
+	if (fcntl(fd, F_SETFL, mode | O_NONBLOCK) == -1)
+		fatal("fcntl");
+	
 	if ((ssl = makessl(fd, cause)) == NULL) {
 		close(fd);
 		return (NULL);
