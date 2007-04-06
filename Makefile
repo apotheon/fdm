@@ -1,11 +1,11 @@
-# $Id: Makefile,v 1.123 2007-04-03 12:12:18 nicm Exp $
+# $Id: Makefile,v 1.124 2007-04-06 18:29:34 nicm Exp $
 
 .SUFFIXES: .c .o .y .l .h
 .PHONY: clean lint regress yannotate manual \
 	update-index.html upload-index.html
 
 PROG= fdm
-VERSION= 1.1
+VERSION= 1.2
 
 OS!= uname
 REL!= uname -r
