@@ -1,4 +1,4 @@
-# $Id: makeindex.awk,v 1.5 2006-12-09 20:43:56 nicm Exp $
+# $Id: makeindex.awk,v 1.6 2007-04-06 13:58:51 nicm Exp $
 #
 # Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
 #
@@ -27,13 +27,13 @@
 		while ((getline < name) == 1) {
 			gsub("\<", "\\&lt;", $0);
 			gsub("\>", "\\&gt;", $0);
-			if ($0 ~ /^[A-Za-z].+ ==+/) {
+			if ($0 ~ /^[0-9A-Za-z].+ ==+/) {
 				gsub("==+$", "", $0);
 				print ("<h1>" $0 "</h1>");
 				getline < name;
 				continue;
 			}
-			if ($0 ~ /^[A-Za-z].+ --+/) {
+			if ($0 ~ /^[0-9A-Za-z].+ --+/) {
 				gsub("--+$", "", $0);
 				print ("<h2>" $0 "</h2>");
 				getline < name;
