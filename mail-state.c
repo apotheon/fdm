@@ -1,4 +1,4 @@
-/* $Id: mail-state.c,v 1.16 2007-03-29 17:37:16 nicm Exp $ */
+/* $Id: mail-state.c,v 1.17 2007-04-06 12:40:45 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -50,7 +50,7 @@ mail_match(struct mail_ctx *mctx, struct msg *msg, struct msgbuf *msgbuf)
 	struct expritem	*ei;
 	struct users	*users;
 	u_int		 i;
-	int		 should_free, this, error = MAIL_CONTINUE;
+	int		 should_free, this = -1, error = MAIL_CONTINUE;
 	char		*an, desc[DESCBUFSIZE];
 
 	set_wrapped(m, ' ');
