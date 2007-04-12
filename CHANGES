@@ -1,3 +1,7 @@
+10 April 2007
+
+* Install into bin rather than sbin when using GNUmakefile.
+
 06 April 2007
 
 * fdm 1.1 released.
@@ -249,4 +253,4 @@
   the mail was very rarely reallocated, now that the header is added it is.
 * Changed all the descriptions to static buffers and audited use of snprintf.
 
-$Id: CHANGES,v 1.66 2007-04-06 18:29:34 nicm Exp $
+$Id: CHANGES,v 1.67 2007-04-12 08:57:40 nicm Exp $
