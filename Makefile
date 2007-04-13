@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.124 2007-04-06 18:29:34 nicm Exp $
+# $Id: Makefile,v 1.125 2007-04-13 21:12:31 nicm Exp $
 
 .SUFFIXES: .c .o .y .l .h
 .PHONY: clean lint regress yannotate manual \
@@ -24,6 +24,7 @@ SRCS= fdm.c log.c xmalloc.c xmalloc-debug.c io.c replace.c connect.c mail.c \
       parent-deliver.c mail-state.c netrc.c shm-mmap.c shm-sysv.c \
       deliver-tag.c \
       parse.y lex.l
+HDRS= fdm.h fetch.h match.h deliver.h
 
 LEX= lex
 YACC= yacc -d
@@ -107,7 +108,7 @@ CLEANFILES= ${PROG} *.o compat/*.o y.tab.c lex.yy.c y.tab.h .depend \
 		${YACC} ${.IMPSRC}
 		${CC} ${CFLAGS} ${INCDIRS} -c y.tab.c -o ${.TARGET}
 
-all:		${PROG}
+all:		.depend ${PROG}
 
 ${PROG}:	${OBJS}
 		${CC} ${LDFLAGS} -o ${PROG} ${LIBS} ${OBJS}
@@ -121,6 +122,9 @@ dist:		clean manual
 
 lint:
 		lint -cehvx ${CFLAGS:M-D*} ${SRCS:M*.c}
+
+.depend:	${HDRS}
+		mkdep ${CFLAGS} ${SRCS:M*.c}
 
 depend:
 		mkdep ${CFLAGS} ${SRCS:M*.c}
