@@ -1,5 +1,5 @@
-fdm is a small program designed to fetch mail from POP3 or IMAP servers, or
-receive local mail from stdin, and deliver it in various ways.
+fdm is a program designed to fetch mail from POP3 or IMAP servers, or receive
+local mail from stdin, and deliver it in various ways.
 
 As of fdm 0.9, the caching has been changed, so Berkeley DB is no longer
 required.
@@ -18,4 +18,4 @@ You can also find me on IRC on freenode or efnet with nick "NicM".
 Nicholas Marriott
 nicm@users.sourceforge.net
 
-# $Id: README,v 1.40 2007-03-23 11:47:13 nicm Exp $
+# $Id: README,v 1.41 2007-04-17 06:55:40 nicm Exp $
