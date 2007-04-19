@@ -1,4 +1,4 @@
-/* $Id: parse.y,v 1.190 2007-03-30 09:52:40 nicm Exp $ */
+/* $Id: parse.y,v 1.191 2007-04-19 09:44:04 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -477,13 +477,13 @@ free_actitem(struct actitem *ti)
 		xfree(data->hdr.str);
 		xfree(data->value.str);
 	} else if (ti->deliver == &deliver_append_string) {
-		struct deliver_append_string_data	 *data = ti->data;
+		struct deliver_append_string_data	*data = ti->data;
 		xfree(data->str.str);
 	} else if (ti->deliver == &deliver_mbox) {
 		struct deliver_mbox_data		*data = ti->data;
 		xfree(data->path.str);
 	} else if (ti->deliver == &deliver_tag) {
-		struct deliver_tag_data		*data = ti->data;
+		struct deliver_tag_data			*data = ti->data;
 		xfree(data->key.str);
 		if (data->value.str != NULL)
 			xfree(data->value.str);
