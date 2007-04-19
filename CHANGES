@@ -1,3 +1,8 @@
+19 April 2007
+
+* Count the number of messages properly when there is no done function (such as
+  for NNTP).
+
 10 April 2007
 
 * Install into bin rather than sbin when using GNUmakefile. From Frank Terbeck.
@@ -253,4 +258,4 @@
   the mail was very rarely reallocated, now that the header is added it is.
 * Changed all the descriptions to static buffers and audited use of snprintf.
 
-$Id: CHANGES,v 1.68 2007-04-13 14:07:28 nicm Exp $
+$Id: CHANGES,v 1.69 2007-04-19 13:55:14 nicm Exp $

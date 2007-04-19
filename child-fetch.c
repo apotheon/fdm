@@ -1,4 +1,4 @@
-/* $Id: child-fetch.c,v 1.31 2007-03-27 10:07:39 nicm Exp $ */
+/* $Id: child-fetch.c,v 1.32 2007-04-19 13:55:14 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -52,6 +52,8 @@ void	fetch_free(void);
 struct mail_queue 	matchq;
 struct mail_queue 	deliverq;
 struct mail_queue	doneq;
+
+double			waited = 0.0;
 
 int			total = -1; /* total from fetch, -1 for unknown */
 u_int		  	dropped;
@@ -167,6 +169,7 @@ fetch_poll(struct account *a, struct io *pio, struct mail_ctx *mctx,
 	char		*cause;
 	u_int		 n;
 	int		 timeout, error;
+	double		 tim;
 
 	n = 1;
 	iop[0] = pio;
@@ -216,6 +219,7 @@ fetch_poll(struct account *a, struct io *pio, struct mail_ctx *mctx,
 		timeout = conf.timeout;
 
 	log_debug3("%s: polling %u fds, timeout=%d", a->name, n, timeout);
+	tim = get_time();
 	switch (io_polln(iop, n, &rio, timeout, &cause)) {
 	case 0:
 		if (rio == pio)
@@ -231,6 +235,7 @@ fetch_poll(struct account *a, struct io *pio, struct mail_ctx *mctx,
 		xfree(cause);
 		return (1);
 	}
+	waited += get_time() - tim;
 
 	return (FETCH_AGAIN);
 }
@@ -241,8 +246,10 @@ fetch_done(struct mail_ctx *mctx)
 	struct account	*a = mctx->account;
 	struct mail	*m = mctx->mail;
 
-	if (a->fetch->done == NULL)
+	if (a->fetch->done == NULL) {
+		kept++;
 		return (0);
+	}
 
 	if (conf.keep_all || a->keep)
 		m->decision = DECISION_KEEP;
@@ -629,6 +636,7 @@ out:
 	if (n > 0) {
 		log_info("%s: %u messages processed (%u kept) in %.3f seconds "
 		    "(average %.3f)", a->name, n, kept, tim, tim / n);
+		log_debug("%s: spent %.3f seconds waiting", a->name, waited);
 		return (error == FETCH_ERROR);
 	}
 
