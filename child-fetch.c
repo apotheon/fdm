@@ -1,4 +1,4 @@
-/* $Id: child-fetch.c,v 1.32 2007-04-19 13:55:14 nicm Exp $ */
+/* $Id: child-fetch.c,v 1.33 2007-04-19 15:07:59 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -636,7 +636,7 @@ out:
 	if (n > 0) {
 		log_info("%s: %u messages processed (%u kept) in %.3f seconds "
 		    "(average %.3f)", a->name, n, kept, tim, tim / n);
-		log_debug("%s: spent %.3f seconds waiting", a->name, waited);
+		log_debug("%s: %.3f seconds waiting", a->name, waited);
 		return (error == FETCH_ERROR);
 	}
 

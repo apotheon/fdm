@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.254 2007-03-29 19:22:30 nicm Exp $ */
+/* $Id: fdm.h,v 1.255 2007-04-19 15:07:59 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -427,7 +427,6 @@ struct mail_ctx {
 	TAILQ_ENTRY(mail_ctx)		 entry;
 };
 TAILQ_HEAD(mail_queue, mail_ctx);
-extern struct mail_queue mail_queue;
 
 /* An attachment. */
 struct attach {
