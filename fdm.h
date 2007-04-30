@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.255 2007-04-19 15:07:59 nicm Exp $ */
+/* $Id: fdm.h,v 1.256 2007-04-30 12:30:49 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -33,6 +33,10 @@
 #include <stdarg.h>
 #include <stdint.h>
 #include <regex.h>
+
+#ifdef PCRE
+#include <pcre.h>
+#endif
 
 #include <openssl/ssl.h>
 #include <openssl/err.h>
@@ -344,7 +348,11 @@ struct strb {
 /* Regexp wrapper structs. */
 struct re {
 	char		*str;
+#ifndef PCRE
 	regex_t		 re;
+#else
+	pcre		*pcre;
+#endif
 	int		 flags;
 };
 
@@ -850,7 +858,6 @@ int			 re_string(struct re *, char *, struct rmlist *,
 			     char **);
 int			 re_block(struct re *, void *, size_t, struct rmlist *,
 			     char **);
-int			 re_simple(struct re *, char *, char **);
 void			 re_free(struct re *);
 
 /* attach.c */
