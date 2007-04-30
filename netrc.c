@@ -1,4 +1,4 @@
-/* $Id: netrc.c,v 1.5 2007-03-25 18:21:25 nicm Exp $ */
+/* $Id: netrc.c,v 1.6 2007-04-30 14:39:42 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -42,7 +42,7 @@ netrc_open(const char *home, char **cause)
 		xasprintf(cause, "%s: %s", path, strerror(errno));
 		return (NULL);
 	}
-	if ((sb.st_mode & (sb.st_mode & (S_IROTH|S_IWOTH))) != 0) {
+	if ((sb.st_mode & (S_IROTH|S_IWOTH)) != 0) {
 		xasprintf(cause, "%s: world readable or writable", path);
 		return (NULL);
 	}
