@@ -1,4 +1,4 @@
-/* $Id: replace.c,v 1.36 2007-03-26 21:27:50 nicm Exp $ */
+/* $Id: replace.c,v 1.37 2007-04-30 14:13:19 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -84,6 +84,8 @@ static const char *aliases[] = {
 	"dayofyear", 	/* Y */
 	NULL, 		/* Z */
 };
+
+char	*replace(char *, struct strb *, struct mail *, struct rmlist *);
 
 void printflike3
 add_tag(struct strb **tags, const char *key, const char *value, ...)

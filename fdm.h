@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.256 2007-04-30 12:30:49 nicm Exp $ */
+/* $Id: fdm.h,v 1.257 2007-04-30 14:13:19 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -969,8 +969,6 @@ const char 		*find_tag(struct strb *, const char *);
 const char		*match_tag(struct strb *, const char *);
 void			 default_tags(struct strb **, char *, struct account *);
 void			 update_tags(struct strb **);
-char 			*replace(char *, struct strb *, struct mail *,
-			     struct rmlist *);
 char 			*replacestr(struct replstr *, struct strb *,
 			     struct mail *, struct rmlist *);
 char 			*replacepath(struct replpath *, struct strb *,
