@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.257 2007-04-30 14:13:19 nicm Exp $ */
+/* $Id: fdm.h,v 1.258 2007-04-30 21:50:49 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -271,6 +271,7 @@ struct server {
 	char		*port;
 	struct addrinfo	*ai;
 	int		 ssl;
+	int		 verify;
 };
 
 /* Proxy type. */
@@ -692,9 +693,6 @@ struct conf {
 };
 extern struct conf		 conf;
 
-/* Shorthand for the ridiculous call to get the SSL error. */
-#define SSL_err() (ERR_error_string(ERR_get_error(), NULL))
-
 /* Limits at which to fail. */
 #define IO_MAXLINELEN (1024 * 1024) 		/* 1 MB */
 #define IO_MAXBUFFERLEN (1024 * 1024 * 1024) 	/* 1 GB */
@@ -907,6 +905,8 @@ int			 parent_deliver(struct child *, struct msg *,
 			     struct msgbuf *);
 
 /* connect.c */
+char 			*sslerror(const char *);
+char 			*sslerror2(int, const char *);
 struct proxy 		*getproxy(const char *);
 struct io 		*connectproxy(struct server *, struct proxy *,
 			     const char *, int, char **);

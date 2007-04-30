@@ -1,4 +1,4 @@
-/* $Id: fetch-pop3.c,v 1.80 2007-03-27 14:24:10 nicm Exp $ */
+/* $Id: fetch-pop3.c,v 1.81 2007-04-30 21:50:49 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -47,7 +47,6 @@ char   *fetch_pop3_check(struct account *);
 
 struct fetch fetch_pop3 = {
 	"pop3",
-	{ "pop3", "pop3s" },
 	fetch_pop3_start,
 	fetch_pop3_fill,
 	fetch_pop3_poll,

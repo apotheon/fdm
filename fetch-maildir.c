@@ -1,4 +1,4 @@
-/* $Id: fetch-maildir.c,v 1.64 2007-03-26 16:01:38 nicm Exp $ */
+/* $Id: fetch-maildir.c,v 1.65 2007-04-30 21:50:49 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -45,7 +45,6 @@ void	 fetch_maildir_freepaths(struct account *);
 
 struct fetch fetch_maildir = {
 	"maildir",
-	{ NULL, NULL },
 	fetch_maildir_start,
 	NULL,
 	fetch_maildir_poll,

@@ -1,4 +1,4 @@
-/* $Id: fetch-stdin.c,v 1.56 2007-03-26 16:01:38 nicm Exp $ */
+/* $Id: fetch-stdin.c,v 1.57 2007-04-30 21:50:49 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -37,7 +37,6 @@ void	 fetch_stdin_desc(struct account *, char *, size_t);
 
 struct fetch fetch_stdin = {
 	"stdin",
-	{ NULL, NULL },
 	fetch_stdin_start,
 	fetch_stdin_fill,
 	NULL,
