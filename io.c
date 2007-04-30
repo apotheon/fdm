@@ -1,4 +1,4 @@
-/* $Id: io.c,v 1.57 2007-03-21 22:49:45 nicm Exp $ */
+/* $Id: io.c,v 1.58 2007-04-30 14:04:21 nicm Exp $ */
 
 /*
  * Copyright (c) 2005 Nicholas Marriott <nicm__@ntlworld.com>
@@ -275,7 +275,8 @@ io_fill(struct io *io)
 
 	/* move data back to the base of the buffer */
 	if (io->roff > 0) {
-		memmove(io->rbase, io->rbase + io->roff, io->rsize);
+		if (io->rsize > 0)
+			memmove(io->rbase, io->rbase + io->roff, io->rsize);
 		io->roff = 0;
 	}
 
