@@ -1,4 +1,4 @@
-/* $Id: connect.c,v 1.47 2007-04-30 21:50:49 nicm Exp $ */
+/* $Id: connect.c,v 1.48 2007-04-30 22:30:09 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -440,8 +440,10 @@ makessl(int fd, int verify, char **cause)
 	long		 r;
 
 	ctx = SSL_CTX_new(SSLv23_client_method());
+        SSL_CTX_set_options(ctx, SSL_OP_ALL);
+        SSL_CTX_set_default_verify_paths(ctx);
 	SSL_CTX_set_verify(ctx, SSL_VERIFY_NONE, NULL);
-
+	
 	ssl = SSL_new(ctx);
 	if (ssl == NULL) {
 		*cause = sslerror("SSL_new");
