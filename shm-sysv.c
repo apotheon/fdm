@@ -1,4 +1,4 @@
-/* $Id: shm-sysv.c,v 1.5 2007-03-27 10:07:39 nicm Exp $ */
+/* $Id: shm-sysv.c,v 1.6 2007-04-30 14:44:07 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -16,6 +16,8 @@
  * OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
+#ifdef SHM_SYSV
+
 #include <sys/types.h>
 #include <sys/ipc.h>
 #include <sys/shm.h>
@@ -24,8 +26,6 @@
 #include <string.h>
 
 #include "fdm.h"
-
-#ifdef SHM_SYSV
 
 void *
 shm_create(struct shm *shm, size_t size)

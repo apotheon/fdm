@@ -1,4 +1,4 @@
-/* $Id: shm-mmap.c,v 1.7 2007-04-03 19:03:02 nicm Exp $ */
+/* $Id: shm-mmap.c,v 1.8 2007-04-30 14:44:07 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -16,6 +16,8 @@
  * OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
+#ifdef SHM_MMAP
+
 #include <sys/types.h>
 #include <sys/mman.h>
 
@@ -25,8 +27,6 @@
 #include <unistd.h>
 
 #include "fdm.h"
-
-#ifdef SHM_MMAP
 
 /*
  * This implements shared memory using mmap'd files in TMPDIR.

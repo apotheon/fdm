@@ -1,4 +1,4 @@
-/* $Id: re.c,v 1.14 2007-04-30 12:33:27 nicm Exp $ */
+/* $Id: re.c,v 1.15 2007-04-30 14:44:07 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -16,13 +16,13 @@
  * OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
+#ifndef PCRE
+
 #include <sys/types.h>
 
 #include <string.h>
 
 #include "fdm.h"
-
-#ifndef PCRE
 
 int
 re_compile(struct re *re, char *s, int flags, char **cause)
