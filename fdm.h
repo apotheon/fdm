@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.258 2007-04-30 21:50:49 nicm Exp $ */
+/* $Id: fdm.h,v 1.259 2007-04-30 22:43:59 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -672,6 +672,7 @@ struct conf {
 	int			 allow_many;
 	int			 keep_all;
 	int			 no_received;
+	int			 verify_certs;
 	u_int			 purge_after;
 	enum decision		 impl_act;
 
@@ -908,9 +909,10 @@ int			 parent_deliver(struct child *, struct msg *,
 char 			*sslerror(const char *);
 char 			*sslerror2(int, const char *);
 struct proxy 		*getproxy(const char *);
-struct io 		*connectproxy(struct server *, struct proxy *,
+struct io 		*connectproxy(struct server *, int, struct proxy *,
 			     const char *, int, char **);
-struct io		*connectio(struct server *, const char *, int, char **);
+struct io		*connectio(struct server *, int, const char *, int,
+			     char **);
 
 /* mail.c */
 int			 mail_open(struct mail *, size_t);

@@ -1,6 +1,6 @@
 /* -*-C-*- */
 
-/* $Id: lex.l,v 1.92 2007-04-30 21:50:49 nicm Exp $ */
+/* $Id: lex.l,v 1.93 2007-04-30 22:43:59 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -228,6 +228,7 @@ unmatched-mail return (TOKIMPLACT);
 user return (TOKUSER);
 users return (TOKUSERS);
 value return (TOKVALUE);
+verify-certificates return (TOKVERIFYCERTS);
 write return (TOKWRITE);
 = return ('=');
 == return (TOKEQ);

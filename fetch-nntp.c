@@ -1,4 +1,4 @@
-/* $Id: fetch-nntp.c,v 1.73 2007-04-30 21:50:49 nicm Exp $ */
+/* $Id: fetch-nntp.c,v 1.74 2007-04-30 22:43:59 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -411,8 +411,8 @@ fetch_nntp_start(struct account *a, unused int *total)
 	if (fetch_nntp_load(a) != 0)
 		return (FETCH_ERROR);
 
-	data->io = connectproxy(&data->server,
-	    conf.proxy ,IO_CRLF, conf.timeout, &cause);
+	data->io = connectproxy(&data->server, conf.verify_certs, conf.proxy,
+	    IO_CRLF, conf.timeout, &cause);
 	if (data->io == NULL) {
 		log_warnx("%s: %s", a->name, cause);
 		xfree(cause);

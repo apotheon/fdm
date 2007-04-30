@@ -1,4 +1,4 @@
-/* $Id: parse.y,v 1.192 2007-04-30 21:50:49 nicm Exp $ */
+/* $Id: parse.y,v 1.193 2007-04-30 22:43:59 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -704,6 +704,7 @@ find_netrc(const char *host, char **user, char **pass)
 %token TOKGROUPS TOKPURGEAFTER TOKCOMPRESS TOKNORECEIVED TOKFILEUMASK
 %token TOKFILEGROUP TOKVALUE TOKTIMEOUT TOKREMOVEHEADER TOKSTDOUT TOKNOVERIFY
 %token TOKADDFROM TOKAPPENDSTRING TOKADDHEADER TOKQUEUEHIGH TOKQUEUELOW
+%token TOKVERIFYCERTS
 %token LCKFLOCK LCKFCNTL LCKDOTLOCK
 
 %union
@@ -742,10 +743,6 @@ find_netrc(const char *host, char **user, char **pass)
 		char		*pass;
 		int		 pass_netrc;
 	} userpass;
-	struct {
-		int		 ssl;
-		int		 verify;
-	} servtype;
 }
 
 %token INCLUDE
@@ -1136,6 +1133,10 @@ set: TOKSET TOKMAXSIZE size
 	     if ((conf.proxy = getproxy($3)) == NULL)
 		     yyerror("invalid proxy");
 	     xfree($3);
+     }
+   | TOKSET TOKVERIFYCERTS
+     {
+	     conf.verify_certs = 1;
      }
    | TOKSET TOKIMPLACT TOKKEEP
      {
