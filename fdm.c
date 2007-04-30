@@ -1,4 +1,4 @@
-/* $Id: fdm.c,v 1.132 2007-03-30 12:48:04 nicm Exp $ */
+/* $Id: fdm.c,v 1.133 2007-04-30 22:53:20 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -549,6 +549,8 @@ main(int argc, char **argv)
 		off = strlcat(tmp, "keep-all, ", sizeof tmp);
 	if (conf.del_big)
 		off = strlcat(tmp, "delete-oversized, ", sizeof tmp);
+	if (conf.verify_certs)
+		off = strlcat(tmp, "verify-certificates, ", sizeof tmp);
 	if (sizeof tmp > off && conf.purge_after > 0) {
 		off += xsnprintf(tmp + off, (sizeof tmp) - off,
 		    "purge-after=%u, ", conf.purge_after);
