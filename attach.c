@@ -1,4 +1,4 @@
-/* $Id: attach.c,v 1.22 2007-03-22 23:21:19 nicm Exp $ */
+/* $Id: attach.c,v 1.23 2007-04-30 13:50:45 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -54,7 +54,7 @@ attach_visit(struct attach *atr, u_int *n)
 	return (atr);
 }
 
-void
+void printflike2
 attach_log(struct attach *atr, const char *fmt, ...)
 {
 	va_list	 	 ap;
