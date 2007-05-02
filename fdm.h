@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.259 2007-04-30 22:43:59 nicm Exp $ */
+/* $Id: fdm.h,v 1.260 2007-05-02 20:29:34 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -561,7 +561,7 @@ struct actitem {
 	void			*data;
 
 	TAILQ_ENTRY(actitem)	 entry;
-}; 
+};
 
 /* Action list. */
 TAILQ_HEAD(actlist, actitem);

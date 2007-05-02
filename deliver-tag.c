@@ -1,4 +1,4 @@
-/* $Id: deliver-tag.c,v 1.3 2007-03-29 17:37:16 nicm Exp $ */
+/* $Id: deliver-tag.c,v 1.4 2007-05-02 20:29:34 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -75,7 +75,7 @@ deliver_tag_desc(struct actitem *ti, char *buf, size_t len)
 	if (data->value.str == NULL)
 		xsnprintf(buf, len, "tag \"%s\"", data->key.str);
 	else {
-		xsnprintf(buf, len, 
+		xsnprintf(buf, len,
 		    "tag \"%s\" value \"%s\"", data->key.str, data->value.str);
 	}
 }

@@ -1,6 +1,6 @@
 /* -*-C-*- */
 
-/* $Id: lex.l,v 1.93 2007-04-30 22:43:59 nicm Exp $ */
+/* $Id: lex.l,v 1.94 2007-05-02 20:29:34 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -87,7 +87,7 @@ include[ \t]*\" {
 		strb_create(&parse_tags);
 		default_tags(&parse_tags, NULL, NULL);
 	}
-	
+
 	rp.str = read_str('"', 1);
 	s = replacepath(&rp, parse_tags, NULL, NULL);
 	xfree(rp.str);
@@ -104,7 +104,7 @@ include[ \t]*\' {
 		strb_create(&parse_tags);
 		default_tags(&parse_tags, NULL, NULL);
 	}
-	
+
 	rp.str = read_str('\'', 0);
 	s = replacepath(&rp, parse_tags, NULL, NULL);
 	xfree(rp.str);
@@ -361,7 +361,7 @@ include_start(char *file)
 
 	top = xmalloc(sizeof *top);
 	top->yyin = yyin;
-	top->yylineno = yylineno;	
+	top->yylineno = yylineno;
 	top->yybuffer = YY_CURRENT_BUFFER;
 	top->curfile = curfile;
 	ARRAY_ADD(&filestack, top, struct fileent *);
