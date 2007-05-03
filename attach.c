@@ -1,4 +1,4 @@
-/* $Id: attach.c,v 1.23 2007-04-30 13:50:45 nicm Exp $ */
+/* $Id: attach.c,v 1.24 2007-05-03 13:42:20 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -123,7 +123,7 @@ attach_type(struct mail *m, char *hdr, const char *name, char **value)
 	hdr += 13;
 
 	/* skip spaces */
-	while (len > 0 && isspace((int) *hdr)) {
+	while (len > 0 && isspace((u_char) *hdr)) {
 		len--;
 		hdr++;
 	}
@@ -162,7 +162,7 @@ attach_type(struct mail *m, char *hdr, const char *name, char **value)
 	namelen = strlen(name);
 	for (;;) {
 		/* skip spaces and newlines */
-		while (len > 0 && (isspace((int) *hdr) || *hdr == '\n')) {
+		while (len > 0 && (isspace((u_char) *hdr) || *hdr == '\n')) {
 			hdr++;
 			len--;
 		}

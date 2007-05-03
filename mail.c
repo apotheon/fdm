@@ -1,4 +1,4 @@
-/* $Id: mail.c,v 1.96 2007-03-28 17:24:39 nicm Exp $ */
+/* $Id: mail.c,v 1.97 2007-05-03 13:42:20 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -431,13 +431,13 @@ find_header(struct mail *m, const char *hdr, size_t *len, int value)
 		*len = ptr - out;
 
 	/* header must be followed by space */
-	if (!isspace((int) *out))
+	if (!isspace((u_char) *out))
 		return (NULL);
 
 	/* sort out what is actually returned */
 	if (value) {
 		/* strip any following space */
-		while (isspace((int) *out)) {
+		while (isspace((u_char) *out)) {
 			out++;
 			(*len)--;
 		}
@@ -473,7 +473,7 @@ find_users(struct mail *m)
 		    &len, 1);
 		if (hdr == NULL || len == 0)
 			continue;
-		while (isspace((int) *hdr)) {
+		while (isspace((u_char) *hdr)) {
 			hdr++;
 			len--;
 		}
@@ -639,7 +639,7 @@ fill_wrapped(struct mail *m)
 			break;
 
 		/* check if the line starts with whitespace */
-		if (!isblank((int) *ptr))
+		if (!isblank((u_char) *ptr))
 			continue;
 
 		/* save the position */
