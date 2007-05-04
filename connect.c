@@ -1,4 +1,4 @@
-/* $Id: connect.c,v 1.51 2007-05-02 20:29:34 nicm Exp $ */
+/* $Id: connect.c,v 1.52 2007-05-04 10:50:27 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -55,15 +55,13 @@ char *
 sslerror2(int n, const char *fn)
 {
 	char	*cause;
-	int	 saved_errno;
 
-	saved_errno = errno;
 	switch (n) {
 	case SSL_ERROR_ZERO_RETURN:
 		errno = ECONNRESET;
 		/* FALLTHROUGH */
 	case SSL_ERROR_SYSCALL:
-		xasprintf(&cause, "%s: %s", fn, strerror(saved_errno));
+		xasprintf(&cause, "%s: %s", fn, strerror(errno));
 		return (cause);
 	case SSL_ERROR_WANT_CONNECT:
 		xasprintf(&cause, "%s: want connect", fn);
