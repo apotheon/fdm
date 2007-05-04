@@ -1,6 +1,20 @@
 04 May 2007
 
 * "match tag ..." is now not supported.
+* Permit actions to call other actions:
+
+	action "one" ...
+	action "two" ...
+	action "three" {
+		 ...
+		actions { "one" "two" }
+	}
+
+  A maximum of five levels is permitted, spoiling the
+
+	action "x" { action "x" }
+
+  fun.
 
 30 April 2007
 
@@ -269,4 +283,4 @@
   the mail was very rarely reallocated, now that the header is added it is.
 * Changed all the descriptions to static buffers and audited use of snprintf.
 
-$Id: CHANGES,v 1.74 2007-05-04 09:05:17 nicm Exp $
+$Id: CHANGES,v 1.75 2007-05-04 10:47:50 nicm Exp $
