@@ -1,4 +1,4 @@
-/* $Id: parse.y,v 1.194 2007-05-03 13:42:20 nicm Exp $ */
+/* $Id: parse.y,v 1.195 2007-05-04 09:05:17 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -2475,101 +2475,14 @@ match: TOKMATCH expr
 perform: TOKTAG strv
 /**      [$2: strv (char *)] */
 	 {
-		 struct action			*t;
-		 struct actitem			*ti;
-		 struct deliver_tag_data	*data;
-		 char				*file;
-
-		 file = curfile == NULL ? conf.conf_file : curfile;
-		 log_warnx("%s: \"match ... tag ...\" is deprecated, "
-		     "please use \"match ... action tag ... continue\" "
-		     "at line %d", file, yylineno);
-
-		 if (*$2 == '\0')
-			 yyerror("invalid tag");
-
-		 if (*$2 == '\0')
-			 yyerror("invalid tag");
-
-		 ti = xcalloc(1, sizeof *$$);
-		 ti->deliver = &deliver_tag;
-
-		 data = xcalloc(1, sizeof *data);
-		 ti->data = data;
-
-		 data->key.str = $2;
-		 data->value.str = NULL;
-
-		 $$ = xcalloc(1, sizeof *$$);
-		 $$->idx = ruleidx++;
-		 $$->actions = NULL;
-		 TAILQ_INIT(&$$->rules);
-		 $$->stop = 0;
-		 $$->users = NULL;
-		 $$->find_uid = 0;
-
-		 t = $$->lambda = xcalloc(1, sizeof *$$->lambda);
-		 xsnprintf(t->name, sizeof t->name, "<rule %u>", $$->idx);
-		 t->users = NULL;
-		 t->find_uid = 0;
-		 t->list = xmalloc(sizeof *t->list);
-		 TAILQ_INIT(t->list);
-		 TAILQ_INSERT_HEAD(t->list, ti, entry);
-		 ti->idx = 0;
-
-		 if (currule == NULL)
-			 TAILQ_INSERT_TAIL(&conf.rules, $$, entry);
-		 else
-			 TAILQ_INSERT_TAIL(&currule->rules, $$, entry);
+		 yyerror("\"match ... tag\" is no longer supported, "
+		     "please use \"match ... action tag\"");
 	 }
        | TOKTAG strv TOKVALUE strv
 /**      [$2: strv (char *)] [$4: strv (char *)] */
 	 {
-		 struct action			*t;
-		 struct actitem			*ti;
-		 struct deliver_tag_data	*data;
-		 char				*file;
-
-		 file = curfile == NULL ? conf.conf_file : curfile;
-		 log_warnx("%s: \"match ... tag\" is deprecated, please use "
-		     "\"match ... action tag\" at line %d", file, yylineno);
-
-		 if (*$2 == '\0')
-			 yyerror("invalid tag");
-
-		 if (*$2 == '\0')
-			 yyerror("invalid tag");
-
-		 ti = xcalloc(1, sizeof *$$);
-		 ti->deliver = &deliver_tag;
-
-		 data = xcalloc(1, sizeof *data);
-		 ti->data = data;
-
-		 data->key.str = $2;
-		 data->value.str = $4;
-
-		 $$ = xcalloc(1, sizeof *$$);
-		 $$->idx = ruleidx++;
-		 $$->actions = NULL;
-		 TAILQ_INIT(&$$->rules);
-		 $$->stop = 0;
-		 $$->users = NULL;
-		 $$->find_uid = 0;
-
-		 t = $$->lambda = xcalloc(1, sizeof *$$->lambda);
-		 xsnprintf(t->name, sizeof t->name, "<rule %u>", $$->idx);
-		 t->users = NULL;
-		 t->find_uid = 0;
-		 t->list = xmalloc(sizeof *t->list);
-		 TAILQ_INIT(t->list);
-		 TAILQ_INSERT_HEAD(t->list, ti, entry);
-		 ti->idx = 0;
-
-		 if (currule == NULL)
-			 TAILQ_INSERT_TAIL(&conf.rules, $$, entry);
-		 else
-			 TAILQ_INSERT_TAIL(&currule->rules, $$, entry);
+		 yyerror("\"match ... tag\" is no longer supported, "
+		     "please use \"match ... action tag\"");
 	 }
        | users actionp actitem cont
 /**      [$1: users (struct { ... } users)] */

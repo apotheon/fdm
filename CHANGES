@@ -1,3 +1,7 @@
+04 May 2007
+
+* "match tag ..." is now not supported.
+
 30 April 2007
 
 * Optionally verify SSL certificates. This can be turned on with the
@@ -265,4 +269,4 @@
   the mail was very rarely reallocated, now that the header is added it is.
 * Changed all the descriptions to static buffers and audited use of snprintf.
 
-$Id: CHANGES,v 1.73 2007-04-30 22:43:59 nicm Exp $
+$Id: CHANGES,v 1.74 2007-05-04 09:05:17 nicm Exp $
