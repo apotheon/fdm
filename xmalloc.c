@@ -1,4 +1,4 @@
-/* $Id: xmalloc.c,v 1.36 2007-03-08 12:29:30 nicm Exp $ */
+/* $Id: xmalloc.c,v 1.37 2007-05-08 20:01:40 nicm Exp $ */
 
 /*
  * Copyright (c) 2004 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -195,7 +195,8 @@ xvsnprintf(char *buf, size_t len, const char *fmt, va_list ap)
 }
 
 /*
- * Some system modify the path in place. This function avoids that.
+ * Some system modify the path in place. This function and xbasename below
+ * avoid that by using a temporary buffer.
  */
 char *
 xdirname(const char *src)
@@ -206,9 +207,6 @@ xdirname(const char *src)
 	return (dirname(dst));
 }
 
-/*
- * Some system modify the path in place. This function avoids that.
- */
 char *
 xbasename(const char *src)
 {
