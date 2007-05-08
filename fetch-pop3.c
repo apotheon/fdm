@@ -1,4 +1,4 @@
-/* $Id: fetch-pop3.c,v 1.82 2007-04-30 22:43:59 nicm Exp $ */
+/* $Id: fetch-pop3.c,v 1.83 2007-05-08 19:24:49 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -151,7 +151,7 @@ fetch_pop3_finish(struct account *a, int aborted)
 		xfree(data->uid);
 
 	for (i = 0; i < ARRAY_LENGTH(&data->kept); i++)
-		xfree(ARRAY_ITEM(&data->kept, i, char *));
+		xfree(ARRAY_ITEM(&data->kept, i));
 	ARRAY_FREE(&data->kept);
 
 	xfree(data->lbuf);
@@ -293,7 +293,7 @@ restart:
 			xfree(data->uid);
 		data->uid = xstrdup(line);
 		for (i = 0; i < ARRAY_LENGTH(&data->kept); i++) {
-			uid = ARRAY_ITEM(&data->kept, i, char *);
+			uid = ARRAY_ITEM(&data->kept, i);
 			if (strcmp(data->uid, uid) == 0) {
 				/*
 				 * Seen this message before and kept it, so

@@ -1,4 +1,4 @@
-/* $Id: imap-common.c,v 1.27 2007-05-04 09:05:17 nicm Exp $ */
+/* $Id: imap-common.c,v 1.28 2007-05-08 19:24:49 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -272,7 +272,7 @@ restart:
 			return (FETCH_ERROR);
 
 		for (i = 0; i < ARRAY_LENGTH(&data->kept); i++) {
-			if (ARRAY_ITEM(&data->kept, i, u_int) == data->uid) {
+			if (ARRAY_ITEM(&data->kept, i) == data->uid) {
 				/* had this message before and kept, so skip */
 				data->state = IMAP_START;
 				break;

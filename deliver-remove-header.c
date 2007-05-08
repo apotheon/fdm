@@ -1,4 +1,4 @@
-/* $Id: deliver-remove-header.c,v 1.11 2007-03-28 19:59:57 nicm Exp $ */
+/* $Id: deliver-remove-header.c,v 1.12 2007-05-08 19:24:49 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -75,9 +75,9 @@ deliver_remove_header_deliver(struct deliver_ctx *dctx, struct actitem *ti)
 		off = ptr - m->data;
 		i = 0;
 		while (i < ARRAY_LENGTH(&m->wrapped)) {
-			wrap = ARRAY_ITEM(&m->wrapped, i, size_t);
+			wrap = ARRAY_ITEM(&m->wrapped, i);
 			if (wrap >= off + len) {
-				ARRAY_SET(&m->wrapped, i, wrap - len, size_t);
+				ARRAY_SET(&m->wrapped, i, wrap - len);
 				i++;
 			} else if (wrap >= off)
 				ARRAY_REMOVE(&m->wrapped, i, size_t);
