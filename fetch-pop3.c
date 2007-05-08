@@ -1,4 +1,4 @@
-/* $Id: fetch-pop3.c,v 1.83 2007-05-08 19:24:49 nicm Exp $ */
+/* $Id: fetch-pop3.c,v 1.84 2007-05-08 19:45:16 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -414,7 +414,7 @@ fetch_pop3_done(struct account *a, struct mail *m)
 	struct fetch_pop3_mail	*aux = m->auxdata;
 
 	if (m->decision == DECISION_KEEP) {
-		ARRAY_ADD(&data->kept, xstrdup(aux->uid), char *);
+		ARRAY_ADD(&data->kept, xstrdup(aux->uid));
 		return (FETCH_SUCCESS);
 	}
 

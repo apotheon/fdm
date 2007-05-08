@@ -1,4 +1,4 @@
-/* $Id: fetch-nntp.c,v 1.75 2007-05-08 19:24:49 nicm Exp $ */
+/* $Id: fetch-nntp.c,v 1.76 2007-05-08 19:45:16 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -49,7 +49,7 @@ int	fetch_nntp_save(struct account *);
 #define GET_GROUP(d, i) ARRAY_ITEM(&d->groups, i)
 #define CURRENT_GROUP(d) GET_GROUP(d, d->group)
 #define TOTAL_GROUPS(d) ARRAY_LENGTH(&d->groups)
-#define ADD_GROUP(d, g) ARRAY_ADD(&d->groups, g, struct fetch_nntp_group *)
+#define ADD_GROUP(d, g) ARRAY_ADD(&d->groups, g)
 
 struct fetch fetch_nntp = {
 	"nntp",

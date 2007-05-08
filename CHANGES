@@ -1,3 +1,8 @@
+08 May 2007
+
+* Couple of fixes for stupid things in ARRAY_* macros, one of which was hiding
+  a minor bug. Don't know what I was thinking when I wrote them.
+
 04 May 2007
 
 * "match tag ..." is now not supported.
@@ -283,4 +288,4 @@
   the mail was very rarely reallocated, now that the header is added it is.
 * Changed all the descriptions to static buffers and audited use of snprintf.
 
-$Id: CHANGES,v 1.76 2007-05-04 10:50:26 nicm Exp $
+$Id: CHANGES,v 1.77 2007-05-08 19:45:16 nicm Exp $

@@ -1,4 +1,4 @@
-/* $Id: mail.c,v 1.98 2007-05-08 19:24:49 nicm Exp $ */
+/* $Id: mail.c,v 1.99 2007-05-08 19:45:16 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -493,7 +493,7 @@ find_users(struct mail *m)
 				*--dptr = '\0';
 				pw = getpwnam(ptr);
 				if (pw != NULL)
-					ARRAY_ADD(users, pw->pw_uid, uid_t);
+					ARRAY_ADD(users, pw->pw_uid);
 				endpwent();
 				*dptr++ = '@';
 				break;
@@ -643,7 +643,7 @@ fill_wrapped(struct mail *m)
 			continue;
 
 		/* save the position */
-		ARRAY_ADD(&m->wrapped, off - 1, size_t);
+		ARRAY_ADD(&m->wrapped, off - 1);
 		n++;
 	}
 

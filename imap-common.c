@@ -1,4 +1,4 @@
-/* $Id: imap-common.c,v 1.28 2007-05-08 19:24:49 nicm Exp $ */
+/* $Id: imap-common.c,v 1.29 2007-05-08 19:45:16 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -401,7 +401,7 @@ imap_done(struct account *a, struct mail *m)
 	char			*line;
 
 	if (m->decision == DECISION_KEEP) {
-		ARRAY_ADD(&data->kept, aux->uid, u_int);
+		ARRAY_ADD(&data->kept, aux->uid);
 		return (FETCH_SUCCESS);
 	}
 
