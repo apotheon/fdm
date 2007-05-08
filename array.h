@@ -1,4 +1,4 @@
-/* $Id: array.h,v 1.4 2007-05-08 19:45:16 nicm Exp $ */
+/* $Id: array.h,v 1.5 2007-05-08 19:48:39 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -47,7 +47,7 @@
 	(a)->num++;							\
 } while (0)
 
-#define ARRAY_SET(a, i, s) do {					\
+#define ARRAY_SET(a, i, s) do {						\
 	if (((u_int) (i)) >= (a)->num) {				\
 		log_warnx("ARRAY_SET: bad index: %u, at %s:%d",		\
 		    i, __FILE__, __LINE__);				\
