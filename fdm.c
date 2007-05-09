@@ -1,4 +1,4 @@
-/* $Id: fdm.c,v 1.135 2007-05-08 19:45:16 nicm Exp $ */
+/* $Id: fdm.c,v 1.136 2007-05-09 10:31:22 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -35,6 +35,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <syslog.h>
 #include <unistd.h>
 
 #include "fdm.h"
@@ -306,7 +307,7 @@ main(int argc, char **argv)
 	conf.queue_high = -1;
 	conf.queue_low = -1;
 
-	log_init(1);
+	log_init(0);
 
 	ARRAY_INIT(&conf.incl);
 	ARRAY_INIT(&conf.excl);
@@ -377,10 +378,11 @@ main(int argc, char **argv)
 			user = optarg;
 			break;
                 case 'v':
-                        conf.debug++;
+			if (conf.debug != -1)
+				conf.debug++;
                         break;
 		case 'q':
-			conf.quiet = 1;
+			conf.debug = -1;
 			break;
 		case 'x':
 			ARRAY_ADD(&conf.excl, xstrdup(optarg));
@@ -392,8 +394,6 @@ main(int argc, char **argv)
         }
 	argc -= optind;
 	argv += optind;
-	if (conf.quiet)
-		conf.debug = 0;
 	if (conf.check_only) {
 		if (argc != 0)
 			usage();
@@ -429,8 +429,10 @@ main(int argc, char **argv)
 		endpwent();
 	}
 
-	/* start logging to syslog if necessary */
-	log_init(!conf.syslog);
+	/* set debug level and start logging to syslog if necessary */
+	log_init(conf.debug);
+	if (conf.syslog)
+		log_syslog(LOG_MAIL);
 	tt = time(NULL);
 	log_debug("version is: %s " BUILD ", started at: %.24s", __progname,
 	    ctime(&tt));
