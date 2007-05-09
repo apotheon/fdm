@@ -1,4 +1,4 @@
-/* $Id: fetch-nntp.c,v 1.76 2007-05-08 19:45:16 nicm Exp $ */
+/* $Id: fetch-nntp.c,v 1.77 2007-05-09 15:26:57 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -357,6 +357,14 @@ fetch_nntp_save(struct account *a)
 		    group->name, group->last, strlen(group->id), group->id);
 	}
 
+	if (fflush(f) != 0) {
+		log_warn("%s: fflush", a->name);
+		goto error;
+	}
+	if (fsync(fileno(f)) != 0) {
+		log_warn("%s: fsync", a->name);
+		goto error;
+	}		
 	if (fclose(f) != 0) {
 		log_warn("%s: fclose", a->name);
 		f = NULL;
