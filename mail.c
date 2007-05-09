@@ -1,4 +1,4 @@
-/* $Id: mail.c,v 1.99 2007-05-08 19:45:16 nicm Exp $ */
+/* $Id: mail.c,v 1.100 2007-05-09 09:08:26 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -164,28 +164,6 @@ rfc822_time(time_t t, char *buf, size_t len)
 	return (buf);
 }
 
-int printflike3
-printpath(char *buf, size_t len, const char *fmt, ...)
-{
-	va_list	ap;
-	int	n;
-
-	if (len > INT_MAX) {
-		errno = ENAMETOOLONG;
-		return (1);
-	}
-
-	va_start(ap, fmt);
-	n = xvsnprintf(buf, len, fmt, ap);
-	va_end(ap);
-
-	if ((size_t) n > len) {
-		errno = ENAMETOOLONG;
-		return (1);
-	}
-
-	return (0);
-}
 int
 openlock(const char *path, u_int locks, int flags, mode_t mode)
 {
