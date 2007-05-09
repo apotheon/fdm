@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.129 2007-05-09 18:39:49 nicm Exp $
+# $Id: Makefile,v 1.130 2007-05-09 19:02:16 nicm Exp $
 
 .SUFFIXES: .c .o .y .l .h
 .PHONY: clean lint regress yannotate manual \
@@ -112,7 +112,7 @@ CLEANFILES= ${PROG} *.o compat/*.o y.tab.c lex.yy.c y.tab.h .depend \
 		${YACC} ${.IMPSRC}
 		${CC} ${CFLAGS} ${INCDIRS} -c y.tab.c -o ${.TARGET}
 
-all:		.depend ${PROG}
+all:		${PROG}
 
 ${PROG}:	${OBJS}
 		${CC} ${LDFLAGS} -o ${PROG} ${LIBS} ${OBJS}
@@ -126,9 +126,6 @@ dist:		clean manual
 
 lint:
 		lint -cehvx ${CFLAGS:M-D*} ${SRCS:M*.c}
-
-.depend:	${HDRS}
-		-mkdep ${CFLAGS} ${INCDIRS} ${SRCS:M*.c}
 
 depend:
 		mkdep ${CFLAGS} ${INCDIRS} ${SRCS:M*.c}
