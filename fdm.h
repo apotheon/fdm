@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.269 2007-05-09 19:33:59 nicm Exp $ */
+/* $Id: fdm.h,v 1.270 2007-05-09 23:06:34 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -703,6 +703,9 @@ struct cmd {
 	int		 status;
 	int		 flags;
 	int		 timeout;
+
+	char		*buf;
+	size_t		 len;
 
 	struct io	*io_in;
 	struct io	*io_out;

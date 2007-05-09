@@ -1,4 +1,4 @@
-/* $Id: buffer.c,v 1.3 2007-05-09 19:33:59 nicm Exp $ */
+/* $Id: buffer.c,v 1.4 2007-05-09 23:06:34 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -28,8 +28,7 @@ buffer_create(size_t size)
 {
 	struct buffer	*b;
 
-	b = xmalloc(sizeof *b);
-	memset(b, 0, sizeof *b);
+	b = xcalloc(1, sizeof *b);
 
 	b->base = xmalloc(size);
 	b->space = size;
