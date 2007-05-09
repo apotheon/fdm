@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.128 2007-05-08 21:04:16 nicm Exp $
+# $Id: Makefile,v 1.129 2007-05-09 18:39:49 nicm Exp $
 
 .SUFFIXES: .c .o .y .l .h
 .PHONY: clean lint regress yannotate manual \
@@ -22,7 +22,7 @@ SRCS= fdm.c log.c xmalloc.c xmalloc-debug.c io.c replace.c connect.c mail.c \
       deliver-stdout.c deliver-append-string.c strb.c deliver-add-header.c \
       deliver-exec.c child-fetch.c parent-fetch.c child-deliver.c \
       parent-deliver.c mail-state.c netrc.c shm-mmap.c shm-sysv.c \
-      deliver-tag.c \
+      deliver-tag.c buffer.c \
       parse.y lex.l
 HDRS= fdm.h array.h fetch.h match.h deliver.h
 
