@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.266 2007-05-09 18:39:49 nicm Exp $ */
+/* $Id: fdm.h,v 1.267 2007-05-09 18:52:44 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -657,8 +657,9 @@ struct buffer {
 /* Maximum number of pollfds. */
 #define IO_POLLFDS 256
 
-/* IO buffer size macros. */
+/* IO macros. */
 #define IO_ROUND(n) (((n / IO_BLOCKSIZE) + 1) * IO_BLOCKSIZE)
+#define IO_CLOSED(io) ((io)->flags & IOF_CLOSED)
 #define IO_RDSIZE(io) (buffer_used((io)->rd))
 #define IO_WRSIZE(io) (buffer_used((io)->wr))
 
@@ -668,12 +669,12 @@ struct io {
 	int		 dup_fd;	/* dup all data to this fd */
 	SSL		*ssl;
 
-	int		 closed;
 	char		*error;
 
 	int		 flags;
-#define IO_NEEDFILL 0x1
-#define IO_NEEDPUSH 0x2
+#define IOF_NEEDFILL 0x1
+#define IOF_NEEDPUSH 0x2
+#define IOF_CLOSED 0x4
 
 	struct buffer	*rd;
 	struct buffer	*wr;
