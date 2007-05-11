@@ -1,4 +1,4 @@
-/* $Id: strb.c,v 1.9 2007-03-28 17:24:39 nicm Exp $ */
+/* $Id: strb.c,v 1.10 2007-05-11 10:57:07 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -111,7 +111,7 @@ strb_vadd(struct strb **sbp, const char *key, const char *value, va_list ap)
 	sbep = strb_address(sb, key);
 	if (sbep == NULL) {
 		if (sb->ent_used > sb->ent_max) {
-			/* allocate some more */
+			/* Allocate some more entries. */
 			n = sb->ent_max;
 
 			size = STRB_SIZE(sb);

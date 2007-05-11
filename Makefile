@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.130 2007-05-09 19:02:16 nicm Exp $
+# $Id: Makefile,v 1.131 2007-05-11 10:57:07 nicm Exp $
 
 .SUFFIXES: .c .o .y .l .h
 .PHONY: clean lint regress yannotate manual \
@@ -152,14 +152,14 @@ manual:
 		awk -f makemanual.awk MANUAL.in > MANUAL
 
 install:	all
-		${INSTALLBIN} ${PROG} ${PREFIX}/bin/${PROG}
-		${INSTALLMAN} ${PROG}.1 ${PREFIX}/man/man1/
-		${INSTALLMAN} ${PROG}.conf.5 ${PREFIX}/man/man5/
+		${INSTALLBIN} ${PROG} ${DESTDIR}${PREFIX}/bin/${PROG}
+		${INSTALLMAN} ${PROG}.1 ${DESTDIR}${PREFIX}/man/man1/
+		${INSTALLMAN} ${PROG}.conf.5 ${DESTDIR}${PREFIX}/man/man5/
 
 uninstall:
-		rm -f ${PREFIX}/bin/${PROG}
-		rm -f ${PREFIX}/man/man1/${PROG}.1
-		rm -f ${PREFIX}/man/man5/${PROG}.conf.5
+		rm -f ${DESTDIR}${PREFIX}/bin/${PROG}
+		rm -f ${DESTDIR}${PREFIX}/man/man1/${PROG}.1
+		rm -f ${DESTDIR}${PREFIX}/man/man5/${PROG}.conf.5
 
 clean:
 		rm -f ${CLEANFILES}

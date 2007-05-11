@@ -1,4 +1,4 @@
-# $Id: GNUmakefile,v 1.66 2007-05-09 18:39:49 nicm Exp $
+# $Id: GNUmakefile,v 1.67 2007-05-11 10:57:07 nicm Exp $
 
 .PHONY: clean
 
@@ -6,7 +6,7 @@ PROG= fdm
 VERSION= 1.2
 DATE= $(shell date +%Y%m%d-%H%M)
 
-PREFIX= /usr/local
+PREFIX?= /usr/local
 
 BIN_OWNER= bin
 BIN_GROUP= root
@@ -97,9 +97,9 @@ lex.yy.c: lex.l
 	$(LEX) $(LFLAGS) $<
 
 install:
-	$(INSTALLBIN) $(PROG) $(PREFIX)/bin/$(PROG)
-	$(INSTALLMAN) $(PROG).1 $(PREFIX)/man/man1/$(PROG).1
-	$(INSTALLMAN) $(PROG).conf.5 $(PREFIX)/man/man5/$(PROG).conf.5
+	$(INSTALLBIN) $(PROG) $(DESTDIR)$(PREFIX)/bin/$(PROG)
+	$(INSTALLMAN) $(PROG).1 $(DESTDIR)$(PREFIX)/man/man1/$(PROG).1
+	$(INSTALLMAN) $(PROG).conf.5 $(DESTDIR)$(PREFIX)/man/man5/$(PROG).conf.5
 
 clean:
 	rm -f $(CLEANFILES)

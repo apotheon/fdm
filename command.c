@@ -1,4 +1,4 @@
-/* $Id: command.c,v 1.31 2007-05-10 00:10:27 nicm Exp $ */
+/* $Id: command.c,v 1.32 2007-05-11 10:57:07 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -208,9 +208,10 @@ cmd_poll(struct cmd *cmd, char **out, char **err, char **lbuf, size_t *llen,
 		case 0:
 			errno = EPIPE;
 		case -1:
-			if (errno != EINTR && errno != EAGAIN)
-				cmd->len = 0;
-			break;
+			if (errno == EINTR || errno == EAGAIN) 
+				break;
+			xasprintf(cause, "short write: %s", strerror(errno));
+			return (1);
 		default: 
 			cmd->buf += n;
 			cmd->len -= n;

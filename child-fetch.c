@@ -1,4 +1,4 @@
-/* $Id: child-fetch.c,v 1.34 2007-04-25 15:19:53 nicm Exp $ */
+/* $Id: child-fetch.c,v 1.35 2007-05-11 10:57:07 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -226,7 +226,7 @@ fetch_poll(struct account *a, struct io *pio, struct mail_ctx *mctx,
 		if (rio == pio)
 			fatalx("child: parent socket closed");
 		log_warnx("%s: connection unexpectedly closed", a->name);
-		return (1);
+		return (FETCH_ERROR);
 	case -1:
 		if (rio == pio)
 			fatalx("child: parent socket error");
@@ -234,7 +234,7 @@ fetch_poll(struct account *a, struct io *pio, struct mail_ctx *mctx,
 			break;
 		log_warnx("%s: %s", a->name, cause);
 		xfree(cause);
-		return (1);
+		return (FETCH_ERROR);
 	}
 	tim = get_time() - tim;
 
