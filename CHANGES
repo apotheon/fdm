@@ -1,3 +1,8 @@
+14 May 2007
+
+* Made PCRE ungreedy by default, although I'm not convinced this isn't 
+  counterintuitive for the Perl folks.
+
 10 May 2007
 
 * Fix typo in manual and use DESTDIR in *akefile, from Frank Terbeck as a result
@@ -295,4 +300,4 @@
   the mail was very rarely reallocated, now that the header is added it is.
 * Changed all the descriptions to static buffers and audited use of snprintf.
 
-$Id: CHANGES,v 1.79 2007-05-11 10:57:07 nicm Exp $
+$Id: CHANGES,v 1.80 2007-05-14 19:49:17 nicm Exp $

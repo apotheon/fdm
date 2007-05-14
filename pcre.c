@@ -1,4 +1,4 @@
-/* $Id: pcre.c,v 1.3 2007-04-30 14:44:07 nicm Exp $ */
+/* $Id: pcre.c,v 1.4 2007-05-14 19:49:17 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -38,7 +38,7 @@ re_compile(struct re *re, char *s, int flags, char **cause)
 		return (0);
 	re->flags = flags;
 
-	flags = PCRE_EXTENDED|PCRE_MULTILINE;
+	flags = PCRE_EXTENDED|PCRE_MULTILINE|PCRE_UNGREEDY;
 	if (re->flags & RE_IGNCASE)
 		flags |= PCRE_CASELESS;
 
