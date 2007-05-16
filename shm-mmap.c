@@ -1,4 +1,4 @@
-/* $Id: shm-mmap.c,v 1.8 2007-04-30 14:44:07 nicm Exp $ */
+/* $Id: shm-mmap.c,v 1.9 2007-05-16 17:59:05 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -16,13 +16,10 @@
  * OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-#ifdef SHM_MMAP
-
 #include <sys/types.h>
 #include <sys/mman.h>
 
 #include <fcntl.h>
-#include <setjmp.h>
 #include <string.h>
 #include <unistd.h>
 
@@ -197,5 +194,3 @@ shm_resize(struct shm *shm, size_t nmemb, size_t size)
 	shm->size = newsize;
 	return (shm->data);
 }
-
-#endif /* SHM_MMAP */
