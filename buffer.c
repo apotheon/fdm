@@ -1,4 +1,4 @@
-/* $Id: buffer.c,v 1.4 2007-05-09 23:06:34 nicm Exp $ */
+/* $Id: buffer.c,v 1.5 2007-05-17 09:27:06 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -85,7 +85,7 @@ buffer_removed(struct buffer *b, size_t size)
 
 /* Copy data into a buffer. */
 void
-buffer_copyin(struct buffer *b, const void *data, size_t size)
+buffer_write(struct buffer *b, const void *data, size_t size)
 {
 	buffer_ensure(b, size);
 	memcpy(BUFFER_IN(b), data, size);
@@ -94,7 +94,7 @@ buffer_copyin(struct buffer *b, const void *data, size_t size)
 
 /* Copy data out of a buffer. */
 void
-buffer_copyout(struct buffer *b, void *data, size_t size)
+buffer_read(struct buffer *b, void *data, size_t size)
 {
 	memcpy(data, BUFFER_OUT(b), size);
 	buffer_removed(b, size);

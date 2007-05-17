@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.271 2007-05-16 17:59:05 nicm Exp $ */
+/* $Id: fdm.h,v 1.272 2007-05-17 09:27:06 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -917,8 +917,8 @@ void			 buffer_clear(struct buffer *);
 void			 buffer_ensure(struct buffer *, size_t);
 void			 buffer_added(struct buffer *, size_t);
 void			 buffer_removed(struct buffer *, size_t);
-void			 buffer_copyin(struct buffer *, const void *, size_t);
-void			 buffer_copyout(struct buffer *, void *, size_t);
+void			 buffer_write(struct buffer *, const void *, size_t);
+void			 buffer_read(struct buffer *, void *, size_t);
 
 /* io.c */
 struct io		*io_create(int, SSL *, const char *, int);
