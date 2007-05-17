@@ -1,4 +1,4 @@
-/* $Id: deliver-rewrite.c,v 1.47 2007-03-28 19:59:57 nicm Exp $ */
+/* $Id: deliver-rewrite.c,v 1.48 2007-05-17 12:24:04 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -79,7 +79,7 @@ deliver_rewrite_deliver(struct deliver_ctx *dctx, struct actitem *ti)
 
 	do {
 		status = cmd_poll(cmd, &out, &err, &lbuf, &llen, &cause);
-		if (status > 0) {
+		if (status == -1) {
 			log_warnx("%s: %s: %s", a->name, s, cause);
 			xfree(cause);
 			xfree(lbuf);
@@ -109,11 +109,11 @@ deliver_rewrite_deliver(struct deliver_ctx *dctx, struct actitem *ti)
 				md->size += len + 1;
 			}
 		}
-	} while (status >= 0);
+	} while (status == 0);
+	status--;
 
 	xfree(lbuf);
 
-	status = -1 - status;
 	if (status != 0) {
 		log_warnx("%s: %s: command returned %d", a->name, s, status);
 		goto error;
