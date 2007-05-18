@@ -1,4 +1,4 @@
-/* $Id: child-fetch.c,v 1.38 2007-05-18 18:16:59 nicm Exp $ */
+/* $Id: child-fetch.c,v 1.39 2007-05-18 18:46:40 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -99,7 +99,7 @@ child_fetch(struct child *child, struct io *io)
 out:
 	/* Finish fetch. */
 	if (a->fetch->disconnect != NULL) {
-		if (a->fetch->disconnect(a) != 0)
+		if (a->fetch->disconnect(a, error) != 0)
 			error = 1;
 	}
 

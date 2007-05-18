@@ -1,4 +1,4 @@
-/* $Id: xmalloc-debug.c,v 1.12 2007-03-15 18:11:05 nicm Exp $ */
+/* $Id: xmalloc-debug.c,v 1.13 2007-05-18 18:46:40 nicm Exp $ */
 
 /*
  * Copyright (c) 2004 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -185,7 +185,7 @@ xmalloc_report(const char *hdr)
  	XMALLOC_PRINT("%s: %ld: mallocs=%u, reallocs=%u, frees=%u", hdr,
 	    pid, xmalloc_ctx.mallocs, xmalloc_ctx.reallocs, xmalloc_ctx.frees);
 
-	xmalloc_callreport(hdr);
+	/* xmalloc_callreport(hdr); */
 
  	if (xmalloc_ctx.allocated == xmalloc_ctx.freed)
  		return;

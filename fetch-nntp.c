@@ -1,4 +1,4 @@
-/* $Id: fetch-nntp.c,v 1.78 2007-05-18 16:19:34 nicm Exp $ */
+/* $Id: fetch-nntp.c,v 1.79 2007-05-18 18:46:40 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -36,7 +36,7 @@ int	fetch_nntp_completed(struct account *);
 int	fetch_nntp_closed(struct account *);
 int	fetch_nntp_fetch(struct account *, struct fetch_ctx *);
 int	fetch_nntp_close(struct account *);
-int	fetch_nntp_disconnect(struct account *);
+int	fetch_nntp_disconnect(struct account *, int);
 void	fetch_nntp_desc(struct account *, char *, size_t);
 
 int	fetch_nntp_code(char *);
@@ -410,13 +410,14 @@ fetch_nntp_closed(struct account *a)
 
 /* Clean up and disconnect. */
 int
-fetch_nntp_disconnect(struct account *a)
+fetch_nntp_disconnect(struct account *a, int aborted)
 {
 	struct fetch_nntp_data	*data = a->data;
 	struct fetch_nntp_group	*group;
 	u_int			 i;
 
-	fetch_nntp_save(a); /* XXX aborted */
+	if (!aborted)
+		fetch_nntp_save(a);
 
 	if (data->mail != NULL)
 		mail_destroy(data->mail);
