@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.273 2007-05-18 16:19:34 nicm Exp $ */
+/* $Id: fdm.h,v 1.274 2007-05-18 16:29:34 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -42,6 +42,9 @@
 #include <openssl/err.h>
 
 #include "array.h"
+
+/* Forward declarations. */
+struct fetch_ctx; 	/* fetch.h */
 
 #define CHILDUSER	"_fdm"
 #define CONFFILE	".fdm.conf"
@@ -825,6 +828,19 @@ struct child 		*child_start(struct children *, uid_t,
 /* child-fetch.c */
 int			 child_fetch(struct child *, struct io *);
 void			 fetch_free1(struct mail_ctx *);
+
+/* mail-callback.c */
+void			 transform_mail(struct account *, struct fetch_ctx *,
+    			     struct mail *);
+int			 enqueue_mail(struct account *, struct fetch_ctx *,
+			     struct mail *);
+int			 empty_mail(struct account *, struct fetch_ctx *,
+			     struct mail *);
+int			 oversize_mail(struct account *, struct fetch_ctx *,
+			     struct mail *);
+struct mail 		*done_mail(struct account *, struct fetch_ctx *);
+void			 dequeue_mail(struct account *, struct fetch_ctx *);
+int		  	 can_purge(struct account *, struct fetch_ctx *);
 
 /* child-deliver.c */
 int			 child_deliver(struct child *, struct io *);

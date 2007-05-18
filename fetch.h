@@ -1,4 +1,4 @@
-/* $Id: fetch.h,v 1.21 2007-05-18 16:25:54 nicm Exp $ */
+/* $Id: fetch.h,v 1.22 2007-05-18 16:29:34 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -247,18 +247,5 @@ int			 imap_poll(struct account *, u_int *);
 int			 imap_fetch(struct account *, struct mail *);
 int			 imap_purge(struct account *);
 int			 imap_done(struct account *, struct mail *);
-
-/* mail-callback.c */
-void			 transform_mail(struct account *, struct fetch_ctx *,
-    			     struct mail *);
-int			 enqueue_mail(struct account *, struct fetch_ctx *,
-			     struct mail *);
-int			 empty_mail(struct account *, struct fetch_ctx *,
-			     struct mail *);
-int			 oversize_mail(struct account *, struct fetch_ctx *,
-			     struct mail *);
-struct mail 		*done_mail(struct account *, struct fetch_ctx *);
-void			 dequeue_mail(struct account *, struct fetch_ctx *);
-int		  	 can_purge(struct account *, struct fetch_ctx *);
 
 #endif
