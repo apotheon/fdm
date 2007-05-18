@@ -1,4 +1,4 @@
-/* $Id: fetch-imappipe.c,v 1.27 2007-05-17 12:24:04 nicm Exp $ */
+/* $Id: fetch-imappipe.c,v 1.28 2007-05-18 16:19:34 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -23,15 +23,19 @@
 #include "fdm.h"
 #include "fetch.h"
 
-int	 	 fetch_imappipe_start(struct account *, int *);
-void	 	 fetch_imappipe_fill(struct account *, struct io **, u_int *n);
-int	 	 fetch_imappipe_finish(struct account *, int);
-void		 fetch_imappipe_desc(struct account *, char *, size_t);
+#define FETCH_OVERSIZE 500
+#define FETCH_EMPTY 501
+#define FETCH_SUCCESS 502
 
-int		 fetch_imappipe_putln(struct account *, const char *, va_list);
-int		 fetch_imappipe_getln(struct account *, char **);
-int		 fetch_imappipe_pollln(struct account *, char **);
-void		 fetch_imappipe_flush(struct account *);
+int	fetch_imappipe_start(struct account *, int *);
+void	fetch_imappipe_fill(struct account *, struct io **, u_int *n);
+int	fetch_imappipe_finish(struct account *, int);
+void	fetch_imappipe_desc(struct account *, char *, size_t);
+
+int	fetch_imappipe_putln(struct account *, const char *, va_list);
+int	fetch_imappipe_getln(struct account *, char **);
+int	fetch_imappipe_pollln(struct account *, char **);
+void	fetch_imappipe_flush(struct account *);
 
 struct fetch fetch_imappipe = {
 	"imappipe",

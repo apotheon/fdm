@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.272 2007-05-17 09:27:06 nicm Exp $ */
+/* $Id: fdm.h,v 1.273 2007-05-18 16:19:34 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -335,7 +335,7 @@ struct mail {
 	void			*auxdata;
 };
 
-/* Mail fetch/delivery return codes. */
+/* Mail match/delivery return codes. */
 #define MAIL_CONTINUE 0
 #define MAIL_DELIVER 1
 #define MAIL_MATCH 2
@@ -343,7 +343,7 @@ struct mail {
 #define MAIL_BLOCKED 4
 #define MAIL_DONE 5
 
-/* Mail fetch/delivery context. */
+/* Mail match/delivery context. */
 struct mail_ctx {
 	int				 done;
 	u_int				 msgid;
@@ -824,6 +824,7 @@ struct child 		*child_start(struct children *, uid_t,
 
 /* child-fetch.c */
 int			 child_fetch(struct child *, struct io *);
+void			 fetch_free1(struct mail_ctx *);
 
 /* child-deliver.c */
 int			 child_deliver(struct child *, struct io *);

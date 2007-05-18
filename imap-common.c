@@ -1,4 +1,4 @@
-/* $Id: imap-common.c,v 1.31 2007-05-17 12:30:26 nicm Exp $ */
+/* $Id: imap-common.c,v 1.32 2007-05-18 16:19:34 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -22,6 +22,10 @@
 
 #include "fdm.h"
 #include "fetch.h"
+
+#define FETCH_OVERSIZE 500
+#define FETCH_EMPTY 501
+#define FETCH_SUCCESS 502
 
 int	imap_putln(struct account *, const char *, ...);
 int	imap_getln(struct account *, int, char **);

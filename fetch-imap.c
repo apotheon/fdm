@@ -1,4 +1,4 @@
-/* $Id: fetch-imap.c,v 1.72 2007-05-17 12:24:04 nicm Exp $ */
+/* $Id: fetch-imap.c,v 1.73 2007-05-18 16:19:34 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -22,6 +22,10 @@
 
 #include "fdm.h"
 #include "fetch.h"
+
+#define FETCH_OVERSIZE 500
+#define FETCH_EMPTY 501
+#define FETCH_SUCCESS 502
 
 int	 fetch_imap_start(struct account *, int *);
 void	 fetch_imap_fill(struct account *, struct io **, u_int *);

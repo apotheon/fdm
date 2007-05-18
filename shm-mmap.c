@@ -1,4 +1,4 @@
-/* $Id: shm-mmap.c,v 1.9 2007-05-16 17:59:05 nicm Exp $ */
+/* $Id: shm-mmap.c,v 1.10 2007-05-18 16:19:35 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -124,6 +124,9 @@ error:
 void
 shm_destroy(struct shm *shm)
 {
+	if (*shm->name == '\0')
+		return;
+
 	shm_close(shm);
 
 	if (unlink(shm->name) != 0)
@@ -135,6 +138,9 @@ shm_destroy(struct shm *shm)
 void
 shm_close(struct shm *shm)
 {
+	if (shm->fd == -1)
+		return;
+
 	if (munmap(shm->data, shm->size) != 0)
 		fatal("munmap");
 	shm->data = NULL;
