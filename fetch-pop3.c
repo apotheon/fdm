@@ -1,4 +1,4 @@
-/* $Id: fetch-pop3.c,v 1.85 2007-05-18 16:19:34 nicm Exp $ */
+/* $Id: fetch-pop3.c,v 1.86 2007-05-18 16:25:54 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -33,7 +33,7 @@ u_int	fetch_pop3_total(struct account *);
 int	fetch_pop3_completed(struct account *);
 int	fetch_pop3_closed(struct account *);
 int	fetch_pop3_fetch(struct account *, struct fetch_ctx *);
-int	fetch_pop3_poll(struct account *);
+int	fetch_pop3_poll(struct account *, struct fetch_ctx *);
 int	fetch_pop3_purge(struct account *);
 int	fetch_pop3_close(struct account *);
 int	fetch_pop3_disconnect(struct account *);
@@ -197,7 +197,7 @@ fetch_pop3_fetch(struct account *a, struct fetch_ctx *fctx)
 
 /* Poll for mail. */
 int
-fetch_pop3_poll(struct account *a)
+fetch_pop3_poll(struct account *a, struct fetch_ctx *fctx)
 {
 	struct fetch_pop3_data	*data = a->data;
 
@@ -210,7 +210,7 @@ fetch_pop3_poll(struct account *a)
 		return (FETCH_AGAIN);
 	}
 
-	return (data->state(a, NULL));
+	return (data->state(a, fctx));
 }
 
 /* Purge deleted mail. */

@@ -1,4 +1,4 @@
-/* $Id: fetch.h,v 1.20 2007-05-18 16:19:34 nicm Exp $ */
+/* $Id: fetch.h,v 1.21 2007-05-18 16:25:54 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -51,8 +51,8 @@ struct fetch {
  	u_int		 (*total)(struct account *);
 	int		 (*completed)(struct account *); 
 	int		 (*closed)(struct account *);
-	int	 	 (*fetch)(struct account *, struct fetch_ctx *fctx);
-	int	 	 (*poll)(struct account *);
+	int	 	 (*fetch)(struct account *, struct fetch_ctx *);
+	int	 	 (*poll)(struct account *, struct fetch_ctx *);
 	int		 (*purge)(struct account *);
 	int		 (*close)(struct account *);
 	int		 (*disconnect)(struct account *);
