@@ -1,4 +1,4 @@
-/* $Id: mail-callback.c,v 1.2 2007-05-18 17:44:25 nicm Exp $ */
+/* $Id: mail-callback.c,v 1.3 2007-05-19 13:03:51 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -71,7 +71,7 @@ transform_mail(struct account *a, unused struct fetch_ctx *fctx, struct mail *m)
 	log_debug2("%s: found %u wrapped lines", a->name, lines);
 }
 
-/* 
+/*
  * Create an mctx for a mail and enqueue it onto the fetch queue. Called from
  * the fetch code itself.
  */
@@ -92,9 +92,9 @@ enqueue_mail(struct account *a, struct fetch_ctx *fctx, struct mail *m)
 	mctx->mail = m;
 	mctx->msgid = 0;
 	mctx->done = 0;
-	
+
 	mctx->matched = 0;
-	
+
 	mctx->rule = TAILQ_FIRST(&conf.rules);
 	TAILQ_INIT(&mctx->dqueue);
 	ARRAY_INIT(&mctx->stack);
@@ -138,16 +138,16 @@ oversize_mail(struct account *a, struct fetch_ctx *fctx, struct mail *m)
 		m->decision = DECISION_DROP;
 		m->idx = ++a->idx;
 		m->tim = get_time();
-		
+
 		mctx = xcalloc(1, sizeof *mctx);
 		mctx->account = a;
 		mctx->io = fctx->io;
 		mctx->mail = m;
 		mctx->msgid = 0;
 		mctx->done = 0;
-		
+
 		mctx->matched = 0;
-		
+
 		mctx->rule = TAILQ_FIRST(&conf.rules);
 		TAILQ_INIT(&mctx->dqueue);
 		ARRAY_INIT(&mctx->stack);
@@ -157,7 +157,7 @@ oversize_mail(struct account *a, struct fetch_ctx *fctx, struct mail *m)
 	}
 
 	return (-1);
-}			
+}
 
 /*
  * Return first mail on the done queue. Called by fetch code when it wants to
@@ -208,10 +208,10 @@ dequeue_mail(unused struct account *a, struct fetch_ctx *fctx)
 
 /*
  * Confirm whether or not a purge is going to lose state (there are queued
- * mails). 
+ * mails).
  */
 int
 can_purge(unused struct account *a, struct fetch_ctx *fctx)
 {
-	return (fctx->queued == 0 && TAILQ_EMPTY(&fctx->doneq)); 
+	return (fctx->queued == 0 && TAILQ_EMPTY(&fctx->doneq));
 }

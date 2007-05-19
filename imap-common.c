@@ -1,4 +1,4 @@
-/* $Id: imap-common.c,v 1.32 2007-05-18 16:19:34 nicm Exp $ */
+/* $Id: imap-common.c,v 1.33 2007-05-19 13:03:50 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -80,7 +80,7 @@ imap_parse(struct account *a, int type, char *line)
 {
 	struct fetch_imap_data	*data = a->data;
 	int			 tag;
-	
+
 	if (type == IMAP_RAW)
 		return (0);
 	tag = imap_tag(line);
@@ -200,7 +200,7 @@ imap_login(struct account *a)
 		return (1);
 	}
 
-	if (imap_putln(a, "%u LOGIN {%zu}", ++data->tag, 
+	if (imap_putln(a, "%u LOGIN {%zu}", ++data->tag,
 	    strlen(data->user)) != 0)
 		return (1);
 	if (imap_pollln(a, IMAP_CONTINUE, &line) != 0)

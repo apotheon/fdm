@@ -1,4 +1,4 @@
-/* $Id: command.c,v 1.33 2007-05-17 12:24:04 nicm Exp $ */
+/* $Id: command.c,v 1.34 2007-05-19 13:03:50 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -213,11 +213,11 @@ cmd_poll(struct cmd *cmd, char **out, char **err, char **lbuf, size_t *llen,
 		case 0:
 			errno = EPIPE;
 		case -1:
-			if (errno == EINTR || errno == EAGAIN) 
+			if (errno == EINTR || errno == EAGAIN)
 				break;
 			xasprintf(cause, "short write: %s", strerror(errno));
 			return (-1);
-		default: 
+		default:
 			cmd->buf += n;
 			cmd->len -= n;
 			break;
@@ -277,7 +277,7 @@ cmd_poll(struct cmd *cmd, char **out, char **err, char **lbuf, size_t *llen,
 		}
 	}
 
-	/* 
+	/*
 	 * If the child isn't dead, or there is data left in the buffers,
 	 * return with 0 now to get called again.
 	 */

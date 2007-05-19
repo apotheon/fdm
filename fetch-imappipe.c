@@ -1,4 +1,4 @@
-/* $Id: fetch-imappipe.c,v 1.28 2007-05-18 16:19:34 nicm Exp $ */
+/* $Id: fetch-imappipe.c,v 1.29 2007-05-19 13:03:50 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -111,7 +111,7 @@ restart:
 		log_warnx("%s: connection unexpectedly closed", a->name);
 		return (-1);
 	}
-	
+
 	if (err != NULL) {
 		log_warnx("%s: %s: %s", a->name, data->pipecmd, err);
 		xfree(err);

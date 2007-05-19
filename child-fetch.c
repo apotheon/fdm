@@ -1,4 +1,4 @@
-/* $Id: child-fetch.c,v 1.39 2007-05-18 18:46:40 nicm Exp $ */
+/* $Id: child-fetch.c,v 1.40 2007-05-19 13:03:49 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -36,7 +36,7 @@
 int	poll_account(struct account *);
 int	fetch_account(struct account *, struct io *, double);
 
-int	fetch_match(struct account *, struct fetch_ctx *, struct msg *, 
+int	fetch_match(struct account *, struct fetch_ctx *, struct msg *,
 	    struct msgbuf *);
 int	fetch_deliver(struct account *, struct fetch_ctx *, struct msg *,
 	    struct msgbuf *);
@@ -243,7 +243,7 @@ fetch_poll(struct account *a, struct fetch_ctx *fctx)
 }
 
 int
-fetch_match(struct account *a, struct fetch_ctx *fctx, struct msg *msg, 
+fetch_match(struct account *a, struct fetch_ctx *fctx, struct msg *msg,
     struct msgbuf *msgbuf)
 {
 	struct mail_ctx	*mctx;
@@ -378,19 +378,19 @@ fetch_account(struct account *a, struct io *io, double tim)
 			error = FETCH_ERROR;
 			break;
 		}
-		
+
 		/* Deliver a mail. */
 		if (fetch_deliver(a, &fctx, msgp, &msgbuf) != 0) {
 			error = FETCH_ERROR;
 			break;
 		}
-			
+
 		/* Poll for new mails or privsep messages. */
 		log_debug3("%s: queued %u; blocked=%d", a->name, fctx.queued,
 		    fctx.blocked);
 		if ((error = fetch_poll(a, &fctx)) == FETCH_ERROR)
 			break;
-			
+
 		/* Purge if necessary. */
 		if (conf.purge_after == 0 || a->fetch->purge == NULL)
 			continue;

@@ -1,4 +1,4 @@
-/* $Id: fetch-maildir.c,v 1.70 2007-05-18 18:46:40 nicm Exp $ */
+/* $Id: fetch-maildir.c,v 1.71 2007-05-19 13:03:50 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -270,7 +270,7 @@ fetch_maildir_next(struct account *a, struct fetch_ctx *fctx)
 		data->index++;
 	if (fetch_maildir_completed(a))
 		return (FETCH_HOLD);
-	
+
 	data->state = fetch_maildir_open;
 	return (FETCH_AGAIN);
 }
@@ -331,7 +331,7 @@ restart:
 		data->state = fetch_maildir_next;
 		return (FETCH_AGAIN);
 	}
-	
+
 	if (printpath(name,
 	    sizeof name, "%s/%s", data->path, dp->d_name) != 0) {
 		log_warn("%s: %s: printpath", a->name, data->path);
