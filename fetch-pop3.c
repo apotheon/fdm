@@ -1,4 +1,4 @@
-/* $Id: fetch-pop3.c,v 1.90 2007-05-19 13:03:50 nicm Exp $ */
+/* $Id: fetch-pop3.c,v 1.91 2007-05-19 15:22:36 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -112,8 +112,8 @@ fetch_pop3_reconnect(struct account *a)
 	struct fetch_pop3_data	*data = a->data;
 	char			*cause;
 
-	data->io = connectproxy(&data->server, conf.verify_certs, conf.proxy,
-	    IO_CRLF, conf.timeout, &cause);
+	data->io = connectproxy(&data->server,
+	    conf.verify_certs, conf.proxy, IO_CRLF, conf.timeout, &cause);
 	if (data->io == NULL) {
 		log_warnx("%s: %s", a->name, cause);
 		xfree(cause);
