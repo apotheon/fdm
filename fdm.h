@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.274 2007-05-18 16:29:34 nicm Exp $ */
+/* $Id: fdm.h,v 1.275 2007-05-19 19:48:21 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -894,6 +894,16 @@ void			 set_wrapped(struct mail *, char);
 /* mail-state.c */
 int	mail_match(struct mail_ctx *, struct msg *, struct msgbuf *);
 int	mail_deliver(struct mail_ctx *, struct msg *, struct msgbuf *);
+
+/* imap-common.c */
+int			 imap_connect(struct account *);
+u_int			 imap_total(struct account *);
+int			 imap_completed(struct account *);
+int			 imap_closed(struct account *);
+int			 imap_fetch(struct account *, struct fetch_ctx *);
+int			 imap_purge(struct account *);
+int			 imap_close(struct account *);
+int			 imap_disconnect(struct account *, int);
 
 /* cleanup.c */
 void			 cleanup_check(void);
