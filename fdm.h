@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.276 2007-05-21 20:20:17 nicm Exp $ */
+/* $Id: fdm.h,v 1.277 2007-05-21 20:27:33 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -676,6 +676,7 @@ struct io {
 #define IOF_NEEDFILL 0x1
 #define IOF_NEEDPUSH 0x2
 #define IOF_CLOSED 0x4
+#define IOF_MUSTWR 0x8
 
 	struct buffer	*rd;
 	struct buffer	*wr;
