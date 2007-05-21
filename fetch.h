@@ -1,4 +1,4 @@
-/* $Id: fetch.h,v 1.26 2007-05-19 19:48:21 nicm Exp $ */
+/* $Id: fetch.h,v 1.27 2007-05-21 19:10:52 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -165,7 +165,6 @@ struct fetch_pop3_mail {
 #define IMAP_TAGGED 0
 #define IMAP_CONTINUE 1
 #define IMAP_UNTAGGED 2
-#define IMAP_RAW 3
 
 /* Fetch imap data. */
 struct fetch_imap_data {

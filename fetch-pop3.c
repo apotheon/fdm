@@ -1,4 +1,4 @@
-/* $Id: fetch-pop3.c,v 1.91 2007-05-19 15:22:36 nicm Exp $ */
+/* $Id: fetch-pop3.c,v 1.92 2007-05-21 19:10:52 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -531,11 +531,9 @@ fetch_pop3_uidl(struct account *a, unused struct fetch_ctx *fctx)
 
 	if (sscanf(line, "+OK %u ", &n) != 1)
 		return (fetch_pop3_bad(a, line));
-	if (n != data->cur) {
-		log_warnx("%s: unexpected message number", a->name);
-		return (FETCH_ERROR);
-	}
-
+	if (n != data->cur)
+		return (fetch_pop3_bad(a, line));
+	
 	line = strchr(line, ' ');
 	if (line == NULL)
 		return (fetch_pop3_bad(a, line));

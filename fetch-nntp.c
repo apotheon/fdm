@@ -1,4 +1,4 @@
-/* $Id: fetch-nntp.c,v 1.81 2007-05-19 15:22:36 nicm Exp $ */
+/* $Id: fetch-nntp.c,v 1.82 2007-05-21 19:10:52 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -502,7 +502,7 @@ fetch_nntp_connected(struct account *a, unused struct fetch_ctx *fctx)
 	case -1:
 		return (FETCH_ERROR);
 	case 1:
-		return (FETCH_BLOCK);
+		return (FETCH_AGAIN);
 	}
 
 	data->state = fetch_nntp_group;
@@ -581,7 +581,7 @@ fetch_nntp_stat(struct account *a, unused struct fetch_ctx *fctx)
 	case -1:
 		return (FETCH_ERROR);
 	case 1:
-		return (FETCH_BLOCK);
+		return (FETCH_AGAIN);
 	}
 
 	if (sscanf(line, "211 %u %*u %u", &group->size, &n) != 2)
@@ -622,7 +622,7 @@ fetch_nntp_wait(struct account *a, unused struct fetch_ctx *fctx)
 	case -1:
 		return (FETCH_ERROR);
 	case 1:
-		return (FETCH_BLOCK);
+		return (FETCH_AGAIN);
 	}
 
 	if (fetch_nntp_parse223(line, &n, &id) != 0)
@@ -668,7 +668,7 @@ fetch_nntp_next(struct account *a, unused struct fetch_ctx *fctx)
 	case -1:
 		return (FETCH_ERROR);
 	case 1:
-		return (FETCH_BLOCK);
+		return (FETCH_AGAIN);
 	}
 
 	if (code == 421) {
@@ -710,11 +710,11 @@ fetch_nntp_article(struct account *a, unused struct fetch_ctx *fctx)
 	case -1:
 		return (FETCH_ERROR);
 	case 1:
-		return (FETCH_BLOCK);
+		return (FETCH_AGAIN);
 	}
 
 	if (code == 423 || code == 430)
-		return (FETCH_BLOCK);
+		return (FETCH_AGAIN);
 
 	/* Create a new mail. */
 	m = data->mail = xcalloc(1, sizeof *data->mail);
@@ -836,7 +836,7 @@ fetch_nntp_quit(struct account *a, unused struct fetch_ctx *fctx)
 	case -1:
 		return (FETCH_ERROR);
 	case 1:
-		return (FETCH_BLOCK);
+		return (FETCH_AGAIN);
 	}
 
 	io_close(data->io);
