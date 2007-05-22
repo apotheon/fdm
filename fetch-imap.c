@@ -1,4 +1,4 @@
-/* $Id: fetch-imap.c,v 1.75 2007-05-21 20:20:17 nicm Exp $ */
+/* $Id: fetch-imap.c,v 1.76 2007-05-22 09:15:48 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -96,6 +96,9 @@ fetch_imap_connect(struct account *a)
 	struct fetch_imap_data	*data = a->data;
 	char			*cause;
 
+	if (imap_connect(a) != 0)
+		return (-1);
+
 	data->io = connectproxy(&data->server,
 	    conf.verify_certs, conf.proxy, IO_CRLF, conf.timeout, &cause);
 	if (data->io == NULL) {
@@ -112,7 +115,7 @@ fetch_imap_connect(struct account *a)
 	data->close = fetch_imap_close;
 	data->src = data->server.host;
 
-	return (imap_connect(a));
+	return (0);
 }
 
 /* Fill io list. */
