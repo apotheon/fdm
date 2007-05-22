@@ -1,4 +1,4 @@
-/* $Id: imap-common.c,v 1.37 2007-05-21 20:20:17 nicm Exp $ */
+/* $Id: imap-common.c,v 1.38 2007-05-22 20:29:03 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -217,7 +217,7 @@ imap_closed(struct account *a)
 {
 	struct fetch_imap_data	*data = a->data;
 
-	return (data->close && data->closed(a));
+	return (data->closef && data->closed(a));
 }
 
 /* Clean up on disconnect. */
@@ -506,7 +506,7 @@ imap_next(struct account *a, unused struct fetch_ctx *fctx)
 	}
 
 	/* Close down connection nicely if asked. */
-	if (data->close) {
+	if (data->closef) {
 		if (imap_putln(a, "%u CLOSE", ++data->tag) != 0)
 			return (FETCH_ERROR);
 		data->state = imap_quit1;
