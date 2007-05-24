@@ -1,4 +1,4 @@
-/* $Id: fetch-pop3.c,v 1.93 2007-05-21 20:20:17 nicm Exp $ */
+/* $Id: fetch-pop3.c,v 1.94 2007-05-24 21:10:32 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -584,7 +584,7 @@ fetch_pop3_retr(struct account *a, unused struct fetch_ctx *fctx)
 	data->bodylines = -1;
 
 	data->state = fetch_pop3_line;
-	return (FETCH_BLOCK);
+	return (FETCH_AGAIN);
 }
 
 /* Line state. */
