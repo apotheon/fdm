@@ -1,4 +1,4 @@
-/* $Id: fdm.c,v 1.137 2007-05-24 20:55:09 nicm Exp $ */
+/* $Id: fdm.c,v 1.138 2007-05-29 12:48:34 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -800,7 +800,8 @@ main(int argc, char **argv)
 			ARRAY_ADD(&dead_children, child);
 		}
 	}
-	xfree(ios);
+	if (ios != NULL)
+		xfree(ios);
 
 	/* free the dead children */
 	for (i = 0; i < ARRAY_LENGTH(&dead_children); i++) {
