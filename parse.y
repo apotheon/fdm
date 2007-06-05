@@ -1,4 +1,4 @@
-/* $Id: parse.y,v 1.198 2007-05-19 13:03:51 nicm Exp $ */
+/* $Id: parse.y,v 1.199 2007-06-05 13:49:35 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -1798,7 +1798,7 @@ actitem: TOKPIPE strv
 		 data->value.str = $3;
 	 }
        | TOKAPPENDSTRING strv
-/**        [$2: strv (char *)] */
+/**      [$2: strv (char *)] */
 	 {
 		 struct deliver_append_string_data	*data;
 
@@ -1897,6 +1897,7 @@ actitem: TOKPIPE strv
 		 data->value.str = $4;
 	 }
        | actions
+/**      [$1: actions (struct replstrs *)] */
 	 {
 		 struct deliver_action_data	*data;
 
