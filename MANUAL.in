@@ -86,6 +86,11 @@ OpenBSD with, for example:
 
 It is not necessary to add a user if fdm is always started by a non-root user.
 
+fdm can be built to use PCRE rather than standard regexps. To do so, add -DPCRE
+to the make command:
+	
+	$ make -DPCRE
+
 ### Quick start
 
 A simple ~/.fdm.conf file for a single user fetching from POP3, POP3S and IMAP
@@ -1346,5 +1351,5 @@ match "^List-Id:.*<full-disclosure\\.lists\\.grok\\.org\\.uk>" in headers
 	action "full-disclosure"
 
 ================================================================================
-$Id: MANUAL.in,v 1.20 2007-05-19 13:03:49 nicm Exp $
+$Id: MANUAL.in,v 1.21 2007-06-05 13:48:38 nicm Exp $
 
