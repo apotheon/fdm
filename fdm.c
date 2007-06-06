@@ -1,4 +1,4 @@
-/* $Id: fdm.c,v 1.138 2007-05-29 12:48:34 nicm Exp $ */
+/* $Id: fdm.c,v 1.139 2007-06-06 08:53:21 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -524,7 +524,7 @@ main(int argc, char **argv)
 	log_debug2("headers are: %s", strs);
 	xfree(strs);
 	if (conf.domains == NULL) {
-		conf.domains = xmalloc(sizeof *conf.headers);
+		conf.domains = xmalloc(sizeof *conf.domains);
 		ARRAY_INIT(conf.domains);
 		ARRAY_ADD(conf.domains, xstrdup(conf.info.host));
 		if (conf.info.fqdn != NULL) {
