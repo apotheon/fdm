@@ -1,4 +1,4 @@
-/* $Id: command.c,v 1.35 2007-05-21 20:27:33 nicm Exp $ */
+/* $Id: command.c,v 1.36 2007-06-07 21:19:02 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -29,7 +29,7 @@
 
 /* Start a command. */
 struct cmd *
-cmd_start(const char *s, int flags, int timeout, char *buf, size_t len,
+cmd_start(const char *s, int flags, int timeout, const char *buf, size_t len,
     char **cause)
 {
 	struct cmd	*cmd;

@@ -1,4 +1,4 @@
-/* $Id: cleanup.c,v 1.6 2007-04-25 15:19:53 nicm Exp $ */
+/* $Id: cleanup.c,v 1.7 2007-06-07 21:19:01 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -80,7 +80,7 @@ cleanup_flush(void)
 }
 
 void
-cleanup_register(char *path)
+cleanup_register(const char *path)
 {
 	sigset_t	 set, oset;
 	struct cleanent	*cent;
@@ -103,7 +103,7 @@ cleanup_register(char *path)
 }
 
 void
-cleanup_deregister(char *path)
+cleanup_deregister(const char *path)
 {
 	sigset_t	 set, oset;
 	struct cleanent	*cent;

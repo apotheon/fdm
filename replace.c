@@ -1,4 +1,4 @@
-/* $Id: replace.c,v 1.37 2007-04-30 14:13:19 nicm Exp $ */
+/* $Id: replace.c,v 1.38 2007-06-07 21:19:03 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -122,7 +122,7 @@ match_tag(struct strb *tags, const char *pattern)
 }
 
 void
-default_tags(struct strb **tags, char *src, struct account *a)
+default_tags(struct strb **tags, const char *src, struct account *a)
 {
 	struct tm	*tm;
 	time_t		 t;

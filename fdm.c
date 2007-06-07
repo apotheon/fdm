@@ -1,4 +1,4 @@
-/* $Id: fdm.c,v 1.139 2007-06-06 08:53:21 nicm Exp $ */
+/* $Id: fdm.c,v 1.140 2007-06-07 21:19:02 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -151,7 +151,7 @@ fill_info(const char *home)
 }
 
 void
-fill_fqdn(char *host, char **fqdn, char **addr)
+fill_fqdn(const char *host, char **fqdn, char **addr)
 {
 	char			 ni[NI_MAXHOST];
 	struct addrinfo		*ai;
@@ -196,7 +196,7 @@ dropto(uid_t uid)
 }
 
 int
-check_incl(char *name)
+check_incl(const char *name)
 {
 	u_int	i;
 
@@ -212,7 +212,7 @@ check_incl(char *name)
 }
 
 int
-check_excl(char *name)
+check_excl(const char *name)
 {
 	u_int	i;
 
