@@ -1,4 +1,4 @@
-/* $Id: deliver-mbox.c,v 1.54 2007-03-28 19:59:57 nicm Exp $ */
+/* $Id: deliver-mbox.c,v 1.55 2007-06-07 20:42:03 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -155,6 +155,7 @@ deliver_mbox_deliver(struct deliver_ctx *dctx, struct actitem *ti)
 	 * having written a partial mail. So, block SIGTERM until we're
 	 * done.
 	 */
+	sigemptyset(&set); 
  	sigaddset(&set, SIGTERM);
 	if (sigprocmask(SIG_BLOCK, &set, &oset) < 0)
 		fatal("sigprocmask");
