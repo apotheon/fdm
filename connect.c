@@ -1,4 +1,4 @@
-/* $Id: connect.c,v 1.53 2007-06-08 09:38:56 nicm Exp $ */
+/* $Id: connect.c,v 1.54 2007-06-08 12:41:25 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -36,11 +36,12 @@
 
 #include "fdm.h"
 
-#ifndef	NO_PROXY
 int	sslverify(struct server *, SSL *, char **);
+#ifndef	NO_PROXY
+int	getport(char *);
 int	httpproxy(struct server *, struct proxy *, struct io *, char **);
 int	socks5proxy(struct server *, struct proxy *, struct io *, char **);
-int	getport(char *);
+#endif
 SSL    *makessl(struct server *, int, int, char **);
 
 char *
@@ -165,6 +166,7 @@ getaddrs(const char *host, char **fqdn, char **addr)
 		*fqdn = xstrdup(ni);
 }
 
+#ifndef NO_PROXY
 struct proxy *
 getproxy(const char *xurl)
 {
@@ -310,7 +312,7 @@ getport(char *port)
 	int	         n;
 	const char	*errstr;
 
-	sv = getservbyname(port, NULL);
+	sv = getservbyname(port, "tcp");
 	if (sv == NULL) {
 		n = strtonum(port, 1, UINT16_MAX, &errstr);
 		if (errstr != NULL) {
