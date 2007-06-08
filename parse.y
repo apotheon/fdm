@@ -1,4 +1,4 @@
-/* $Id: parse.y,v 1.200 2007-06-07 21:19:02 nicm Exp $ */
+/* $Id: parse.y,v 1.201 2007-06-08 11:03:34 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -2720,8 +2720,7 @@ poptype: TOKPOP3
          {
 		 $$ = 0;
          }
-       | TOKPOP3S verify
-/**      [$2: verify (int)] */
+       | TOKPOP3S
 	 {
 		 $$ = 1;
 	 }
@@ -2731,8 +2730,7 @@ imaptype: TOKIMAP
           {
 		  $$ = 0;
           }
-        | TOKIMAPS verify
-/**       [$2: verify (int)] */
+        | TOKIMAPS
 	  {
 		  $$ = 1;
 	  }
