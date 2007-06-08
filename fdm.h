@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.279 2007-06-07 21:19:02 nicm Exp $ */
+/* $Id: fdm.h,v 1.280 2007-06-08 09:38:56 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -788,7 +788,6 @@ int			 check_incl(const char *);
 int		         check_excl(const char *);
 int			 use_account(struct account *, char **);
 void			 fill_info(const char *);
-void			 fill_fqdn(const char *, char **, char **);
 
 /* re.c */
 int			 re_compile(struct re *, const char *, int, char **);
@@ -861,6 +860,7 @@ int			 parent_deliver(struct child *, struct msg *,
 /* connect.c */
 char 			*sslerror(const char *);
 char			*sslerror2(int, const char *);
+void			 getaddrs(const char *, char **, char **);
 struct proxy 		*getproxy(const char *);
 struct io 		*connectproxy(struct server *, int, struct proxy *,
 			     const char *, int, char **);

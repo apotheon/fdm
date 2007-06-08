@@ -1,3 +1,7 @@
+08 June 2007
+
+* Check CN against FQDN and user-supplied host when verifying SSL certificates.
+
 21 May 2007
 
 * New layout for most of the fetch code. Now pretty much everything is done
@@ -306,4 +310,4 @@
   the mail was very rarely reallocated, now that the header is added it is.
 * Changed all the descriptions to static buffers and audited use of snprintf.
 
-$Id: CHANGES,v 1.83 2007-05-28 11:45:11 nicm Exp $
+$Id: CHANGES,v 1.84 2007-06-08 09:38:56 nicm Exp $
