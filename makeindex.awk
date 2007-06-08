@@ -1,4 +1,4 @@
-# $Id: makeindex.awk,v 1.6 2007-04-06 13:58:51 nicm Exp $
+# $Id: makeindex.awk,v 1.7 2007-06-08 09:50:58 nicm Exp $
 #
 # Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
 #
@@ -14,6 +14,12 @@
 # IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING
 # OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 #
+
+/%%VERSION%%/ {
+	gsub(/%%VERSION%%/, V);
+	print ($0);
+	next;
+}
 
 /^.*$/ {
 	if ($0 ~ /^%%/) {

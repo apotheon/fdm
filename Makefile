@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.133 2007-05-18 16:19:33 nicm Exp $
+# $Id: Makefile,v 1.134 2007-06-08 09:50:57 nicm Exp $
 
 .SUFFIXES: .c .o .y .l .h
 .PHONY: clean lint regress yannotate manual \
@@ -140,7 +140,7 @@ upload-index.html:
 update-index.html: manual
 		nroff -mdoc fdm.conf.5|m2h -u > fdm.conf.5.html
 		nroff -mdoc fdm.1|m2h -u > fdm.1.html
-		awk -f makeindex.awk index.html.in > index.html
+		awk -v V=${VERSION} -f makeindex.awk index.html.in > index.html
 		rm -f fdm.conf.5.html fdm.1.html
 
 manual:
