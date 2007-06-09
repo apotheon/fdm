@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.134 2007-06-08 09:50:57 nicm Exp $
+# $Id: Makefile,v 1.135 2007-06-09 19:48:35 nicm Exp $
 
 .SUFFIXES: .c .o .y .l .h
 .PHONY: clean lint regress yannotate manual \
@@ -29,7 +29,7 @@ HDRS= fdm.h array.h fetch.h match.h deliver.h
 LEX= lex
 YACC= yacc -d
 
-CC= cc
+CC?= cc
 INCDIRS+= -I. -I- -I/usr/local/include
 CFLAGS+= -DBUILD="\"$(VERSION) ($(DATE))\""
 .ifdef PROFILE

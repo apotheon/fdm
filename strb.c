@@ -1,4 +1,4 @@
-/* $Id: strb.c,v 1.10 2007-05-11 10:57:07 nicm Exp $ */
+/* $Id: strb.c,v 1.11 2007-06-09 19:48:35 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -181,4 +181,3 @@ strb_match(struct strb *sb, const char *patt)
 	}
 	return (NULL);
 }
-
