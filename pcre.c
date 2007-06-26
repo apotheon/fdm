@@ -1,4 +1,4 @@
-/* $Id: pcre.c,v 1.6 2007-05-28 11:45:11 nicm Exp $ */
+/* $Id: pcre.c,v 1.7 2007-06-26 13:41:45 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -26,7 +26,7 @@
 #include "fdm.h"
 
 int
-re_compile(struct re *re, char *s, int flags, char **cause)
+re_compile(struct re *re, const char *s, int flags, char **cause)
 {
 	const char	*error;
 	int		 off;
@@ -51,13 +51,13 @@ re_compile(struct re *re, char *s, int flags, char **cause)
 }
 
 int
-re_string(struct re *re, char *s, struct rmlist *rml, char **cause)
+re_string(struct re *re, const char *s, struct rmlist *rml, char **cause)
 {
 	return (re_block(re, s, strlen(s), rml, cause));
 }
 
 int
-re_block(struct re *re, void *buf, size_t len, struct rmlist *rml, char **cause)
+re_block(struct re *re, const void *buf, size_t len, struct rmlist *rml, char **cause)
 {
 	int		res, pm[NPMATCH];
 	u_int		i, j;
