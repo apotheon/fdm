@@ -1,4 +1,4 @@
-/* $Id: pcre.c,v 1.7 2007-06-26 13:41:45 nicm Exp $ */
+/* $Id: pcre.c,v 1.8 2007-06-27 14:10:04 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -44,7 +44,7 @@ re_compile(struct re *re, const char *s, int flags, char **cause)
 
 	if ((re->pcre = pcre_compile(s, flags, &error, &off, NULL)) == NULL) {
 		*cause = xstrdup(error);
-		return (1);
+		return (-1);
 	}
 
 	return (0);
@@ -57,7 +57,8 @@ re_string(struct re *re, const char *s, struct rmlist *rml, char **cause)
 }
 
 int
-re_block(struct re *re, const void *buf, size_t len, struct rmlist *rml, char **cause)
+re_block(struct re *re, const void *buf, size_t len, struct rmlist *rml,
+    char **cause)
 {
 	int		res, pm[NPMATCH];
 	u_int		i, j;

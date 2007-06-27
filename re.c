@@ -1,4 +1,4 @@
-/* $Id: re.c,v 1.16 2007-06-07 21:19:03 nicm Exp $ */
+/* $Id: re.c,v 1.17 2007-06-27 14:10:04 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -49,7 +49,7 @@ re_compile(struct re *re, const char *s, int flags, char **cause)
 		buf = xmalloc(len);
 		regerror(error, &re->re, buf, len);
 		xasprintf(cause, "%s%s", s, buf);
-		return (1);
+		return (-1);
 	}
 
 	return (0);
