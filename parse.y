@@ -1,4 +1,4 @@
-/* $Id: parse.y,v 1.202 2007-06-27 10:57:47 nicm Exp $ */
+/* $Id: parse.y,v 1.203 2007-06-27 11:43:39 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -364,16 +364,12 @@ print_rule(struct rule *r)
 {
 	struct expritem	*ei;
 	char		 s[BUFSIZ], *sa, *su, *ss, desc[DESCBUFSIZE];
-	size_t		 off;
 
 	if (r->expr == NULL)
 		strlcpy(s, "all ", sizeof s);
 	else {
 		*s = '\0';
-		off = 0;
 		TAILQ_FOREACH(ei, r->expr, entry) {
-			if (ei->inverted)
-				off = strlcat(s, "not ", sizeof s);
 			switch (ei->op) {
 			case OP_AND:
 				strlcat(s, "and ", sizeof s);
@@ -384,6 +380,8 @@ print_rule(struct rule *r)
 			case OP_NONE:
 				break;
 			}
+			if (ei->inverted)
+				strlcat(s, "not ", sizeof s);
 			ei->match->desc(ei, desc, sizeof desc);
 			strlcat(s, desc, sizeof s);
 			strlcat(s, " ", sizeof s);
