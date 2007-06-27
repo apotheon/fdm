@@ -1,4 +1,4 @@
-/* $Id: parse.y,v 1.203 2007-06-27 11:43:39 nicm Exp $ */
+/* $Id: parse.y,v 1.204 2007-06-27 15:53:00 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -962,7 +962,7 @@ replstrv: strv
 
 		  if (parse_tags == NULL) {
 			  strb_create(&parse_tags);
-			  default_tags(&parse_tags, NULL, NULL);
+			  default_tags(&parse_tags, NULL);
 		  }
 
 		  rs.str = $1;
@@ -978,7 +978,7 @@ replpathv: strv
 
 		  if (parse_tags == NULL) {
 			  strb_create(&parse_tags);
-			  default_tags(&parse_tags, NULL, NULL);
+			  default_tags(&parse_tags, NULL);
 		  }
 
 		  rp.str = $1;

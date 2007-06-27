@@ -1,4 +1,4 @@
-/* $Id: fetch-maildir.c,v 1.71 2007-05-19 13:03:50 nicm Exp $ */
+/* $Id: fetch-maildir.c,v 1.72 2007-06-27 15:52:59 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -381,7 +381,7 @@ restart:
 
 	/* Add the tags. */
 	maildir = xbasename(xdirname(data->path));
-	default_tags(&m->tags, maildir, a);
+	default_tags(&m->tags, maildir);
 	add_tag(&m->tags, "maildir", "%s", maildir);
 
 	/* Add aux data. */

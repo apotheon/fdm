@@ -1,4 +1,4 @@
-/* $Id: fetch-pop3.c,v 1.94 2007-05-24 21:10:32 nicm Exp $ */
+/* $Id: fetch-pop3.c,v 1.95 2007-06-27 15:52:59 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -633,7 +633,7 @@ fetch_pop3_line(struct account *a, struct fetch_ctx *fctx)
 	}
 
 	/* Tag mail. */
-	default_tags(&m->tags, data->server.host, a);
+	default_tags(&m->tags, data->server.host);
 	add_tag(&m->tags, "server", "%s", data->server.host);
 	add_tag(&m->tags, "port", "%s", data->server.port);
 	add_tag(&m->tags, "server_uid", "%s", aux->uid);

@@ -1,4 +1,4 @@
-/* $Id: fetch-nntp.c,v 1.83 2007-05-21 20:20:17 nicm Exp $ */
+/* $Id: fetch-nntp.c,v 1.84 2007-06-27 15:52:59 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -762,7 +762,7 @@ fetch_nntp_line(struct account *a, struct fetch_ctx *fctx)
 	}
 
 	/* Tag mail. */
-	default_tags(&m->tags, group->name, a);
+	default_tags(&m->tags, group->name);
 	add_tag(&m->tags, "group", "%s", group->name);
 	add_tag(&m->tags, "server", "%s", data->server.host);
 	add_tag(&m->tags, "port", "%s", data->server.port);

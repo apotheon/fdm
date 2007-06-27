@@ -1,6 +1,6 @@
 /* -*-C-*- */
 
-/* $Id: lex.l,v 1.95 2007-05-08 19:45:16 nicm Exp $ */
+/* $Id: lex.l,v 1.96 2007-06-27 15:53:00 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -85,7 +85,7 @@ include[ \t]*\" {
 
 	if (parse_tags == NULL) {
 		strb_create(&parse_tags);
-		default_tags(&parse_tags, NULL, NULL);
+		default_tags(&parse_tags, NULL);
 	}
 
 	rp.str = read_str('"', 1);
@@ -102,7 +102,7 @@ include[ \t]*\' {
 
 	if (parse_tags == NULL) {
 		strb_create(&parse_tags);
-		default_tags(&parse_tags, NULL, NULL);
+		default_tags(&parse_tags, NULL);
 	}
 
 	rp.str = read_str('\'', 0);

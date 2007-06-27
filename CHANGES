@@ -1,5 +1,7 @@
 27 June 2007
 
+* New tags taken from the date header corresponding to the current time tags:
+  mail-hour, mail-year, etc. If the header is invalid, the current time is used.
 * Make fdm-sanitize also obfuscate the lengths of login/pass with IMAP.
 * Bug fix: "and not" rather than "not and" in ruleset -vv output.
 * "match tag ..." is now completely gone.
@@ -322,4 +324,4 @@
   the mail was very rarely reallocated, now that the header is added it is.
 * Changed all the descriptions to static buffers and audited use of snprintf.
 
-$Id: CHANGES,v 1.88 2007-06-27 11:57:14 nicm Exp $
+$Id: CHANGES,v 1.89 2007-06-27 15:52:59 nicm Exp $

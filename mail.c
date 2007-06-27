@@ -1,4 +1,4 @@
-/* $Id: mail.c,v 1.100 2007-05-09 09:08:26 nicm Exp $ */
+/* $Id: mail.c,v 1.101 2007-06-27 15:53:00 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -148,20 +148,6 @@ mail_resize(struct mail *m, size_t size)
 	}
 	m->data = m->base + m->off;
 	return (0);
-}
-
-char *
-rfc822_time(time_t t, char *buf, size_t len)
-{
-	struct tm	*tm;
-	size_t		 n;
-
-	tm = localtime(&t);
-	if ((n = strftime(buf, len, "%a, %d %b %Y %H:%M:%S %z", tm)) == 0)
-		return (NULL);
-	if (n == len)
-		return (NULL);
-	return (buf);
 }
 
 int

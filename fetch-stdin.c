@@ -1,4 +1,4 @@
-/* $Id: fetch-stdin.c,v 1.60 2007-05-19 13:03:50 nicm Exp $ */
+/* $Id: fetch-stdin.c,v 1.61 2007-06-27 15:52:59 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -132,7 +132,7 @@ fetch_stdin_fetch(struct account *a, struct fetch_ctx *fctx)
 	m->auxfree = NULL;
 
 	/* Add default tags. */
-	default_tags(&m->tags, NULL, a);
+	default_tags(&m->tags, NULL);
 
 	for (;;) {
 		/*
