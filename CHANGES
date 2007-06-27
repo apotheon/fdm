@@ -1,5 +1,6 @@
 27 June 2007
 
+* Make fdm-sanitize also obfuscate the lengths of login/pass with IMAP.
 * Bug fix: "and not" rather than "not and" in ruleset -vv output.
 * "match tag ..." is now completely gone.
 * "value" keyword is now preferred for add-header action:
@@ -321,4 +322,4 @@
   the mail was very rarely reallocated, now that the header is added it is.
 * Changed all the descriptions to static buffers and audited use of snprintf.
 
-$Id: CHANGES,v 1.87 2007-06-27 11:43:39 nicm Exp $
+$Id: CHANGES,v 1.88 2007-06-27 11:57:14 nicm Exp $
