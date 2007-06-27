@@ -1,5 +1,11 @@
 27 June 2007
 
+* "match tag ..." is now completely gone.
+* "value" keyword is now preferred for add-header action:
+
+	action "ah" add-header "My-Header" value "ABC"
+
+  but is not mandatory.
 * fdm 1.2 released.
 
 08 June 2007
@@ -314,4 +320,4 @@
   the mail was very rarely reallocated, now that the header is added it is.
 * Changed all the descriptions to static buffers and audited use of snprintf.
 
-$Id: CHANGES,v 1.85 2007-06-27 08:19:57 nicm Exp $
+$Id: CHANGES,v 1.86 2007-06-27 10:57:44 nicm Exp $

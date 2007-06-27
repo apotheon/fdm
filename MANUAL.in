@@ -835,7 +835,7 @@ of this). Possible rewrite action definitions are:
 
 Simple actions are provided to add a header to a mail:
 
-	action "lines" add-header "Lines" "%[lines]"
+	action "lines" add-header "Lines" value "%[lines]"
 
 Or to remove all instances of a header from mail:
 
@@ -1398,5 +1398,5 @@ match "^List-Id:.*<full-disclosure\\.lists\\.grok\\.org\\.uk>" in headers
 	action "full-disclosure"
 
 ================================================================================
-$Id: MANUAL.in,v 1.23 2007-06-27 06:58:13 nicm Exp $
+$Id: MANUAL.in,v 1.24 2007-06-27 10:57:45 nicm Exp $
 

@@ -1,4 +1,4 @@
-/* $Id: deliver-add-header.c,v 1.15 2007-05-02 20:29:34 nicm Exp $ */
+/* $Id: deliver-add-header.c,v 1.16 2007-06-27 10:57:46 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -84,5 +84,5 @@ deliver_add_header_desc(struct actitem *ti, char *buf, size_t len)
 	struct deliver_add_header_data	*data = ti->data;
 
 	xsnprintf(buf, len,
-	    "add-header \"%s\" \"%s\"", data->hdr.str, data->value.str);
+	    "add-header \"%s\" value \"%s\"", data->hdr.str, data->value.str);
 }
