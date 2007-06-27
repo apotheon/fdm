@@ -1,4 +1,4 @@
-<!-- $Id: index.html.in,v 1.6 2007-06-08 09:50:58 nicm Exp $ -->
+<!-- $Id: index.html.in,v 1.7 2007-06-27 07:36:26 nicm Exp $ -->
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
@@ -6,7 +6,7 @@
 </head>
 <body>
 <p>The project page is <a href="http://sf.net/projects/fdm">here.</a></p>
-<p>Download fdm with <a href="http://easynews.dl.sourceforge.net/sourceforge/fdm/fdm-%%VERSION%%.tar.gz">this link.</a></p>
+<p>Download fdm with <a href="http://downloads.sourceforge.net/fdm/fdm-%%VERSION%%.tar.gz">this link.</a></p>
 <hr>
 <pre>
 &&MANUAL
