@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.137 2007-06-27 15:52:59 nicm Exp $
+# $Id: Makefile,v 1.138 2007-06-27 21:50:39 nicm Exp $
 
 .SUFFIXES: .c .o .y .l .h
 .PHONY: clean lint regress yannotate manual \
@@ -115,7 +115,7 @@ ${PROG}:	${OBJS}
 dist:		clean manual
 		grep '^#CFLAGS.*-DDEBUG' Makefile
 		grep '^#CFLAGS.*-DDEBUG' GNUmakefile
-		tar -zxc \
+		tar -zc \
 			-s '/.*/${PROG}-${VERSION}\/\0/' \
 			-f ${PROG}-${VERSION}.tar.gz ${DISTFILES}
 
