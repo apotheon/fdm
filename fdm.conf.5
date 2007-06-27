@@ -1,4 +1,4 @@
-.\" $Id: fdm.conf.5,v 1.68 2007-06-08 11:03:33 nicm Exp $
+.\" $Id: fdm.conf.5,v 1.69 2007-06-27 06:58:13 nicm Exp $
 .\"
 .\" Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
 .\"
@@ -624,6 +624,9 @@ Write the mail to
 If
 .Ic add-from
 is specified, an mbox-style "From" line is prepended.
+.It Ic action Ar name
+This invokes another named action.
+A maximum of five actions may be called in a sequence.
 .El
 .Sh RULES
 Rules are specified using the
