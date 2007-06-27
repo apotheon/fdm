@@ -1,4 +1,4 @@
-/* $Id: connect.c,v 1.55 2007-06-09 19:47:45 nicm Exp $ */
+/* $Id: connect.c,v 1.56 2007-06-27 07:11:57 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -133,7 +133,6 @@ sslverify(struct server *srv, SSL *ssl, char **cause)
 			*ptr2 = '/';
 	} while ((ptr = strstr(ptr, "/CN=")) != NULL);
 	xfree(fqdn);
-
 
 	/* Valid CN. */
 	if (ptr != NULL)
