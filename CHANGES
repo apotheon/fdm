@@ -1,3 +1,7 @@
+27 June 2007
+
+* fdm 1.2 released.
+
 08 June 2007
 
 * Check CN against FQDN and user-supplied host when verifying SSL certificates.
@@ -310,4 +314,4 @@
   the mail was very rarely reallocated, now that the header is added it is.
 * Changed all the descriptions to static buffers and audited use of snprintf.
 
-$Id: CHANGES,v 1.84 2007-06-08 09:38:56 nicm Exp $
+$Id: CHANGES,v 1.85 2007-06-27 08:19:57 nicm Exp $
