@@ -1,4 +1,4 @@
-/* $Id: mail-callback.c,v 1.3 2007-05-19 13:03:51 nicm Exp $ */
+/* $Id: mail-callback.c,v 1.4 2007-06-27 11:30:34 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -133,7 +133,7 @@ oversize_mail(struct account *a, struct fetch_ctx *fctx, struct mail *m)
 
 	if (conf.del_big) {
 		/*
-		 * Create an mctx and  queue on the done queue.
+		 * Create an mctx and queue on the done queue.
 		 */
 		m->decision = DECISION_DROP;
 		m->idx = ++a->idx;
