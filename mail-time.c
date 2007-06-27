@@ -1,7 +1,7 @@
-/* $Id: mail-time.c,v 1.1 2007-06-27 15:53:00 nicm Exp $ */
+/* $Id: mail-time.c,v 1.2 2007-06-27 17:21:21 nicm Exp $ */
 
 /*
- * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
+ * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
  *
  * Permission to use, copy, modify, and distribute this software for any
  * purpose with or without fee is hereby granted, provided that the above
@@ -60,7 +60,7 @@ tzlookup(const char *tz, int *off)
 
 	/* Set the new timezone. */
 	if (setenv("TZ", tz, 1) != 0)
-		return (1);
+		goto error;
 	tzset();
 
 	/* Get the time at epoch + one year. */
@@ -74,13 +74,18 @@ tzlookup(const char *tz, int *off)
 	/* Restore the old timezone. */
 	if (saved_tz != NULL) {
 		if (setenv("TZ", saved_tz, 1) != 0)
-			return (1);
+			goto error;
 		xfree(saved_tz);
 	} else
 		unsetenv("TZ");
 	tzset();
 
 	return (0);
+
+error:
+	if (saved_tz != NULL)
+		xfree(saved_tz);
+	return (-1);
 }
 
 int
