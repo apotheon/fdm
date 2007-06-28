@@ -1,4 +1,4 @@
-/* $Id: xmalloc-debug.c,v 1.13 2007-05-18 18:46:40 nicm Exp $ */
+/* $Id: xmalloc-debug.c,v 1.14 2007-06-28 14:00:50 nicm Exp $ */
 
 /*
  * Copyright (c) 2004 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -75,7 +75,7 @@ struct {
 void			 xmalloc_called(const char *, u_int, enum xmalloc_type);
 struct xmalloc_blk	*xmalloc_find(void *);
 void			 xmalloc_new(const char *, u_int, void *, size_t);
-void			 xmalloc_change(const char *,u_int, void *, void *,
+void			 xmalloc_change(const char *, u_int, void *, void *,
 			     size_t);
 void			 xmalloc_free(const char *, u_int, void *);
 

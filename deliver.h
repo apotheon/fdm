@@ -1,4 +1,4 @@
-/* $Id: deliver.h,v 1.15 2007-06-28 13:29:28 nicm Exp $ */
+/* $Id: deliver.h,v 1.16 2007-06-28 14:00:50 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -185,7 +185,7 @@ extern struct deliver 	 deliver_append;
 /* deliver-rewrite.c */
 extern struct deliver 	 deliver_rewrite;
 
-/* deliver-to_cache.c */
+/* deliver-to-cache.c */
 extern struct deliver 	 deliver_to_cache;
 
 #endif
