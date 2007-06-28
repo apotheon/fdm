@@ -1,6 +1,6 @@
 /* -*-C-*- */
 
-/* $Id: lex.l,v 1.98 2007-06-28 15:00:33 nicm Exp $ */
+/* $Id: lex.l,v 1.99 2007-06-28 19:40:47 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -65,7 +65,7 @@ char				*curfile;
 [0-9]+ {
 	const char	*errstr;
 
-        yylval.number = strtonum(yytext, 0, LLONG_MAX, &errstr);
+	yylval.number = strtonum(yytext, 0, LLONG_MAX, &errstr);
 	if (errstr != NULL)
 		yyerror("number is %s", errstr);
 
@@ -78,6 +78,14 @@ char				*curfile;
 \" {
 	yylval.string = read_str('"', 1);
         return (STRING);
+}
+\$\( {
+	yylval.string = read_str(')', 1);
+	return (STRCOMMAND);
+}
+\%\( {
+	yylval.string = read_str(')', 1);
+	return (NUMCOMMAND);
 }
 include[ \t]*\" {
 	struct replpath	 rp;
