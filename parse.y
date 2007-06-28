@@ -1,4 +1,4 @@
-/* $Id: parse.y,v 1.209 2007-06-28 19:40:47 nicm Exp $ */
+/* $Id: parse.y,v 1.210 2007-06-28 20:32:23 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -735,7 +735,7 @@ run_command(const char *s)
 	if (*s == '\0')
 		yyerror("empty command");
 
-	if ((cmd = cmd_start(s, CMD_OUT, 60, NULL, 0, &cause)) == NULL)
+	if ((cmd = cmd_start(s, CMD_OUT, DEFTIMEOUT, NULL, 0, &cause)) == NULL)
 		yyerror("%s: %s", s, cause);
 
 	llen = IO_LINESIZE;
@@ -771,8 +771,11 @@ run_command(const char *s)
 
 	cmd_free(cmd);
 
-	if (slen > 1)
-		sbuf[slen - 2] = '\0';
+	slen--;
+	while (slen > 0 && sbuf[slen - 1] == '\n') {
+		sbuf[slen - 1] = '\0';
+		slen--;
+	}
 	return (sbuf);
 }
 %}
