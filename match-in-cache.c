@@ -1,4 +1,4 @@
-/* $Id: match-in-cache.c,v 1.2 2007-06-28 15:48:45 nicm Exp $ */
+/* $Id: match-in-cache.c,v 1.3 2007-06-28 17:58:27 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -65,7 +65,7 @@ match_in_cache_match(struct mail_ctx *mctx, struct expritem *ei)
 			return (MATCH_FALSE);
 		}
 	}
-	log_warnx("%s: cache %s not found", a->name, data->path);
+	log_warnx("%s: cache %s not declared", a->name, data->path);
 
 error:
 	if (key != NULL)

@@ -1,4 +1,4 @@
-/* $Id: deliver-to-cache.c,v 1.2 2007-06-28 15:48:45 nicm Exp $ */
+/* $Id: deliver-to-cache.c,v 1.3 2007-06-28 17:58:27 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -67,7 +67,7 @@ deliver_to_cache_deliver(struct deliver_ctx *dctx, struct actitem *ti)
 			return (DELIVER_SUCCESS);
 		}
 	}
-	log_warnx("%s: cache %s not found", a->name, data->path);
+	log_warnx("%s: cache %s not declared", a->name, data->path);
 
 error:
 	if (key != NULL)
