@@ -93,6 +93,10 @@ to the make command:
 	
 	$ make -DPCRE
 
+Or PCRE=1 if using GNU make:
+
+	$ make PCRE=1
+
 ### Quick start
 
 A simple ~/.fdm.conf file for a single user fetching from POP3, POP3S and IMAP
@@ -1395,5 +1399,5 @@ match "^List-Id:.*<full-disclosure\\.lists\\.grok\\.org\\.uk>" in headers
 	action "full-disclosure"
 
 ================================================================================
-$Id: MANUAL.in,v 1.26 2007-06-27 21:29:22 nicm Exp $
+$Id: MANUAL.in,v 1.27 2007-06-28 13:08:43 nicm Exp $
 
