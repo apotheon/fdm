@@ -1,6 +1,6 @@
 /* -*-C-*- */
 
-/* $Id: lex.l,v 1.96 2007-06-27 15:53:00 nicm Exp $ */
+/* $Id: lex.l,v 1.97 2007-06-28 13:29:28 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -172,6 +172,7 @@ domains return (TOKDOMAINS);
 dotlock return (LCKDOTLOCK);
 drop return (TOKDROP);
 exec return (TOKEXEC);
+expire return (TOKEXPIRE);
 fcntl return (LCKFCNTL);
 file-group return (TOKFILEGROUP);
 file-umask return (TOKFILEUMASK);
@@ -185,8 +186,10 @@ headers return (TOKHEADERS);
 imap return (TOKIMAP);
 imaps return (TOKIMAPS);
 in return (TOKIN);
+in-cache return (TOKINCACHE);
 invalid return (TOKINVALID);
 keep return (TOKKEEP);
+key return (TOKKEY);
 lock-file return (TOKLOCKFILE);
 maildir return (TOKMAILDIR);
 maildirs return (TOKMAILDIRS);
@@ -222,6 +225,7 @@ tag return (TOKTAG);
 tagged return (TOKTAGGED);
 timeout return (TOKTIMEOUT);
 to return (TOKTO);
+to-cache return (TOKTOCACHE);
 total-size return (TOKTOTALSIZE);
 unmatched return (TOKUNMATCHED);
 unmatched-mail return (TOKIMPLACT);

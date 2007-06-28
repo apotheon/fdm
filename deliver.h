@@ -1,4 +1,4 @@
-/* $Id: deliver.h,v 1.14 2007-05-04 10:47:50 nicm Exp $ */
+/* $Id: deliver.h,v 1.15 2007-06-28 13:29:28 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -132,6 +132,12 @@ struct deliver_action_data {
 	struct replstrs	*actions;
 };
 
+/* Deliver rewrite data. */
+struct deliver_to_cache_data {
+	char		*path;
+	struct replstr	 key;
+};
+
 /* deliver-smtp.c */
 extern struct deliver	 deliver_smtp;
 
@@ -178,5 +184,8 @@ extern struct deliver 	 deliver_append;
 
 /* deliver-rewrite.c */
 extern struct deliver 	 deliver_rewrite;
+
+/* deliver-to_cache.c */
+extern struct deliver 	 deliver_to_cache;
 
 #endif

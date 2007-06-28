@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.138 2007-06-27 21:50:39 nicm Exp $
+# $Id: Makefile,v 1.139 2007-06-28 13:29:27 nicm Exp $
 
 .SUFFIXES: .c .o .y .l .h
 .PHONY: clean lint regress yannotate manual \
@@ -22,7 +22,7 @@ SRCS= fdm.c log.c xmalloc.c xmalloc-debug.c io.c replace.c connect.c mail.c \
       deliver-stdout.c deliver-append-string.c strb.c deliver-add-header.c \
       deliver-exec.c child-fetch.c parent-fetch.c child-deliver.c \
       parent-deliver.c mail-state.c netrc.c shm-mmap.c deliver-tag.c buffer.c \
-      mail-callback.c mail-time.c \
+      mail-callback.c mail-time.c db-tdb.c deliver-to-cache.c match-in-cache.c \
       parse.y lex.l
 HDRS= fdm.h array.h fetch.h match.h deliver.h
 
@@ -45,6 +45,10 @@ CFLAGS+= -Wmissing-prototypes -Wstrict-prototypes -Wmissing-declarations
 CFLAGS+= -Wwrite-strings -Wshadow -Wpointer-arith -Wcast-qual -Wsign-compare
 CFLAGS+= -Wundef -Wshadow -Wbad-function-cast -Winline -Wcast-align
 
+.ifdef DB
+CFLAGS+= -DDB
+LIBS+= -ltdb
+.endif
 .ifdef PCRE
 CFLAGS+= -DPCRE
 LIBS+= -lpcre

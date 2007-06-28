@@ -1,4 +1,4 @@
-/* $Id: pcre.c,v 1.8 2007-06-27 14:10:04 nicm Exp $ */
+/* $Id: pcre.c,v 1.9 2007-06-28 13:29:28 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -104,4 +104,4 @@ re_free(struct re *re)
 	pcre_free(re->pcre);
 }
 
-#endif
+#endif /* PCRE */

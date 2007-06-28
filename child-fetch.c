@@ -1,4 +1,4 @@
-/* $Id: child-fetch.c,v 1.40 2007-05-19 13:03:49 nicm Exp $ */
+/* $Id: child-fetch.c,v 1.41 2007-06-28 13:29:27 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -47,6 +47,33 @@ void	fetch_free(struct fetch_ctx *);
 double	time_polling = 0.0;
 double	time_blocked = 0.0;
 #endif
+
+int
+open_cache(struct account *a, struct cache *cache)
+{
+	int	n;
+
+	if (cache->db != NULL)
+		return (0);
+
+	if ((cache->db = db_open(cache->path)) == NULL) {
+		log_warn("%s: %s", a->name, cache->path);
+		return (-1);
+	}
+
+	n = db_size(cache->db);
+	log_debug3("%s: opened cache %s: %d items", a->name, cache->path, n);
+
+	if (db_expire(cache->db, cache->expire) != 0) {
+		log_warnx("%s: %s: expiry failed", a->name, cache->path);
+		return (-1);
+	}
+
+	n -= db_size(cache->db);
+	log_debug3("%s: cache %s: expired %d items", a->name, cache->path, n);
+
+	return (0);
+}
 
 int
 child_fetch(struct child *child, struct io *io)
@@ -348,6 +375,7 @@ fetch_account(struct account *a, struct io *io, double tim)
 	struct msgbuf	 msgbuf;
 	int		 error;
 	u_int		 n, last;
+	struct cache	*cache;
 
 	log_debug2("%s: fetching", a->name);
 
@@ -405,6 +433,12 @@ fetch_account(struct account *a, struct io *io, double tim)
 				break;
 			}
 		}
+	}
+
+	/* Close caches. */
+	TAILQ_FOREACH(cache, &conf.caches, entry) {
+		if (cache->db != NULL)
+			db_close(cache->db);
 	}
 
 	/* Report error and free queues. */

@@ -1,4 +1,4 @@
-/* $Id: re.c,v 1.17 2007-06-27 14:10:04 nicm Exp $ */
+/* $Id: re.c,v 1.18 2007-06-28 13:29:28 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -108,4 +108,4 @@ re_free(struct re *re)
 	regfree(&re->re);
 }
 
-#endif
+#endif /* !PCRE */
