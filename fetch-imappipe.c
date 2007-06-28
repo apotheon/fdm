@@ -1,4 +1,4 @@
-/* $Id: fetch-imappipe.c,v 1.32 2007-05-22 09:15:48 nicm Exp $ */
+/* $Id: fetch-imappipe.c,v 1.33 2007-06-28 15:48:45 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -59,7 +59,7 @@ fetch_imappipe_putln(struct account *a, const char *fmt, va_list ap)
 	return (0);
 }
 
-/* Get line from server. */ 
+/* Get line from server. */
 int
 fetch_imappipe_getln(struct account *a, char **line)
 {
@@ -118,7 +118,7 @@ fetch_imappipe_connect(struct account *a)
 	if (imap_connect(a) != 0)
 		return (-1);
 
-	data->cmd = 
+	data->cmd =
 	    cmd_start(data->pipecmd, CMD_IN|CMD_OUT, 0, NULL, 0, &cause);
 	if (data->cmd == NULL) {
 		log_warnx("%s: %s", a->name, cause);

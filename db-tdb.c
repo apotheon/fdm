@@ -1,4 +1,4 @@
-/* $Id: db-tdb.c,v 1.1 2007-06-28 13:29:27 nicm Exp $ */
+/* $Id: db-tdb.c,v 1.2 2007-06-28 15:48:45 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -65,7 +65,7 @@ db_add(struct db *db, char *k)
 
 	value.dptr = (char *) &v;
 	value.dsize = sizeof v;
-	
+
 	return (tdb_store(db->tdb, key, value, TDB_REPLACE));
 }
 
@@ -73,7 +73,7 @@ int
 db_contains(struct db *db, char *k)
 {
 	TDB_DATA	key;
-	
+
 	key.dptr = k;
 	key.dsize = strlen(k);
 

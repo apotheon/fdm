@@ -1,4 +1,4 @@
-/* $Id: deliver-to-cache.c,v 1.1 2007-06-28 13:29:27 nicm Exp $ */
+/* $Id: deliver-to-cache.c,v 1.2 2007-06-28 15:48:45 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -55,7 +55,7 @@ deliver_to_cache_deliver(struct deliver_ctx *dctx, struct actitem *ti)
 	log_debug2("%s: saving to cache %s: %s", a->name, data->path, key);
 
 	TAILQ_FOREACH(cache, &conf.caches, entry) {
-		if (strcmp(data->path, cache->path) == 0) { 
+		if (strcmp(data->path, cache->path) == 0) {
 			if (open_cache(a, cache) != 0)
 				goto error;
 			if (db_add(cache->db, key) != 0) {

@@ -1,4 +1,4 @@
-/* $Id: fetch-pop3.c,v 1.95 2007-06-27 15:52:59 nicm Exp $ */
+/* $Id: fetch-pop3.c,v 1.96 2007-06-28 15:48:45 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -533,7 +533,7 @@ fetch_pop3_uidl(struct account *a, unused struct fetch_ctx *fctx)
 		return (fetch_pop3_bad(a, line));
 	if (n != data->cur)
 		return (fetch_pop3_bad(a, line));
-	
+
 	line = strchr(line, ' ');
 	if (line == NULL)
 		return (fetch_pop3_bad(a, line));

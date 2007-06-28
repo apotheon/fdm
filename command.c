@@ -1,4 +1,4 @@
-/* $Id: command.c,v 1.36 2007-06-07 21:19:02 nicm Exp $ */
+/* $Id: command.c,v 1.37 2007-06-28 15:48:45 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -218,7 +218,7 @@ cmd_poll(struct cmd *cmd, char **out, char **err, char **lbuf, size_t *llen,
 		case -1:
 			if (errno == EINTR || errno == EAGAIN)
 				break;
-			/* 
+			/*
 			 * Ignore closed input (rely on child returning non-
 			 * zero on error) unless CMD_ONCE is clear (it will
 			 * be needed later).
@@ -287,7 +287,7 @@ cmd_poll(struct cmd *cmd, char **out, char **err, char **lbuf, size_t *llen,
 		}
 	}
 
- 	/* 
+ 	/*
 	 * A closed input is an error, unless writing once or the child has
 	 * died.
 	 */

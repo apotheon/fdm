@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.282 2007-06-28 13:29:28 nicm Exp $ */
+/* $Id: fdm.h,v 1.283 2007-06-28 15:48:45 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -953,7 +953,7 @@ void		 cleanup_deregister(const char *);
 void		 strb_create(struct strb **);
 void		 strb_clear(struct strb **);
 void		 strb_destroy(struct strb **);
-void		 strb_dump(struct strb *, const char *, 
+void		 strb_dump(struct strb *, const char *,
     		     void (*)(const char *, ...));
 void printflike3 strb_add(struct strb **, const char *, const char *, ...);
 void		 strb_vadd(struct strb **, const char *, const char *, va_list);

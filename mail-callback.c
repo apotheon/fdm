@@ -1,4 +1,4 @@
-/* $Id: mail-callback.c,v 1.6 2007-06-28 15:00:33 nicm Exp $ */
+/* $Id: mail-callback.c,v 1.7 2007-06-28 15:48:45 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -42,7 +42,7 @@ transform_mail(struct account *a, unused struct fetch_ctx *fctx, struct mail *m)
 
 	/* Add mail time tags. */
 	if (mailtime(m, &t) != 0) {
-		log_debug2("%s: bad date header, using current time", a->name); 
+		log_debug2("%s: bad date header, using current time", a->name);
 		t = time(NULL);
 	}
 	if ((tm = localtime(&t)) != NULL) {
