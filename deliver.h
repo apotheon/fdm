@@ -1,4 +1,4 @@
-/* $Id: deliver.h,v 1.16 2007-06-28 14:00:50 nicm Exp $ */
+/* $Id: deliver.h,v 1.17 2007-06-28 15:00:33 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -116,11 +116,6 @@ struct deliver_pipe_data {
 	struct replpath	cmd;
 };
 
-/* Deliver append-string data. */
-struct deliver_append_string_data {
-	struct replstr	str;
-};
-
 /* Deliver tag data. */
 struct deliver_tag_data {
 	struct replstr	 key;
@@ -168,9 +163,6 @@ extern struct deliver	 deliver_remove_header;
 
 /* deliver-add-header.c */
 extern struct deliver	 deliver_add_header;
-
-/* deliver-append-string.c */
-extern struct deliver	 deliver_append_string;
 
 /* deliver-mbox.c */
 extern struct deliver 	 deliver_mbox;
