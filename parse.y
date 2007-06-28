@@ -1,4 +1,4 @@
-/* $Id: parse.y,v 1.210 2007-06-28 20:32:23 nicm Exp $ */
+/* $Id: parse.y,v 1.211 2007-06-28 21:03:51 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -729,8 +729,10 @@ run_command(const char *s)
 	struct cmd	*cmd;
 	char		*lbuf, *sbuf;
 	size_t		 llen, slen;
-	char		*cause, *out, *err;
+	char		*cause, *out, *err, *file;
 	int		 status;
+
+	file = curfile == NULL ? conf.conf_file : curfile;
 
 	if (*s == '\0')
 		yyerror("empty command");
@@ -753,7 +755,7 @@ run_command(const char *s)
 		}
 		if (status == 0) {
 			if (err != NULL)
-				log_warnx("%s: %s", s, err);
+				log_warnx("%s: %s: %s", file, s, err);
 			if (out != NULL) {
 				slen += strlen(out) + 1;
 				sbuf = xrealloc(sbuf, 1, slen);

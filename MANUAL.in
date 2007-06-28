@@ -1330,6 +1330,10 @@ Bug reports may also be registered on Sourceforge, but they are likely to be
 dealt with much faster by email, particularly as it is easier to elicit
 further information if it is required.
 
+A mailing list is available for fdm users, see:
+
+	https://lists.sourceforge.net/lists/listinfo/fdm-users 
+
 ### Frequently asked questions
 
 %%% Why?
@@ -1388,5 +1392,5 @@ match "^List-Id:.*<full-disclosure\\.lists\\.grok\\.org\\.uk>" in headers
 	action "full-disclosure"
 
 ================================================================================
-$Id: MANUAL.in,v 1.28 2007-06-28 15:00:31 nicm Exp $
+$Id: MANUAL.in,v 1.29 2007-06-28 21:03:50 nicm Exp $
 
