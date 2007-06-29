@@ -1,4 +1,4 @@
-/* $Id: parse-fn.c,v 1.1 2007-06-29 18:36:04 nicm Exp $ */
+/* $Id: parse-fn.c,v 1.2 2007-06-29 20:36:16 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -683,6 +683,8 @@ run_command(const char *s, const char *file)
 		}
 	} while (status == 0);
 	status--;
+
+	xfree(lbuf);
 
 	if (status != 0) {
 		cmd_free(cmd);
