@@ -1,4 +1,4 @@
-/* $Id: parse.y,v 1.214 2007-06-29 10:12:44 nicm Exp $ */
+/* $Id: parse.y,v 1.215 2007-06-29 10:34:37 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -923,7 +923,11 @@ optval: TOKVALUE strv
 	}
 
 /** XSTRV: <string> (char *) */
-xstrv: STRING
+xstrv: STRCOMMAND
+       {
+	       $$ = run_command($1);
+       }
+     | STRING
        {
 	       $$ = $1;
        }
@@ -967,11 +971,7 @@ xstrv: STRING
        }
 
 /** STRV: <string> (char *) */
-strv: STRCOMMAND
-      {
-	      $$ = run_command($1);
-      }
-    | xstrv
+strv: xstrv
 /**   [$1: xstrv (char *)] */
       {
 	      $$ = $1;
