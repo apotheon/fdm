@@ -1,4 +1,4 @@
-/* $Id: match-attachment.c,v 1.25 2007-03-21 22:49:45 nicm Exp $ */
+/* $Id: match-attachment.c,v 1.26 2007-06-29 08:01:32 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -44,7 +44,7 @@ match_attachment_match(struct mail_ctx *mctx, struct expritem *ei)
 	char				*value = NULL;
 
 	if (!m->attach_built) {
-		/* fill attachments */
+		/* Fill attachments. */
 		m->attach = attach_build(m);
 		if (m->attach != NULL)
 			attach_log(m->attach, "%s: attachment", a->name);
@@ -103,11 +103,11 @@ match_attachment_match(struct mail_ctx *mctx, struct expritem *ei)
 		}
 	}
 
-	/* if no attachments, none of the following conditions are true */
+	/* If no attachments, none of the following conditions are true. */
 	if (m->attach == NULL)
 		return (MATCH_FALSE);
 
-	/* for any type or name matches, construct the value */
+	/* For any type or name matches, construct the value. */
 	if (data->op == ATTACHOP_ANYTYPE || data->op == ATTACHOP_ANYNAME)
 		value = replacestr(&data->value.str, m->tags, m, &m->rml);
 
