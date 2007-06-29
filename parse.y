@@ -1,4 +1,4 @@
-/* $Id: parse.y,v 1.211 2007-06-28 21:03:51 nicm Exp $ */
+/* $Id: parse.y,v 1.212 2007-06-29 10:09:36 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -737,6 +737,7 @@ run_command(const char *s)
 	if (*s == '\0')
 		yyerror("empty command");
 
+	log_debug3("%s: starting command: %s", file, s);
 	if ((cmd = cmd_start(s, CMD_OUT, DEFTIMEOUT, NULL, 0, &cause)) == NULL)
 		yyerror("%s: %s", s, cause);
 
