@@ -1,4 +1,4 @@
-/* $Id: fdm.c,v 1.143 2007-06-28 15:24:18 nicm Exp $ */
+/* $Id: fdm.c,v 1.144 2007-06-29 18:36:03 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -42,11 +42,7 @@
 const char		*malloc_options = "AFGJPX";
 #endif
 
-extern FILE		*yyin;
-extern int 		 yyparse(void);
-
 void			 sighandler(int);
-int			 load_conf(void);
 void			 usage(void);
 
 struct conf		 conf;
@@ -75,21 +71,6 @@ get_time(void)
 	if (gettimeofday(&tv, NULL) != 0)
 		fatal("gettimeofday");
 	return (tv.tv_sec + tv.tv_usec / 1000000.0);
-}
-
-int
-load_conf(void)
-{
-        yyin = fopen(conf.conf_file, "r");
-        if (yyin == NULL)
-                return (1);
-
-        yyparse();
-
-        if (fclose(yyin) != 0)
-		return (1);
-
-        return (0);
 }
 
 void
@@ -313,7 +294,7 @@ main(int argc, char **argv)
 			macro = xmalloc(sizeof *macro);
 			macro->fixed = 1;
 			strlcpy(macro->name, optarg, sizeof macro->name);
-			TAILQ_INSERT_HEAD(&macros, macro, entry);
+			TAILQ_INSERT_HEAD(&parse_macros, macro, entry);
 
 			if (*optarg == '$') {
 				macro->type = MACRO_STRING;
@@ -444,7 +425,7 @@ main(int argc, char **argv)
 	}
 	if (geteuid() != 0 && (sb.st_mode & (S_IROTH|S_IWOTH)) != 0)
 		log_warnx("%s: world readable or writable", conf.conf_file);
-        if (load_conf() != 0) {
+        if (parse_conf(conf.conf_file) != 0) {
                 log_warn("%s", conf.conf_file);
 		exit(1);
 	}

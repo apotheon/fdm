@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.142 2007-06-29 17:35:02 nicm Exp $
+# $Id: Makefile,v 1.143 2007-06-29 18:36:03 nicm Exp $
 
 .SUFFIXES: .c .o .y .h
 .PHONY: clean lint regress yannotate manual \
@@ -27,7 +27,7 @@ SRCS= fdm.c \
       match-matched.c match-regexp.c match-size.c match-string.c \
       match-tagged.c  match-unmatched.c \
       parent-deliver.c parent-fetch.c \
-      parse.y lex.c
+      parse.y parse-fn.c lex.c
 HDRS= fdm.h array.h fetch.h match.h deliver.h
 
 YACC= yacc -d
