@@ -1,4 +1,4 @@
-/* $Id: lex.c,v 1.3 2007-06-29 17:32:40 nicm Exp $ */
+/* $Id: lex.c,v 1.4 2007-06-29 17:35:02 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -280,7 +280,7 @@ restart:
 			goto out;
 		case '\n':
 			yylineno++;
-			/* FALLTHROUGH */
+			break;
 		case ' ':
 		case '\t':
 			break;
