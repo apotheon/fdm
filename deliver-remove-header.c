@@ -1,4 +1,4 @@
-/* $Id: deliver-remove-header.c,v 1.13 2007-05-08 19:45:16 nicm Exp $ */
+/* $Id: deliver-remove-header.c,v 1.14 2007-06-29 07:56:28 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -62,16 +62,16 @@ deliver_remove_header_deliver(struct deliver_ctx *dctx, struct actitem *ti)
 		log_debug3("%s: found header to remove: %.*s", a->name,
 		    (int) len, ptr);
 
-		/* include the \n */
+		/* Include the \n. */
 		len++;
 
-		/* remove the header */
+		/* Remove the header. */
 		memmove(ptr, ptr + len, m->size - len - (ptr - m->data));
 		m->size -= len;
 		if (m->body != -1)
 			m->body -= len;
 
-		/* fix up the wrapped array */
+		/* Fix up the wrapped array. */
 		off = ptr - m->data;
 		i = 0;
 		while (i < ARRAY_LENGTH(&m->wrapped)) {

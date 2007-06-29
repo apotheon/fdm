@@ -1,4 +1,4 @@
-/* $Id: deliver-add-header.c,v 1.16 2007-06-27 10:57:46 nicm Exp $ */
+/* $Id: deliver-add-header.c,v 1.17 2007-06-29 07:56:28 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -63,7 +63,7 @@ deliver_add_header_deliver(struct deliver_ctx *dctx, struct actitem *ti)
 	m->wrapchar = '\0';
 	fill_wrapped(m);
 
-	/* invalidate the match data since stuff may have moved */
+	/* Invalidate the match data since stuff may have moved. */
 	m->rml.valid = 0;
 
 	xfree(hdr);
