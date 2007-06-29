@@ -1,4 +1,4 @@
-/* $Id: lex.c,v 1.6 2007-06-29 18:36:04 nicm Exp $ */
+/* $Id: lex.c,v 1.7 2007-06-29 18:45:35 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -198,6 +198,7 @@ yylex(void)
 		else
 			path = read_string('\'', 0);
 		include_start(path);
+		lex_include = 0;
 	}
 
 restart:
