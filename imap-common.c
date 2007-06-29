@@ -1,4 +1,4 @@
-/* $Id: imap-common.c,v 1.41 2007-06-29 09:35:47 nicm Exp $ */
+/* $Id: imap-common.c,v 1.42 2007-06-29 09:56:00 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -778,7 +778,7 @@ imap_done2(struct account *a, struct fetch_ctx *fctx)
 
 /* Delete state. */
 int
-imap_delete(struct account *a, struct fetch_ctx *fctx)
+imap_delete(struct account *a, unused struct fetch_ctx *fctx)
 {
 	struct fetch_imap_data	*data = a->data;
 	char			*line;
