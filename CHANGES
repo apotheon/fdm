@@ -1,5 +1,7 @@
 29 June 2007
 
+* Split parse helper functions out into parse-fn.c and do lots of other cleanup 
+  of parse.y and lex.c.
 * New lexer makes ifdef/ifndef/endif possible, although not completely elegant.
   Syntax is: ifdef $macro .... endif. Note that stuff inside ifdefs must still
   be valid syntax!
@@ -394,4 +396,4 @@
   the mail was very rarely reallocated, now that the header is added it is.
 * Changed all the descriptions to static buffers and audited use of snprintf.
 
-$Id: CHANGES,v 1.98 2007-06-29 17:35:02 nicm Exp $
+$Id: CHANGES,v 1.99 2007-06-29 19:46:58 nicm Exp $
