@@ -1,4 +1,4 @@
-/* $Id: parse.y,v 1.216 2007-06-29 15:18:24 nicm Exp $ */
+/* $Id: parse.y,v 1.217 2007-06-29 17:32:40 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -835,7 +835,7 @@ run_command(const char *s)
 	} userpass;
 }
 
-%token INCLUDE
+%token NONE
 %token <number> NUMBER
 %token <string> STRING STRMACRO NUMMACRO
 %token <string> STRCOMMAND NUMCOMMAND
@@ -876,7 +876,7 @@ cmds: /* empty */
     | cmds set
     | cmds close
     | cmds cache
-    | cmds INCLUDE
+    | cmds NONE
 
 /* Plural/singular combinations. */
 /** ACTIONP */
