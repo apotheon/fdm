@@ -1,5 +1,11 @@
 29 June 2007
 
+* Scrap use of lex in favour of custom C lexer. This allows (yet another)
+  workaround for include files, to make stuff like this work:
+
+	$host = $(hostname)
+	include "file.${host}"
+
 * Combine multiple IMAP deletions together into one command where possible,
   although I doubt it makes any actual difference.
 
@@ -385,4 +391,4 @@
   the mail was very rarely reallocated, now that the header is added it is.
 * Changed all the descriptions to static buffers and audited use of snprintf.
 
-$Id: CHANGES,v 1.95 2007-06-29 09:35:47 nicm Exp $
+$Id: CHANGES,v 1.96 2007-06-29 15:18:24 nicm Exp $

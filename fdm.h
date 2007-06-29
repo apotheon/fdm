@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.283 2007-06-28 15:48:45 nicm Exp $ */
+/* $Id: fdm.h,v 1.284 2007-06-29 15:18:24 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -184,13 +184,6 @@ struct macro {
 	TAILQ_ENTRY(macro)	 entry;
 };
 TAILQ_HEAD(macros, macro);
-
-/* Valid macro name chars. */
-#define ismacrofirst(c) (						\
-	((c) >= 'a' && (c) <= 'z') || ((c) >= 'A' && (c) <= 'Z'))
-#define ismacro(c) (							\
-	((c) >= 'a' && (c) <= 'z') || ((c) >= 'A' && (c) <= 'Z') ||	\
-	((c) >= '0' && (c) <= '9') || (c) == '_' || (c) == '-')
 
 /* Command-line commands. */
 enum fdmop {
@@ -785,8 +778,11 @@ void		 shm_close(struct shm *);
 void		*shm_reopen(struct shm *);
 void		*shm_resize(struct shm *, size_t, size_t);
 
-/* lex.l */
-extern char	*curfile;
+/* lex.c */
+extern FILE	*yyin;
+extern int	 yylineno;
+extern char	*yyfile;
+#define YYFILE (yyfile == NULL ? conf.conf_file : yyfile)
 void		 include_start(char *);
 int		 include_finish(void);
 
