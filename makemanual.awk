@@ -1,4 +1,4 @@
-# $Id: makemanual.awk,v 1.1 2007-03-12 10:24:20 nicm Exp $
+# $Id: makemanual.awk,v 1.2 2007-06-30 18:31:28 nicm Exp $
 #
 # Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
 #
@@ -32,6 +32,16 @@ BEGIN {
 /^%%[^%]/ {
 	c2++;
 	print (c1 "." c2 substr($0, 3));
+	next;
+}
+
+/^\*\*\*/ {
+	s = substr($0, 5) " ";
+	while (length(s) < 80) {
+		s = s "=";
+	}
+
+	print (s);
 	next;
 }
 
