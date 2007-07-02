@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.285 2007-06-29 18:36:04 nicm Exp $ */
+/* $Id: fdm.h,v 1.286 2007-07-02 22:41:44 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -686,13 +686,14 @@ struct buffer {
 /* IO macros. */
 #define IO_ROUND(n) (((n / IO_BLOCKSIZE) + 1) * IO_BLOCKSIZE)
 #define IO_CLOSED(io) ((io)->flags & IOF_CLOSED)
+#define IO_ERROR(io) ((io)->error)
 #define IO_RDSIZE(io) (BUFFER_USED((io)->rd))
 #define IO_WRSIZE(io) (BUFFER_USED((io)->wr))
 
 /* IO structure. */
 struct io {
 	int		 fd;
-	int		 dup_fd;	/* dup all data to this fd */
+	int		 dup_fd;	/* duplicate all data to this fd */
 	SSL		*ssl;
 
 	char		*error;

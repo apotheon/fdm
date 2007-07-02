@@ -1,4 +1,4 @@
-/* $Id: io.c,v 1.68 2007-05-21 20:27:33 nicm Exp $ */
+/* $Id: io.c,v 1.69 2007-07-02 22:41:44 nicm Exp $ */
 
 /*
  * Copyright (c) 2005 Nicholas Marriott <nicm__@ntlworld.com>
@@ -53,7 +53,7 @@ io_create(int fd, SSL *ssl, const char *eol, int timeout)
 	/* Set non-blocking. */
 	if ((mode = fcntl(fd, F_GETFL)) == -1)
 		fatal("fcntl");
-	if (fcntl(fd, F_SETFL, mode | O_NONBLOCK) == -1)
+	if (fcntl(fd, F_SETFL, mode|O_NONBLOCK) == -1)
 		fatal("fcntl");
 
 	io->flags = 0;

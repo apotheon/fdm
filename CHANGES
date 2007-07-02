@@ -1,3 +1,9 @@
+02 July 2007
+
+* Sort out the localtime(3)/strftime(3) mess by actually reading the man page
+  and time.h. This means July is now the seventh rather than sixth month. 
+  Reported by Giorgio Lando.
+
 29 June 2007
 
 * Split parse helper functions out into parse-fn.c and do lots of other cleanup 
@@ -396,4 +402,4 @@
   the mail was very rarely reallocated, now that the header is added it is.
 * Changed all the descriptions to static buffers and audited use of snprintf.
 
-$Id: CHANGES,v 1.99 2007-06-29 19:46:58 nicm Exp $
+$Id: CHANGES,v 1.100 2007-07-02 22:41:44 nicm Exp $

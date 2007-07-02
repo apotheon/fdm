@@ -1,4 +1,4 @@
-/* $Id: log.c,v 1.8 2007-05-09 10:31:22 nicm Exp $ */
+/* $Id: log.c,v 1.9 2007-07-02 22:41:44 nicm Exp $ */
 /*      $OpenBSD: log.c,v 1.6 2004/07/12 09:22:38 dtucker Exp $ */
 
 /*
@@ -50,7 +50,7 @@ void
 log_syslog(int facility)
 {
  	tosyslog = 1;
-	openlog(__progname, LOG_PID | LOG_NDELAY, facility);
+	openlog(__progname, LOG_PID|LOG_NDELAY, facility);
 }
 
 void printflike2
