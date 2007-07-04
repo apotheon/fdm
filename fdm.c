@@ -1,4 +1,4 @@
-/* $Id: fdm.c,v 1.144 2007-06-29 18:36:03 nicm Exp $ */
+/* $Id: fdm.c,v 1.145 2007-07-04 18:39:24 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -217,7 +217,8 @@ use_account(struct account *a, char **cause)
 __dead void
 usage(void)
 {
-	printf("usage: %s [-klmnqv] [-a name] [-D name=value] [-f conffile]"
+	fprintf(stderr,
+	    "usage: %s [-klmnqv] [-a name] [-D name=value] [-f conffile]"
 	    " [-u user] [-x name] [fetch|poll]\n", __progname);
         exit(1);
 }

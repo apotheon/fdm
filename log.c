@@ -1,4 +1,4 @@
-/* $Id: log.c,v 1.9 2007-07-02 22:41:44 nicm Exp $ */
+/* $Id: log.c,v 1.10 2007-07-04 18:39:24 nicm Exp $ */
 /*      $OpenBSD: log.c,v 1.6 2004/07/12 09:22:38 dtucker Exp $ */
 
 /*
@@ -81,7 +81,6 @@ vlog(FILE *f, int pri, const char *fmt, va_list ap)
 	} else
 		vsyslog(pri, fmt, ap);
 }
-
 
 void printflike1
 log_warn(const char *emsg, ...)
