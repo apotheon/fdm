@@ -1,4 +1,4 @@
-/* $Id: re.c,v 1.18 2007-06-28 13:29:28 nicm Exp $ */
+/* $Id: re.c,v 1.19 2007-07-05 10:00:46 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -32,7 +32,7 @@ re_compile(struct re *re, const char *s, int flags, char **cause)
 	char	*buf;
 
 	if (s == NULL)
-		fatalx("re_compile: null regexp");
+		log_fatalx("re_compile: null regexp");
 	re->str = xstrdup(s);
 	if (*s == '\0')
 		return (0);

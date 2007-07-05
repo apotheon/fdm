@@ -1,4 +1,4 @@
-/* $Id: deliver-maildir.c,v 1.50 2007-06-29 08:01:32 nicm Exp $ */
+/* $Id: deliver-maildir.c,v 1.51 2007-07-05 10:00:45 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -124,7 +124,7 @@ deliver_maildir_deliver(struct deliver_ctx *dctx, struct actitem *ti)
 	}
 
 	if (gethostname(host1, sizeof host1) != 0)
-		fatal("gethostname");
+		log_fatal("gethostname");
 
 	/*
 	 * Replace '/' with "\057" and ':' with "\072". this is a bit
@@ -214,7 +214,7 @@ restart:
 	if (link(src, dst) != 0) {
 		if (errno == EEXIST) {
 			if (unlink(src) != 0)
-				fatal("unlink");
+				log_fatal("unlink");
 			cleanup_deregister(src);
 			xfd = fd = -1;
 
@@ -245,7 +245,7 @@ error:
 		if (fd != -1)
 			close(fd);
 		if (unlink(src) != 0)
-			fatal("unlink");
+			log_fatal("unlink");
 		cleanup_deregister(src);
 	}
 	if (path != NULL)

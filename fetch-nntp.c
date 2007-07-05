@@ -1,4 +1,4 @@
-/* $Id: fetch-nntp.c,v 1.86 2007-06-30 10:32:42 nicm Exp $ */
+/* $Id: fetch-nntp.c,v 1.87 2007-07-05 10:00:46 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -322,7 +322,7 @@ error:
 		if (fd != -1)
 			close(fd);
 		if (unlink(tmp) != 0)
-			fatal("unlink");
+			log_fatal("unlink");
 	}
 	cleanup_deregister(tmp);
 	return (-1);

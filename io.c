@@ -1,4 +1,4 @@
-/* $Id: io.c,v 1.69 2007-07-02 22:41:44 nicm Exp $ */
+/* $Id: io.c,v 1.70 2007-07-05 10:00:46 nicm Exp $ */
 
 /*
  * Copyright (c) 2005 Nicholas Marriott <nicm__@ntlworld.com>
@@ -52,9 +52,9 @@ io_create(int fd, SSL *ssl, const char *eol, int timeout)
 
 	/* Set non-blocking. */
 	if ((mode = fcntl(fd, F_GETFL)) == -1)
-		fatal("fcntl");
+		log_fatal("fcntl");
 	if (fcntl(fd, F_SETFL, mode|O_NONBLOCK) == -1)
-		fatal("fcntl");
+		log_fatal("fcntl");
 
 	io->flags = 0;
 	io->error = NULL;
@@ -123,7 +123,7 @@ io_polln(struct io **ios, u_int n, struct io **rio, int timeout, char **cause)
 	u_int		 i;
 
 	if (n > IO_POLLFDS)
-		fatalx("io: too many fds");
+		log_fatalx("io_polln: too many fds");
 
 	/* Check all the ios. */
 	for (i = 0; i < n; i++) {

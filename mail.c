@@ -1,4 +1,4 @@
-/* $Id: mail.c,v 1.103 2007-07-02 23:56:33 nicm Exp $ */
+/* $Id: mail.c,v 1.104 2007-07-05 10:00:46 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -140,7 +140,7 @@ int
 mail_resize(struct mail *m, size_t size)
 {
 	if (SIZE_MAX - m->off < size)
-		fatalx("resize_mail: SIZE_MAX - m->off < size");
+		log_fatalx("resize_mail: SIZE_MAX - m->off < size");
 	while (m->space <= (m->off + size)) {
 		if ((m->base = shm_resize(&m->shm, 2, m->space)) == NULL)
 			return (1);
@@ -201,7 +201,7 @@ error:
 	close(fd);
 	if (locks & LOCK_DOTLOCK) {
 		if (unlink(lock) != 0)
-			fatal("unlink");
+			log_fatal("unlink");
 		cleanup_deregister(lock);
 		xfree(lock);
 	}
@@ -217,7 +217,7 @@ closelock(int fd, const char *path, u_int locks)
 	if (locks & LOCK_DOTLOCK) {
 		xasprintf(&lock, "%s.lock", path);
 		if (unlink(lock) != 0)
-			fatal("unlink");
+			log_fatal("unlink");
 		cleanup_deregister(lock);
 		xfree(lock);
 	}
@@ -593,7 +593,7 @@ fill_wrapped(struct mail *m)
 	u_int		 n;
 
 	if (!ARRAY_EMPTY(&m->wrapped))
-		fatalx("fill_wrapped: mail already wrapped");
+		log_fatalx("fill_wrapped: mail already wrapped");
 
 	ARRAY_INIT(&m->wrapped);
 	m->wrapchar = '\0';

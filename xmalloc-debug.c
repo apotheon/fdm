@@ -1,4 +1,4 @@
-/* $Id: xmalloc-debug.c,v 1.14 2007-06-28 14:00:50 nicm Exp $ */
+/* $Id: xmalloc-debug.c,v 1.15 2007-07-05 10:00:46 nicm Exp $ */
 
 /*
  * Copyright (c) 2004 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -96,7 +96,7 @@ xmalloc_called(const char *file, u_int line, enum xmalloc_type type)
 				break;
 		}
 		if (i == XMALLOC_SLOTS)
-			fatalx("xmalloc_called: no space");
+			log_fatalx("xmalloc_called: no space");
 	}
 
 	xmalloc_ctx.calls[i].type = type;

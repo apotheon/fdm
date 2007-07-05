@@ -1,4 +1,4 @@
-/* $Id: child-deliver.c,v 1.11 2007-06-29 08:01:32 nicm Exp $ */
+/* $Id: child-deliver.c,v 1.12 2007-07-05 10:00:45 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -65,11 +65,11 @@ child_deliver(struct child *child, struct io *io)
 	msgbuf.len = STRB_SIZE(m->tags);
 
 	if (privsep_send(io, &msg, &msgbuf) != 0)
-		fatalx("deliver: privsep_send error");
+		log_fatalx("deliver: privsep_send error");
 	if (privsep_recv(io, &msg, NULL) != 0)
-		fatalx("deliver: privsep_recv error");
+		log_fatalx("deliver: privsep_recv error");
 	if (msg.type != MSG_EXIT)
-		fatalx("deliver: unexpected message");
+		log_fatalx("deliver: unexpected message");
 
 #ifdef DEBUG
 	COUNTFDS(a->name);
