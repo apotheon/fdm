@@ -1,4 +1,4 @@
-/* $Id: log.c,v 1.11 2007-07-05 10:00:46 nicm Exp $ */
+/* $Id: log.c,v 1.12 2007-07-05 16:57:46 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -173,7 +173,7 @@ log_debug3(const char *msg, ...)
 	}
 }
 
-/* Log a critical error, with error string if necesarys, and die. */
+/* Log a critical error, with error string if necessary, and die. */
 __dead void
 log_vfatal(const char *msg, va_list ap)
 {
