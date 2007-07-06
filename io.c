@@ -1,4 +1,4 @@
-/* $Id: io.c,v 1.71 2007-07-05 21:14:17 nicm Exp $ */
+/* $Id: io.c,v 1.72 2007-07-06 22:04:47 nicm Exp $ */
 
 /*
  * Copyright (c) 2005 Nicholas Marriott <nicm__@ntlworld.com>
@@ -446,7 +446,7 @@ io_read2(struct io *io, void *buf, size_t len)
 		return (-1);
 
 	if (BUFFER_USED(io->rd) < len)
-		return (-1);
+		return (1);
 
 	buffer_read(io->rd, buf, len);
 
