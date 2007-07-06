@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.288 2007-07-05 21:14:17 nicm Exp $ */
+/* $Id: fdm.h,v 1.289 2007-07-06 17:18:21 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -994,6 +994,8 @@ void		 buffer_add(struct buffer *, size_t);
 void		 buffer_reverse_add(struct buffer *, size_t);
 void		 buffer_remove(struct buffer *, size_t);
 void		 buffer_reverse_remove(struct buffer *, size_t);
+void		 buffer_insert_range(struct buffer *, size_t, size_t);
+void		 buffer_delete_range(struct buffer *, size_t, size_t);
 void		 buffer_write(struct buffer *, const void *, size_t);
 void		 buffer_read(struct buffer *, void *, size_t);
 
