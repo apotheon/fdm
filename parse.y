@@ -1,4 +1,4 @@
-/* $Id: parse.y,v 1.222 2007-07-05 10:00:46 nicm Exp $ */
+/* $Id: parse.y,v 1.223 2007-07-08 11:49:39 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -350,11 +350,6 @@ replpathv: strv
 /**        [$1: strv (char *)] */
 	   {
 		  struct replpath	rp;
-
-		  if (parse_tags == NULL) {
-			  strb_create(&parse_tags);
-			  default_tags(&parse_tags, NULL);
-		  }
 
 		  rp.str = $1;
 		  $$ = replacepath(&rp, parse_tags, NULL, NULL);
