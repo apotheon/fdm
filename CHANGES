@@ -1,3 +1,10 @@
+11 July 2007
+
+* Fix a long-standing bug in openlock (mail.c): if open(2) failed, the lock
+  file was not removed.
+* NNTPS fetching, suggested by Maximilian Gass.
+* After rethinking, remove some useless fclose error checks.
+
 08 July 2007
 
 * Check permissions on include files as well as main configuration file.
@@ -417,4 +424,4 @@
   the mail was very rarely reallocated, now that the header is added it is.
 * Changed all the descriptions to static buffers and audited use of snprintf.
 
-$Id: CHANGES,v 1.104 2007-07-08 12:03:18 nicm Exp $
+$Id: CHANGES,v 1.105 2007-07-11 09:16:02 nicm Exp $

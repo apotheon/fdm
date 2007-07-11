@@ -1,4 +1,4 @@
-/* $Id: netrc.c,v 1.7 2007-07-05 10:00:46 nicm Exp $ */
+/* $Id: netrc.c,v 1.8 2007-07-11 09:16:02 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -58,8 +58,7 @@ netrc_open(const char *home, char **cause)
 void
 netrc_close(FILE *f)
 {
-	if (fclose(f) != 0)
-		log_fatal("fclose");
+	fclose(f);
 }
 
 int

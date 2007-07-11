@@ -1,4 +1,4 @@
-/* $Id: deliver-write.c,v 1.32 2007-03-28 19:59:57 nicm Exp $ */
+/* $Id: deliver-write.c,v 1.33 2007-07-11 09:16:02 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -72,6 +72,7 @@ do_write(struct deliver_ctx *dctx, struct actitem *ti, int appendf)
 		log_debug2("%s: appending to %s", a->name, path);
 	else
 		log_debug2("%s: writing to %s", a->name, path);
+
         f = fopen(path, appendf ? "a" : "w");
         if (f == NULL) {
 		log_warn("%s: %s: fopen", a->name, path);
@@ -89,10 +90,7 @@ do_write(struct deliver_ctx *dctx, struct actitem *ti, int appendf)
 		log_warn("%s: %s: fsync", a->name, path);
 		goto error;
 	}
-	if (fclose(f) != 0) {
-		log_warn("%s: %s: fclose", a->name, path);
-		goto error;
-	}
+	fclose(f);
 
 	xfree(path);
 	return (DELIVER_SUCCESS);
