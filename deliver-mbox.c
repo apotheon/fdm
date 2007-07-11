@@ -1,4 +1,4 @@
-/* $Id: deliver-mbox.c,v 1.59 2007-07-05 10:00:45 nicm Exp $ */
+/* $Id: deliver-mbox.c,v 1.60 2007-07-11 12:06:49 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -200,6 +200,7 @@ deliver_mbox_deliver(struct deliver_ctx *dctx, struct actitem *ti)
 		line_next(m, &ptr, &len);
 	}
 	len = m->data[m->size - 1] == '\n' ? 1 : 2;
+	log_debug2("%s: adding %zu newlines", a->name, len);
 	if (deliver_mbox_write(fd, gzf, "\n\n", len) < 0) {
 		log_warn("%s: %s: write", a->name, path);
 		goto out2;

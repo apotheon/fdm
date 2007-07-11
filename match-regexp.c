@@ -1,4 +1,4 @@
-/* $Id: match-regexp.c,v 1.20 2007-03-19 20:04:48 nicm Exp $ */
+/* $Id: match-regexp.c,v 1.21 2007-07-11 12:06:49 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -46,12 +46,11 @@ match_regexp_match(struct mail_ctx *mctx, struct expritem *ei)
 	eo = m->size;
 	switch (data->area) {
 	case AREA_HEADERS:
-		if (m->body != -1)
-			eo = m->body;
+		if (m->body == 0)
+			return (MATCH_FALSE);
+		eo = m->body;
 		break;
 	case AREA_BODY:
-		if (m->body == -1)
-			return (MATCH_FALSE);
 		so = m->body;
 		break;
 	case AREA_ANY:
