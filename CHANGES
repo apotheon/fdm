@@ -1,5 +1,6 @@
 11 July 2007
 
+* Add two-digit year (year2/mail_year2) and hostname tags.
 * Simplify fetching: line counting and body detection is now done globally for
   all fetch types in the mail queuing code, as is checking for empty and 
   oversize mails.
@@ -430,4 +431,4 @@
   the mail was very rarely reallocated, now that the header is added it is.
 * Changed all the descriptions to static buffers and audited use of snprintf.
 
-$Id: CHANGES,v 1.106 2007-07-11 12:06:49 nicm Exp $
+$Id: CHANGES,v 1.107 2007-07-11 13:02:03 nicm Exp $

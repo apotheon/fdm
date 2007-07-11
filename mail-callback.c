@@ -1,4 +1,4 @@
-/* $Id: mail-callback.c,v 1.9 2007-07-11 12:06:49 nicm Exp $ */
+/* $Id: mail-callback.c,v 1.10 2007-07-11 13:02:03 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -85,6 +85,7 @@ enqueue_mail(struct account *a, struct fetch_ctx *fctx, struct mail *m)
 		add_tag(&m->tags, "mail_day", "%.2d", tm->tm_mday);
 		add_tag(&m->tags, "mail_month", "%.2d", tm->tm_mon);
 		add_tag(&m->tags, "mail_year", "%.4d", 1900 + tm->tm_year);
+		add_tag(&m->tags, "mail_year2", "%.2d", tm->tm_year);
 		add_tag(&m->tags, "mail_dayofweek", "%d", tm->tm_wday);
 		add_tag(&m->tags, "mail_dayofyear", "%.2d", tm->tm_yday);
 		add_tag(&m->tags,
