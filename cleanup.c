@@ -1,4 +1,4 @@
-/* $Id: cleanup.c,v 1.8 2007-07-05 10:00:45 nicm Exp $ */
+/* $Id: cleanup.c,v 1.9 2007-07-11 15:54:04 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -34,8 +34,13 @@ TAILQ_HEAD(, cleanent)		 cleanlist;
 void
 cleanup_check(void)
 {
-	if (!TAILQ_EMPTY(&cleanlist))
+	struct cleanent	*cent;
+
+	if (!TAILQ_EMPTY(&cleanlist)) {
+		TAILQ_FOREACH(cent, &cleanlist, entry)
+		        log_debug("cleanup: %s", cent->path);
 		log_fatalx("cleanup_check: list not empty");
+	}
 }
 
 void

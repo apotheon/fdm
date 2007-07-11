@@ -1,4 +1,4 @@
-/* $Id: imap-common.c,v 1.43 2007-07-11 12:06:49 nicm Exp $ */
+/* $Id: imap-common.c,v 1.44 2007-07-11 15:54:04 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -225,6 +225,9 @@ int
 imap_disconnect(struct account *a, unused int aborted)
 {
 	struct fetch_imap_data	*data = a->data;
+
+	if (data->mail != NULL)
+		mail_destroy(data->mail);
 
 	ARRAY_FREE(&data->kept);
 
@@ -678,15 +681,15 @@ imap_line(struct account *a, unused struct fetch_ctx *fctx)
 		if (line == NULL)
 			return (FETCH_BLOCK);
 
-		if (!data->flushing)
+		if (data->flushing)
 			continue;
 		if (append_line(m, line) != 0) {
 			log_warn("%s: failed to resize mail", a->name);
 			return (FETCH_ERROR);
 		}
+
 		if (m->size >= data->size)
 			break;
-
 	}
 
 	data->state = imap_done1;
