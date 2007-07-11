@@ -1,4 +1,4 @@
-/* $Id: fetch-pop3.c,v 1.97 2007-07-11 12:06:49 nicm Exp $ */
+/* $Id: fetch-pop3.c,v 1.98 2007-07-11 16:04:22 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -484,7 +484,6 @@ fetch_pop3_list(struct account *a, unused struct fetch_ctx *fctx)
 
 	if (sscanf(line, "+OK %*u %zu", &data->size) != 1)
 		return (fetch_pop3_invalid(a, line));
-	m->size = data->size;
 
 	/* Fill in local data. */
 	aux = xcalloc(1, sizeof *aux);

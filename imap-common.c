@@ -1,4 +1,4 @@
-/* $Id: imap-common.c,v 1.44 2007-07-11 15:54:04 nicm Exp $ */
+/* $Id: imap-common.c,v 1.45 2007-07-11 16:04:22 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -636,7 +636,7 @@ imap_body(struct account *a, unused struct fetch_ctx *fctx)
 		return (imap_invalid(a, line));
 	if (n != data->cur)
 		return (imap_bad(a, line));
-	m->size = data->size;
+	data->lines = 0;
 
 	/* Fill in local data. */
 	aux = xcalloc(1, sizeof *aux);
@@ -687,8 +687,8 @@ imap_line(struct account *a, unused struct fetch_ctx *fctx)
 			log_warn("%s: failed to resize mail", a->name);
 			return (FETCH_ERROR);
 		}
-
-		if (m->size >= data->size)
+		data->lines++;
+		if (m->size + data->lines >= data->size)
 			break;
 	}
 

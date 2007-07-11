@@ -1,4 +1,4 @@
-/* $Id: fetch.h,v 1.29 2007-07-11 12:06:49 nicm Exp $ */
+/* $Id: fetch.h,v 1.30 2007-07-11 16:04:22 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -135,6 +135,7 @@ struct fetch_pop3_data {
 
 	struct mail	*mail;
 	int		 flushing;
+
 	size_t		 size;
 
 	size_t		 llen;
@@ -180,7 +181,9 @@ struct fetch_imap_data {
 
 	struct mail	*mail;
 	int		 flushing;
+
 	size_t		 size;
+	u_int		 lines;
 
 	size_t		 llen;
 	char		*lbuf;
