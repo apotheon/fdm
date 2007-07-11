@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.292 2007-07-11 13:33:57 nicm Exp $ */
+/* $Id: fdm.h,v 1.293 2007-07-11 13:46:42 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -899,6 +899,11 @@ struct io 	*connectproxy(struct server *, int, struct proxy *,
     		     const char *, int, char **);
 struct io	*connectio(struct server *, int, const char *, char **);
 
+/* file.c */
+int		 openlock(const char *, u_int, int, mode_t);
+void		 closelock(int, const char *, u_int);
+int		 checkperms(const char *, const char *, int *);
+
 /* mail.c */
 int		 mail_open(struct mail *, size_t);
 void		 mail_send(struct mail *, struct msg *);
@@ -906,9 +911,6 @@ int		 mail_receive(struct mail *, struct msg *, int);
 void		 mail_close(struct mail *);
 void		 mail_destroy(struct mail *);
 int		 mail_resize(struct mail *, size_t);
-int		 openlock(const char *, u_int, int, mode_t);
-void		 closelock(int, const char *, u_int);
-int		 checkperms(const char *, const char *, int *);
 void		 line_init(struct mail *, char **, size_t *);
 void		 line_next(struct mail *, char **, size_t *);
 int printflike3	 insert_header(struct mail *, const char *, const char *, ...);
