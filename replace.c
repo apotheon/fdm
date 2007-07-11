@@ -1,4 +1,4 @@
-/* $Id: replace.c,v 1.42 2007-07-11 17:20:28 nicm Exp $ */
+/* $Id: replace.c,v 1.43 2007-07-11 18:22:09 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -124,6 +124,7 @@ match_tag(struct strb *tags, const char *pattern)
 void
 default_tags(struct strb **tags, const char *src)
 {
+	char		 rtime[128];
 	struct tm	*tm;
 	time_t		 t;
 
@@ -161,6 +162,8 @@ default_tags(struct strb **tags, const char *src)
 		add_tag(tags, "dayofyear", "%.2d", tm->tm_yday + 1);
 		add_tag(tags, "quarter", "%d", tm->tm_mon / 3 + 1);
 	}
+	if (rfc822time(t, rtime, sizeof rtime) != NULL)
+		add_tag(tags, "rfc822date", "%s", rtime);
 }
 
 void
