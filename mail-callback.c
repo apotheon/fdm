@@ -1,4 +1,4 @@
-/* $Id: mail-callback.c,v 1.10 2007-07-11 13:02:03 nicm Exp $ */
+/* $Id: mail-callback.c,v 1.11 2007-07-11 14:59:12 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -97,6 +97,8 @@ enqueue_mail(struct account *a, struct fetch_ctx *fctx, struct mail *m)
 	log_debug2("%s: found %u lines, %u in body", a->name, n, b);
 	add_tag(&m->tags, "lines", "%u", n);
 	add_tag(&m->tags, "body_lines", "%u", b);
+	if (n - b != 0)
+		b++;	/* don't include the separator */
 	add_tag(&m->tags, "header_lines", "%u", n - b);
 
 	/* Insert message-id tag. */
