@@ -1,4 +1,4 @@
-/* $Id: fetch-imappipe.c,v 1.33 2007-06-28 15:48:45 nicm Exp $ */
+/* $Id: fetch-imappipe.c,v 1.34 2007-07-11 13:33:57 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -65,11 +65,9 @@ fetch_imappipe_getln(struct account *a, char **line)
 {
 	struct fetch_imap_data	*data = a->data;
 	char			*out, *err, *cause;
-	int			 n;
 
-	data->cmd->timeout = 0;
-	n = cmd_poll(data->cmd, &out, &err, &data->lbuf, &data->llen, &cause);
-	switch (n) {
+	switch (cmd_poll(
+	    data->cmd, &out, &err, &data->lbuf, &data->llen, 0, &cause)) {
 	case 0:
 		break;
 	case -1:
@@ -118,8 +116,7 @@ fetch_imappipe_connect(struct account *a)
 	if (imap_connect(a) != 0)
 		return (-1);
 
-	data->cmd =
-	    cmd_start(data->pipecmd, CMD_IN|CMD_OUT, 0, NULL, 0, &cause);
+	data->cmd = cmd_start(data->pipecmd, CMD_IN|CMD_OUT, NULL, 0, &cause);
 	if (data->cmd == NULL) {
 		log_warnx("%s: %s", a->name, cause);
 		xfree(cause);

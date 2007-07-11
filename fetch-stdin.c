@@ -1,4 +1,4 @@
-/* $Id: fetch-stdin.c,v 1.63 2007-07-11 12:06:49 nicm Exp $ */
+/* $Id: fetch-stdin.c,v 1.64 2007-07-11 13:33:57 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -69,7 +69,7 @@ fetch_stdin_connect(struct account *a)
 		return (-1);
 	}
 
-	data->io = io_create(STDIN_FILENO, NULL, IO_LF, conf.timeout);
+	data->io = io_create(STDIN_FILENO, NULL, IO_LF);
 	if (conf.debug > 3 && !conf.syslog)
 		data->io->dup_fd = STDOUT_FILENO;
 
@@ -137,7 +137,7 @@ fetch_stdin_fetch(struct account *a, struct fetch_ctx *fctx)
 		 * close which means end of mail.
 		 */
 		error = io_pollline2(data->io,
-		    &line, &data->lbuf, &data->llen, &cause);
+		    &line, &data->lbuf, &data->llen, conf.timeout, &cause);
 		if (error == 0) {
 			/* Normal close is fine. */
 			break;

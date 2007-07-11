@@ -1,4 +1,4 @@
-/* $Id: child-deliver.c,v 1.12 2007-07-05 10:00:45 nicm Exp $ */
+/* $Id: child-deliver.c,v 1.13 2007-07-11 13:33:57 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -156,7 +156,7 @@ child_deliver_cmd_hook(pid_t pid, struct account *a, unused struct msg *msg,
 		flags |= CMD_IN;
 	if (cmddata->re.str != NULL)
 		flags |= CMD_OUT;
-	cmd = cmd_start(s, flags, conf.timeout, m->data, m->size, &cause);
+	cmd = cmd_start(s, flags, m->data, m->size, &cause);
 	if (cmd == NULL) {
 		log_warnx("%s: %s: %s", a->name, s, cause);
 		goto error;
@@ -173,7 +173,8 @@ child_deliver_cmd_hook(pid_t pid, struct account *a, unused struct msg *msg,
 			break;
 		}
 
-		status = cmd_poll(cmd, &out, &err, &lbuf, &llen, &cause);
+		status = cmd_poll(
+		    cmd, &out, &err, &lbuf, &llen, conf.timeout, &cause);
 		if (status == -1) {
 			log_warnx("%s: %s: %s", a->name, s, cause);
 			goto error;

@@ -1,4 +1,4 @@
-/* $Id: child.c,v 1.137 2007-07-05 10:00:45 nicm Exp $ */
+/* $Id: child.c,v 1.138 2007-07-11 13:33:57 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -87,7 +87,7 @@ child_start(struct children *children, uid_t uid, int (*start)(struct child *,
 		log_fatal("socketpair");
 
 	child = xcalloc(1, sizeof *child);
-	child->io = io_create(fds[0], NULL, IO_CRLF, INFTIM);
+	child->io = io_create(fds[0], NULL, IO_CRLF);
 	child->data = data;
 	child->msg = msg;
 
@@ -104,7 +104,7 @@ child_start(struct children *children, uid_t uid, int (*start)(struct child *,
 		if (geteuid() == 0 && dropto(uid) != 0)
 			log_fatal("dropto");
 
-		io = io_create(fds[1], NULL, IO_LF, INFTIM);
+		io = io_create(fds[1], NULL, IO_LF);
 		n = start(child, io);
 		io_close(io);
 		io_free(io);
