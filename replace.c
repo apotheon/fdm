@@ -1,4 +1,4 @@
-/* $Id: replace.c,v 1.41 2007-07-11 13:02:03 nicm Exp $ */
+/* $Id: replace.c,v 1.42 2007-07-11 17:20:28 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -156,7 +156,7 @@ default_tags(struct strb **tags, const char *src)
 		add_tag(tags, "day", "%.2d", tm->tm_mday);
 		add_tag(tags, "month", "%.2d", tm->tm_mon + 1);
 		add_tag(tags, "year", "%.4d", 1900 + tm->tm_year);
-		add_tag(tags, "year2", "%.2d", tm->tm_year);
+		add_tag(tags, "year2", "%.2d", tm->tm_year % 100);
 		add_tag(tags, "dayofweek", "%d", tm->tm_wday);
 		add_tag(tags, "dayofyear", "%.2d", tm->tm_yday + 1);
 		add_tag(tags, "quarter", "%d", tm->tm_mon / 3 + 1);
