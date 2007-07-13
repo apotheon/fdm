@@ -1,4 +1,4 @@
-/* $Id: xmalloc-debug.c,v 1.16 2007-07-13 19:34:51 nicm Exp $ */
+/* $Id: xmalloc-debug.c,v 1.17 2007-07-13 19:50:47 nicm Exp $ */
 
 /*
  * Copyright (c) 2004 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -281,7 +281,7 @@ xmalloc_change(const char *file, u_int line, void *oldptr, void *newptr,
 }
 
 void
-xmalloc_free(const char *file, u_int line, void *ptr)
+xmalloc_free(unused const char *file, unused u_int line, void *ptr)
 {
 	struct xmalloc_blk	*blk;
 
