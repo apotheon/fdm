@@ -1,4 +1,4 @@
-/* $Id: xmalloc-debug.c,v 1.15 2007-07-05 10:00:46 nicm Exp $ */
+/* $Id: xmalloc-debug.c,v 1.16 2007-07-13 19:34:51 nicm Exp $ */
 
 /*
  * Copyright (c) 2004 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -263,10 +263,8 @@ xmalloc_change(const char *file, u_int line, void *oldptr, void *newptr,
 		return;
 	}
 
-	if ((blk = xmalloc_find(oldptr)) == NULL) {
-		XMALLOC_PRINT("%s:%u: xmalloc_change: not found", file, line);
+	if ((blk = xmalloc_find(oldptr)) == NULL)
 		return;
-	}
 
 	change = newsize - blk->size;
 	if (change > 0)
@@ -287,10 +285,8 @@ xmalloc_free(const char *file, u_int line, void *ptr)
 {
 	struct xmalloc_blk	*blk;
 
-	if ((blk = xmalloc_find(ptr)) == NULL) {
-		XMALLOC_PRINT("%s:%u: xmalloc_free: not found", file, line);
+	if ((blk = xmalloc_find(ptr)) == NULL)
 		return;
-	}
 
 	xmalloc_ctx.freed += blk->size;
 
