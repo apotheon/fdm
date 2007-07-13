@@ -1,4 +1,4 @@
-/* $Id: mail.c,v 1.109 2007-07-11 14:59:12 nicm Exp $ */
+/* $Id: mail.c,v 1.110 2007-07-13 23:41:54 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -312,7 +312,7 @@ find_body(struct mail *m)
 
 	line_init(m, &ptr, &len);
 	while (ptr != NULL) {
-		if (len == 1) {
+		if (len == 1 && *ptr == '\n') {
 			line_next(m, &ptr, &len);
 			/* If no next line, body is end of mail. */
 			if (ptr == NULL)
@@ -340,7 +340,7 @@ count_lines(struct mail *m, u_int *total, u_int *body)
 	while (ptr != NULL) {
 		if (flag)
 			(*body)++;
-		if (len == 1)
+		if (len == 1 && *ptr == '\n')
 			flag = 1;
 		(*total)++;
 		line_next(m, &ptr, &len);
