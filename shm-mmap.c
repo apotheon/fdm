@@ -1,4 +1,4 @@
-/* $Id: shm-mmap.c,v 1.11 2007-07-05 10:00:46 nicm Exp $ */
+/* $Id: shm-mmap.c,v 1.12 2007-07-14 22:24:03 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -185,14 +185,20 @@ shm_resize(struct shm *shm, size_t nmemb, size_t size)
         if (SIZE_MAX / nmemb < size)
                 log_fatalx("shm_realloc: nmemb * size > SIZE_MAX");
 
+#ifndef WITH_MREMAP
 	if (munmap(shm->data, shm->size) != 0)
 		log_fatal("munmap");
 	shm->data = NULL;
+#endif
 
 	if (shm_expand(shm, newsize) != 0)
 		return (NULL);
 
+#ifdef WITH_MREMAP
+	shm->data = mremap(shm->data, shm->size, newsize, MREMAP_MAYMOVE);
+#else
 	shm->data = mmap(NULL, newsize, SHM_PROT, SHM_FLAGS, shm->fd, 0);
+#endif
 	if (shm->data == MAP_FAILED)
 		return (NULL);
 	madvise(shm->data, newsize, MADV_SEQUENTIAL);
