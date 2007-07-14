@@ -1,4 +1,4 @@
-/* $Id: db-tdb.c,v 1.5 2007-07-14 14:34:10 nicm Exp $ */
+/* $Id: db-tdb.c,v 1.6 2007-07-14 20:36:14 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -94,11 +94,11 @@ db_item(TDB_CONTEXT *tdb, TDB_DATA key, TDB_DATA value, void *ptr)
 	uint64_t	*lim = ptr;
 	struct dbitem	 v;
 
- 	if (value.dsize != sizeof *v)
+ 	if (value.dsize != sizeof v)
 		return (-1);
-	memcpy(v, value.dptr, sizeof v);
+	memcpy(&v, value.dptr, sizeof v);
 
-	if (letoh64(v->tim) < *lim)
+	if (letoh64(v.tim) < *lim)
 		return (tdb_delete(tdb, key));
 	return (0);
 }
