@@ -1,4 +1,4 @@
-/* $Id: db-tdb.c,v 1.4 2007-07-13 19:50:47 nicm Exp $ */
+/* $Id: db-tdb.c,v 1.5 2007-07-14 14:34:10 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -56,9 +56,11 @@ db_add(struct db *db, char *k)
 {
 	TDB_DATA	key, value;
 	struct dbitem	v;
+	uint64_t	tim;
 
 	memset(&v, 0, sizeof v);
-	v.tim = htole64(time(NULL));
+	tim = time(NULL);
+	v.tim = htole64(tim);
 
 	key.dptr = k;
 	key.dsize = strlen(k);
