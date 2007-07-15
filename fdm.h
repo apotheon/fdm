@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.295 2007-07-13 19:50:47 nicm Exp $ */
+/* $Id: fdm.h,v 1.296 2007-07-15 18:07:20 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -60,8 +60,8 @@ struct fetch_ctx; 	/* fetch.h */
 #define MAXMAILSIZE	(1 * 1024 * 1024 * 1024)	/*  1 GB */
 #define MAXACTIONCHAIN	5
 #define DEFTIMEOUT	(900 * 1000)
-#define LOCKSLEEPTIME	10000
-#define LOCKRETRIES	1000
+#define LOCKSLEEPTIME	10000 				/* 0.1 seconds */
+#define LOCKTOTALTIME	10000000			/* 10 seconds */
 #define MAXNAMESIZE	64
 #define DEFUMASK	(S_IRWXG|S_IRWXO)
 #define FILEMODE	(S_IRUSR|S_IWUSR|S_IRGRP|S_IWGRP|S_IROTH|S_IWOTH)
