@@ -1,5 +1,9 @@
 15 July 2007
 
+* Permit each account to start multiple delivery child processes simultaneously
+  (up to the maximum queue length). This doesn't help much in normal cases but
+  with particularly lengthy but non-CPU-intensive delivery actions (try exec
+  "sleep 1" ;-P), it can help a lot.
 * Introduce some randomness into the lock sleep delay when waiting for mboxes.
 
 14 July 2007
@@ -448,4 +452,4 @@
   the mail was very rarely reallocated, now that the header is added it is.
 * Changed all the descriptions to static buffers and audited use of snprintf.
 
-$Id: CHANGES,v 1.112 2007-07-15 18:07:20 nicm Exp $
+$Id: CHANGES,v 1.113 2007-07-16 11:11:16 nicm Exp $

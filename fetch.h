@@ -1,4 +1,4 @@
-/* $Id: fetch.h,v 1.30 2007-07-11 16:04:22 nicm Exp $ */
+/* $Id: fetch.h,v 1.31 2007-07-16 11:11:16 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -36,7 +36,7 @@ struct fetch_ctx {
 	u_int		  	 kept;
 
 	u_int			 queued;  /* number of mails queued */
-	int			 blocked; /* blocked for parent */
+	u_int			 blocked; /* blocked for parent */
 	int	 		 holding; /* holding fetch until queues drop */
 
 	struct io	        *io;
