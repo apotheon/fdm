@@ -1,4 +1,4 @@
-# $Id: GNUmakefile,v 1.77 2007-07-14 22:24:03 nicm Exp $
+# $Id: GNUmakefile,v 1.78 2007-07-16 23:32:55 nicm Exp $
 
 .PHONY: clean
 
@@ -46,15 +46,16 @@ DEFS= -DBUILD="\"$(VERSION) ($(DATE))\""
 
 ifeq ($(shell uname),Darwin)
 INCDIRS+= -I/usr/local/include/openssl -Icompat
-SRCS+= compat/strtonum.c compat/vis.c
+SRCS+= compat/strtonum.c
 DEFS+= -DNO_STRTONUM -DNO_SETRESUID -DNO_SETRESGID -DNO_SETPROCTITLE
 endif
 
 ifeq ($(shell uname),Linux)
 INCDIRS+= -I/usr/include/openssl -Icompat
-SRCS+= compat/strlcpy.c compat/strlcat.c compat/strtonum.c compat/vis.c
+SRCS+= compat/strlcpy.c compat/strlcat.c compat/strtonum.c
 DEFS+= $(shell getconf LFS_CFLAGS) -D_GNU_SOURCE -DWITH_MREMAP \
-        -DNO_STRLCPY -DNO_STRLCAT -DNO_SETPROCTITLE -DNO_STRTONUM -DNO_QUEUE_H
+       -DNO_STRLCPY -DNO_STRLCAT -DNO_STRTONUM -DNO_SETPROCTITLE \
+       -DNO_QUEUE_H -DNO_TREE_H
 # Required for LLONG_MAX and friends
 CFLAGS+= -std=c99
 endif

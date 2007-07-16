@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.144 2007-07-11 13:46:42 nicm Exp $
+# $Id: Makefile,v 1.145 2007-07-16 23:32:55 nicm Exp $
 
 .SUFFIXES: .c .o .y .h
 .PHONY: clean lint regress yannotate manual \
@@ -59,21 +59,20 @@ LIBS+= -lpcre
 
 # OS X
 .if ${OS} == "Darwin"
-SRCS+= compat/strtonum.c compat/vis.c
+SRCS+= compat/strtonum.c
 INCDIRS+= -Icompat -I/usr/local/include/openssl
 CFLAGS+= -DNO_STRTONUM -DNO_SETRESUID -DNO_SETRESGID -DNO_SETPROCTITLE
 .endif
 
 # NetBSD
 .if ${OS} == "NetBSD"
-SRCS+= compat/strtonum.c compat/vis.c
+SRCS+= compat/strtonum.c
 INCDIRS+= -Icompat
 CFLAGS+= -DNO_STRTONUM -DNO_SETRESUID -DNO_SETRESGID
 .endif
 
 # FreeBSD
 .if ${OS} == "FreeBSD"
-SRCS+= compat/vis.c
 INCDIRS+= -Icompat -I/usr/local/include/openssl
 
 # FreeBSD 5

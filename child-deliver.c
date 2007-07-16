@@ -1,4 +1,4 @@
-/* $Id: child-deliver.c,v 1.13 2007-07-11 13:33:57 nicm Exp $ */
+/* $Id: child-deliver.c,v 1.14 2007-07-16 23:32:56 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -73,7 +73,7 @@ child_deliver(struct child *child, struct io *io)
 
 #ifdef DEBUG
 	COUNTFDS(a->name);
-	xmalloc_report(a->name);
+	xmalloc_report(getpid(), a->name);
 #endif
 
 	return (error);

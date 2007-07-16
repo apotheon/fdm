@@ -1,4 +1,4 @@
-/* $Id: deliver-tag.c,v 1.4 2007-05-02 20:29:34 nicm Exp $ */
+/* $Id: deliver-tag.c,v 1.5 2007-07-16 23:32:56 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -19,7 +19,6 @@
 #include <sys/types.h>
 
 #include <string.h>
-#include <vis.h>
 
 #include "fdm.h"
 #include "deliver.h"

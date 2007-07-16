@@ -1,4 +1,4 @@
-/* $Id: child-fetch.c,v 1.45 2007-07-16 19:37:31 nicm Exp $ */
+/* $Id: child-fetch.c,v 1.46 2007-07-16 23:32:56 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -146,7 +146,7 @@ out:
 
 #ifdef DEBUG
 	COUNTFDS(a->name);
-	xmalloc_report(a->name);
+	xmalloc_report(getpid(), a->name);
 #endif
 
 	return (error);
