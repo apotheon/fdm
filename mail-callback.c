@@ -1,4 +1,4 @@
-/* $Id: mail-callback.c,v 1.13 2007-07-11 18:22:09 nicm Exp $ */
+/* $Id: mail-callback.c,v 1.14 2007-07-16 23:43:17 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -58,7 +58,7 @@ enqueue_mail(struct account *a, struct fetch_ctx *fctx, struct mail *m)
 
  	/* Trim "From" line, if any. */
 	trim_from(m);
-	    
+
 	/* Check for empty mails. */
 	if (m->size == 0) {
 		log_warnx("%s: empty message", a->name);

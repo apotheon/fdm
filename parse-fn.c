@@ -1,4 +1,4 @@
-/* $Id: parse-fn.c,v 1.3 2007-07-11 13:33:57 nicm Exp $ */
+/* $Id: parse-fn.c,v 1.4 2007-07-16 23:43:17 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -674,7 +674,7 @@ run_command(const char *s, const char *file)
 		if (status == 0) {
 			if (err != NULL) {
 				log_warnx("%s: %s: %s", file, s, err);
-			}				
+			}
 			if (out != NULL) {
 				slen += strlen(out) + 1;
 				sbuf = xrealloc(sbuf, 1, slen);

@@ -1,4 +1,4 @@
-/* $Id: xmalloc.c,v 1.40 2007-07-16 23:32:56 nicm Exp $ */
+/* $Id: xmalloc.c,v 1.41 2007-07-16 23:43:17 nicm Exp $ */
 
 /*
  * Copyright (c) 2004 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -81,7 +81,7 @@ xstrdup(const char *s)
 
 	len = strlen(s) + 1;
 	ptr = xmalloc(len);
-	
+
         return (strncpy(ptr, s, len));
 }
 
@@ -237,7 +237,7 @@ printpath(char *buf, size_t len, const char *fmt, ...)
 }
 
 /*
- * Some system modify the path in place. This function and xbasename below
+ * Some systems modify the path in place. This function and xbasename below
  * avoid that by using a temporary buffer.
  */
 char *

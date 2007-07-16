@@ -1,4 +1,4 @@
-/* $Id: xmalloc-debug.c,v 1.18 2007-07-16 23:32:56 nicm Exp $ */
+/* $Id: xmalloc-debug.c,v 1.19 2007-07-16 23:43:17 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -50,7 +50,7 @@ u_int	xmalloc_reallocs;
 /* Print function. */
 #define XMALLOC_PRINT log_debug3
 
-/* Bytes of unallocated blocks and number of allocated blocks to show. */ 
+/* Bytes of unallocated blocks and number of allocated blocks to show. */
 #define XMALLOC_BYTES 20
 #define XMALLOC_LINES 32
 
@@ -157,7 +157,7 @@ xmalloc_new(void *caller, void *ptr, size_t size)
 
 	if ((blk = malloc(sizeof *blk)) == NULL)
 		abort();
-	
+
 	blk->ptr = ptr;
 	blk->size = size;
 

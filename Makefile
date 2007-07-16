@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.145 2007-07-16 23:32:55 nicm Exp $
+# $Id: Makefile,v 1.146 2007-07-16 23:43:16 nicm Exp $
 
 .SUFFIXES: .c .o .y .h
 .PHONY: clean lint regress yannotate manual \
@@ -99,7 +99,7 @@ DISTFILES= *.[chyl] Makefile GNUmakefile *.[1-9] fdm-sanitize \
 	   `find examples regress compat -type f -and ! -path '*CVS*'`
 
 CLEANFILES= ${PROG} *.o compat/*.o y.tab.c y.tab.h .depend \
-	    ${PROG}-*.tar.gz *~ *.ln ${PROG}.core MANUAL index.html
+	    ${PROG}-*.tar.gz *~ */*~ *.ln ${PROG}.core MANUAL index.html
 
 .c.o:
 		${CC} ${CFLAGS} ${INCDIRS} -c ${.IMPSRC} -o ${.TARGET}

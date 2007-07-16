@@ -1,4 +1,4 @@
-/* $Id: command.c,v 1.40 2007-07-11 13:33:57 nicm Exp $ */
+/* $Id: command.c,v 1.41 2007-07-16 23:43:16 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -114,7 +114,7 @@ cmd_start(const char *s, int flags, const char *buf, size_t len, char **cause)
 			log_fatal("signal");
                 if (signal(SIGUSR2, SIG_DFL) == SIG_ERR)
 			log_fatal("signal");
-		
+
 		execl(_PATH_BSHELL, "sh", "-c", s, (char *) NULL);
 		log_fatal("execl");
 	}

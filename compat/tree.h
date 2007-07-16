@@ -1,4 +1,4 @@
-/* $Id: tree.h,v 1.1 2007-07-16 23:32:56 nicm Exp $ */
+/* $Id: tree.h,v 1.2 2007-07-16 23:43:17 nicm Exp $ */
 /*	$OpenBSD: tree.h,v 1.9 2004/11/24 18:10:42 tdeval Exp $	*/
 /*
  * Copyright 2002 Niels Provos <provos@citi.umich.edu>
@@ -84,7 +84,7 @@ struct {								\
 	SPLAY_RIGHT(tmp, field) = (head)->sph_root;			\
 	(head)->sph_root = tmp;						\
 } while (0)
-	
+
 #define SPLAY_ROTATE_LEFT(head, tmp, field) do {			\
 	SPLAY_RIGHT((head)->sph_root, field) = SPLAY_LEFT(tmp, field);	\
 	SPLAY_LEFT(tmp, field) = (head)->sph_root;			\
