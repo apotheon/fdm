@@ -1,4 +1,4 @@
-/* $Id: log.c,v 1.15 2007-07-16 11:23:55 nicm Exp $ */
+/* $Id: log.c,v 1.16 2007-07-16 12:48:04 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -91,7 +91,7 @@ log_vwrite(FILE *f, int priority, const char *msg, va_list ap)
 		exit(1);
 	if (vfprintf(f, fmt, ap) == -1)
 		exit(1);
-	fflush(log_stream);
+	fflush(f);
 	free(fmt);
 }
 
