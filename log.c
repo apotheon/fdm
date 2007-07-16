@@ -1,4 +1,4 @@
-/* $Id: log.c,v 1.14 2007-07-11 17:16:52 nicm Exp $ */
+/* $Id: log.c,v 1.15 2007-07-16 11:23:55 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -109,7 +109,7 @@ log_warn(const char *msg, ...)
 	if (asprintf(&fmt, "%s: %s", msg, strerror(errno)) == -1)
 		exit(1);
 	log_vwrite(log_stream, LOG_CRIT, fmt, ap);
-	xfree(fmt);
+	free(fmt);
 	va_end(ap);
 }
 
@@ -197,7 +197,7 @@ log_vfatal(const char *msg, va_list ap)
 			exit(1);
 		log_vwrite(log_stream, LOG_CRIT, fmt, ap);
 	}
-	xfree(fmt);
+	free(fmt);
 
 	exit(1);
 }
