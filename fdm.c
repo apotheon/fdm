@@ -1,4 +1,4 @@
-/* $Id: fdm.c,v 1.149 2007-07-17 08:12:36 nicm Exp $ */
+/* $Id: fdm.c,v 1.150 2007-07-17 21:45:27 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -370,6 +370,7 @@ main(int argc, char **argv)
 	if (user != NULL) {
 		pw = getpwnam(user);
 		if (pw == NULL) {
+			endpwent();
 			n = strtonum(user, 0, UID_MAX, &errstr);
 			if (errstr != NULL) {
 				if (errno == ERANGE) {
