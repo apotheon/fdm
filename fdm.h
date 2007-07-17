@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.299 2007-07-17 00:03:41 nicm Exp $ */
+/* $Id: fdm.h,v 1.300 2007-07-17 18:31:08 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -904,7 +904,7 @@ void		 getaddrs(const char *, char **, char **);
 struct proxy 	*getproxy(const char *);
 struct io 	*connectproxy(struct server *, int, struct proxy *,
     		     const char *, int, char **);
-struct io	*connectio(struct server *, int, const char *, char **);
+struct io	*connectio(struct server *, int, const char *, int, char **);
 
 /* file.c */
 int		 openlock(const char *, u_int, int, mode_t);
