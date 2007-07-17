@@ -1,4 +1,4 @@
-/* $Id: xmalloc.c,v 1.42 2007-07-17 23:04:23 nicm Exp $ */
+/* $Id: xmalloc.c,v 1.43 2007-07-17 23:47:47 nicm Exp $ */
 
 /*
  * Copyright (c) 2004 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -243,7 +243,7 @@ printpath(char *buf, size_t len, const char *fmt, ...)
 char *
 xdirname(const char *src)
 {
-	char	dst[MAXPATHLEN];
+	static char	dst[MAXPATHLEN];
 
 	strlcpy(dst, src, sizeof dst);
 	return (dirname(dst));
@@ -252,7 +252,7 @@ xdirname(const char *src)
 char *
 xbasename(const char *src)
 {
-	char	dst[MAXPATHLEN];
+	static char	dst[MAXPATHLEN];
 
 	strlcpy(dst, src, sizeof dst);
 	return (basename(dst));
