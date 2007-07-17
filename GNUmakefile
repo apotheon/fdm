@@ -1,4 +1,4 @@
-# $Id: GNUmakefile,v 1.79 2007-07-17 12:28:54 nicm Exp $
+# $Id: GNUmakefile,v 1.80 2007-07-17 22:17:42 nicm Exp $
 
 .PHONY: clean
 
@@ -78,6 +78,9 @@ CFLAGS+= -Wundef -Wshadow -Wbad-function-cast -Winline -Wcast-align
 ifdef DB
 DEFS+= -DDB
 LIBS+= -ltdb
+ifdef DB_UNSAFE
+DEFS+= -DDB_UNSAFE
+endif
 endif
 ifdef PCRE
 DEFS+= -DPCRE
