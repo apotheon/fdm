@@ -1,4 +1,4 @@
-/* $Id: xmalloc-debug.c,v 1.20 2007-07-17 12:28:55 nicm Exp $ */
+/* $Id: xmalloc-debug.c,v 1.21 2007-07-17 20:35:38 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -227,8 +227,8 @@ xmalloc_free(void *ptr)
 
 	xmalloc_freed += blk->size;
 
-	free(blk);
 	SPLAY_REMOVE(xmalloc_tree, &xmalloc_tree, blk);
+	free(blk);
 
 	xmalloc_frees++;
 	XMALLOC_UPDATE();
