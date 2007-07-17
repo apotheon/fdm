@@ -1,4 +1,4 @@
-/* $Id: child.c,v 1.139 2007-07-17 21:13:09 nicm Exp $ */
+/* $Id: child.c,v 1.140 2007-07-17 22:41:50 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -96,9 +96,6 @@ child_start(struct children *children, uid_t uid, int (*start)(struct child *,
 			childp = ARRAY_ITEM(children, i);
 			io_close(childp->io);
 			io_free(childp->io);
-			if (childp->data != NULL)
-				xfree(childp->data);
-			xfree(childp);
 		}
 		io_close(child->io);
 		io_free(child->io);
