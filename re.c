@@ -1,4 +1,4 @@
-/* $Id: re.c,v 1.19 2007-07-05 10:00:46 nicm Exp $ */
+/* $Id: re.c,v 1.20 2007-07-17 22:03:57 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -79,6 +79,7 @@ re_block(struct re *re, const void *buf, size_t len, struct rmlist *rml,
 		return (0);
 	}
 
+	memset(pm, 0, sizeof pm);
 	pm[0].rm_so = 0;
 	pm[0].rm_eo = len;
 	res = regexec(&re->re, buf, NPMATCH, pm, REG_STARTEND);
