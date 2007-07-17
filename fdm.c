@@ -1,4 +1,4 @@
-/* $Id: fdm.c,v 1.148 2007-07-16 23:32:56 nicm Exp $ */
+/* $Id: fdm.c,v 1.149 2007-07-17 08:12:36 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -849,7 +849,7 @@ out:
 	xfree(conf.conf_file);
 	xfree(conf.lock_file);
 	xfree(conf.tmp_dir);
-	//free_strings(conf.domains);
+	free_strings(conf.domains);
 	ARRAY_FREEALL(conf.domains);
 	free_strings(conf.headers);
 	ARRAY_FREEALL(conf.headers);
