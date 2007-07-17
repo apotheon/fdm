@@ -1,4 +1,4 @@
-/* $Id: db-tdb.c,v 1.8 2007-07-17 22:17:42 nicm Exp $ */
+/* $Id: db-tdb.c,v 1.9 2007-07-17 22:20:50 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -35,7 +35,7 @@ db_open(char *path)
 	struct db	*db;
 	TDB_CONTEXT	*tdb;
 
-#ifdef DB_UNSAFE
+#ifndef DB_UNSAFE
 	tdb = tdb_open(path, 0, 0, O_RDWR|O_CREAT, S_IRUSR|S_IWUSR);
 #else
 	tdb = tdb_open(path, 0, TDB_NOLOCK, O_RDWR|O_CREAT, S_IRUSR|S_IWUSR);
