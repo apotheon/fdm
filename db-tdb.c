@@ -1,4 +1,4 @@
-/* $Id: db-tdb.c,v 1.6 2007-07-14 20:36:14 nicm Exp $ */
+/* $Id: db-tdb.c,v 1.7 2007-07-17 00:03:41 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -116,52 +116,6 @@ db_expire(struct db *db, uint64_t age)
 	if (tdb_traverse(db->tdb, db_item, &lim) == -1)
 		return (-1);
 	return (0);
-}
-
-#else
-
-#include <sys/types.h>
-
-#include <errno.h>
-
-#include "fdm.h"
-
-struct db *
-db_open(unused char *path)
-{
-	errno = EOPNOTSUPP;
-	return (NULL);
-}
-
-void
-db_close(unused struct db *db)
-{
-}
-
-int
-db_add(unused struct db *db, unused char *k)
-{
-	errno = EOPNOTSUPP;
-	return (-1);
-}
-
-int
-db_contains(unused struct db *db, unused char *k)
-{
-	return (0);
-}
-
-int
-db_size(unused struct db *db)
-{
-	return (0);
-}
-
-int
-db_expire(unused struct db *db, unused uint64_t age)
-{
-	errno = EOPNOTSUPP;
-	return (-1);
 }
 
 #endif /* DB */
