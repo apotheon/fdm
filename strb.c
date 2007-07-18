@@ -1,4 +1,4 @@
-/* $Id: strb.c,v 1.13 2007-07-13 17:43:50 nicm Exp $ */
+/* $Id: strb.c,v 1.14 2007-07-18 00:31:59 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -30,7 +30,7 @@ void	*strb_address(struct strb *, const char *);
 void
 strb_create(struct strb **sbp)
 {
-	*sbp = xmalloc(sizeof **sbp);
+	*sbp = xcalloc(1, STRBOFFSET);
 	strb_clear(sbp);
 }
 
@@ -46,7 +46,7 @@ strb_clear(struct strb **sbp)
 	sb->str_used = 0;
 
 	sb = *sbp = xrealloc(sb, 1, STRB_SIZE(sb));
-	memset(STRB_ENTRY(sb, 0), 0, STRB_ENTSIZE(sb));
+	memset(STRB_BASE(sb), 0, sb->str_size + STRB_ENTSIZE(sb));
 }
 
 void

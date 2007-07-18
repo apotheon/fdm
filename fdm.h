@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.301 2007-07-17 23:30:02 nicm Exp $ */
+/* $Id: fdm.h,v 1.302 2007-07-18 00:31:59 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -274,7 +274,7 @@ struct strb {
 };
 
 /* Initial string block slots and block size. */
-#define STRBOFFSET 64
+#define STRBOFFSET (((sizeof (struct strb)) + 0x3f) & ~0x3f)
 #define STRBENTRIES 64
 #define STRBBLOCK 1024
 

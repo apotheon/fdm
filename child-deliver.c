@@ -1,4 +1,4 @@
-/* $Id: child-deliver.c,v 1.15 2007-07-17 22:41:50 nicm Exp $ */
+/* $Id: child-deliver.c,v 1.16 2007-07-18 00:31:59 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -55,6 +55,7 @@ child_deliver(struct child *child, struct io *io)
 	    conf.info.home);
 
 	/* Call the hook. */
+	memset(&msg, 0, sizeof msg);
 	data->hook(0, a, &msg, data, &msg.data.error);
 
 	/* Inform parent we're done. */

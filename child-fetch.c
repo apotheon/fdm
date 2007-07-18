@@ -1,4 +1,4 @@
-/* $Id: child-fetch.c,v 1.47 2007-07-17 00:03:41 nicm Exp $ */
+/* $Id: child-fetch.c,v 1.48 2007-07-18 00:31:59 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -135,7 +135,6 @@ out:
 	}
 
 	memset(&msg, 0, sizeof msg);
-
 	msg.type = MSG_EXIT;
 	log_debug3("%s: sending exit message to parent", a->name);
 	if (privsep_send(io, &msg, NULL) != 0)

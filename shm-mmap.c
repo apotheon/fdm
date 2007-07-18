@@ -1,4 +1,4 @@
-/* $Id: shm-mmap.c,v 1.13 2007-07-17 23:30:02 nicm Exp $ */
+/* $Id: shm-mmap.c,v 1.14 2007-07-18 00:31:59 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -29,8 +29,6 @@
  * This implements shared memory using mmap'd files in TMPDIR.
  */
 
-#define SHM_PROT PROT_READ|PROT_WRITE
-
 int	shm_expand(struct shm *, size_t);
 
 char	shm_block[BUFSIZ];
@@ -40,6 +38,7 @@ char	shm_block[BUFSIZ];
 #else
 #define SHM_FLAGS MAP_SHARED
 #endif
+#define SHM_PROT PROT_READ|PROT_WRITE
 
 /* Work out shm path. */
 char *
