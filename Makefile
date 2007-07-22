@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.147 2007-07-17 12:28:54 nicm Exp $
+# $Id: Makefile,v 1.148 2007-07-22 14:29:25 nicm Exp $
 
 .SUFFIXES: .c .o .y .h
 .PHONY: clean lint regress yannotate manual \
@@ -48,7 +48,6 @@ CFLAGS+= -g -ggdb -DDEBUG
 LDFLAGS+= -Wl,-E
 .endif
 #CFLAGS+= -pedantic -std=c99
-#CFLAGS+= -Wredundant-decls  -Wdisabled-optimization -Wendif-labels
 CFLAGS+= -Wno-long-long -Wall -W -Wnested-externs -Wformat=2
 CFLAGS+= -Wmissing-prototypes -Wstrict-prototypes -Wmissing-declarations
 CFLAGS+= -Wwrite-strings -Wshadow -Wpointer-arith -Wcast-qual -Wsign-compare

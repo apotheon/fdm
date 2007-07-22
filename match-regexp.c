@@ -1,4 +1,4 @@
-/* $Id: match-regexp.c,v 1.21 2007-07-11 12:06:49 nicm Exp $ */
+/* $Id: match-regexp.c,v 1.22 2007-07-22 14:29:25 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -56,6 +56,8 @@ match_regexp_match(struct mail_ctx *mctx, struct expritem *ei)
 	case AREA_ANY:
 		break;
 	}
+	log_debug3("%s: matching from %zu to %zu (size=%zu, body=%zu)", a->name,
+	    so, eo, m->size, m->body);
 
 	res = re_block(&data->re, m->data + so, eo - so, &m->rml, &cause);
 	if (res == -1) {
