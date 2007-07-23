@@ -1,4 +1,4 @@
-/* $Id: mail-state.c,v 1.25 2007-07-16 11:11:16 nicm Exp $ */
+/* $Id: mail-state.c,v 1.26 2007-07-23 19:17:12 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -572,7 +572,6 @@ finish_action(struct deliver_ctx *dctx, struct msg *msg, struct msgbuf *msgbuf)
  	struct actitem	*ti = dctx->actitem;
 	struct mail	*m = dctx->mail;
 	u_int		 lines;
-
 
 	if (msgbuf->buf != NULL && msgbuf->len != 0) {
 		strb_destroy(&m->tags);
