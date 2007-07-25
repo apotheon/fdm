@@ -1,4 +1,4 @@
-/* $Id: replace.c,v 1.43 2007-07-11 18:22:09 nicm Exp $ */
+/* $Id: replace.c,v 1.44 2007-07-25 22:24:58 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -263,8 +263,8 @@ replace(char *src, struct strb *tags, struct mail *m, struct rmlist *rml)
 			}
 
 			alias = NULL;
-			if (ALIAS_IDX(ch) != -1)
-				alias = aliases[ALIAS_IDX(ch)];
+			if (ALIAS_IDX((u_char) ch) != -1)
+				alias = aliases[ALIAS_IDX((u_char) ch)];
 			if (alias == NULL)
 				continue;
 
