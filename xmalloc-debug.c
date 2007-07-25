@@ -1,4 +1,4 @@
-/* $Id: xmalloc-debug.c,v 1.21 2007-07-17 20:35:38 nicm Exp $ */
+/* $Id: xmalloc-debug.c,v 1.22 2007-07-25 23:30:07 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -22,6 +22,7 @@
 
 #include <ctype.h>
 #include <dlfcn.h>
+#include <stdint.h>
 #include <stdlib.h>
 #include <string.h>
 
