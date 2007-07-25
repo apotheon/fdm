@@ -1,4 +1,4 @@
-/* $Id: command.c,v 1.42 2007-07-25 21:52:45 nicm Exp $ */
+/* $Id: command.c,v 1.43 2007-07-25 22:05:06 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -303,7 +303,7 @@ cmd_poll(struct cmd *cmd, char **out, char **err,
 	if (cmd->io_in != NULL && IO_CLOSED(cmd->io_in) &&
 	    cmd->pid != -1 && !(cmd->flags & CMD_ONCE)) {
 		xasprintf(cause, "%s", strerror(EPIPE));
-		return (1);
+		return (-1);
 	}
 
 	/*

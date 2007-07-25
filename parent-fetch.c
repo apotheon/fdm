@@ -1,4 +1,4 @@
-/* $Id: parent-fetch.c,v 1.11 2007-07-25 21:52:45 nicm Exp $ */
+/* $Id: parent-fetch.c,v 1.12 2007-07-25 22:05:06 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -82,7 +82,7 @@ parent_fetch(struct child *child, struct msg *msg, struct msgbuf *msgbuf)
 	case MSG_DONE:
 		fatalx("unexpected message");
 	case MSG_EXIT:
-		return (1);
+		return (-1);
 	}
 
 	return (0);

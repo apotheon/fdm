@@ -1,4 +1,4 @@
-/* $Id: parent-deliver.c,v 1.9 2007-07-25 21:52:45 nicm Exp $ */
+/* $Id: parent-deliver.c,v 1.10 2007-07-25 22:05:06 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -66,5 +66,5 @@ parent_deliver(struct child *child, struct msg *msg, struct msgbuf *msgbuf)
 	mail_close(m);
 	xfree(m);
 
-	return (1);
+	return (-1);
 }

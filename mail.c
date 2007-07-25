@@ -1,4 +1,4 @@
-/* $Id: mail.c,v 1.114 2007-07-25 21:52:45 nicm Exp $ */
+/* $Id: mail.c,v 1.115 2007-07-25 22:05:06 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -39,7 +39,7 @@ mail_open(struct mail *m, size_t size)
 	m->body = 0;
 
 	if ((m->base = shm_create(&m->shm, m->size)) == NULL)
-		return (1);
+		return (-1);
  	SHM_REGISTER(&m->shm);
 
 	m->off = 0;
@@ -89,7 +89,7 @@ mail_receive(struct mail *m, struct msg *msg, int destroy)
 
 	memcpy(m, mm, sizeof *m);
 	if ((m->base = shm_reopen(&m->shm)) == NULL)
-		return (1);
+		return (-1);
  	SHM_REGISTER(&m->shm);
 
 	m->data = m->base + m->off;
@@ -140,7 +140,7 @@ mail_resize(struct mail *m, size_t size)
 		fatalx("size too large");
 	while (m->space <= (m->off + size)) {
 		if ((m->base = shm_resize(&m->shm, 2, m->space)) == NULL)
-			return (1);
+			return (-1);
 		m->space *= 2;
 	}
 	m->data = m->base + m->off;

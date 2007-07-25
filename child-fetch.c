@@ -1,4 +1,4 @@
-/* $Id: child-fetch.c,v 1.49 2007-07-25 21:52:45 nicm Exp $ */
+/* $Id: child-fetch.c,v 1.50 2007-07-25 22:05:05 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -291,7 +291,7 @@ fetch_match(struct account *a, struct fetch_ctx *fctx, struct msg *msg,
 		    "trying (match) message %u", a->name, this->mail->idx);
 		switch (mail_match(this, msg, msgbuf)) {
 		case MAIL_ERROR:
-			return (1);
+			return (-1);
 		case MAIL_DELIVER:
 			TAILQ_REMOVE(&fctx->matchq, this, entry);
 			TAILQ_INSERT_TAIL(&fctx->deliverq, this, entry);
@@ -328,7 +328,7 @@ fetch_deliver(struct account *a, struct fetch_ctx *fctx, struct msg *msg,
 		    " trying (deliver) message %u", a->name, this->mail->idx);
 		switch (mail_deliver(this, msg, msgbuf)) {
 		case MAIL_ERROR:
-			return (1);
+			return (-1);
 		case MAIL_MATCH:
 			TAILQ_REMOVE(&fctx->deliverq, this, entry);
 			TAILQ_INSERT_TAIL(&fctx->matchq, this, entry);
