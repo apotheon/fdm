@@ -1,4 +1,4 @@
-/* $Id: deliver-maildir.c,v 1.56 2007-07-25 21:52:45 nicm Exp $ */
+/* $Id: deliver-maildir.c,v 1.57 2007-07-25 22:09:42 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -101,10 +101,11 @@ deliver_maildir_create(struct account *a, const char *maildir)
 	for (i = 0; names[i] != NULL; i++) {
 		if (mkpath(path, sizeof path, "%s%s", maildir, names[i]) != 0)
 			goto error;
-		log_debug("%s: creating %s", a->name, path);
 
-		if (xmkdir(path, -1, conf.file_group, DIRMODE) == 0)
+		if (xmkdir(path, -1, conf.file_group, DIRMODE) == 0) {
+			log_debug2("%s: creating %s", a->name, path);
 			continue;
+		}
 		if (errno != EEXIST)
 			goto error;
 
