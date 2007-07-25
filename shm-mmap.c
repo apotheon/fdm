@@ -1,4 +1,4 @@
-/* $Id: shm-mmap.c,v 1.15 2007-07-25 20:05:49 nicm Exp $ */
+/* $Id: shm-mmap.c,v 1.16 2007-07-25 21:20:57 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -44,7 +44,7 @@ char	shm_block[BUFSIZ];
 char *
 shm_path(struct shm *shm)
 {
-	static char	path[PATH_MAX];
+	static char	path[MAXPATHLEN];
 
 	if (mkpath(path, sizeof path, "%s/%s", conf.tmp_dir, shm->name) != 0)
 		return (NULL);

@@ -1,4 +1,4 @@
-/* $Id: file.c,v 1.5 2007-07-25 21:05:22 nicm Exp $ */
+/* $Id: file.c,v 1.6 2007-07-25 21:20:57 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -60,7 +60,7 @@ vmkpath(char *buf, size_t len, const char *fmt, va_list ap)
 int
 mklock(u_int locks, const char *path)
 {
-	char	lock[PATH_MAX];
+	char	lock[MAXPATHLEN];
 	int	fd;
 
 	if (!(locks & LOCK_DOTLOCK))
@@ -85,7 +85,7 @@ mklock(u_int locks, const char *path)
 void
 rmlock(u_int locks, const char *path)
 {
-	char	lock[PATH_MAX];
+	char	lock[MAXPATHLEN];
 
 	if (!(locks & LOCK_DOTLOCK))
 		return;
