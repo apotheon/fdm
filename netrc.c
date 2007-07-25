@@ -1,4 +1,4 @@
-/* $Id: netrc.c,v 1.8 2007-07-11 09:16:02 nicm Exp $ */
+/* $Id: netrc.c,v 1.9 2007-07-25 20:05:49 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -29,11 +29,11 @@ int	netrc_token(FILE *, char **);
 FILE *
 netrc_open(const char *home, char **cause)
 {
-	char		 path[MAXPATHLEN];
+	char		 path[PATH_MAX];
 	struct stat	 sb;
 	FILE		*f;
 
-	if (printpath(path, sizeof path, "%s/%s", home, ".netrc") != 0) {
+	if (mkpath(path, sizeof path, "%s/%s", home, ".netrc") != 0) {
 		xasprintf(cause, "%s", strerror(errno));
 		return (NULL);
 	}

@@ -1,4 +1,4 @@
-/* $Id: deliver-mbox.c,v 1.63 2007-07-25 18:36:58 nicm Exp $ */
+/* $Id: deliver-mbox.c,v 1.64 2007-07-25 20:05:49 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -108,7 +108,7 @@ deliver_mbox_deliver(struct deliver_ctx *dctx, struct actitem *ti)
 
 	/* Check permissions and ownership. */
 	exists = 1;
-	if (xstat(&sb, "%s", path) != 0) {
+	if (stat(path, &sb) != 0) {
 		if (errno != ENOENT) {
 			log_warn("%s: %s", a->name, path);
 			goto out;
@@ -125,8 +125,7 @@ deliver_mbox_deliver(struct deliver_ctx *dctx, struct actitem *ti)
 
 	total = 0;
 	do {
-		fd = openlock(path, conf.lock_types,
-		    O_CREAT|O_WRONLY|O_APPEND, UMASK(FILEMODE));
+		fd = openlock(path, O_CREAT|O_WRONLY|O_APPEND, conf.lock_types);
 		if (fd < 0) {
 			if (errno == EAGAIN) {
 				if (total == 0)

@@ -1,4 +1,4 @@
-/* $Id: xmalloc.c,v 1.44 2007-07-22 14:29:25 nicm Exp $ */
+/* $Id: xmalloc.c,v 1.45 2007-07-25 20:05:49 nicm Exp $ */
 
 /*
  * Copyright (c) 2004 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -204,32 +204,6 @@ xvsnprintf(char *buf, size_t len, const char *fmt, va_list ap)
                 log_fatal("xvsnprintf");
 
         return (i);
-}
-
-/*
- * Print a path. Same as xsnprintf, but return ENAMETOOLONG on truncation.
- */
-int printflike3
-printpath(char *buf, size_t len, const char *fmt, ...)
-{
-	va_list	ap;
-	int	n;
-
-	if (len > INT_MAX) {
-		errno = ENAMETOOLONG;
-		return (1);
-	}
-
-	va_start(ap, fmt);
-	n = xvsnprintf(buf, len, fmt, ap);
-	va_end(ap);
-
-	if ((size_t) n >= len) {
-		errno = ENAMETOOLONG;
-		return (1);
-	}
-
-	return (0);
 }
 
 /*
