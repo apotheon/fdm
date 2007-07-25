@@ -1,4 +1,4 @@
-/* $Id: connect.c,v 1.63 2007-07-25 21:52:45 nicm Exp $ */
+/* $Id: connect.c,v 1.64 2007-07-25 22:13:23 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -77,7 +77,7 @@ sslerror2(int n, const char *fn)
 		xasprintf(&cause, "%s: timed out or need read", fn);
 		return (cause);
 	case SSL_ERROR_WANT_WRITE:
-		xasprintf(&cause, "%s: timed out of need write", fn);
+		xasprintf(&cause, "%s: timed out or need write", fn);
 		return (cause);
 	}
 
