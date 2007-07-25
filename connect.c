@@ -1,4 +1,4 @@
-/* $Id: connect.c,v 1.62 2007-07-22 14:29:25 nicm Exp $ */
+/* $Id: connect.c,v 1.63 2007-07-25 21:52:45 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -295,7 +295,7 @@ connectproxy(struct server *srv,
 			goto error;
 		break;
 	default:
-		log_fatalx("unknown proxy type");
+		fatalx("unknown proxy type");
 	}
 
 	/* If the original request was for SSL, initiate it now. */
@@ -558,18 +558,18 @@ makessl(struct server *srv, int fd, int verify, int timeout, char **cause)
 	 * certificate.
 	 */
 	if ((mode = fcntl(fd, F_GETFL)) == -1)
-		log_fatal("fcntl");
+		fatal("fcntl failed");
 	if (fcntl(fd, F_SETFL, mode & ~O_NONBLOCK) == -1)
-		log_fatal("fcntl");
+		fatal("fcntl failed");
 
 	/* Set the timeout. */
 	size = sizeof saved;
 	if (getsockopt(fd, SOL_SOCKET, SO_RCVTIMEO, &saved, &size) != 0)
-		log_fatal("getsockopt");
+		fatal("getsockopt failed");
 	memset(&tv, 0, sizeof tv);
 	tv.tv_sec = timeout / 1000;
 	if (setsockopt(fd, SOL_SOCKET, SO_RCVTIMEO, &tv, sizeof tv) != 0)
-		log_fatal("setsockopt");
+		fatal("setsockopt failed");
 
 	/* Connect with SSL.  */
 	SSL_set_connect_state(ssl);
@@ -580,9 +580,9 @@ makessl(struct server *srv, int fd, int verify, int timeout, char **cause)
 
 	/* Reset non-blocking mode and timeout. */
 	if (fcntl(fd, F_SETFL, mode & ~O_NONBLOCK) == -1)
-		log_fatal("fcntl");
+		fatal("fcntl failed");
 	if (setsockopt(fd, SOL_SOCKET, SO_RCVTIMEO, &saved, sizeof saved) != 0)
-		log_fatal("setsockopt");
+		fatal("setsockopt failed");
 
 	/* Verify certificate. */
 	if (verify && sslverify(srv, ssl, cause) != 0)

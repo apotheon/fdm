@@ -1,4 +1,4 @@
-/* $Id: match-command.c,v 1.39 2007-07-25 18:36:58 nicm Exp $ */
+/* $Id: match-command.c,v 1.40 2007-07-25 21:52:45 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -62,7 +62,7 @@ match_command_match(struct mail_ctx *mctx, struct expritem *ei)
 	mail_send(m, &msg);
 
 	if (privsep_send(io, &msg, &msgbuf) != 0)
-		log_fatalx("child: privsep_send error");
+		fatalx("privsep_send error");
 
 	mctx->msgid = msg.id;
 	return (MATCH_PARENT);

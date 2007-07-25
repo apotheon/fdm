@@ -1,4 +1,4 @@
-/* $Id: fetch-stdin.c,v 1.64 2007-07-11 13:33:57 nicm Exp $ */
+/* $Id: fetch-stdin.c,v 1.65 2007-07-25 21:52:45 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -64,7 +64,7 @@ fetch_stdin_connect(struct account *a)
 
 	if (fcntl(STDIN_FILENO, F_GETFL) == -1) {
 		if (errno != EBADF)
-			log_fatal("fcntl");
+			fatal("fcntl failed");
 		log_warnx("%s: stdin is invalid", a->name);
 		return (-1);
 	}

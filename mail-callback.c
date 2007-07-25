@@ -1,4 +1,4 @@
-/* $Id: mail-callback.c,v 1.16 2007-07-17 22:17:42 nicm Exp $ */
+/* $Id: mail-callback.c,v 1.17 2007-07-25 21:52:45 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -193,7 +193,7 @@ done_mail(struct account *a, struct fetch_ctx *fctx)
 		log_debug("%s: keeping message %u", a->name, mctx->mail->idx);
 		break;
 	default:
-		log_fatalx("invalid decision");
+		fatalx("invalid decision");
 	}
 
 	return (mctx->mail);

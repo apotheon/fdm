@@ -1,4 +1,4 @@
-/* $Id: mail.c,v 1.113 2007-07-17 22:17:42 nicm Exp $ */
+/* $Id: mail.c,v 1.114 2007-07-25 21:52:45 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -137,7 +137,7 @@ int
 mail_resize(struct mail *m, size_t size)
 {
 	if (SIZE_MAX - m->off < size)
-		log_fatalx("mail_resize: SIZE_MAX - m->off < size");
+		fatalx("size too large");
 	while (m->space <= (m->off + size)) {
 		if ((m->base = shm_resize(&m->shm, 2, m->space)) == NULL)
 			return (1);
@@ -527,7 +527,7 @@ fill_wrapped(struct mail *m)
 	u_int		 n;
 
 	if (!ARRAY_EMPTY(&m->wrapped))
-		log_fatalx("fill_wrapped: mail already wrapped");
+		fatalx("already wrapped");
 
 	ARRAY_INIT(&m->wrapped);
 	m->wrapchar = '\0';

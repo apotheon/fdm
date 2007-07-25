@@ -1,4 +1,4 @@
-/* $Id: strb.c,v 1.14 2007-07-18 00:31:59 nicm Exp $ */
+/* $Id: strb.c,v 1.15 2007-07-25 21:52:45 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -96,7 +96,7 @@ strb_vadd(struct strb **sbp, const char *key, const char *value, va_list ap)
 	size = sb->str_size;
 	while (sb->str_size - sb->str_used < keylen + valuelen) {
 		if (STRB_SIZE(sb) > SIZE_MAX / 2)
-			log_fatalx("strb_add: size too large");
+			fatalx("size too large");
 		sb->str_size *= 2;
 	}
 	if (size != sb->str_size) {
@@ -114,10 +114,10 @@ strb_vadd(struct strb **sbp, const char *key, const char *value, va_list ap)
 
 			size = STRB_SIZE(sb);
 			if (sb->ent_max > UINT_MAX / 2)
-				log_fatalx("strb_add: ent_max too large");
+				fatalx("ent_max too large");
 			sb->ent_max *= 2;
 			if (STRB_SIZE(sb) < size)
-				log_fatalx("strb_add: size too large");
+				fatalx("size too large");
 
 			sb = *sbp = xrealloc(sb, 1, STRB_SIZE(sb));
 

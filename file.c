@@ -1,4 +1,4 @@
-/* $Id: file.c,v 1.6 2007-07-25 21:20:57 nicm Exp $ */
+/* $Id: file.c,v 1.7 2007-07-25 21:52:45 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -91,10 +91,10 @@ rmlock(u_int locks, const char *path)
 		return;
 
 	if (mkpath(lock, sizeof lock, "%s.lock", path) != 0)
-		log_fatal("unlink");
+		fatal("unlink failed");
 
 	if (unlink(lock) != 0)
-		log_fatal("unlink");
+		fatal("unlink failed");
 
 	cleanup_deregister(lock);
 }
