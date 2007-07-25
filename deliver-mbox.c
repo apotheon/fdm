@@ -1,4 +1,4 @@
-/* $Id: deliver-mbox.c,v 1.62 2007-07-25 18:29:35 nicm Exp $ */
+/* $Id: deliver-mbox.c,v 1.63 2007-07-25 18:36:58 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -148,7 +148,7 @@ deliver_mbox_deliver(struct deliver_ctx *dctx, struct actitem *ti)
 			}
 		}
 	} while (fd < 0);
-	if (!exists && conf.file_group != NOGRP) {
+	if (!exists && conf.file_group != (gid_t) -1) {
 		if (fchown(fd, (uid_t) -1, conf.file_group) == -1) {
 			log_warn("%s: %s", a->name, path);
 			goto out;

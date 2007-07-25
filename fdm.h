@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.303 2007-07-25 18:29:35 nicm Exp $ */
+/* $Id: fdm.h,v 1.304 2007-07-25 18:36:58 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -73,9 +73,6 @@ struct fetch_ctx; 	/* fetch.h */
 #define DEFUMASK	(S_IRWXG|S_IRWXO)
 #define FILEMODE	(S_IRUSR|S_IWUSR|S_IRGRP|S_IWGRP|S_IROTH|S_IWOTH)
 #define DIRMODE		(S_IRWXU|S_IRWXG|S_IRWXO)
-
-#define NOGRP	 	((gid_t) -1)
-#define NOUSR		((uid_t) -1)
 
 extern char	*__progname;
 

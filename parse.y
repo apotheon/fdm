@@ -1,4 +1,4 @@
-/* $Id: parse.y,v 1.227 2007-07-23 23:19:41 nicm Exp $ */
+/* $Id: parse.y,v 1.228 2007-07-25 18:36:58 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -620,7 +620,7 @@ set: TOKSET TOKMAXSIZE size
      }
    | TOKSET TOKFILEGROUP TOKUSER
      {
-	     conf.file_group = NOGRP;
+	     conf.file_group = -1;
      }
    | TOKSET TOKFILEGROUP gid
 /**  [$3: gid (gid_t)] */
@@ -932,7 +932,7 @@ gid: replstrv
 /** USER: <uid> (uid_t) */
 user: /* empty */
       {
-	      $$ = NOUSR;
+	      $$ = -1;
       }
     | TOKUSER uid
 /**   [$2: uid (uid_t)] */

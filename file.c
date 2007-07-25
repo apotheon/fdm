@@ -1,4 +1,4 @@
-/* $Id: file.c,v 1.2 2007-07-25 18:29:35 nicm Exp $ */
+/* $Id: file.c,v 1.3 2007-07-25 18:36:58 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -216,7 +216,7 @@ checkowner(struct stat *sb, uid_t uid)
 {
 	static char	msg[128];
 
-	if (uid == NOUSR)
+	if (uid == (uid_t) -1)
 		uid = getuid();
 	if (sb->st_uid == uid)
 		return (NULL);
@@ -232,7 +232,7 @@ checkgroup(struct stat *sb, gid_t gid)
 {
 	static char	msg[128];
 
-	if (gid == NOUSR)
+	if (gid == (gid_t) -1)
 		gid = getgid();
 	if (sb->st_gid == gid)
 		return (NULL);

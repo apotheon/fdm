@@ -1,4 +1,4 @@
-/* $Id: match-command.c,v 1.38 2007-07-05 10:00:46 nicm Exp $ */
+/* $Id: match-command.c,v 1.39 2007-07-25 18:36:58 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -81,7 +81,7 @@ match_command_desc(struct expritem *ei, char *buf, size_t len)
 	type = data->pipe ? "pipe" : "exec";
 
 	if (data->re.str == NULL) {
-		if (data->uid != NOUSR) {
+		if (data->uid != (uid_t) -1) {
 			xsnprintf(buf, len, "%s \"%s\" user %lu returns (%s, )",
 			    type, data->cmd.str, (u_long) data->uid, ret);
 		} else {
@@ -89,7 +89,7 @@ match_command_desc(struct expritem *ei, char *buf, size_t len)
 			    data->cmd.str, ret);
 		}
 	} else {
-		if (data->uid != NOUSR) {
+		if (data->uid != (uid_t) -1) {
 			xsnprintf(buf, len,
 			    "%s \"%s\" user %lu returns (%s, \"%s\")",
 			    type, data->cmd.str, (u_long) data->uid, ret,

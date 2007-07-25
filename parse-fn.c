@@ -1,4 +1,4 @@
-/* $Id: parse-fn.c,v 1.4 2007-07-16 23:43:17 nicm Exp $ */
+/* $Id: parse-fn.c,v 1.5 2007-07-25 18:36:58 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -87,18 +87,18 @@ weed_users(struct users *up)
 
 	for (i = 0; i < ARRAY_LENGTH(up) - 1; i++) {
 		uid = ARRAY_ITEM(up, i);
-		if (uid == NOUSR)
+		if (uid == (uid_t) -1)
 			continue;
 
 		for (j = i + 1; j < ARRAY_LENGTH(up); j++) {
 			if (ARRAY_ITEM(up, j) == uid)
-				ARRAY_ITEM(up, j) = NOUSR;
+				ARRAY_ITEM(up, j) = -1;
 		}
 	}
 
 	i = 0;
 	while (i < ARRAY_LENGTH(up)) {
-		if (ARRAY_ITEM(up, i) == NOUSR)
+		if (ARRAY_ITEM(up, i) == (uid_t) -1)
 			ARRAY_REMOVE(up, i);
 		else
 			i++;
