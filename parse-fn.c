@@ -1,4 +1,4 @@
-/* $Id: parse-fn.c,v 1.5 2007-07-25 18:36:58 nicm Exp $ */
+/* $Id: parse-fn.c,v 1.6 2007-07-26 09:09:14 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -116,7 +116,7 @@ fmt_replstrs(const char *prefix, struct replstrs *rsp)
 void
 free_replstrs(struct replstrs *rsp)
 {
-	return (free_strings((struct strings *) rsp)); /* XXX */
+	free_strings((struct strings *) rsp); /* XXX */
 }
 
 char *

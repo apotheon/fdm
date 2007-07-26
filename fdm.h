@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.307 2007-07-25 21:52:45 nicm Exp $ */
+/* $Id: fdm.h,v 1.308 2007-07-26 09:09:14 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -329,7 +329,9 @@ struct rmlist {
 
 /* Cache data. */
 struct cache {
+#ifdef DB
 	struct db	       *db;
+#endif
 	char		       *path;
 	long long		expire;
 
@@ -337,15 +339,15 @@ struct cache {
 };
 
 /* Database structs. */
-struct db {
 #ifdef DB
+struct db {
 	TDB_CONTEXT		*tdb;
-#endif
 };
 struct dbitem {
 	uint64_t 		 tim;
 	uint32_t		 pad[4];
 } __packed;
+#endif
 
 /* A single mail. */
 struct mail {
