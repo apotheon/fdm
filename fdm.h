@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.308 2007-07-26 09:09:14 nicm Exp $ */
+/* $Id: fdm.h,v 1.309 2007-07-26 22:39:58 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -21,7 +21,6 @@
 
 #include <sys/param.h>
 #include <sys/cdefs.h>
-#include <sys/dirent.h>
 #include <sys/stat.h>
 
 #ifndef NO_QUEUE_H
