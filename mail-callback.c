@@ -1,4 +1,4 @@
-/* $Id: mail-callback.c,v 1.17 2007-07-25 21:52:45 nicm Exp $ */
+/* $Id: mail-callback.c,v 1.18 2007-07-26 08:59:59 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -154,7 +154,7 @@ enqueue:
 	ARRAY_INIT(&mctx->stack);
 
 	/* And enqueue it. */
-	TAILQ_INSERT_TAIL(&fctx->matchq, mctx, entry);
+	TAILQ_INSERT_TAIL(mq, mctx, entry);
 	fctx->queued++;
 
 	if (a->fetch->total != NULL && a->fetch->total(a) > 0) {

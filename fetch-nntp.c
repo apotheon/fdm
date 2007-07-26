@@ -1,4 +1,4 @@
-/* $Id: fetch-nntp.c,v 1.92 2007-07-25 21:52:45 nicm Exp $ */
+/* $Id: fetch-nntp.c,v 1.93 2007-07-26 08:59:59 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -484,10 +484,9 @@ int
 fetch_nntp_switch(struct account *a, unused struct fetch_ctx *fctx)
 {
 	struct fetch_nntp_data	*data = a->data;
-	struct mail		*m;
 
 	/* Dequeue mail if any to be deleted. */
-	while ((m = done_mail(a, fctx)) != NULL)
+	while (done_mail(a, fctx) != NULL)
 		dequeue_mail(a, fctx);
 
 	/* Close if requested. */
@@ -606,7 +605,6 @@ fetch_nntp_next(struct account *a, unused struct fetch_ctx *fctx)
 {
 	struct fetch_nntp_data	*data = a->data;
 	struct fetch_nntp_group	*group;
-	struct mail		*m;
 	char			*line, *id;
 	u_int			 n;
 	int			 code;
@@ -614,7 +612,7 @@ fetch_nntp_next(struct account *a, unused struct fetch_ctx *fctx)
 	group = ARRAY_ITEM(&data->groups, data->group);
 
 	/* Dequeue mail here too. */
-	while ((m = done_mail(a, fctx)) != NULL)
+	while (done_mail(a, fctx) != NULL)
 		dequeue_mail(a, fctx);
 
 	if (fetch_nntp_check(a, &line, &code, 2, 223, 421) != 0)
