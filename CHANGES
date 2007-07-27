@@ -148,13 +148,6 @@
   Note the guard statement - the key can't be empty and news (NNTP) messages
   don't have a message-id.
 
-  I'm still playing a bit with syntax and database backend so don't rely on
-  this too much (I'm not convinced using the word "cache" for both news cache
-  and this generic cache is a good idea. I'm also not convinced by TDB -
-  nice though it is, I need to get a port done and accepted for OpenBSD, and
-  I don't know how portable it is generally: BDBv3/4 may be a better option
-  although they are a lot more complicated.)
-
 27 June 2007
 
 * New tags taken from the date header corresponding to the current time tags:
@@ -482,4 +475,4 @@
   the mail was very rarely reallocated, now that the header is added it is.
 * Changed all the descriptions to static buffers and audited use of snprintf.
 
-$Id: CHANGES,v 1.121 2007-07-25 21:54:40 nicm Exp $
+$Id: CHANGES,v 1.122 2007-07-27 10:30:47 nicm Exp $
