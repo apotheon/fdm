@@ -1,4 +1,4 @@
-/* $Id: connect.c,v 1.65 2007-07-30 18:22:43 nicm Exp $ */
+/* $Id: connect.c,v 1.66 2007-07-30 20:55:42 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -588,7 +588,7 @@ makessl(struct server *srv, int fd, int verify, int timeout, char **cause)
 		 * If the timeout is too large (EINVAL), keep trying it until
 		 * it reaches a minimum of 30 seconds.
 		 */
-		if (errno != EINVAL || itv.it_value.tv_sec < 30000)
+		if (errno != EINVAL || itv.it_value.tv_sec < 30)
 			fatal("setitimer failed");
 		itv.it_value.tv_sec /= 2;
 	}
