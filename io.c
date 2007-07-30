@@ -1,4 +1,4 @@
-/* $Id: io.c,v 1.75 2007-07-25 21:52:45 nicm Exp $ */
+/* $Id: io.c,v 1.76 2007-07-30 10:11:49 nicm Exp $ */
 
 /*
  * Copyright (c) 2005 Nicholas Marriott <nicm__@ntlworld.com>
@@ -523,7 +523,7 @@ io_readline2(struct io *io, char **buf, size_t *len)
 
 			/*
 			 * If the socket has closed, just return all the data
-			 * (the buffer is known not to be at least eollen long).
+			 * (the buffer is known to be at least eollen long).
 			 */
 			if (!IO_CLOSED(io))
 				return (NULL);
