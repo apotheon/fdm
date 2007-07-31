@@ -1,4 +1,4 @@
-/* $Id: io.c,v 1.78 2007-07-31 21:24:34 nicm Exp $ */
+/* $Id: io.c,v 1.79 2007-07-31 22:44:17 nicm Exp $ */
 
 /*
  * Copyright (c) 2005 Nicholas Marriott <nicm__@ntlworld.com>
@@ -368,8 +368,8 @@ io_push(struct io *io)
 				break;
 			case SSL_ERROR_WANT_WRITE:
 				/*
-				 * A repeat is certain (io->wsize is still !=
-				 * 0) so this can be ignored
+				 * A repeat is certain (buffer still has data)
+				 * so this can be ignored
 				 */
 				break;
 			default:
