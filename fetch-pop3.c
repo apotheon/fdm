@@ -1,4 +1,4 @@
-/* $Id: fetch-pop3.c,v 1.99 2007-07-31 12:58:47 nicm Exp $ */
+/* $Id: fetch-pop3.c,v 1.100 2007-07-31 13:11:36 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -582,10 +582,11 @@ fetch_pop3_line(struct account *a, struct fetch_ctx *fctx)
 		if (line == NULL)
 			return (FETCH_BLOCK);
 
-		if (line[0] == '.' && line[1] == '.')
+		if (line[0] == '.') {
+			if (line[1] == '\0')
+				break;
 			line++;
-		else if (line[0] == '.')
-			break;
+		}
 
 		if (data->flushing)
 			continue;
