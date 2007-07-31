@@ -1,5 +1,6 @@
 30 July 2007
 
+* fdm 1.3a and 1.3b released.
 * Change to using setitimer for SSL_connect timeout. OpenBSD, and possibly
   others, limit SO_RCVTIMEO to 327 seconds. Also try smaller timeouts if setting
   the first one fails, to a minimum of 30 seconds. Reported by Steven Mestdagh.
@@ -482,4 +483,4 @@
   the mail was very rarely reallocated, now that the header is added it is.
 * Changed all the descriptions to static buffers and audited use of snprintf.
 
-$Id: CHANGES,v 1.123 2007-07-30 18:22:43 nicm Exp $
+$Id: CHANGES,v 1.124 2007-07-31 10:14:13 nicm Exp $

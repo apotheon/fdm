@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.149 2007-07-30 09:39:38 nicm Exp $
+# $Id: Makefile,v 1.150 2007-07-31 10:14:13 nicm Exp $
 
 .SUFFIXES: .c .o .y .h
 .PHONY: clean lint regress yannotate manual \
@@ -123,6 +123,8 @@ ${PROG}:	${OBJS}
 dist:		clean manual
 		grep '^#DEBUG=' Makefile
 		grep '^#DEBUG=' GNUmakefile
+		[ "`(grep '^VERSION' Makefile; grep '^VERSION' GNUmakefile)| \
+			uniq -u`" = "" ]
 		tar -zc \
 			-s '/.*/${PROG}-${VERSION}\/\0/' \
 			-f ${PROG}-${VERSION}.tar.gz ${DISTFILES}
