@@ -1,4 +1,4 @@
-/* $Id: fetch-nntp.c,v 1.93 2007-07-26 08:59:59 nicm Exp $ */
+/* $Id: fetch-nntp.c,v 1.94 2007-07-31 13:25:09 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -692,10 +692,11 @@ fetch_nntp_line(struct account *a, struct fetch_ctx *fctx)
 		if (line == NULL)
 			return (FETCH_BLOCK);
 
-		if (line[0] == '.' && line[1] == '.')
+		if (line[0] == '.') {
+			if (line[1] == '\0')
+				break;
 			line++;
-		else if (line[0] == '.')
-			break;
+		}
 
 		if (data->flushing)
 			continue;
