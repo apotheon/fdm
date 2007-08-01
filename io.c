@@ -1,4 +1,4 @@
-/* $Id: io.c,v 1.82 2007-08-01 11:00:02 nicm Exp $ */
+/* $Id: io.c,v 1.83 2007-08-01 12:31:01 nicm Exp $ */
 
 /*
  * Copyright (c) 2005 Nicholas Marriott <nicm__@ntlworld.com>
@@ -278,6 +278,7 @@ io_fill(struct io *io)
 	ssize_t	n;
 	int	error;
 
+again:
 	/* Ensure there is at least some minimum space in the buffer. */
 	buffer_ensure(io->rd, IO_BLOCKSIZE);
 
@@ -334,6 +335,8 @@ io_fill(struct io *io)
 
 		/* Reset the need flags. */
 		io->flags &= ~IOF_NEEDFILL;
+
+		goto again;
 	}
 
 	return (1);
