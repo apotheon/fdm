@@ -1,4 +1,4 @@
-/* $Id: io.c,v 1.81 2007-08-01 10:36:25 nicm Exp $ */
+/* $Id: io.c,v 1.82 2007-08-01 11:00:02 nicm Exp $ */
 
 /*
  * Copyright (c) 2005 Nicholas Marriott <nicm__@ntlworld.com>
@@ -616,7 +616,7 @@ io_vwriteline(struct io *io, const char *fmt, va_list ap)
 	} else
 		n = 0;
 	io_write(io, io->eol, strlen(io->eol));
-	
+
  	IO_DEBUG(io, "out: %zu bytes, wr: used=%zu, free=%zu",
 	    n + strlen(io->eol), BUFFER_USED(io->wr), BUFFER_FREE(io->wr));
 }

@@ -1,4 +1,4 @@
-/* $Id: shm-mmap.c,v 1.18 2007-07-25 22:05:06 nicm Exp $ */
+/* $Id: shm-mmap.c,v 1.19 2007-08-01 11:00:02 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -81,7 +81,7 @@ shm_expand(struct shm *shm, size_t size)
 	}
 	if (size > 0) {
 		if ((n = write(shm->fd, shm_block, size)) == -1)
-		    return (-1);
+			return (-1);
 		if ((size_t) n != size) {
 			errno = EIO;
 			return (-1);
