@@ -1,3 +1,10 @@
+01 August 2007
+
+* Fix a bug with SSL where a "don't stop" error (want read/want write) would
+  make fdm think there was data received when there wasn't, resulting in
+  spurious new lines and fetching being aborted. This somehow failed to show
+  up in the two months since 1.1 was released. Reported by Steven Mestdagh.
+
 31 July 2007
 
 * Accept only ".\r\n" as terminator for POP3 and NNTP, not a '.' followed by
@@ -489,4 +496,4 @@
   the mail was very rarely reallocated, now that the header is added it is.
 * Changed all the descriptions to static buffers and audited use of snprintf.
 
-$Id: CHANGES,v 1.125 2007-07-31 13:25:09 nicm Exp $
+$Id: CHANGES,v 1.126 2007-08-01 10:36:24 nicm Exp $

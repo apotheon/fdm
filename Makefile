@@ -1,18 +1,18 @@
-# $Id: Makefile,v 1.150 2007-07-31 10:14:13 nicm Exp $
+# $Id: Makefile,v 1.151 2007-08-01 10:36:25 nicm Exp $
 
 .SUFFIXES: .c .o .y .h
 .PHONY: clean lint regress yannotate manual \
 	update-index.html upload-index.html
 
 PROG= fdm
-VERSION= 1.4
+VERSION= 1.3c
 
 OS!= uname
 REL!= uname -r
 DATE!= date +%Y%m%d-%H%M
 
 # This must be empty as OpenBSD includes it in default CFLAGS.
-DEBUG=
+#DEBUG=
 
 SRCS= fdm.c \
       attach.c buffer.c cleanup.c command.c connect.c io.c log.c netrc.c \
