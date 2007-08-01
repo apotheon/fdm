@@ -1,4 +1,4 @@
-/* $Id: pcre.c,v 1.11 2007-07-25 21:52:45 nicm Exp $ */
+/* $Id: pcre.c,v 1.12 2007-08-01 15:06:26 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -60,7 +60,7 @@ int
 re_block(struct re *re, const void *buf, size_t len, struct rmlist *rml,
     char **cause)
 {
-	int		res, pm[NPMATCH];
+	int		res, pm[NPMATCH * 3];
 	u_int		i, j;
 
 	if (len > INT_MAX)
