@@ -534,9 +534,7 @@ path or command is expected.
 Some accounts add additional tags, discussed below.
 
 Tags are replaced in almost all strings (including those in single-quotes!),
-some when the configuration file is parsed and some when the string is used. In
-addition, a leading ~ or ~user is expanded to a home directory where
-appropriate.
+some when the configuration file is parsed and some when the string is used.
 
 %%% POP3 and POP3S
 
@@ -1492,5 +1490,5 @@ match "^List-Id:.*<full-disclosure\\.lists\\.grok\\.org\\.uk>" in headers
 	action "full-disclosure"
 
 ================================================================================
-$Id: MANUAL.in,v 1.38 2007-08-01 11:00:02 nicm Exp $
+$Id: MANUAL.in,v 1.39 2007-08-02 15:41:03 nicm Exp $
 
