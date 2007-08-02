@@ -1,4 +1,4 @@
-/* $Id: parse-fn.c,v 1.6 2007-07-26 09:09:14 nicm Exp $ */
+/* $Id: parse-fn.c,v 1.7 2007-08-02 18:53:11 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -553,6 +553,10 @@ free_account(struct account *a)
 		struct fetch_maildir_data	*data = a->data;
 		free_strings(data->maildirs);
 		ARRAY_FREEALL(data->maildirs);
+	} else if (a->fetch == &fetch_mbox) {
+		struct fetch_mbox_data	*data = a->data;
+		free_strings(data->mboxes);
+		ARRAY_FREEALL(data->mboxes);
 	} else if (a->fetch == &fetch_nntp) {
 		struct fetch_nntp_data		*data = a->data;
 		free_strings(data->names);

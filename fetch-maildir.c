@@ -1,4 +1,4 @@
-/* $Id: fetch-maildir.c,v 1.77 2007-08-02 17:35:27 nicm Exp $ */
+/* $Id: fetch-maildir.c,v 1.78 2007-08-02 18:53:09 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -256,7 +256,7 @@ fetch_maildir_next(struct account *a, struct fetch_ctx *fctx)
 	struct fetch_maildir_mail	*aux;
 	struct mail			*m;
 
-	/* Delete mail if any. */
+	/* Delete mail if any. XXX I've forgotten: why here too? */
 	while ((m = done_mail(a, fctx)) != NULL) {
 		aux = m->auxdata;
 		if (m->decision == DECISION_DROP && unlink(aux->path) != 0) {

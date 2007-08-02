@@ -1,4 +1,4 @@
-/* $Id: lex.c,v 1.13 2007-07-23 23:13:35 nicm Exp $ */
+/* $Id: lex.c,v 1.14 2007-08-02 18:53:11 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -130,6 +130,7 @@ static const struct token tokens[] = {
 	{ "maximum-size", TOKMAXSIZE },
 	{ "mb", TOKMEGABYTES },
 	{ "mbox", TOKMBOX },
+	{ "mboxes", TOKMBOXES },
 	{ "megabyte", TOKMEGABYTES },
 	{ "megabytes", TOKMEGABYTES },
 	{ "minute", TOKMINUTES },
