@@ -1,4 +1,4 @@
-/* $Id: imap-common.c,v 1.52 2007-08-02 17:16:03 nicm Exp $ */
+/* $Id: imap-common.c,v 1.53 2007-08-02 17:35:27 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -779,7 +779,7 @@ imap_body(struct account *a, unused struct fetch_ctx *fctx)
 	m->auxfree = imap_free;
 
 	/* Open the mail. */
-	if (mail_open(m, IO_ROUND(data->size)) != 0) {
+	if (mail_open(m, data->size) != 0) {
 		log_warn("%s: failed to create mail", a->name);
 		return (FETCH_ERROR);
 	}

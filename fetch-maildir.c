@@ -1,4 +1,4 @@
-/* $Id: fetch-maildir.c,v 1.76 2007-07-25 21:52:45 nicm Exp $ */
+/* $Id: fetch-maildir.c,v 1.77 2007-08-02 17:35:27 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -348,7 +348,7 @@ restart:
 	m->shm.fd = -1;
 
 	/* Open the mail. */
-	if (mail_open(m, IO_ROUND(sb.st_size)) != 0) {
+	if (mail_open(m, sb.st_size) != 0) {
 		log_warn("%s: failed to create mail", a->name);
 		mail_destroy(m);
 		return (FETCH_ERROR);

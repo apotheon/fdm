@@ -1,4 +1,4 @@
-/* $Id: mail.c,v 1.115 2007-07-25 22:05:06 nicm Exp $ */
+/* $Id: mail.c,v 1.116 2007-08-02 17:35:27 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -34,11 +34,11 @@ void	mail_free(struct mail *);
 int
 mail_open(struct mail *m, size_t size)
 {
-	m->size = size;
-	m->space = m->size;
+	m->size = 0;
+	m->space = IO_ROUND(size);
 	m->body = 0;
 
-	if ((m->base = shm_create(&m->shm, m->size)) == NULL)
+	if ((m->base = shm_create(&m->shm, m->space)) == NULL)
 		return (-1);
  	SHM_REGISTER(&m->shm);
 
