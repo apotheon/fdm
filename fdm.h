@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.309 2007-07-26 22:39:58 nicm Exp $ */
+/* $Id: fdm.h,v 1.310 2007-08-02 10:09:41 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -118,7 +118,7 @@ extern char	*__progname;
 
 /* Fatal errors. */
 #define fatal(msg) log_fatal("%s: %s", __func__, msg);
-#define fatalx(msg) log_fatal("%s: %s", __func__, msg);
+#define fatalx(msg) log_fatalx("%s: %s", __func__, msg);
 
 /* Apply umask. */
 #define UMASK(mask) ((mask) & ~conf.file_umask)
