@@ -1,4 +1,4 @@
-/* $Id: imap-common.c,v 1.51 2007-08-02 13:13:35 nicm Exp $ */
+/* $Id: imap-common.c,v 1.52 2007-08-02 17:16:03 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -166,7 +166,7 @@ invalid:
 int
 imap_tag(char *line)
 {
-	long	 	 tag;
+	int	 	 tag;
 	const char	*errstr;
 	char		*ptr;
 
