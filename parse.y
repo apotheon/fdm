@@ -1,4 +1,4 @@
-/* $Id: parse.y,v 1.228 2007-07-25 18:36:58 nicm Exp $ */
+/* $Id: parse.y,v 1.229 2007-08-02 17:23:59 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -446,6 +446,11 @@ time: numv
 expire: TOKEXPIRE time
 /**     [$2: time (long long)] */
 	{
+#if UINT64_MAX < LLONG_MAX
+		if ($2 > UINT64_MAX)
+			yyerror("time too long");
+#endif
+
 		$$ = $2;
 	}
       | /* empty */

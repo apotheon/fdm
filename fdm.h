@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.310 2007-08-02 10:09:41 nicm Exp $ */
+/* $Id: fdm.h,v 1.311 2007-08-02 17:23:59 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -332,7 +332,7 @@ struct cache {
 	struct db	       *db;
 #endif
 	char		       *path;
-	long long		expire;
+	uint64_t		expire;
 
 	TAILQ_ENTRY(cache)	entry;
 };
