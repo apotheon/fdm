@@ -1,4 +1,4 @@
-/* $Id: parent-fetch.c,v 1.12 2007-07-25 22:05:06 nicm Exp $ */
+/* $Id: parent-fetch.c,v 1.13 2007-08-03 11:59:11 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -50,7 +50,7 @@ parent_fetch(struct child *child, struct msg *msg, struct msgbuf *msgbuf)
 			fatalx("bad tags");
 		m = xcalloc(1, sizeof *m);
 		if (mail_receive(m, msg, 0) != 0) {
-			log_warn("can't receive mail");
+			log_warn("parent: can't receive mail");
 			parent_fetch_error(child, msg);
 			break;
 		}
@@ -67,7 +67,7 @@ parent_fetch(struct child *child, struct msg *msg, struct msgbuf *msgbuf)
 			fatalx("bad tags");
 		m = xcalloc(1, sizeof *m);
 		if (mail_receive(m, msg, 0) != 0) {
-			log_warn("can't receive mail");
+			log_warn("parent: can't receive mail");
 			parent_fetch_error(child, msg);
 			break;
 		}
