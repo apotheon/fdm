@@ -1,4 +1,4 @@
-/* $Id: fetch-mbox.c,v 1.3 2007-08-03 11:06:02 nicm Exp $ */
+/* $Id: fetch-mbox.c,v 1.4 2007-08-03 11:08:38 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -430,7 +430,7 @@ fetch_mbox_mail(struct account *a, struct fetch_ctx *fctx)
 	m->shm.fd = -1;
 
 	/* Open the mail. */
-	if (mail_open(m, fmbox->size) != 0) {
+	if (mail_open(m, IO_BLOCKSIZE) != 0) {
 		log_warn("%s: failed to create mail", a->name);
 		mail_destroy(m);
 		return (FETCH_ERROR);
