@@ -1,4 +1,4 @@
-/* $Id: mail.c,v 1.116 2007-08-02 17:35:27 nicm Exp $ */
+/* $Id: mail.c,v 1.117 2007-08-03 11:06:05 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -355,11 +355,8 @@ count_lines(struct mail *m, u_int *total, u_int *body)
 
 /* Append line to mail. Used during fetching. */
 int
-append_line(struct mail *m, char *line)
+append_line(struct mail *m, const char *line, size_t size)
 {
-	size_t	size;
-
-	size = strlen(line);
 	if (mail_resize(m, m->size + size + 1) != 0)
 		return (-1);
 	if (size > 0)

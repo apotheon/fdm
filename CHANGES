@@ -1,3 +1,7 @@
+03 August 2007
+
+* Fetching from mboxes.
+
 02 August 2007
 
 * Handle IMAP mails properly if they have no trailing newline.
@@ -507,4 +511,4 @@
   the mail was very rarely reallocated, now that the header is added it is.
 * Changed all the descriptions to static buffers and audited use of snprintf.
 
-$Id: CHANGES,v 1.134 2007-08-02 13:13:35 nicm Exp $
+$Id: CHANGES,v 1.135 2007-08-03 11:06:02 nicm Exp $

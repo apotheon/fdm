@@ -1,4 +1,4 @@
-/* $Id: fetch-nntp.c,v 1.94 2007-07-31 13:25:09 nicm Exp $ */
+/* $Id: fetch-nntp.c,v 1.95 2007-08-03 11:06:02 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -700,7 +700,7 @@ fetch_nntp_line(struct account *a, struct fetch_ctx *fctx)
 
 		if (data->flushing)
 			continue;
-		if (append_line(m, line) != 0) {
+		if (append_line(m, line, strlen(line)) != 0) {
 			log_warn("%s: failed to resize mail", a->name);
 			return (FETCH_ERROR);
 		}

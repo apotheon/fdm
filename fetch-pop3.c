@@ -1,4 +1,4 @@
-/* $Id: fetch-pop3.c,v 1.103 2007-08-02 17:35:27 nicm Exp $ */
+/* $Id: fetch-pop3.c,v 1.104 2007-08-03 11:06:02 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -612,7 +612,7 @@ fetch_pop3_line(struct account *a, struct fetch_ctx *fctx)
 
 		if (data->flushing)
 			continue;
-		if (append_line(m, line) != 0) {
+		if (append_line(m, line, strlen(line)) != 0) {
 			log_warn("%s: failed to resize mail", a->name);
 			return (FETCH_ERROR);
 		}

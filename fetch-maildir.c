@@ -1,4 +1,4 @@
-/* $Id: fetch-maildir.c,v 1.79 2007-08-03 08:15:58 nicm Exp $ */
+/* $Id: fetch-maildir.c,v 1.80 2007-08-03 11:06:02 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -353,7 +353,6 @@ restart:
 		mail_destroy(m);
 		return (FETCH_ERROR);
 	}
-	m->size = 0;
 
 	/* Got a valid entry, start reading it. */
 	log_debug2("%s: reading mail from: %s", a->name, name);

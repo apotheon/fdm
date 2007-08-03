@@ -1,4 +1,4 @@
-/* $Id: fetch-stdin.c,v 1.65 2007-07-25 21:52:45 nicm Exp $ */
+/* $Id: fetch-stdin.c,v 1.66 2007-08-03 11:06:02 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -149,7 +149,7 @@ fetch_stdin_fetch(struct account *a, struct fetch_ctx *fctx)
 			return (FETCH_ERROR);
 		}
 
-		if (append_line(m, line) != 0) {
+		if (append_line(m, line, strlen(line)) != 0) {
 			log_warn("%s: failed to resize mail", a->name);
 			return (FETCH_ERROR);
 		}

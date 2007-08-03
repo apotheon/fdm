@@ -1,4 +1,4 @@
-/* $Id: deliver-rewrite.c,v 1.50 2007-07-11 13:33:57 nicm Exp $ */
+/* $Id: deliver-rewrite.c,v 1.51 2007-08-03 11:06:02 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -92,7 +92,7 @@ deliver_rewrite_deliver(struct deliver_ctx *dctx, struct actitem *ti)
 			continue;
 		log_debug3("%s: %s: out: %s", a->name, s, out);
 
-		if (append_line(md, out) != 0) {
+		if (append_line(md, out, strlen(out)) != 0) {
 			log_warnx("%s: %s: failed to resize mail", s, a->name);
 			goto error;
 		}
