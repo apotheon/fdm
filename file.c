@@ -1,4 +1,4 @@
-/* $Id: file.c,v 1.7 2007-07-25 21:52:45 nicm Exp $ */
+/* $Id: file.c,v 1.8 2007-08-03 08:15:59 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -151,6 +151,28 @@ error:
 	close(fd);
 	rmlock(locks, path);
 	errno = saved_errno;
+	return (-1);
+}
+
+/* Sleep for lock. */
+int
+locksleep(const char *hdr, const char *path, long long *used)
+{
+	useconds_t	us;
+
+	if (*used == 0)
+		srandom((u_int) getpid());
+
+	us = LOCKSLEEPTIME + (random() % LOCKSLEEPTIME);
+	log_debug3("%s: %s: "
+	    "sleeping %.3f seconds for lock", hdr, path, us / 1000000.0);
+	usleep(us);
+
+	*used += us;
+	if (*used < LOCKTOTALTIME)
+		return (0);
+	log_warnx("%s: %s: "
+	    "couldn't get lock in %.3f seconds", hdr, path, *used / 1000000.0);
 	return (-1);
 }
 

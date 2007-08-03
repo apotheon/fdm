@@ -1,4 +1,4 @@
-/* $Id: fetch-maildir.c,v 1.78 2007-08-02 18:53:09 nicm Exp $ */
+/* $Id: fetch-maildir.c,v 1.79 2007-08-03 08:15:58 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -154,6 +154,8 @@ fetch_maildir_connect(struct account *a)
 		return (-1);
 	}
 
+	data->dirp = NULL;
+
 	data->state = fetch_maildir_open;
 	return (0);
 }
@@ -173,12 +175,10 @@ fetch_maildir_disconnect(struct account *a, unused int aborted)
 {
 	struct fetch_maildir_data	*data = a->data;
 
-	fetch_maildir_freepaths(a);
+	if (data->dirp != NULL)
+		closedir(data->dirp);
 
-	if (data->dirp != NULL && closedir(data->dirp) != 0) {
-		log_warn("%s: %s: closedir", a->name, data->path);
-		return (-1);
-	}
+	fetch_maildir_freepaths(a);
 
 	return (0);
 }
