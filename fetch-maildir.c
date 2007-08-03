@@ -1,4 +1,4 @@
-/* $Id: fetch-maildir.c,v 1.81 2007-08-03 11:59:11 nicm Exp $ */
+/* $Id: fetch-maildir.c,v 1.82 2007-08-03 13:39:47 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -118,6 +118,8 @@ fetch_maildir_makepaths(struct account *a)
 				goto error;
 			}
 		}
+
+		globfree(&g);
 	}
 
 	return (0);
