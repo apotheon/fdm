@@ -1,4 +1,4 @@
-/* $Id: deliver-pipe.c,v 1.37 2007-08-08 20:00:20 nicm Exp $ */
+/* $Id: deliver-pipe.c,v 1.38 2007-08-08 20:06:14 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -59,7 +59,7 @@ do_pipe(struct deliver_ctx *dctx, struct actitem *ti, int pipef)
 	struct deliver_pipe_data	*data = ti->data;
         char				*s, *cause, *err;
 	int				 status;
-	struct cmd			*cmd;
+	struct cmd			*cmd = NULL;
 	char				*lbuf;
 	size_t				 llen;
 
