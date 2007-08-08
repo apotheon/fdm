@@ -1,4 +1,4 @@
-/* $Id: deliver-to-cache.c,v 1.4 2007-07-17 00:03:41 nicm Exp $ */
+/* $Id: deliver-to-cache.c,v 1.5 2007-08-08 20:00:20 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -33,16 +33,6 @@ struct deliver deliver_to_cache = {
 	deliver_to_cache_desc
 };
 
-#ifndef DB
-int
-deliver_to_cache_deliver(struct deliver_ctx *dctx, unused struct actitem *ti)
-{
-	struct account	*a = dctx->account;
-
-	log_warnx("%s: caches not enabled", a->name);
-	return (DELIVER_FAILURE);
-}
-#else
 int
 deliver_to_cache_deliver(struct deliver_ctx *dctx, struct actitem *ti)
 {
@@ -80,7 +70,6 @@ error:
 		xfree(key);
 	return (DELIVER_FAILURE);
 }
-#endif
 
 void
 deliver_to_cache_desc(struct actitem *ti, char *buf, size_t len)
