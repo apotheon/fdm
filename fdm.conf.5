@@ -1,4 +1,4 @@
-.\" $Id: fdm.conf.5,v 1.76 2007-07-30 08:29:46 nicm Exp $
+.\" $Id: fdm.conf.5,v 1.77 2007-08-10 13:37:29 nicm Exp $
 .\"
 .\" Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
 .\"
@@ -705,12 +705,9 @@ with contents
 .It Ic remove-header Ar name
 Remove all occurances of header
 .Ar name .
-.It Ic stdout Op Ic add-from
+.It Ic stdout
 Write the mail to
 .Em stdout .
-If
-.Ic add-from
-is specified, an mbox-style "From" line is prepended.
 .It Ic to-cache Ar path Ic key Ar key
 This action adds the string
 .Ar key

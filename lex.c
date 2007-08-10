@@ -1,4 +1,4 @@
-/* $Id: lex.c,v 1.14 2007-08-02 18:53:11 nicm Exp $ */
+/* $Id: lex.c,v 1.15 2007-08-10 13:37:29 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -62,7 +62,6 @@ static const struct token tokens[] = {
 	{ "accounts", TOKACCOUNTS },
 	{ "action", TOKACTION },
 	{ "actions", TOKACTIONS },
-	{ "add-from", TOKADDFROM },
 	{ "add-header", TOKADDHEADER },
 	{ "age", TOKAGE },
 	{ "all", TOKALL },

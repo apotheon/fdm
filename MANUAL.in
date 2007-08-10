@@ -857,10 +857,7 @@ Examples are:
 
 %%% stdout
 
-fdm can write mails directly to stdout, optionally prepending an mbox-style
-'From' line:
-
-	action "sofrom" stdout add-from
+fdm can write mails directly to stdout, using the 'stdout' action:
 
 	action "so" stdout
 
@@ -1485,5 +1482,5 @@ match "^List-Id:.*<full-disclosure\\.lists\\.grok\\.org\\.uk>" in headers
 	action "full-disclosure"
 
 ================================================================================
-$Id: MANUAL.in,v 1.41 2007-08-08 20:00:20 nicm Exp $
+$Id: MANUAL.in,v 1.42 2007-08-10 13:37:29 nicm Exp $
 

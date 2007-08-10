@@ -1,4 +1,4 @@
-/* $Id: deliver.h,v 1.17 2007-06-28 15:00:33 nicm Exp $ */
+/* $Id: deliver.h,v 1.18 2007-08-10 13:37:29 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -78,11 +78,6 @@ struct deliver_smtp_data {
 struct deliver_mbox_data {
 	struct replpath	path;
 	int		compress;
-};
-
-/* Deliver stdout data. */
-struct deliver_stdout_data {
-	int		add_from;
 };
 
 /* Deliver add-header data. */
