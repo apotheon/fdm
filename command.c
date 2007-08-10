@@ -1,4 +1,4 @@
-/* $Id: command.c,v 1.43 2007-07-25 22:05:06 nicm Exp $ */
+/* $Id: command.c,v 1.44 2007-08-10 17:39:48 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -128,23 +128,20 @@ cmd_start(const char *s, int flags, const char *buf, size_t len, char **cause)
 	fd_err[1] = -1;
 
 	/* Create ios. */
+	cmd->io_in = NULL;
 	if (fd_in[1] != -1) {
 		cmd->io_in = io_create(fd_in[1], NULL, IO_LF);
 		io_writeonly(cmd->io_in);
  		if (cmd->len != 0)
 			cmd->io_in->flags |= IOF_MUSTWR;
-	} else
-		cmd->io_in = NULL;
+	}
+	cmd->io_out = NULL;
 	if (fd_out[0] != -1) {
 		cmd->io_out = io_create(fd_out[0], NULL, IO_LF);
 		io_readonly(cmd->io_out);
-	} else
-		cmd->io_out = NULL;
-	if (fd_err[0] != -1) {
-		cmd->io_err = io_create(fd_err[0], NULL, IO_LF);
-		io_readonly(cmd->io_err);
-	} else
-		cmd->io_err = NULL;
+	}
+	cmd->io_err = io_create(fd_err[0], NULL, IO_LF);
+	io_readonly(cmd->io_err);
 
 	return (cmd);
 
