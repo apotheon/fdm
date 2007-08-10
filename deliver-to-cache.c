@@ -1,4 +1,4 @@
-/* $Id: deliver-to-cache.c,v 1.5 2007-08-08 20:00:20 nicm Exp $ */
+/* $Id: deliver-to-cache.c,v 1.6 2007-08-10 17:29:57 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -41,7 +41,6 @@ deliver_to_cache_deliver(struct deliver_ctx *dctx, struct actitem *ti)
 	struct deliver_to_cache_data	*data = ti->data;
 	char				*key;
 	struct cache			*cache;
-
 
 	key = replacestr(&data->key, m->tags, m, &m->rml);
 	if (key == NULL || *key == '\0') {

@@ -1,4 +1,4 @@
-/* $Id: match-in-cache.c,v 1.5 2007-08-08 20:00:21 nicm Exp $ */
+/* $Id: match-in-cache.c,v 1.6 2007-08-10 17:29:57 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -40,7 +40,6 @@ match_in_cache_match(struct mail_ctx *mctx, struct expritem *ei)
 	struct mail			*m = mctx->mail;
 	char				*key;
 	struct cache			*cache;
-
 
 	key = replacestr(&data->key, m->tags, m, &m->rml);
 	if (key == NULL || *key == '\0') {
