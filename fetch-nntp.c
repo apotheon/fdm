@@ -1,4 +1,4 @@
-/* $Id: fetch-nntp.c,v 1.95 2007-08-03 11:06:02 nicm Exp $ */
+/* $Id: fetch-nntp.c,v 1.96 2007-08-15 22:16:37 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -714,9 +714,9 @@ fetch_nntp_line(struct account *a, struct fetch_ctx *fctx)
 	add_tag(&m->tags, "server", "%s", data->server.host);
 	add_tag(&m->tags, "port", "%s", data->server.port);
 
+	data->mail = NULL;
 	if (enqueue_mail(a, fctx, m) != 0)
 		return (FETCH_ERROR);
-	data->mail = NULL;
 
 	io_writeline(data->io, "NEXT");
 	data->state = fetch_nntp_next;

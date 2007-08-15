@@ -1,4 +1,4 @@
-/* $Id: fetch-pop3.c,v 1.105 2007-08-15 13:30:09 nicm Exp $ */
+/* $Id: fetch-pop3.c,v 1.106 2007-08-15 22:16:37 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -626,9 +626,9 @@ fetch_pop3_line(struct account *a, struct fetch_ctx *fctx)
 	add_tag(&m->tags, "port", "%s", data->server.port);
 	add_tag(&m->tags, "server_uid", "%s", aux->uid);
 
+	data->mail = NULL;
 	if (enqueue_mail(a, fctx, m) != 0)
 		return (FETCH_ERROR);
-	data->mail = NULL;
 
 	data->state = fetch_pop3_next;
 	return (FETCH_AGAIN);
