@@ -1,6 +1,6 @@
-# $Id: Makefile,v 1.1 2007-08-15 23:38:58 nicm Exp $
+# $Id: Makefile,v 1.2 2007-08-15 23:44:47 nicm Exp $
 
-CLEANFILES= *~
+CLEANFILES= *~ *.in *.out *.data *.conf
 
 TESTFILES!= echo *.sh
 
