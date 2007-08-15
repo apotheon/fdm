@@ -1,4 +1,4 @@
-/* $Id: fetch.h,v 1.36 2007-08-03 11:06:03 nicm Exp $ */
+/* $Id: fetch.h,v 1.37 2007-08-15 13:30:10 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -156,6 +156,7 @@ struct fetch_pop3_data {
 	char		*user;
 	char		*pass;
 	struct server	 server;
+	int		 apop;
 
 	u_int		 cur;
 	u_int		 num;

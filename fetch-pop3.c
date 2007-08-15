@@ -1,4 +1,4 @@
-/* $Id: fetch-pop3.c,v 1.104 2007-08-03 11:06:02 nicm Exp $ */
+/* $Id: fetch-pop3.c,v 1.105 2007-08-15 13:30:09 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -294,7 +294,7 @@ fetch_pop3_connected(struct account *a, unused struct fetch_ctx *fctx)
 	if (!fetch_pop3_okay(line))
 		return (fetch_pop3_bad(a, line));
 
-	if ((line = strchr(line, '<')) != NULL) {
+	if (data->apop && (line = strchr(line, '<')) != NULL) {
 		if ((ptr = strchr(line + 1, '>')) != NULL) {
 			*++ptr = '\0';
 
