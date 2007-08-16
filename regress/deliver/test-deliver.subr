@@ -1,4 +1,4 @@
-# $Id: test-deliver.subr,v 1.1 2007-08-15 23:38:58 nicm Exp $
+# $Id: test-deliver.subr,v 1.2 2007-08-16 08:44:46 nicm Exp $
 
 test_init() {
     [ -z "$FDM" ] && exit 1
@@ -36,7 +36,7 @@ test_run() {
 
     diff -u $TEST.out $TEST.data
     RESULT=$?
-    if [ $? -eq 0 ]; then
+    if [ $RESULT -eq 0 ]; then
 	echo "$0: PASSED"
     else
 	echo "$0: FAILED"
