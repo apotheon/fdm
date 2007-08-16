@@ -1,5 +1,7 @@
 16 August 2007
 
+* Remove header action now allows fnmatch patterns.
+* Fix a silly bug with removing headers.
 * Clarify headers/body again. The body offset is now the first byte of the
   body, so a mail of a single blank line has size == body == 1 (so, body
   size == 0 rather than 1). "\nBody" always had body == 1 and not having
@@ -535,4 +537,4 @@
   the mail was very rarely reallocated, now that the header is added it is.
 * Changed all the descriptions to static buffers and audited use of snprintf.
 
-$Id: CHANGES,v 1.140 2007-08-15 23:30:10 nicm Exp $
+$Id: CHANGES,v 1.141 2007-08-16 10:22:34 nicm Exp $

@@ -1,4 +1,4 @@
-/* $Id: deliver-remove-header.c,v 1.16 2007-08-16 08:45:35 nicm Exp $ */
+/* $Id: deliver-remove-header.c,v 1.17 2007-08-16 10:22:34 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -58,7 +58,7 @@ deliver_remove_header_deliver(struct deliver_ctx *dctx, struct actitem *ti)
 
 	set_wrapped(m, ' ');
 
-	while ((ptr = find_header(m, hdr, &len, 0)) != NULL) {
+	while ((ptr = match_header(m, hdr, &len, 0)) != NULL) {
 		log_debug3("%s: found header to remove: %.*s", a->name,
 		    (int) len, ptr);
 

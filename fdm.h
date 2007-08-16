@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.314 2007-08-08 20:00:20 nicm Exp $ */
+/* $Id: fdm.h,v 1.315 2007-08-16 10:22:34 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -929,6 +929,7 @@ void		 line_next(struct mail *, char **, size_t *);
 int printflike3	 insert_header(struct mail *, const char *, const char *, ...);
 int		 remove_header(struct mail *, const char *);
 char		*find_header(struct mail *, const char *, size_t *, int);
+char		*match_header(struct mail *, const char *, size_t *, int);
 size_t		 find_body(struct mail *);
 void		 count_lines(struct mail *, u_int *, u_int *);
 int		 append_line(struct mail *, const char *, size_t);
