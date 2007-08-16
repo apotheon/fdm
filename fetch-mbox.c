@@ -1,4 +1,4 @@
-/* $Id: fetch-mbox.c,v 1.6 2007-08-03 13:39:47 nicm Exp $ */
+/* $Id: fetch-mbox.c,v 1.7 2007-08-16 14:49:49 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -397,6 +397,7 @@ fetch_mbox_open(struct account *a, unused struct fetch_ctx *fctx)
 	/* mmap the file. */
 	fmbox->base = mmap(
 	    NULL, fmbox->size, PROT_READ|PROT_WRITE, MAP_SHARED, fmbox->fd, 0);
+	madvise(fmbox->base, fmbox->size, MADV_SEQUENTIAL);
 	if (fmbox->base == MAP_FAILED) {
 		fmbox->base = NULL;
 		goto error;
