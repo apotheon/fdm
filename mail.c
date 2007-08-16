@@ -1,4 +1,4 @@
-/* $Id: mail.c,v 1.118 2007-08-15 23:30:10 nicm Exp $ */
+/* $Id: mail.c,v 1.119 2007-08-16 08:45:35 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -190,9 +190,6 @@ remove_header(struct mail *m, const char *hdr)
 
 	if ((ptr = find_header(m, hdr, &len, 0)) == NULL)
 		return (-1);
-
-	/* Include the \n. */
-	len++;
 
 	/* Remove the header. */
 	memmove(ptr, ptr + len, m->size - len - (ptr - m->data));
