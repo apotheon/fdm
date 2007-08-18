@@ -1,4 +1,4 @@
-/* $Id: fetch.h,v 1.37 2007-08-15 13:30:10 nicm Exp $ */
+/* $Id: fetch.h,v 1.38 2007-08-18 15:04:24 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -40,6 +40,7 @@ struct fetch_ctx {
 	int	 		 holding; /* holding fetch until queues drop */
 
 	struct io	        *io;
+	struct iolist		 iol;
 };
 
 /* Fetch functions. */
@@ -47,7 +48,7 @@ struct fetch {
 	const char	*name;
 
  	int		 (*connect)(struct account *);
-	void		 (*fill)(struct account *, struct io **, u_int *n);
+	void		 (*fill)(struct account *, struct iolist *);
  	u_int		 (*total)(struct account *);
 	int		 (*completed)(struct account *);
 	int		 (*closed)(struct account *);

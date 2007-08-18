@@ -1,4 +1,4 @@
-/* $Id: fetch-pop3.c,v 1.106 2007-08-15 22:16:37 nicm Exp $ */
+/* $Id: fetch-pop3.c,v 1.107 2007-08-18 15:04:24 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -30,7 +30,7 @@
 #include "fetch.h"
 
 int	fetch_pop3_connect(struct account *);
-void	fetch_pop3_fill(struct account *, struct io **, u_int *);
+void	fetch_pop3_fill(struct account *, struct iolist *);
 u_int	fetch_pop3_total(struct account *);
 int	fetch_pop3_completed(struct account *);
 int	fetch_pop3_closed(struct account *);
@@ -130,11 +130,11 @@ fetch_pop3_reconnect(struct account *a)
 
 /* Fill io array. */
 void
-fetch_pop3_fill(struct account *a, struct io **iop, u_int *n)
+fetch_pop3_fill(struct account *a, struct iolist *iol)
 {
 	struct fetch_pop3_data	*data = a->data;
 
-	iop[(*n)++] = data->io;
+	ARRAY_ADD(iol, data->io);
 }
 
 /* Return total mails available. */
@@ -202,7 +202,6 @@ int
 fetch_pop3_poll(struct account *a, u_int *total)
 {
 	struct fetch_pop3_data	*data = a->data;
-	struct io		*rio;
 	char			*cause;
 	int		 	 timeout;
 
@@ -225,7 +224,7 @@ fetch_pop3_poll(struct account *a, u_int *total)
 			data->state = fetch_pop3_quit;
 		}
 
-		switch (io_polln(&data->io, 1, &rio, timeout, &cause)) {
+		switch (io_poll(data->io, timeout, &cause)) {
 		case 0:
 			log_warnx("%s: connection closed", a->name);
 			return (-1);

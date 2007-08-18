@@ -1,4 +1,4 @@
-/* $Id: fetch-imap.c,v 1.77 2007-06-28 15:48:45 nicm Exp $ */
+/* $Id: fetch-imap.c,v 1.78 2007-08-18 15:04:24 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -24,7 +24,7 @@
 #include "fetch.h"
 
 int	fetch_imap_connect(struct account *);
-void	fetch_imap_fill(struct account *, struct io **, u_int *);
+void	fetch_imap_fill(struct account *, struct iolist *);
 int	fetch_imap_disconnect(struct account *, int);
 void	fetch_imap_desc(struct account *, char *, size_t);
 
@@ -120,11 +120,11 @@ fetch_imap_connect(struct account *a)
 
 /* Fill io list. */
 void
-fetch_imap_fill(struct account *a, struct io **iop, u_int *n)
+fetch_imap_fill(struct account *a, struct iolist *iol)
 {
 	struct fetch_imap_data	*data = a->data;
 
-	iop[(*n)++] = data->io;
+	ARRAY_ADD(iol, data->io);
 }
 
 /* Close connection and clean up. */

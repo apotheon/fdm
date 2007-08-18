@@ -1,4 +1,4 @@
-/* $Id: fetch-nntp.c,v 1.96 2007-08-15 22:16:37 nicm Exp $ */
+/* $Id: fetch-nntp.c,v 1.97 2007-08-18 15:04:24 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -30,7 +30,7 @@
 #include "fetch.h"
 
 int	fetch_nntp_connect(struct account *);
-void	fetch_nntp_fill(struct account *, struct io **, u_int *);
+void	fetch_nntp_fill(struct account *, struct iolist *);
 int	fetch_nntp_completed(struct account *);
 int	fetch_nntp_closed(struct account *);
 int	fetch_nntp_fetch(struct account *, struct fetch_ctx *);
@@ -354,11 +354,11 @@ fetch_nntp_connect(struct account *a)
 
 /* Fill io array. */
 void
-fetch_nntp_fill(struct account *a, struct io **iop, u_int *n)
+fetch_nntp_fill(struct account *a, struct iolist *iol)
 {
 	struct fetch_nntp_data	*data = a->data;
 
-	iop[(*n)++] = data->io;
+	ARRAY_ADD(iol, data->io);
 }
 
 /* Return if fetch is complete. */

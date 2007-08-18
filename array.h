@@ -1,4 +1,4 @@
-/* $Id: array.h,v 1.7 2007-05-19 13:03:49 nicm Exp $ */
+/* $Id: array.h,v 1.8 2007-08-18 15:04:23 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -31,6 +31,7 @@
 
 #define ARRAY_EMPTY(a) ((a) == NULL || (a)->num == 0)
 #define ARRAY_LENGTH(a) ((a)->num)
+#define ARRAY_DATA(a) ((a)->list)
 
 #define ARRAY_FIRST(a) ARRAY_ITEM(a, 0)
 #define ARRAY_LAST(a) ARRAY_ITEM(a, (a)->num - 1)
@@ -39,6 +40,9 @@
 	(a)->num = 0;							\
 	(a)->list = NULL;		 				\
 	(a)->space = 0;							\
+} while (0)
+#define ARRAY_CLEAR(a) do {						\
+	(a)->num = 0;							\
 } while (0)
 
 #define ARRAY_SET(a, i, s) do {						\
