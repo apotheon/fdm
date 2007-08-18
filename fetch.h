@@ -1,4 +1,4 @@
-/* $Id: fetch.h,v 1.38 2007-08-18 15:04:24 nicm Exp $ */
+/* $Id: fetch.h,v 1.39 2007-08-18 17:14:00 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -40,7 +40,7 @@ struct fetch_ctx {
 	int	 		 holding; /* holding fetch until queues drop */
 
 	struct io	        *io;
-	struct iolist		 iol;
+	struct iolist		 iolist;
 };
 
 /* Fetch functions. */
