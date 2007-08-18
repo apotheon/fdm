@@ -1,4 +1,4 @@
-/* $Id: io.h,v 1.1 2007-08-18 15:04:24 nicm Exp $ */
+/* $Id: io.h,v 1.2 2007-08-18 17:07:56 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm__@ntlworld.com>
@@ -50,9 +50,6 @@ struct buffer {
 
 /* Amount to poll after in io_update. */
 #define IO_FLUSHSIZE (2 * IO_BLOCKSIZE)
-
-/* Maximum number of pollfds. */
-#define IO_POLLFDS 256
 
 /* IO macros. */
 #define IO_ROUND(n) (((n / IO_BLOCKSIZE) + 1) * IO_BLOCKSIZE)

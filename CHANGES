@@ -1,5 +1,7 @@
 18 August 2007
 
+* Tidy up io code a little, break some big functions and split headers stuff
+  into dedicated io.h. Also lift fd limit.
 * Make SMTP delivery work again (blank lines were failing a length check in
   buffer_add from io_write). SF bug 1776786.
 
@@ -542,4 +544,4 @@
   the mail was very rarely reallocated, now that the header is added it is.
 * Changed all the descriptions to static buffers and audited use of snprintf.
 
-$Id: CHANGES,v 1.142 2007-08-18 12:19:43 nicm Exp $
+$Id: CHANGES,v 1.143 2007-08-18 17:07:56 nicm Exp $
