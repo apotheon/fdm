@@ -1,4 +1,4 @@
-/* $Id: child-fetch.c,v 1.52 2007-08-18 15:04:23 nicm Exp $ */
+/* $Id: child-fetch.c,v 1.53 2007-08-18 15:13:13 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -419,13 +419,13 @@ fetch_account(struct account *a, struct io *io, double tim)
 			msgp = &msg;
 		}
 
-		/* Match a mail. */
+		/* Match mail. */
 		if (fetch_match(a, &fctx, msgp, &msgbuf) != 0) {
 			error = FETCH_ERROR;
 			break;
 		}
 
-		/* Deliver a mail. */
+		/* Deliver mail. */
 		if (fetch_deliver(a, &fctx, msgp, &msgbuf) != 0) {
 			error = FETCH_ERROR;
 			break;
