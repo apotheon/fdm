@@ -1,3 +1,11 @@
+23 August 2007
+
+* Yet another fetch reorganisation to try to make it clearer. Move tracking
+  completed mail into fetch code, move mail and state stuff outside, and
+  simplify the API and data structures. Also change the way the fetch poll loop
+  works and fix some potential problems with IMAP-over-pipe. Hopefully few
+  regressions...
+
 18 August 2007
 
 * Tidy up io code a little, break some big functions and split headers stuff
@@ -544,4 +552,4 @@
   the mail was very rarely reallocated, now that the header is added it is.
 * Changed all the descriptions to static buffers and audited use of snprintf.
 
-$Id: CHANGES,v 1.143 2007-08-18 17:07:56 nicm Exp $
+$Id: CHANGES,v 1.144 2007-08-23 23:05:08 nicm Exp $

@@ -1,4 +1,4 @@
-/* $Id: io.c,v 1.85 2007-08-18 16:44:58 nicm Exp $ */
+/* $Id: io.c,v 1.86 2007-08-23 23:05:09 nicm Exp $ */
 
 /*
  * Copyright (c) 2005 Nicholas Marriott <nicm__@ntlworld.com>
@@ -308,7 +308,7 @@ again:
 	/* Attempt to read as much as the buffer has available. */
 	if (io->ssl == NULL) {
 		n = read(io->fd, BUFFER_IN(io->rd), BUFFER_FREE(io->rd));
-		IO_DEBUG(io, "read returned %zd", n);
+		IO_DEBUG(io, "read returned %zd (errno=%d)", n, errno);
 		if (n == 0 || (n == -1 && errno == EPIPE))
 			return (0);
 		if (n == -1 && errno != EINTR && errno != EAGAIN) {
@@ -379,7 +379,7 @@ io_push(struct io *io)
 	/* Write as much as possible. */
 	if (io->ssl == NULL) {
 		n = write(io->fd, BUFFER_OUT(io->wr), BUFFER_USED(io->wr));
-		IO_DEBUG(io, "write returned %zd", n);
+		IO_DEBUG(io, "write returned %zd (errno=%d)", n, errno);
 		if (n == 0 || (n == -1 && errno == EPIPE))
 			return (0);
 		if (n == -1 && errno != EINTR && errno != EAGAIN) {

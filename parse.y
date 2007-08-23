@@ -1,4 +1,4 @@
-/* $Id: parse.y,v 1.235 2007-08-15 17:06:30 nicm Exp $ */
+/* $Id: parse.y,v 1.236 2007-08-23 23:05:09 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -2326,11 +2326,7 @@ fetchtype: poptype server userpassnetrc apop verify
 	   }
 	 | TOKSTDIN
 	   {
-		   struct fetch_stdin_data	*data;
-
 		   $$.fetch = &fetch_stdin;
-		   data = xcalloc(1, sizeof *data);
-		   $$.data = data;
 	   }
          | maildirs
 /**        [$1: maildirs (struct strings *)] */

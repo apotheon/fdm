@@ -1,4 +1,4 @@
-/* $Id: child-deliver.c,v 1.17 2007-07-25 21:52:45 nicm Exp $ */
+/* $Id: child-deliver.c,v 1.18 2007-08-23 23:05:08 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -25,10 +25,10 @@
 #include "fdm.h"
 #include "match.h"
 
-int	child_deliver(struct child *child, struct io *io);
+int	child_deliver(struct child *, struct io *);
 
 int
-child_deliver(struct child *child, struct io *io)
+child_deliver(struct child *child, struct io *pio)
 {
 	struct child_deliver_data	*data = child->data;
 	struct account			*a = data->account;
@@ -65,9 +65,9 @@ child_deliver(struct child *child, struct io *io)
 	msgbuf.buf = m->tags;
 	msgbuf.len = STRB_SIZE(m->tags);
 
-	if (privsep_send(io, &msg, &msgbuf) != 0)
+	if (privsep_send(pio, &msg, &msgbuf) != 0)
 		fatalx("privsep_send error");
-	if (privsep_recv(io, &msg, NULL) != 0)
+	if (privsep_recv(pio, &msg, NULL) != 0)
 		fatalx("privsep_recv error");
 	if (msg.type != MSG_EXIT)
 		fatalx("unexpected message");
