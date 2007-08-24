@@ -1,4 +1,4 @@
-/* $Id: fetch-imappipe.c,v 1.36 2007-08-23 23:05:08 nicm Exp $ */
+/* $Id: fetch-imappipe.c,v 1.37 2007-08-24 19:30:41 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -18,6 +18,7 @@
 
 #include <sys/types.h>
 
+#include <string.h>
 #include <unistd.h>
 
 #include "fdm.h"
@@ -50,8 +51,12 @@ fetch_imappipe_putln(struct account *a, const char *fmt, va_list ap)
 {
 	struct fetch_imap_data	*data = a->data;
 
-	io_vwriteline(data->cmd->io_in, fmt, ap);
+	if (data->cmd->io_in == NULL) {
+		log_warnx("%s: %s", a->name, strerror(EPIPE));
+		return (-1);
+	}
 
+	io_vwriteline(data->cmd->io_in, fmt, ap);
 	return (0);
 }
 
