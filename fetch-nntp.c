@@ -1,4 +1,4 @@
-/* $Id: fetch-nntp.c,v 1.98 2007-08-23 23:05:08 nicm Exp $ */
+/* $Id: fetch-nntp.c,v 1.99 2007-08-24 09:22:32 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -424,6 +424,7 @@ fetch_nntp_state_switch(struct account *a, struct fetch_ctx *fctx)
 		data->group++;
 
 		if (data->group == ARRAY_LENGTH(&data->groups)) {
+			io_writeline(data->io, "QUIT");
 			fctx->state = fetch_nntp_state_quit;
 			return (FETCH_BLOCK);
 		}
