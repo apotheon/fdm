@@ -1,5 +1,7 @@
 24 August 2007
 
+* Don't even try to check for command child exit until its std{in,out,err} are
+  closed. Hopefully fixes problems seen on Linux by Frank Terbeck.
 * Be more consistent about lists when parsing configuration file.
 * Don't try to strip duplicates from any lists instead of trying for some of
   them and not others.
@@ -559,4 +561,4 @@
   the mail was very rarely reallocated, now that the header is added it is.
 * Changed all the descriptions to static buffers and audited use of snprintf.
 
-$Id: CHANGES,v 1.146 2007-08-24 10:14:42 nicm Exp $
+$Id: CHANGES,v 1.147 2007-08-24 19:48:51 nicm Exp $
