@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.317 2007-08-23 23:05:08 nicm Exp $ */
+/* $Id: fdm.h,v 1.318 2007-08-24 09:52:50 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -745,8 +745,6 @@ struct account	*find_account(char *);
 struct action  	*find_action(char *);
 struct actions	*match_actions(const char *);
 struct macro	*find_macro(const char *);
-struct strings 	*weed_strings(struct strings *);
-struct users	*weed_users(struct users *);
 void		 find_netrc(const char *, char **, char **);
 void		 free_account(struct account *);
 void		 free_action(struct action *);
