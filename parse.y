@@ -1,4 +1,4 @@
-/* $Id: parse.y,v 1.239 2007-08-24 10:14:42 nicm Exp $ */
+/* $Id: parse.y,v 1.240 2007-08-24 10:28:16 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -740,28 +740,20 @@ replstrslist: replstrslist strv
 stringslist: stringslist replstrv
 /**          [$1: stringslist (struct strings *)] [$2: replstrv (char *)] */
 	     {
-		     char	*cp;
-
 		     if (*$2 == '\0')
 			     yyerror("empty string in list");
 
 		     $$ = $1;
-		     for (cp = $2; *cp != '\0'; cp++)
-			     *cp = tolower((u_char) *cp);
 		     ARRAY_ADD($$, $2);
 	     }
 	   | replstrv
 /**          [$1: replstrv (char *)] */
 	     {
-		     char	*cp;
-
 		     if (*$1 == '\0')
 			     yyerror("empty string in list");
 
 		     $$ = xmalloc(sizeof *$$);
 		     ARRAY_INIT($$);
-		     for (cp = $1; *cp != '\0'; cp++)
-			     *cp = tolower((u_char) *cp);
 		     ARRAY_ADD($$, $1);
 	     }
 
@@ -805,15 +797,11 @@ userslist: userslist uid
 domains: domainp replstrv
 /**      [$2: replstrv (char *)] */
 	 {
-		 char	*cp;
-
 		 if (*$2 == '\0')
 			 yyerror("invalid domain");
 
 		 $$ = xmalloc(sizeof *$$);
 		 ARRAY_INIT($$);
-		 for (cp = $2; *cp != '\0'; cp++)
-			 *cp = tolower((u_char) *cp);
 		 ARRAY_ADD($$, $2);
 	 }
        | domainp '{' stringslist '}'
@@ -826,15 +814,11 @@ domains: domainp replstrv
 headers: headerp replstrv
 /**      [$2: replstrv (char *)] */
 	 {
-		 char	*cp;
-
 		 if (*$2 == '\0')
 			 yyerror("invalid header");
 
 		 $$ = xmalloc(sizeof *$$);
 		 ARRAY_INIT($$);
-		 for (cp = $2; *cp != '\0'; cp++)
-			 *cp = tolower((u_char) *cp);
 		 ARRAY_ADD($$, $2);
 	 }
        | headerp '{' stringslist '}'
