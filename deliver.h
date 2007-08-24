@@ -1,4 +1,4 @@
-/* $Id: deliver.h,v 1.19 2007-08-10 17:17:44 nicm Exp $ */
+/* $Id: deliver.h,v 1.20 2007-08-24 09:46:08 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -88,7 +88,7 @@ struct deliver_add_header_data {
 
 /* Deliver remove-header data. */
 struct deliver_remove_header_data {
-	struct replstr	hdr;
+	struct replstrs	*hdrs;
 };
 
 /* Deliver write data. */

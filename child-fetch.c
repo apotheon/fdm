@@ -1,4 +1,4 @@
-/* $Id: child-fetch.c,v 1.55 2007-08-23 23:05:08 nicm Exp $ */
+/* $Id: child-fetch.c,v 1.56 2007-08-24 09:46:08 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -67,7 +67,7 @@ int	fetch_holding;
 /*
  * Complete flag. Set when fetch code is finished. All fetching finished after
  * queues drain.
- */ 
+ */
 int	fetch_complete;
 
 int
@@ -326,7 +326,7 @@ fetch_purge(struct account *a)
 	if (n == last || n % conf.purge_after != 0)
 		return (0);
 	last = n;
-	
+
 	log_debug("%s: purging after %u mails", a->name, n);
 	return (1);
 }
@@ -428,7 +428,7 @@ fetch_account(struct account *a, struct io *pio, int nflags, double tim)
 		ARRAY_ADD(&iol, pio);
 		if (a->fetch->fill != NULL)
 			a->fetch->fill(a, &iol);
-		
+
 		/* Poll for fetch data or privsep messages. */
 		log_debug3("%s: queued %u; blocked %u; flags 0x%02x", a->name,
 		    fetch_queued, fetch_blocked, fctx.flags);
@@ -443,7 +443,7 @@ abort:
 		log_warnx("%s: polling error. aborted", a->name);
 	else
 		log_warnx("%s: fetching error. aborted", a->name);
-	
+
 	aborted = 1;
 
 finished:
@@ -454,7 +454,7 @@ finished:
 
 	xfree(fctx.lbuf);
 	fetch_free();
-	ARRAY_FREE(&iol);	
+	ARRAY_FREE(&iol);
 
 	/* Close caches. */
 	TAILQ_FOREACH(cache, &conf.caches, entry) {
@@ -470,7 +470,7 @@ finished:
 		n = fetch_dropped + fetch_kept;
 		if (n > 0) {
 			log_info("%s: %u messages processed (%u kept) in %.3f "
-			    "seconds (average %.3f)", a->name, n, fetch_kept, 
+			    "seconds (average %.3f)", a->name, n, fetch_kept,
 			    tim, tim / n);
 		} else {
 			log_info("%s: 0 messages processed in %.3f seconds",

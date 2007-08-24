@@ -1,4 +1,4 @@
-/* $Id: deliver-rewrite.c,v 1.52 2007-08-08 20:00:20 nicm Exp $ */
+/* $Id: deliver-rewrite.c,v 1.53 2007-08-24 09:46:08 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -116,7 +116,7 @@ deliver_rewrite_deliver(struct deliver_ctx *dctx, struct actitem *ti)
 error_cause:
 	log_warnx("%s: %s: %s", a->name, s, cause);
 	xfree(cause);
-	
+
 error:
 	if (cmd != NULL)
 		cmd_free(cmd);

@@ -1,4 +1,4 @@
-/* $Id: lex.c,v 1.16 2007-08-15 13:30:10 nicm Exp $ */
+/* $Id: lex.c,v 1.17 2007-08-24 09:46:08 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -120,6 +120,7 @@ static const struct token tokens[] = {
 	{ "kilobyte", TOKKILOBYTES },
 	{ "kilobytes", TOKKILOBYTES },
 	{ "lock-file", TOKLOCKFILE },
+	{ "lock-type", TOKLOCKTYPES },
 	{ "lock-types", TOKLOCKTYPES },
 	{ "m", TOKMEGABYTES },
 	{ "maildir", TOKMAILDIR },
@@ -154,6 +155,7 @@ static const struct token tokens[] = {
 	{ "queue-high", TOKQUEUEHIGH },
 	{ "queue-low", TOKQUEUELOW },
 	{ "remove-header", TOKREMOVEHEADER },
+	{ "remove-headers", TOKREMOVEHEADERS },
 	{ "returns", TOKRETURNS },
 	{ "rewrite", TOKREWRITE },
 	{ "second", TOKSECONDS },

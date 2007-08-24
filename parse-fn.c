@@ -1,4 +1,4 @@
-/* $Id: parse-fn.c,v 1.8 2007-08-10 17:17:44 nicm Exp $ */
+/* $Id: parse-fn.c,v 1.9 2007-08-24 09:46:08 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -406,7 +406,8 @@ free_actitem(struct actitem *ti)
 		xfree(data->path.str);
 	} else if (ti->deliver == &deliver_remove_header) {
 		struct deliver_remove_header_data	*data = ti->data;
-		xfree(data->hdr.str);
+		free_replstrs(data->hdrs);
+		ARRAY_FREEALL(data->hdrs);
 	} else if (ti->deliver == &deliver_add_header) {
 		struct deliver_add_header_data		*data = ti->data;
 		xfree(data->hdr.str);

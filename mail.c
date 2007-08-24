@@ -1,4 +1,4 @@
-/* $Id: mail.c,v 1.120 2007-08-16 10:22:34 nicm Exp $ */
+/* $Id: mail.c,v 1.121 2007-08-24 09:46:08 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -330,7 +330,7 @@ match_header(struct mail *m, const char *patt, size_t *len, int value)
 				xfree(hdr);
 			}
 		}
-		
+
 		line_next(m, &ptr, len);
 	}
 	if (ptr == NULL)

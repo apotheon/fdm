@@ -1,4 +1,4 @@
-/* $Id: fetch-stdin.c,v 1.67 2007-08-23 23:05:09 nicm Exp $ */
+/* $Id: fetch-stdin.c,v 1.68 2007-08-24 09:46:08 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -128,7 +128,7 @@ fetch_stdin_state_mail(struct account *a, struct fetch_ctx *fctx)
 out:
 	if (io != NULL)
 		io_free(io);
-	
+
 	fctx->state = fetch_stdin_state_exit;
 	return (FETCH_MAIL);
 

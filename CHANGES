@@ -1,3 +1,7 @@
+24 August 2007
+
+* remove-header now accepts a list of headers in {}.
+
 23 August 2007
 
 * Yet another fetch reorganisation to try to make it clearer. Move tracking
@@ -552,4 +556,4 @@
   the mail was very rarely reallocated, now that the header is added it is.
 * Changed all the descriptions to static buffers and audited use of snprintf.
 
-$Id: CHANGES,v 1.144 2007-08-23 23:05:08 nicm Exp $
+$Id: CHANGES,v 1.145 2007-08-24 09:46:08 nicm Exp $

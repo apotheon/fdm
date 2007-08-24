@@ -1,4 +1,4 @@
-/* $Id: fetch.h,v 1.40 2007-08-23 23:05:09 nicm Exp $ */
+/* $Id: fetch.h,v 1.41 2007-08-24 09:46:08 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -35,7 +35,7 @@
 struct fetch_ctx {
 	int 	         (*state)(struct account *, struct fetch_ctx *);
 	int		 flags;
-	
+
 	struct mail	*mail;
 
 	size_t		 llen;
@@ -75,7 +75,7 @@ struct fetch_mbox_data {
 
 	ARRAY_DECL(, struct fetch_mbox_mbox *) fmboxes;
 	u_int		 index;
-	
+
 	size_t		 off;
 
 	TAILQ_HEAD(, fetch_mbox_mail) kept;

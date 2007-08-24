@@ -1,4 +1,4 @@
-/* $Id: io.c,v 1.86 2007-08-23 23:05:09 nicm Exp $ */
+/* $Id: io.c,v 1.87 2007-08-24 09:46:08 nicm Exp $ */
 
 /*
  * Copyright (c) 2005 Nicholas Marriott <nicm__@ntlworld.com>
@@ -143,7 +143,7 @@ io_polln(struct io **iop, u_int n, struct io **rio, int timeout, char **cause)
 			*rio = io;
 		if (io == NULL)
 			continue;
-		
+
 		switch (io_before_poll(io, &pfds[i])) {
 		case 0:
 			/* Found a closed io. */
@@ -188,7 +188,7 @@ io_polln(struct io **iop, u_int n, struct io **rio, int timeout, char **cause)
 		if (io_after_poll(io, &pfds[i]) == -1)
 			goto error;
 	}
-	
+
 	xfree(pfds);
 	return (1);
 
@@ -219,7 +219,7 @@ io_before_poll(struct io *io, struct pollfd *pfd)
 		pfd->events |= POLLIN;
 	if (io->wr != NULL && (BUFFER_USED(io->wr) != 0 ||
 	    (io->flags & (IOF_NEEDFILL|IOF_NEEDPUSH|IOF_MUSTWR)) != 0))
-		pfd->events |= POLLOUT;	
+		pfd->events |= POLLOUT;
 
 	return (1);
 }
