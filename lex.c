@@ -1,4 +1,4 @@
-/* $Id: lex.c,v 1.17 2007-08-24 09:46:08 nicm Exp $ */
+/* $Id: lex.c,v 1.18 2007-08-24 13:49:07 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -159,7 +159,6 @@ static const struct token tokens[] = {
 	{ "returns", TOKRETURNS },
 	{ "rewrite", TOKREWRITE },
 	{ "second", TOKSECONDS },
-	{ "seconds", TOKSECONDS },
 	{ "seconds", TOKSECONDS },
 	{ "server", TOKSERVER },
 	{ "set", TOKSET },
