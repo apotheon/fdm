@@ -1,4 +1,4 @@
-/* $Id: child-fetch.c,v 1.56 2007-08-24 09:46:08 nicm Exp $ */
+/* $Id: child-fetch.c,v 1.57 2007-08-25 10:40:07 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -162,12 +162,6 @@ fetch_poll(struct account *a, struct iolist *iol, struct io *pio)
 	u_int		 n;
 
 	n = ARRAY_LENGTH(iol);
-
-	/* Update the holding flag. */
-	if (fetch_queued >= (u_int) conf.queue_high)
-		fetch_holding = 1;
-	if (fetch_queued <= (u_int) conf.queue_low)
-		fetch_holding = 0;
 
 	/*
 	 * If that didn't add any fds and we're not blocked for the parent then
@@ -422,6 +416,15 @@ fetch_account(struct account *a, struct io *pio, int nflags, double tim)
 		/* If fetch finished and no more mails queued, exit. */
 		if (fetch_complete && fetch_queued == 0)
 			goto finished;
+
+		/* Update the holding flag. */
+		if (fetch_holding && fetch_queued <= (u_int) conf.queue_low) {
+			fetch_holding = 0;
+			/* Jump back to call fetch. */
+			continue;
+		}
+		if (fetch_queued >= (u_int) conf.queue_high)
+			fetch_holding = 1;
 
 		/* Prepare io list. */
 		ARRAY_CLEAR(&iol);
