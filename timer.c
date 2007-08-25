@@ -1,4 +1,4 @@
-/* $Id: timer.c,v 1.1 2007-08-25 11:54:39 nicm Exp $ */
+/* $Id: timer.c,v 1.2 2007-08-25 16:37:07 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -30,10 +30,9 @@ void			timer_handler(int);
 
 /* Signal handler for SIGALRM setitimer timeout. */
 void
-timer_handler(int sig)
+timer_handler(unused int sig)
 {
-	if (sig == SIGALRM)
-		timer_value = 1;
+	timer_value = 1;
 }
 
 /* Return timer state. */
