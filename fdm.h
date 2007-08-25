@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.318 2007-08-24 09:52:50 nicm Exp $ */
+/* $Id: fdm.h,v 1.319 2007-08-25 11:54:39 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -817,6 +817,11 @@ int		 parent_fetch(struct child *, struct msg *, struct msgbuf *);
 
 /* parent-deliver.c */
 int		 parent_deliver(struct child *, struct msg *, struct msgbuf *);
+
+/* timer.c */
+int		 timer_expired(void);
+void		 timer_set(int);
+void		 timer_cancel(void);
 
 /* connect.c */
 char 		*sslerror(const char *);
