@@ -1,4 +1,4 @@
-/* $Id: io.c,v 1.87 2007-08-24 09:46:08 nicm Exp $ */
+/* $Id: io.c,v 1.88 2007-08-25 10:57:16 nicm Exp $ */
 
 /*
  * Copyright (c) 2005 Nicholas Marriott <nicm__@ntlworld.com>
@@ -221,6 +221,8 @@ io_before_poll(struct io *io, struct pollfd *pfd)
 	    (io->flags & (IOF_NEEDFILL|IOF_NEEDPUSH|IOF_MUSTWR)) != 0))
 		pfd->events |= POLLOUT;
 
+	IO_DEBUG(io, "poll in: 0x%03x", pfd->events);
+
 	return (1);
 }
 
@@ -228,6 +230,8 @@ io_before_poll(struct io *io, struct pollfd *pfd)
 int
 io_after_poll(struct io *io, struct pollfd *pfd)
 {
+	IO_DEBUG(io, "poll out: 0x%03x", pfd->revents);
+
 	/* Close on POLLERR or POLLNVAL hard. */
 	if (pfd->revents & (POLLERR|POLLNVAL)) {
 		io->flags |= IOF_CLOSED;

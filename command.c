@@ -1,4 +1,4 @@
-/* $Id: command.c,v 1.46 2007-08-24 19:23:51 nicm Exp $ */
+/* $Id: command.c,v 1.47 2007-08-25 10:57:16 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -202,7 +202,7 @@ cmd_poll(struct cmd *cmd, char **out, char **err,
 		case -1:
 			if (errno == EINTR || errno == EAGAIN)
 				break;
-			/* 
+			/*
 			 * Ignore closed input, rely on child returning non-
 			 * zero on error and caller checking before writing to
 			 * it.
@@ -305,7 +305,7 @@ all_closed:
 	 */
 	switch (waitpid(cmd->pid, &cmd->status, WNOHANG)) {
 	case -1:
-		if (errno == ECHILD) 
+		if (errno == ECHILD)
 			return (0);
 		xasprintf(cause, "waitpid: %s", strerror(errno));
 		return (-1);
@@ -313,7 +313,7 @@ all_closed:
 		return (0);
 	}
 	cmd->pid = -1;
-	
+
 	/* Child is dead, sort out what to return. */
 	if (WIFSIGNALED(cmd->status)) {
 		xasprintf(cause, "child got signal: %d", WTERMSIG(cmd->status));
