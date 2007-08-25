@@ -1,4 +1,4 @@
-/* $Id: connect.c,v 1.68 2007-08-25 11:54:39 nicm Exp $ */
+/* $Id: connect.c,v 1.69 2007-08-25 17:12:00 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -567,7 +567,8 @@ makessl(struct server *srv, int fd, int verify, int timeout, char **cause)
 	if ((n = SSL_connect(ssl)) < 1) {
 		timer_cancel();
 		if (timer_expired()) {
-			xasprintf(cause, "SSL_connect: %s", strerror(ETIMEDOUT));
+			xasprintf(
+			    cause, "SSL_connect: %s", strerror(ETIMEDOUT));
 			goto error;
 		}
 		*cause = sslerror2(SSL_get_error(ssl, n), "SSL_connect");
