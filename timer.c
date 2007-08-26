@@ -1,4 +1,4 @@
-/* $Id: timer.c,v 1.2 2007-08-25 16:37:07 nicm Exp $ */
+/* $Id: timer.c,v 1.3 2007-08-26 22:29:35 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -49,10 +49,8 @@ timer_set(int seconds)
 	struct itimerval itv;
 	struct sigaction act;
 
-	if (seconds == 0) {
-		timer_value = 1;
-		return;
-	}
+	if (seconds == 0)
+		fatalx("zero timeout");
 	timer_value = 0;
 
 	memset(&act, 0, sizeof act);
