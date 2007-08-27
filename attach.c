@@ -1,4 +1,4 @@
-/* $Id: attach.c,v 1.25 2007-06-29 08:01:32 nicm Exp $ */
+/* $Id: attach.c,v 1.26 2007-08-27 18:10:51 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -79,7 +79,7 @@ attach_log(struct attach *atr, const char *fmt, ...)
 				    atr->body, atr->name);
 			}
 		} else {
-			log_debug2("%s:%*s%u, %s", prefix, n + 1, " ", atr->idx,
+			log_debug3("%s:%*s%u, %s", prefix, n + 1, " ", atr->idx,
 			    atr->type);
 		}
 
