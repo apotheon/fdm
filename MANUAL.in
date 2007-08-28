@@ -894,6 +894,8 @@ Or to remove all instances of a header from mail:
 
 	action "rmhdr" remove-header "x-stupid-header"
 
+	action "remove-headers" remove-headers { "X-*" "Another-Header" }
+
 %%% Tagging
 
 Mails may be assigned one of more tags manually using the tag action type. For
@@ -1489,5 +1491,5 @@ match "^List-Id:.*<full-disclosure\\.lists\\.grok\\.org\\.uk>" in headers
 	action "full-disclosure"
 
 ================================================================================
-$Id: MANUAL.in,v 1.43 2007-08-15 17:06:30 nicm Exp $
+$Id: MANUAL.in,v 1.44 2007-08-28 10:21:59 nicm Exp $
 
