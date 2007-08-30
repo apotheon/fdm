@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.321 2007-08-30 10:45:06 nicm Exp $ */
+/* $Id: fdm.h,v 1.322 2007-08-30 15:08:32 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -732,7 +732,7 @@ extern struct macros	parse_macros;
 extern struct files     parse_filestack;
 extern struct file     *parse_file;
 extern struct strb     *parse_tags;
-int	 		parse_conf(const char *);
+int	 		parse_conf(const char *, struct strings *);
 __dead printflike1 void yyerror(const char *, ...);
 printflike1 void 	yywarn(const char *, ...);
 
@@ -746,6 +746,7 @@ int		 have_accounts(char *);
 struct account	*find_account(char *);
 struct action  	*find_action(char *);
 struct actions	*match_actions(const char *);
+struct macro 	*extract_macro(char *);
 struct macro	*find_macro(const char *);
 void		 find_netrc(const char *, char **, char **);
 void		 free_account(struct account *);

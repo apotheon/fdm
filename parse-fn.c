@@ -1,4 +1,4 @@
-/* $Id: parse-fn.c,v 1.13 2007-08-30 14:16:50 nicm Exp $ */
+/* $Id: parse-fn.c,v 1.14 2007-08-30 15:08:32 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -162,6 +162,48 @@ match_actions(const char *name)
 	}
 
 	return (ta);
+}
+
+struct macro *
+extract_macro(char *s)
+{
+	struct macro	*macro;
+	char		*ptr;
+	const char	*errstr;
+
+	ptr = strchr(s, '=');
+	if (ptr != NULL)
+		*ptr++ = '\0';
+	if (strlen(s) > MAXNAMESIZE)
+		yyerror("macro name too long: %s", s);
+
+	macro = xmalloc(sizeof *macro);
+	macro->fixed = 1;
+	strlcpy(macro->name, s, sizeof macro->name);
+
+	switch (*s) {
+	case '$':
+		macro->type = MACRO_STRING;
+		if (ptr == NULL)
+			macro->value.str = xstrdup("");
+		else
+			macro->value.str = xstrdup(ptr);
+		break;
+	case '%':
+		macro->type = MACRO_NUMBER;
+		if (ptr == NULL)
+			macro->value.num = 0;
+		else {
+			macro->value.num = strtonum(ptr, 0, LLONG_MAX, &errstr);
+			if (errstr != NULL)
+				yyerror("number is %s: %s", errstr, ptr);
+		}
+		break;
+	default:
+		yyerror("invalid macro: %s", s);
+	}
+
+	return (macro);
 }
 
 struct macro *
