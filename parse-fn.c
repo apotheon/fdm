@@ -1,4 +1,4 @@
-/* $Id: parse-fn.c,v 1.11 2007-08-30 10:45:06 nicm Exp $ */
+/* $Id: parse-fn.c,v 1.12 2007-08-30 13:37:18 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -402,6 +402,7 @@ free_rule(struct rule *r)
 		} else if (ei->match == &match_account) {
 			struct match_account_data	*data = ei->data;
 			free_replstrs(data->accounts);
+			ARRAY_FREEALL(data->accounts);
 		} else if (ei->match == &match_command) {
 			struct match_command_data	*data = ei->data;
 			xfree(data->cmd.str);
