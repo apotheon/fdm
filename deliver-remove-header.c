@@ -1,4 +1,4 @@
-/* $Id: deliver-remove-header.c,v 1.18 2007-08-24 09:46:08 nicm Exp $ */
+/* $Id: deliver-remove-header.c,v 1.19 2007-08-30 10:45:06 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -100,7 +100,7 @@ deliver_remove_header_desc(struct actitem *ti, char *buf, size_t len)
 	struct deliver_remove_header_data	*data = ti->data;
 	char					*hdrs;
 
-	hdrs = fmt_replstrs("remove-headers ", data->hdrs);
+	hdrs = fmt_replstrs("remove-header ", data->hdrs);
 	strlcpy(buf, hdrs, len);
 	xfree(hdrs);
 }

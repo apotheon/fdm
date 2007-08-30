@@ -1,4 +1,4 @@
-# $Id: GNUmakefile,v 1.90 2007-08-25 11:54:39 nicm Exp $
+# $Id: GNUmakefile,v 1.91 2007-08-30 10:45:06 nicm Exp $
 
 .PHONY: clean
 
@@ -38,9 +38,9 @@ SRCS= fdm.c \
       fetch-imap.c fetch-imappipe.c fetch-maildir.c fetch-nntp.c fetch-pop3.c \
       fetch-stdin.c fetch-mbox.c imap-common.c \
       mail-state.c mail-time.c mail.c file.c \
-      match-age.c match-attachment.c match-command.c match-in-cache.c \
-      match-matched.c match-regexp.c match-size.c match-string.c \
-      match-tagged.c match-unmatched.c \
+      match-all.c match-age.c match-attachment.c match-command.c \
+      match-in-cache.c match-matched.c match-regexp.c match-size.c \
+      match-string.c match-tagged.c match-unmatched.c match-account.c \
       parent-deliver.c parent-fetch.c \
       y.tab.c parse-fn.c lex.c
 

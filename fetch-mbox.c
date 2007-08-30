@@ -1,4 +1,4 @@
-/* $Id: fetch-mbox.c,v 1.9 2007-08-24 09:46:08 nicm Exp $ */
+/* $Id: fetch-mbox.c,v 1.10 2007-08-30 10:45:06 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -523,7 +523,7 @@ fetch_mbox_desc(struct account *a, char *buf, size_t len)
 	struct fetch_mbox_data	*data = a->data;
 	char			*mboxes;
 
-	mboxes = fmt_strings("mboxes ", data->mboxes);
+	mboxes = fmt_strings("mbox ", data->mboxes);
 	strlcpy(buf, mboxes, len);
 	xfree(mboxes);
 }
