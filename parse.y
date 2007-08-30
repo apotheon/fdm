@@ -1,4 +1,4 @@
-/* $Id: parse.y,v 1.241 2007-08-30 10:45:06 nicm Exp $ */
+/* $Id: parse.y,v 1.242 2007-08-30 13:21:19 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -123,6 +123,8 @@ yywarn(const char *fmt, ...)
 	va_start(ap, fmt);
 	log_vwrite(NULL, LOG_CRIT, s, ap);
 	va_end(ap);
+
+	xfree(s);
 }
 %}
 
