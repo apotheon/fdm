@@ -1,4 +1,4 @@
-/* $Id: parse-fn.c,v 1.14 2007-08-30 15:08:32 nicm Exp $ */
+/* $Id: parse-fn.c,v 1.15 2007-08-30 15:38:46 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -178,7 +178,6 @@ extract_macro(char *s)
 		yyerror("macro name too long: %s", s);
 
 	macro = xmalloc(sizeof *macro);
-	macro->fixed = 1;
 	strlcpy(macro->name, s, sizeof macro->name);
 
 	switch (*s) {
