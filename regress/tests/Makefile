@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.2 2007-08-15 23:44:47 nicm Exp $
+# $Id: Makefile,v 1.1 2007-08-30 21:46:33 nicm Exp $
 
 CLEANFILES= *~ *.in *.out *.data *.conf
 

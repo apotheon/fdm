@@ -1,4 +1,4 @@
-# $Id: test-deliver.subr,v 1.3 2007-08-16 10:39:46 nicm Exp $
+# $Id: test.subr,v 1.1 2007-08-30 21:46:34 nicm Exp $
 
 test_init() {
     [ -z "$FDM" ] && exit 1
@@ -43,7 +43,9 @@ test_run() {
 	echo "$0: FAILED"
     fi
 
-    rm -f $TEST.in $TEST.out $TEST.conf $TEST.data
+    if [ "$DEBUG" == "" ]; then
+	    rm -f $TEST.in $TEST.out $TEST.conf $TEST.data
+    fi
 
     exit $RESULT
 }

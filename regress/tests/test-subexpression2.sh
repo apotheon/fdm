@@ -1,7 +1,7 @@
 #!/bin/sh
-# $Id: test-subexpression2.sh,v 1.2 2007-08-30 21:25:49 nicm Exp $
+# $Id: test-subexpression2.sh,v 1.1 2007-08-30 21:46:34 nicm Exp $
 
-. ./test-deliver.subr && test_init
+. ./test.subr && test_init
 
 cat <<EOF|test_in
 From test@test

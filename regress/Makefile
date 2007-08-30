@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.14 2007-08-15 23:38:58 nicm Exp $
+# $Id: Makefile,v 1.15 2007-08-30 21:46:32 nicm Exp $
 
 CLEANFILES= *~
 
@@ -20,7 +20,7 @@ ${n}:
 all:		regress
 
 regress:	${TARGETS}
-		cd deliver && ${MAKE}
+		cd tests && ${MAKE}
 
 clean:
 		rm -f ${CLEANFILES}

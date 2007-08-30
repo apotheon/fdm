@@ -1,9 +1,10 @@
 #!/bin/sh
-# $Id: test-add-header2.sh,v 1.1 2007-08-15 23:38:58 nicm Exp $
+# $Id: test-add-header5.sh,v 1.1 2007-08-30 21:46:33 nicm Exp $
 
-. ./test-deliver.subr && test_init
+. ./test.subr && test_init
 
 cat <<EOF|test_in
+
 Body
 EOF
 
