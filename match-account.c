@@ -1,4 +1,4 @@
-/* $Id: match-account.c,v 1.1 2007-08-30 10:45:06 nicm Exp $ */
+/* $Id: match-account.c,v 1.2 2007-08-30 13:25:36 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -55,9 +55,9 @@ match_account_match(struct mail_ctx *mctx, struct expritem *ei)
 			xfree(s);
 			return (MATCH_TRUE);
 		}
+		xfree(s);
 	}
 
-	xfree(s);
 	return (MATCH_FALSE);
 }
 
