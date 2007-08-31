@@ -1,4 +1,4 @@
-/* $Id: mail.c,v 1.123 2007-08-31 11:13:25 nicm Exp $ */
+/* $Id: mail.c,v 1.124 2007-08-31 13:02:58 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -434,7 +434,7 @@ find_users(struct mail *m)
 	users = xmalloc(sizeof *users);
 	ARRAY_INIT(users);
 
-	hdr = data = NULL;
+	line = NULL;
 	line_init(m, &ptr, &len);
 	while (ptr != NULL) {
 		if (ptr >= m->data + m->body)
