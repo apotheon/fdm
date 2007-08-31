@@ -1,4 +1,4 @@
-/* $Id: pcre.c,v 1.12 2007-08-01 15:06:26 nicm Exp $ */
+/* $Id: pcre.c,v 1.13 2007-08-31 14:16:01 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -60,8 +60,8 @@ int
 re_block(struct re *re, const void *buf, size_t len, struct rmlist *rml,
     char **cause)
 {
-	int		res, pm[NPMATCH * 3];
-	u_int		i, j;
+	int	res, pm[NPMATCH * 3];
+	u_int	i, j;
 
 	if (len > INT_MAX)
 		fatalx("buffer too big");
