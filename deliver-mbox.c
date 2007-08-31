@@ -1,4 +1,4 @@
-/* $Id: deliver-mbox.c,v 1.68 2007-08-03 08:15:58 nicm Exp $ */
+/* $Id: deliver-mbox.c,v 1.69 2007-08-31 08:49:43 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -72,7 +72,7 @@ deliver_mbox_deliver(struct deliver_ctx *dctx, struct actitem *ti)
 	char				*path, *ptr, *lptr, *from = NULL;
 	const char			*msg;
 	size_t	 			 len, llen;
-	int	 			 fd;
+	int	 			 fd, saved_errno;
 	FILE				*f;
 	gzFile				 gzf;
 	long long			 used;
@@ -224,8 +224,10 @@ deliver_mbox_deliver(struct deliver_ctx *dctx, struct actitem *ti)
 	return (DELIVER_SUCCESS);
 
 error_unblock:
+	saved_errno = errno;
 	if (sigprocmask(SIG_SETMASK, &oset, NULL) < 0)
 		fatal("sigprocmask failed");
+	errno = saved_errno;
 
 error_log:
 	log_warn("%s: %s", a->name, path);
