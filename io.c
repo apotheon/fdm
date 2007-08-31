@@ -1,4 +1,4 @@
-/* $Id: io.c,v 1.88 2007-08-25 10:57:16 nicm Exp $ */
+/* $Id: io.c,v 1.89 2007-08-31 13:11:13 nicm Exp $ */
 
 /*
  * Copyright (c) 2005 Nicholas Marriott <nicm__@ntlworld.com>
@@ -307,7 +307,7 @@ io_fill(struct io *io)
 
 again:
 	/* Ensure there is at least some minimum space in the buffer. */
-	buffer_ensure(io->rd, IO_BLOCKSIZE);
+	buffer_ensure(io->rd, IO_WATERMARK);
 
 	/* Attempt to read as much as the buffer has available. */
 	if (io->ssl == NULL) {

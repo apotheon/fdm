@@ -1,4 +1,4 @@
-/* $Id: io.h,v 1.2 2007-08-18 17:07:56 nicm Exp $ */
+/* $Id: io.h,v 1.3 2007-08-31 13:11:13 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm__@ntlworld.com>
@@ -42,8 +42,9 @@ struct buffer {
 #define IO_CR   "\r"
 #define IO_LF   "\n"
 
-/* Amount to attempt to append to the buffer each time. */
+/* Initial block size of buffer and minimum amount to try to read. */
 #define IO_BLOCKSIZE 16384
+#define IO_WATERMARK 12288
 
 /* Initial line buffer length. */
 #define IO_LINESIZE 256
