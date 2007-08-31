@@ -1,4 +1,4 @@
-/* $Id: fdm.c,v 1.158 2007-08-30 15:08:32 nicm Exp $ */
+/* $Id: fdm.c,v 1.159 2007-08-31 11:13:25 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -460,7 +460,7 @@ main(int argc, char **argv)
 			ARRAY_ADD(conf.domains, ptr);
 		}
 		if (conf.info.addr != NULL) {
-			ptr = xstrdup(conf.info.addr);
+			xasprintf(&ptr, "\\[%s\\]", conf.info.addr);
 			ARRAY_ADD(conf.domains, ptr);
 		}
 	}

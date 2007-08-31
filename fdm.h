@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.323 2007-08-30 15:38:46 nicm Exp $ */
+/* $Id: fdm.h,v 1.324 2007-08-31 11:13:25 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -157,16 +157,6 @@ extern char	*__progname;
 #define TIME_WEEK 604800LL
 #define TIME_MONTH 2419200LL
 #define TIME_YEAR 29030400LL
-
-/* Valid email address chars. */
-#define isaddr(c) ( 							\
-	((c) >= 'a' && (c) <= 'z') || 					\
-	((c) >= 'A' && (c) <= 'Z') ||					\
-	((c) >= '0' && (c) <= '9') ||					\
-	(c) == '&' || (c) == '*' || (c) == '+' || (c) == '?' ||	 	\
-	(c) == '-' || (c) == '.' || (c) == '=' || (c) == '/' ||		\
-	(c) == '^' || (c) == '{' || (c) == '}' || (c) == '~' || 	\
-	(c) == '_' || (c) == '@' || (c) == '\'')
 
 /* Number of matches to use. */
 #define NPMATCH 10

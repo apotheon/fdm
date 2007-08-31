@@ -1,4 +1,4 @@
-/* $Id: connect.c,v 1.69 2007-08-25 17:12:00 nicm Exp $ */
+/* $Id: connect.c,v 1.70 2007-08-31 11:13:25 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -165,7 +165,7 @@ getaddrs(const char *host, char **fqdn, char **addr)
 
 	if (addr != NULL && getnameinfo(ai->ai_addr,
 	    ai->ai_addrlen, ni, sizeof ni, NULL, 0, NI_NUMERICHOST) == 0)
-		xasprintf(addr, "[%s]", ni);
+		xasprintf(addr, "%s", ni);
 
 	if (fqdn != NULL && getnameinfo(ai->ai_addr,
 	    ai->ai_addrlen, ni, sizeof ni, NULL, 0, NI_NAMEREQD) == 0)

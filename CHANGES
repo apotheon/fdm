@@ -1,3 +1,8 @@
+31 August 2007
+
+* Rewrote user header searching and address matching to clean up the code and
+  work with multiple headers, also fix some fnmatch problems.
+
 30 August 2007
 
 * Fixed silly bug in replace.c. Using the base rather than data offset for %0-%9
@@ -602,4 +607,4 @@
   the mail was very rarely reallocated, now that the header is added it is.
 * Changed all the descriptions to static buffers and audited use of snprintf.
 
-$Id: CHANGES,v 1.152 2007-08-30 21:27:29 nicm Exp $
+$Id: CHANGES,v 1.153 2007-08-31 11:13:25 nicm Exp $
