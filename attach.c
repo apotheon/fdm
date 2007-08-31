@@ -1,4 +1,4 @@
-/* $Id: attach.c,v 1.26 2007-08-27 18:10:51 nicm Exp $ */
+/* $Id: attach.c,v 1.27 2007-08-31 14:05:48 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -117,7 +117,7 @@ attach_type(struct mail *m, char *hdr, const char *name, char **value)
 	*value = NULL;
 
 	len = m->size - (hdr - m->data);
-	if (len < 13 && strncasecmp(hdr, "content-type:", 13) != 0)
+	if (len < 13 || strncasecmp(hdr, "content-type:", 13) != 0)
 		goto error;
 	len -= 13;
 	hdr += 13;
