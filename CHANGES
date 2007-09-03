@@ -16,7 +16,7 @@
 
 	account pop3 server ... new-only cache "~/my/pop3.cache.file"
 	
-	account imap server ... old-only no-verify
+	account imap server ... old-only
  
   This is useful for people who like to keep mail on the server to be read
   using a web interface or suchlike. Note that it is up to the user to make
@@ -637,4 +637,4 @@
   the mail was very rarely reallocated, now that the header is added it is.
 * Changed all the descriptions to static buffers and audited use of snprintf.
 
-$Id: CHANGES,v 1.156 2007-09-03 13:53:25 nicm Exp $
+$Id: CHANGES,v 1.157 2007-09-03 16:58:51 nicm Exp $
