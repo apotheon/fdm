@@ -1,4 +1,4 @@
-/* $Id: lex.c,v 1.19 2007-08-30 10:45:06 nicm Exp $ */
+/* $Id: lex.c,v 1.20 2007-09-03 13:53:25 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -26,6 +26,7 @@
 #include <unistd.h>
 
 #include "fdm.h"
+#include "fetch.h"
 #include "y.tab.h"
 
 int	  lex_include;
@@ -137,6 +138,7 @@ static const struct token tokens[] = {
 	{ "minutes", TOKMINUTES },
 	{ "month", TOKMONTHS },
 	{ "months", TOKMONTHS },
+	{ "new-only", TOKNEWONLY },
 	{ "nntp", TOKNNTP },
 	{ "nntps", TOKNNTPS },
 	{ "no-apop", TOKNOAPOP },
@@ -144,6 +146,7 @@ static const struct token tokens[] = {
 	{ "no-verify", TOKNOVERIFY },
 	{ "none", TOKNONE },
 	{ "not", TOKNOT },
+	{ "old-only", TOKOLDONLY },
 	{ "or", TOKOR },
 	{ "pass", TOKPASS },
 	{ "pipe", TOKPIPE },

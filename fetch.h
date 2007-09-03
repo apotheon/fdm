@@ -1,4 +1,4 @@
-/* $Id: fetch.h,v 1.41 2007-08-24 09:46:08 nicm Exp $ */
+/* $Id: fetch.h,v 1.42 2007-09-03 13:53:25 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -52,6 +52,13 @@ struct fetch {
 	void		 (*abort)(struct account *);
 	u_int		 (*total)(struct account *);
 	void		 (*desc)(struct account *, char *, size_t);
+};
+
+/* Ranges of mail. */
+enum fetch_only {
+	FETCH_ONLY_NEW,
+	FETCH_ONLY_OLD,
+	FETCH_ONLY_ALL
 };
 
 /* Fetch maildir data. */
@@ -127,6 +134,11 @@ struct fetch_nntp_data {
 
 /* Fetch pop3 data. */
 struct fetch_pop3_data {
+	char		*path;
+	struct strings	*cache_old;
+	struct strings	*cache_new;
+	enum fetch_only	 only;
+	
 	char		*user;
 	char		*pass;
 	struct server	 server;
@@ -156,6 +168,8 @@ struct fetch_pop3_mail {
 
 /* Fetch imap data. */
 struct fetch_imap_data {
+	enum fetch_only	 only;
+
 	char		*user;
 	char		*pass;
 	char		*folder;
