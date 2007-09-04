@@ -1,4 +1,4 @@
-/* $Id: parse.y,v 1.245 2007-09-03 13:53:25 nicm Exp $ */
+/* $Id: parse.y,v 1.246 2007-09-04 14:07:15 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -2330,10 +2330,9 @@ fetchtype: poptype server userpassnetrc poponly apop verify
 		   else
 			   data->server.port = xstrdup("imap");
 		   data->server.ai = NULL;
-
 		   data->only = $5;
 	   }
-	 | TOKIMAP TOKPIPE replstrv userpass folder
+	 | TOKIMAP TOKPIPE replstrv userpass folder imaponly
 /**        [$3: replstrv (char *)] */
 /**        [$4: userpass (struct { ... } userpass)] [$5: folder (char *)] */
 	   {
@@ -2351,6 +2350,7 @@ fetchtype: poptype server userpassnetrc poponly apop verify
 		   data->pipecmd = $3;
 		   if (data->pipecmd == NULL || *data->pipecmd == '\0')
 			   yyerror("invalid pipe command");
+		   data->only = $6;
 	   }
 	 | TOKSTDIN
 	   {
