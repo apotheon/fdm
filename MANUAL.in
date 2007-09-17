@@ -1038,9 +1038,10 @@ following syntax:
 The 'case' keyword instructs fdm to match the regexp case sensitively rather
 than the default of case insensitivity. The 'in headers' or 'in body' keywords
 make fdm search only the headers or body of each mail, the default is to match
-the regexp against the entire mail. The regexp itself is an extended regexp
-specified as a simple string, but care must be taken to escape \s and "s
-properly.
+the regexp against the entire mail. Any multiline headers are unwrapped onto
+a single line before matching takes place and the process reversed afterwards.
+The regexp itself is an extended regexp specified as a simple string, but care
+must be taken to escape \s and "s properly.
 
 Examples include:
 
@@ -1491,5 +1492,5 @@ match "^List-Id:.*<full-disclosure\\.lists\\.grok\\.org\\.uk>" in headers
 	action "full-disclosure"
 
 ================================================================================
-$Id: MANUAL.in,v 1.44 2007-08-28 10:21:59 nicm Exp $
+$Id: MANUAL.in,v 1.45 2007-09-17 07:40:44 nicm Exp $
 
