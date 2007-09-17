@@ -1,4 +1,4 @@
-/* $Id: child-fetch.c,v 1.60 2007-09-05 08:45:49 nicm Exp $ */
+/* $Id: child-fetch.c,v 1.61 2007-09-17 14:21:38 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -94,6 +94,8 @@ open_cache(struct account *a, struct cache *cache)
 	}
 
 	n -= db_size(cache->db);
+	if (n < 0)
+		n = 0;
 	log_debug3("%s: cache %s: expired %d keys", a->name, cache->path, n);
 
 	return (0);
