@@ -1,4 +1,4 @@
-/* $Id: match.h,v 1.13 2007-08-30 10:45:06 nicm Exp $ */
+/* $Id: match.h,v 1.14 2007-09-18 12:24:12 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -78,9 +78,12 @@ struct match_tagged_data {
 
 /* Match string data. */
 struct match_string_data {
-	struct re	 re;
-
 	struct replstr	 str;
+	union {
+		struct re re;
+		struct replstr str;
+	} patt;
+	enum cmp	 cmp;
 };
 
 /* Match regexp data. */

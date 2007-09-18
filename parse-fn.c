@@ -1,4 +1,4 @@
-/* $Id: parse-fn.c,v 1.16 2007-09-03 13:53:25 nicm Exp $ */
+/* $Id: parse-fn.c,v 1.17 2007-09-18 12:24:12 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -422,7 +422,10 @@ free_rule(struct rule *r)
 		} else if (ei->match == &match_string) {
 			struct match_string_data	*data = ei->data;
 			xfree(data->str.str);
-			re_free(&data->re);
+			if (data->cmp == CMP_RE)
+				re_free(&data->patt.re);
+			else
+				xfree(data->patt.str.str);
 		} else if (ei->match == &match_in_cache) {
 			struct match_in_cache_data	*data = ei->data;
 			xfree(data->key.str);

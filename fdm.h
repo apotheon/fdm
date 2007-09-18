@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.325 2007-09-03 13:53:25 nicm Exp $ */
+/* $Id: fdm.h,v 1.326 2007-09-18 12:24:12 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -669,7 +669,8 @@ enum cmp {
 	CMP_EQ,
 	CMP_NE,
 	CMP_LT,
-	CMP_GT
+	CMP_GT,
+	CMP_RE
 };
 
 /* Configuration file (used by parser). */

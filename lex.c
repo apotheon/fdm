@@ -1,4 +1,4 @@
-/* $Id: lex.c,v 1.20 2007-09-03 13:53:25 nicm Exp $ */
+/* $Id: lex.c,v 1.21 2007-09-18 12:24:12 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -89,14 +89,14 @@ static const struct token tokens[] = {
 	{ "disabled", TOKDISABLED },
 	{ "domain", TOKDOMAIN },
 	{ "domains", TOKDOMAINS },
-	{ "dotlock", LCKDOTLOCK },
+	{ "dotlock", TOKDOTLOCK },
 	{ "drop", TOKDROP },
 	{ "exec", TOKEXEC },
 	{ "expire", TOKEXPIRE },
-	{ "fcntl", LCKFCNTL },
+	{ "fcntl", TOKFCNTL },
 	{ "file-group", TOKFILEGROUP },
 	{ "file-umask", TOKFILEUMASK },
-	{ "flock", LCKFLOCK },
+	{ "flock", TOKFLOCK },
 	{ "folder", TOKFOLDER },
 	{ "from-headers", TOKFROMHEADERS },
 	{ "g", TOKGIGABYTES },
@@ -273,6 +273,15 @@ restart:
 			}
 			lex_ungetc(ch);
 			value = '!';
+			goto out;
+		case '~':
+			ch = lex_getc();
+			if (ch == '=') {
+				value = TOKRE;
+				goto out;
+			}
+			lex_ungetc(ch);
+			value = '~';
 			goto out;
 		case '+':
 		case '(':
