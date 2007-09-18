@@ -1,4 +1,4 @@
-/* $Id: fetch-imappipe.c,v 1.37 2007-08-24 19:30:41 nicm Exp $ */
+/* $Id: fetch-imappipe.c,v 1.38 2007-09-18 20:26:22 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -146,8 +146,7 @@ fetch_imappipe_state_init(struct account *a, struct fetch_ctx *fctx)
 
 	data->src = NULL;
 
-	fctx->state = imap_state_connect;
-	return (FETCH_AGAIN);
+	return (imap_state_init(a, fctx));
 }
 
 void
