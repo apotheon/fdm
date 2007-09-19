@@ -1,4 +1,4 @@
-/* $Id: fetch.h,v 1.44 2007-09-18 20:26:22 nicm Exp $ */
+/* $Id: fetch.h,v 1.45 2007-09-19 09:03:15 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -144,6 +144,7 @@ struct fetch_pop3_data {
 	char		*user;
 	char		*pass;
 	struct server	 server;
+	char		*pipecmd;
 	int		 apop;
 
 	u_int		 cur;
@@ -168,6 +169,7 @@ struct fetch_pop3_data {
 	size_t		 size;
 
 	struct io	*io;
+	struct cmd	*cmd;
 
 	char		*src;
 	int		 (*connect)(struct account *);
@@ -245,6 +247,9 @@ extern struct fetch 	 fetch_nntp;
 
 /* fetch-pop3.c */
 extern struct fetch 	 fetch_pop3;
+
+/* fetch-pop3pipe.c */
+extern struct fetch 	 fetch_pop3pipe;
 
 /* fetch-imap.c */
 extern struct fetch 	 fetch_imap;

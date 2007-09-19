@@ -1,4 +1,4 @@
-/* $Id: imap-common.c,v 1.62 2007-09-18 20:26:22 nicm Exp $ */
+/* $Id: imap-common.c,v 1.63 2007-09-19 09:03:15 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -826,7 +826,7 @@ imap_state_body(struct account *a, struct fetch_ctx *fctx)
 	m->size = 0;
 
 	/* Tag mail. */
-	default_tags(&m->tags, data->server.host);
+	default_tags(&m->tags, data->src);
 	if (data->server.host != NULL) {
 		add_tag(&m->tags, "server", "%s", data->server.host);
 		add_tag(&m->tags, "port", "%s", data->server.port);

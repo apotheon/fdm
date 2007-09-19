@@ -1,4 +1,4 @@
-/* $Id: pop3-common.c,v 1.1 2007-09-18 20:26:22 nicm Exp $ */
+/* $Id: pop3-common.c,v 1.2 2007-09-19 09:03:15 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -837,9 +837,11 @@ pop3_state_retr(struct account *a, struct fetch_ctx *fctx)
 	m->size = 0;
 
 	/* Tag mail. */
-	default_tags(&m->tags, data->server.host);
-	add_tag(&m->tags, "server", "%s", data->server.host);
-	add_tag(&m->tags, "port", "%s", data->server.port);
+	default_tags(&m->tags, data->src);
+	if (data->server.host != NULL) {
+		add_tag(&m->tags, "server", "%s", data->server.host);
+		add_tag(&m->tags, "port", "%s", data->server.port);
+	}
 	add_tag(&m->tags, "server_uid", "%s", aux->uid);
 
 	data->flushing = 0;
