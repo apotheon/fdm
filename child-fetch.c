@@ -1,4 +1,4 @@
-/* $Id: child-fetch.c,v 1.61 2007-09-17 14:21:38 nicm Exp $ */
+/* $Id: child-fetch.c,v 1.62 2007-09-19 09:05:40 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -421,7 +421,7 @@ fetch_account(struct account *a, struct io *pio, int nflags, double tim)
 		if (a->fetch->fill != NULL)
 			a->fetch->fill(a, &iol);
 
-		/* 
+		/*
 		 * Work out timeout. If the queues are empty, we can block,
 		 * unless this fetch type doesn't have any sockets to poll -
 		 * then we would block forever. Otherwise, if the queues are

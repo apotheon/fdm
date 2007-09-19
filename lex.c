@@ -1,4 +1,4 @@
-/* $Id: lex.c,v 1.21 2007-09-18 12:24:12 nicm Exp $ */
+/* $Id: lex.c,v 1.22 2007-09-19 09:05:40 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -415,7 +415,7 @@ read_token(int ch)
 	}
 
 	/* XXX Update rule line. This is needed for accurate warnings. */
-	if (strcmp(token, "match") == 0) 
+	if (strcmp(token, "match") == 0)
 		parse_file->rule_line = parse_file->line;
 
 	ptr = bsearch(token, tokens,

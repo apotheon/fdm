@@ -1,4 +1,4 @@
-/* $Id: fetch.h,v 1.45 2007-09-19 09:03:15 nicm Exp $ */
+/* $Id: fetch.h,v 1.46 2007-09-19 09:05:40 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -140,7 +140,7 @@ SPLAY_HEAD(fetch_pop3_tree, fetch_pop3_mail);
 struct fetch_pop3_data {
 	char		*path;
 	enum fetch_only	 only;
-	
+
 	char		*user;
 	char		*pass;
 	struct server	 server;
@@ -182,7 +182,7 @@ struct fetch_pop3_data {
 struct fetch_pop3_mail {
 	char		*uid;
 	u_int		 idx;
-	
+
 	TAILQ_ENTRY(fetch_pop3_mail) qentry;
 	SPLAY_ENTRY(fetch_pop3_mail) tentry;
 };
