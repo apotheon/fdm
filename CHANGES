@@ -1,5 +1,7 @@
 24 September 2007
 
+* All regexps (match, string, command) are now case insensitive by default and 
+  may be prefixed by "case" to enable case sensitivity.
 * The match string syntax changes were bloat and are reverted.
 
 18 September 2007
@@ -657,4 +659,4 @@
   the mail was very rarely reallocated, now that the header is added it is.
 * Changed all the descriptions to static buffers and audited use of snprintf.
 
-$Id: CHANGES,v 1.166 2007-09-24 20:30:16 nicm Exp $
+$Id: CHANGES,v 1.167 2007-09-24 20:46:13 nicm Exp $

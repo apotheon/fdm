@@ -1,5 +1,5 @@
 #!/bin/sh
-# $Id: test-string1.sh,v 1.1 2007-09-18 12:24:12 nicm Exp $
+# $Id: test-string1.sh,v 1.2 2007-09-24 20:46:13 nicm Exp $
 
 . ./test.subr && test_init
 
@@ -13,5 +13,5 @@ test
 EOF
 
 cat <<EOF|test_run
-match string "%[message_id]" == "test" action rewrite "echo test" continue
+match string "%[message_id]" to "T..T" action rewrite "echo test" continue
 EOF
