@@ -843,7 +843,7 @@ Examples include:
 
 	action "mysmtpaction" smtp server "smtp.server" port "submission"
 
-	action "mysmtpaction" smtp server "smtp.server" == "me@somewhere"
+	action "mysmtpaction" smtp server "smtp.server" to "me@somewhere"
 
 %%% Write, pipe, exec and append
 
@@ -1516,5 +1516,5 @@ Because I hate maintaining and testing two sets of code, there is a strong
 possibility that PCRE may become the fdm default as well at some point.
 
 ================================================================================
-$Id: MANUAL.in,v 1.52 2007-09-24 15:09:40 nicm Exp $
+$Id: MANUAL.in,v 1.53 2007-09-24 17:28:09 nicm Exp $
 
