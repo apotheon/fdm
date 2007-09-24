@@ -1059,15 +1059,14 @@ may be substituted using the %1 to %9 tokens. For example,
 	match "^From:.*[ \t]([a-z]*)@domain" in headers action "all" continue
 	match string "%1" == "bob" action "bobmail"
 
-The 'string' condition accepts three operators to compare two strings, ==, !=
-or ~=. == compares the strings for equality, != for inequality (both are case
-sensitive), and ~= compares the string against a regexp. The keyword 'to' is
-an alias for ~=.
-
-Or:
-
 	match "^From:.*[ \t]([a-z]*)@domain" in headers action "all" continue
 	match all action "%1mail"
+
+The 'string' condition accepts four operators to compare two strings: ==, !=,
+=~ and !~. == compares the strings for equality, != for inequality (both are
+case sensitive). =~ and !~ compare the string against a regexp, case
+insensitively, with the former true if the regexp matches and the latter if it
+does not. The keyword 'to' is an alias for =~.
 
 This is particularly useful in combination with nested rules (see later):
 bracket expressions in a regexp on the outer rule may be compared on inner
@@ -1517,5 +1516,5 @@ Because I hate maintaining and testing two sets of code, there is a strong
 possibility that PCRE may become the fdm default as well at some point.
 
 ================================================================================
-$Id: MANUAL.in,v 1.51 2007-09-24 14:54:05 nicm Exp $
+$Id: MANUAL.in,v 1.52 2007-09-24 15:09:40 nicm Exp $
 
