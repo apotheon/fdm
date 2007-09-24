@@ -1,4 +1,4 @@
-/* $Id: lex.c,v 1.23 2007-09-24 15:09:40 nicm Exp $ */
+/* $Id: lex.c,v 1.24 2007-09-24 20:30:19 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -258,10 +258,6 @@ restart:
 			yyerror("invalid macro name");
 		case '=':
 			ch = lex_getc();
-			if (ch == '~') {
-				value = TOKRE;
-				goto out;
-			}
 			if (ch == '=') {
 				value = TOKEQ;
 				goto out;
@@ -271,10 +267,6 @@ restart:
 			goto out;
 		case '!':
 			ch = lex_getc();
-			if (ch == '~') {
-				value = TOKNR;
-				goto out;
-			}
 			if (ch == '=') {
 				value = TOKNE;
 				goto out;
