@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.329 2007-09-25 17:45:38 nicm Exp $ */
+/* $Id: fdm.h,v 1.330 2007-09-25 21:01:52 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -315,12 +315,12 @@ struct rmlist {
 
 /* Cache data. */
 struct cache {
-	TDB_CONTEXT	       *db;
+	TDB_CONTEXT	       	*db;
 
-	char		       *path;
-	uint64_t		expire;
+	char		      	*path;
+	uint64_t		 expire;
 
-	TAILQ_ENTRY(cache)	entry;
+	TAILQ_ENTRY(cache)	 entry;
 };
 struct cacheitem {
 	uint64_t 		 tim;
