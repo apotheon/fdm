@@ -1,4 +1,4 @@
-/* $Id: parse-fn.c,v 1.19 2007-09-24 20:30:20 nicm Exp $ */
+/* $Id: parse-fn.c,v 1.20 2007-09-25 15:18:43 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -458,7 +458,7 @@ free_account(struct account *a)
 
 	if (a->fetch == &fetch_pop3) {
 		struct fetch_pop3_data		*data = a->data;
-		if (data->path != NULL)
+ 		if (data->path != NULL)
 			xfree(data->path);
 		xfree(data->user);
 		xfree(data->pass);
@@ -466,6 +466,13 @@ free_account(struct account *a)
 		xfree(data->server.port);
 		if (data->server.ai != NULL)
 			freeaddrinfo(data->server.ai);
+	} else if (a->fetch == &fetch_pop3pipe) {
+		struct fetch_pop3_data		*data = a->data;
+ 		if (data->path != NULL)
+			xfree(data->path);
+		xfree(data->user);
+		xfree(data->pass);
+		xfree(data->pipecmd);
 	} else if (a->fetch == &fetch_imap) {
 		struct fetch_imap_data		*data = a->data;
 		xfree(data->user);
