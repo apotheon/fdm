@@ -1,4 +1,4 @@
-/* $Id: child-fetch.c,v 1.63 2007-09-25 15:14:11 nicm Exp $ */
+/* $Id: child-fetch.c,v 1.64 2007-09-25 21:46:19 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -57,18 +57,6 @@ u_int		  	 fetch_kept;
 
 u_int			 fetch_queued;   /* number of mails queued */
 u_int			 fetch_blocked;  /* blocked for parent */
-
-/*
- * Holding flag. Set when the queues reach maximum length and unset when they
- * drop below minimum. No new mails are fetched while set.
- */
-int	fetch_holding;
-
-/*
- * Complete flag. Set when fetch code is finished. All fetching finished after
- * queues drain.
- */
-int	fetch_complete;
 
 int
 open_cache(struct account *a, struct cache *cache)
@@ -325,7 +313,7 @@ fetch_account(struct account *a, struct io *pio, int nflags, double tim)
 	struct cache	*cache;
 	struct iolist 	 iol;
 	u_int		 n;
-	int		 aborted, timeout;
+	int		 aborted, complete, holding, timeout;
 
 	log_debug2("%s: fetching", a->name);
 
@@ -347,7 +335,7 @@ fetch_account(struct account *a, struct io *pio, int nflags, double tim)
 
 	ARRAY_INIT(&iol);
 
-	aborted = 0;
+	aborted = complete = holding = 0;
 	for (;;) {
 		fetch_blocked = 0;
 
@@ -373,12 +361,12 @@ fetch_account(struct account *a, struct io *pio, int nflags, double tim)
 
 		/* Update the holding flag. */
 		if (fetch_queued <= (u_int) conf.queue_low)
-			fetch_holding = 0;
+			holding = 0;
 		if (fetch_queued >= (u_int) conf.queue_high)
-			fetch_holding = 1;
+			holding = 1;
 
 		/* If not holding and not finished, call the fetch handler. */
-		if (!fetch_holding && !fetch_complete) {
+		if (!holding && !complete) {
 			/*
 			 * Set the empty flag if queues are empty. Purging
 			 * shouldn't happen if this is clear.
@@ -394,7 +382,7 @@ fetch_account(struct account *a, struct io *pio, int nflags, double tim)
 				goto abort;
 			case FETCH_EXIT:
 				/* Fetch completed. */
-				fetch_complete = 1;
+				complete = 1;
 				break;
 			case FETCH_AGAIN:
 				/* Fetch again - no blocking. */
@@ -412,7 +400,7 @@ fetch_account(struct account *a, struct io *pio, int nflags, double tim)
 		}
 
 		/* If fetch finished and no more mails queued, exit. */
-		if (fetch_complete && fetch_queued == 0)
+		if (complete && fetch_queued == 0)
 			goto finished;
 
 		/* Prepare for poll. */
