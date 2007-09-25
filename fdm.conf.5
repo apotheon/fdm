@@ -1,4 +1,4 @@
-.\" $Id: fdm.conf.5,v 1.84 2007-09-25 08:05:44 nicm Exp $
+.\" $Id: fdm.conf.5,v 1.85 2007-09-25 08:10:08 nicm Exp $
 .\"
 .\" Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
 .\"
@@ -449,6 +449,19 @@ This allows
 .Xr fdm 1
 to be used to filter mail, fetching from a maildir and deleting (dropping)
 unwanted mail, or delivering mail to another maildir or to an mbox.
+.It Ic mbox Ar path
+.It Xo Ic mboxes
+.Li {
+.Ar path ...
+.Li }
+.Xc
+These are similar to
+.Ic maildir
+and
+.Ic maildirs ,
+but cause
+.Xr fdm 1
+to fetch mail from an mbox or set of mboxes.
 .It Xo Ic nntp Ic server Ar host
 .Op Ic port Ar port
 .Ic group Ar group
