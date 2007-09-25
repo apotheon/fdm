@@ -1,4 +1,4 @@
-/* $Id: parse.y,v 1.253 2007-09-24 20:48:24 nicm Exp $ */
+/* $Id: parse.y,v 1.254 2007-09-25 17:45:38 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -152,7 +152,7 @@ yywarn(const char *fmt, ...)
 %token TOKFILEGROUP TOKVALUE TOKTIMEOUT TOKREMOVEHEADER TOKREMOVEHEADERS
 %token TOKSTDOUT TOKNOVERIFY TOKADDHEADER TOKQUEUEHIGH TOKQUEUELOW TOKNOAPOP
 %token TOKVERIFYCERTS TOKEXPIRE TOKTOCACHE TOKINCACHE TOKKEY TOKNEWONLY
-%token TOKOLDONLY TOKCACHE TOKFLOCK TOKFCNTL TOKDOTLOCK
+%token TOKOLDONLY TOKCACHE TOKFLOCK TOKFCNTL TOKDOTLOCK TOKSTRIPCHARACTERS
 
 %union
 {
@@ -562,6 +562,11 @@ set: TOKSET TOKMAXSIZE size
 /**  [$3: uid (uid_t)] */
      {
 	     conf.def_user = $3;
+     }
+   | TOKSET TOKSTRIPCHARACTERS strv
+     {
+	     xfree(conf.strip_chars);
+	     conf.strip_chars = $3;
      }
    | TOKSET TOKTIMEOUT time
 /**  [$3: time (long long)] */

@@ -1,4 +1,4 @@
-/* $Id: lex.c,v 1.24 2007-09-24 20:30:19 nicm Exp $ */
+/* $Id: lex.c,v 1.25 2007-09-25 17:45:38 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -170,6 +170,7 @@ static const struct token tokens[] = {
 	{ "stdin", TOKSTDIN },
 	{ "stdout", TOKSTDOUT },
 	{ "string", TOKSTRING },
+	{ "strip-characters", TOKSTRIPCHARACTERS },
 	{ "tag", TOKTAG },
 	{ "tagged", TOKTAGGED },
 	{ "timeout", TOKTIMEOUT },

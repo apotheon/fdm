@@ -1,4 +1,4 @@
-/* $Id: fdm.c,v 1.159 2007-08-31 11:13:25 nicm Exp $ */
+/* $Id: fdm.c,v 1.160 2007-09-25 17:45:38 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -271,6 +271,7 @@ main(int argc, char **argv)
 	conf.file_group = -1;
 	conf.queue_high = -1;
 	conf.queue_low = -1;
+	conf.strip_chars = xstrdup(DEFSTRIPCHARS);
 
 	ARRAY_INIT(&conf.incl);
 	ARRAY_INIT(&conf.excl);
@@ -523,6 +524,10 @@ main(int argc, char **argv)
 	if (sizeof tmp > off && conf.lock_file != NULL) {
 		off += xsnprintf(tmp + off, (sizeof tmp) - off,
 		    "lock-file=\"%s\", ", conf.lock_file);
+	}
+	if (sizeof tmp > off) {
+		off += xsnprintf(tmp + off, (sizeof tmp) - off,
+		    "strip-characters=\"%s\", ", conf.strip_chars);
 	}
 	if (off >= 2) {
 		tmp[off - 2] = '\0';
@@ -819,6 +824,7 @@ out:
 	xfree(conf.conf_file);
 	xfree(conf.lock_file);
 	xfree(conf.tmp_dir);
+	xfree(conf.strip_chars);
 	free_strings(conf.domains);
 	ARRAY_FREEALL(conf.domains);
 	free_strings(conf.headers);
