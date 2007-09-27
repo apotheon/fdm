@@ -1,4 +1,4 @@
-/* $Id: parse.y,v 1.254 2007-09-25 17:45:38 nicm Exp $ */
+/* $Id: parse.y,v 1.255 2007-09-27 19:09:58 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -564,6 +564,7 @@ set: TOKSET TOKMAXSIZE size
 	     conf.def_user = $3;
      }
    | TOKSET TOKSTRIPCHARACTERS strv
+/**  [$3: strv (char *)] */
      {
 	     xfree(conf.strip_chars);
 	     conf.strip_chars = $3;

@@ -1,4 +1,4 @@
-/* $Id: parent-fetch.c,v 1.13 2007-08-03 11:59:11 nicm Exp $ */
+/* $Id: parent-fetch.c,v 1.14 2007-09-27 19:09:58 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -138,7 +138,8 @@ parent_fetch_action(struct child *child, struct children *children,
 	data->mail = m;
 	data->name = "deliver";
 	child = child_start(children, uid, child_deliver, parent_deliver, data);
-	log_debug3("parent: deliver child %ld started", (long) child->pid);
+	log_debug3("parent: deliver "
+	    "child %ld started (uid %lu)", (long) child->pid, (u_long) uid);
 }
 
 void
@@ -159,5 +160,6 @@ parent_fetch_cmd(struct child *child, struct children *children,
 	data->mail = m;
 	data->name = "command";
 	child = child_start(children, uid, child_deliver, parent_deliver, data);
-	log_debug3("parent: command child %ld started", (long) child->pid);
+	log_debug3("parent: command "
+	    "child %ld started (uid %lu)", (long) child->pid, (u_long) uid);
 }
