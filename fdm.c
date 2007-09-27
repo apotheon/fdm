@@ -1,4 +1,4 @@
-/* $Id: fdm.c,v 1.161 2007-09-27 19:09:58 nicm Exp $ */
+/* $Id: fdm.c,v 1.162 2007-09-27 19:16:22 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -412,6 +412,15 @@ main(int argc, char **argv)
 	/* Set the umask. */
 	umask(conf.file_umask);
 
+	/* Figure out default user. */
+	if (conf.def_user == (uid_t) -1) {
+		conf.def_user = geteuid();
+		if (conf.def_user == 0) {
+			log_warnx("no default user specified");
+			exit(1);
+		}
+	}
+
 	/* Print proxy info. */
 	if (conf.proxy != NULL) {
 		switch (conf.proxy->type) {
@@ -565,6 +574,7 @@ main(int argc, char **argv)
 		exit(1);
 	}
 
+	/* Check for child user if root. */
 	if (geteuid() == 0) {
 		pw = getpwnam(CHILDUSER);
 		if (pw == NULL) {
@@ -574,14 +584,6 @@ main(int argc, char **argv)
 		conf.child_uid = pw->pw_uid;
 		conf.child_gid = pw->pw_gid;
 		endpwent();
-
-		if (conf.def_user == -1) {
-			log_warnx("no default user specified");
-			exit(1);
-		}
-	} else {
-		if (conf.def_user == -1)
-			conf.def_user = geteuid();
 	}
 
 	/* Set up signal handlers. */
