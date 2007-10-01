@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.161 2007-09-25 18:38:09 nicm Exp $
+# $Id: Makefile,v 1.162 2007-10-01 18:38:48 nicm Exp $
 
 .SUFFIXES: .c .o .y .h
 .PHONY: clean lint regress yannotate manual \
@@ -70,8 +70,9 @@ CFLAGS+= -DNO_STRTONUM -DNO_SETRESUID -DNO_SETRESGID -DNO_SETPROCTITLE
 # NetBSD
 .if ${OS} == "NetBSD"
 SRCS+= compat/strtonum.c
-INCDIRS+= -Icompat
+INCDIRS+= -Icompat -I/usr/pkg/include
 CFLAGS+= -DNO_STRTONUM -DNO_SETRESUID -DNO_SETRESGID
+LDFLAGS+= -L/usr/pkg/lib
 .endif
 
 # FreeBSD
