@@ -1,4 +1,4 @@
-/* $Id: parse-fn.c,v 1.20 2007-09-25 15:18:43 nicm Exp $ */
+/* $Id: parse-fn.c,v 1.21 2007-10-02 10:04:43 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -352,8 +352,12 @@ free_actitem(struct actitem *ti)
 		xfree(data->key.str);
 		if (data->value.str != NULL)
 			xfree(data->value.str);
-	} else if (ti->deliver == &deliver_to_cache) {
-		struct deliver_to_cache_data		*data = ti->data;
+	} else if (ti->deliver == &deliver_add_to_cache) {
+		struct deliver_add_to_cache_data	*data = ti->data;
+		xfree(data->key.str);
+		xfree(data->path);
+	} else if (ti->deliver == &deliver_remove_from_cache) {
+		struct deliver_remove_from_cache_data	*data = ti->data;
 		xfree(data->key.str);
 		xfree(data->path);
 	} else if (ti->deliver == &deliver_smtp) {

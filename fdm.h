@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.331 2007-10-02 09:24:21 nicm Exp $ */
+/* $Id: fdm.h,v 1.332 2007-10-02 10:04:43 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -872,6 +872,7 @@ int		 mail_deliver(struct mail_ctx *, struct msg *, struct msgbuf *);
 TDB_CONTEXT	*db_open(char *);
 void		 db_close(TDB_CONTEXT *);
 int		 db_add(TDB_CONTEXT *, char *);
+int		 db_remove(TDB_CONTEXT *, char *);
 int		 db_contains(TDB_CONTEXT *, char *);
 int		 db_size(TDB_CONTEXT *);
 int		 db_expire(TDB_CONTEXT *, uint64_t);

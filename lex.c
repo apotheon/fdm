@@ -1,4 +1,4 @@
-/* $Id: lex.c,v 1.27 2007-10-02 09:36:14 nicm Exp $ */
+/* $Id: lex.c,v 1.28 2007-10-02 10:04:43 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -86,7 +86,6 @@ static const struct token tokens[] = {
 	{ "day", TOKDAYS },
 	{ "days", TOKDAYS },
 	{ "default-user", TOKDEFUSER },
-	{ "delete-from-cache", TOKADDFROMCACHE },
 	{ "delete-oversized", TOKDELTOOBIG },
 	{ "disabled", TOKDISABLED },
 	{ "domain", TOKDOMAIN },
@@ -159,6 +158,7 @@ static const struct token tokens[] = {
 	{ "purge-after", TOKPURGEAFTER },
 	{ "queue-high", TOKQUEUEHIGH },
 	{ "queue-low", TOKQUEUELOW },
+	{ "remove-from-cache", TOKREMOVEFROMCACHE },
 	{ "remove-header", TOKREMOVEHEADER },
 	{ "remove-headers", TOKREMOVEHEADERS },
 	{ "returns", TOKRETURNS },
@@ -177,7 +177,7 @@ static const struct token tokens[] = {
 	{ "tagged", TOKTAGGED },
 	{ "timeout", TOKTIMEOUT },
 	{ "to", TOKTO },
-	{ "to-cache", TOKTOCACHE },
+	{ "to-cache", TOKADDTOCACHE },
 	{ "total-size", TOKTOTALSIZE },
 	{ "unmatched", TOKUNMATCHED },
 	{ "unmatched-mail", TOKIMPLACT },

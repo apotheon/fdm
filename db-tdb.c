@@ -1,4 +1,4 @@
-/* $Id: db-tdb.c,v 1.10 2007-08-08 20:00:20 nicm Exp $ */
+/* $Id: db-tdb.c,v 1.11 2007-10-02 10:04:43 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -64,6 +64,17 @@ db_add(TDB_CONTEXT *db, char *k)
 	value.dsize = sizeof v;
 
 	return (tdb_store(db, key, value, TDB_REPLACE));
+}
+
+int
+db_remove(TDB_CONTEXT *db, char *k)
+{
+	TDB_DATA		key;
+
+	key.dptr = k;
+	key.dsize = strlen(k);
+
+	return (tdb_delete(db, key));
 }
 
 int
