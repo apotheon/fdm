@@ -1,4 +1,4 @@
-/* $Id: parse.y,v 1.256 2007-10-02 09:24:21 nicm Exp $ */
+/* $Id: parse.y,v 1.257 2007-10-02 09:36:14 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -135,7 +135,7 @@ yyerror(const char *fmt, ...)
 %token TOKGROUP TOKGROUPS TOKPURGEAFTER TOKCOMPRESS TOKNORECEIVED TOKFILEUMASK
 %token TOKFILEGROUP TOKVALUE TOKTIMEOUT TOKREMOVEHEADER TOKREMOVEHEADERS
 %token TOKSTDOUT TOKNOVERIFY TOKADDHEADER TOKQUEUEHIGH TOKQUEUELOW TOKNOAPOP
-%token TOKVERIFYCERTS TOKEXPIRE TOKTOCACHE TOKINCACHE TOKKEY TOKNEWONLY
+%token TOKVERIFYCERTS TOKEXPIRE TOKADDTOCACHE TOKINCACHE TOKKEY TOKNEWONLY
 %token TOKOLDONLY TOKCACHE TOKFLOCK TOKFCNTL TOKDOTLOCK TOKSTRIPCHARACTERS
 
 %union
@@ -1300,7 +1300,7 @@ actitem: execpipe strv
 		 data->key.str = $2;
 		 data->value.str = $3;
 	 }
-       | TOKTOCACHE replpathv TOKKEY strv
+       | TOKADDTOCACHE replpathv TOKKEY strv
 /**      [$2: replpathv (char *)] [$4: strv (char *)] */
 	 {
 		 struct deliver_to_cache_data	*data;

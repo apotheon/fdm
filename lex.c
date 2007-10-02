@@ -1,4 +1,4 @@
-/* $Id: lex.c,v 1.26 2007-10-02 09:24:21 nicm Exp $ */
+/* $Id: lex.c,v 1.27 2007-10-02 09:36:14 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -64,6 +64,7 @@ static const struct token tokens[] = {
 	{ "action", TOKACTION },
 	{ "actions", TOKACTIONS },
 	{ "add-header", TOKADDHEADER },
+	{ "add-to-cache", TOKADDTOCACHE },
 	{ "age", TOKAGE },
 	{ "all", TOKALL },
 	{ "allow-multiple", TOKALLOWMANY },
@@ -85,6 +86,7 @@ static const struct token tokens[] = {
 	{ "day", TOKDAYS },
 	{ "days", TOKDAYS },
 	{ "default-user", TOKDEFUSER },
+	{ "delete-from-cache", TOKADDFROMCACHE },
 	{ "delete-oversized", TOKDELTOOBIG },
 	{ "disabled", TOKDISABLED },
 	{ "domain", TOKDOMAIN },

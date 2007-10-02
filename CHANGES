@@ -1,5 +1,7 @@
 02 October 2007
 
+* Rename to-cache to add-to-cache (to-cache remains as a compatibility alias).
+  This is to match the planned delete-from-cache and perhaps other similar.
 * The account/all warnings are now gone.
 
 01 October 2007
@@ -702,4 +704,4 @@
   the mail was very rarely reallocated, now that the header is added it is.
 * Changed all the descriptions to static buffers and audited use of snprintf.
 
-$Id: CHANGES,v 1.171 2007-10-02 09:24:21 nicm Exp $
+$Id: CHANGES,v 1.172 2007-10-02 09:36:13 nicm Exp $
