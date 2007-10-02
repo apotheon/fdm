@@ -1,4 +1,4 @@
-/* $Id: lex.c,v 1.25 2007-09-25 17:45:38 nicm Exp $ */
+/* $Id: lex.c,v 1.26 2007-10-02 09:24:21 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -407,10 +407,6 @@ read_token(int ch)
 		return (NONE);
 	}
 
-	/* XXX Update rule line. This is needed for accurate warnings. */
-	if (strcmp(token, "match") == 0)
-		parse_file->rule_line = parse_file->line;
-
 	ptr = bsearch(token, tokens,
 	    (sizeof tokens)/(sizeof tokens[0]), sizeof tokens[0], cmp_token);
         if (ptr == NULL)
@@ -639,7 +635,6 @@ include_start(char *file)
 	parse_file = xmalloc(sizeof *parse_file);
 	parse_file->f = f;
 	parse_file->line = 1;
-	parse_file->rule_line = 0;
 	parse_file->path = path;
 
 	log_debug2("including file %s", parse_file->path);

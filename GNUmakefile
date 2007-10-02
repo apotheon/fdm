@@ -1,9 +1,9 @@
-# $Id: GNUmakefile,v 1.93 2007-09-19 09:03:15 nicm Exp $
+# $Id: GNUmakefile,v 1.94 2007-10-02 09:24:21 nicm Exp $
 
 .PHONY: clean
 
 PROG= fdm
-VERSION= 1.4
+VERSION= 1.5
 DATE= $(shell date +%Y%m%d-%H%M)
 
 DEBUG= 1
