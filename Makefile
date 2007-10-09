@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.166 2007-10-09 11:38:36 nicm Exp $
+# $Id: Makefile,v 1.167 2007-10-09 13:01:33 nicm Exp $
 
 .SUFFIXES: .c .o .y .h
 .PHONY: clean lint regress yannotate manual \
@@ -53,7 +53,7 @@ CFLAGS+= -DBUILD="\"$(VERSION)\""
 CFLAGS+= -Wno-long-long -Wall -W -Wnested-externs -Wformat=2
 CFLAGS+= -Wmissing-prototypes -Wstrict-prototypes -Wmissing-declarations
 CFLAGS+= -Wwrite-strings -Wshadow -Wpointer-arith -Wcast-qual -Wsign-compare
-CFLAGS+= -Wundef -Wshadow -Wbad-function-cast -Winline -Wcast-align
+CFLAGS+= -Wundef -Wbad-function-cast -Winline -Wcast-align
 
 .ifdef PCRE
 CFLAGS+= -DPCRE
