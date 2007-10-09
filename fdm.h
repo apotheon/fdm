@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.332 2007-10-02 10:04:43 nicm Exp $ */
+/* $Id: fdm.h,v 1.333 2007-10-09 11:38:36 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -189,7 +189,8 @@ TAILQ_HEAD(macros, macro);
 enum fdmop {
 	FDMOP_NONE = 0,
 	FDMOP_POLL,
-	FDMOP_FETCH
+	FDMOP_FETCH,
+	FDMOP_CACHE
 };
 
 /*
@@ -761,6 +762,10 @@ int		 check_incl(const char *);
 int	         check_excl(const char *);
 int		 use_account(struct account *, char **);
 void		 fill_info(const char *);
+__dead void	 usage(void);
+
+/* cache-op.c */
+__dead void	 cache_op(int, char **);
 
 /* re.c */
 int		 re_compile(struct re *, const char *, int, char **);
@@ -875,7 +880,9 @@ int		 db_add(TDB_CONTEXT *, char *);
 int		 db_remove(TDB_CONTEXT *, char *);
 int		 db_contains(TDB_CONTEXT *, char *);
 int		 db_size(TDB_CONTEXT *);
+int		 db_print(TDB_CONTEXT *, void (*)(const char *, ...));
 int		 db_expire(TDB_CONTEXT *, uint64_t);
+int		 db_clear(TDB_CONTEXT *);
 
 /* cleanup.c */
 void		 cleanup_check(void);
