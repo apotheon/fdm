@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.333 2007-10-09 11:38:36 nicm Exp $ */
+/* $Id: fdm.h,v 1.334 2007-10-10 08:58:26 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -640,6 +640,7 @@ struct conf {
 	int		         del_big;
 	u_int			 lock_types;
 	uid_t			 def_user;
+	uid_t			 cmd_user;
 
 	TAILQ_HEAD(, cache)	 caches;
 	TAILQ_HEAD(, account)	 accounts;

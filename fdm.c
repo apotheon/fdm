@@ -1,4 +1,4 @@
-/* $Id: fdm.c,v 1.164 2007-10-09 11:38:36 nicm Exp $ */
+/* $Id: fdm.c,v 1.165 2007-10-10 08:58:26 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -271,6 +271,7 @@ main(int argc, char **argv)
 	conf.queue_high = -1;
 	conf.queue_low = -1;
 	conf.def_user = -1;
+	conf.cmd_user = -1;
 	conf.strip_chars = xstrdup(DEFSTRIPCHARS);
 
 	ARRAY_INIT(&conf.incl);
@@ -509,6 +510,10 @@ main(int argc, char **argv)
 	if (sizeof tmp > off) {
 		off += xsnprintf(tmp + off, (sizeof tmp) - off,
 		    "default-user=%lu, ", (u_long) conf.def_user);
+	}
+	if (sizeof tmp > off) {
+		off += xsnprintf(tmp + off, (sizeof tmp) - off,
+		    "command-user=%lu, ", (u_long) conf.cmd_user);
 	}
 	if (sizeof tmp > off && conf.impl_act != DECISION_NONE) {
 		if (conf.impl_act == DECISION_DROP)
