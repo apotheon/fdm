@@ -1,4 +1,4 @@
-/* $Id: pop3-common.c,v 1.4 2007-09-25 19:07:18 nicm Exp $ */
+/* $Id: pop3-common.c,v 1.5 2007-10-10 20:29:47 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -451,6 +451,7 @@ pop3_state_first(struct account *a, struct fetch_ctx *fctx)
 {
 	struct fetch_pop3_data	*data = a->data;
 	char			*line;
+	u_int			 n;
 
 	if (pop3_getln(a, fctx, &line) != 0)
 		return (FETCH_ERROR);
@@ -459,7 +460,7 @@ pop3_state_first(struct account *a, struct fetch_ctx *fctx)
 	if (!pop3_okay(line))
 		return (pop3_bad(a, line));
 
-	if (sscanf(line, "+OK %u %*u", &data->num) != 1)
+	if (sscanf(line, "+OK %u %u", &data->num, &n) != 2)
 		return (pop3_invalid(a, line));
 	data->cur = 0;
 

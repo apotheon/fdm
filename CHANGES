@@ -1,5 +1,6 @@
 10 October 2007
 
+* Don't accept "+OK N" as well as "+OK N M" in response to STAT.
 * New option: command-user. This is the user used to run exec/pipe match
   conditions if one is not specified. The default is the user who ran fdm
   (root if running as root).
@@ -747,4 +748,4 @@
   the mail was very rarely reallocated, now that the header is added it is.
 * Changed all the descriptions to static buffers and audited use of snprintf.
 
-$Id: CHANGES,v 1.175 2007-10-10 08:58:26 nicm Exp $
+$Id: CHANGES,v 1.176 2007-10-10 20:29:47 nicm Exp $
