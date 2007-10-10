@@ -1,5 +1,5 @@
 #!/bin/sh
-# $Id: test-pop3.sh,v 1.2 2007-10-10 21:11:22 nicm Exp $
+# $Id: test-pop3.sh,v 1.3 2007-10-10 22:31:24 nicm Exp $
 
 [ -z "$FDM" ] && exit 1
 
@@ -15,11 +15,17 @@ match all action drop
 EOF
 
 rm -f $FIFO.in $FIFO.out
-mkfifo $FIFO.in $FIFO.out
+mkfifo $FIFO.in $FIFO.out || exit 1
 
 $FDM -mvvvv -f $TEST.conf f >$TEST.log 2>&1 &
+PID=$!
 cat $FIFO.out |&
 
+hold() {
+    while kill -0 $! 2>/dev/null; do
+	perl -e 'select(undef,undef,undef,0.01)'
+    done
+}
 quit() {
     rm -f $FIFO.in $FIFO.out $TEST.conf
     [ "$DEBUG" = "" ] && rm -f $TEST.log
@@ -27,14 +33,13 @@ quit() {
     if [ $1 -ne 1 ]; then
 	echo "$TEST: PASSED"
     else
-	kill %1 2>/dev/null
 	echo "$TEST: FAILED"
     fi
 
     exit $1
 }
 
-awk '/^\>/ { print substr($0, 2) }' $TEST >$FIFO.in
+awk '/^\>/ { print substr($0, 2) }' $TEST >$FIFO.in || exit 1
 awk '/^\</ { print substr($0, 2) }; /^--$/ { print "--" }' $TEST|\
 while read i; do
     if [ "$i" != "--" ]; then
@@ -49,6 +54,7 @@ while read i; do
 	continue;
     fi
 
+    hold
     MSG=`tail -1 $TEST`
     grep "^account: $MSG" $TEST.log >/dev/null || quit 1
     grep "^account: fetching error. aborted" $TEST.log >/dev/null || quit 1
@@ -56,6 +62,7 @@ while read i; do
 done
 
 if [ $? -eq 0 ]; then
+    hold
     grep "^account: [0-9]* messages processed" $TEST.log >/dev/null || quit 1
     quit 0
 fi
