@@ -1,4 +1,4 @@
-/* $Id: match-command.c,v 1.41 2007-10-10 08:58:26 nicm Exp $ */
+/* $Id: match-command.c,v 1.42 2007-10-10 17:52:27 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -55,7 +55,7 @@ match_command_match(struct mail_ctx *mctx, struct expritem *ei)
 	msg.data.account = a;
 	msg.data.cmddata = data;
 	msg.data.uid = data->uid;
-	if (msg.data.uid == -1)
+	if (msg.data.uid == (uid_t) -1)
 		msg.data.uid = conf.cmd_user;
 
 	msgbuf.buf = m->tags;
