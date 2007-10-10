@@ -1,4 +1,4 @@
-/* $Id: pop3-common.c,v 1.6 2007-10-10 22:01:36 nicm Exp $ */
+/* $Id: pop3-common.c,v 1.7 2007-10-10 22:05:31 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -831,7 +831,7 @@ pop3_state_list(struct account *a, struct fetch_ctx *fctx)
 	if (!pop3_okay(line))
 		return (pop3_bad(a, line));
 
-	if (sscanf(line, "+OK %u %zu", &n, &data->size) != 1)
+	if (sscanf(line, "+OK %u %zu", &n, &data->size) != 2)
 		return (pop3_invalid(a, line));
 	if (n != aux->idx)
 		return (pop3_bad(a, line));
