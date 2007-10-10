@@ -1,13 +1,11 @@
 #!/bin/sh
-# $Id: test-pop3.sh,v 1.1 2007-10-10 20:32:10 nicm Exp $
+# $Id: test-pop3.sh,v 1.2 2007-10-10 21:11:22 nicm Exp $
 
 [ -z "$FDM" ] && exit 1
 
 TEST=$1
 FIFO=$TEST.fifo
 TYPE=pop3
-
-trap "rm -f $FIFO.in $FIFO.out $TEST.log $TEST.conf; exit 1" 2 3
 
 cat <<EOF >$TEST.conf
 set lock-file "$TEST.lock"
@@ -29,6 +27,7 @@ quit() {
     if [ $1 -ne 1 ]; then
 	echo "$TEST: PASSED"
     else
+	kill %1 2>/dev/null
 	echo "$TEST: FAILED"
     fi
 
