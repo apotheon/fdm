@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.16 2007-10-10 20:32:07 nicm Exp $
+# $Id: Makefile,v 1.17 2007-10-11 09:14:09 nicm Exp $
 
 CLEANFILES= *~
 
@@ -22,6 +22,7 @@ all:		regress
 regress:	${TARGETS}
 		cd tests && ${MAKE}
 		cd test-pop3 && ${MAKE}
+		cd test-imap && ${MAKE}
 
 clean:
 		rm -f ${CLEANFILES}
