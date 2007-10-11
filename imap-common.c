@@ -1,4 +1,4 @@
-/* $Id: imap-common.c,v 1.67 2007-10-11 09:20:39 nicm Exp $ */
+/* $Id: imap-common.c,v 1.68 2007-10-11 09:31:44 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -365,6 +365,11 @@ imap_state_capability1(struct account *a, struct fetch_ctx *fctx)
 		return (FETCH_ERROR);
 	if (line == NULL)
 		return (FETCH_BLOCK);
+
+	if (strstr(line, "IMAP4rev1") == NULL) {
+		log_warnx("%s: no IMAP4rev1 capability: %s", a->name, line);
+		return (FETCH_ERROR);
+	}
 
 	data->capa = 0;
 	if (strstr(line, "AUTH=CRAM-MD5") != NULL)
