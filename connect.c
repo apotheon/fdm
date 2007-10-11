@@ -1,4 +1,4 @@
-/* $Id: connect.c,v 1.70 2007-08-31 11:13:25 nicm Exp $ */
+/* $Id: connect.c,v 1.71 2007-10-11 08:43:54 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -142,10 +142,12 @@ sslverify(struct server *srv, SSL *ssl, char **cause)
 	}
 
 	/* Valid CN found. */
+	X509_free(x509);
 	return (0);
 
 error:
-	X509_free(x509);
+	if (x509 != NULL)
+		X509_free(x509);
 	return (-1);
 }
 
