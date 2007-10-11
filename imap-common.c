@@ -1,4 +1,4 @@
-/* $Id: imap-common.c,v 1.68 2007-10-11 09:31:44 nicm Exp $ */
+/* $Id: imap-common.c,v 1.69 2007-10-11 10:44:47 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -423,7 +423,7 @@ imap_state_cram_md5_auth(struct account *a, struct fetch_ctx *fctx)
 	if (line == NULL)
 		return (FETCH_BLOCK);
 
-	ptr = line +  1;
+	ptr = line + 1;
 	while (isspace((u_char) *ptr))
 		ptr++;
 	if (*ptr == '\0')
