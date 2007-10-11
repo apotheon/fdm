@@ -1,4 +1,4 @@
-/* $Id: imap-common.c,v 1.66 2007-09-25 21:34:51 nicm Exp $ */
+/* $Id: imap-common.c,v 1.67 2007-10-11 09:20:39 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -132,7 +132,9 @@ imap_okay(char *line)
 	char	*ptr;
 
 	ptr = strchr(line, ' ');
-	if (ptr == NULL || strncmp(ptr + 1, "OK ", 3) != 0)
+	if (ptr == NULL)
+		return (0);
+	if (ptr[1] != 'O' || ptr[2] != 'K' || (ptr[3] != ' ' && ptr[3] != '\0'))
 		return (0);
 	return (1);
 }
@@ -193,7 +195,7 @@ imap_tag(char *line)
 		return (IMAP_TAG_CONTINUE);
 
 	if ((ptr = strchr(line, ' ')) == NULL)
-		return (IMAP_TAG_ERROR);
+		ptr = strchr(line, '\0');
 	*ptr = '\0';
 
 	tag = strtonum(line, 0, INT_MAX, &errstr);
