@@ -1,4 +1,4 @@
-/* $Id: fetch-maildir.c,v 1.84 2007-08-30 10:45:06 nicm Exp $ */
+/* $Id: fetch-maildir.c,v 1.85 2007-10-25 09:02:54 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -168,7 +168,7 @@ fetch_maildir_poll(struct account *a)
 			if (dp->d_type != DT_UNKNOWN)
 				continue;
 
-			if (mkpath(entry, sizeof entry, "%s/%s", path,
+			if (ppath(entry, sizeof entry, "%s/%s", path,
 			    dp->d_name) != 0) {
 				log_warn("%s: %s: printpath", a->name, path);
 				closedir(dirp);
@@ -326,7 +326,7 @@ restart:
 		return (FETCH_AGAIN);
 	}
 
-	if (mkpath(name, sizeof name, "%s/%s", path, dp->d_name) != 0) {
+	if (ppath(name, sizeof name, "%s/%s", path, dp->d_name) != 0) {
 		log_warn("%s: %s: printpath", a->name, path);
 		return (FETCH_ERROR);
 	}

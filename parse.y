@@ -1,4 +1,4 @@
-/* $Id: parse.y,v 1.259 2007-10-10 08:58:26 nicm Exp $ */
+/* $Id: parse.y,v 1.260 2007-10-25 09:02:54 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -137,7 +137,7 @@ yyerror(const char *fmt, ...)
 %token TOKSTDOUT TOKNOVERIFY TOKADDHEADER TOKQUEUEHIGH TOKQUEUELOW TOKNOAPOP
 %token TOKVERIFYCERTS TOKEXPIRE TOKADDTOCACHE TOKREMOVEFROMCACHE TOKINCACHE
 %token TOKKEY TOKNEWONLY TOKOLDONLY TOKCACHE TOKFLOCK TOKFCNTL TOKDOTLOCK
-%token TOKSTRIPCHARACTERS TOKCMDUSER
+%token TOKSTRIPCHARACTERS TOKCMDUSER TOKNOCREATE
 
 %union
 {
@@ -662,6 +662,10 @@ set: TOKSET TOKMAXSIZE size
    | TOKSET TOKNORECEIVED
      {
 	     conf.no_received = 1;
+     }
+   | TOKSET TOKNOCREATE
+     {
+	     conf.no_create = 1;
      }
    | TOKSET TOKFILEGROUP TOKUSER
      {

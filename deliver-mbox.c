@@ -1,4 +1,4 @@
-/* $Id: deliver-mbox.c,v 1.69 2007-08-31 08:49:43 nicm Exp $ */
+/* $Id: deliver-mbox.c,v 1.70 2007-10-25 09:02:54 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -101,7 +101,11 @@ deliver_mbox_deliver(struct deliver_ctx *dctx, struct actitem *ti)
 
 	/* Check permissions and ownership. */
 	if (stat(path, &sb) != 0) {
-		if (errno != ENOENT)
+		if (conf.no_create || errno != ENOENT)
+			goto error_log;
+
+		log_debug2("%s: creating %s", a->name, xdirname(path));
+		if (xmkpath(xdirname(path), -1, conf.file_group, DIRMODE) != 0)
 			goto error_log;
 	} else {
 		if ((msg = checkmode(&sb, UMASK(FILEMODE))) != NULL)
@@ -115,8 +119,12 @@ deliver_mbox_deliver(struct deliver_ctx *dctx, struct actitem *ti)
 	/* Create or open the mbox. */
 	used = 0;
 	do {
-		fd = createlock(path, O_WRONLY|O_APPEND,
-		    -1, conf.file_group, FILEMODE, conf.lock_types);
+		if (conf.no_create)
+			fd = openlock(path, O_WRONLY|O_APPEND, conf.lock_types);
+		else {
+			fd = createlock(path, O_WRONLY|O_APPEND,
+			    -1, conf.file_group, FILEMODE, conf.lock_types);
+		}
 		if (fd == -1 && errno == EEXIST)
 			fd = openlock(path, O_WRONLY|O_APPEND, conf.lock_types);
 		if (fd == -1) {

@@ -1,4 +1,4 @@
-/* $Id: fetch-nntp.c,v 1.100 2007-08-24 09:46:08 nicm Exp $ */
+/* $Id: fetch-nntp.c,v 1.101 2007-10-25 09:02:54 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -268,7 +268,7 @@ fetch_nntp_save(struct account *a)
 	FILE			*f = NULL;
 	u_int			 i;
 
-	if (mkpath(tmp, sizeof tmp, "%s.XXXXXXXXXX", data->path) != 0)
+	if (ppath(tmp, sizeof tmp, "%s.XXXXXXXXXX", data->path) != 0)
 		goto error;
 	if ((fd = mkstemp(tmp)) == -1)
 		goto error;

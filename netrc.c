@@ -1,4 +1,4 @@
-/* $Id: netrc.c,v 1.10 2007-07-25 21:20:57 nicm Exp $ */
+/* $Id: netrc.c,v 1.11 2007-10-25 09:02:54 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -33,7 +33,7 @@ netrc_open(const char *home, char **cause)
 	struct stat	 sb;
 	FILE		*f;
 
-	if (mkpath(path, sizeof path, "%s/%s", home, ".netrc") != 0) {
+	if (ppath(path, sizeof path, "%s/%s", home, ".netrc") != 0) {
 		xasprintf(cause, "%s", strerror(errno));
 		return (NULL);
 	}

@@ -1,4 +1,4 @@
-/* $Id: lex.c,v 1.29 2007-10-10 08:58:26 nicm Exp $ */
+/* $Id: lex.c,v 1.30 2007-10-25 09:02:54 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -144,6 +144,7 @@ static const struct token tokens[] = {
 	{ "nntp", TOKNNTP },
 	{ "nntps", TOKNNTPS },
 	{ "no-apop", TOKNOAPOP },
+	{ "no-create", TOKNOCREATE },
 	{ "no-received", TOKNORECEIVED },
 	{ "no-verify", TOKNOVERIFY },
 	{ "none", TOKNONE },

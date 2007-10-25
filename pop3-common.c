@@ -1,4 +1,4 @@
-/* $Id: pop3-common.c,v 1.7 2007-10-10 22:05:31 nicm Exp $ */
+/* $Id: pop3-common.c,v 1.8 2007-10-25 09:02:54 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -237,7 +237,7 @@ pop3_save(struct account *a)
 	if (data->path == NULL)
 		return (0);
 
-	if (mkpath(tmp, sizeof tmp, "%s.XXXXXXXXXX", data->path) != 0)
+	if (ppath(tmp, sizeof tmp, "%s.XXXXXXXXXX", data->path) != 0)
 		goto error;
 	if ((fd = mkstemp(tmp)) == -1)
 		goto error;

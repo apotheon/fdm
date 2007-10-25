@@ -1,3 +1,9 @@
+25 October 2007
+
+* New option, no-create, prevents fdm creating missing path components or files
+  when delivering to maildirs or mboxes.
+* Create entire paths if missing when delivering to maildirs or mboxes.
+
 10 October 2007
 
 * Don't accept "+OK N" as well as "+OK N M" in response to STAT.
@@ -748,4 +754,4 @@
   the mail was very rarely reallocated, now that the header is added it is.
 * Changed all the descriptions to static buffers and audited use of snprintf.
 
-$Id: CHANGES,v 1.176 2007-10-10 20:29:47 nicm Exp $
+$Id: CHANGES,v 1.177 2007-10-25 09:02:54 nicm Exp $

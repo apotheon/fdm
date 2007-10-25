@@ -1,4 +1,4 @@
-/* $Id: fetch-mbox.c,v 1.10 2007-08-30 10:45:06 nicm Exp $ */
+/* $Id: fetch-mbox.c,v 1.11 2007-10-25 09:02:54 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -153,9 +153,9 @@ fetch_mbox_save(struct account *a, struct fetch_mbox_mbox *fmbox)
 	 * clever and save disk space, just create a new mbox and copy all the
 	 * kept mails into it.
 	 */
-	if (mkpath(path, sizeof path, "%s.XXXXXXXXXX", fmbox->path) != 0)
+	if (ppath(path, sizeof path, "%s.XXXXXXXXXX", fmbox->path) != 0)
 		goto error;
-	if (mkpath(saved, sizeof saved, "%s.XXXXXXXXXX", fmbox->path) != 0)
+	if (ppath(saved, sizeof saved, "%s.XXXXXXXXXX", fmbox->path) != 0)
 		goto error;
 	if ((fd = mkstemp(path)) == -1)
 		goto error;
