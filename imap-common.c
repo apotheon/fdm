@@ -1,4 +1,4 @@
-/* $Id: imap-common.c,v 1.69 2007-10-11 10:44:47 nicm Exp $ */
+/* $Id: imap-common.c,v 1.70 2007-10-25 08:36:38 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -359,14 +359,18 @@ int
 imap_state_capability1(struct account *a, struct fetch_ctx *fctx)
 {
 	struct fetch_imap_data	*data = a->data;
-	char			*line;
+	char			*line, *ptr;
 
 	if (imap_getln(a, fctx, IMAP_UNTAGGED, &line) != 0)
 		return (FETCH_ERROR);
 	if (line == NULL)
 		return (FETCH_BLOCK);
 
-	if (strstr(line, "IMAP4rev1") == NULL) {
+	/* Convert to uppercase. */
+	for (ptr = line; *ptr != '\0'; ptr++)
+		*ptr = toupper((u_char) *ptr);
+
+	if (strstr(line, "IMAP4REV1") == NULL) {
 		log_warnx("%s: no IMAP4rev1 capability: %s", a->name, line);
 		return (FETCH_ERROR);
 	}
