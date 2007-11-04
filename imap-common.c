@@ -1,4 +1,4 @@
-/* $Id: imap-common.c,v 1.70 2007-10-25 08:36:38 nicm Exp $ */
+/* $Id: imap-common.c,v 1.71 2007-11-04 08:26:04 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -710,8 +710,8 @@ imap_state_next(struct account *a, struct fetch_ctx *fctx)
 	if (!TAILQ_EMPTY(&data->dropped)) {
 		aux = TAILQ_FIRST(&data->dropped);
 
-		if (imap_putln(a,
-		    "%u STORE %u +FLAGS \\Deleted", ++data->tag, aux->idx) != 0)
+		if (imap_putln(a, "%u "
+		    "STORE %u +FLAGS (\\Deleted)", ++data->tag, aux->idx) != 0)
 			return (FETCH_ERROR);
 		fctx->state = imap_state_delete;
 		return (FETCH_BLOCK);
