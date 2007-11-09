@@ -1,4 +1,4 @@
-/* $Id: connect.c,v 1.72 2007-11-09 10:54:09 nicm Exp $ */
+/* $Id: connect.c,v 1.73 2007-11-09 14:44:26 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -125,13 +125,15 @@ sslverify(struct server *srv, SSL *ssl, char **cause)
 
 		/* Compare against both given host and FQDN. */
 		if (fnmatch(ptr, srv->host, FNM_NOESCAPE|FNM_CASEFOLD) == 0 ||
-		    fnmatch(ptr, fqdn, FNM_NOESCAPE|FNM_CASEFOLD) == 0)
+		    (fqdn != NULL && 
+		    fnmatch(ptr, fqdn, FNM_NOESCAPE|FNM_CASEFOLD)) == 0)
 			break;
 
 		if (ptr2 != NULL)
 			*ptr2 = '/';
 	} while ((ptr = strstr(ptr, "/CN=")) != NULL);
-	xfree(fqdn);
+	if (fqdn != NULL)
+		xfree(fqdn);
 
 	/* No valid CN found. */
 	if (ptr == NULL) {
