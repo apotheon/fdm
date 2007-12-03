@@ -1,4 +1,4 @@
-/* $Id: replace.c,v 1.46 2007-09-25 17:45:38 nicm Exp $ */
+/* $Id: replace.c,v 1.47 2007-12-03 20:53:18 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -91,7 +91,7 @@ const char 	*submatch(char, struct mail *, struct rmlist *, size_t *);
 void printflike3
 add_tag(struct strb **tags, const char *key, const char *value, ...)
 {
-	va_list		 ap;
+	va_list	ap;
 
 	va_start(ap, value);
 	strb_vadd(tags, key, value, ap);

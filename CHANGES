@@ -1,3 +1,8 @@
+03 December 2007
+
+* Bug fix: restore non-blocking mode properly after constructing SSL
+  connection. This bug prevented SSL over a proxy working.
+
 06 November 2007
 
 * Use +FLAGS.SILENT instead of +FLAGS to mark IMAP mail as deleted, as we
@@ -768,4 +773,4 @@
   the mail was very rarely reallocated, now that the header is added it is.
 * Changed all the descriptions to static buffers and audited use of snprintf.
 
-$Id: CHANGES,v 1.179 2007-11-06 08:37:59 nicm Exp $
+$Id: CHANGES,v 1.180 2007-12-03 20:53:18 nicm Exp $

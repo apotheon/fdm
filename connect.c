@@ -1,4 +1,4 @@
-/* $Id: connect.c,v 1.73 2007-11-09 14:44:26 nicm Exp $ */
+/* $Id: connect.c,v 1.74 2007-12-03 20:53:18 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -579,7 +579,7 @@ makessl(struct server *srv, int fd, int verify, int timeout, char **cause)
 	}
 
 	/* Reset non-blocking mode. */
-	if (fcntl(fd, F_SETFL, mode & ~O_NONBLOCK) == -1)
+	if (fcntl(fd, F_SETFL, mode|O_NONBLOCK) == -1)
 		fatal("fcntl failed");
 
 	/* Clear the timeout. */
