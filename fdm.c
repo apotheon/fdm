@@ -1,4 +1,4 @@
-/* $Id: fdm.c,v 1.167 2007-11-02 15:34:01 nicm Exp $ */
+/* $Id: fdm.c,v 1.168 2007-12-03 20:56:31 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -817,6 +817,17 @@ out:
 	COUNTFDS("parent");
 
 	/* Free everything. */
+	if (conf.proxy != NULL) {
+		if (conf.proxy->user != NULL)
+			xfree(conf.proxy->user);
+		if (conf.proxy->pass != NULL)
+ 			xfree(conf.proxy->pass);
+		if (conf.proxy->server.host != NULL)
+ 			xfree(conf.proxy->server.host);
+		if (conf.proxy->server.port != NULL)
+ 			xfree(conf.proxy->server.port);
+		xfree(conf.proxy);
+	}
 	while (!TAILQ_EMPTY(&conf.caches)) {
 		cache = TAILQ_FIRST(&conf.caches);
 		TAILQ_REMOVE(&conf.caches, cache, entry);
