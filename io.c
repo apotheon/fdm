@@ -1,4 +1,4 @@
-/* $Id: io.c,v 1.90 2007-09-02 17:48:11 nicm Exp $ */
+/* $Id: io.c,v 1.91 2007-12-08 17:28:53 nicm Exp $ */
 
 /*
  * Copyright (c) 2005 Nicholas Marriott <nicm__@ntlworld.com>
@@ -154,6 +154,7 @@ io_polln(struct io **iop, u_int n, struct io **rio, int timeout, char **cause)
 	/* Do the poll. */
 	error = poll(pfds, n, timeout);
 	if (error == 0 || error == -1) {
+		IO_DEBUG(io, "poll returned: %d (errno=%d)", error, errno);
 		xfree(pfds);
 
 		if (error == 0) {
