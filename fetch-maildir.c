@@ -1,4 +1,4 @@
-/* $Id: fetch-maildir.c,v 1.85 2007-10-25 09:02:54 nicm Exp $ */
+/* $Id: fetch-maildir.c,v 1.86 2007-12-08 20:22:36 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -268,6 +268,8 @@ fetch_maildir_state_next(struct account *a, struct fetch_ctx *fctx)
 		data->index++;
 
 	if (data->index == ARRAY_LENGTH(data->paths)) {
+		if (!(fctx->flags & FETCH_EMPTY))
+			return (FETCH_BLOCK);
 		fetch_maildir_freepaths(a);
 		return (FETCH_EXIT);
 	}

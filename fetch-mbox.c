@@ -1,4 +1,4 @@
-/* $Id: fetch-mbox.c,v 1.11 2007-10-25 09:02:54 nicm Exp $ */
+/* $Id: fetch-mbox.c,v 1.12 2007-12-08 20:22:36 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -386,6 +386,8 @@ fetch_mbox_state_next(struct account *a, struct fetch_ctx *fctx)
 		data->index++;
 
 	if (data->index == ARRAY_LENGTH(&data->fmboxes)) {
+		if (!(fctx->flags & FETCH_EMPTY))
+			return (FETCH_BLOCK);
 		fctx->state = fetch_mbox_state_exit;
 		return (FETCH_AGAIN);
 	}
