@@ -1,4 +1,4 @@
-/* $Id: pop3-common.c,v 1.8 2007-10-25 09:02:54 nicm Exp $ */
+/* $Id: pop3-common.c,v 1.9 2007-12-12 08:05:33 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -355,7 +355,7 @@ pop3_state_init(struct account *a, struct fetch_ctx *fctx)
 
 /* Connect state. */
 int
-pop3_state_connect(struct account *a, unused struct fetch_ctx *fctx)
+pop3_state_connect(struct account *a, struct fetch_ctx *fctx)
 {
 	struct fetch_pop3_data	*data = a->data;
 
@@ -689,7 +689,7 @@ pop3_state_cache3(struct account *a, struct fetch_ctx *fctx)
 
 /* Next state. */
 int
-pop3_state_next(struct account *a, unused struct fetch_ctx *fctx)
+pop3_state_next(struct account *a, struct fetch_ctx *fctx)
 {
 	struct fetch_pop3_data	*data = a->data;
 	struct mail		*m = fctx->mail;
