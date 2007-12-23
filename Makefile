@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.168 2007-12-03 20:53:18 nicm Exp $
+# $Id: Makefile,v 1.169 2007-12-23 16:59:12 nicm Exp $
 
 .SUFFIXES: .c .o .y .h
 .PHONY: clean lint regress yannotate manual \
@@ -87,6 +87,7 @@ CFLAGS+= -DNO_STRTONUM
 .endif
 
 PREFIX?= /usr/local
+INSTALLDIR= install -d
 INSTALLBIN= install -g bin -o root -m 555
 INSTALLMAN= install -g bin -o root -m 444
 
@@ -155,8 +156,11 @@ manual:
 		awk -f makemanual.awk MANUAL.in > MANUAL
 
 install:	all
+		${INSTALLDIR} ${DESTDIR}${PREFIX}/bin
 		${INSTALLBIN} ${PROG} ${DESTDIR}${PREFIX}/bin/${PROG}
+		${INSTALLDIR} ${DESTDIR}${PREFIX}/man/man1
 		${INSTALLMAN} ${PROG}.1 ${DESTDIR}${PREFIX}/man/man1/
+		${INSTALLDIR} ${DESTDIR}${PREFIX}/man/man5
 		${INSTALLMAN} ${PROG}.conf.5 ${DESTDIR}${PREFIX}/man/man5/
 
 uninstall:
