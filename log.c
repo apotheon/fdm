@@ -1,4 +1,4 @@
-/* $Id: log.c,v 1.18 2007-07-22 14:29:25 nicm Exp $ */
+/* $Id: log.c,v 1.19 2008-01-04 23:59:22 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -192,11 +192,19 @@ log_vfatal(const char *msg, va_list ap)
 
 	if (errno != 0) {
 		if (asprintf(&fmt, "fatal: %s: %s", msg, strerror(errno)) == -1)
+#ifdef DEBUG
+			abort();
+#else
 			exit(1);
+#endif
 		log_vwrite(NULL, LOG_CRIT, fmt, ap);
 	} else {
 		if (asprintf(&fmt, "fatal: %s", msg) == -1)
-			exit(1);
+#ifdef DEBUG
+			abort();
+#else
+       			exit(1);
+#endif
 		log_vwrite(NULL, LOG_CRIT, fmt, ap);
 	}
 	free(fmt);
