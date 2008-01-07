@@ -1,3 +1,7 @@
+07 January 2008
+
+* Use <>s around envelope addresses when using SMTP. Reported by Marco Lopes.
+
 08 December 2007
 
 * Don't let mbox or maildir fetch code exit and free stuff until all the mail is
@@ -779,4 +783,4 @@
   the mail was very rarely reallocated, now that the header is added it is.
 * Changed all the descriptions to static buffers and audited use of snprintf.
 
-$Id: CHANGES,v 1.181 2007-12-08 20:22:36 nicm Exp $
+$Id: CHANGES,v 1.182 2008-01-07 08:25:47 nicm Exp $

@@ -1,4 +1,4 @@
-/* $Id: deliver-smtp.c,v 1.53 2007-08-18 12:19:43 nicm Exp $ */
+/* $Id: deliver-smtp.c,v 1.54 2008-01-07 08:25:47 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -123,13 +123,13 @@ deliver_smtp_deliver(struct deliver_ctx *dctx, struct actitem *ti)
 			if (code != 250)
 				goto error;
 			state = SMTP_FROM;
-			io_writeline(io, "MAIL FROM:%s", from);
+			io_writeline(io, "MAIL FROM:<%s>", from);
 			break;
 		case SMTP_FROM:
 			if (code != 250)
 				goto error;
 			state = SMTP_TO;
-			io_writeline(io, "RCPT TO:%s", to);
+			io_writeline(io, "RCPT TO:<%s>", to);
 			break;
 		case SMTP_TO:
 			if (code != 250)
