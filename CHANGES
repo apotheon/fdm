@@ -1,3 +1,8 @@
+10 January 2008
+
+* Added "from" to smtp action to specify envelope from. Requested by Marco
+  Lopes.
+
 07 January 2008
 
 * Use <>s around envelope addresses when using SMTP. Reported by Marco Lopes.
@@ -783,4 +788,4 @@
   the mail was very rarely reallocated, now that the header is added it is.
 * Changed all the descriptions to static buffers and audited use of snprintf.
 
-$Id: CHANGES,v 1.182 2008-01-07 08:25:47 nicm Exp $
+$Id: CHANGES,v 1.183 2008-01-15 18:17:09 nicm Exp $

@@ -1,4 +1,4 @@
-/* $Id: deliver.h,v 1.22 2007-10-02 10:04:43 nicm Exp $ */
+/* $Id: deliver.h,v 1.23 2008-01-15 18:17:10 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -72,6 +72,7 @@ enum deliver_smtp_state {
 struct deliver_smtp_data {
 	struct server	server;
 	struct replstr	to;
+	struct replstr	from;
 };
 
 /* Deliver mbox data. */

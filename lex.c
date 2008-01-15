@@ -1,4 +1,4 @@
-/* $Id: lex.c,v 1.30 2007-10-25 09:02:54 nicm Exp $ */
+/* $Id: lex.c,v 1.31 2008-01-15 18:17:11 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -100,6 +100,7 @@ static const struct token tokens[] = {
 	{ "file-umask", TOKFILEUMASK },
 	{ "flock", TOKFLOCK },
 	{ "folder", TOKFOLDER },
+	{ "from", TOKFROM },
 	{ "from-headers", TOKFROMHEADERS },
 	{ "g", TOKGIGABYTES },
 	{ "gb", TOKGIGABYTES },
