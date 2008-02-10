@@ -1,4 +1,4 @@
-/* $Id: child-fetch.c,v 1.64 2007-09-25 21:46:19 nicm Exp $ */
+/* $Id: child-fetch.c,v 1.65 2008-02-10 06:54:42 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -481,7 +481,7 @@ finished:
 
 /*
  * Check mail for various problems, add headers and fill tags, then create an
- * and enqueue it onto the fetch queue.
+ * mctx and enqueue it onto the fetch queue.
  */
 int
 fetch_enqueue(struct account *a, struct io *pio, struct mail *m)
@@ -547,11 +547,11 @@ fetch_enqueue(struct account *a, struct io *pio, struct mail *m)
 		add_tag(&m->tags, "mail_minute", "%.2d", tm->tm_min);
 		add_tag(&m->tags, "mail_second", "%.2d", tm->tm_sec);
 		add_tag(&m->tags, "mail_day", "%.2d", tm->tm_mday);
-		add_tag(&m->tags, "mail_month", "%.2d", tm->tm_mon);
+		add_tag(&m->tags, "mail_month", "%.2d", tm->tm_mon + 1);
 		add_tag(&m->tags, "mail_year", "%.4d", 1900 + tm->tm_year);
 		add_tag(&m->tags, "mail_year2", "%.2d", tm->tm_year % 100);
 		add_tag(&m->tags, "mail_dayofweek", "%d", tm->tm_wday);
-		add_tag(&m->tags, "mail_dayofyear", "%.2d", tm->tm_yday);
+		add_tag(&m->tags, "mail_dayofyear", "%.2d", tm->tm_yday + 1);
 		add_tag(&m->tags,
 		    "mail_quarter", "%d", (tm->tm_mon - 1) / 3 + 1);
 	}
