@@ -910,6 +910,9 @@ Examples are:
 
 	action "domaildirexec" exec "~/.fdm.d/my-special-script %[mail_file]"
 
+Pipe and exec commands are run as the command user (by default the user who
+invoked fdm).
+
 %%% stdout
 
 fdm can write mails directly to stdout, using the 'stdout' action:
@@ -1369,6 +1372,11 @@ This option specifies a string to use as the path of the lock file. For example:
 
 	set lock-file "/tmp/my-lock-file"
 
+- command-user <user>
+
+This specifies the user used to run exec and pipe actions. By default it is
+the user who invoked fdm.
+
 - default-user <user>
 
 This specifies the default user to use if run as root and no users are specified
@@ -1604,5 +1612,5 @@ Because I hate maintaining and testing two sets of code, there is a strong
 possibility that PCRE may become the fdm default as well at some point.
 
 ================================================================================
-$Id: MANUAL.in,v 1.66 2008-01-02 19:37:37 nicm Exp $
+$Id: MANUAL.in,v 1.67 2008-02-10 07:02:35 nicm Exp $
 
