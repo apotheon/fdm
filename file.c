@@ -1,4 +1,4 @@
-/* $Id: file.c,v 1.9 2007-10-25 09:02:54 nicm Exp $ */
+/* $Id: file.c,v 1.10 2008-02-10 06:56:28 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -290,7 +290,7 @@ checkowner(struct stat *sb, uid_t uid)
 	static char	msg[128];
 
 	if (uid == (uid_t) -1)
-		uid = getuid();
+		uid = geteuid();
 	if (sb->st_uid == uid)
 		return (NULL);
 

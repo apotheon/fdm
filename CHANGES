@@ -1,5 +1,6 @@
 10 February 2008
 
+* Consistently use geteuid().
 * Correct mail_month/mail_dayofyear tags.
 
 10 January 2008
@@ -792,4 +793,4 @@
   the mail was very rarely reallocated, now that the header is added it is.
 * Changed all the descriptions to static buffers and audited use of snprintf.
 
-$Id: CHANGES,v 1.184 2008-02-10 06:54:42 nicm Exp $
+$Id: CHANGES,v 1.185 2008-02-10 06:56:28 nicm Exp $

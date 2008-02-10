@@ -1,4 +1,4 @@
-/* $Id: fdm.c,v 1.168 2007-12-03 20:56:31 nicm Exp $ */
+/* $Id: fdm.c,v 1.169 2008-02-10 06:56:28 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -79,7 +79,7 @@ fill_info(const char *home)
 	uid_t		 uid;
 	char		 host[MAXHOSTNAMELEN];
 
-	uid = getuid();
+	uid = geteuid();
 	if (conf.info.valid && conf.info.last_uid == uid)
 		return;
 	conf.info.valid = 1;
