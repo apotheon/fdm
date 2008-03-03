@@ -1,4 +1,4 @@
-# $Id: GNUmakefile,v 1.97 2007-10-09 13:01:32 nicm Exp $
+# $Id: GNUmakefile,v 1.98 2008-03-03 18:39:25 nicm Exp $
 
 .PHONY: clean
 
@@ -6,7 +6,7 @@ PROG= fdm
 VERSION= 1.5
 DATE= $(shell date +%Y%m%d-%H%M)
 
-DEBUG= 1
+#DEBUG= 1
 
 PREFIX?= /usr/local
 
