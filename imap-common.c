@@ -1,4 +1,4 @@
-/* $Id: imap-common.c,v 1.72 2007-11-06 08:37:59 nicm Exp $ */
+/* $Id: imap-common.c,v 1.73 2008-03-03 08:28:06 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -299,7 +299,7 @@ imap_total(struct account *a)
 	return (data->total);
 }
 
-/* Common initialisatio state. */
+/* Common initialisation state. */
 int
 imap_state_init(struct account *a, struct fetch_ctx *fctx)
 {
