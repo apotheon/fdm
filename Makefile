@@ -1,18 +1,18 @@
-# $Id: Makefile,v 1.170 2008-03-03 18:39:25 nicm Exp $
+# $Id: Makefile,v 1.171 2008-03-06 07:26:26 nicm Exp $
 
 .SUFFIXES: .c .o .y .h
 .PHONY: clean lint regress yannotate manual \
 	update-index.html upload-index.html
 
 PROG= fdm
-VERSION= 1.5
+VERSION= 1.6
 
 OS!= uname
 REL!= uname -r
 DATE!= date +%Y%m%d-%H%M
 
 # This must be empty as OpenBSD includes it in default CFLAGS.
-#DEBUG=
+DEBUG=
 
 SRCS= fdm.c \
       attach.c buffer.c cleanup.c command.c connect.c io.c log.c netrc.c \
@@ -77,7 +77,7 @@ LDFLAGS+= -L/usr/pkg/lib
 
 # FreeBSD
 .if ${OS} == "FreeBSD"
-INCDIRS+= -Icompat -I/usr/local/include/openssl
+INCDIRS+= -Icompat -I/usr/include/openssl
 
 # FreeBSD 5
 .if ${REL:R} == 5

@@ -1,4 +1,4 @@
-/* $Id: command.c,v 1.51 2007-09-19 09:05:40 nicm Exp $ */
+/* $Id: command.c,v 1.52 2008-03-06 07:26:26 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -116,6 +116,8 @@ cmd_start(const char *s, int flags, const char *buf, size_t len, char **cause)
 			fatal("dup2(stderr) failed");
 		close(fd_err[1]);
 
+                if (signal(SIGINFO, SIG_DFL) == SIG_ERR)
+			fatal("signal failed");
                 if (signal(SIGINT, SIG_DFL) == SIG_ERR)
 			fatal("signal failed");
                 if (signal(SIGTERM, SIG_DFL) == SIG_ERR)

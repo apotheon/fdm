@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.335 2007-10-25 09:02:54 nicm Exp $ */
+/* $Id: fdm.h,v 1.336 2008-03-06 07:26:26 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -758,6 +758,9 @@ void		 netrc_close(FILE *);
 int		 netrc_lookup(FILE *, const char *, char **, char **);
 
 /* fdm.c */
+extern volatile sig_atomic_t siginfo;
+extern volatile sig_atomic_t sigint;
+extern volatile sig_atomic_t sigterm;
 double		 get_time(void);
 void		 dropto(uid_t);
 int		 check_incl(const char *);

@@ -1,4 +1,4 @@
-/* $Id: connect.c,v 1.74 2007-12-03 20:53:18 nicm Exp $ */
+/* $Id: connect.c,v 1.75 2008-03-06 07:26:26 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -620,6 +620,7 @@ connectio(
 	}
 
 	for (ai = srv->ai; ai != NULL; ai = ai->ai_next) {
+	retry:
 		fd = socket(ai->ai_family, ai->ai_socktype, ai->ai_protocol);
 		if (fd < 0) {
 			fn = "socket";
@@ -629,6 +630,8 @@ connectio(
 			error = errno;
 			close(fd);
 			errno = error;
+			if (errno == EINTR)
+				goto retry;
 			fd = -1;
 			fn = "connect";
 			continue;
