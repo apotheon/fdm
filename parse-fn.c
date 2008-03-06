@@ -1,4 +1,4 @@
-/* $Id: parse-fn.c,v 1.22 2008-03-06 08:06:07 nicm Exp $ */
+/* $Id: parse-fn.c,v 1.23 2008-03-06 08:14:28 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -482,6 +482,7 @@ free_account(struct account *a)
 		xfree(data->user);
 		xfree(data->pass);
 		free_strings(data->folders);
+ 		ARRAY_FREEALL(data->folders);
 		xfree(data->server.host);
 		xfree(data->server.port);
 		if (data->server.ai != NULL)
@@ -493,6 +494,7 @@ free_account(struct account *a)
 		if (data->pass != NULL)
 			xfree(data->pass);
 		free_strings(data->folders);
+ 		ARRAY_FREEALL(data->folders);
 		xfree(data->pipecmd);
 	} else if (a->fetch == &fetch_maildir) {
 		struct fetch_maildir_data	*data = a->data;
