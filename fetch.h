@@ -1,4 +1,4 @@
-/* $Id: fetch.h,v 1.46 2007-09-19 09:05:40 nicm Exp $ */
+/* $Id: fetch.h,v 1.47 2008-03-06 08:06:06 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -193,10 +193,13 @@ struct fetch_imap_data {
 
 	char		*user;
 	char		*pass;
-	char		*folder;
 	struct server	 server;
 	char		*pipecmd;
 
+	u_int		 folder;
+	struct strings	*folders;
+
+	int		 flags;
 	int		 capa;
 	int		 tag;
 
