@@ -1,4 +1,4 @@
-# $Id: GNUmakefile,v 1.100 2008-03-09 07:48:54 nicm Exp $
+# $Id: GNUmakefile,v 1.101 2008-03-09 07:49:24 nicm Exp $
 
 .PHONY: clean
 
@@ -104,11 +104,11 @@ y.tab.c y.tab.h: parse.y
 	$(YACC) $(YFLAGS) $<
 
 install:
-	${INSTALLDIR} ${DESTDIR}${PREFIX}/bin
+	$(INSTALLDIR) $(DESTDIR)$(PREFIX)/bin
 	$(INSTALLBIN) $(PROG) $(DESTDIR)$(PREFIX)/bin/$(PROG)
-	${INSTALLDIR} ${DESTDIR}${PREFIX}/man/man1
+	$(INSTALLDIR) $(DESTDIR)$(PREFIX)/man/man1
 	$(INSTALLMAN) $(PROG).1 $(DESTDIR)$(PREFIX)/man/man1/$(PROG).1
-	${INSTALLDIR} ${DESTDIR}${PREFIX}/man/man5
+	$(INSTALLDIR) $(DESTDIR)$(PREFIX)/man/man5
 	$(INSTALLMAN) $(PROG).conf.5 $(DESTDIR)$(PREFIX)/man/man5/$(PROG).conf.5
 
 clean:
