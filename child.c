@@ -1,4 +1,4 @@
-/* $Id: child.c,v 1.143 2008-03-06 07:26:26 nicm Exp $ */
+/* $Id: child.c,v 1.144 2008-04-01 21:02:22 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -29,8 +29,11 @@ void
 child_sighandler(int sig)
 {
 	switch (sig) {
+#ifdef SIGINFO
 	case SIGINFO:
-		siginfo = 1;
+#endif
+	case SIGUSR1:
+		sigusr1 = 1;
 		break;
 	case SIGTERM:
 		cleanup_purge();
@@ -51,7 +54,10 @@ child_fork(void)
 		cleanup_flush();
 
 		sigemptyset(&act.sa_mask);
+#ifdef SIGINFO
 		sigaddset(&act.sa_mask, SIGINFO);
+#endif
+		sigaddset(&act.sa_mask, SIGUSR1);
 		sigaddset(&act.sa_mask, SIGINT);
 		sigaddset(&act.sa_mask, SIGTERM);
 		act.sa_flags = SA_RESTART;
@@ -61,8 +67,12 @@ child_fork(void)
 			fatal("sigaction failed");
 
 		act.sa_handler = child_sighandler;
+#ifdef SIGINFO
 		if (sigaction(SIGINFO, &act, NULL) < 0)
 			fatal("sigaction failed");
+#endif
+		if (sigaction(SIGUSR1, &act, NULL) < 0)
+			fatal("sigaction failed");		
 		if (sigaction(SIGTERM, &act, NULL) < 0)
 			fatal("sigaction failed");
 
