@@ -1,4 +1,4 @@
-/* $Id: fetch-nntp.c,v 1.101 2007-10-25 09:02:54 nicm Exp $ */
+/* $Id: fetch-nntp.c,v 1.102 2008-04-02 05:02:46 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -106,7 +106,7 @@ fetch_nntp_code(char *line)
 }
 
 /*
- * Get line from server and check against list of codes.  Returns -1 on error,
+ * Get line from server and check against list of codes. Returns -1 on error,
  * 0 on success, a NULL line when out of data.
  */
 int
@@ -158,7 +158,7 @@ fetch_nntp_parse223(char *line, u_int *n, char **id)
 
 	ptr = strchr(line, '<');
 	if (ptr == NULL)
-		return (1);
+		return (-1);
 	ptr2 = strchr(ptr, '>');
 	if (ptr2 == NULL)
 		return (-1);
