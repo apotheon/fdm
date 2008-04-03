@@ -1,4 +1,4 @@
-/* $Id: imap-common.c,v 1.76 2008-04-03 18:49:22 nicm Exp $ */
+/* $Id: imap-common.c,v 1.77 2008-04-03 19:56:46 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -930,7 +930,7 @@ imap_state_line(struct account *a, struct fetch_ctx *fctx)
 		if (left == 0) {
 			/* Exactly "FLAGS (...)" and no more. */
 			if (size < 7 || (strncmp(line, "FLAGS (", 7) != 0 &&
-			    strncmp(line, " FLAGS (", 8) != 0)) {
+			    strncmp(line, " FLAGS (", 8) != 0))
 				return (imap_invalid(a, line));
 		} else {
 			/* " FLAGS (...)" after content. */
