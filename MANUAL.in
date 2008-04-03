@@ -664,6 +664,12 @@ Examples of IMAP and IMAPS accounts include:
 	account "workspam" disabled imap server "my-work.ath.cx"
 		user "Nicholas" folder "Junk"
 
+By default, fdm prefers the CRAM-MD5 authentication method, since no passwords
+are sent in the clear.  If the server does not advertise CRAM-MD5 capability,
+the older LOGIN method is used.  For IMAPS connections (which use SSL), the
+LOGIN method is just as secure.  Either of these methods may be disabled with
+the 'no-cram-md5' and 'no-login' options.
+
 As with POP3, IMAP adds the 'server', 'port', 'server_uid' and the three line
 count tags to mail.
 
@@ -1616,5 +1622,5 @@ Because I hate maintaining and testing two sets of code, there is a strong
 possibility that PCRE may become the fdm default at some point.
 
 ================================================================================
-$Id: MANUAL.in,v 1.70 2008-04-02 05:02:46 nicm Exp $
+$Id: MANUAL.in,v 1.71 2008-04-03 19:59:01 nicm Exp $
 
