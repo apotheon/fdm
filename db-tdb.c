@@ -1,4 +1,4 @@
-/* $Id: db-tdb.c,v 1.12 2007-10-09 11:38:36 nicm Exp $ */
+/* $Id: db-tdb.c,v 1.13 2008-05-17 15:13:01 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -20,6 +20,7 @@
 #include <sys/stat.h>
 
 #include <fcntl.h>
+#include <signal.h>
 #include <string.h>
 #include <tdb.h>
 
