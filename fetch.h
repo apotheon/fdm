@@ -1,4 +1,4 @@
-/* $Id: fetch.h,v 1.48 2008-04-03 18:46:24 nicm Exp $ */
+/* $Id: fetch.h,v 1.49 2008-05-22 21:18:07 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -238,6 +238,15 @@ struct fetch_imap_mail {
 	TAILQ_ENTRY(fetch_imap_mail) entry;
 };
 
+#define IMAP_TAG_NONE -1
+#define IMAP_TAG_CONTINUE -2
+#define IMAP_TAG_ERROR -3
+
+#define IMAP_TAGGED 0
+#define IMAP_CONTINUE 1
+#define IMAP_UNTAGGED 2
+#define IMAP_RAW 3
+
 /* fetch-maildir.c */
 extern struct fetch 	 fetch_maildir;
 
@@ -258,12 +267,24 @@ extern struct fetch 	 fetch_pop3pipe;
 
 /* fetch-imap.c */
 extern struct fetch 	 fetch_imap;
+int	fetch_imap_putln(struct account *, const char *, va_list);
+int	fetch_imap_getln(struct account *, struct fetch_ctx *, char **);
+int	fetch_imap_state_init(struct account *, struct fetch_ctx *);
 
 /* fetch-imappipe.c */
 extern struct fetch 	 fetch_imappipe;
 
 /* imap-common.c */
+int	imap_tag(char *);
+int	imap_putln(struct account *, const char *, ...);
+int	imap_getln(struct account *, struct fetch_ctx *, int, char **);
+int	imap_okay(char *);
+int	imap_no(char *);
+int	imap_bad(struct account *, const char *);
+int	imap_invalid(struct account *, const char *);
 int	imap_state_init(struct account *, struct fetch_ctx *);
+int	imap_state_connected(struct account *, struct fetch_ctx *);
+int	imap_state_select1(struct account *, struct fetch_ctx *);
 int	imap_commit(struct account *, struct mail *);
 void	imap_abort(struct account *);
 u_int	imap_total(struct account *);
