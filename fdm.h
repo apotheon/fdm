@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.337 2008-04-01 21:02:22 nicm Exp $ */
+/* $Id: fdm.h,v 1.338 2008-05-26 20:26:40 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -505,6 +505,7 @@ struct account {
 	void			*data;
 
 	TAILQ_ENTRY(account)	 entry;
+	TAILQ_ENTRY(account)	 active_entry;
 };
 
 /* Action item. */
@@ -629,6 +630,7 @@ struct conf {
 	int			 verify_certs;
 	u_int			 purge_after;
 	enum decision		 impl_act;
+	int			 max_accts;
 
 	int			 queue_high;
 	int			 queue_low;

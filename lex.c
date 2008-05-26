@@ -1,4 +1,4 @@
-/* $Id: lex.c,v 1.33 2008-04-03 18:46:24 nicm Exp $ */
+/* $Id: lex.c,v 1.34 2008-05-26 20:26:40 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -155,6 +155,7 @@ static const struct token tokens[] = {
 	{ "not", TOKNOT },
 	{ "old-only", TOKOLDONLY },
 	{ "or", TOKOR },
+	{ "parallel-accounts", TOKPARALLELACCOUNTS },
 	{ "pass", TOKPASS },
 	{ "pipe", TOKPIPE },
 	{ "pop3", TOKPOP3 },
