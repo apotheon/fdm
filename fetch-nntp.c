@@ -1,4 +1,4 @@
-/* $Id: fetch-nntp.c,v 1.102 2008-04-02 05:02:46 nicm Exp $ */
+/* $Id: fetch-nntp.c,v 1.103 2008-05-30 06:15:32 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -596,13 +596,16 @@ fetch_nntp_state_article(struct account *a, struct fetch_ctx *fctx)
 
 	group = ARRAY_ITEM(&data->groups, data->group);
 
-	if (fetch_nntp_check(a, fctx, &line, &code, 2, 220, 423, 430) != 0)
+	if (fetch_nntp_check(a, fctx, &line, &code, 3, 220, 423, 430) != 0)
 		return (FETCH_ERROR);
 	if (line == NULL)
 		return (FETCH_BLOCK);
 
-	if (code == 423 || code == 430)
-		return (FETCH_AGAIN);
+	if (code == 423 || code == 430) {
+		io_writeline(data->io, "NEXT");
+		fctx->state = fetch_nntp_state_next;
+		return (FETCH_BLOCK);
+	}
 
 	/* Open the mail. */
 	if (mail_open(m, IO_BLOCKSIZE) != 0) {

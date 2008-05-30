@@ -1,3 +1,7 @@
+30 May 2008
+
+* Handle 423/430 response from ARTICLE command in NNTP correctly.
+
 26 May 2008
 
 * New option: parallel-accounts. Sets number of accounts to fetch in parallel.
@@ -827,4 +831,4 @@
   the mail was very rarely reallocated, now that the header is added it is.
 * Changed all the descriptions to static buffers and audited use of snprintf.
 
-$Id: CHANGES,v 1.193 2008-05-26 20:26:40 nicm Exp $
+$Id: CHANGES,v 1.194 2008-05-30 06:15:32 nicm Exp $
