@@ -1,4 +1,4 @@
-# $Id: GNUmakefile,v 1.102 2008-05-22 21:18:04 nicm Exp $
+# $Id: GNUmakefile,v 1.103 2008-06-18 19:14:19 nicm Exp $
 
 .PHONY: clean
 
@@ -56,10 +56,13 @@ DEFS+= -DNO_STRTONUM -DNO_SETRESUID -DNO_SETRESGID -DNO_SETPROCTITLE \
 LIBS+= -lresolv -lcrypto
 endif
 
-ifeq ($(shell uname),Linux)
+ifneq (, $(filter Linux GNU GNU/%, $(shell uname -s)))
 INCDIRS+= -I/usr/include/openssl -Icompat
 SRCS+= compat/strlcpy.c compat/strlcat.c compat/strtonum.c
-DEFS+= $(shell getconf LFS_CFLAGS) -D_GNU_SOURCE -DWITH_MREMAP \
+ifeq (, $(filter GNU/k%BSD, $(shell uname -s)))
+DEFS+= -DWITH_MREMAP
+endif
+DEFS+= $(shell getconf LFS_CFLAGS) -D_GNU_SOURCE \
        -DNO_STRLCPY -DNO_STRLCAT -DNO_STRTONUM -DNO_SETPROCTITLE \
        -DNO_QUEUE_H -DNO_TREE_H
 LIBS+= -lresolv
