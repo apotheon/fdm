@@ -1,4 +1,4 @@
-# $Id: GNUmakefile,v 1.103 2008-06-18 19:14:19 nicm Exp $
+# $Id: GNUmakefile,v 1.104 2008-06-26 18:41:00 nicm Exp $
 
 .PHONY: clean
 
@@ -46,6 +46,7 @@ SRCS= fdm.c \
       match-in-cache.c match-matched.c match-regexp.c match-size.c \
       match-string.c match-tagged.c match-unmatched.c match-account.c \
       parent-deliver.c parent-fetch.c \
+      lookup.c lookup-passwd.c \
       y.tab.c parse-fn.c lex.c
 
 ifeq ($(shell uname),Darwin)

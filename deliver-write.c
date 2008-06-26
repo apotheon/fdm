@@ -1,4 +1,4 @@
-/* $Id: deliver-write.c,v 1.34 2007-08-10 17:17:43 nicm Exp $ */
+/* $Id: deliver-write.c,v 1.35 2008-06-26 18:41:00 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -46,7 +46,7 @@ deliver_write_deliver(struct deliver_ctx *dctx, struct actitem *ti)
         char				*path;
         FILE    			*f;
 
-	path = replacepath(&data->path, m->tags, m, &m->rml);
+	path = replacepath(&data->path, m->tags, m, &m->rml, dctx->udata->home);
         if (path == NULL || *path == '\0') {
 		if (path != NULL)
 			xfree(path);

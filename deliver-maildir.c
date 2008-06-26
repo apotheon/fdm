@@ -1,4 +1,4 @@
-/* $Id: deliver-maildir.c,v 1.58 2007-10-25 09:02:54 nicm Exp $ */
+/* $Id: deliver-maildir.c,v 1.59 2008-06-26 18:41:00 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -150,7 +150,7 @@ deliver_maildir_deliver(struct deliver_ctx *dctx, struct actitem *ti)
 	name = NULL;
 	fd = -1;
 
-	path = replacepath(&data->path, m->tags, m, &m->rml);
+	path = replacepath(&data->path, m->tags, m, &m->rml, dctx->udata->home);
 	if (path == NULL || *path == '\0') {
 		log_warnx("%s: empty path", a->name);
 		goto error;

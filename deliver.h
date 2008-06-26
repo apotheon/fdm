@@ -1,4 +1,4 @@
-/* $Id: deliver.h,v 1.24 2008-05-22 21:18:06 nicm Exp $ */
+/* $Id: deliver.h,v 1.25 2008-06-26 18:41:00 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -34,7 +34,7 @@ struct deliver_ctx {
 	struct account			*account;
 	struct mail			*mail;
 
-	uid_t				 uid;
+	struct userdata			*udata;
 
 	struct mail	 		 wr_mail;
 

@@ -821,10 +821,6 @@ The <users> item may be either:
 
 	users { 1001 "nicholas" }
 
-- the keyword 'from-headers', that will attempt to ascertain a set of users
-  from the mail headers (see the 'domains' and 'headers' options in the
-  section on setting options).
-
 If users are specified, the action will be run once for each user, with fdm
 changing to that user before executing the action. Note that fdm will execute
 the action once for each user even when not started as root, but will not be
@@ -1398,28 +1394,6 @@ Some NFS servers do not support fcntl. The default is flock only. Example:
 
 	set lock-types fcntl dotlock
 
-- [domain|domains] <domains>
-
-This specifies a domain or list of domains to use when searching for users in
-mail headers with the 'from-headers' keyword. Examples include:
-
-	set domain "xyz.ath.cx"
-
-	set domains { "abc.ca" "def.co.uk" }
-
-The default is the hostname, FQDN and IP of the local machine.
-
-- [header|headers] <headers>
-
-This specifies a header or list of headers to search with the 'from-headers'
-keyword, such as:
-
-	set header { "to" "cc" }
-
-	set headers "x-envelope-to"
-
-The default is "to" "cc".
-
 - proxy <url>
 
 This specifies a URL to proxy outgoing connections through. See the section
@@ -1622,5 +1596,5 @@ Because I hate maintaining and testing two sets of code, there is a strong
 possibility that PCRE may become the fdm default at some point.
 
 ================================================================================
-$Id: MANUAL.in,v 1.71 2008-04-03 19:59:01 nicm Exp $
+$Id: MANUAL.in,v 1.72 2008-06-26 18:41:00 nicm Exp $
 
