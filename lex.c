@@ -1,4 +1,4 @@
-/* $Id: lex.c,v 1.35 2008-06-26 18:41:00 nicm Exp $ */
+/* $Id: lex.c,v 1.36 2008-06-26 20:13:03 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -84,6 +84,7 @@ static const struct token tokens[] = {
 	{ "compress", TOKCOMPRESS },
 	{ "continue", TOKCONTINUE },
 	{ "count", TOKCOUNT },
+	{ "courier", TOKCOURIER },
 	{ "day", TOKDAYS },
 	{ "days", TOKDAYS },
 	{ "default-user", TOKDEFUSER },

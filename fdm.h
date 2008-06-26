@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.339 2008-06-26 18:41:00 nicm Exp $ */
+/* $Id: fdm.h,v 1.340 2008-06-26 20:13:03 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -798,6 +798,11 @@ struct userdata *user_copy(struct userdata *);
 
 /* lookup-passwd.c */
 struct userdata *passwd_lookup(const char *);
+
+#ifdef LOOKUP_COURIER
+/* lookup-courier.c */
+struct userdata *courier_lookup(const char *);
+#endif
 
 /* privsep.c */
 int		 privsep_send(struct io *, struct msg *, struct msgbuf *);
