@@ -1,4 +1,4 @@
-/* $Id: mail-state.c,v 1.32 2008-06-26 20:13:03 nicm Exp $ */
+/* $Id: mail-state.c,v 1.33 2008-06-26 20:21:20 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -75,7 +75,7 @@ mail_match(struct mail_ctx *mctx, struct msg *msg, struct msgbuf *msgbuf)
 		if (msgbuf->buf != NULL && msgbuf->len != 0) {
 			strb_destroy(&m->tags);
 			m->tags = msgbuf->buf;
-			update_tags(&m->tags, NULL);
+			reset_tags(&m->tags);
 		}
 
 		ei = mctx->expritem;
