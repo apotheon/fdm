@@ -44,6 +44,7 @@ privilege separation to minimise the amount of code running as the root user.
 %%	Drop and keep
 %%	Maildirs
 %%	Mboxes
+%%	IMAP and IMAPS
 %%	SMTP
 %%	Write, pipe, exec and append
 %%	stdout
@@ -880,6 +881,21 @@ As with maildirs, if any component of the mbox path does not exist, it is
 created, unless the no-create option is set. Mails saved to an mbox are tagged
 with an 'mbox_file' tag with the path of the mbox.
 
+%%% IMAP and IMAPS
+
+An action may be defined to store mail in an IMAP folder. The specification is
+similar to the IMAP action. A server host and optionally port (default 'imap'
+or 'imaps') must be specified. A username and password may be supplied; if they
+are omitted, fdm will attempt to find a .netrc entry. Examples include:
+
+	action "myimapaction" imap server "imap.server"
+
+	action "myimapaction" imaps server "imap.server"
+		port "8993" user "user" pass "pass" folder "folder"
+
+	action "myimapaction" imaps server "imap.server"
+		user "user" pass "pass" no-verify no-login
+
 %%% SMTP
 
 An action may be defined to pass mail on over SMTP. The server host must be
@@ -1596,5 +1612,5 @@ Because I hate maintaining and testing two sets of code, there is a strong
 possibility that PCRE may become the fdm default at some point.
 
 ================================================================================
-$Id: MANUAL.in,v 1.72 2008-06-26 18:41:00 nicm Exp $
+$Id: MANUAL.in,v 1.73 2008-06-29 21:08:38 nicm Exp $
 
