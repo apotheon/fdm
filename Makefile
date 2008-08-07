@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.174 2008-06-26 20:13:03 nicm Exp $
+# $Id: Makefile,v 1.175 2008-08-07 05:15:31 nicm Exp $
 
 .SUFFIXES: .c .o .y .h
 .PHONY: clean lint regress yannotate manual \
@@ -123,7 +123,7 @@ CLEANFILES= ${PROG} *.o compat/*.o y.tab.c y.tab.h .depend \
 all:		${PROG}
 
 ${PROG}:	${OBJS}
-		${CC} ${LDFLAGS} -o ${PROG} ${LIBS} ${OBJS}
+		${CC} ${LDFLAGS} -o ${PROG} ${OBJS} ${LIBS}
 
 dist:		clean manual
 		grep '^#DEBUG=' Makefile
