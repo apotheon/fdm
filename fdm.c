@@ -1,4 +1,4 @@
-/* $Id: fdm.c,v 1.174 2008-08-08 17:00:42 nicm Exp $ */
+/* $Id: fdm.c,v 1.175 2008-08-08 17:35:14 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -209,7 +209,7 @@ main(int argc, char **argv)
 	struct cache	*cache;
 #endif
 
-	log_open(stderr, LOG_MAIL, 0);
+	log_open_tty(0);
 
 	memset(&conf, 0, sizeof conf);
 	TAILQ_INIT(&conf.accounts);
@@ -304,9 +304,9 @@ main(int argc, char **argv)
 
 	/* Set debug level and start logging to syslog if necessary. */
 	if (conf.syslog)
-		log_open(NULL, LOG_MAIL, conf.debug);
+		log_open_syslog(conf.debug);
 	else
-		log_open(stderr, LOG_MAIL, conf.debug);
+		log_open_tty(conf.debug);
 	tt = time(NULL);
 	log_debug("version is: %s " BUILD ", started at: %.24s", __progname,
 	    ctime(&tt));

@@ -1,4 +1,4 @@
-/* $Id: parse.y,v 1.268 2008-08-08 17:00:42 nicm Exp $ */
+/* $Id: parse.y,v 1.269 2008-08-08 17:35:14 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -114,7 +114,7 @@ yyerror(const char *fmt, ...)
 	    "%s: %s at line %d", parse_file->path, fmt, parse_file->line);
 
 	va_start(ap, fmt);
-	log_vwrite(NULL, LOG_CRIT, s, ap);
+	log_vwrite(LOG_CRIT, s, ap);
 	va_end(ap);
 
 	exit(1);
