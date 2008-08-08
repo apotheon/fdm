@@ -1,4 +1,4 @@
-/* $Id: mail-time.c,v 1.5 2007-09-03 13:53:25 nicm Exp $ */
+/* $Id: mail-time.c,v 1.6 2008-08-08 17:11:55 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -104,7 +104,8 @@ mailtime(struct mail *m, time_t *tim)
 	if (hdr == NULL || len == 0)
 		return (-1);
 	/* Make a copy of the header. */
-	s = xmemstrdup(hdr, len);
+	s = xmalloc(len + 1);
+	strlcpy(s, hdr, len + 1);
 
 	/* Skip spaces. */
 	ptr = s;

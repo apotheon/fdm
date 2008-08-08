@@ -1,4 +1,4 @@
-/* $Id: xmalloc.c,v 1.47 2007-09-03 13:53:25 nicm Exp $ */
+/* $Id: xmalloc.c,v 1.48 2008-08-08 17:11:55 nicm Exp $ */
 
 /*
  * Copyright (c) 2004 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -67,18 +67,6 @@ ensure_size(void *buf, size_t *len, size_t nmemb, size_t size)
 	}
 
 	return (buf);
-}
-
-char *
-xmemstrdup(const char *buf, size_t len)
-{
-	char	*s;
-
-	s = xmalloc(len + 1);
-	memcpy(s, buf, len);
-	s[len] = '\0';
-
-	return (s);
 }
 
 char *
