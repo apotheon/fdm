@@ -1,3 +1,8 @@
+08 August 2008
+
+* Fix bug where current user could overwrite default-user/command-user
+  from configuration file.
+
 26 June 2008
 
 * Lookup using courier-authlib. Build with make -DLOOKUP_COURIER and
@@ -841,4 +846,4 @@
   the mail was very rarely reallocated, now that the header is added it is.
 * Changed all the descriptions to static buffers and audited use of snprintf.
 
-$Id: CHANGES,v 1.197 2008-06-26 20:13:02 nicm Exp $
+$Id: CHANGES,v 1.198 2008-08-08 17:00:42 nicm Exp $
