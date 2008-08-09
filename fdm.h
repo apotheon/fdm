@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.342 2008-08-08 17:35:14 nicm Exp $ */
+/* $Id: fdm.h,v 1.343 2008-08-09 17:03:11 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -138,9 +138,6 @@ extern char	*__progname;
 /* Ensure buffer size. */
 #define ENSURE_SIZE(buf, len, size) do {				\
 	(buf) = ensure_size(buf, &(len), 1, size);			\
-} while (0)
-#define ENSURE_SIZE2(buf, len, nmemb, size) do {			\
-	(buf) = ensure_size(buf, &(len), nmemb, size);			\
 } while (0)
 #define ENSURE_FOR(buf, len, size, adj) do {				\
 	(buf) = ensure_for(buf, &(len), size, adj);			\
