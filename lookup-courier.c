@@ -1,4 +1,4 @@
-/* $Id: lookup-courier.c,v 1.1 2008-06-26 20:13:03 nicm Exp $ */
+/* $Id: lookup-courier.c,v 1.2 2008-09-03 05:47:11 nicm Exp $ */
 
 /*
  * Copyright (c) 2008 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -63,7 +63,7 @@ struct userdata *
 courier_lookup(const char *user)
 {
 	courier_udata = NULL;
-	if (auth_getuserinfo("fdm", user, courier_callback, NULL) != 0)
+	if (auth_getuserinfo(__progname, user, courier_callback, NULL) != 0)
 		return (NULL);
 	return (courier_udata);
 }
