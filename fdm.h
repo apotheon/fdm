@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.343 2008-08-09 17:03:11 nicm Exp $ */
+/* $Id: fdm.h,v 1.344 2008-09-07 21:51:41 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -446,6 +446,7 @@ struct msg {
 /* A single child. */
 struct child {
 	pid_t		 pid;
+	struct child	*parent;
 	struct io	*io;
 
 	void		*data;
@@ -818,7 +819,7 @@ __dead void	 child_exit(int);
 struct child 	*child_start(struct children *, uid_t, gid_t, 
     		     int (*)(struct child *, struct io *),
     		     int (*)(struct child *, struct msg *, struct msgbuf *),
-    		     void *);
+		     void *, struct child *);
 
 /* child-fetch.c */
 int		 open_cache(struct account *, struct cache *);
