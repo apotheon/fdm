@@ -1,4 +1,4 @@
-/* $Id: child-fetch.c,v 1.68 2008-06-26 18:41:00 nicm Exp $ */
+/* $Id: child-fetch.c,v 1.69 2008-09-29 16:58:36 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -422,7 +422,7 @@ fetch_account(struct account *a, struct io *pio, int nflags, double tim)
 				if (fetch_enqueue(a, pio, fctx.mail) != 0)
 					goto abort;
 				fctx.mail = xcalloc(1, sizeof *fctx.mail);
-				break;
+				continue;
 			}
 		}
 

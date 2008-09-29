@@ -1,4 +1,4 @@
-/* $Id: array.h,v 1.10 2008-08-08 17:11:06 nicm Exp $ */
+/* $Id: array.h,v 1.11 2008-09-29 16:58:36 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -31,7 +31,7 @@
 #define ARRAY_INITIALSPACE(a) (10 * ARRAY_ITEMSIZE(a))
 
 #define ARRAY_ENSURE(a, n) do {						\
-	if (SIZE_MAX - (n) < (a)->num)					\
+	if (UINT_MAX - (n) < (a)->num)					\
 		fatalx("number too big");				\
 	if (SIZE_MAX / ((a)->num + (n)) < ARRAY_ITEMSIZE(a))		\
 		fatalx("size too big");					\
