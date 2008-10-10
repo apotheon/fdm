@@ -1,4 +1,4 @@
-/* $Id: parse.y,v 1.269 2008-08-08 17:35:14 nicm Exp $ */
+/* $Id: parse.y,v 1.270 2008-10-10 15:35:45 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -1075,11 +1075,13 @@ localgid: replstrv
 		  endgrent();
 	  }
 
+/** USER: <string> (char *) */
 user: /* empty */
       {
 	      $$ = NULL;
       }
     | TOKUSER strv
+/**   [$2: strv (char *)] */
       {
 	      $$ = $2;
       }
@@ -1756,7 +1758,7 @@ expritem: not TOKALL
 	  }
         | not execpipe strv user TOKRETURNS '(' retrc ',' retre ')'
 /**       [$1: not (int)] [$2: execpipe (int)] [$3: strv (char *)] */
-/**       [$4: strv (char *)] [$7: retrc (long long)] */
+/**       [$4: user (char *)] [$7: retrc (long long)] */
 /**       [$9: retre (struct { ... } re)] */
 	  {
 		  struct match_command_data	*data;
