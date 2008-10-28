@@ -1,4 +1,4 @@
-/* $Id: fetch.h,v 1.49 2008-05-22 21:18:07 nicm Exp $ */
+/* $Id: fetch.h,v 1.50 2008-10-28 07:01:39 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -201,20 +201,14 @@ struct fetch_imap_data {
 	u_int		 folder;
 	struct strings	*folders;
 
-	int		 flags;
 	int		 capa;
 	int		 tag;
 
-	u_int		 cur;
-	u_int		 num;
+	ARRAY_DECL(, u_int) wanted;
+	ARRAY_DECL(, u_int) dropped;
 
 	u_int		 total;
 	u_int		 committed;
-
-	u_int	 	 uid;
-
-	ARRAY_DECL(, u_int) kept;
-	TAILQ_HEAD(, fetch_imap_mail) dropped;
 
 	int		 flushing;
 	size_t		 size;
@@ -233,9 +227,6 @@ struct fetch_imap_data {
 
 struct fetch_imap_mail {
 	u_int		 uid;
-	u_int		 idx;
-
-	TAILQ_ENTRY(fetch_imap_mail) entry;
 };
 
 #define IMAP_TAG_NONE -1
