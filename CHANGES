@@ -166,7 +166,7 @@
 
 25 September 2007
 
-* For POP3 and IMAP, don't have a seperate state for waiting-to-purge. Mail
+* For POP3 and IMAP, don't have a separate state for waiting-to-purge. Mail
   could potentially be dropped (in fact, was very likely to be) while waiting
   for queues to empty in that state. Instead, loop though the next state which
   ensures all dropped mail is dealt with before attempting to purge.
@@ -860,4 +860,11 @@
   the mail was very rarely reallocated, now that the header is added it is.
 * Changed all the descriptions to static buffers and audited use of snprintf.
 
-$Id: CHANGES,v 1.201 2008-10-28 07:01:39 nicm Exp $
+$Id: CHANGES,v 1.202 2008-12-07 20:23:11 nicm Exp $
+
+ LocalWords:  Terbeck authlib DLOOKUP ISP's Alessi dayofyear Lopes gmail STAT
+ LocalWords:  akarinotengoku D'Angelo Pantyukhin BIC Erdely Rf patnel Fahlke vv
+ LocalWords:  acc std nBody Mestdagh RCVTIMEO fatalx func shm dir DDB strb rfc
+ LocalWords:  Lando openlock Gass formail's ids ABC CN SYSV akefile DPCRE abc
+ LocalWords:  mmap'd NOSYNC ts DSHM Elfring SUSv netrc vvv va Wilmer replstr AJ
+ LocalWords:  TEVESZ Ulmer mmap'ing Exp sanitize
