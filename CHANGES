@@ -1,3 +1,7 @@
+17 December 2008
+
+* Only look at HOME environment variable if -h flag is passed.
+
 28 October 2008
 
 * Alter IMAP fetching code to build a UID list of mails to fetch and then fetch
@@ -860,7 +864,7 @@
   the mail was very rarely reallocated, now that the header is added it is.
 * Changed all the descriptions to static buffers and audited use of snprintf.
 
-$Id: CHANGES,v 1.202 2008-12-07 20:23:11 nicm Exp $
+$Id: CHANGES,v 1.203 2008-12-17 22:36:22 nicm Exp $
 
  LocalWords:  Terbeck authlib DLOOKUP ISP's Alessi dayofyear Lopes gmail STAT
  LocalWords:  akarinotengoku D'Angelo Pantyukhin BIC Erdely Rf patnel Fahlke vv

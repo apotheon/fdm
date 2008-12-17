@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.1 2007-08-30 21:46:33 nicm Exp $
+# $Id: Makefile,v 1.2 2008-12-17 22:36:23 nicm Exp $
 
 CLEANFILES= *~ *.in *.out *.data *.conf
 
@@ -8,7 +8,7 @@ TARGETS=
 .for n in ${TESTFILES}
 TARGETS+= ${n}
 ${n}:
-		@HOME=. FDM=../../fdm sh ${n}
+		@HOME=. FDM="../../fdm -h" sh ${n}
 .endfor
 
 .MAIN:		all
