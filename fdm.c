@@ -1,4 +1,4 @@
-/* $Id: fdm.c,v 1.179 2008-12-17 22:36:23 nicm Exp $ */
+/* $Id: fdm.c,v 1.180 2008-12-17 22:38:02 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -185,7 +185,7 @@ __dead void
 usage(void)
 {
 	fprintf(stderr,
-	    "usage: %s [-klmnqv] [-a name] [-D name=value] [-f conffile] "
+	    "usage: %s [-hklmnqv] [-a name] [-D name=value] [-f conffile] "
 	    "[-u user] [-x name] [fetch|poll|cache] [arguments]\n", __progname);
         exit(1);
 }
