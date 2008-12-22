@@ -816,18 +816,26 @@ The <users> item may be either:
 
 	user "nicholas"
 
-	user 1000
+	user "1000"
 
 - the keyword 'users' followed by a list of users in {}s, for example:
 
-	users { 1001 "nicholas" }
+	users { "1001" "nicholas" }
 
 If users are specified, the action will be run once for each user, with fdm
 changing to that user before executing the action. Note that fdm will execute
 the action once for each user even when not started as root, but will not be
 able to change to the user. The user keyword is primarily of use in multiuser
 configurations. If users are present on an action, they override any specified
-by the account defintion.
+by the account definition.
+
+Users are looked up in the Unix passwd file or optionally (if fdm is built
+with "make -DCOURIER" or "make COURIER=1") using courier-authlib. The
+order of lookups may be specified with the lookup-order option:
+
+      set lookup-order courier passwd
+
+      set lookup-order passwd
 
 If running as root and no user is specified on either the action or on the
 filtering rule (see the section on filtering below), the default user is
@@ -1612,5 +1620,5 @@ Because I hate maintaining and testing two sets of code, there is a strong
 possibility that PCRE may become the fdm default at some point.
 
 ================================================================================
-$Id: MANUAL.in,v 1.73 2008-06-29 21:08:38 nicm Exp $
+$Id: MANUAL.in,v 1.74 2008-12-22 16:20:05 nicm Exp $
 
