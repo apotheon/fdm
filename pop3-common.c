@@ -1,4 +1,4 @@
-/* $Id: pop3-common.c,v 1.10 2008-08-08 20:14:15 nicm Exp $ */
+/* $Id: pop3-common.c,v 1.11 2009-03-08 08:06:54 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -545,8 +545,8 @@ pop3_state_cache2(struct account *a, struct fetch_ctx *fctx)
 			}
 		}
 		if (ptr > line + 70) {
-				log_warnx("%s: UID too big: %s", a->name, line);
-				return (FETCH_ERROR);
+			log_warnx("%s: UID too big: %s", a->name, line);
+			return (FETCH_ERROR);
 		}			
 
 		aux = xcalloc(1, sizeof *aux);
