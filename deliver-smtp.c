@@ -1,4 +1,4 @@
-/* $Id: deliver-smtp.c,v 1.57 2008-06-26 18:41:00 nicm Exp $ */
+/* $Id: deliver-smtp.c,v 1.58 2009-03-08 16:56:41 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -160,8 +160,11 @@ deliver_smtp_deliver(struct deliver_ctx *dctx, struct actitem *ti)
 				goto error;
 			line_init(m, &ptr, &len);
 			while (ptr != NULL) {
-				if (len > 1)
+				if (len > 1) {
+					if (*ptr == '.')
+						io_write(io, ".", 1);
 					io_write(io, ptr, len - 1);
+				}
 				io_writeline(io, NULL);
 
 				/* Update if necessary. */

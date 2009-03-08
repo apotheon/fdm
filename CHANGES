@@ -1,3 +1,7 @@
+08 March 2009
+
+* Escape . properly when delivering to SMTP.
+
 27 December 2008
 
 * Don't be as strict about format at the end of messages when using IMAP -
@@ -869,7 +873,7 @@
   the mail was very rarely reallocated, now that the header is added it is.
 * Changed all the descriptions to static buffers and audited use of snprintf.
 
-$Id: CHANGES,v 1.205 2008-12-27 21:08:02 nicm Exp $
+$Id: CHANGES,v 1.206 2009-03-08 16:56:41 nicm Exp $
 
  LocalWords:  Terbeck authlib DLOOKUP ISP's Alessi dayofyear Lopes gmail STAT
  LocalWords:  akarinotengoku D'Angelo Pantyukhin BIC Erdely Rf patnel Fahlke vv
