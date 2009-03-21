@@ -1130,7 +1130,8 @@ must be taken to escape \s and "s properly.
 
 Examples include:
 
-	match "^From:.*bob@bobland\\.bob" in headers account "pop3" action "act"
+	match "^From:.*bob@bobland\\.bob" in headers and
+	      account "pop3" action "act"
 
 	match ".*YAHOO.*BOOTER.*" in body action "junk"
 
@@ -1622,5 +1623,5 @@ Because I hate maintaining and testing two sets of code, there is a strong
 possibility that PCRE may become the fdm default at some point.
 
 ================================================================================
-$Id: MANUAL.in,v 1.75 2009-01-17 15:11:31 nicm Exp $
+$Id: MANUAL.in,v 1.76 2009-03-21 12:16:23 nicm Exp $
 
