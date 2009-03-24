@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.344 2008-09-07 21:51:41 nicm Exp $ */
+/* $Id: fdm.h,v 1.345 2009-03-24 18:57:08 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -745,6 +745,7 @@ struct actions	*match_actions(const char *);
 struct macro 	*extract_macro(char *);
 struct macro	*find_macro(const char *);
 void		 find_netrc(const char *, char **, char **);
+int		 find_netrc1(const char *, char **, char **, char **);
 void		 free_account(struct account *);
 void		 free_action(struct action *);
 void		 free_actitem(struct actitem *);

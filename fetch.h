@@ -1,4 +1,4 @@
-/* $Id: fetch.h,v 1.50 2008-10-28 07:01:39 nicm Exp $ */
+/* $Id: fetch.h,v 1.51 2009-03-24 18:57:08 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -121,6 +121,8 @@ struct fetch_nntp_group {
 struct fetch_nntp_data {
 	char		*path;
 
+	char		*user;
+	char		*pass;
 	struct server	 server;
 	struct strings	*names;
 

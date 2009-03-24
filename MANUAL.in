@@ -753,6 +753,7 @@ accounts are specified like so:
 		cache "%h/.fdm.cache/%[group]"
 
 	account "mynews" nntps server "ssl.news.server" port "nntps"
+		user "myuser" pass "mypass"
 		groups { "alt.test" "alt.humor.best-of-usenet" }
 		cache "%h/.fdm.cache"
 
@@ -1623,5 +1624,5 @@ Because I hate maintaining and testing two sets of code, there is a strong
 possibility that PCRE may become the fdm default at some point.
 
 ================================================================================
-$Id: MANUAL.in,v 1.76 2009-03-21 12:16:23 nicm Exp $
+$Id: MANUAL.in,v 1.77 2009-03-24 18:57:08 nicm Exp $
 

@@ -1,3 +1,7 @@
+24 March 2009
+
+* Support user and pass on NNTP, requested by Michael Hamann.
+
 08 March 2009
 
 * Escape . properly when delivering to SMTP.
@@ -873,7 +877,7 @@
   the mail was very rarely reallocated, now that the header is added it is.
 * Changed all the descriptions to static buffers and audited use of snprintf.
 
-$Id: CHANGES,v 1.206 2009-03-08 16:56:41 nicm Exp $
+$Id: CHANGES,v 1.207 2009-03-24 18:57:08 nicm Exp $
 
  LocalWords:  Terbeck authlib DLOOKUP ISP's Alessi dayofyear Lopes gmail STAT
  LocalWords:  akarinotengoku D'Angelo Pantyukhin BIC Erdely Rf patnel Fahlke vv
