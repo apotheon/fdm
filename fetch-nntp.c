@@ -1,4 +1,4 @@
-/* $Id: fetch-nntp.c,v 1.104 2008-05-30 06:27:59 nicm Exp $ */
+/* $Id: fetch-nntp.c,v 1.105 2009-03-24 06:46:39 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -412,7 +412,7 @@ fetch_nntp_state_connected(struct account *a, struct fetch_ctx *fctx)
 {
 	char	*line;
 
-	if (fetch_nntp_check(a, fctx, &line, NULL, 1, 200) != 0)
+	if (fetch_nntp_check(a, fctx, &line, NULL, 2, 200, 201) != 0)
 		return (FETCH_ERROR);
 	if (line == NULL)
 		return (FETCH_BLOCK);

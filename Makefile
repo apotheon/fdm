@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.178 2009-02-18 09:04:08 nicm Exp $
+# $Id: Makefile,v 1.179 2009-03-24 06:46:39 nicm Exp $
 
 .SUFFIXES: .c .o .y .h
 .PHONY: clean lint regress yannotate manual \
@@ -150,8 +150,7 @@ yannotate:
 		trim parse.y
 
 upload-index.html:
-		scp index.html nicm,fdm@shell.sf.net:index.html
-		ssh nicm,fdm@shell.sf.net sh update-index-fdm.sh
+		scp index.html nicm,fdm@web.sf.net:/home/groups/f/fd/fdm/htdoc
 
 update-index.html: manual
 		nroff -mdoc fdm.conf.5|m2h -u > fdm.conf.5.html
