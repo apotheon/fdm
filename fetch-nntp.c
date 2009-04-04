@@ -1,4 +1,4 @@
-/* $Id: fetch-nntp.c,v 1.107 2009-04-04 18:09:35 nicm Exp $ */
+/* $Id: fetch-nntp.c,v 1.108 2009-04-04 19:22:49 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -399,7 +399,7 @@ fetch_nntp_state_connect(struct account *a, struct fetch_ctx *fctx)
 	if (data->io == NULL) {
 		log_warnx("%s: %s", a->name, cause);
 		xfree(cause);
-		return (-1);
+		return (FETCH_ERROR);
 	}
 	if (conf.debug > 3 && !conf.syslog)
 		data->io->dup_fd = STDOUT_FILENO;

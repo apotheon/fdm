@@ -1,4 +1,4 @@
-/* $Id: child-fetch.c,v 1.69 2008-09-29 16:58:36 nicm Exp $ */
+/* $Id: child-fetch.c,v 1.70 2009-04-04 19:22:49 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -423,6 +423,8 @@ fetch_account(struct account *a, struct io *pio, int nflags, double tim)
 					goto abort;
 				fctx.mail = xcalloc(1, sizeof *fctx.mail);
 				continue;
+			default:
+				fatalx("unexpected fetch return");
 			}
 		}
 
