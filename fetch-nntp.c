@@ -1,4 +1,4 @@
-/* $Id: fetch-nntp.c,v 1.106 2009-03-24 18:57:08 nicm Exp $ */
+/* $Id: fetch-nntp.c,v 1.107 2009-04-04 18:09:35 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -608,12 +608,12 @@ fetch_nntp_state_next(struct account *a, struct fetch_ctx *fctx)
 
 	group = ARRAY_ITEM(&data->groups, data->group);
 
-	if (fetch_nntp_check(a, fctx, &line, &code, 2, 223, 421) != 0)
+	if (fetch_nntp_check(a, fctx, &line, &code, 3, 223, 420, 421) != 0)
 		return (FETCH_ERROR);
 	if (line == NULL)
 		return (FETCH_BLOCK);
 
-	if (code == 421) {
+	if (code == 420 || code == 421) {
 		/* Finished this group. Switch to the next. */
 		fctx->state = fetch_nntp_state_switch;
 		return (FETCH_AGAIN);
