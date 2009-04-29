@@ -1,4 +1,4 @@
-/* $Id: imap-common.c,v 1.80 2008-12-27 21:08:02 nicm Exp $ */
+/* $Id: imap-common.c,v 1.81 2009-04-29 21:21:48 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -562,6 +562,8 @@ imap_state_select4(struct account *a, struct fetch_ctx *fctx)
  
  	if (imap_getln(a, fctx, IMAP_TAGGED, &line) != 0)
  		return (FETCH_ERROR);
+	if (line == NULL)
+		return (FETCH_BLOCK);
  	if (!imap_okay(line))
  		return (imap_bad(a, line));
 
