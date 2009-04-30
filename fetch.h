@@ -1,4 +1,4 @@
-/* $Id: fetch.h,v 1.51 2009-03-24 18:57:08 nicm Exp $ */
+/* $Id: fetch.h,v 1.52 2009-04-30 22:38:51 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -202,6 +202,7 @@ struct fetch_imap_data {
 
 	u_int		 folder;
 	struct strings	*folders;
+	u_int		 folders_total; /* total mail count */
 
 	int		 capa;
 	int		 tag;

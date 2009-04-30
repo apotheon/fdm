@@ -1,3 +1,8 @@
+30 April 2009
+
+* Properly count mails when polling multiple folders on a single IMAP server,
+  reported by Claudio M. Alessi.
+
 24 March 2009
 
 * Support user and pass on NNTP, requested by Michael Hamann.
@@ -881,7 +886,7 @@
   the mail was very rarely reallocated, now that the header is added it is.
 * Changed all the descriptions to static buffers and audited use of snprintf.
 
-$Id: CHANGES,v 1.208 2009-04-30 22:07:23 nicm Exp $
+$Id: CHANGES,v 1.209 2009-04-30 22:38:51 nicm Exp $
 
  LocalWords:  Terbeck authlib DLOOKUP ISP's Alessi dayofyear Lopes gmail STAT
  LocalWords:  akarinotengoku D'Angelo Pantyukhin BIC Erdely Rf patnel Fahlke vv
