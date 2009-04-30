@@ -1,4 +1,4 @@
-# $Id: GNUmakefile,v 1.108 2009-04-30 14:37:44 nicm Exp $
+# $Id: GNUmakefile,v 1.109 2009-04-30 22:21:02 nicm Exp $
 
 .PHONY: clean
 
@@ -106,8 +106,10 @@ $(PROG): $(OBJS)
 depend: $(SRCS)
 	$(CC) $(CPPFLAGS) -MM $(SRCS) > .depend
 
-y.tab.c y.tab.h: parse.y
+y.tab.c: parse.y
 	$(YACC) $(YFLAGS) $<
+
+lex.o: y.tab.c
 
 install:
 	$(INSTALLDIR) $(DESTDIR)$(PREFIX)/bin

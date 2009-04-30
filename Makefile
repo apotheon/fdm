@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.179 2009-03-24 06:46:39 nicm Exp $
+# $Id: Makefile,v 1.180 2009-04-30 22:21:02 nicm Exp $
 
 .SUFFIXES: .c .o .y .h
 .PHONY: clean lint regress yannotate manual \
@@ -122,6 +122,8 @@ CPPFLAGS:= ${INCDIRS} ${CPPFLAGS}
 		${CC} ${CPPFLAGS} ${CFLAGS} -c y.tab.c -o ${.TARGET}
 
 all:		${PROG}
+
+lex.o:		parse.o
 
 ${PROG}:	${OBJS}
 		${CC} ${LDFLAGS} -o ${PROG} ${OBJS} ${LIBS}
