@@ -1,4 +1,4 @@
-# $Id: GNUmakefile,v 1.107 2009-02-18 09:04:08 nicm Exp $
+# $Id: GNUmakefile,v 1.108 2009-04-30 14:37:44 nicm Exp $
 
 .PHONY: clean
 
@@ -101,7 +101,7 @@ CPPFLAGS:= ${INCDIRS} ${CPPFLAGS}
 all: fdm
 
 $(PROG): $(OBJS)
-	$(CC) $(LDFLAGS) $(LIBS) -o $@ $+
+	$(CC) $(LDFLAGS) -o $@ $+ $(LIBS)
 
 depend: $(SRCS)
 	$(CC) $(CPPFLAGS) -MM $(SRCS) > .depend
