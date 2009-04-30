@@ -11,6 +11,10 @@
 * Don't be as strict about format at the end of messages when using IMAP -
   accept additional information as well as FLAGS. Reported by rivo nurges.
 
+22 December 2008
+
+* fdm 1.6 released.
+
 17 December 2008
 
 * Only look at HOME environment variable if -h flag is passed.
@@ -877,7 +881,7 @@
   the mail was very rarely reallocated, now that the header is added it is.
 * Changed all the descriptions to static buffers and audited use of snprintf.
 
-$Id: CHANGES,v 1.207 2009-03-24 18:57:08 nicm Exp $
+$Id: CHANGES,v 1.208 2009-04-30 22:07:23 nicm Exp $
 
  LocalWords:  Terbeck authlib DLOOKUP ISP's Alessi dayofyear Lopes gmail STAT
  LocalWords:  akarinotengoku D'Angelo Pantyukhin BIC Erdely Rf patnel Fahlke vv
