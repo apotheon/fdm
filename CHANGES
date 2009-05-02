@@ -1,3 +1,8 @@
+02 May 2009
+
+* GMail IMAP doesn't correctly set the \Seen flag after UID FETCH BODY[], so
+  explicitly set it with STORE when mail is kept. Reported by Patrice Clement.
+
 30 April 2009
 
 * Properly count mails when polling multiple folders on a single IMAP server,
@@ -886,7 +891,7 @@
   the mail was very rarely reallocated, now that the header is added it is.
 * Changed all the descriptions to static buffers and audited use of snprintf.
 
-$Id: CHANGES,v 1.209 2009-04-30 22:38:51 nicm Exp $
+$Id: CHANGES,v 1.210 2009-05-02 20:08:39 nicm Exp $
 
  LocalWords:  Terbeck authlib DLOOKUP ISP's Alessi dayofyear Lopes gmail STAT
  LocalWords:  akarinotengoku D'Angelo Pantyukhin BIC Erdely Rf patnel Fahlke vv

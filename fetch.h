@@ -1,4 +1,4 @@
-/* $Id: fetch.h,v 1.52 2009-04-30 22:38:51 nicm Exp $ */
+/* $Id: fetch.h,v 1.53 2009-05-02 20:08:40 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -209,6 +209,7 @@ struct fetch_imap_data {
 
 	ARRAY_DECL(, u_int) wanted;
 	ARRAY_DECL(, u_int) dropped;
+	ARRAY_DECL(, u_int) kept;
 
 	u_int		 total;
 	u_int		 committed;
