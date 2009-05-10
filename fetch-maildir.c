@@ -1,4 +1,4 @@
-/* $Id: fetch-maildir.c,v 1.88 2009-05-09 15:21:39 nicm Exp $ */
+/* $Id: fetch-maildir.c,v 1.89 2009-05-10 12:09:49 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -255,7 +255,7 @@ fetch_maildir_state_init(struct account *a, struct fetch_ctx *fctx)
 	}
 
 	fctx->state = fetch_maildir_state_open;
-	return (0);
+	return (FETCH_AGAIN);
 }
 
 /* Next state. Move to next path. */
