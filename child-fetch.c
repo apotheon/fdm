@@ -1,4 +1,4 @@
-/* $Id: child-fetch.c,v 1.71 2009-05-17 18:02:48 nicm Exp $ */
+/* $Id: child-fetch.c,v 1.72 2009-05-17 18:23:45 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -107,7 +107,7 @@ child_fetch(struct child *child, struct io *pio)
 
 	log_debug2("%s: fetch started, pid %ld", a->name, (long) getpid());
 
-#ifndef NO_SETPROCTITLE
+#ifdef HAVE_SETPROCTITLE
 	setproctitle("child: %s", a->name);
 #endif
 

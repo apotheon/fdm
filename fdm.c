@@ -1,4 +1,4 @@
-/* $Id: fdm.c,v 1.180 2008-12-17 22:38:02 nicm Exp $ */
+/* $Id: fdm.c,v 1.181 2009-05-17 18:23:45 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -642,7 +642,7 @@ main(int argc, char **argv)
 	ARRAY_INIT(&children);
 	ARRAY_INIT(&dead_children);
 
-#ifndef NO_SETPROCTITLE
+#ifdef HAVE_SETPROCTITLE
 	setproctitle("parent");
 #endif
 	log_debug2("parent: started, pid is %ld", (long) getpid());

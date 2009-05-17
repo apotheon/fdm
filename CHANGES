@@ -1,3 +1,7 @@
+17 May 2009
+
+* Introduce a configure script and tidy up build infrastructure.
+
 02 May 2009
 
 * GMail IMAP doesn't correctly set the \Seen flag after UID FETCH BODY[], so
@@ -891,7 +895,7 @@
   the mail was very rarely reallocated, now that the header is added it is.
 * Changed all the descriptions to static buffers and audited use of snprintf.
 
-$Id: CHANGES,v 1.210 2009-05-02 20:08:39 nicm Exp $
+$Id: CHANGES,v 1.211 2009-05-17 18:23:45 nicm Exp $
 
  LocalWords:  Terbeck authlib DLOOKUP ISP's Alessi dayofyear Lopes gmail STAT
  LocalWords:  akarinotengoku D'Angelo Pantyukhin BIC Erdely Rf patnel Fahlke vv

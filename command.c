@@ -1,4 +1,4 @@
-/* $Id: command.c,v 1.53 2008-04-01 21:02:22 nicm Exp $ */
+/* $Id: command.c,v 1.54 2009-05-17 18:23:45 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -140,9 +140,10 @@ cmd_start(const char *s, int flags, const char *buf, size_t len, char **cause)
 
 	/* XXX Check if the child has actually started. */
 	if (kill(cmd->pid, 0) != 0) {
-		if (errno != ESRCH)
+		if (errno == ESRCH)
+			CMD_DEBUG(cmd, "child not running");
+		else if (errno != EPERM)
 			fatal("kill");
-		CMD_DEBUG(cmd, "child not running");
 	}
 
 	/* Parent. */

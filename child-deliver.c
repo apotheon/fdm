@@ -1,4 +1,4 @@
-/* $Id: child-deliver.c,v 1.19 2008-06-26 18:41:00 nicm Exp $ */
+/* $Id: child-deliver.c,v 1.20 2009-05-17 18:23:45 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -44,7 +44,7 @@ child_deliver(struct child *child, struct io *pio)
 
 	log_debug2("%s: deliver started, pid %ld", a->name, (long) getpid());
 
-#ifndef NO_SETPROCTITLE
+#ifdef HAVE_SETPROCTITLE
 	setproctitle("%s[%lu]", data->name, (u_long) geteuid());
 #endif
 

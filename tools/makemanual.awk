@@ -1,4 +1,4 @@
-# $Id: makemanual.awk,v 1.2 2007-06-30 18:31:28 nicm Exp $
+# $Id: makemanual.awk,v 1.1 2009-05-17 18:23:45 nicm Exp $
 #
 # Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
 #

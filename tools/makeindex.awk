@@ -1,4 +1,4 @@
-# $Id: makeindex.awk,v 1.7 2007-06-08 09:50:58 nicm Exp $
+# $Id: makeindex.awk,v 1.1 2009-05-17 18:23:45 nicm Exp $
 #
 # Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
 #
