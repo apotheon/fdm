@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.181 2009-05-17 18:23:45 nicm Exp $
+# $Id: Makefile,v 1.182 2009-05-17 18:38:49 nicm Exp $
 
 .SUFFIXES: .c .o
 .PHONY: clean regress
@@ -77,13 +77,13 @@ regress:	fdm
 
 install:	all
 		${INSTALLDIR} ${DESTDIR}${PREFIX}/bin
-		${INSTALLBIN} ${PROG} ${DESTDIR}${PREFIX}/bin/
+		${INSTALLBIN} fdm ${DESTDIR}${PREFIX}/bin/
 		${INSTALLDIR} ${DESTDIR}${PREFIX}/man/man1
-		${INSTALLMAN} ${PROG}.1 ${DESTDIR}${PREFIX}/man/man1/
+		${INSTALLMAN} fdm.1 ${DESTDIR}${PREFIX}/man/man1/
 		${INSTALLDIR} ${DESTDIR}${PREFIX}/man/man5
-		${INSTALLMAN} ${PROG}.conf.5 ${DESTDIR}${PREFIX}/man/man5/
+		${INSTALLMAN} fdm.conf.5 ${DESTDIR}${PREFIX}/man/man5/
 
 uninstall:
-		rm -f ${DESTDIR}${PREFIX}/bin/${PROG}
-		rm -f ${DESTDIR}${PREFIX}/man/man1/${PROG}.1
-		rm -f ${DESTDIR}${PREFIX}/man/man5/${PROG}.conf.5
+		rm -f ${DESTDIR}${PREFIX}/bin/fdm
+		rm -f ${DESTDIR}${PREFIX}/man/man1/fdm.1
+		rm -f ${DESTDIR}${PREFIX}/man/man5/fdm.conf.5
