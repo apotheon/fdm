@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.346 2009-05-17 18:23:45 nicm Exp $ */
+/* $Id: fdm.h,v 1.347 2009-05-17 18:36:31 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -18,6 +18,8 @@
 
 #ifndef FDM_H
 #define FDM_H
+
+#include "config.h"
 
 #include <sys/param.h>
 #include <sys/cdefs.h>
