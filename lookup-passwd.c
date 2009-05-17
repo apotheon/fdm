@@ -1,4 +1,4 @@
-/* $Id: lookup-passwd.c,v 1.1 2008-06-26 18:41:00 nicm Exp $ */
+/* $Id: lookup-passwd.c,v 1.2 2009-05-17 19:20:09 nicm Exp $ */
 
 /*
  * Copyright (c) 2008 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -29,7 +29,7 @@ passwd_lookup(const char *user)
 	struct userdata	*ud;
 	uid_t		 uid;
 	const char	*errstr;
-	
+
 	if ((pw = getpwnam(user)) == NULL) {
 		endpwent();
 		uid = strtonum(user, 0, UID_MAX, &errstr);

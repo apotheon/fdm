@@ -1,4 +1,4 @@
-/* $Id: child.c,v 1.146 2008-09-07 21:51:41 nicm Exp $ */
+/* $Id: child.c,v 1.147 2009-05-17 19:20:08 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -72,7 +72,7 @@ child_fork(void)
 			fatal("sigaction failed");
 #endif
 		if (sigaction(SIGUSR1, &act, NULL) < 0)
-			fatal("sigaction failed");		
+			fatal("sigaction failed");
 		if (sigaction(SIGTERM, &act, NULL) < 0)
 			fatal("sigaction failed");
 
@@ -90,8 +90,8 @@ child_exit(int status)
 }
 
 struct child *
-child_start(struct children *children, uid_t uid, gid_t gid, 
-    int (*start)(struct child *, struct io *), 
+child_start(struct children *children, uid_t uid, gid_t gid,
+    int (*start)(struct child *, struct io *),
     int (*msg)(struct child *, struct msg *, struct msgbuf *),
     void *data, struct child *parent)
 {

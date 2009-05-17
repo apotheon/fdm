@@ -1,4 +1,4 @@
-/* $Id: replace.c,v 1.48 2008-06-26 18:41:00 nicm Exp $ */
+/* $Id: replace.c,v 1.49 2009-05-17 19:20:09 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -129,7 +129,7 @@ default_tags(struct strb **tags, const char *src)
 	struct tm	*tm;
 	time_t		 t;
 
-	strb_clear(tags);	
+	strb_clear(tags);
 
 	if (src != NULL)
 		add_tag(tags, "source", "%s", src);

@@ -1,4 +1,4 @@
-/* $Id: parent-fetch.c,v 1.16 2008-09-07 21:51:41 nicm Exp $ */
+/* $Id: parent-fetch.c,v 1.17 2009-05-17 19:20:09 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -43,7 +43,7 @@ parent_fetch(struct child *child, struct msg *msg, struct msgbuf *msgbuf)
 	struct deliver_ctx	*dctx;
 	struct mail_ctx		*mctx;
 	struct mail		*m;
- 
+
 	switch (msg->type) {
 	case MSG_ACTION:
 		if (msgbuf->buf == NULL || msgbuf->len == 0)
@@ -76,7 +76,7 @@ parent_fetch(struct child *child, struct msg *msg, struct msgbuf *msgbuf)
 		mctx = xcalloc(1, sizeof *mctx);
 		mctx->account = msg->data.account;
 		mctx->mail = m;
-		
+
 		parent_fetch_cmd(child, children, mctx, msg);
 		break;
 	case MSG_DONE:

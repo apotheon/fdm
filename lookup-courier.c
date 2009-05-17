@@ -1,4 +1,4 @@
-/* $Id: lookup-courier.c,v 1.2 2008-09-03 05:47:11 nicm Exp $ */
+/* $Id: lookup-courier.c,v 1.3 2009-05-17 19:20:09 nicm Exp $ */
 
 /*
  * Copyright (c) 2008 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -55,7 +55,7 @@ courier_callback(struct authinfo *ai, unused void *data)
 		courier_udata->uid = *ai->sysuserid;
 		courier_udata->gid = ai->sysgroupid;
 	}
-	
+
 	return (0);
 }
 

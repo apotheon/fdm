@@ -1,4 +1,4 @@
-/* $Id: match-command.c,v 1.44 2008-06-26 20:13:04 nicm Exp $ */
+/* $Id: match-command.c,v 1.45 2009-05-17 19:20:09 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -100,7 +100,7 @@ match_command_desc(struct expritem *ei, char *buf, size_t len)
 
 	if (data->re.str == NULL) {
 		if (data->user.str != NULL) {
-			xsnprintf(buf, len, 
+			xsnprintf(buf, len,
 			    "%s \"%s\" user \"%s\" returns (%s, )",
 			    type, data->cmd.str, data->user.str, ret);
 		} else {

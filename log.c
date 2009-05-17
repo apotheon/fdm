@@ -1,4 +1,4 @@
-/* $Id: log.c,v 1.20 2008-08-08 17:35:14 nicm Exp $ */
+/* $Id: log.c,v 1.21 2009-05-17 19:20:09 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -71,7 +71,7 @@ log_open_file(int level, const char *path)
 	log_file = fopen(path, "w");
 	if (log_file == NULL)
 		return;
-	
+
 	log_type = LOG_TYPE_FILE;
 	log_level = level;
 

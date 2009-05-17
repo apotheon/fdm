@@ -1,4 +1,4 @@
-/* $Id: cache-op.c,v 1.2 2008-03-03 18:39:25 nicm Exp $ */
+/* $Id: cache-op.c,v 1.3 2009-05-17 19:20:08 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -64,7 +64,7 @@ cache_op_add(int argc, char **argv)
 		log_warn("%s", argv[0]);
 		exit(1);
 	}
-	
+
 	if (db_add(db, argv[1]) != 0) {
 		log_warnx("%s: cache error", argv[0]);
 		exit(1);
@@ -85,7 +85,7 @@ cache_op_remove(int argc, char **argv)
 		log_warn("%s", argv[0]);
 		exit(1);
 	}
-	
+
 	if (!db_contains(db, argv[1])) {
 		log_warnx("%s: key not found: %s", argv[0], argv[1]);
 		exit(1);
@@ -110,8 +110,8 @@ cache_op_list(int argc, char **argv)
 			exit(1);
 		}
 
-		log_info("%s: %u keys", argv[0], db_size(db));	
-		
+		log_info("%s: %u keys", argv[0], db_size(db));
+
 		db_close(db);
 		exit(0);
 	}
@@ -145,7 +145,7 @@ cache_op_dump(int argc, char **argv)
 		log_warn("%s", argv[0]);
 		exit(1);
 	}
-	
+
 	if (db_print(db, log_info) != 0) {
 		log_warnx("%s: cache error", argv[0]);
 		exit(1);
@@ -166,7 +166,7 @@ cache_op_clear(int argc, char **argv)
 		log_warn("%s", argv[0]);
 		exit(1);
 	}
-	
+
 	if (db_clear(db) != 0) {
 		log_warnx("%s: cache error", argv[0]);
 		exit(1);

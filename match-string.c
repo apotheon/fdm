@@ -1,4 +1,4 @@
-/* $Id: match-string.c,v 1.29 2007-09-24 20:30:20 nicm Exp $ */
+/* $Id: match-string.c,v 1.30 2009-05-17 19:20:09 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -48,10 +48,10 @@ match_string_match(struct mail_ctx *mctx, struct expritem *ei)
 		log_warnx("%s: %s", a->name, cause);
 		xfree(cause);
 		return (MATCH_ERROR);
-	} 
+	}
 	xfree(s);
 
-	if (n == 0) 
+	if (n == 0)
 		return (MATCH_FALSE);
 	return (MATCH_TRUE);
 }

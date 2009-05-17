@@ -1,4 +1,4 @@
-/* $Id: fetch-nntp.c,v 1.109 2009-05-17 18:02:02 nicm Exp $ */
+/* $Id: fetch-nntp.c,v 1.110 2009-05-17 19:20:08 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -593,7 +593,7 @@ fetch_nntp_state_wait(struct account *a, struct fetch_ctx *fctx)
 		log_debug2(
 		    "%s: last message found: %u %s", a->name, group->last, id);
 		xfree(id);
-	} else 
+	} else
 		log_warnx("%s: could not get last message", a->name);
 
 	io_writeline(data->io, "NEXT");

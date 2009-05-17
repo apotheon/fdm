@@ -1,4 +1,4 @@
-/* $Id: connect.c,v 1.76 2008-08-07 19:46:26 nicm Exp $ */
+/* $Id: connect.c,v 1.77 2009-05-17 19:20:08 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -123,7 +123,7 @@ sslverify(struct server *srv, SSL *ssl, char **cause)
 
 		/* Compare against both given host and FQDN. */
 		if (fnmatch(ptr, srv->host, FNM_NOESCAPE|FNM_CASEFOLD) == 0 ||
-		    (fqdn != NULL && 
+		    (fqdn != NULL &&
 		    fnmatch(ptr, fqdn, FNM_NOESCAPE|FNM_CASEFOLD)) == 0)
 			break;
 

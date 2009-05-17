@@ -1,4 +1,4 @@
-/* $Id: parse-fn.c,v 1.26 2009-03-24 18:57:08 nicm Exp $ */
+/* $Id: parse-fn.c,v 1.27 2009-05-17 19:20:09 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -601,9 +601,9 @@ find_netrc1(const char *host, char **user, char **pass, char **cause)
 
 	fclose(f);
 	return (0);
-	
+
 bad:
-	fclose(f); 
+	fclose(f);
 	return (-1);
 }
 

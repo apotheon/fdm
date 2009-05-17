@@ -1,4 +1,4 @@
-/* $Id: lookup.c,v 1.1 2008-06-26 18:41:00 nicm Exp $ */
+/* $Id: lookup.c,v 1.2 2009-05-17 19:20:09 nicm Exp $ */
 
 /*
  * Copyright (c) 2008 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -27,7 +27,7 @@ user_lookup(const char *user, struct userfunctions *order)
 {
 	struct userdata	*ud;
 	u_int		 i;
-	
+
 	for (i = 0; i < ARRAY_LENGTH(order); i++) {
 		if ((ud = ARRAY_ITEM(order, i)(user)) != NULL)
 		    return (ud);
