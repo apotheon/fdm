@@ -1,4 +1,4 @@
-/* $Id: parent-deliver.c,v 1.10 2007-07-25 22:05:06 nicm Exp $ */
+/* $Id: parent-deliver.c,v 1.11 2009-05-25 21:40:40 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -55,12 +55,12 @@ parent_deliver(struct child *child, struct msg *msg, struct msgbuf *msgbuf)
 
 	mail_send(m, msg);
 
-	/* Check if child is alive and send to it if so. */
+	/*
+	 * Try to send to child. Ignore failures which mean the fetch child
+	 * has exited - not much can do about it now.
+	 */
 	child = data->child;
-	if (child->io != NULL && kill(child->pid, 0) == 0) {
-		if (privsep_send(child->io, msg, msgbuf) != 0)
-			fatalx("privsep_send error");
-	} else
+	if (child->io == NULL || privsep_send(child->io, msg, msgbuf) != 0) {
 		log_debug2("%s: child %ld missing", a->name, (long) child->pid);
 
 	mail_close(m);
