@@ -1,4 +1,4 @@
-/* $Id: parent-deliver.c,v 1.11 2009-05-25 21:40:40 nicm Exp $ */
+/* $Id: parent-deliver.c,v 1.12 2009-05-25 21:49:16 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -60,7 +60,7 @@ parent_deliver(struct child *child, struct msg *msg, struct msgbuf *msgbuf)
 	 * has exited - not much can do about it now.
 	 */
 	child = data->child;
-	if (child->io == NULL || privsep_send(child->io, msg, msgbuf) != 0) {
+	if (child->io == NULL || privsep_send(child->io, msg, msgbuf) != 0)
 		log_debug2("%s: child %ld missing", a->name, (long) child->pid);
 
 	mail_close(m);
