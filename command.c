@@ -1,4 +1,4 @@
-/* $Id: command.c,v 1.54 2009-05-17 18:23:45 nicm Exp $ */
+/* $Id: command.c,v 1.55 2009-05-25 21:47:23 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -131,6 +131,8 @@ cmd_start(const char *s, int flags, const char *buf, size_t len, char **cause)
                 if (signal(SIGUSR1, SIG_DFL) == SIG_ERR)
 			fatal("signal failed");
                 if (signal(SIGUSR2, SIG_DFL) == SIG_ERR)
+			fatal("signal failed");
+                if (signal(SIGCHLD, SIG_DFL) == SIG_ERR)
 			fatal("signal failed");
 
 		execl(_PATH_BSHELL, "sh", "-c", s, (char *) NULL);
@@ -271,10 +273,14 @@ cmd_poll(struct cmd *cmd, char **out, char **err,
 		CMD_DEBUG(cmd, "polling, timeout=%d", timeout);
 		switch (io_polln(ios, 3, &io, timeout, cause)) {
 		case -1:
+			CMD_DEBUG(cmd, "poll error: %s", strerror(errno));
 			if (errno == EAGAIN)
 				break;
+			kill(cmd->pid, SIGTERM);
 			return (-1);
 		case 0:
+			CMD_DEBUG(cmd, "poll closed");
+			kill(cmd->pid, SIGTERM);
 			/*
 			 * Check for closed. It'd be nice for closed input to
 			 * be an error, but we can't tell the difference
@@ -302,6 +308,7 @@ cmd_poll(struct cmd *cmd, char **out, char **err,
 			break;
 		}
 	}
+	CMD_DEBUG(cmd, "poll out");
 
 	/*
 	 * Retrieve and return a line if possible. This must be after the

@@ -1,4 +1,4 @@
-/* $Id: fdm.c,v 1.182 2009-05-17 19:20:08 nicm Exp $ */
+/* $Id: fdm.c,v 1.183 2009-05-25 21:47:23 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -576,12 +576,11 @@ main(int argc, char **argv)
 	sigaddset(&act.sa_mask, SIGUSR1);
 	sigaddset(&act.sa_mask, SIGINT);
 	sigaddset(&act.sa_mask, SIGTERM);
+	sigaddset(&act.sa_mask, SIGCHLD);
 	act.sa_flags = SA_RESTART;
 
 	act.sa_handler = SIG_IGN;
 	if (sigaction(SIGPIPE, &act, NULL) < 0)
-		fatal("sigaction failed");
-	if (sigaction(SIGUSR1, &act, NULL) < 0)
 		fatal("sigaction failed");
 	if (sigaction(SIGUSR2, &act, NULL) < 0)
 		fatal("sigaction failed");
@@ -596,6 +595,8 @@ main(int argc, char **argv)
 	if (sigaction(SIGINT, &act, NULL) < 0)
 		fatal("sigaction failed");
 	if (sigaction(SIGTERM, &act, NULL) < 0)
+		fatal("sigaction failed");
+	if (sigaction(SIGCHLD, &act, NULL) < 0)
 		fatal("sigaction failed");
 
 	/* Check lock file. */
