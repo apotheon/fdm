@@ -1,4 +1,4 @@
-/* $Id: child-deliver.c,v 1.21 2009-05-17 19:20:08 nicm Exp $ */
+/* $Id: child-deliver.c,v 1.22 2009-05-25 21:39:42 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -61,10 +61,10 @@ child_deliver(struct child *child, struct io *pio)
 
 	if (privsep_send(pio, &msg, &msgbuf) != 0)
 		fatalx("privsep_send error");
-	if (privsep_recv(pio, &msg, NULL) != 0)
-		fatalx("privsep_recv error");
-	if (msg.type != MSG_EXIT)
-		fatalx("unexpected message");
+	do {
+		if (privsep_recv(pio, &msg, NULL) != 0)
+			fatalx("privsep_recv error");
+	} while (msg.type != MSG_EXIT);
 
 #ifdef DEBUG
 	COUNTFDS(a->name);
