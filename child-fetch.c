@@ -1,4 +1,4 @@
-/* $Id: child-fetch.c,v 1.72 2009-05-17 18:23:45 nicm Exp $ */
+/* $Id: child-fetch.c,v 1.73 2009-05-25 21:42:37 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -127,11 +127,11 @@ child_fetch(struct child *child, struct io *pio)
 	log_debug3("%s: sending exit message to parent", a->name);
 	if (privsep_send(pio, &msg, NULL) != 0)
 		fatalx("privsep_send error");
-	log_debug3("%s: waiting for exit message from parent", a->name);
-	if (privsep_recv(pio, &msg, NULL) != 0)
-		fatalx("privsep_recv error");
-	if (msg.type != MSG_EXIT)
-		fatalx("unexpected message");
+	do {
+		log_debug3("%s: waiting for exit message from parent", a->name);
+		if (privsep_recv(pio, &msg, NULL) != 0)
+			fatalx("privsep_recv error");			
+	} while (msg.type != MSG_EXIT);
 
 #ifdef DEBUG
 	COUNTFDS(a->name);
