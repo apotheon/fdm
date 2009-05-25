@@ -1,4 +1,4 @@
-/* $Id: privsep.c,v 1.11 2007-07-25 22:05:06 nicm Exp $ */
+/* $Id: privsep.c,v 1.12 2009-05-25 21:41:52 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -51,6 +51,8 @@ privsep_check(struct io *io)
 int
 privsep_recv(struct io *io, struct msg *msg, struct msgbuf *msgbuf)
 {
+	char	*tmpbuf;
+	
 	if (msgbuf != NULL) {
 		msgbuf->buf = NULL;
 		msgbuf->len = 0;
@@ -64,13 +66,17 @@ privsep_recv(struct io *io, struct msg *msg, struct msgbuf *msgbuf)
 	if (msg->size == 0)
 		return (0);
 
-	if (msgbuf == NULL)
+	if (io_wait(io, msg->size, INFTIM, NULL) != 0)
 		return (-1);
-	msgbuf->len = msg->size;
-	if (io_wait(io, msgbuf->len, INFTIM, NULL) != 0)
-		return (-1);
-	if ((msgbuf->buf = io_read(io, msgbuf->len)) == NULL)
-		return (-1);
+	if (msgbuf == NULL) {
+		if ((tmpbuf = io_read(io, msg->size)) == NULL)
+			return (-1);
+		xfree(tmpbuf);
+	} else {
+		if ((msgbuf->buf = io_read(io, msg->size)) == NULL)
+			return (-1);
+		msgbuf->len = msg->size;
+	}
 
 	return (0);
 }
