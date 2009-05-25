@@ -1,4 +1,4 @@
-/* $Id: imap-common.c,v 1.84 2009-05-17 19:20:08 nicm Exp $ */
+/* $Id: imap-common.c,v 1.85 2009-05-25 21:35:31 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -787,7 +787,7 @@ imap_state_body(struct account *a, struct fetch_ctx *fctx)
 
 	/* Open the mail. */
 	if (mail_open(m, data->size) != 0) {
-		log_warn("%s: failed to create mail", a->name);
+		log_warnx("%s: failed to create mail", a->name);
 		return (FETCH_ERROR);
 	}
 	m->size = 0;
@@ -834,7 +834,7 @@ imap_state_line(struct account *a, struct fetch_ctx *fctx)
 			break;
 
 		if (append_line(m, line, size) != 0) {
-			log_warn("%s: failed to resize mail", a->name);
+			log_warnx("%s: failed to resize mail", a->name);
 			return (FETCH_ERROR);
 		}
 		data->lines++;
@@ -855,7 +855,7 @@ imap_state_line(struct account *a, struct fetch_ctx *fctx)
 	/* If there was data left, add it as a new line without trailing \n. */
 	if (left > 0) {
 		if (append_line(m, line, left) != 0) {
-			log_warn("%s: failed to resize mail", a->name);
+			log_warnx("%s: failed to resize mail", a->name);
 			return (FETCH_ERROR);
 		}
 		data->lines++;
