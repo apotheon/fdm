@@ -1,4 +1,4 @@
-/* $Id: child.c,v 1.148 2009-05-25 21:47:23 nicm Exp $ */
+/* $Id: child.c,v 1.149 2009-05-26 06:05:00 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -131,18 +131,6 @@ child_start(struct children *children, uid_t uid, gid_t gid,
 		n = start(child, io);
 		io_close(io);
 		io_free(io);
-
-#ifdef PROFILE
-		/*
-		 * We want to use _exit rather than exit in the child process,
-		 * and it doesn't run atexit handlers, so run _mcleanup
-		 * manually to force the profiler to dump its statistics.
-		 *
-		 * This is icky but it works, and is only for profiling.
-		 */
-		extern void _mcleanup(void);
-		_mcleanup();
-#endif
 
 		child_exit(n);
 	}
