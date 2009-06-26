@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.182 2009-05-17 18:38:49 nicm Exp $
+# $Id: Makefile,v 1.183 2009-06-26 15:58:00 nicm Exp $
 
 .SUFFIXES: .c .o
 .PHONY: clean regress
@@ -15,7 +15,7 @@ LIBS+= -lssl -lcrypto -ltdb -lz
 
 # This sort of sucks but gets rid of the stupid warning and should work on
 # most platforms...
-CCV!= (${CC} -v 2>&1|awk '/gcc version 4/') || true
+CCV!= (LC_ALL=C ${CC} -v 2>&1|awk '/gcc version 4/') || true
 .if empty(CCV)
 CPPFLAGS:= -I. -I- -I/usr/local/include ${CPPFLAGS}
 .else
