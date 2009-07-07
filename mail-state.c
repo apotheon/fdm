@@ -1,4 +1,4 @@
-/* $Id: mail-state.c,v 1.34 2009-05-17 19:20:09 nicm Exp $ */
+/* $Id: mail-state.c,v 1.35 2009-07-07 09:31:08 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -428,8 +428,8 @@ fill_from_action(struct mail_ctx *mctx, struct rule *r, struct action *t,
 			return (-1);
 		}
 		if ((udata = user_lookup(user, conf.user_order)) == NULL) {
-			xfree(user);
 			log_warnx("%s: bad user: %s", a->name, user);
+			xfree(user);
 			return (-1);
 		}
 		xfree(user);
