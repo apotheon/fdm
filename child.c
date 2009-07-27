@@ -1,4 +1,4 @@
-/* $Id: child.c,v 1.149 2009-05-26 06:05:00 nicm Exp $ */
+/* $Id: child.c,v 1.150 2009-07-27 12:14:12 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -118,8 +118,10 @@ child_start(struct children *children, uid_t uid, gid_t gid,
 	if ((child->pid = child_fork()) == 0) {
 		for (i = 0; i < ARRAY_LENGTH(children); i++) {
 			childp = ARRAY_ITEM(children, i);
-			io_close(childp->io);
-			io_free(childp->io);
+			if (childp->io != NULL) {
+				io_close(childp->io);
+				io_free(childp->io);
+			}
 		}
 		io_close(child->io);
 		io_free(child->io);

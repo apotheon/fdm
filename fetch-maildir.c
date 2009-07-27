@@ -1,4 +1,4 @@
-/* $Id: fetch-maildir.c,v 1.90 2009-05-31 20:32:36 nicm Exp $ */
+/* $Id: fetch-maildir.c,v 1.91 2009-07-27 12:14:12 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -137,10 +137,14 @@ fetch_maildir_freepaths(struct account *a)
 	struct fetch_maildir_data	*data = a->data;
 	u_int			 	 i;
 
+	if (data->paths == NULL)
+		return;
+
 	for (i = 0; i < ARRAY_LENGTH(data->paths); i++)
 		xfree(ARRAY_ITEM(data->paths, i));
 
 	ARRAY_FREEALL(data->paths);
+	data->paths = NULL;
 }
 
 /* Count maildir total. */
