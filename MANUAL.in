@@ -982,9 +982,9 @@ Or to remove all instances of a header from mail:
 Mails may be assigned one of more tags manually using the tag action type. For
 example,
 
-	match account "my*" tag "myaccts"
+	match account "my*" action tag "myaccts"
 
-	match "^User-Agent:[ \t]*(.*)" tag "user-agent" value "%1"
+	match "^User-Agent:[ \t]*(.*)" action tag "user-agent" value "%1"
 
 The tag is attached to the mail with the specified value, or no value if none
 is provided.
@@ -1629,5 +1629,5 @@ Because I hate maintaining and testing two sets of code, there is a strong
 possibility that PCRE may become the fdm default at some point.
 
 ================================================================================
-$Id: MANUAL.in,v 1.79 2009-05-17 18:23:45 nicm Exp $
+$Id: MANUAL.in,v 1.80 2009-07-29 19:20:16 nicm Exp $
 
