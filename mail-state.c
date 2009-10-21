@@ -1,4 +1,4 @@
-/* $Id: mail-state.c,v 1.35 2009-07-07 09:31:08 nicm Exp $ */
+/* $Id: mail-state.c,v 1.36 2009-10-21 17:28:48 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -481,6 +481,7 @@ start_action(struct mail_ctx *mctx, struct deliver_ctx *dctx)
 	    a->name, m->idx, t->name, ti->idx, ti->deliver->name,
 	    dctx->udata->name);
 	add_tag(&m->tags, "action", "%s", t->name);
+	add_tag(&m->tags, "rule", "%u", mctx->rule->idx);
 
 	update_tags(&m->tags, dctx->udata);
 
