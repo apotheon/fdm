@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.349 2009-07-30 13:52:37 nicm Exp $ */
+/* $Id: fdm.h,v 1.350 2009-10-22 08:15:09 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -379,6 +379,7 @@ struct mail_ctx {
 	struct io			*io;
 	struct mail			*mail;
 
+	u_int				 ruleidx;
 	struct rule			*rule;
 	ARRAY_DECL(, struct rule *)	 stack;
 	struct expritem			*expritem;
