@@ -1,4 +1,4 @@
-/* $Id: fetch.h,v 1.53 2009-05-02 20:08:40 nicm Exp $ */
+/* $Id: fetch.h,v 1.54 2009-11-30 16:04:33 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -66,6 +66,8 @@ struct fetch_maildir_data {
 	struct strings	*maildirs;
 
 	u_int		 total;
+
+	struct strings	 unlinklist;
 
 	struct strings	*paths;
 	u_int		 index;
