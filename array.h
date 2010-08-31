@@ -1,4 +1,4 @@
-/* $Id: array.h,v 1.11 2008-09-29 16:58:36 nicm Exp $ */
+/* $Id: array.h,v 1.12 2010-08-31 23:52:25 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -18,6 +18,8 @@
 
 #ifndef ARRAY_H
 #define ARRAY_H
+
+#define ARRAY_INITIALIZER { NULL, 0, 0 }
 
 #define ARRAY_DECL(n, c)						\
 	struct n {							\
@@ -45,7 +47,7 @@
 	}								\
 } while (0)
 
-#define ARRAY_EMPTY(a) ((a) == NULL || (a)->num == 0)
+#define ARRAY_EMPTY(a) (((void *) (a)) == NULL || (a)->num == 0)
 #define ARRAY_LENGTH(a) ((a)->num)
 #define ARRAY_DATA(a) ((a)->list)
 
@@ -85,7 +87,7 @@
 		    ARRAY_ITEMSIZE(a) * ((a)->num - (i) - 1));		\
 	}								\
 	(a)->num--;							\
-        if ((a)->num == 0)						\
+	if ((a)->num == 0)						\
 		ARRAY_FREE(a);						\
 } while (0)
 
@@ -102,7 +104,7 @@
 
 #define ARRAY_CONCAT(a, b) do {						\
 	ARRAY_ENSURE(a, (b)->num);					\
-	memcpy((a)->list + (a)->num, (b)->list, (b)->num * ARRAY_ITEMSIZE(a)) \
+	memcpy((a)->list + (a)->num, (b)->list, (b)->num * ARRAY_ITEMSIZE(a)); \
 	(a)->num += (b)->num;						\
 } while (0)
 
