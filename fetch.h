@@ -1,4 +1,4 @@
-/* $Id: fetch.h,v 1.55 2010-01-28 19:28:52 nicm Exp $ */
+/* $Id: fetch.h,v 1.56 2010-08-31 23:04:49 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -244,6 +244,9 @@ struct fetch_imap_mail {
 #define IMAP_CONTINUE 1
 #define IMAP_UNTAGGED 2
 #define IMAP_RAW 3
+
+#define IMAP_CAPA_AUTH_CRAM_MD5 0x1
+#define IMAP_CAPA_XYZZY 0x2
 
 /* fetch-maildir.c */
 extern struct fetch 	 fetch_maildir;

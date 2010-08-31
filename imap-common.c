@@ -1,4 +1,4 @@
-/* $Id: imap-common.c,v 1.85 2009-05-25 21:35:31 nicm Exp $ */
+/* $Id: imap-common.c,v 1.86 2010-08-31 23:04:49 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -60,8 +60,6 @@ int	imap_state_commit(struct account *, struct fetch_ctx *);
 int	imap_state_expunge(struct account *, struct fetch_ctx *);
 int	imap_state_close(struct account *, struct fetch_ctx *);
 int	imap_state_quit(struct account *, struct fetch_ctx *);
-
-#define IMAP_CAPA_AUTH_CRAM_MD5 0x1
 
 /* Put line to server. */
 int
@@ -368,6 +366,10 @@ imap_state_capability1(struct account *a, struct fetch_ctx *fctx)
 	data->capa = 0;
 	if (strstr(line, "AUTH=CRAM-MD5") != NULL)
 		data->capa |= IMAP_CAPA_AUTH_CRAM_MD5;
+
+	/* Use XYZZY to detect Google brokenness. */
+	if (strstr(line, "XYZZY") != NULL)
+		data->capa |= IMAP_CAPA_XYZZY;
 
 	fctx->state = imap_state_capability2;
 	return (FETCH_AGAIN);

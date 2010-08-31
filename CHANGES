@@ -1,3 +1,8 @@
+01 September 2010
+
+* Detect GMail's XYZZY capability for IMAP and use it to try and workaround
+  some of their broken behaviour (incorrectly reported message sizes).
+
 31 May 2009
 
 * Print a warning on missing maildirs when fetching from them rather than
@@ -900,7 +905,7 @@
   the mail was very rarely reallocated, now that the header is added it is.
 * Changed all the descriptions to static buffers and audited use of snprintf.
 
-$Id: CHANGES,v 1.212 2009-05-31 20:32:36 nicm Exp $
+$Id: CHANGES,v 1.213 2010-08-31 23:04:49 nicm Exp $
 
  LocalWords:  Terbeck authlib DLOOKUP ISP's Alessi dayofyear Lopes gmail STAT
  LocalWords:  akarinotengoku D'Angelo Pantyukhin BIC Erdely Rf patnel Fahlke vv
