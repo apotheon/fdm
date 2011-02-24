@@ -1,4 +1,4 @@
-/* $Id: pop3-common.c,v 1.13 2010-01-28 19:28:52 nicm Exp $ */
+/* $Id: pop3-common.c,v 1.14 2011-02-24 09:36:12 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -482,13 +482,15 @@ pop3_state_first(struct account *a, struct fetch_ctx *fctx)
 		return (FETCH_BLOCK);
 	}
 
-	if (! data->uidl) { 
-		/* broken pop3, directly setup wantq instead of using uidl result */
-		for (i=1; i <= data->num; ++i) {
+	if (!data->uidl) {
+		/*
+		 * Broken pop3, directly create wantq instead of using UIDL
+		 * result.
+		 */
+		for (i = 1; i <= data->num; i++) {
 			aux = xcalloc(1, sizeof *aux);
 			aux->idx = i;
 			aux->uid = xstrdup("");
-			
 			TAILQ_INSERT_TAIL(&data->wantq, aux, qentry);
 			data->total++;
 		}
