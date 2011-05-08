@@ -1,4 +1,4 @@
-/* $Id: fetch-mbox.c,v 1.12 2007-12-08 20:22:36 nicm Exp $ */
+/* $Id: fetch-mbox.c,v 1.13 2011-05-08 20:51:02 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -434,6 +434,9 @@ fetch_mbox_state_mail(struct account *a, struct fetch_ctx *fctx)
 
 	/* Tag mail. */
 	default_tags(&m->tags, NULL);
+	add_tag(&m->tags, "mbox", "%s", xbasename(fmbox->path));
+	add_tag(&m->tags, "mbox_path", "%s", xdirname(fmbox->path));
+	add_tag(&m->tags, "mbox_file", "%s", fmbox->path);
 
 	/*
 	 * We start at a "From " line and include it in the mail (it can be

@@ -1,3 +1,7 @@
+07 May 2011
+
+* Add mbox tags for messages fetched from a mbox
+
 01 September 2010
 
 * Detect GMail's XYZZY capability for IMAP and use it to try and workaround
@@ -905,7 +909,7 @@
   the mail was very rarely reallocated, now that the header is added it is.
 * Changed all the descriptions to static buffers and audited use of snprintf.
 
-$Id: CHANGES,v 1.213 2010-08-31 23:04:49 nicm Exp $
+$Id: CHANGES,v 1.214 2011-05-08 20:51:02 nicm Exp $
 
  LocalWords:  Terbeck authlib DLOOKUP ISP's Alessi dayofyear Lopes gmail STAT
  LocalWords:  akarinotengoku D'Angelo Pantyukhin BIC Erdely Rf patnel Fahlke vv
