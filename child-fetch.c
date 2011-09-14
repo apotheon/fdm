@@ -1,4 +1,4 @@
-/* $Id: child-fetch.c,v 1.73 2009-05-25 21:42:37 nicm Exp $ */
+/* $Id: child-fetch.c,v 1.74 2011-09-14 13:36:19 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -130,7 +130,7 @@ child_fetch(struct child *child, struct io *pio)
 	do {
 		log_debug3("%s: waiting for exit message from parent", a->name);
 		if (privsep_recv(pio, &msg, NULL) != 0)
-			fatalx("privsep_recv error");			
+			fatalx("privsep_recv error");
 	} while (msg.type != MSG_EXIT);
 
 #ifdef DEBUG

@@ -1,4 +1,4 @@
-/* $Id: privsep.c,v 1.12 2009-05-25 21:41:52 nicm Exp $ */
+/* $Id: privsep.c,v 1.13 2011-09-14 13:36:19 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -52,7 +52,7 @@ int
 privsep_recv(struct io *io, struct msg *msg, struct msgbuf *msgbuf)
 {
 	char	*tmpbuf;
-	
+
 	if (msgbuf != NULL) {
 		msgbuf->buf = NULL;
 		msgbuf->len = 0;

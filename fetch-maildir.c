@@ -1,4 +1,4 @@
-/* $Id: fetch-maildir.c,v 1.92 2009-11-30 16:04:33 nicm Exp $ */
+/* $Id: fetch-maildir.c,v 1.93 2011-09-14 13:36:19 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -280,7 +280,7 @@ fetch_maildir_state_next(struct account *a, struct fetch_ctx *fctx)
 	struct fetch_maildir_data	*data = a->data;
 	char				*path;
 	u_int				 i;
-	
+
 	for (i = 0; i < ARRAY_LENGTH(&data->unlinklist); i++) {
 		path = ARRAY_ITEM(&data->unlinklist, i);
 		log_debug2("%s: unlinking: %s", a->name, path);
