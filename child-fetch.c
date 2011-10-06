@@ -1,4 +1,4 @@
-/* $Id: child-fetch.c,v 1.74 2011-09-14 13:36:19 nicm Exp $ */
+/* $Id: child-fetch.c,v 1.75 2011-10-06 13:51:55 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -589,7 +589,7 @@ fetch_enqueue(struct account *a, struct io *pio, struct mail *m)
 		add_tag(&m->tags, "mail_dayofweek", "%d", tm->tm_wday);
 		add_tag(&m->tags, "mail_dayofyear", "%.2d", tm->tm_yday + 1);
 		add_tag(&m->tags,
-		    "mail_quarter", "%d", (tm->tm_mon - 1) / 3 + 1);
+		    "mail_quarter", "%d", tm->tm_mon / 3 + 1);
 	}
 	if (rfc822time(t, rtime, sizeof rtime) != NULL)
 		add_tag(&m->tags, "mail_rfc822date", "%s", rtime);
