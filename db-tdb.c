@@ -1,4 +1,4 @@
-/* $Id: db-tdb.c,v 1.13 2008-05-17 15:13:01 nicm Exp $ */
+/* $Id: db-tdb.c,v 1.14 2011-10-10 13:36:29 nicm Exp $ */
 
 /*
  * Copyright (c) 2007 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -22,6 +22,9 @@
 #include <fcntl.h>
 #include <signal.h>
 #include <string.h>
+#ifndef _PUBLIC_
+#define _PUBLIC_
+#endif
 #include <tdb.h>
 
 #include "fdm.h"

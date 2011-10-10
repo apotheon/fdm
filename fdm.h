@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.350 2009-10-22 08:15:09 nicm Exp $ */
+/* $Id: fdm.h,v 1.351 2011-10-10 13:36:29 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -41,6 +41,9 @@
 #include <signal.h>
 #include <stdarg.h>
 #include <stdint.h>
+#ifndef _PUBLIC_
+#define _PUBLIC_
+#endif
 #include <tdb.h>
 #include <regex.h>
 
