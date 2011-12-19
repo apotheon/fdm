@@ -1,4 +1,4 @@
-/* $Id: imap-common.c,v 1.86 2010-08-31 23:04:49 nicm Exp $ */
+/* $Id: imap-common.c,v 1.87 2011/12/19 20:19:03 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -849,9 +849,7 @@ imap_state_line(struct account *a, struct fetch_ctx *fctx)
 	 * make sure there is a terminating ).
 	 */
 	left = data->size - used;
-	if (size <= left)
-		return (imap_invalid(a, line));
-	if (line[size - 1] != ')')
+	if (line[size - 1] != ')' && size <= left)
 		return (imap_invalid(a, line));
 
 	/* If there was data left, add it as a new line without trailing \n. */
