@@ -1,4 +1,4 @@
-/* $Id: mail-state.c,v 1.37 2009-10-22 08:15:09 nicm Exp $ */
+/* $Id: mail-state.c,v 1.38 2013/05/07 13:07:45 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -177,7 +177,6 @@ next_expritem:
 	/* If the result was false, skip to find the next rule. */
 	if (!mctx->result)
 		goto next_rule;
-	mctx->matched = 1;
 	log_debug2("%s: matched to rule %u", a->name, mctx->rule->idx);
 
 	/*
@@ -201,6 +200,7 @@ next_expritem:
 		mctx->rule = TAILQ_FIRST(&mctx->rule->rules);
 		return (MAIL_CONTINUE);
 	}
+	mctx->matched = 1;
 
 	/* Handle lambda actions. */
 	if (mctx->rule->lambda != NULL) {

@@ -1,4 +1,4 @@
-/* $Id: fdm.h,v 1.351 2011-10-10 13:36:29 nicm Exp $ */
+/* $Id: fdm.h,v 1.352 2013/05/07 13:07:45 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -217,6 +217,7 @@ struct server {
 	char		*port;
 	struct addrinfo	*ai;
 	int		 ssl;
+	int		 tls1;
 	int		 verify;
 };
 
