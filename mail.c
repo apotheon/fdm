@@ -1,4 +1,4 @@
-/* $Id: mail.c,v 1.128 2008-08-08 17:11:55 nicm Exp $ */
+/* $Id: mail.c,v 1.129 2013/05/31 12:12:03 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -441,6 +441,7 @@ find_address(char *buf, size_t len, size_t *alen)
 	ptr = hdr;
 	while (*ptr != '\0') {
 		if (*ptr == '"') {
+			ptr++;
 			while (*ptr != '"' && *ptr != '\0')
 				*ptr++ = ' ';
 			if (*ptr == '\0')
