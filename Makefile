@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.183 2009-06-26 15:58:00 nicm Exp $
+# $Id: Makefile,v 1.184 2013/10/16 07:29:08 nicm Exp $
 
 .SUFFIXES: .c .o
 .PHONY: clean regress
@@ -9,18 +9,10 @@ FDEBUG= 1
 
 CC?= cc
 YACC= yacc -d
+CPPFLAGS+= -I/usr/local/include -I.
 CFLAGS+= -DBUILD="\"$(VERSION)\""
 LDFLAGS+= -L/usr/local/lib
 LIBS+= -lssl -lcrypto -ltdb -lz
-
-# This sort of sucks but gets rid of the stupid warning and should work on
-# most platforms...
-CCV!= (LC_ALL=C ${CC} -v 2>&1|awk '/gcc version 4/') || true
-.if empty(CCV)
-CPPFLAGS:= -I. -I- -I/usr/local/include ${CPPFLAGS}
-.else
-CPPFLAGS:= -iquote. -I/usr/local/include ${CPPFLAGS}
-.endif
 
 .ifdef FDEBUG
 LDFLAGS+= -Wl,-E
