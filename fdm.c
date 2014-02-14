@@ -1,4 +1,4 @@
-/* $Id: fdm.c,v 1.185 2011-09-14 13:36:19 nicm Exp $ */
+/* $Id: fdm.c,v 1.186 2014/02/14 17:12:39 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -583,7 +583,7 @@ main(int argc, char **argv)
 	}
 	if (sizeof tmp > off && conf.max_accts != -1) {
 		off += xsnprintf(tmp + off, (sizeof tmp) - off,
-		    "parallel-accounts=%d ", conf.max_accts);
+		    "parallel-accounts=%d, ", conf.max_accts);
 	}
 	if (sizeof tmp > off && conf.lock_file != NULL) {
 		off += xsnprintf(tmp + off, (sizeof tmp) - off,
