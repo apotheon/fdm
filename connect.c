@@ -1,4 +1,4 @@
-/* $Id: connect.c,v 1.79 2014/02/14 17:23:12 nicm Exp $ */
+/* $Id: connect.c,v 1.80 2014/02/14 17:25:05 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -37,6 +37,7 @@
 
 #include "fdm.h"
 
+char   *check_alt_names(char *, char *, X509 *);
 int	sslverify(struct server *, SSL *, char **);
 int	getport(char *);
 int	httpproxy(struct server *, struct proxy *, struct io *, int, char **);
