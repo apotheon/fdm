@@ -1,4 +1,4 @@
-/* $Id: connect.c,v 1.80 2014/02/14 17:25:05 nicm Exp $ */
+/* $Id: connect.c,v 1.81 2014/02/15 23:44:47 nicm Exp $ */
 
 /*
  * Copyright (c) 2006 Nicholas Marriott <nicm@users.sourceforge.net>
@@ -104,8 +104,7 @@ check_alt_names(char *host, char *fqdn, X509 *x509)
 		p = sk_GENERAL_NAME_value(ans, n);
 		if (p == NULL || p->type != GEN_DNS)
 			continue;
-		ASN1_STRING_to_UTF8((u_char **)&buf, p->d.dNSName);
-		if (buf == NULL)
+		if (ASN1_STRING_to_UTF8((u_char **)&buf, p->d.dNSName) <= 0)
 			continue;
 		if (fnmatch(buf, host, FNM_NOESCAPE|FNM_CASEFOLD) == 0 ||
 		    (fqdn != NULL &&
